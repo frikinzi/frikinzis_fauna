@@ -1,22 +1,38 @@
 # creatures_plus
  A Minecraft mod aiming to add various birds and fish to your world.
 
+
 **Added Creatures**
+
 _Water Creatures_
+
 Koi (6 varieties)
+
 Dottyback (4 varieties)
+
 Pike
+
 Arowana (3 varieties)
+
 Guppy (6 varieties)
+
 Cherry Shrimp (8 varieties)
+
 Gourami (5 varieties)
 
+
 _Birds_
+
 Lovebird (6 varieties)
+
 Kakapo
+
 Spoonbill (3 varieties)
+
 Raven
+
 Dove (5 varieties)
+
 
 **Koi**
 ![Koi_Updated-1-1](https://user-images.githubusercontent.com/86448602/126360615-c3dd8b2d-5772-4fef-a540-703b66f287f5.png)
