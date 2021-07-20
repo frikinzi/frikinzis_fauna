@@ -1,0 +1,33 @@
+//Entities
+entity.lovebird.name=牡丹鹦鹉
+entity.dottyback.name=拟雀鲷
+entity.koi.name=锦鲤
+entity.pike.name=梭鱼
+entity.kakapo.name=鸮鹦鹉
+entity.spoonbill.name=琵鹭
+entity.mandarin_duck.name=鸳鸯
+entity.arowana.name=龙鱼
+entity.guppy.name=孔雀鱼
+entity.shrimp.name=米虾
+entity.gourami.name=丝足鱼
+entity.raven.name=乌鸦
+entity.dove.name=鸽子
+
+//Sounds
+entity.mandarin_duck.quack=鸳鸯：嘎嘎叫
+entity.dove.coo=鸽子：咕咕叫
+
+//Messages
+message.creatures.male=性：雄
+message.creatures.female=性：母
+message.creatures.dove.jambu=种：粉头果鸠 （学名：Ptilinopus jambu）
+message.creatures.dove.release=种：白鸽（学名：Columba livia domestica）
+message.creatures.dove.rose=种：粉顶果鸠（学名：Ptilinopus regina）
+message.creatures.dove.rock=种：原鸽（学名：Columba livia）
+message.creatures.dove.flame=种：橙色果鸠（学名：Ptilinopus victor）
+message.creatures.lovebird.fischers=种：费氏牡丹鹦鹉 (学名：Agapornis fischeri)
+message.creatures.lovebird.fischersmutation=种：费氏牡丹鹦鹉 [黄化变种] (学名：Agapornis fischeri)
+message.creatures.lovebird.masked=种：黄领牡丹鹦鹉 (学名：Agapornis personatus)
+message.creatures.lovebird.maskedmutation=种：黄领牡丹鹦鹉 [蓝色变种] (学名：Agapornis personatus)
+message.creatures.lovebird.peach=种：桃脸牡丹鹦鹉 (学名：Agapornis roseicollis)
+message.creatures.lovebird.madagascar=种：灰头牡丹鹦鹉 (学名：Agapornis canus)

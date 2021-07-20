@@ -1,0 +1,177 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.lovebird.idle": {
+			"loop": true,
+			"animation_length": 2,
+			"bones": {
+				"LowerBody": {
+					"rotation": {
+						"0.125": {
+							"vector": [0, 0, 5]
+						},
+						"1.0417": {
+							"vector": [0, 0, -2.5]
+						},
+						"1.9583": {
+							"vector": [0, 0, 5]
+						}
+					}
+				},
+				"Head": {
+					"rotation": {
+						"0.125": {
+							"vector": [0, 0, 7.5]
+						},
+						"1.0833": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 7.5]
+						}
+					}
+				}
+			}
+		},
+		"animation.lovebird.walking": {
+			"loop": true,
+			"animation_length": 1.08333,
+			"bones": {
+				"LeftLeg": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 10]
+						},
+						"0.3333": {
+							"vector": [0, 0, -2.5]
+						},
+						"0.7083": {
+							"vector": [0, 0, -20]
+						},
+						"1.0833": {
+							"vector": [0, 0, 10]
+						}
+					}
+				},
+				"RightLeg": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -25]
+						},
+						"0.3333": {
+							"vector": [0, 0, 0]
+						},
+						"0.7083": {
+							"vector": [0, 0, 30]
+						},
+						"1.0833": {
+							"vector": [0, 0, -25]
+						}
+					}
+				}
+			}
+		},
+		"animation.lovebird.flying": {
+			"loop": true,
+			"animation_length": 0.33333,
+			"bones": {
+				"LeftLeg": {
+					"position": {
+						"vector": [0, 1, 0]
+					}
+				},
+				"RightLeg": {
+					"position": {
+						"vector": [0, 1, 0]
+					}
+				},
+				"LeftWing": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.125": {
+							"vector": [0, 55, 0]
+						},
+						"0.25": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"RightWing": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.125": {
+							"vector": [0, -55, 0]
+						},
+						"0.25": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"Tail": {
+					"rotation": {
+						"vector": [0, 0, -15]
+					}
+				},
+				"Head": {
+					"rotation": {
+						"vector": [0, 0, 15]
+					}
+				}
+			}
+		},
+		"animation.lovebird.sleep": {
+			"loop": true,
+			"animation_length": 1.5,
+			"bones": {
+				"Main": {
+					"position": {
+						"vector": [0, -1, 0]
+					}
+				},
+				"LeftLeg": {
+					"position": {
+						"vector": [0, 1, 0]
+					}
+				},
+				"RightLeg": {
+					"position": {
+						"vector": [0, 1, 0]
+					}
+				},
+				"Tail": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 5]
+						},
+						"0.8333": {
+							"vector": [0, 0, 2.5]
+						},
+						"1.5": {
+							"vector": [0, 0, 5]
+						}
+					}
+				},
+				"Head": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -182.5, -12.5]
+						},
+						"0.7083": {
+							"vector": [0, -182.5, -7.5]
+						},
+						"1.5": {
+							"vector": [0, -182.5, -12.5]
+						}
+					},
+					"position": {
+						"vector": [1, 0, 0]
+					}
+				}
+			}
+		}
+	}
+}

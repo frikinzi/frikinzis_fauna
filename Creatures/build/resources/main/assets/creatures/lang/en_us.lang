@@ -1,0 +1,35 @@
+//Entities
+entity.lovebird.name=Lovebird
+entity.dottyback.name=Dottyback
+entity.koi.name=Koi
+entity.pike.name=Pike
+entity.kakapo.name=Kakapo
+entity.spoonbill.name=Spoonbill
+entity.mandarin_duck.name=Mandarin Duck
+entity.arowana.name=Arowana
+entity.guppy.name=Guppy
+entity.shrimp.name=Cherry Shrimp
+entity.gourami.name=Gourami
+entity.raven.name=Raven
+entity.dove.name=Dove
+
+//Sounds
+entity.mandarin_duck.quack=Mandarin duck quacks
+entity.raven.caw=Raven caws
+entity.dove.coo=Dove coos
+entity.spoonbill.squawk=Spoonbill squawks
+
+//Messages
+message.creatures.male=Sex: male
+message.creatures.female=Sex: female
+message.creatures.dove.jambu=Species Name: Jambu fruit dove (Ptilinopus jambu)
+message.creatures.dove.release=Species Name: Domestic pigeon (Columba livia domestica)
+message.creatures.dove.rose=Species Name: Rose-crowned fruit dove (Ptilinopus regina)
+message.creatures.dove.rock=Species Name: Rock dove (Columba livia)
+message.creatures.dove.flame=Species Name: Flame dove (Ptilinopus victor)
+message.creatures.lovebird.fischers=Species Name: Fischer's lovebird (Agapornis fischeri)
+message.creatures.lovebird.fischersmutation=Species Name: Fischer's lovebird [lutino mutation] (Agapornis fischeri)
+message.creatures.lovebird.masked=Species Name: Masked lovebird (Agapornis personatus)
+message.creatures.lovebird.maskedmutation=Species Name: Masked lovebird [blue mutation] (Agapornis personatus)
+message.creatures.lovebird.peach=Species Name: Peach-faced lovebird (Agapornis roseicollis)
+message.creatures.lovebird.madagascar=Species Name: Madagascar lovebird (Agapornis canus)

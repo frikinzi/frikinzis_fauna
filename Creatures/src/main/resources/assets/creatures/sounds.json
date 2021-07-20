@@ -1,0 +1,44 @@
+{
+	"entity.lovebird.lovebird_ambient":
+	{
+		"category": "entity",
+		"subtitle": "Lovebird chirps",
+		"sounds": [{"name": "creatures:entity/lovebird/lovebird_ambient", "stream": true }]
+	},
+	"entity.kakapo.kakapo_ambient":
+	{
+		"category": "entity",
+		"subtitle": "Kakapo calls",
+		"sounds": [{"name": "creatures:entity/kakapo/kakapo_ambient", "stream": true }]
+	},
+	"entity.kakapo.kakapo_hurt":
+	{
+		"category": "entity",
+		"subtitle": "Kakapo screeches",
+		"sounds": [{"name": "creatures:entity/kakapo/kakapo_hurt", "stream": true }]
+	},
+	"entity.spoonbill.spoonbill_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.spoonbill.squawk",
+		"sounds": [{"name": "creatures:entity/spoonbill/spoonbill_ambient", "stream": true }]
+	},
+	"entity.mandarin_duck.mandarin_duck_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.mandarin_duck.quack",
+		"sounds": [{"name": "creatures:entity/mandarin_duck/mandarin_duck_ambient", "stream": true }]
+	},
+	"entity.raven.raven_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.raven.caw",
+		"sounds": [{"name": "creatures:entity/raven/raven_ambient", "stream": true }]
+	},
+	"entity.dove.dove_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.dove.coo",
+		"sounds": [{"name": "creatures:entity/dove/dove_ambient", "stream": true }]
+	}
+}

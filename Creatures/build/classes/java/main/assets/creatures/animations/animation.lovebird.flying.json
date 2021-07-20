@@ -1,0 +1,52 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.lovebird.flying": {
+			"loop": true,
+			"animation_length": 0.41667,
+			"bones": {
+				"LeftLeg": {
+					"position": {
+						"vector": [0, 1, 0]
+					}
+				},
+				"RightLeg": {
+					"position": {
+						"vector": [0, 1, 0]
+					}
+				},
+				"LeftWing": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.1667": {
+							"vector": [0, 55, 0]
+						},
+						"0.3333": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"RightWing": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.1667": {
+							"vector": [0, -55, 0]
+						},
+						"0.3333": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"UpperBody": {
+					"rotation": {
+						"vector": [0, 0, 15]
+					}
+				}
+			}
+		}
+	}
+}

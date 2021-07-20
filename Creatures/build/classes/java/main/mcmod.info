@@ -1,0 +1,16 @@
+[
+{
+  "modid": "creatures",
+  "name": "Creatures+",
+  "description": "A mod that adds various birds and fish to your world.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Frikinzi"],
+  "credits": "xeno-canto",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": ["forge", "geckolib"]
+}
+]
