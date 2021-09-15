@@ -1,7 +1,7 @@
 # creatures_plus
  A Minecraft mod aiming to add various birds and fish to your world.
  
- https://i.imgur.com/QcB1KOB.png
+![alt text](Creatures/src/main/resources/assets/creatures/creatures_logo.png)
 
 The Creatures mod (for 1.12.2) adds a variety of animals to Minecraft that are not usually found in other animal mods. In its current stage, the mod is functional for creative mode. 
 
