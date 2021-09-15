@@ -1,4 +1,4 @@
-# creatures_plus
+# creatures
  A Minecraft mod aiming to add various birds and fish to your world.
  
 ![alt text](Creatures/src/main/resources/assets/creatures/creatures_logo.png)
