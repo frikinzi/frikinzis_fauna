@@ -1,15 +1,15 @@
 [
 {
   "modid": "creatures",
-  "name": "Creatures+",
-  "description": "A mod that adds various birds and fish to your world.",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "",
+  "name": "Creatures",
+  "description": "A mod that adds various animals not usually found in other mods to your world.",
+  "version": "1.0.0",
+  "mcversion": "1.12.2",
+  "url": "https://www.curseforge.com/minecraft/mc-mods/creatures",
   "updateUrl": "",
   "authorList": ["Frikinzi"],
-  "credits": "xeno-canto",
-  "logoFile": "",
+  "credits": "xeno-canto for bird sounds, P-Plum for the lorikeet model help. Thank you!",
+  "logoFile": "assets/creatures/creatures_logo.png",
   "screenshots": [],
   "dependencies": ["forge", "geckolib"]
 }

@@ -22,7 +22,7 @@ public class Creatures
 {
     public Creatures() {
 
-        GeckoLib.initialize();
+        //GeckoLib.initialize();
     }
     @Mod.Instance
     public static Creatures instance;
@@ -33,7 +33,7 @@ public class Creatures
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         RegistryHandler.preInitRegistries(event);
-
+        GeckoLib.initialize();
     }
 
 

@@ -1,5 +1,7 @@
 package com.creatures.afrikinzi.entity.koi;
 
+import com.creatures.afrikinzi.entity.FishBase;
+import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -24,7 +26,7 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 
-public class EntityKoi extends EntitySquid implements IAnimatable
+public class EntityKoi extends FishBase implements IAnimatable
 {
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -64,7 +66,7 @@ public class EntityKoi extends EntitySquid implements IAnimatable
     @Override
     protected ResourceLocation getLootTable()
     {
-        return LootTableList.ENTITIES_POLAR_BEAR;
+        return LootTableHandler.FISH;
     }
 
     @Nullable

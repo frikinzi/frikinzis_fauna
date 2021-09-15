@@ -15,6 +15,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
@@ -41,7 +42,8 @@ public class EntityMandarinDuck extends EntityAnimal implements IAnimatable {
     public EntityMandarinDuck(World worldIn)
     {
         super(worldIn);
-        this.setSize(1F, 1F);
+        this.setSize(0.7F, 0.8F);
+        this.setPathPriority(PathNodeType.WATER, 1.0F);
     }
 
     protected void initEntityAI()
@@ -58,7 +60,7 @@ public class EntityMandarinDuck extends EntityAnimal implements IAnimatable {
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30000001192092896D);
     }
 
@@ -67,7 +69,7 @@ public class EntityMandarinDuck extends EntityAnimal implements IAnimatable {
         if (event.isMoving()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("walking", true));
             return PlayState.CONTINUE;
-        } if (!this.onGround) {
+        } if (!this.onGround && !this.isInWater()) {
         event.getController().setAnimation(new AnimationBuilder().addAnimation("flying", true));
         return PlayState.CONTINUE;
     } if (this.isSleeping()) {

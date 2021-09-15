@@ -1,0 +1,21 @@
+{
+  "minecraft:recipes/combat/arrow": {
+    "criteria": {
+      "has_feather": "2021-08-28 14:02:07 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/chest": {
+    "criteria": {
+      "has_lots_of_items": "2021-08-28 14:02:07 -0400"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "river": "2021-08-28 14:03:04 -0400",
+      "jungle": "2021-08-28 14:02:07 -0400"
+    },
+    "done": false
+  }
+}

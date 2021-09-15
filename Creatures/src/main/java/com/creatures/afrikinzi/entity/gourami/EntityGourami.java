@@ -1,5 +1,6 @@
 package com.creatures.afrikinzi.entity.gourami;
 
+import com.creatures.afrikinzi.entity.FishBase;
 import com.creatures.afrikinzi.entity.guppy.EntityGuppy;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import net.minecraft.entity.IEntityLivingData;
@@ -23,7 +24,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 
-public class EntityGourami extends EntitySquid implements IAnimatable {
+public class EntityGourami extends FishBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     @Override
     protected boolean canDespawn()
@@ -36,7 +37,7 @@ public class EntityGourami extends EntitySquid implements IAnimatable {
     public EntityGourami(World worldIn)
     {
         super(worldIn);
-        this.setSize(0.8F, 0.8F);
+        this.setSize(0.6F, 0.6F);
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
@@ -76,7 +77,7 @@ public class EntityGourami extends EntitySquid implements IAnimatable {
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(5.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(3.0D);
     }
 
     @Nullable

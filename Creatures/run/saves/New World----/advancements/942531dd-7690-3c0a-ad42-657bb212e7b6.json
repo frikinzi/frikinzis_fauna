@@ -1,0 +1,15 @@
+{
+  "minecraft:recipes/brewing/golden_carrot": {
+    "criteria": {
+      "has_gold_nugget": "2021-09-01 15:51:31 -0400"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "plains": "2021-09-01 15:51:31 -0400",
+      "roofed_forest": "2021-09-01 15:51:40 -0400"
+    },
+    "done": false
+  }
+}

@@ -4,7 +4,7 @@ entity.dottyback.name=拟雀鲷
 entity.koi.name=锦鲤
 entity.pike.name=梭鱼
 entity.kakapo.name=鸮鹦鹉
-entity.spoonbill.name=琵鹭
+entity.creatures_spoonbill.name=琵鹭
 entity.mandarin_duck.name=鸳鸯
 entity.arowana.name=龙鱼
 entity.guppy.name=孔雀鱼
@@ -12,10 +12,28 @@ entity.shrimp.name=米虾
 entity.gourami.name=丝足鱼
 entity.raven.name=乌鸦
 entity.dove.name=鸽子
+entity.golden_eagle.name=金雕
+entity.stellers_sea_eagle.name=虎头海雕
+entity.gyrfalcon.name=矛隼
+entity.conure.name=锥尾鹦鹉
+entity.lorikeet.name=澳洲鹦鹉
+entity.iberian_lynx.name=伊比利亚猞猁
+entity.red_kite.name=红鸢
+entity.fairy_wren.name=细尾鹩莺
+entity.ghost_crab.name=沙蟹
 
 //Sounds
 entity.mandarin_duck.quack=鸳鸯：嘎嘎叫
 entity.dove.coo=鸽子：咕咕叫
+entity.creatures_spoonbill.squawk=琵鹭: 叫声
+entity.lynx.ambient=猞猁: 喵喵叫
+entity.stellers_sea_eagle.cry=虎头海雕: 叫声
+entity.gyrfalcon.cry=矛隼: 叫声
+entity.golden_eagle.cry=金雕：叫声
+entity.conure.ambient=锥尾鹦鹉：吱吱叫
+entity.lorikeet.ambient=澳洲鹦鹉：吱吱叫
+entity.raven.caw=乌鸦：哇哇叫
+entity.fairy_wren.ambient=细尾鹩莺: 歌声
 
 //Messages
 message.creatures.male=性：雄

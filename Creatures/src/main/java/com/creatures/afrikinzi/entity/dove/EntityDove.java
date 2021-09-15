@@ -102,11 +102,12 @@ public class EntityDove extends EntityTameable implements IAnimatable, EntityFly
     } if (this.isSleeping()) {
         event.getController().setAnimation(new AnimationBuilder().addAnimation("sleep", true));
         return PlayState.CONTINUE;
-    }
-    else {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
+    } if (this.isSitting()) {
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("sit", true));
         return PlayState.CONTINUE;
     }
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
+        return PlayState.CONTINUE;
     }
 
     @Override
@@ -131,7 +132,7 @@ public class EntityDove extends EntityTameable implements IAnimatable, EntityFly
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
         this.getEntityAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue(1.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20000000298023224D);
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
@@ -149,7 +150,7 @@ public class EntityDove extends EntityTameable implements IAnimatable, EntityFly
     public void onLivingUpdate()
     {
         if (this.onGround) {
-            setSleeping(world.getWorldTime() >= 12000 && world.getWorldTime() <= 23000);
+            setSleeping(world.getWorldTime() >= 13000 && world.getWorldTime() <= 23000);
         }
         if (this.inWater || this.isInWater() || this.isBurning()) {
             setSleeping(false);

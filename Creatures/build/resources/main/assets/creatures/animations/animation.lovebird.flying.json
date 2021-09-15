@@ -1,49 +1,63 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.lovebird.flying": {
+		"flying": {
 			"loop": true,
 			"animation_length": 0.41667,
 			"bones": {
-				"LeftLeg": {
-					"position": {
-						"vector": [0, 1, 0]
-					}
-				},
-				"RightLeg": {
-					"position": {
-						"vector": [0, 1, 0]
-					}
-				},
-				"LeftWing": {
+				"leftwing": {
 					"rotation": {
+						"0.0": {
+							"vector": [25, 25, -95]
+						},
+						"0.2083": {
+							"vector": [-15, 25, 62.5]
+						},
+						"0.4167": {
+							"vector": [25, 25, -95]
+						}
+					}
+				},
+				"rightwing": {
+					"rotation": {
+						"0.0": {
+							"vector": [25, -25, 95]
+						},
+						"0.2083": {
+							"vector": [-15, -25, -62.5]
+						},
+						"0.4167": {
+							"vector": [25, -25, 95]
+						}
+					}
+				},
+				"bone": {
+					"rotation": {
+						"vector": [-15, 0, 0]
+					},
+					"position": {
 						"0.0": {
 							"vector": [0, 0, 0]
 						},
-						"0.1667": {
-							"vector": [0, 55, 0]
+						"0.2083": {
+							"vector": [0, 2, 0]
 						},
-						"0.3333": {
+						"0.4167": {
 							"vector": [0, 0, 0]
 						}
 					}
 				},
-				"RightWing": {
+				"head": {
 					"rotation": {
 						"0.0": {
-							"vector": [0, 0, 0]
+							"vector": [2.5, 0, 0]
 						},
-						"0.1667": {
-							"vector": [0, -55, 0]
+						"0.2083": {
+							"vector": [-2.5, 0, 0]
 						},
-						"0.3333": {
-							"vector": [0, 0, 0]
+						"0.4167": {
+							"vector": [2.5, 0, 0]
 						}
-					}
-				},
-				"UpperBody": {
-					"rotation": {
-						"vector": [0, 0, 15]
 					}
 				}
 			}

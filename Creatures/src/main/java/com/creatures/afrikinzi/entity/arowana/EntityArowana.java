@@ -1,9 +1,12 @@
 package com.creatures.afrikinzi.entity.arowana;
 
+import com.creatures.afrikinzi.entity.FishBase;
 import com.creatures.afrikinzi.entity.koi.EntityKoi;
+import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntitySquid;
+import net.minecraft.init.MobEffects;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -23,7 +26,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 
-public class EntityArowana extends EntitySquid implements IAnimatable {
+public class EntityArowana extends FishBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     @Override
     protected boolean canDespawn()
@@ -64,7 +67,7 @@ public class EntityArowana extends EntitySquid implements IAnimatable {
     @Override
     protected ResourceLocation getLootTable()
     {
-        return LootTableList.ENTITIES_POLAR_BEAR;
+        return LootTableHandler.FISH;
     }
 
     protected void applyEntityAttributes()

@@ -23,4 +23,16 @@ public class Reference
      public static final int ENTITY_GOURAMI = 260;
      public static final int ENTITY_RAVEN = 261;
      public static final int ENTITY_DOVE = 262;
+     public static final int ENTITY_RED_KITE = 263;
+     public static final int ENTITY_GOLDEN_EAGLE = 264;
+     public static final int ENTITY_STELLERS_SEA_EAGLE = 265;
+     public static final int ENTITY_GYRFALCON = 266;
+     public static final int ENTITY_CONURE = 267;
+     public static final int ENTITY_LORIKEET = 268;
+     public static final int ENTITY_IBERIAN_LYNX = 269;
+     public static final int ENTITY_FAIRY_WREN = 270;
+     public static final int ENTITY_GHOST_CRAB = 271;
+     public static final int ENTITY_PYGMY_FALCON = 272;
+     public static final int ENTITY_BARN_OWL = 273;
+     public static final int ENTITY_WILD_DUCK = 274;
 }

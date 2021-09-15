@@ -17,7 +17,7 @@
 		"subtitle": "Kakapo screeches",
 		"sounds": [{"name": "creatures:entity/kakapo/kakapo_hurt", "stream": true }]
 	},
-	"entity.spoonbill.spoonbill_ambient":
+	"entity.creatures_spoonbill.spoonbill_ambient":
 	{
 		"category": "entity",
 		"subtitle": "entity.spoonbill.squawk",
@@ -40,5 +40,60 @@
 		"category": "entity",
 		"subtitle": "entity.dove.coo",
 		"sounds": [{"name": "creatures:entity/dove/dove_ambient", "stream": true }]
+	},
+	"entity.golden_eagle.golden_eagle_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.golden_eagle.cry",
+		"sounds": [{"name": "creatures:entity/golden_eagle/golden_eagle_ambient", "stream": true }]
+	},
+	"entity.gyrfalcon.gyrfalcon_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.gyrfalcon.cry",
+		"sounds": [{"name": "creatures:entity/gyrfalcon/gyrfalcon_ambient", "stream": true }]
+	},
+	"entity.stellers_sea_eagle.stellers_sea_eagle_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.stellers_sea_eagle.cry",
+		"sounds": [{"name": "creatures:entity/stellers_sea_eagle/stellers_sea_eagle_ambient", "stream": true }]
+	},
+	"entity.iberian_lynx.lynx_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.lynx.ambient",
+		"sounds": [{"name": "creatures:entity/iberian_lynx/lynx_ambient", "stream": true }]
+	},
+	"entity.conure.conure_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.conure.ambient",
+		"sounds": [{"name": "creatures:entity/conure/conure_ambient", "stream": true }]
+	},
+	"entity.lorikeet.lorikeet_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.lorikeet.ambient",
+		"sounds": [{"name": "creatures:entity/lorikeet/lorikeet_ambient", "stream": true }]
+	},
+	"entity.lorikeet.lorikeet_ambient2":
+	{
+		"category": "entity",
+		"subtitle": "entity.lorikeet.ambient2",
+		"sounds": [{"name": "creatures:entity/lorikeet/lorikeet_ambient2", "stream": true }]
+	},
+
+	"entity.red_kite.red_kite_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.red_kite.ambient",
+		"sounds": [{"name": "creatures:entity/red_kite/red_kite_ambient", "stream": true }]
+	},
+	"entity.fairy_wren.fairy_wren_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.fairy_wren.ambient",
+		"sounds": [{"name": "creatures:entity/fairy_wren/fairy_wren_ambient", "stream": true }]
 	}
 }

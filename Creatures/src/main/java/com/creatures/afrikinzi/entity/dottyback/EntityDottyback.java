@@ -1,5 +1,7 @@
 package com.creatures.afrikinzi.entity.dottyback;
 
+import com.creatures.afrikinzi.entity.FishBase;
+import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -22,7 +24,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 
-public class EntityDottyback extends EntitySquid implements IAnimatable
+public class EntityDottyback extends FishBase implements IAnimatable
 {
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -60,7 +62,7 @@ public class EntityDottyback extends EntitySquid implements IAnimatable
     @Override
     protected ResourceLocation getLootTable()
     {
-        return LootTableList.ENTITIES_POLAR_BEAR;
+        return LootTableHandler.FISH;
     }
 
     @Nullable
@@ -73,7 +75,7 @@ public class EntityDottyback extends EntitySquid implements IAnimatable
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(5.0D);
     }
 
     public int getVariant()

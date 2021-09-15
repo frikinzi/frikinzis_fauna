@@ -31,6 +31,7 @@ public class RegistryHandler
             Creatures.proxy.registerItemRenderer(Item.getItemFromBlock(block), 0, "inventory");
 
         }
+        RenderHandler.registerEntityRenders();
     }
 
     @SubscribeEvent
@@ -43,7 +44,7 @@ public class RegistryHandler
     public static void preInitRegistries(FMLPreInitializationEvent event)
     {
         EntityInit.registerEntities();
-        RenderHandler.registerEntityRenders();
+        //RenderHandler.registerEntityRenders();
         SoundsHandler.registerSounds();
     }
     public static void initRegistries()

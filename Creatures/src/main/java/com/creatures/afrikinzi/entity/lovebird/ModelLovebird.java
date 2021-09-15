@@ -40,7 +40,7 @@ public class ModelLovebird extends AnimatedGeoModel<EntityLovebird> {
     public ResourceLocation getAnimationFileLocation(EntityLovebird object)
     {
         if (object.isFlying() || !object.onGround) {
-            return new ResourceLocation(Reference.MOD_ID, "animations/animation.lovebird.fly.json");
+            return new ResourceLocation(Reference.MOD_ID, "animations/animation.lovebird.flying.json");
         }
         return new ResourceLocation(Reference.MOD_ID, "animations/animation.lovebird.json");
     }

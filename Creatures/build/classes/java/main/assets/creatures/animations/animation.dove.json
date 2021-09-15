@@ -166,32 +166,6 @@
 				}
 			}
 		},
-		"eat": {
-			"animation_length": 0.375,
-			"bones": {
-				"Neckandhead": {
-					"rotation": {
-						"0.0": {
-							"vector": [85, 0, 0]
-						},
-						"0.125": {
-							"vector": [62.5, 0, 0]
-						},
-						"0.25": {
-							"vector": [85, 0, 0]
-						},
-						"0.375": {
-							"vector": [62.5, 0, 0]
-						}
-					}
-				},
-				"Everythingexceptlegs": {
-					"rotation": {
-						"vector": [32.5, 0, 0]
-					}
-				}
-			}
-		},
 		"sleep": {
 			"loop": true,
 			"animation_length": 2,
@@ -251,6 +225,73 @@
 						"2.0": {
 							"vector": [15, 0, 0]
 						}
+					}
+				}
+			}
+		},
+		"sit": {
+			"loop": true,
+			"animation_length": 1.25,
+			"bones": {
+				"Tail": {
+					"rotation": {
+						"0.0": {
+							"vector": [10, 0, 0]
+						},
+						"0.5833": {
+							"vector": [0, 0, 0]
+						},
+						"1.2083": {
+							"vector": [10, 0, 0]
+						}
+					}
+				},
+				"Neckandhead": {
+					"rotation": {
+						"0.0": {
+							"vector": [5, 0, 0]
+						},
+						"0.625": {
+							"vector": [0, 0, 0]
+						},
+						"1.25": {
+							"vector": [5, 0, 0]
+						}
+					}
+				},
+				"Everythingexceptlegs": {
+					"rotation": {
+						"vector": [15, 0, 0]
+					},
+					"position": {
+						"vector": [0, -2.7, 0]
+					}
+				}
+			}
+		},
+		"eat": {
+			"loop": true,
+			"animation_length": 0.375,
+			"bones": {
+				"Neckandhead": {
+					"rotation": {
+						"0.0": {
+							"vector": [85, 0, 0]
+						},
+						"0.125": {
+							"vector": [62.5, 0, 0]
+						},
+						"0.25": {
+							"vector": [85, 0, 0]
+						},
+						"0.375": {
+							"vector": [62.5, 0, 0]
+						}
+					}
+				},
+				"Everythingexceptlegs": {
+					"rotation": {
+						"vector": [32.5, 0, 0]
 					}
 				}
 			}

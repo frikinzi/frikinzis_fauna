@@ -1,5 +1,6 @@
 package com.creatures.afrikinzi.entity.guppy;
 
+import com.creatures.afrikinzi.entity.FishBase;
 import com.creatures.afrikinzi.entity.arowana.EntityArowana;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import net.minecraft.entity.IEntityLivingData;
@@ -24,7 +25,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 
-public class EntityGuppy extends EntitySquid implements IAnimatable {
+public class EntityGuppy extends FishBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     @Override
     protected boolean canDespawn()
@@ -37,7 +38,7 @@ public class EntityGuppy extends EntitySquid implements IAnimatable {
     public EntityGuppy(World worldIn)
     {
         super(worldIn);
-        this.setSize(0.8F, 0.8F);
+        this.setSize(0.5F, 0.7F);
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
@@ -77,7 +78,7 @@ public class EntityGuppy extends EntitySquid implements IAnimatable {
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(5.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(3.0D);
     }
 
     @Nullable
@@ -114,8 +115,4 @@ public class EntityGuppy extends EntitySquid implements IAnimatable {
         this.setVariant(compound.getInteger("Variant"));
     }
 
-    public boolean getCanSpawnHere()
-    {
-        return this.posY > 45.0D && this.posY < (double)this.world.getSeaLevel() && super.getCanSpawnHere();
-    }
 }

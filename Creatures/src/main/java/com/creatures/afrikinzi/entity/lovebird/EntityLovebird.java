@@ -1,10 +1,8 @@
 package com.creatures.afrikinzi.entity.lovebird;
 
-import com.creatures.afrikinzi.entity.dove.EntityDove;
-import com.creatures.afrikinzi.entity.raven.EntityRaven;
+import com.creatures.afrikinzi.entity.lorikeet.EntityLorikeet;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.base.Predicate;
-import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -13,7 +11,6 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.passive.EntityFlying;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
@@ -76,14 +73,15 @@ public class EntityLovebird extends EntityShoulderRiding implements IAnimatable,
         this.tasks.addTask(0, new EntityAIPanic(this, 1.25D));
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, this.aiSit);
+        this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
+        this.tasks.addTask(9, new EntityAIMate(this, 0.8D));
         this.tasks.addTask(5, new EntityAIAttackMelee(this, 1.0D, true));
         this.tasks.addTask(4, new EntityAILeapAtTarget(this, 0.4F));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, false, new Class[0]));
         this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(2, new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F));
         this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
-       //this.tasks.addTask(3, new EntityAIFollow(this, 1.0D, 3.0F, 7.0F));
-        this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChicken.class, false, (Predicate)null));
+        //this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChicken.class, false, (Predicate)null));
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
@@ -96,6 +94,9 @@ public class EntityLovebird extends EntityShoulderRiding implements IAnimatable,
             return PlayState.CONTINUE;
         } if (this.isSleeping()) {
         event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.lovebird.sleep", true));
+        return PlayState.CONTINUE;
+    } if (this.isSitting()) {
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("sit", true));
         return PlayState.CONTINUE;
     }
         event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.lovebird.idle", true));
@@ -150,7 +151,7 @@ public class EntityLovebird extends EntityShoulderRiding implements IAnimatable,
     public void onLivingUpdate()
     {
         if (this.onGround) {
-            setSleeping(world.getWorldTime() >= 12000 && world.getWorldTime() <= 23000);
+            setSleeping(world.getWorldTime() >= 13000 && world.getWorldTime() <= 23000);
         }
         if (this.inWater || this.isInWater() || this.isInLava() || this.isBurning()) {
             setSleeping(false);
@@ -306,7 +307,7 @@ public class EntityLovebird extends EntityShoulderRiding implements IAnimatable,
 
     public boolean isBreedingItem(ItemStack stack)
     {
-        return false;
+        return stack.getItem() == Items.WHEAT_SEEDS;
     }
 
     public void fall(float distance, float damageMultiplier)
@@ -319,13 +320,45 @@ public class EntityLovebird extends EntityShoulderRiding implements IAnimatable,
 
     public boolean canMateWith(EntityAnimal otherAnimal)
     {
-        return false;
+
+        if (otherAnimal == this)
+        {
+            System.out.println("failed");
+            return false;
+        }
+        else if (!(otherAnimal instanceof EntityLovebird))
+        {
+            System.out.println("failed");
+            return false;
+        }
+        else
+        {
+            EntityLovebird entitylovebird = (EntityLovebird)otherAnimal;
+            if (this.getGender() == entitylovebird.getGender()) {
+                System.out.println("failed");
+                return false;
+            } else {
+                System.out.println("sucess");
+            return this.isInLove() && entitylovebird.isInLove();
+            }
+        }
+
+
     }
 
     @Nullable
     public EntityAgeable createChild(EntityAgeable ageable)
     {
-        return null;
+        EntityLovebird entitylovebird = new EntityLovebird(this.world);
+        entitylovebird.setVariant(this.getVariant());
+        int j = this.rand.nextInt(2);
+        if (j == 0) {
+            entitylovebird.setGender(1);
+        } else {
+            entitylovebird.setGender(2);
+        }
+
+        return entitylovebird;
     }
 
     public boolean canBePushed()

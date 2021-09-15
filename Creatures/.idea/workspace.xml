@@ -61,26 +61,29 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/assets/creatures/animations" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/animations" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/mandarin_duck" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/lovebird" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/kakapo" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/spoonbill" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/wildduck" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/wildduck" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/barnowl" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/barnowl" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/animations" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/sounds/entity/golden_eagle" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/sounds/entity/stellers_sea_eagle" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/sounds/entity/gyrfalcon" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/gourami" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/pike" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/lang" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/dottyback" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.creatures.afrikinzi.entity" />
     </key>
   </component>
   <component name="RunManager" selected="Application.runClient">

@@ -10,7 +10,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityFlying;
-import net.minecraft.entity.passive.EntityShoulderRiding;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -23,7 +22,6 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNavigateFlying;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -38,13 +36,12 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-import javax.annotation.Nullable;
 import java.util.Set;
 
 public class EntityRaven extends EntityTameable implements IAnimatable, EntityFlying {
 
     private AnimationFactory factory = new AnimationFactory(this);
-    private static final Set<Item> TAME_ITEMS = Sets.newHashSet(Items.EGG, Items.ROTTEN_FLESH, Items.CHICKEN);
+    private static final Set<Item> TAME_ITEMS = Sets.newHashSet(Items.EGG, Items.ROTTEN_FLESH);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityRaven.class, DataSerializers.BOOLEAN);
     protected static final DataParameter<Boolean> WANDERING = EntityDataManager.createKey(EntityRaven.class, DataSerializers.BOOLEAN);
     public float flap;
@@ -70,6 +67,8 @@ public class EntityRaven extends EntityTameable implements IAnimatable, EntityFl
         this.tasks.addTask(0, new EntityAIPanic(this, 1.25D));
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, this.aiSit);
+        this.tasks.addTask(7, new EntityAIMate(this, 1.0D));
+        this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
         this.tasks.addTask(5, new EntityAIAttackMelee(this, 1.0D, true));
         this.tasks.addTask(4, new EntityAILeapAtTarget(this, 0.4F));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true, new Class[0]));
@@ -91,14 +90,12 @@ public class EntityRaven extends EntityTameable implements IAnimatable, EntityFl
     } if (this.isSleeping() && !this.isDead) {
         event.getController().setAnimation(new AnimationBuilder().addAnimation("sleep", true));
         return PlayState.CONTINUE;
-    } else if (this.isDead) {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("dead", false));
+    } if (this.isSitting()) {
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("sit", true));
         return PlayState.CONTINUE;
     }
-        else {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
             return PlayState.CONTINUE;
-        }
     }
 
     @Override
@@ -123,7 +120,7 @@ public class EntityRaven extends EntityTameable implements IAnimatable, EntityFl
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
         this.getEntityAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue(1.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20000000298023224D);
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
@@ -257,28 +254,12 @@ public class EntityRaven extends EntityTameable implements IAnimatable, EntityFl
         }
     }
 
-    public boolean isBreedingItem(ItemStack stack)
-    {
-        return false;
-    }
-
     public void fall(float distance, float damageMultiplier)
     {
     }
 
     protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos)
     {
-    }
-
-    public boolean canMateWith(EntityAnimal otherAnimal)
-    {
-        return false;
-    }
-
-    @Nullable
-    public EntityAgeable createChild(EntityAgeable ageable)
-    {
-        return null;
     }
 
     public boolean canBePushed()
@@ -383,6 +364,37 @@ public class EntityRaven extends EntityTameable implements IAnimatable, EntityFl
         } else {
             return null;
         }
+    }
+
+    public boolean isBreedingItem(ItemStack stack)
+    {
+        return stack.getItem() == Items.ROTTEN_FLESH;
+    }
+
+    public boolean canMateWith(EntityAnimal otherAnimal)
+    {
+        if (otherAnimal == this)
+        {
+            return false;
+        }
+        else if (!(otherAnimal instanceof EntityRaven))
+        {
+            return false;
+        }
+        else
+        {
+            EntityRaven entityraven = (EntityRaven)otherAnimal;
+            return this.isInLove() && entityraven.isInLove();
+        }
+
+
+    }
+
+    public EntityRaven createChild(EntityAgeable ageable)
+    {
+        EntityRaven entityraven = new EntityRaven(this.world);
+
+        return entityraven;
     }
 
 }
