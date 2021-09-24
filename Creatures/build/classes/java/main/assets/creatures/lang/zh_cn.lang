@@ -21,6 +21,9 @@ entity.iberian_lynx.name=伊比利亚猞猁
 entity.red_kite.name=红鸢
 entity.fairy_wren.name=细尾鹩莺
 entity.ghost_crab.name=沙蟹
+entity.pygmy_falcon.name=非洲侏隼
+entity.barn_owl.name=谷仓猫头鹰
+entity.wild_duck.name=野鸭
 
 //Sounds
 entity.mandarin_duck.quack=鸳鸯：嘎嘎叫
@@ -34,6 +37,8 @@ entity.conure.ambient=锥尾鹦鹉：吱吱叫
 entity.lorikeet.ambient=澳洲鹦鹉：吱吱叫
 entity.raven.caw=乌鸦：哇哇叫
 entity.fairy_wren.ambient=细尾鹩莺: 歌声
+entity.pygmy_falcon.ambient=非洲侏隼: 歌声
+entity.barn_owl.ambient=谷仓猫头鹰: 尖叫声
 
 //Messages
 message.creatures.male=性：雄
@@ -49,3 +54,21 @@ message.creatures.lovebird.masked=种：黄领牡丹鹦鹉 (学名：Agapornis p
 message.creatures.lovebird.maskedmutation=种：黄领牡丹鹦鹉 [蓝色变种] (学名：Agapornis personatus)
 message.creatures.lovebird.peach=种：桃脸牡丹鹦鹉 (学名：Agapornis roseicollis)
 message.creatures.lovebird.madagascar=种：灰头牡丹鹦鹉 (学名：Agapornis canus)
+
+//items
+item.duck_feather.name=鸭毛
+item.raw_koi.name=生锦鲤
+item.roasted_koi.name=烤锦鲤
+item.raw_shrimp.name=生虾
+item.cooked_shrimp.name=炒虾
+item.raw_pike.name=生梭鱼
+item.cooked_pike.name=熟梭鱼
+item.guppy_tail.name=孔雀鱼尾
+item.raw_gourami.name=生丝足鱼
+item.raw_arowana.name=生龙鱼
+item.cooked_arowana.name=熟龙鱼
+item.raw_large_wild_bird_meat.name=生大野鸟肉
+item.roasted_large_wild_bird_meat.name=熟大野鸟肉
+item.raw_small_wild_bird_meat.name=生小野鸟肉
+item.roasted_small_wild_bird_meat.name=熟小野鸟肉
+item.bird_of_prey_feather.name=雕毛

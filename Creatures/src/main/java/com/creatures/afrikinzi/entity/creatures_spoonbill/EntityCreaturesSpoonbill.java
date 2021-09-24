@@ -1,5 +1,6 @@
 package com.creatures.afrikinzi.entity.creatures_spoonbill;
 
+import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityAgeable;
@@ -88,7 +89,7 @@ public class EntityCreaturesSpoonbill extends EntityAnimal implements IAnimatabl
     @Override
     protected ResourceLocation getLootTable()
     {
-        return LootTableList.ENTITIES_PARROT;
+        return LootTableHandler.GENERIC_BIRD;
     }
 
     protected void applyEntityAttributes() {

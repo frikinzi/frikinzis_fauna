@@ -1,5 +1,7 @@
 package com.creatures.afrikinzi.entity.wild_duck;
 
+import com.creatures.afrikinzi.util.handlers.LootTableHandler;
+import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -13,6 +15,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
@@ -108,17 +111,12 @@ public class EntityWildDuck extends EntityAnimal implements IAnimatable {
     {
     }
 
-    @Override
-    protected ResourceLocation getLootTable()
-    {
-        return LootTableList.ENTITIES_PARROT;
-    }
-
 
     @Nullable
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
-        this.setVariant(this.rand.nextInt(3));
+        this.setVariant(this.rand.nextInt(4));
+        this.setGender(this.rand.nextInt(3));
         return super.onInitialSpawn(difficulty, livingdata);
     }
 
@@ -228,6 +226,38 @@ public class EntityWildDuck extends EntityAnimal implements IAnimatable {
         return this.dataManager.get(SLEEPING);
     }
 
+    public void onLivingUpdate()
+    {
+        if (this.onGround) {
+            setSleeping(world.getWorldTime() >= 13000 && world.getWorldTime() <= 23000);
+        }
+        if (this.inWater || this.isInWater() || this.isInLava() || this.isBurning()) {
+            setSleeping(false);
+        }
+        super.onLivingUpdate();
+    }
 
+    public SoundEvent getAmbientSound()
+    {
+        if (!this.isSleeping()) {
+
+            return SoundsHandler.WILD_DUCK_AMBIENT;
+        } else {
+            return null;
+        }
+    }
+
+    public boolean isPushedByWater()
+    {
+        if (this.getVariant() == 1) {
+        return false; }
+        return true;
+    }
+
+    @Override
+    protected ResourceLocation getLootTable()
+    {
+        return LootTableHandler.DUCK;
+    }
 
 }

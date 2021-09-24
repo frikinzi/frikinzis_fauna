@@ -42,6 +42,8 @@ import com.creatures.afrikinzi.entity.raven.EntityRaven;
 import com.creatures.afrikinzi.entity.raven.RenderRaven;
 import com.creatures.afrikinzi.entity.red_kite.EntityRedKite;
 import com.creatures.afrikinzi.entity.red_kite.RenderRedKite;
+import com.creatures.afrikinzi.entity.roller.EntityRoller;
+import com.creatures.afrikinzi.entity.roller.RenderRoller;
 import com.creatures.afrikinzi.entity.shrimp.EntityShrimp;
 import com.creatures.afrikinzi.entity.shrimp.RenderShrimp;
 import com.creatures.afrikinzi.entity.creatures_spoonbill.EntityCreaturesSpoonbill;
@@ -83,6 +85,7 @@ public class RenderHandler
         RenderingRegistry.registerEntityRenderingHandler(EntityPygmyFalcon.class, RenderPygmyFalcon::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityBarnOwl.class, RenderBarnOwl::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityWildDuck.class, RenderWildDuck::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityRoller.class, RenderRoller::new);
 
         //land animals
         RenderingRegistry.registerEntityRenderingHandler(EntityIberianLynx.class, RenderIberianLynx::new);

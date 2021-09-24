@@ -1,5 +1,6 @@
 package com.creatures.afrikinzi.entity.raven;
 
+import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
@@ -114,7 +115,7 @@ public class EntityRaven extends EntityTameable implements IAnimatable, EntityFl
     @Override
     protected ResourceLocation getLootTable()
     {
-        return LootTableList.ENTITIES_PARROT;
+        return LootTableHandler.RAVEN;
     }
 
     protected void applyEntityAttributes() {

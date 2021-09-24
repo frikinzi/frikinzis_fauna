@@ -1,0 +1,56 @@
+{
+	"pools": [
+		{
+			"name": "feather",
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "item",
+					"weight": 100,
+					"name": "creatures:duck_feather",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 2
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "meat",
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "item",
+					"weight": 100,
+					"name": "creatures:raw_small_wild_bird_meat",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 1
+							}
+						},
+						{
+							"function": "furnace_smelt",
+							"conditions": [
+								{
+									"condition": "entity_properties",
+									"entity": "this",
+									"properties": {
+										"on_fire": true
+									}
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

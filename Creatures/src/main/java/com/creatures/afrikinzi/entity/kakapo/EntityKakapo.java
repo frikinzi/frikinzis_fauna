@@ -1,6 +1,7 @@
 package com.creatures.afrikinzi.entity.kakapo;
 
 import com.creatures.afrikinzi.entity.raven.EntityRaven;
+import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Sets;
@@ -134,7 +135,7 @@ public class EntityKakapo extends EntityTameable implements IAnimatable {
     @Nullable
     protected ResourceLocation getLootTable()
     {
-        return LootTableList.ENTITIES_PARROT;
+        return LootTableHandler.PARROT;
     }
 
     public boolean processInteract(EntityPlayer player, EnumHand hand)

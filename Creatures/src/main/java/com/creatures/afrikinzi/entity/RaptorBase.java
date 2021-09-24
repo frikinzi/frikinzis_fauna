@@ -1,5 +1,6 @@
 package com.creatures.afrikinzi.entity;
 
+import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -63,7 +64,7 @@ public class RaptorBase extends EntityTameable implements EntityFlying {
     @Override
     protected ResourceLocation getLootTable()
     {
-        return LootTableList.ENTITIES_PARROT;
+        return LootTableHandler.BIRD_OF_PREY;
     }
 
     protected PathNavigate createNavigator(World worldIn)

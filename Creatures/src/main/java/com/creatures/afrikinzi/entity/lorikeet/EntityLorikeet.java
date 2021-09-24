@@ -1,6 +1,7 @@
 package com.creatures.afrikinzi.entity.lorikeet;
 
 import com.creatures.afrikinzi.entity.FlyingEntityTameableBase;
+import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
@@ -111,7 +112,7 @@ public class EntityLorikeet extends FlyingEntityTameableBase implements IAnimata
     @Override
     protected ResourceLocation getLootTable()
     {
-        return LootTableList.ENTITIES_PARROT;
+        return LootTableHandler.PARROT;
     }
 
     @Nullable

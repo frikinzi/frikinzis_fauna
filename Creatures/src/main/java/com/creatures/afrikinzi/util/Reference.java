@@ -35,4 +35,5 @@ public class Reference
      public static final int ENTITY_PYGMY_FALCON = 272;
      public static final int ENTITY_BARN_OWL = 273;
      public static final int ENTITY_WILD_DUCK = 274;
+     public static final int ENTITY_ROLLER = 275;
 }

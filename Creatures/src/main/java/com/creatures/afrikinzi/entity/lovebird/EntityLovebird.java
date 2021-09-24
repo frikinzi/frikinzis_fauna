@@ -1,6 +1,7 @@
 package com.creatures.afrikinzi.entity.lovebird;
 
 import com.creatures.afrikinzi.entity.lorikeet.EntityLorikeet;
+import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Sets;
@@ -119,7 +120,7 @@ public class EntityLovebird extends EntityShoulderRiding implements IAnimatable,
     @Override
     protected ResourceLocation getLootTable()
     {
-        return LootTableList.ENTITIES_PARROT;
+        return LootTableHandler.PARROT;
     }
 
     @Nullable
@@ -323,22 +324,18 @@ public class EntityLovebird extends EntityShoulderRiding implements IAnimatable,
 
         if (otherAnimal == this)
         {
-            System.out.println("failed");
             return false;
         }
         else if (!(otherAnimal instanceof EntityLovebird))
         {
-            System.out.println("failed");
             return false;
         }
         else
         {
             EntityLovebird entitylovebird = (EntityLovebird)otherAnimal;
             if (this.getGender() == entitylovebird.getGender()) {
-                System.out.println("failed");
                 return false;
             } else {
-                System.out.println("sucess");
             return this.isInLove() && entitylovebird.isInLove();
             }
         }

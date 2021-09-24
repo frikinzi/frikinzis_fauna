@@ -1,50 +1,49 @@
-[00:45:08] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
-[00:45:08] [main/INFO] [LaunchWrapper]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
-[00:45:08] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
-[00:45:08] [main/INFO] [FML]: Forge Mod Loader version 14.23.5.2855 for Minecraft 1.12.2 loading
-[00:45:08] [main/INFO] [FML]: Java is OpenJDK 64-Bit Server VM, version 1.8.0_292, running on Mac OS X:x86_64:10.15.6, installed at /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre
-[00:45:08] [main/ERROR] [FML]: Apache Maven library folder was not in the format expected. Using default libraries directory.
-[00:45:08] [main/ERROR] [FML]: Full: /Users/angela/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-artifact/3.5.3/7dc72b6d6d8a6dced3d294ed54c2cc3515ade9f4/maven-artifact-3.5.3.jar
-[00:45:08] [main/ERROR] [FML]: Trimmed: /users/angela/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-artifact/3.5.3/
-[00:45:08] [main/INFO] [FML]: Managed to load a deobfuscated Minecraft name- we are in a deobfuscated environment. Skipping runtime deobfuscation
-[00:45:08] [main/INFO] [FML]: Detected deobfuscated environment, loading log configs for colored console logs.
-[00:45:09] [main/INFO] [FML]: Ignoring missing certificate for coremod FMLCorePlugin (net.minecraftforge.fml.relauncher.FMLCorePlugin), we are in deobf and it's a forge core plugin
-[00:45:09] [main/INFO] [FML]: Ignoring missing certificate for coremod FMLForgePlugin (net.minecraftforge.classloading.FMLForgePlugin), we are in deobf and it's a forge core plugin
-[00:45:09] [main/INFO] [FML]: Searching /Users/angela/Documents/MC/Creatures/run/./mods for mods
-[00:45:09] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
-[00:45:09] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
-[00:45:09] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
-[00:45:09] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
-[00:45:09] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
-[00:45:10] [main/ERROR] [FML]: FML appears to be missing any signature data. This is not a good thing
-[00:45:10] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
-[00:45:10] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
-[00:45:11] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.TerminalTweaker
-[00:45:11] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.TerminalTweaker
-[00:45:11] [main/INFO] [LaunchWrapper]: Launching wrapped minecraft {net.minecraft.client.main.Main}
-[00:45:12] [Client thread/INFO] [net.minecraft.client.Minecraft]: Setting user: Player822
-[00:45:15] [Client thread/WARN] [net.minecraft.client.settings.GameSettings]: Skipping bad option: lastServer:
-[00:45:15] [Client thread/INFO] [net.minecraft.client.Minecraft]: LWJGL Version: 2.9.2
-[00:45:15] [Client thread/INFO] [FML]: -- System Details --
+[17:29:57] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[17:29:57] [main/INFO] [LaunchWrapper]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[17:29:57] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
+[17:29:57] [main/INFO] [FML]: Forge Mod Loader version 14.23.5.2855 for Minecraft 1.12.2 loading
+[17:29:57] [main/INFO] [FML]: Java is OpenJDK 64-Bit Server VM, version 1.8.0_292, running on Mac OS X:x86_64:10.15.6, installed at /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre
+[17:29:57] [main/ERROR] [FML]: Apache Maven library folder was not in the format expected. Using default libraries directory.
+[17:29:57] [main/ERROR] [FML]: Full: /Users/angela/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-artifact/3.5.3/7dc72b6d6d8a6dced3d294ed54c2cc3515ade9f4/maven-artifact-3.5.3.jar
+[17:29:57] [main/ERROR] [FML]: Trimmed: /users/angela/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-artifact/3.5.3/
+[17:29:57] [main/INFO] [FML]: Managed to load a deobfuscated Minecraft name- we are in a deobfuscated environment. Skipping runtime deobfuscation
+[17:29:57] [main/INFO] [FML]: Detected deobfuscated environment, loading log configs for colored console logs.
+[17:29:57] [main/INFO] [FML]: Ignoring missing certificate for coremod FMLCorePlugin (net.minecraftforge.fml.relauncher.FMLCorePlugin), we are in deobf and it's a forge core plugin
+[17:29:57] [main/INFO] [FML]: Ignoring missing certificate for coremod FMLForgePlugin (net.minecraftforge.classloading.FMLForgePlugin), we are in deobf and it's a forge core plugin
+[17:29:57] [main/INFO] [FML]: Searching /Users/angela/Documents/MC/Creatures/run/./mods for mods
+[17:29:57] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[17:29:57] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[17:29:57] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[17:29:57] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[17:29:57] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[17:29:59] [main/ERROR] [FML]: FML appears to be missing any signature data. This is not a good thing
+[17:29:59] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[17:29:59] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[17:29:59] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.TerminalTweaker
+[17:29:59] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.TerminalTweaker
+[17:29:59] [main/INFO] [LaunchWrapper]: Launching wrapped minecraft {net.minecraft.client.main.Main}
+[17:30:00] [Client thread/INFO] [net.minecraft.client.Minecraft]: Setting user: Player316
+[17:30:03] [Client thread/WARN] [net.minecraft.client.settings.GameSettings]: Skipping bad option: lastServer:
+[17:30:03] [Client thread/INFO] [net.minecraft.client.Minecraft]: LWJGL Version: 2.9.2
+[17:30:03] [Client thread/INFO] [FML]: -- System Details --
 Details:
 	Minecraft Version: 1.12.2
 	Operating System: Mac OS X (x86_64) version 10.15.6
 	Java Version: 1.8.0_292, AdoptOpenJDK
 	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode), AdoptOpenJDK
-	Memory: 609836184 bytes (581 MB) / 730857472 bytes (697 MB) up to 3817865216 bytes (3641 MB)
+	Memory: 471957744 bytes (450 MB) / 626524160 bytes (597 MB) up to 3817865216 bytes (3641 MB)
 	JVM Flags: 0 total; 
 	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
 	FML: 
 	Loaded coremods (and transformers): 
 	GL info: ' Vendor: 'Intel Inc.' Version: '2.1 INTEL-14.7.8' Renderer: 'Intel(R) Iris(TM) Plus Graphics OpenGL Engine'
-[00:45:15] [Client thread/INFO] [FML]: MinecraftForge v14.23.5.2855 Initialized
-[00:45:15] [Client thread/INFO] [FML]: Starts to replace vanilla recipe ingredients with ore ingredients.
-[00:45:15] [Client thread/INFO] [FML]: Invalid recipe found with multiple oredict ingredients in the same ingredient...
-[00:45:15] [Client thread/INFO] [FML]: Replaced 1227 ore ingredients
-[00:45:16] [Client thread/INFO] [FML]: Searching /Users/angela/Documents/MC/Creatures/run/./mods for mods
-[00:45:17] [Client thread/WARN] [FML]: Mod geckolib3 is missing the required element 'version' and a version.properties file could not be found. Falling back to metadata version 3.0.0
-[00:45:17] [Thread-3/INFO] [FML]: Using sync timing. 200 frames of Display.update took 227191180 nanos
-[00:45:17] [Client thread/ERROR] [FML]: Unable to read a class file correctly
+[17:30:03] [Client thread/INFO] [FML]: MinecraftForge v14.23.5.2855 Initialized
+[17:30:03] [Client thread/INFO] [FML]: Starts to replace vanilla recipe ingredients with ore ingredients.
+[17:30:03] [Client thread/INFO] [FML]: Invalid recipe found with multiple oredict ingredients in the same ingredient...
+[17:30:04] [Client thread/INFO] [FML]: Replaced 1227 ore ingredients
+[17:30:04] [Client thread/INFO] [FML]: Searching /Users/angela/Documents/MC/Creatures/run/./mods for mods
+[17:30:05] [Client thread/WARN] [FML]: Mod geckolib3 is missing the required element 'version' and a version.properties file could not be found. Falling back to metadata version 3.0.0
+[17:30:05] [Client thread/ERROR] [FML]: Unable to read a class file correctly
 java.lang.IllegalArgumentException: null
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:185) ~[asm-debug-all-5.2.jar:5.2]
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:168) ~[asm-debug-all-5.2.jar:5.2]
@@ -73,7 +72,7 @@ java.lang.IllegalArgumentException: null
 	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_292]
 	at net.minecraftforge.legacydev.Main.start(Main.java:86) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
 	at net.minecraftforge.legacydev.MainClient.main(MainClient.java:29) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
-[00:45:17] [Client thread/ERROR] [FML]: There was a problem reading the entry module-info.class in the jar /Users/angela/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-util/6.2/a9690730f92cc79eeadc20e400ebb41eccce10b1/asm-util-6.2.jar - probably a corrupt zip
+[17:30:05] [Client thread/ERROR] [FML]: There was a problem reading the entry module-info.class in the jar /Users/angela/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-util/6.2/a9690730f92cc79eeadc20e400ebb41eccce10b1/asm-util-6.2.jar - probably a corrupt zip
 net.minecraftforge.fml.common.LoaderException: java.lang.IllegalArgumentException
 
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:63) ~[ASMModParser.class:?]
@@ -106,7 +105,7 @@ Caused by: java.lang.IllegalArgumentException
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:439) ~[asm-debug-all-5.2.jar:5.2]
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:57) ~[ASMModParser.class:?]
 	... 23 more
-[00:45:17] [Client thread/WARN] [FML]: Zip file asm-util-6.2.jar failed to read properly, it will be ignored
+[17:30:05] [Client thread/WARN] [FML]: Zip file asm-util-6.2.jar failed to read properly, it will be ignored
 net.minecraftforge.fml.common.LoaderException: java.lang.IllegalArgumentException
 
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:63) ~[ASMModParser.class:?]
@@ -139,7 +138,7 @@ Caused by: java.lang.IllegalArgumentException
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:439) ~[asm-debug-all-5.2.jar:5.2]
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:57) ~[ASMModParser.class:?]
 	... 23 more
-[00:45:17] [Client thread/ERROR] [FML]: Unable to read a class file correctly
+[17:30:05] [Client thread/ERROR] [FML]: Unable to read a class file correctly
 java.lang.IllegalArgumentException: null
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:185) ~[asm-debug-all-5.2.jar:5.2]
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:168) ~[asm-debug-all-5.2.jar:5.2]
@@ -168,7 +167,7 @@ java.lang.IllegalArgumentException: null
 	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_292]
 	at net.minecraftforge.legacydev.Main.start(Main.java:86) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
 	at net.minecraftforge.legacydev.MainClient.main(MainClient.java:29) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
-[00:45:17] [Client thread/ERROR] [FML]: There was a problem reading the entry module-info.class in the jar /Users/angela/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/6.2/61570e046111559f38d4e0e580c005f75988c0a6/asm-tree-6.2.jar - probably a corrupt zip
+[17:30:05] [Client thread/ERROR] [FML]: There was a problem reading the entry module-info.class in the jar /Users/angela/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/6.2/61570e046111559f38d4e0e580c005f75988c0a6/asm-tree-6.2.jar - probably a corrupt zip
 net.minecraftforge.fml.common.LoaderException: java.lang.IllegalArgumentException
 
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:63) ~[ASMModParser.class:?]
@@ -201,7 +200,7 @@ Caused by: java.lang.IllegalArgumentException
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:439) ~[asm-debug-all-5.2.jar:5.2]
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:57) ~[ASMModParser.class:?]
 	... 23 more
-[00:45:17] [Client thread/WARN] [FML]: Zip file asm-tree-6.2.jar failed to read properly, it will be ignored
+[17:30:05] [Client thread/WARN] [FML]: Zip file asm-tree-6.2.jar failed to read properly, it will be ignored
 net.minecraftforge.fml.common.LoaderException: java.lang.IllegalArgumentException
 
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:63) ~[ASMModParser.class:?]
@@ -234,7 +233,7 @@ Caused by: java.lang.IllegalArgumentException
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:439) ~[asm-debug-all-5.2.jar:5.2]
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:57) ~[ASMModParser.class:?]
 	... 23 more
-[00:45:17] [Client thread/ERROR] [FML]: Unable to read a class file correctly
+[17:30:05] [Client thread/ERROR] [FML]: Unable to read a class file correctly
 java.lang.IllegalArgumentException: null
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:185) ~[asm-debug-all-5.2.jar:5.2]
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:168) ~[asm-debug-all-5.2.jar:5.2]
@@ -263,7 +262,7 @@ java.lang.IllegalArgumentException: null
 	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_292]
 	at net.minecraftforge.legacydev.Main.start(Main.java:86) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
 	at net.minecraftforge.legacydev.MainClient.main(MainClient.java:29) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
-[00:45:17] [Client thread/ERROR] [FML]: There was a problem reading the entry module-info.class in the jar /Users/angela/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/6.2/1b6c4ff09ce03f3052429139c2a68e295cae6604/asm-6.2.jar - probably a corrupt zip
+[17:30:05] [Client thread/ERROR] [FML]: There was a problem reading the entry module-info.class in the jar /Users/angela/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/6.2/1b6c4ff09ce03f3052429139c2a68e295cae6604/asm-6.2.jar - probably a corrupt zip
 net.minecraftforge.fml.common.LoaderException: java.lang.IllegalArgumentException
 
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:63) ~[ASMModParser.class:?]
@@ -296,7 +295,7 @@ Caused by: java.lang.IllegalArgumentException
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:439) ~[asm-debug-all-5.2.jar:5.2]
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:57) ~[ASMModParser.class:?]
 	... 23 more
-[00:45:17] [Client thread/WARN] [FML]: Zip file asm-6.2.jar failed to read properly, it will be ignored
+[17:30:05] [Client thread/WARN] [FML]: Zip file asm-6.2.jar failed to read properly, it will be ignored
 net.minecraftforge.fml.common.LoaderException: java.lang.IllegalArgumentException
 
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:63) ~[ASMModParser.class:?]
@@ -329,7 +328,7 @@ Caused by: java.lang.IllegalArgumentException
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:439) ~[asm-debug-all-5.2.jar:5.2]
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:57) ~[ASMModParser.class:?]
 	... 23 more
-[00:45:17] [Client thread/ERROR] [FML]: Unable to read a class file correctly
+[17:30:05] [Client thread/ERROR] [FML]: Unable to read a class file correctly
 java.lang.IllegalArgumentException: null
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:185) ~[asm-debug-all-5.2.jar:5.2]
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:168) ~[asm-debug-all-5.2.jar:5.2]
@@ -358,7 +357,7 @@ java.lang.IllegalArgumentException: null
 	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_292]
 	at net.minecraftforge.legacydev.Main.start(Main.java:86) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
 	at net.minecraftforge.legacydev.MainClient.main(MainClient.java:29) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
-[00:45:17] [Client thread/ERROR] [FML]: There was a problem reading the entry module-info.class in the jar /Users/angela/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-analysis/6.2/c7d9a90d221cbb977848d2c777eb3aa7637e89df/asm-analysis-6.2.jar - probably a corrupt zip
+[17:30:05] [Client thread/ERROR] [FML]: There was a problem reading the entry module-info.class in the jar /Users/angela/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-analysis/6.2/c7d9a90d221cbb977848d2c777eb3aa7637e89df/asm-analysis-6.2.jar - probably a corrupt zip
 net.minecraftforge.fml.common.LoaderException: java.lang.IllegalArgumentException
 
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:63) ~[ASMModParser.class:?]
@@ -391,7 +390,7 @@ Caused by: java.lang.IllegalArgumentException
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:439) ~[asm-debug-all-5.2.jar:5.2]
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:57) ~[ASMModParser.class:?]
 	... 23 more
-[00:45:17] [Client thread/WARN] [FML]: Zip file asm-analysis-6.2.jar failed to read properly, it will be ignored
+[17:30:05] [Client thread/WARN] [FML]: Zip file asm-analysis-6.2.jar failed to read properly, it will be ignored
 net.minecraftforge.fml.common.LoaderException: java.lang.IllegalArgumentException
 
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:63) ~[ASMModParser.class:?]
@@ -424,920 +423,279 @@ Caused by: java.lang.IllegalArgumentException
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:439) ~[asm-debug-all-5.2.jar:5.2]
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:57) ~[ASMModParser.class:?]
 	... 23 more
-[00:45:17] [Client thread/INFO] [FML]: Forge Mod Loader has identified 6 mods to load
-[00:45:18] [Client thread/INFO] [FML]: Attempting connection with missing mods [minecraft, mcp, FML, forge, creatures, geckolib3] at CLIENT
-[00:45:18] [Client thread/INFO] [FML]: Attempting connection with missing mods [minecraft, mcp, FML, forge, creatures, geckolib3] at SERVER
-[00:45:18] [Client thread/INFO] [net.minecraft.client.resources.SimpleReloadableResourceManager]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Creatures, FMLFileResourcePack:GeckoLib
-[00:45:18] [Client thread/INFO] [FML]: Processing ObjectHolder annotations
-[00:45:18] [Client thread/INFO] [FML]: Found 1168 ObjectHolder annotations
-[00:45:18] [Client thread/INFO] [FML]: Identifying ItemStackHolder annotations
-[00:45:18] [Client thread/INFO] [FML]: Found 0 ItemStackHolder annotations
-[00:45:19] [Client thread/INFO] [FML]: Configured a dormant chunk cache size of 0
-[00:45:19] [Forge Version Check/INFO] [forge.VersionCheck]: [forge] Starting version check at http://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json
-[00:45:19] [Forge Version Check/INFO] [forge.VersionCheck]: [forge] Found status: UP_TO_DATE Target: null
-[00:45:24] [Client thread/INFO] [FML]: Applying holder lookups
-[00:45:24] [Client thread/INFO] [FML]: Holder lookups applied
-[00:45:24] [Client thread/INFO] [FML]: Applying holder lookups
-[00:45:24] [Client thread/INFO] [FML]: Holder lookups applied
-[00:45:24] [Client thread/INFO] [FML]: Applying holder lookups
-[00:45:24] [Client thread/INFO] [FML]: Holder lookups applied
-[00:45:24] [Client thread/INFO] [FML]: Applying holder lookups
-[00:45:24] [Client thread/INFO] [FML]: Holder lookups applied
-[00:45:24] [Client thread/INFO] [FML]: Injecting itemstacks
-[00:45:24] [Client thread/INFO] [FML]: Itemstack injection complete
-[00:45:25] [Sound Library Loader/INFO] [net.minecraft.client.audio.SoundManager]: Starting up SoundSystem...
-[00:45:25] [Thread-4/INFO] [net.minecraft.client.audio.SoundManager]: Initializing LWJGL OpenAL
-[00:45:25] [Thread-4/INFO] [net.minecraft.client.audio.SoundManager]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[00:45:25] [Thread-4/INFO] [net.minecraft.client.audio.SoundManager]: OpenAL initialized.
-[00:45:26] [Sound Library Loader/INFO] [net.minecraft.client.audio.SoundManager]: Sound engine started
-[00:45:29] [Client thread/INFO] [FML]: Max texture size: 16384
-[00:45:31] [Client thread/INFO] [net.minecraft.client.renderer.texture.TextureMap]: Created: 512x512 textures-atlas
-[00:45:32] [Client thread/INFO] [FML]: Applying holder lookups
-[00:45:32] [Client thread/INFO] [FML]: Holder lookups applied
-[00:45:32] [Client thread/INFO] [FML]: Injecting itemstacks
-[00:45:32] [Client thread/INFO] [FML]: Itemstack injection complete
-[00:45:33] [Client thread/INFO] [FML]: Forge Mod Loader has successfully loaded 6 mods
-[00:45:33] [Client thread/WARN] [net.minecraft.client.settings.GameSettings]: Skipping bad option: lastServer:
-[00:45:33] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient]: Could not authorize you against Realms server: Invalid session id
-[00:45:40] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Starting integrated minecraft server version 1.12.2
-[00:45:40] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Generating keypair
-[00:45:40] [Server thread/INFO] [FML]: Injecting existing registry data into this server instance
-[00:45:40] [Server thread/INFO] [FML]: Applying holder lookups
-[00:45:40] [Server thread/INFO] [FML]: Holder lookups applied
-[00:45:41] [Server thread/INFO] [FML]: Loading dimension 0 (New World) (net.minecraft.server.integrated.IntegratedServer@10d419d1)
-[00:45:41] [Server thread/INFO] [net.minecraft.advancements.AdvancementList]: Loaded 488 advancements
-[00:45:41] [Server thread/INFO] [FML]: Loading dimension -1 (New World) (net.minecraft.server.integrated.IntegratedServer@10d419d1)
-[00:45:41] [Server thread/INFO] [FML]: Loading dimension 1 (New World) (net.minecraft.server.integrated.IntegratedServer@10d419d1)
-[00:45:41] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing start region for level 0
-[00:45:42] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 8%
-[00:45:43] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 15%
-[00:45:44] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 27%
-[00:45:45] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 39%
-[00:45:46] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 52%
-[00:45:47] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 66%
-[00:45:48] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 76%
-[00:45:49] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 86%
-[00:45:50] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 96%
-[00:45:51] [Server thread/INFO] [FML]: Unloading dimension -1
-[00:45:51] [Server thread/INFO] [FML]: Unloading dimension 1
-[00:45:51] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Changing view distance to 12, from 10
-[00:45:52] [Netty Local Client IO #0/INFO] [FML]: Server protocol version 2
-[00:45:52] [Netty Server IO #1/INFO] [FML]: Client protocol version 2
-[00:45:52] [Netty Server IO #1/INFO] [FML]: Client attempting to join with 6 mods : minecraft@1.12.2,FML@8.0.99.99,creatures@1.0,forge@14.23.5.2855,geckolib3@3.0.0,mcp@9.42
-[00:45:52] [Netty Local Client IO #0/INFO] [FML]: [Netty Local Client IO #0] Client side modded connection established
-[00:45:52] [Server thread/INFO] [FML]: [Server thread] Server side modded connection established
-[00:45:52] [Server thread/INFO] [net.minecraft.server.management.PlayerList]: Player822[local:E:439e6c34] logged in with entity id 1240 at (-26.5, 69.0, 251.5)
-[00:45:52] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Player822 joined the game
-[00:45:53] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Saving and pausing game...
-[00:45:53] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
-[00:45:55] [Server thread/WARN] [net.minecraft.server.MinecraftServer]: Can't keep up! Did the system time change, or is the server overloaded? Running 2393ms behind, skipping 47 tick(s)
-[00:46:05] [Client thread/WARN] [net.minecraft.client.network.NetHandlerPlayClient]: Received passengers for unknown entity
-[00:46:14] [Server thread/WARN] [net.minecraft.server.MinecraftServer]: Can't keep up! Did the system time change, or is the server overloaded? Running 4496ms behind, skipping 89 tick(s)
-[00:46:20] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Saving and pausing game...
-[00:46:20] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
-[00:46:59] [Server thread/WARN] [net.minecraft.server.MinecraftServer]: Can't keep up! Did the system time change, or is the server overloaded? Running 4724ms behind, skipping 94 tick(s)
-[00:47:17] [Server thread/WARN] [net.minecraft.server.MinecraftServer]: Can't keep up! Did the system time change, or is the server overloaded? Running 3105ms behind, skipping 62 tick(s)
-[00:47:39] [Server thread/WARN] [net.minecraft.server.MinecraftServer]: Can't keep up! Did the system time change, or is the server overloaded? Running 2133ms behind, skipping 42 tick(s)
-[00:47:57] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Saving and pausing game...
-[00:47:57] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
-[00:49:15] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Saving and pausing game...
-[00:49:15] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
-[00:49:59] [Client thread/INFO] [net.minecraft.advancements.AdvancementList]: Loaded 7 advancements
-[00:50:22] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Saving and pausing game...
-[00:50:22] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
-[00:53:22] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Saving and pausing game...
-[00:53:22] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
-[00:55:53] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Invalid selector argument: 'type:creatures:dove'
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Player822 fell out of the world
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Player822]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.sapling.oak]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Parrot]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.seeds]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Skeleton]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Bat]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Skeleton]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Bat]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Parrot]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Skeleton]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Spider]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Skeleton]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Skeleton]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.seeds]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Player822 fell out of the world
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Player822
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.seeds]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.sapling.oak
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Parrot
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.seeds
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Skeleton
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Bat
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Bat]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Skeleton
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Bat
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Parrot
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Skeleton
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.chickenRaw]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Bat]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ocelot]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ocelot]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.feather]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Skeleton]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Spider]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Bat]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Bat]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Bat]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.feather]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ghost Crab]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.chickenRaw]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.feather]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.chickenRaw]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Minecart with Chest]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.chickenRaw]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.feather]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Skeleton]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Bat]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Bat]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Skeleton]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Skeleton]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Minecart with Chest]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Skeleton]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Minecart with Chest]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Bat]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie Villager]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ghost Crab]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ghost Crab]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Spider]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Bat]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Minecart with Chest]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Bat]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Bat]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Skeleton]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Skeleton]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Minecart with Chest]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ghost Crab]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Pig]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Pig]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Pig]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Skeleton]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ghost Crab]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ghost Crab]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Skeleton]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Bat]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Pig]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Slime]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Skeleton]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Pig]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Bat]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Pig]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Pig]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ghost Crab]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Pig]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Creeper]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Bat]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Zombie]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Fairywren]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Fairywren]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Fairywren]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Fairywren]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Fairywren]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.seeds]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.fish.cod.raw]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.seeds]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Cherry Shrimp]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.seeds]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Cherry Shrimp]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Cherry Shrimp]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Parrot]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Fairywren]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ghost Crab]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ghost Crab]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ghost Crab]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ghost Crab]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ghost Crab]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ghost Crab]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ghost Crab]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ghost Crab]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Parrot]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.seeds]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Chicken]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.seeds]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.flower1.dandelion]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.rail]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Minecart with Chest]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ghost Crab]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ghost Crab]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ghost Crab]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Ghost Crab]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Parrot]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Parrot]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Mandarin Duck]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Minecart with Chest]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Raven]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.mushroom]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Mandarin Duck]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Fairywren]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.torch]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Mandarin Duck]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.mushroom]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Dottyback]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Parrot]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.flower1.dandelion]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.flower1.dandelion]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.flower1.dandelion]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.seeds]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.seeds]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Golden Eagle]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Spider
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Skeleton
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Skeleton
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.seeds
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Golden Eagle]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.seeds
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Golden Eagle]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Bat
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.seeds]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.chickenRaw
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Bat
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ocelot
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ocelot
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.feather
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Skeleton
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Spider
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Bat
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Bat
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Bat
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.feather
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.tile.gravel]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ghost Crab
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.chickenRaw
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.feather
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Golden Eagle]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.chickenRaw
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Minecart with Chest
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.chickenRaw
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.feather
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Skeleton
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Bat
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:01] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:01] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Bat
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Golden Eagle]
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Skeleton
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Skeleton
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Minecart with Chest
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Skeleton
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Golden Eagle]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Golden Eagle]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Minecart with Chest
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Bat
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Golden Eagle]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Horse]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie Villager
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Horse]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed item.item.seeds]
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Horse]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Golden Eagle]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ghost Crab
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Horse]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ghost Crab
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Spider
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Bat
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Minecart with Chest
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Sheep]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Bat
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Bat
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Wolf]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Skeleton
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Skeleton
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Golden Eagle]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Minecart with Chest
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ghost Crab
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Pig
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Pig
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Pig
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Skeleton
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Barn Owl]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Wolf]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ghost Crab
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Wolf]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Conure]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Wolf]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ghost Crab
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Wolf]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Wolf]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Skeleton
-[00:56:02] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player822: Killed Wolf]
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Bat
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Pig
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Slime
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Skeleton
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Pig
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Bat
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Pig
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Pig
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ghost Crab
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Pig
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Creeper
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Bat
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Zombie
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Fairywren
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Fairywren
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Fairywren
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Fairywren
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Fairywren
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.seeds
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.fish.cod.raw
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.seeds
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Cherry Shrimp
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.seeds
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Cherry Shrimp
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Cherry Shrimp
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Parrot
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Fairywren
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ghost Crab
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ghost Crab
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ghost Crab
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ghost Crab
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ghost Crab
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ghost Crab
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ghost Crab
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ghost Crab
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Parrot
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.seeds
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Chicken
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.seeds
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.flower1.dandelion
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.rail
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Minecart with Chest
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ghost Crab
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ghost Crab
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ghost Crab
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Ghost Crab
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Parrot
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Parrot
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Mandarin Duck
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Minecart with Chest
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Raven
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.mushroom
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Mandarin Duck
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Fairywren
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.torch
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Mandarin Duck
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.mushroom
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Dottyback
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Parrot
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.flower1.dandelion
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.flower1.dandelion
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.flower1.dandelion
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.seeds
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.seeds
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Golden Eagle
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Golden Eagle
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Golden Eagle
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.seeds
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.tile.gravel
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Golden Eagle
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Golden Eagle
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Golden Eagle
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Golden Eagle
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Golden Eagle
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Horse
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Horse
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed item.item.seeds
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Horse
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Golden Eagle
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Horse
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Sheep
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Wolf
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Golden Eagle
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Barn Owl
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Wolf
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Wolf
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Conure
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Wolf
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Wolf
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Wolf
-[00:56:02] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Wolf
-[00:56:08] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Saving and pausing game...
-[00:56:08] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
-[00:56:08] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Stopping server
-[00:56:08] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving players
-[00:56:08] [Server thread/INFO] [net.minecraft.network.NetHandlerPlayServer]: Player822 lost connection: Disconnected
-[00:56:08] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Player822 left the game
-[00:56:08] [Server thread/INFO] [net.minecraft.network.NetHandlerPlayServer]: Stopping singleplayer server as player logged out
-[00:56:08] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving worlds
-[00:56:08] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
-[00:56:10] [Server thread/INFO] [FML]: Unloading dimension 0
-[00:56:10] [Server thread/INFO] [FML]: Applying holder lookups
-[00:56:10] [Server thread/INFO] [FML]: Holder lookups applied
-[00:56:12] [Client thread/INFO] [net.minecraft.client.Minecraft]: Stopping!
-[00:56:12] [Client thread/INFO] [net.minecraft.client.audio.SoundManager]: SoundSystem shutting down...
-[00:56:12] [Client thread/WARN] [net.minecraft.client.audio.SoundManager]: Author: Paul Lamb, www.paulscode.com
+[17:30:05] [Client thread/INFO] [FML]: Forge Mod Loader has identified 6 mods to load
+[17:30:06] [Thread-3/INFO] [FML]: Using sync timing. 200 frames of Display.update took 170567518 nanos
+[17:30:06] [Client thread/INFO] [FML]: Attempting connection with missing mods [minecraft, mcp, FML, forge, creatures, geckolib3] at CLIENT
+[17:30:06] [Client thread/INFO] [FML]: Attempting connection with missing mods [minecraft, mcp, FML, forge, creatures, geckolib3] at SERVER
+[17:30:06] [Client thread/INFO] [net.minecraft.client.resources.SimpleReloadableResourceManager]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Creatures, FMLFileResourcePack:GeckoLib
+[17:30:06] [Client thread/INFO] [FML]: Processing ObjectHolder annotations
+[17:30:07] [Client thread/INFO] [FML]: Found 1168 ObjectHolder annotations
+[17:30:07] [Client thread/INFO] [FML]: Identifying ItemStackHolder annotations
+[17:30:07] [Client thread/INFO] [FML]: Found 0 ItemStackHolder annotations
+[17:30:07] [Client thread/INFO] [FML]: Configured a dormant chunk cache size of 0
+[17:30:07] [Forge Version Check/INFO] [forge.VersionCheck]: [forge] Starting version check at http://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json
+[17:30:08] [Forge Version Check/INFO] [forge.VersionCheck]: [forge] Found status: UP_TO_DATE Target: null
+[17:30:11] [Client thread/INFO] [FML]: Applying holder lookups
+[17:30:11] [Client thread/INFO] [FML]: Holder lookups applied
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesItem@3467986 has been registered twice for the same name creatures:duck_feather.
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[17:30:11] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.registerItems(RegistryHandler.java:25)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_8_RegistryHandler_registerItems_Register.invoke(.dynamic)...
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@7818569d has been registered twice for the same name creatures:raw_koi.
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[17:30:11] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.registerItems(RegistryHandler.java:25)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_8_RegistryHandler_registerItems_Register.invoke(.dynamic)...
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@7f411735 has been registered twice for the same name creatures:roasted_koi.
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[17:30:11] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.registerItems(RegistryHandler.java:25)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_8_RegistryHandler_registerItems_Register.invoke(.dynamic)...
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@7fdbe204 has been registered twice for the same name creatures:raw_shrimp.
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[17:30:11] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.registerItems(RegistryHandler.java:25)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_8_RegistryHandler_registerItems_Register.invoke(.dynamic)...
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@4f613e30 has been registered twice for the same name creatures:cooked_shrimp.
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[17:30:11] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.registerItems(RegistryHandler.java:25)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_8_RegistryHandler_registerItems_Register.invoke(.dynamic)...
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@75f735ff has been registered twice for the same name creatures:raw_pike.
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[17:30:11] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.registerItems(RegistryHandler.java:25)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_8_RegistryHandler_registerItems_Register.invoke(.dynamic)...
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@2786ccb has been registered twice for the same name creatures:cooked_pike.
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[17:30:11] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.registerItems(RegistryHandler.java:25)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_8_RegistryHandler_registerItems_Register.invoke(.dynamic)...
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@22937542 has been registered twice for the same name creatures:raw_arowana.
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[17:30:11] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.registerItems(RegistryHandler.java:25)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_8_RegistryHandler_registerItems_Register.invoke(.dynamic)...
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@64c54f9e has been registered twice for the same name creatures:raw_gourami.
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[17:30:11] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.registerItems(RegistryHandler.java:25)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_8_RegistryHandler_registerItems_Register.invoke(.dynamic)...
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@28d1d634 has been registered twice for the same name creatures:cooked_arowana.
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[17:30:11] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.registerItems(RegistryHandler.java:25)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_8_RegistryHandler_registerItems_Register.invoke(.dynamic)...
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@698ef9d1 has been registered twice for the same name creatures:raw_large_wild_bird_meat.
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[17:30:11] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.registerItems(RegistryHandler.java:25)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_8_RegistryHandler_registerItems_Register.invoke(.dynamic)...
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@508ea8c7 has been registered twice for the same name creatures:roasted_large_wild_bird_meat.
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[17:30:11] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.registerItems(RegistryHandler.java:25)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_8_RegistryHandler_registerItems_Register.invoke(.dynamic)...
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@1e79a4f7 has been registered twice for the same name creatures:raw_small_wild_bird_meat.
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[17:30:11] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.registerItems(RegistryHandler.java:25)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_8_RegistryHandler_registerItems_Register.invoke(.dynamic)...
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@38bfb17a has been registered twice for the same name creatures:roasted_small_wild_bird_meat.
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[17:30:11] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.registerItems(RegistryHandler.java:25)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_8_RegistryHandler_registerItems_Register.invoke(.dynamic)...
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesItem@26e197cd has been registered twice for the same name creatures:guppy_tail.
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[17:30:11] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.registerItems(RegistryHandler.java:25)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_8_RegistryHandler_registerItems_Register.invoke(.dynamic)...
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesItem@30cdb46 has been registered twice for the same name creatures:bird_of_prey_feather.
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[17:30:11] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.registerItems(RegistryHandler.java:25)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_8_RegistryHandler_registerItems_Register.invoke(.dynamic)...
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesItem@508189cc has been registered twice for the same name creatures:raven_feather.
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[17:30:11] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.registerItems(RegistryHandler.java:25)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_8_RegistryHandler_registerItems_Register.invoke(.dynamic)...
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesItem@15f0d6c7 has been registered twice for the same name creatures:parrot_feather.
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[17:30:11] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.registerItems(RegistryHandler.java:25)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_8_RegistryHandler_registerItems_Register.invoke(.dynamic)...
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesItem@3f05744b has been registered twice for the same name creatures:crab_pincers.
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[17:30:11] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.registerItems(RegistryHandler.java:25)
+[17:30:11] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_8_RegistryHandler_registerItems_Register.invoke(.dynamic)...
+[17:30:11] [Client thread/WARN] [FML]: ****************************************
+[17:30:11] [Client thread/INFO] [FML]: Applying holder lookups
+[17:30:11] [Client thread/INFO] [FML]: Holder lookups applied
+[17:30:11] [Client thread/INFO] [FML]: Applying holder lookups
+[17:30:11] [Client thread/INFO] [FML]: Holder lookups applied
+[17:30:11] [Client thread/INFO] [FML]: Applying holder lookups
+[17:30:11] [Client thread/INFO] [FML]: Holder lookups applied
+[17:30:11] [Client thread/INFO] [FML]: Injecting itemstacks
+[17:30:11] [Client thread/INFO] [FML]: Itemstack injection complete
+[17:30:13] [Sound Library Loader/INFO] [net.minecraft.client.audio.SoundManager]: Starting up SoundSystem...
+[17:30:13] [Thread-4/INFO] [net.minecraft.client.audio.SoundManager]: Initializing LWJGL OpenAL
+[17:30:13] [Thread-4/INFO] [net.minecraft.client.audio.SoundManager]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[17:30:13] [Thread-4/INFO] [net.minecraft.client.audio.SoundManager]: OpenAL initialized.
+[17:30:13] [Sound Library Loader/INFO] [net.minecraft.client.audio.SoundManager]: Sound engine started
+[17:30:18] [Client thread/INFO] [FML]: Max texture size: 16384
+[17:30:20] [Client thread/INFO] [net.minecraft.client.renderer.texture.TextureMap]: Created: 512x512 textures-atlas
+[17:30:21] [Client thread/ERROR] [FML]: Parsing error loading recipe creatures:book_and_quill
+com.google.gson.JsonSyntaxException: Unknown item 'minecraft:ink_sac'
+	at net.minecraftforge.common.crafting.CraftingHelper.getItemStackBasic(CraftingHelper.java:262) ~[CraftingHelper.class:?]
+	at net.minecraftforge.common.crafting.CraftingHelper.lambda$init$16(CraftingHelper.java:544) ~[CraftingHelper.class:?]
+	at net.minecraftforge.common.crafting.CraftingHelper.getIngredient(CraftingHelper.java:204) ~[CraftingHelper.class:?]
+	at net.minecraftforge.common.crafting.CraftingHelper.lambda$init$14(CraftingHelper.java:481) ~[CraftingHelper.class:?]
+	at net.minecraftforge.common.crafting.CraftingHelper.getRecipe(CraftingHelper.java:416) ~[CraftingHelper.class:?]
+	at net.minecraftforge.common.crafting.CraftingHelper.lambda$loadRecipes$22(CraftingHelper.java:723) ~[CraftingHelper.class:?]
+	at net.minecraftforge.common.crafting.CraftingHelper.findFiles(CraftingHelper.java:833) ~[CraftingHelper.class:?]
+	at net.minecraftforge.common.crafting.CraftingHelper.loadRecipes(CraftingHelper.java:688) ~[CraftingHelper.class:?]
+	at java.util.ArrayList.forEach(ArrayList.java:1259) [?:1.8.0_292]
+	at net.minecraftforge.common.crafting.CraftingHelper.loadRecipes(CraftingHelper.java:633) [CraftingHelper.class:?]
+	at net.minecraftforge.fml.common.Loader.initializeMods(Loader.java:747) [Loader.class:?]
+	at net.minecraftforge.fml.client.FMLClientHandler.finishMinecraftLoading(FMLClientHandler.java:336) [FMLClientHandler.class:?]
+	at net.minecraft.client.Minecraft.init(Minecraft.java:535) [Minecraft.class:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:378) [Minecraft.class:?]
+	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_292]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_292]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_292]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_292]
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_292]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_292]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_292]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_292]
+	at net.minecraftforge.legacydev.Main.start(Main.java:86) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
+	at net.minecraftforge.legacydev.MainClient.main(MainClient.java:29) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
+[17:30:21] [Client thread/INFO] [FML]: Applying holder lookups
+[17:30:21] [Client thread/INFO] [FML]: Holder lookups applied
+[17:30:21] [Client thread/INFO] [FML]: Injecting itemstacks
+[17:30:21] [Client thread/INFO] [FML]: Itemstack injection complete
+[17:30:21] [Client thread/INFO] [FML]: Forge Mod Loader has successfully loaded 6 mods
+[17:30:21] [Client thread/WARN] [net.minecraft.client.settings.GameSettings]: Skipping bad option: lastServer:
+[17:30:22] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient]: Could not authorize you against Realms server: Invalid session id
+[17:30:27] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Starting integrated minecraft server version 1.12.2
+[17:30:27] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Generating keypair
+[17:30:27] [Server thread/INFO] [FML]: Injecting existing registry data into this server instance
+[17:30:27] [Server thread/INFO] [FML]: Applying holder lookups
+[17:30:27] [Server thread/INFO] [FML]: Holder lookups applied
+[17:30:28] [Server thread/INFO] [FML]: Loading dimension 0 (New World) (net.minecraft.server.integrated.IntegratedServer@439dcded)
+[17:30:28] [Server thread/INFO] [net.minecraft.advancements.AdvancementList]: Loaded 488 advancements
+[17:30:28] [Server thread/INFO] [FML]: Loading dimension -1 (New World) (net.minecraft.server.integrated.IntegratedServer@439dcded)
+[17:30:28] [Server thread/INFO] [FML]: Loading dimension 1 (New World) (net.minecraft.server.integrated.IntegratedServer@439dcded)
+[17:30:28] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing start region for level 0
+[17:30:29] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 60%
+[17:30:30] [Server thread/INFO] [FML]: Unloading dimension -1
+[17:30:30] [Server thread/INFO] [FML]: Unloading dimension 1
+[17:30:30] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Changing view distance to 12, from 10
+[17:30:30] [Netty Local Client IO #0/INFO] [FML]: Server protocol version 2
+[17:30:30] [Netty Server IO #1/INFO] [FML]: Client protocol version 2
+[17:30:30] [Netty Server IO #1/INFO] [FML]: Client attempting to join with 6 mods : minecraft@1.12.2,FML@8.0.99.99,creatures@1.0,forge@14.23.5.2855,geckolib3@3.0.0,mcp@9.42
+[17:30:30] [Netty Local Client IO #0/INFO] [FML]: [Netty Local Client IO #0] Client side modded connection established
+[17:30:30] [Server thread/INFO] [FML]: [Server thread] Server side modded connection established
+[17:30:30] [Server thread/INFO] [net.minecraft.server.management.PlayerList]: Player316[local:E:a48ed7c0] logged in with entity id 163 at (-305.28237361812467, 63.0, -235.89033228613366)
+[17:30:30] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Player316 joined the game
+[17:30:32] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Saving and pausing game...
+[17:30:32] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
+[17:30:32] [Client thread/INFO] [net.minecraft.advancements.AdvancementList]: Loaded 3 advancements
+[17:31:02] [Client thread/INFO] [net.minecraft.advancements.AdvancementList]: Loaded 4 advancements
+[17:32:09] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Saving and pausing game...
+[17:32:09] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
+[17:32:10] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Stopping server
+[17:32:10] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving players
+[17:32:10] [Server thread/INFO] [net.minecraft.network.NetHandlerPlayServer]: Player316 lost connection: Disconnected
+[17:32:10] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Player316 left the game
+[17:32:10] [Server thread/INFO] [net.minecraft.network.NetHandlerPlayServer]: Stopping singleplayer server as player logged out
+[17:32:10] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving worlds
+[17:32:10] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
+[17:32:10] [Server thread/INFO] [FML]: Unloading dimension 0
+[17:32:10] [Server thread/INFO] [FML]: Applying holder lookups
+[17:32:10] [Server thread/INFO] [FML]: Holder lookups applied
+[17:32:11] [Client thread/INFO] [net.minecraft.client.Minecraft]: Stopping!
+[17:32:11] [Client thread/INFO] [net.minecraft.client.audio.SoundManager]: SoundSystem shutting down...
+[17:32:11] [Client thread/WARN] [net.minecraft.client.audio.SoundManager]: Author: Paul Lamb, www.paulscode.com

@@ -2,6 +2,8 @@ package com.creatures.afrikinzi.entity.pygmyfalcon;
 
 import com.creatures.afrikinzi.entity.RaptorBase;
 import com.creatures.afrikinzi.entity.fairy_wren.EntityFairyWren;
+import com.creatures.afrikinzi.util.handlers.LootTableHandler;
+import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -10,6 +12,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
@@ -29,7 +33,7 @@ public class EntityPygmyFalcon extends RaptorBase implements IAnimatable {
 
     public EntityPygmyFalcon(World worldIn) {
         super(worldIn);
-        this.setSize(0.6F, 0.6F);
+        this.setSize(0.5F, 0.5F);
         this.moveHelper = new EntityFlyHelper(this);
     }
 
@@ -128,6 +132,24 @@ public class EntityPygmyFalcon extends RaptorBase implements IAnimatable {
             return "f";
         }
     }
+
+    public SoundEvent getAmbientSound() {
+        if (!this.isSleeping()) {
+
+            return SoundsHandler.PYGMY_FALCON_AMBIENT;
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    protected ResourceLocation getLootTable()
+    {
+        return LootTableHandler.BIRD_OF_PREY_SMALL;
+    }
+
+
+
 
 
 }

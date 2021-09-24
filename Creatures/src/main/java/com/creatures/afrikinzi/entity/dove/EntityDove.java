@@ -52,7 +52,7 @@ import java.util.Set;
 public class EntityDove extends EntityTameable implements IAnimatable, EntityFlying {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Item LEARN_ITEM = Items.BOOK;
-    private static final Set<Item> TAME_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.PUMPKIN_SEEDS, Items.APPLE);
+    private static Set<Item> TAME_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.PUMPKIN_SEEDS, Items.APPLE);
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityDove.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> GENDER = EntityDataManager.<Integer>createKey(EntityDove.class, DataSerializers.VARINT);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityDove.class, DataSerializers.BOOLEAN);
@@ -185,7 +185,7 @@ public class EntityDove extends EntityTameable implements IAnimatable, EntityFly
     {
         ItemStack itemstack = player.getHeldItem(hand);
 
-        if (!this.isTamed() && TAME_ITEMS.contains(itemstack.getItem()))
+        if (!this.isTamed() && getTameItems().contains(itemstack.getItem()))
         {
             if (!player.capabilities.isCreativeMode)
             {
@@ -428,6 +428,15 @@ public class EntityDove extends EntityTameable implements IAnimatable, EntityFly
 
     public boolean isWandering() {
         return this.dataManager.get(WANDERING);
+    }
+
+    public Set<Item> getTameItems() {
+        if (this.getVariant() == 2 || this.getVariant() == 4) {
+        TAME_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.PUMPKIN_SEEDS, Items.BREAD);
+        } else {
+            TAME_ITEMS = Sets.newHashSet(Items.APPLE, Items.MELON, Items.CHORUS_FRUIT);
+        }
+        return TAME_ITEMS;
     }
 
 }

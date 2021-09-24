@@ -1,0 +1,21 @@
+{
+	"pools": [
+		{
+			"name": "shrimp",
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "item",
+					"weight": 100,
+					"name": "creatures:raw_shrimp",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": 1
+						}
+					]
+				}
+			]
+		}
+	]
+}

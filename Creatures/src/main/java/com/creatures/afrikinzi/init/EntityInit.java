@@ -22,6 +22,7 @@ import com.creatures.afrikinzi.entity.pike.EntityPike;
 import com.creatures.afrikinzi.entity.pygmyfalcon.EntityPygmyFalcon;
 import com.creatures.afrikinzi.entity.raven.EntityRaven;
 import com.creatures.afrikinzi.entity.red_kite.EntityRedKite;
+import com.creatures.afrikinzi.entity.roller.EntityRoller;
 import com.creatures.afrikinzi.entity.shrimp.EntityShrimp;
 import com.creatures.afrikinzi.entity.creatures_spoonbill.EntityCreaturesSpoonbill;
 import com.creatures.afrikinzi.entity.stellers_sea_eagle.EntityStellersSeaEagle;
@@ -45,6 +46,7 @@ public class EntityInit {
     public static String[] CONURE = {"FOREST", "LUSH"};
     public static String[] FAIRY_WREN = {"FOREST", "DENSE", "LUSH"};
     public static String[] BARN_OWL = {"FOREST", "MOUNTAIN", "HILLS"};
+    public static String[] DUCKS = {"RIVER", "SWAMP"};
 
     public static void registerEntities()
     {
@@ -73,6 +75,7 @@ public class EntityInit {
         registerEntity("pygmy_falcon", EntityPygmyFalcon.class, Reference.ENTITY_PYGMY_FALCON, 50, 8097951, 15724012);
         registerEntity("barn_owl", EntityBarnOwl.class, Reference.ENTITY_BARN_OWL, 80, 16777215, 11897942);
         registerEntity("wild_duck", EntityWildDuck.class, Reference.ENTITY_WILD_DUCK, 80, 15702874, 7901340);
+        registerEntity("roller", EntityRoller.class, Reference.ENTITY_ROLLER, 80, 15702874, 7901340);
 
         //spawn placement
         EntitySpawnPlacementRegistry.setPlacementType(EntityKoi.class, EntityLiving.SpawnPlacementType.IN_WATER);
@@ -87,80 +90,91 @@ public class EntityInit {
             //spawns
 
             //water creatures
-            if (CreaturesConfig.koiSpawns == true) {
-            EntityRegistry.addSpawn(EntityKoi.class, 80, 1, 3, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.RIVER));
+            if (CreaturesConfig.koiSpawns) {
+                EntityRegistry.addSpawn(EntityKoi.class, CreaturesConfig.koiSpawnRate, 1, 3, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.RIVER));
             }
-            if (CreaturesConfig.dottybackSpawns == true) {
-            EntityRegistry.addSpawn(EntityDottyback.class, 80, 2, 5, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.OCEAN));
+            if (CreaturesConfig.dottybackSpawns) {
+                EntityRegistry.addSpawn(EntityDottyback.class, CreaturesConfig.dottybackSpawnRate, 2, 5, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.OCEAN));
             }
-            if (CreaturesConfig.pikeSpawns == true) {
-            EntityRegistry.addSpawn(EntityPike.class, 80, 1, 1, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.RIVER));
+            if (CreaturesConfig.pikeSpawns) {
+                EntityRegistry.addSpawn(EntityPike.class, CreaturesConfig.pikeSpawnRate, 1, 1, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.RIVER));
             }
-            if (CreaturesConfig.arowanaSpawns == true) {
-            EntityRegistry.addSpawn(EntityArowana.class, 80, 1, 1, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.RIVER)); }
-            if (CreaturesConfig.shrimpSpawns == true) {
-            EntityRegistry.addSpawn(EntityShrimp.class, 80, 4, 10, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.RIVER)); }
-            if (CreaturesConfig.guppySpawns == true) {
-            EntityRegistry.addSpawn(EntityGuppy.class, 80, 3, 8, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.RIVER)); }
-            if (CreaturesConfig.gouramiSpawns == true) {
-            EntityRegistry.addSpawn(EntityGourami.class, 80, 2, 3, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.RIVER)); }
-            if (CreaturesConfig.ghostcrabSpawns == true) {
-            EntityRegistry.addSpawn(EntityGhostCrab.class, 80, 2, 5, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.BEACH)); }
+            if (CreaturesConfig.arowanaSpawns) {
+                EntityRegistry.addSpawn(EntityArowana.class, CreaturesConfig.arowanaSpawnRate, 1, 1, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.RIVER));
+            }
+            if (CreaturesConfig.shrimpSpawns) {
+                EntityRegistry.addSpawn(EntityShrimp.class, CreaturesConfig.shrimpSpawnRate, 4, 10, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.RIVER));
+            }
+            if (CreaturesConfig.guppySpawns) {
+                EntityRegistry.addSpawn(EntityGuppy.class, CreaturesConfig.guppySpawnRate, 3, 8, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.RIVER));
+            }
+            if (CreaturesConfig.gouramiSpawns) {
+                EntityRegistry.addSpawn(EntityGourami.class, CreaturesConfig.gouramiSpawnRate, 2, 3, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.RIVER)); }
+            if (CreaturesConfig.ghostcrabSpawns) {
+                EntityRegistry.addSpawn(EntityGhostCrab.class, CreaturesConfig.ghostcrabSpawnRate, 2, 5, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.BEACH)); }
 
             //avians
-            if (CreaturesConfig.lovebirdSpawns == true) {
-            EntityRegistry.addSpawn(EntityLovebird.class, 25, 2, 6, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.SAVANNA)); }
-            if (CreaturesConfig.kakapoSpawns == true) {
-            EntityRegistry.addSpawn(EntityKakapo.class, 5, 1, 1, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.FOREST)); }
-            if (CreaturesConfig.spoonbillSpawns == true) {
-            EntityRegistry.addSpawn(EntityCreaturesSpoonbill.class, 15, 1, 2, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.SWAMP)); }
-            if (CreaturesConfig.mandarinduckSpawns == true) {
+            if (CreaturesConfig.lovebirdSpawns) {
+                EntityRegistry.addSpawn(EntityLovebird.class, CreaturesConfig.lovebirdSpawnRate, 2, 6, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.SAVANNA)); }
+            if (CreaturesConfig.kakapoSpawns) {
+                EntityRegistry.addSpawn(EntityKakapo.class, CreaturesConfig.kakapoSpawnRate, 1, 1, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.FOREST)); }
+            if (CreaturesConfig.spoonbillSpawns) {
+                EntityRegistry.addSpawn(EntityCreaturesSpoonbill.class, CreaturesConfig.spoonbillSpawnRate, 1, 2, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.SWAMP)); }
+            if (CreaturesConfig.mandarinduckSpawns) {
             for (BiomeDictionary.Type t : RegistryHelper.Entities.getBiomeTypesFromString(MANDARIN_DUCK)) {
-                EntityRegistry.addSpawn(EntityMandarinDuck.class, 15, 2, 3, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));
+                EntityRegistry.addSpawn(EntityMandarinDuck.class, CreaturesConfig.mandarinduckSpawnRate, 2, 3, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));
             } }
-            if (CreaturesConfig.ravenSpawns == true) {
-            EntityRegistry.addSpawn(EntityRaven.class, 25, 1, 3, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.FOREST)); }
-            if (CreaturesConfig.doveSpawns == true) {
-            EntityRegistry.addSpawn(EntityDove.class, 25, 1, 1, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.LUSH)); }
-            if (CreaturesConfig.redkiteSpawns == true) {
+            if (CreaturesConfig.ravenSpawns) {
+                EntityRegistry.addSpawn(EntityRaven.class, CreaturesConfig.ravenSpawnRate, 1, 3, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.FOREST)); }
+            if (CreaturesConfig.doveSpawns) {
+                EntityRegistry.addSpawn(EntityDove.class, CreaturesConfig.doveSpawnRate, 1, 1, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.LUSH)); }
+            if (CreaturesConfig.redkiteSpawns) {
             for (BiomeDictionary.Type t : RegistryHelper.Entities.getBiomeTypesFromString(RED_KITE)) {
-                EntityRegistry.addSpawn(EntityRedKite.class, 8, 1, 1, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));
+                EntityRegistry.addSpawn(EntityRedKite.class, CreaturesConfig.redkiteSpawnRate, 1, 1, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));
             } }
-            if (CreaturesConfig.goldeneagleSpawns == true) {
+            if (CreaturesConfig.goldeneagleSpawns) {
             for (BiomeDictionary.Type t : RegistryHelper.Entities.getBiomeTypesFromString(GOLDEN_EAGLE)) {
-                EntityRegistry.addSpawn(EntityGoldenEagle.class, 8, 1, 2, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));
+                EntityRegistry.addSpawn(EntityGoldenEagle.class, CreaturesConfig.goldeneagleSpawnRate, 1, 2, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));
             } }
-            if (CreaturesConfig.stellersseaeagleSpawns == true) {
-            EntityRegistry.addSpawn(EntityStellersSeaEagle.class, 5, 1, 2, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.COLD)); }
-            if (CreaturesConfig.gyrfalconSpawns == true) {
-                EntityRegistry.addSpawn(EntityGyrfalcon.class, 5, 1, 2, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.COLD));
+            if (CreaturesConfig.stellersseaeagleSpawns) {
+                EntityRegistry.addSpawn(EntityStellersSeaEagle.class, CreaturesConfig.stellersseaeagleSpawnRate, 1, 2, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.COLD));
             }
-            if (CreaturesConfig.conureSpawns == true) {
+            if (CreaturesConfig.gyrfalconSpawns) {
+                EntityRegistry.addSpawn(EntityGyrfalcon.class, CreaturesConfig.gyrfalconSpawnRate, 1, 2, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.COLD));
+            }
+            if (CreaturesConfig.conureSpawns) {
                 for (BiomeDictionary.Type t : RegistryHelper.Entities.getBiomeTypesFromString(CONURE)) {
-                    EntityRegistry.addSpawn(EntityConure.class, 25, 3, 5, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));
+                    EntityRegistry.addSpawn(EntityConure.class, CreaturesConfig.conureSpawnRate, 3, 5, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));
                 }
             }
-            if (CreaturesConfig.lorikeetSpawns == true) {
+            if (CreaturesConfig.lorikeetSpawns) {
                 for (BiomeDictionary.Type t : RegistryHelper.Entities.getBiomeTypesFromString(CONURE)) {
-                    EntityRegistry.addSpawn(EntityLorikeet.class, 25, 2, 5, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));
+                    EntityRegistry.addSpawn(EntityLorikeet.class, CreaturesConfig.lorikeetSpawnRate, 2, 5, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));
                 }
             }
-            if (CreaturesConfig.fairywrenSpawns == true) {
+            if (CreaturesConfig.fairywrenSpawns) {
                 for (BiomeDictionary.Type t : RegistryHelper.Entities.getBiomeTypesFromString(FAIRY_WREN)) {
-                    EntityRegistry.addSpawn(EntityFairyWren.class, 30, 3, 6, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));
+                    EntityRegistry.addSpawn(EntityFairyWren.class, CreaturesConfig.fairywrenSpawnRate, 3, 6, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));
                 }
             }
-            if (CreaturesConfig.pygmyfalconSpawns == true) {
-                EntityRegistry.addSpawn(EntityPygmyFalcon.class, 5, 1, 2, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.DRY));
+            if (CreaturesConfig.pygmyfalconSpawns) {
+                EntityRegistry.addSpawn(EntityPygmyFalcon.class, CreaturesConfig.pygmyfalconSpawnRate, 1, 2, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.DRY));
             }
-            if (CreaturesConfig.barnowlSpawns == true) {
+            if (CreaturesConfig.barnowlSpawns) {
                 for (BiomeDictionary.Type t : RegistryHelper.Entities.getBiomeTypesFromString(BARN_OWL)) {
-                    EntityRegistry.addSpawn(EntityBarnOwl.class, 30, 1, 2, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));
+                    EntityRegistry.addSpawn(EntityBarnOwl.class, CreaturesConfig.barnowlSpawnRate, 1, 2, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));
                 }
+            }
+            if (CreaturesConfig.duckSpawns) {
+                for (BiomeDictionary.Type t : RegistryHelper.Entities.getBiomeTypesFromString(DUCKS)) {
+                    EntityRegistry.addSpawn(EntityWildDuck.class, CreaturesConfig.duckSpawnRate, 2, 3, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));
+                }
+            }
+            if (CreaturesConfig.rollerSpawns) {
+                EntityRegistry.addSpawn(EntityRoller.class, CreaturesConfig.rollerSpawnRate, 1, 2, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.FOREST));
             }
 
         }
-        //EntityRegistry.addSpawn(EntityConure.class, 80, 2, 3, EnumCreatureType.CREATURE, Biomes.PLAINS);
     }
 
     private static void registerEntity(String name, Class<? extends Entity> entity, int id, int range, int color1, int color2)

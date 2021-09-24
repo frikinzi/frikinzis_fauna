@@ -23,6 +23,7 @@ entity.fairy_wren.name=Fairywren
 entity.ghost_crab.name=Ghost Crab
 entity.pygmy_falcon.name=African Pygmy Falcon
 entity.barn_owl.name=Barn Owl
+entity.wild_duck.name=Wild Duck
 
 //Sounds
 entity.mandarin_duck.quack=Mandarin duck quacks
@@ -37,6 +38,9 @@ entity.conure.ambient=Conure squawks
 entity.lorikeet.ambient=Lorikeet calls
 entity.lorikeet.ambient2=Wuewuewuewuewue
 entity.fairy_wren.ambient=Fairywren sings
+entity.pygmy_falcon.ambient=Pygmy falcon chirps
+entity.barn_owl.ambient=Barn owl screeches
+entity.wild_duck.ambient=Duck sings
 
 //Messages
 message.creatures.male=Sex: male
@@ -57,3 +61,26 @@ message.creatures.splendid=Species Name: Splendid Fairywren (Malurus splendens)
 message.creatures.whitewinged=Species Name: White-winged Fairywren (Malurus leucopterus)
 message.creatures.blackwinged=Species Name: Red-backed Fairywren (Malurus melanocephalus)
 message.creatures.purplecrowned=Species Name: Purple-crowned Fairywren (Malurus coronatus)
+
+//items
+item.duck_feather.name=Duck Feather
+item.raw_koi.name=Raw Koi
+item.roasted_koi.name=Roasted Koi
+item.raw_shrimp.name=Raw Shrimp
+item.cooked_shrimp.name=Cooked Shrimp
+item.raw_pike.name=Raw Pike
+item.cooked_pike.name=Roasted Pike
+item.guppy_tail.name=Guppy Tail
+item.raw_gourami.name=Raw Gourami
+item.raw_arowana.name=Raw Arowana
+item.cooked_arowana.name=Cooked Arowana
+item.raw_large_wild_bird_meat.name=Raw Large Wild Bird Meat
+item.roasted_large_wild_bird_meat.name=Roasted Large Wild Bird Meat
+item.raw_small_wild_bird_meat.name=Raw Small Wild Bird Meat
+item.roasted_small_wild_bird_meat.name=Roasted Small Wild Bird Meat
+item.bird_of_prey_feather.name=Bird of Prey Feather
+item.raven_feather.name=Raven Feather
+item.parrot_feather.name=Parrot Feather
+
+//tab
+itemGroup.itemsblockstab=Creatures

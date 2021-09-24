@@ -95,5 +95,23 @@
 		"category": "entity",
 		"subtitle": "entity.fairy_wren.ambient",
 		"sounds": [{"name": "creatures:entity/fairy_wren/fairy_wren_ambient", "stream": true }]
+	},
+	"entity.pygmyfalcon.pygmy_falcon_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.pygmy_falcon.ambient",
+		"sounds": [{"name": "creatures:entity/pygmyfalcon/pygmy_falcon_ambient", "stream": true }]
+	},
+	"entity.barn_owl.barn_owl_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.barn_owl.ambient",
+		"sounds": [{"name": "creatures:entity/barn_owl/barn_owl_ambient", "stream": true }]
+	},
+	"entity.wild_duck.wild_duck_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.wild_duck.ambient",
+		"sounds": [{"name": "creatures:entity/wild_duck/wild_duck_ambient", "stream": true }]
 	}
 }

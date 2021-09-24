@@ -1,6 +1,7 @@
 package com.creatures.afrikinzi.entity.mandarin_duck;
 
 import com.creatures.afrikinzi.entity.raven.EntityRaven;
+import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityCreature;
@@ -94,12 +95,6 @@ public class EntityMandarinDuck extends EntityAnimal implements IAnimatable {
 
     public void fall(float distance, float damageMultiplier)
     {
-    }
-
-    @Override
-    protected ResourceLocation getLootTable()
-    {
-        return LootTableList.ENTITIES_PARROT;
     }
 
     @Nullable
@@ -247,6 +242,12 @@ public class EntityMandarinDuck extends EntityAnimal implements IAnimatable {
                 return true;
             }
         }
+    }
+
+    @Override
+    protected ResourceLocation getLootTable()
+    {
+        return LootTableHandler.DUCK;
     }
 
 

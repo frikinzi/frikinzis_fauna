@@ -61,7 +61,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/assets/creatures/animations" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/roller" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -69,11 +69,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/roller" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/roller" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/animations" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/wildduck" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/wildduck" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/barnowl" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/barnowl" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/loot_tables" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/models/item" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/animations" />
@@ -84,6 +84,9 @@
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.creatures.afrikinzi.entity" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.creatures.afrikinzi.objects.items" />
     </key>
   </component>
   <component name="RunManager" selected="Application.runClient">
@@ -168,5 +171,19 @@
       <updated>1624977057267</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/creatures/afrikinzi/entity/golden_eagle/EntityGoldenEagle.java</url>
+          <line>42</line>
+          <properties class="com.creatures.afrikinzi.entity.golden_eagle.EntityGoldenEagle" method="initEntityAI">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

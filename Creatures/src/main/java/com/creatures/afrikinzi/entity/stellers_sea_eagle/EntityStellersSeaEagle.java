@@ -4,6 +4,7 @@ import com.creatures.afrikinzi.entity.RaptorBase;
 import com.creatures.afrikinzi.entity.koi.EntityKoi;
 import com.creatures.afrikinzi.entity.mandarin_duck.EntityMandarinDuck;
 import com.creatures.afrikinzi.entity.raven.EntityRaven;
+import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Sets;
@@ -149,7 +150,6 @@ public class EntityStellersSeaEagle extends RaptorBase implements IAnimatable {
         public void updateTask() {
             super.updateTask();
             if (this.getIsAboveDestination()) {
-                System.out.println("eagle is fishing");
 
                 this.eagle.motionY *= 1.2D;
                 this.eagle.motionY = -1.2F;
@@ -205,7 +205,7 @@ public class EntityStellersSeaEagle extends RaptorBase implements IAnimatable {
 
     @Override
     public Set<Item> getTameItems() {
-        TAME_ITEMS = Sets.newHashSet(Items.FISH);
+        TAME_ITEMS = Sets.newHashSet(Items.FISH, ItemInit.RAW_AROWANA, ItemInit.RAW_KOI, ItemInit.RAW_GOURAMI, ItemInit.RAW_PIKE);
         return TAME_ITEMS;
     }
 

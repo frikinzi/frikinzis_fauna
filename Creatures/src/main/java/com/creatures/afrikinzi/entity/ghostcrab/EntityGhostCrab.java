@@ -1,30 +1,23 @@
 package com.creatures.afrikinzi.entity.ghostcrab;
 
-import com.creatures.afrikinzi.entity.iberian_lynx.EntityIberianLynx;
-import com.creatures.afrikinzi.util.handlers.SoundsHandler;
+import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityWaterMob;
-import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootTableList;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -103,7 +96,7 @@ public class EntityGhostCrab extends EntityAnimal implements IAnimatable {
     @Override
     protected ResourceLocation getLootTable()
     {
-        return LootTableList.ENTITIES_OCELOT;
+        return LootTableHandler.CRAB;
     }
 
     protected void entityInit()

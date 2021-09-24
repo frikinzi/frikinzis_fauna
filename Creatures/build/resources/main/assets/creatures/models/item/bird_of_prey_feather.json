@@ -1,0 +1,7 @@
+{
+	"parent": "item/generated",
+	"textures":
+	{
+		"layer0": "creatures:items/bird_of_prey_feather"
+	}
+}

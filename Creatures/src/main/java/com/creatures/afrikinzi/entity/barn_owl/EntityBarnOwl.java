@@ -1,6 +1,7 @@
 package com.creatures.afrikinzi.entity.barn_owl;
 
 import com.creatures.afrikinzi.entity.RaptorBase;
+import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -120,7 +121,7 @@ public class EntityBarnOwl extends RaptorBase implements IAnimatable {
     {
         if (!this.isSleeping()) {
 
-            return null;
+            return SoundsHandler.BARN_OWL_AMBIENT;
         } else {
             return null;
         }
@@ -147,4 +148,6 @@ public class EntityBarnOwl extends RaptorBase implements IAnimatable {
         super.onLivingUpdate();
         this.calculateFlapping();
     }
+
+
 }

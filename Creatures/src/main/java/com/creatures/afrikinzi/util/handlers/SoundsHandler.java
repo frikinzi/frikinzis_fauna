@@ -7,6 +7,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class SoundsHandler {
+    public static SoundEvent WILD_DUCK_AMBIENT;
     public static SoundEvent LOVEBIRD_AMBIENT;
     public static SoundEvent KAKAPO_AMBIENT;
     public static SoundEvent KAKAPO_HURT;
@@ -23,6 +24,8 @@ public class SoundsHandler {
     public static SoundEvent LORIKEET_AMBIENT2;
     public static SoundEvent RED_KITE_AMBIENT;
     public static SoundEvent FAIRYWREN_AMBIENT;
+    public static SoundEvent BARN_OWL_AMBIENT;
+    public static SoundEvent PYGMY_FALCON_AMBIENT;
 
     public static void registerSounds() {
         LOVEBIRD_AMBIENT = registerSound("entity.lovebird.lovebird_ambient");
@@ -41,6 +44,9 @@ public class SoundsHandler {
         LORIKEET_AMBIENT2 = registerSound("entity.lorikeet.lorikeet_ambient2");
         RED_KITE_AMBIENT = registerSound("entity.red_kite.red_kite_ambient");
         FAIRYWREN_AMBIENT = registerSound("entity.fairy_wren.fairy_wren_ambient");
+        WILD_DUCK_AMBIENT = registerSound("entity.wild_duck.wild_duck_ambient");
+        BARN_OWL_AMBIENT = registerSound("entity.barn_owl.barn_owl_ambient");
+        PYGMY_FALCON_AMBIENT = registerSound("entity.pygmyfalcon.pygmy_falcon_ambient");
     }
 
     private static SoundEvent registerSound(String name) {

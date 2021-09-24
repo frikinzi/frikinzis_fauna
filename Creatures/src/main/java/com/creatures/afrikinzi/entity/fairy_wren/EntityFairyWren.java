@@ -1,6 +1,7 @@
 package com.creatures.afrikinzi.entity.fairy_wren;
 
 import com.creatures.afrikinzi.entity.FlyingEntityTameableBase;
+import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
 import net.minecraft.client.Minecraft;
@@ -19,6 +20,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -323,6 +325,12 @@ public class EntityFairyWren extends FlyingEntityTameableBase implements IAnimat
         } else {
             return null;
         }
+    }
+
+    @Override
+    protected ResourceLocation getLootTable()
+    {
+        return LootTableHandler.GENERIC_BIRD;
     }
 
 

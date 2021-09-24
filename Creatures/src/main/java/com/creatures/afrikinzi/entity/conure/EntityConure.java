@@ -1,6 +1,7 @@
 package com.creatures.afrikinzi.entity.conure;
 
 import com.creatures.afrikinzi.entity.lovebird.EntityLovebird;
+import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Sets;
@@ -116,7 +117,7 @@ public class EntityConure extends EntityShoulderRiding implements IAnimatable {
     @Override
     protected ResourceLocation getLootTable()
     {
-        return LootTableList.ENTITIES_PARROT;
+        return LootTableHandler.PARROT;
     }
 
     @Nullable
@@ -243,7 +244,8 @@ public class EntityConure extends EntityShoulderRiding implements IAnimatable {
                     mc.player.sendMessage(new TextComponentTranslation("Set to wandering"));
                 }
                 return true;
-            } else {
+            }
+            else {
                 this.tasks.addTask(5, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
                 this.tasks.addTask(2, new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F));
                 this.setWandering(false);
