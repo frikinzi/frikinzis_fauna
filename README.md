@@ -1,43 +1,38 @@
-# creatures_plus
+# creatures
  A Minecraft mod aiming to add various birds and fish to your world.
+ 
+![alt text](Creatures/src/main/resources/assets/creatures/creatures_logo.png)
 
+The Creatures mod (for 1.12.2) adds a variety of animals to Minecraft that are not usually found in other animal mods. In its current stage, the mod is functional for creative mode. 
 
-**Added Creatures**
+Natural spawning and survival functionality may come later. Many of the birds are currently tameable. 
 
-_Water Creatures_
+**This mod will require GeckoLib for 1.12.2! Find that here: https://www.curseforge.com/minecraft/mc-mods/geckolib/files/3424174**
 
-Koi (6 varieties)
+The mod currently has 21 animals. Not all are guaranteed to stay for public release:
+**aquatic creatures**
+- Koi (6 variants)
+- Dottyback (3 species)
+- Pike
+- Cherry Shrimp (8 variants)
+- Guppy (6 variants)
+- Gourami (5 variants)
+- Arowana (3 variants)
+- Ghost Crab (4 variants)
 
-Dottyback (4 varieties)
+**birds**
+- Lovebird (6 species) (tameable)
+- Lorikeet (3 species) (tameable)
+- Conure (3 species) (tameable)
+- Spoonbill (3 species)
+- Dove/Pigeon (5 species) (tameable)
+- Mandarin Duck
+- Kakapo (tameable)
+- Raven (tameable)
+- Fairywren (5 species) (tameable)
+- Golden Eagle (tameable)
+- Gyrfalcon (tameable)
+- Red Kite (tameable)
+- Steller's Sea Eagle (tameable)
 
-Pike
-
-Arowana (3 varieties)
-
-Guppy (6 varieties)
-
-Cherry Shrimp (8 varieties)
-
-Gourami (5 varieties)
-
-
-_Birds_
-
-Lovebird (6 varieties)
-
-Kakapo
-
-Spoonbill (3 varieties)
-
-Raven
-
-Dove (5 varieties)
-
-
-**Koi**
-![Koi_Updated-1-1](https://user-images.githubusercontent.com/86448602/126360615-c3dd8b2d-5772-4fef-a540-703b66f287f5.png)
-![Koi_Updated-2](https://user-images.githubusercontent.com/86448602/126360624-c2f8fad2-eabf-4a35-abbd-eed01a4ab84a.png)
-![Koi_Updated-3](https://user-images.githubusercontent.com/86448602/126360627-88f25cf4-1df0-4698-8bd4-e557f4ef87c3.png)
-![Koi_Updated-4](https://user-images.githubusercontent.com/86448602/126360640-aa7e2ddc-72b0-4422-9ae8-d9438ef37433.png)
-![Koi_Updated-5](https://user-images.githubusercontent.com/86448602/126360647-4a6d5661-833a-4246-9bf3-7f9eee3e34f5.png)
-![Koi_Updated-6](https://user-images.githubusercontent.com/86448602/126360656-a3726031-0c4c-4737-8e74-cc073affc58c.png)
+Creatures' Curseforge Page: https://www.curseforge.com/minecraft/mc-mods/creatures
