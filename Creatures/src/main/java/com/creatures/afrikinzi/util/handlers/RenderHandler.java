@@ -16,6 +16,10 @@ import com.creatures.afrikinzi.entity.ghostcrab.EntityGhostCrab;
 import com.creatures.afrikinzi.entity.ghostcrab.RenderGhostCrab;
 import com.creatures.afrikinzi.entity.golden_eagle.EntityGoldenEagle;
 import com.creatures.afrikinzi.entity.golden_eagle.RenderGoldenEagle;
+import com.creatures.afrikinzi.entity.goldfish.EntityGoldfish;
+import com.creatures.afrikinzi.entity.goldfish.EntityRanchuGoldfish;
+import com.creatures.afrikinzi.entity.goldfish.RenderGoldfish;
+import com.creatures.afrikinzi.entity.goldfish.RenderRanchu;
 import com.creatures.afrikinzi.entity.gourami.EntityGourami;
 import com.creatures.afrikinzi.entity.gourami.RenderGourami;
 import com.creatures.afrikinzi.entity.guppy.EntityGuppy;
@@ -67,6 +71,8 @@ public class RenderHandler
         RenderingRegistry.registerEntityRenderingHandler(EntityShrimp.class, RenderShrimp::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGourami.class, RenderGourami::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGhostCrab.class, RenderGhostCrab::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGoldfish.class, RenderGoldfish::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityRanchuGoldfish.class, RenderRanchu::new);
 
         //avians
         RenderingRegistry.registerEntityRenderingHandler(EntityLovebird.class, RenderLovebird::new);

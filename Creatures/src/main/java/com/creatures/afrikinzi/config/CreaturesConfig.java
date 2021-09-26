@@ -84,6 +84,24 @@ public class CreaturesConfig {
     @Config.Comment("Spawn weight of Ghost Crabs. (default: 80)")
     public static int ghostcrabSpawnRate = 80;
 
+    //Goldfish
+    @Config.Name("Goldfish spawns")
+    @Config.Comment("Enables natural spawning of Goldfish.")
+    public static boolean goldfishSpawns = true;
+
+    @Config.Name("Goldfish spawn rate")
+    @Config.Comment("Spawn weight of Goldfish. (default: 80)")
+    public static int goldfishSpawnRate = 80;
+
+    //Ranchu
+    @Config.Name("Ranchu spawns")
+    @Config.Comment("Enables natural spawning of Ranchu.")
+    public static boolean ranchuSpawns = true;
+
+    @Config.Name("Ranchu spawn rate")
+    @Config.Comment("Spawn weight of Ranchu. (default: 80)")
+    public static int ranchuSpawnRate = 80;
+
     //avians
     @Config.Name("Lovebird spawns")
     @Config.Comment("Enables natural spawning of Lovebirds.")

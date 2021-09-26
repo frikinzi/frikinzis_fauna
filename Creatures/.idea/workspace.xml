@@ -61,7 +61,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/roller" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/ranchu" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -69,11 +69,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/roller" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/roller" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/ranchu" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/goldfish" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/animations" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/loot_tables" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/models/item" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/ranchu" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/goldfish" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/animations" />

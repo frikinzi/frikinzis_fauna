@@ -1,7 +1,9 @@
 package com.creatures.afrikinzi.entity.creatures_spoonbill;
 
+import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
+import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
@@ -10,6 +12,7 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -32,11 +35,13 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
+import java.util.Set;
 
 public class EntityCreaturesSpoonbill extends EntityAnimal implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityCreaturesSpoonbill.class, DataSerializers.VARINT);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityCreaturesSpoonbill.class, DataSerializers.BOOLEAN);
+    private static final Set<Item> BREED_ITEMS = Sets.newHashSet(Items.FISH, ItemInit.RAW_GOURAMI, ItemInit.RAW_SHRIMP, ItemInit.CRAB_PINCERS);
 
     public EntityCreaturesSpoonbill(World worldIn)
     {
@@ -188,7 +193,7 @@ public class EntityCreaturesSpoonbill extends EntityAnimal implements IAnimatabl
 
     public boolean isBreedingItem(ItemStack stack)
     {
-        return stack.getItem() == Items.FISH;
+        return stack.getItem() == ItemInit.CRAB_PINCERS;
     }
 
     public boolean canMateWith(EntityAnimal otherAnimal)

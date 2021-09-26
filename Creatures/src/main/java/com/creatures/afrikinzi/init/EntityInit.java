@@ -10,6 +10,8 @@ import com.creatures.afrikinzi.entity.dove.EntityDove;
 import com.creatures.afrikinzi.entity.fairy_wren.EntityFairyWren;
 import com.creatures.afrikinzi.entity.ghostcrab.EntityGhostCrab;
 import com.creatures.afrikinzi.entity.golden_eagle.EntityGoldenEagle;
+import com.creatures.afrikinzi.entity.goldfish.EntityGoldfish;
+import com.creatures.afrikinzi.entity.goldfish.EntityRanchuGoldfish;
 import com.creatures.afrikinzi.entity.gourami.EntityGourami;
 import com.creatures.afrikinzi.entity.guppy.EntityGuppy;
 import com.creatures.afrikinzi.entity.gyrfalcon.EntityGyrfalcon;
@@ -38,8 +40,8 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class EntityInit {
-    public String[] FRESHWATER_BIOMES = {"RIVER", "SWAMP"};
-    public String[] SALTWATER_BIOMES = {"OCEAN"};
+    public static String[] FRESHWATER_BIOMES = {"RIVER", "SWAMP"};
+    public static String[] SALTWATER_BIOMES = {"OCEAN"};
     public static String[] MANDARIN_DUCK = {"FOREST", "RIVER"};
     public static String[] RED_KITE = {"FOREST", "SWAMP", "MESA"};
     public static String[] GOLDEN_EAGLE = {"FOREST", "PLAINS", "MOUNTAIN", "SANDY", "WASTELAND"};
@@ -76,6 +78,8 @@ public class EntityInit {
         registerEntity("barn_owl", EntityBarnOwl.class, Reference.ENTITY_BARN_OWL, 80, 16777215, 11897942);
         registerEntity("wild_duck", EntityWildDuck.class, Reference.ENTITY_WILD_DUCK, 80, 15702874, 7901340);
         registerEntity("roller", EntityRoller.class, Reference.ENTITY_ROLLER, 80, 15702874, 7901340);
+        registerEntity("goldfish", EntityGoldfish.class, Reference.ENTITY_GOLDFISH, 80, 14501642, 14318603);
+        registerEntity("ranchu", EntityRanchuGoldfish.class, Reference.ENTITY_RANCHU, 80, 14501642, 11);
 
         //spawn placement
         EntitySpawnPlacementRegistry.setPlacementType(EntityKoi.class, EntityLiving.SpawnPlacementType.IN_WATER);
@@ -172,6 +176,16 @@ public class EntityInit {
             }
             if (CreaturesConfig.rollerSpawns) {
                 EntityRegistry.addSpawn(EntityRoller.class, CreaturesConfig.rollerSpawnRate, 1, 2, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.FOREST));
+            }
+            if (CreaturesConfig.goldfishSpawns) {
+                for (BiomeDictionary.Type t : RegistryHelper.Entities.getBiomeTypesFromString(FRESHWATER_BIOMES)) {
+                    EntityRegistry.addSpawn(EntityGoldfish.class, CreaturesConfig.goldfishSpawnRate, 2, 5, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));
+                }
+            }
+            if (CreaturesConfig.ranchuSpawns) {
+                for (BiomeDictionary.Type t : RegistryHelper.Entities.getBiomeTypesFromString(FRESHWATER_BIOMES)) {
+                    EntityRegistry.addSpawn(EntityRanchuGoldfish.class, CreaturesConfig.ranchuSpawnRate, 2, 5, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));
+                }
             }
 
         }
