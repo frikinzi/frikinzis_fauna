@@ -24,6 +24,16 @@ entity.ghost_crab.name=Ghost Crab
 entity.pygmy_falcon.name=African Pygmy Falcon
 entity.barn_owl.name=Barn Owl
 entity.wild_duck.name=Wild Duck
+entity.goldfish.name=Goldfish
+entity.ranchu.name=Ranchu Goldfish
+entity.roller.name=Roller Bird
+entity.chickadee.name=Chickadee
+entity.pygmygoose.name=Pygmy Goose
+entity.fire_goby.name=Fire Goby
+entity.blue_tang.name=Blue Tang
+entity.creatures_trout.name=Trout
+entity.swallow.name=Swallow
+entity.flame_angelfish.name=Flame Angelfish
 
 //Sounds
 entity.mandarin_duck.quack=Mandarin duck quacks
@@ -41,6 +51,10 @@ entity.fairy_wren.ambient=Fairywren sings
 entity.pygmy_falcon.ambient=Pygmy falcon chirps
 entity.barn_owl.ambient=Barn owl screeches
 entity.wild_duck.ambient=Duck sings
+entity.roller.ambient=Roller screeches
+entity.chickadee.ambient=Chickadee sings
+entity.chickadee.ambient2=Chickadee alarm
+entity.swallow.ambient=Swallow calls
 
 //Messages
 message.creatures.male=Sex: male
@@ -81,6 +95,10 @@ item.roasted_small_wild_bird_meat.name=Roasted Small Wild Bird Meat
 item.bird_of_prey_feather.name=Bird of Prey Feather
 item.raven_feather.name=Raven Feather
 item.parrot_feather.name=Parrot Feather
+item.creatures_nectar.name=Nectar
+item.item_goldfish.name=Goldfish
+item.item_trout.name=Raw Trout
+item.cooked_trout.name=Cooked Trout
 
 //tab
-itemGroup.itemsblockstab=Creatures
+itemGroup.itemsblockstabcreatures=Creatures

@@ -67,7 +67,7 @@ public class EntityArowana extends FishBase implements IAnimatable {
     @Override
     protected ResourceLocation getLootTable()
     {
-        return LootTableHandler.PIKE;
+        return LootTableHandler.AROWANA;
     }
 
     protected void applyEntityAttributes()

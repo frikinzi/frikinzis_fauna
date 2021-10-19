@@ -1,5 +1,6 @@
 package com.creatures.afrikinzi;
 
+import com.creatures.afrikinzi.config.CreaturesConfig;
 import com.creatures.afrikinzi.event.CreaturesFarmerTrade;
 import com.creatures.afrikinzi.event.CreaturesFishermanTrade;
 import com.creatures.afrikinzi.proxy.CommonProxy;
@@ -26,7 +27,7 @@ public class Creatures
     @Mod.Instance
     public static Creatures instance;
 
-    public static final CreativeTabs itemsblockstab = new CreaturesTab("itemsblockstab");
+    public static final CreativeTabs itemsblockstab = new CreaturesTab("itemsblockstabcreatures");
 
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.COMMON_PROXY_CLASS)
     public static CommonProxy proxy;
@@ -45,10 +46,12 @@ public class Creatures
         RegistryHandler.initRegistries();
         CreaturesSmelting.init();
         CreaturesBrewing.init();
-        VillagerRegistry.VillagerProfession farmer= ForgeRegistries.VILLAGER_PROFESSIONS.getValue(new ResourceLocation("minecraft:farmer"));
-        farmer.getCareer(0).addTrade(1,new CreaturesFarmerTrade());
-        VillagerRegistry.VillagerCareer fisherman = farmer.getCareer(1);
-        fisherman.addTrade(1,new CreaturesFishermanTrade());
+        if (CreaturesConfig.villagerTrades == true) {
+            VillagerRegistry.VillagerProfession farmer = ForgeRegistries.VILLAGER_PROFESSIONS.getValue(new ResourceLocation("minecraft:farmer"));
+            farmer.getCareer(0).addTrade(1, new CreaturesFarmerTrade());
+            VillagerRegistry.VillagerCareer fisherman = farmer.getCareer(1);
+            fisherman.addTrade(1, new CreaturesFishermanTrade());
+        }
 
 
     }

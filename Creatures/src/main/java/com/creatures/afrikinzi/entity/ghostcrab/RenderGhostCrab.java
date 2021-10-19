@@ -13,6 +13,6 @@ public class RenderGhostCrab extends GeoEntityRenderer<EntityGhostCrab> {
     @Override
     public void renderEarly(EntityGhostCrab animatable, float ticks, float red, float green, float blue, float partialTicks)
     {
-        GlStateManager.scale(0.7F, 0.7F, 0.7F);
+        GlStateManager.scale(0.6F, 0.6F, 0.6F);
     }
 }

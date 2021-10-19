@@ -7,7 +7,7 @@
 				{
 					"type": "item",
 					"weight": 100,
-					"name": "creatures:duck_feather",
+					"name": "minecraft:fish",
 					"functions": [
 						{
 							"function": "set_count",

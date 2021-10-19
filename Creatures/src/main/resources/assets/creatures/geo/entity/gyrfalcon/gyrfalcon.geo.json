@@ -28,7 +28,7 @@
 					]
 				},
 				{
-					"name": "Wing2",
+					"name": "Wing4",
 					"parent": "bone2",
 					"pivot": [-0.5, 3.2, 7],
 					"cubes": [
@@ -37,7 +37,7 @@
 					]
 				},
 				{
-					"name": "Wing",
+					"name": "Wing3",
 					"parent": "bone2",
 					"pivot": [-0.5, 10.2, -5],
 					"cubes": [

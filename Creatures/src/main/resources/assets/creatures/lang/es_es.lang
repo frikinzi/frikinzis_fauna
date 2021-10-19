@@ -1,0 +1,102 @@
+//Entities
+entity.lovebird.name=Ave de amor
+entity.dottyback.name=Percas enanas
+entity.koi.name=Koi
+entity.pike.name=Lucio europeo
+entity.kakapo.name=Kakapo
+entity.creatures_spoonbill.name=Espátula
+entity.mandarin_duck.name=Pato mandarín
+entity.arowana.name=Arawana
+entity.guppy.name=Lebistes
+entity.shrimp.name=Gamba
+entity.gourami.name=Gourami
+entity.raven.name=Cuervo
+entity.dove.name=Paloma
+entity.golden_eagle.name=Águila dorada
+entity.stellers_sea_eagle.name=Pigargo de Steller
+entity.gyrfalcon.name=Halcón gerifalte
+entity.conure.name=Aratinga
+entity.lorikeet.name=Loris
+entity.iberian_lynx.name=Lince iberico
+entity.red_kite.name=Milano real
+entity.fairy_wren.name=Maluro
+entity.ghost_crab.name=Cangrejos fantasma
+entity.pygmy_falcon.name=Halconcito africano
+entity.barn_owl.name=Lechuza
+entity.wild_duck.name=Pato
+entity.goldfish.name=Pez dorado
+entity.ranchu.name=Ranchú
+entity.roller.name=Carraca
+entity.chickadee.name=Carbonero
+entity.pygmygoose.name=Ganso pigmeo
+entity.fire_goby.name=Gobio espada
+entity.blue_tang.name=Cirujano real
+entity.creatures_trout.name=Trucha
+entity.swallow.name=Golondrina
+entity.flame_angelfish.name=Pez ángel flama
+
+//Sounds
+entity.mandarin_duck.quack=Mandarin duck quacks
+entity.raven.caw=Raven caws
+entity.dove.coo=Dove coos
+entity.spoonbill.squawk=Spoonbill squawks
+entity.lynx.ambient=Lynx meows
+entity.stellers_sea_eagle.cry=Steller's sea eagle cries
+entity.gyrfalcon.cry=Gyrfalcon calls
+entity.golden_eagle.cry=Golden eagle calls
+entity.conure.ambient=Conure squawks
+entity.lorikeet.ambient=Lorikeet calls
+entity.lorikeet.ambient2=Wuewuewuewuewue
+entity.fairy_wren.ambient=Fairywren sings
+entity.pygmy_falcon.ambient=Pygmy falcon chirps
+entity.barn_owl.ambient=Barn owl screeches
+entity.wild_duck.ambient=Duck sings
+entity.roller.ambient=Roller screeches
+entity.chickadee.ambient=Chickadee sings
+entity.chickadee.ambient2=Chickadee alarm
+
+//Messages
+message.creatures.male=Sexo: macho
+message.creatures.female=Sexo: hembra
+message.creatures.dove.jambu=Species Name: Jambu fruit dove (Ptilinopus jambu)
+message.creatures.dove.release=Species Name: Domestic pigeon (Columba livia domestica)
+message.creatures.dove.rose=Species Name: Rose-crowned fruit dove (Ptilinopus regina)
+message.creatures.dove.rock=Species Name: Rock dove (Columba livia)
+message.creatures.dove.flame=Species Name: Flame dove (Ptilinopus victor)
+message.creatures.lovebird.fischers=Species Name: Fischer's lovebird (Agapornis fischeri)
+message.creatures.lovebird.fischersmutation=Species Name: Fischer's lovebird [lutino mutation] (Agapornis fischeri)
+message.creatures.lovebird.masked=Species Name: Masked lovebird (Agapornis personatus)
+message.creatures.lovebird.maskedmutation=Species Name: Masked lovebird [blue mutation] (Agapornis personatus)
+message.creatures.lovebird.peach=Species Name: Peach-faced lovebird (Agapornis roseicollis)
+message.creatures.lovebird.madagascar=Species Name: Madagascar lovebird (Agapornis canus)
+message.creatures.variegated=Species Name: Variegated Fairywren (Malurus lamberti)
+message.creatures.splendid=Species Name: Splendid Fairywren (Malurus splendens)
+message.creatures.whitewinged=Species Name: White-winged Fairywren (Malurus leucopterus)
+message.creatures.blackwinged=Species Name: Red-backed Fairywren (Malurus melanocephalus)
+message.creatures.purplecrowned=Species Name: Purple-crowned Fairywren (Malurus coronatus)
+
+//items
+item.duck_feather.name=Pluma de pato
+item.raw_koi.name=Koi crudos
+item.roasted_koi.name=Koi cocinado
+item.raw_shrimp.name=Gamba crudos
+item.cooked_shrimp.name=Cooked Shrimp
+item.raw_pike.name=Raw Pike
+item.cooked_pike.name=Roasted Pike
+item.guppy_tail.name=Cola de lebistes
+item.raw_gourami.name=Gourami
+item.raw_arowana.name=Arawana crudos
+item.cooked_arowana.name=Arawana cocinado
+item.raw_large_wild_bird_meat.name=Raw Large Wild Bird Meat
+item.roasted_large_wild_bird_meat.name=Roasted Large Wild Bird Meat
+item.raw_small_wild_bird_meat.name=Raw Small Wild Bird Meat
+item.roasted_small_wild_bird_meat.name=Roasted Small Wild Bird Meat
+item.bird_of_prey_feather.name=Bird of Prey Feather
+item.raven_feather.name=Pluma de cuervo
+item.parrot_feather.name=Pluma de loro
+item.item_goldfish.name=Pez dorado
+item.item_trout.name=Trucha crudos
+item.cooked_trout.name=Trucha cocinado
+
+//tab
+itemGroup.itemsblockstabcreatures=Criaturas

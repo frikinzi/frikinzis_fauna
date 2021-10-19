@@ -38,4 +38,11 @@ public class Reference
      public static final int ENTITY_ROLLER = 275;
      public static final int ENTITY_GOLDFISH = 276;
      public static final int ENTITY_RANCHU = 277;
+     public static final int ENTITY_CHICKADEE = 278;
+     public static final int ENTITY_PYGMY_GOOSE = 279;
+     public static final int ENTITY_FIRE_GOBY = 280;
+     public static final int ENTITY_BLUE_TANG = 281;
+     public static final int ENTITY_FLAME_ANGELFISH = 282;
+     public static final int ENTITY_TROUT = 283;
+     public static final int ENTITY_SWALLOW = 284;
 }

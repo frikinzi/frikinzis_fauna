@@ -1,6 +1,8 @@
 package com.creatures.afrikinzi.entity.gyrfalcon;
 
+import com.creatures.afrikinzi.config.CreaturesConfig;
 import com.creatures.afrikinzi.entity.RaptorBase;
+import com.creatures.afrikinzi.entity.chickadee.EntityChickadee;
 import com.creatures.afrikinzi.entity.koi.EntityKoi;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.base.Predicate;
@@ -48,8 +50,11 @@ public class EntityGyrfalcon extends RaptorBase implements IAnimatable {
         this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
         this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
         this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
+        if (CreaturesConfig.eagleAttacks == true) {
         this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityRabbit.class, false, (Predicate) null));
         this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChicken.class, false, (Predicate) null));
+        this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChickadee.class, false, (Predicate) null));
+        }
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {

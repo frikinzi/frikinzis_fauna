@@ -1,0 +1,55 @@
+{
+  "minecraft:recipes/transportation/acacia_boat": {
+    "criteria": {
+      "entered_water": "2021-10-16 20:57:05 -0400"
+    },
+    "done": true
+  },
+  "minecraft:husbandry/root": {
+    "criteria": {
+      "consumed_item": "2021-10-16 20:57:02 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/dark_oak_boat": {
+    "criteria": {
+      "entered_water": "2021-10-16 20:57:05 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/birch_boat": {
+    "criteria": {
+      "entered_water": "2021-10-16 20:57:05 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/boat": {
+    "criteria": {
+      "entered_water": "2021-10-16 20:57:05 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/jungle_boat": {
+    "criteria": {
+      "entered_water": "2021-10-16 20:57:05 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/spruce_boat": {
+    "criteria": {
+      "entered_water": "2021-10-16 20:57:05 -0400"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "mushroom_island_shore": "2021-10-16 20:58:42 -0400",
+      "deep_ocean": "2021-10-16 20:57:22 -0400",
+      "beaches": "2021-10-16 20:56:53 -0400",
+      "plains": "2021-10-16 20:52:13 -0400",
+      "mushroom_island": "2021-10-16 20:58:48 -0400",
+      "ocean": "2021-10-16 20:57:05 -0400"
+    },
+    "done": false
+  }
+}

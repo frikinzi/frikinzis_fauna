@@ -24,6 +24,8 @@ entity.ghost_crab.name=沙蟹
 entity.pygmy_falcon.name=非洲侏隼
 entity.barn_owl.name=谷仓猫头鹰
 entity.wild_duck.name=野鸭
+entity.roller.name=佛法僧
+entity.chickadee.name=山雀
 
 //Sounds
 entity.mandarin_duck.quack=鸳鸯：嘎嘎叫
@@ -39,6 +41,9 @@ entity.raven.caw=乌鸦：哇哇叫
 entity.fairy_wren.ambient=细尾鹩莺: 歌声
 entity.pygmy_falcon.ambient=非洲侏隼: 歌声
 entity.barn_owl.ambient=谷仓猫头鹰: 尖叫声
+entity.wild_duck.ambient=野鸭: 嘎嘎叫
+entity.roller.ambient=佛法僧：喧叫
+entity.chickadee.ambient=山雀：歌声
 
 //Messages
 message.creatures.male=性：雄

@@ -17,5 +17,7 @@ public class CreaturesFishermanTrade implements EntityVillager.ITradeList {
         recipeList.add(new MerchantRecipe(new ItemStack(ItemInit.RAW_AROWANA,1),new ItemStack(Items.EMERALD,1)));
         recipeList.add(new MerchantRecipe(new ItemStack(ItemInit.RAW_KOI,3),new ItemStack(Items.EMERALD,1)));
         recipeList.add(new MerchantRecipe(new ItemStack(ItemInit.RAW_PIKE,2),new ItemStack(Items.EMERALD,1)));
+        recipeList.add(new MerchantRecipe(new ItemStack(ItemInit.GOLDFISH,5),new ItemStack(Items.EMERALD,1)));
+        recipeList.add(new MerchantRecipe(new ItemStack(ItemInit.GUPPY_TAIL,4),new ItemStack(Items.EMERALD,1)));
     }
 }

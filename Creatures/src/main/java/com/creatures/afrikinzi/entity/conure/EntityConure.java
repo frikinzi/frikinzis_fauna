@@ -15,10 +15,12 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityShoulderRiding;
+import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -47,9 +49,10 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 import java.util.Set;
 
-public class EntityConure extends EntityShoulderRiding implements IAnimatable {
+public class EntityConure extends EntityTameable implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityConure.class, DataSerializers.VARINT);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityConure.class, DataSerializers.BOOLEAN);
@@ -123,7 +126,7 @@ public class EntityConure extends EntityShoulderRiding implements IAnimatable {
     @Nullable
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
-        this.setVariant(this.rand.nextInt(4));
+        this.setVariant(getRandomSpecies(this.world.rand));
         this.setGender(this.rand.nextInt(3));
         return super.onInitialSpawn(difficulty, livingdata);
     }
@@ -406,6 +409,24 @@ public class EntityConure extends EntityShoulderRiding implements IAnimatable {
             return SoundsHandler.CONURE_AMBIENT;
         } else {
             return null;
+        }
+    }
+
+    public static int getRandomSpecies(Random random)
+    {
+        int i = random.nextInt(100);
+
+        if (i < 45)
+        {
+            return 1;
+        }
+        else if (i < 99)
+        {
+            return 2;
+        }
+        else
+        {
+            return 3;
         }
     }
 }

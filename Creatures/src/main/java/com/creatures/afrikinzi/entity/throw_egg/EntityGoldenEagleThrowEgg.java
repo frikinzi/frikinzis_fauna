@@ -1,11 +1,8 @@
 package com.creatures.afrikinzi.entity.throw_egg;
 
 import com.creatures.afrikinzi.entity.golden_eagle.EntityGoldenEagle;
-import com.creatures.afrikinzi.objects.items.CreaturesEgg;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;

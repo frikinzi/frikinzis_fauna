@@ -24,6 +24,10 @@ entity.ghost_crab.name=Ghost Crab
 entity.pygmy_falcon.name=African Pygmy Falcon
 entity.barn_owl.name=Barn Owl
 entity.wild_duck.name=Wild Duck
+entity.goldfish.name=Goldfish
+entity.ranchu.name=Ranchu Goldfish
+entity.roller.name=Roller Bird
+entity.chickadee.name=Chickadee
 
 //Sounds
 entity.mandarin_duck.quack=Mandarin duck quacks
@@ -41,6 +45,8 @@ entity.fairy_wren.ambient=Fairywren sings
 entity.pygmy_falcon.ambient=Pygmy falcon chirps
 entity.barn_owl.ambient=Barn owl screeches
 entity.wild_duck.ambient=Duck sings
+entity.roller.ambient=Roller screeches
+entity.chickadee.ambient=Chickadee sings
 
 //Messages
 message.creatures.male=Sex: male

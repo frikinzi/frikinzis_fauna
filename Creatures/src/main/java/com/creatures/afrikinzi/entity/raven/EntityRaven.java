@@ -369,7 +369,7 @@ public class EntityRaven extends EntityTameable implements IAnimatable, EntityFl
 
     public boolean isBreedingItem(ItemStack stack)
     {
-        return stack.getItem() == Items.ROTTEN_FLESH;
+        return TAME_ITEMS.contains(stack.getItem());
     }
 
     public boolean canMateWith(EntityAnimal otherAnimal)

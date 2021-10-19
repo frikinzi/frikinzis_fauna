@@ -72,7 +72,7 @@ public class EntityKoi extends FishBase implements IAnimatable
     @Nullable
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
-        this.setVariant(this.rand.nextInt(7));
+        this.setVariant(this.rand.nextInt(11));
         return super.onInitialSpawn(difficulty, livingdata);
     }
 
@@ -84,7 +84,7 @@ public class EntityKoi extends FishBase implements IAnimatable
 
     public int getVariant()
     {
-        return MathHelper.clamp(((Integer)this.dataManager.get(VARIANT)).intValue(), 1, 7);
+        return MathHelper.clamp(((Integer)this.dataManager.get(VARIANT)).intValue(), 1, 11);
     }
 
     public void setVariant(int p_191997_1_)

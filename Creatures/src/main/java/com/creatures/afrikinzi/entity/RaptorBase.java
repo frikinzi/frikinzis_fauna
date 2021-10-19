@@ -1,5 +1,6 @@
 package com.creatures.afrikinzi.entity;
 
+import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
@@ -35,7 +36,7 @@ import java.util.List;
 import java.util.Set;
 
 public class RaptorBase extends EntityTameable implements EntityFlying {
-    public static Set<Item> TAME_ITEMS = Sets.newHashSet(Items.RABBIT, Items.PORKCHOP, Items.CHICKEN);
+    public static Set<Item> TAME_ITEMS = Sets.newHashSet(Items.RABBIT, Items.PORKCHOP, Items.CHICKEN, ItemInit.RAW_LARGE_WILD_BIRD_MEAT, ItemInit.RAW_SMALL_WILD_BIRD_MEAT);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(RaptorBase.class, DataSerializers.BOOLEAN);
     protected static final DataParameter<Boolean> WANDERING = EntityDataManager.createKey(RaptorBase.class, DataSerializers.BOOLEAN);
     protected static final DataParameter<Boolean> ATTACKING = EntityDataManager.createKey(RaptorBase.class, DataSerializers.BOOLEAN);
@@ -50,7 +51,7 @@ public class RaptorBase extends EntityTameable implements EntityFlying {
     public RaptorBase(World worldIn)
     {
         super(worldIn);
-        this.setSize(1.8F, 1.5F);
+        //this.setSize(1.8F, 1.5F);
         this.moveHelper = new EntityFlyHelper(this);
         this.HungerTime = 0;
     }

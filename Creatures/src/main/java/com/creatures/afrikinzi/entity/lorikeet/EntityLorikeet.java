@@ -1,6 +1,7 @@
 package com.creatures.afrikinzi.entity.lorikeet;
 
 import com.creatures.afrikinzi.entity.FlyingEntityTameableBase;
+import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
@@ -16,6 +17,7 @@ import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -44,6 +46,7 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 import java.util.Set;
 
 public class EntityLorikeet extends FlyingEntityTameableBase implements IAnimatable {
@@ -52,7 +55,7 @@ public class EntityLorikeet extends FlyingEntityTameableBase implements IAnimata
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityLorikeet.class, DataSerializers.BOOLEAN);
     protected static final DataParameter<Boolean> WANDERING = EntityDataManager.createKey(EntityLorikeet.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> GENDER = EntityDataManager.<Integer>createKey(EntityLorikeet.class, DataSerializers.VARINT);
-    private static final Set<Item> TAME_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
+    private static final Set<Item> TAME_ITEMS = Sets.newHashSet(ItemInit.NECTAR);
     protected EntityAIFollowOwnerFlying follow;
 
     public EntityLorikeet(World worldIn)

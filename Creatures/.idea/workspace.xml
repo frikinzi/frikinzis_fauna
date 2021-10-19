@@ -61,7 +61,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/ranchu" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/lorikeet" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -69,11 +69,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/ranchu" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/goldfish" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/animations" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/ranchu" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/goldfish" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/lorikeet" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/sounds/entity/pygmy_goose" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/sounds/entity/swallow" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/flame_angelfish" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/flame_angelfish" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/animations" />
@@ -171,19 +171,5 @@
       <updated>1624977057267</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/creatures/afrikinzi/entity/golden_eagle/EntityGoldenEagle.java</url>
-          <line>42</line>
-          <properties class="com.creatures.afrikinzi.entity.golden_eagle.EntityGoldenEagle" method="initEntityAI">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

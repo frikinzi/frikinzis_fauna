@@ -113,5 +113,17 @@
 		"category": "entity",
 		"subtitle": "entity.wild_duck.ambient",
 		"sounds": [{"name": "creatures:entity/wild_duck/wild_duck_ambient", "stream": true }]
+	},
+	"entity.roller.roller_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.roller.ambient",
+		"sounds": [{"name": "creatures:entity/roller/roller_ambient", "stream": true }]
+	},
+	"entity.chickadee.chickadee_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.chickadee.ambient",
+		"sounds": [{"name": "creatures:entity/chickadee/chickadee_ambient", "stream": true }]
 	}
 }

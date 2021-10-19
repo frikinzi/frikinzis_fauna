@@ -1,6 +1,7 @@
 package com.creatures.afrikinzi.entity.roller;
 
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
+import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -21,8 +22,10 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNavigateFlying;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -36,7 +39,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nullable;
 import java.util.Set;
 
-public class EntityRoller extends EntityTameable implements IAnimatable, EntityFlying {
+public class EntityRoller extends EntityAnimal implements IAnimatable, EntityFlying {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityRoller.class, DataSerializers.VARINT);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityRoller.class, DataSerializers.BOOLEAN);
@@ -58,14 +61,13 @@ public class EntityRoller extends EntityTameable implements IAnimatable, EntityF
     @Override
     protected void initEntityAI()
     {
-        this.aiSit = new EntityAISit(this);
         this.tasks.addTask(0, new EntityAIPanic(this, 1.25D));
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(2, this.aiSit);
         this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
         this.tasks.addTask(9, new EntityAIMate(this, 0.8D));
         this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
+        this.tasks.addTask(3, new EntityAIAvoidEntity(this, EntityPlayer.class, 6.0F, 1.0D, 1.2D));
         //this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChicken.class, false, (Predicate)null));
     }
 
@@ -295,6 +297,14 @@ public class EntityRoller extends EntityTameable implements IAnimatable, EntityF
         }
     }
 
+    public SoundEvent getAmbientSound()
+    {
+        if (!this.isSleeping()) {
 
+            return SoundsHandler.ROLLER_AMBIENT;
+        } else {
+            return null;
+        }
+    }
 
 }

@@ -13,5 +13,6 @@ public class RenderRanchu extends GeoEntityRenderer<EntityRanchuGoldfish> {
     @Override
     public void renderEarly(EntityRanchuGoldfish animatable, float ticks, float red, float green, float blue, float partialTicks)
     {
-            GlStateManager.scale(0.8F, 0.8F, 0.8F); }
+            GlStateManager.scale(0.8F, 0.8F, 0.8F);
+    }
     }

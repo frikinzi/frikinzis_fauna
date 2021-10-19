@@ -26,6 +26,11 @@ public class SoundsHandler {
     public static SoundEvent FAIRYWREN_AMBIENT;
     public static SoundEvent BARN_OWL_AMBIENT;
     public static SoundEvent PYGMY_FALCON_AMBIENT;
+    public static SoundEvent ROLLER_AMBIENT;
+    public static SoundEvent CHICKADEE_AMBIENT;
+    public static SoundEvent CHICKADEE_AMBIENT2;
+    public static SoundEvent SWALLOW_AMBIENT;
+    public static SoundEvent PYGMY_GOOSE_AMBIENT;
 
     public static void registerSounds() {
         LOVEBIRD_AMBIENT = registerSound("entity.lovebird.lovebird_ambient");
@@ -47,6 +52,11 @@ public class SoundsHandler {
         WILD_DUCK_AMBIENT = registerSound("entity.wild_duck.wild_duck_ambient");
         BARN_OWL_AMBIENT = registerSound("entity.barn_owl.barn_owl_ambient");
         PYGMY_FALCON_AMBIENT = registerSound("entity.pygmyfalcon.pygmy_falcon_ambient");
+        ROLLER_AMBIENT = registerSound("entity.roller.roller_ambient");
+        CHICKADEE_AMBIENT = registerSound("entity.chickadee.chickadee_ambient");
+        CHICKADEE_AMBIENT2 = registerSound("entity.chickadee.chickadee_ambient2");
+        SWALLOW_AMBIENT = registerSound("entity.swallow.swallow_ambient");
+        PYGMY_GOOSE_AMBIENT = registerSound("entity.pygmygoose.pygmy_goose_ambient");
     }
 
     private static SoundEvent registerSound(String name) {

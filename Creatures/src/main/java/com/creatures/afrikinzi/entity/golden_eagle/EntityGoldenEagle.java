@@ -1,7 +1,9 @@
 package com.creatures.afrikinzi.entity.golden_eagle;
 
+import com.creatures.afrikinzi.config.CreaturesConfig;
 import com.creatures.afrikinzi.entity.RaptorBase;
 import com.creatures.afrikinzi.entity.raven.EntityRaven;
+import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Sets;
@@ -30,7 +32,7 @@ import java.util.Set;
 
 public class EntityGoldenEagle extends RaptorBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
-    private static final Set<Item> TAME_ITEMS = Sets.newHashSet(Items.RABBIT, Items.PORKCHOP, Items.CHICKEN);
+    private static final Set<Item> TAME_ITEMS = Sets.newHashSet(Items.RABBIT, Items.PORKCHOP, Items.CHICKEN, ItemInit.RAW_LARGE_WILD_BIRD_MEAT, ItemInit.RAW_SMALL_WILD_BIRD_MEAT, Items.RABBIT);
 
     public EntityGoldenEagle(World worldIn)
     {
@@ -56,7 +58,9 @@ public class EntityGoldenEagle extends RaptorBase implements IAnimatable {
         this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
         this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
         }
+        if (CreaturesConfig.eagleAttacks == true) {
         this.targetTasks.addTask(6, new EntityGoldenEagle.AIHunting());
+        }
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
@@ -124,7 +128,7 @@ public class EntityGoldenEagle extends RaptorBase implements IAnimatable {
     @Override
     public boolean isBreedingItem(ItemStack stack)
     {
-        return stack.getItem() == Items.RABBIT;
+        return TAME_ITEMS.contains(stack.getItem());
     }
 
     @Override

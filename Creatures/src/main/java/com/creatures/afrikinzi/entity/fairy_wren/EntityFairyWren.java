@@ -100,7 +100,7 @@ public class EntityFairyWren extends FlyingEntityTameableBase implements IAnimat
     @Nullable
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
-        this.setVariant(this.rand.nextInt(6));
+        this.setVariant(this.rand.nextInt(7));
         this.setGender(this.rand.nextInt(3));
         return super.onInitialSpawn(difficulty, livingdata);
     }
@@ -193,7 +193,7 @@ public class EntityFairyWren extends FlyingEntityTameableBase implements IAnimat
 
     public int getVariant()
     {
-        return MathHelper.clamp(((Integer)this.dataManager.get(VARIANT)).intValue(), 1, 6);
+        return MathHelper.clamp(((Integer)this.dataManager.get(VARIANT)).intValue(), 1, 7);
     }
 
     public void setVariant(int p_191997_1_)

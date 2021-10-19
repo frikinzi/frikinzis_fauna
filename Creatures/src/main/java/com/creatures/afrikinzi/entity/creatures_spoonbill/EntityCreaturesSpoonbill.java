@@ -56,10 +56,12 @@ public class EntityCreaturesSpoonbill extends EntityAnimal implements IAnimatabl
         this.tasks.addTask(7, new EntityAIMate(this, 1.0D));
         this.tasks.addTask(0, new EntityAIPanic(this, 1.25D));
         this.tasks.addTask(0, new EntityAISwimming(this));
+        this.tasks.addTask(3, new EntityAITempt(this, 1.0D, false, BREED_ITEMS));
         this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
         this.tasks.addTask(1, new EntityAIWanderAvoidWater(this, 1.0D));
         this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
+        this.tasks.addTask(5, new EntityAIAvoidEntity(this, EntityPlayer.class, 5.0F, 1.0D, 1.2D));
 
     }
 
@@ -99,7 +101,7 @@ public class EntityCreaturesSpoonbill extends EntityAnimal implements IAnimatabl
 
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(6.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2D);
     }
 
@@ -193,7 +195,7 @@ public class EntityCreaturesSpoonbill extends EntityAnimal implements IAnimatabl
 
     public boolean isBreedingItem(ItemStack stack)
     {
-        return stack.getItem() == ItemInit.CRAB_PINCERS;
+        return BREED_ITEMS.contains(stack.getItem());
     }
 
     public boolean canMateWith(EntityAnimal otherAnimal)

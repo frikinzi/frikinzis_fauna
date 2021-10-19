@@ -18,7 +18,7 @@ public class ItemInit {
     public static final Item COOKED_PIKE = new CreaturesFoodItem("cooked_pike", 6, false);
     public static final Item RAW_AROWANA = new CreaturesFoodItem("raw_arowana", 2, false);
     public static final Item RAW_GOURAMI = new CreaturesFoodItem("raw_gourami", 1, false);
-    public static final Item COOKED_AROWANA = new CreaturesFoodItem("cooked_arowana", 1, false);
+    public static final Item COOKED_AROWANA = new CreaturesFoodItem("cooked_arowana", 4, false);
     public static final Item RAW_LARGE_WILD_BIRD_MEAT = new CreaturesFoodItem("raw_large_wild_bird_meat", 2, true);
     public static final Item ROASTED_LARGE_WILD_BIRD_MEAT = new CreaturesFoodItem("roasted_large_wild_bird_meat", 7, true);
     public static final Item RAW_SMALL_WILD_BIRD_MEAT = new CreaturesFoodItem("raw_small_wild_bird_meat", 1, true);
@@ -28,4 +28,9 @@ public class ItemInit {
     public static final Item RAVEN_FEATHER = new CreaturesItem("raven_feather");
     public static final Item PARROT_FEATHER = new CreaturesItem("parrot_feather");
     public static final Item CRAB_PINCERS = new CreaturesItem("crab_pincers");
+    public static final Item GOLDFISH = new CreaturesFoodItem("item_goldfish", 1, true);
+    public static final Item NECTAR = new CreaturesFoodItem("creatures_nectar", 1, false);
+    public static final Item RAW_TROUT = new CreaturesFoodItem("item_trout", 2, false);
+    public static final Item COOKED_TROUT = new CreaturesFoodItem("cooked_trout", 6, false);
+
 }

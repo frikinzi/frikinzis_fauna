@@ -73,7 +73,7 @@ public class FishBase extends EntityWaterMob {
     @Nullable
     protected ResourceLocation getLootTable()
     {
-        return LootTableHandler.FISH;
+        return null;
     }
 
     public void onLivingUpdate()

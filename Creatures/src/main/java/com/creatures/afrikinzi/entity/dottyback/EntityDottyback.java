@@ -59,12 +59,6 @@ public class EntityDottyback extends FishBase implements IAnimatable
         return this.factory;
     }
 
-    @Override
-    protected ResourceLocation getLootTable()
-    {
-        return LootTableHandler.FISH;
-    }
-
     @Nullable
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {

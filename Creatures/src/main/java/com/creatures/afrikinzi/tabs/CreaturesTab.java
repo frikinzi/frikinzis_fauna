@@ -13,16 +13,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class CreaturesTab extends CreativeTabs {
     public CreaturesTab(String label) {
-        super("itemsblockstab");
+        super("itemsblockstabcreatures");
     }
 
     @Override
     public ItemStack getTabIconItem() {
 
-        //For an item - return new ItemStack(ItemInit.EXAMPLE);
-        //For a block - return new ItemStack(Item.getItemFromBlock(BlockInit.EXAMPLE));
-
-        return new ItemStack(ItemInit.DUCK_FEATHER);
+        return new ItemStack(ItemInit.RAW_KOI);
     }
     @Override
     @SideOnly(Side.CLIENT)

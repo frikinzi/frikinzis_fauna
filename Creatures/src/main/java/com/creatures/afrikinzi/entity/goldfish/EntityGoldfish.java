@@ -2,12 +2,14 @@ package com.creatures.afrikinzi.entity.goldfish;
 
 import com.creatures.afrikinzi.entity.FishBase;
 import com.creatures.afrikinzi.entity.gourami.EntityGourami;
+import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
@@ -89,6 +91,11 @@ public class EntityGoldfish extends FishBase implements IAnimatable{
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         this.setVariant(compound.getInteger("Variant"));
+    }
+
+    protected ResourceLocation getLootTable()
+    {
+        return LootTableHandler.GOLDFISH;
     }
 
 }

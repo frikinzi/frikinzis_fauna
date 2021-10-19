@@ -3,9 +3,22 @@ package com.creatures.afrikinzi.config;
 import com.creatures.afrikinzi.util.Reference;
 import net.minecraftforge.common.config.Config;
 
-@Config(modid = Reference.MOD_ID, name = "Creatures-" + Reference.VERSION+ "Config")
+@Config(modid = Reference.MOD_ID, name = "Creatures-" + Reference.VERSION + " Config")
 @Config.LangKey("config.creatures.title")
 public class CreaturesConfig {
+    //Gameplay
+    @Config.Name("Eagles attack other animals")
+    @Config.Comment("Set to true if you want eagles to naturally attack other animals when untamed")
+    public static boolean eagleAttacks = true;
+
+    @Config.Name("Fishing")
+    @Config.Comment("Set to true if you want this mod's fish to be in fishing loot")
+    public static boolean fishLoot = true;
+
+    @Config.Name("Villager trades")
+    @Config.Comment("Enable or disable villager trades with Creatures items")
+    public static boolean villagerTrades = true;
+
     @Config.Name("All spawns")
     @Config.Comment("Enables natural spawning of entities from Creatures.")
     public static boolean allSpawns = true;
@@ -101,6 +114,42 @@ public class CreaturesConfig {
     @Config.Name("Ranchu spawn rate")
     @Config.Comment("Spawn weight of Ranchu. (default: 80)")
     public static int ranchuSpawnRate = 80;
+
+    //Fire Goby
+    @Config.Name("Fire Goby spawns")
+    @Config.Comment("Enables natural spawning of Fire Gobies.")
+    public static boolean firegobySpawns = true;
+
+    @Config.Name("Ranchu spawn rate")
+    @Config.Comment("Spawn weight of Fire Gobies. (default: 70)")
+    public static int firegobySpawnRate = 70;
+
+    //Blue Tang
+    @Config.Name("Blue Tang spawns")
+    @Config.Comment("Enables natural spawning of Blue Tangs.")
+    public static boolean bluetangSpawns = true;
+
+    @Config.Name("Blue Tang spawn rate")
+    @Config.Comment("Spawn weight of Blue Tangs. (default: 70)")
+    public static int bluetangSpawnRate = 70;
+
+    //Flame Angelfish
+    @Config.Name("Flame Angelfish spawns")
+    @Config.Comment("Enables natural spawning of Flame Angelfish.")
+    public static boolean flameangelfishSpawns = true;
+
+    @Config.Name("Flame Angelfish spawn rate")
+    @Config.Comment("Spawn weight of Flame Angelfish. (default: 70)")
+    public static int flameangelfishSpawnRate = 70;
+
+    //Trout
+    @Config.Name("Trout spawns")
+    @Config.Comment("Enables natural spawning of Trout.")
+    public static boolean troutSpawns = true;
+
+    @Config.Name("Trout spawn rate")
+    @Config.Comment("Spawn weight of Trout. (default: 90)")
+    public static int troutSpawnRate = 90;
 
     //avians
     @Config.Name("Lovebird spawns")
@@ -219,15 +268,6 @@ public class CreaturesConfig {
     @Config.Comment("Spawn weight of Fairywrens. (default: 5)")
     public static int fairywrenSpawnRate = 30;
 
-    //pygmy falcon
-    @Config.Name("Pygmy falcon spawns")
-    @Config.Comment("Enables natural spawning of Pygmy Falcons.")
-    public static boolean pygmyfalconSpawns = true;
-
-    @Config.Name("pygmy falcon spawn rate")
-    @Config.Comment("Spawn weight of Pygmy Falcons. (default: 5)")
-    public static int pygmyfalconSpawnRate = 5;
-
     //barn owl
     @Config.Name("Barn owl spawns")
     @Config.Comment("Enables natural spawning of Barn Owls.")
@@ -254,4 +294,41 @@ public class CreaturesConfig {
     @Config.Name("Roller spawn rate")
     @Config.Comment("Spawn weight of rollers. (default: 25)")
     public static int rollerSpawnRate = 25;
+
+    //chickadees
+    @Config.Name("Chickadee spawns")
+    @Config.Comment("Enables natural spawning of chickadees.")
+    public static boolean chickadeeSpawns = true;
+
+    @Config.Name("Chickadee spawn rate")
+    @Config.Comment("Spawn weight of chickadees. (default: 25)")
+    public static int chickadeeSpawnRate = 25;
+
+    //pygmy goose
+    @Config.Name("Pygmy Goose spawns")
+    @Config.Comment("Enables natural spawning of pygmy geese.")
+    public static boolean pygmygooseSpawns = true;
+
+    @Config.Name("Pygmy Goose spawn rate")
+    @Config.Comment("Spawn weight of pygmy geese. (default: 25)")
+    public static int pygmygooseSpawnRate = 25;
+
+    //pygmy falcon
+    @Config.Name("Pygmy falcon spawns")
+    @Config.Comment("Enables natural spawning of Pygmy Falcons.")
+    public static boolean pygmyfalconSpawns = true;
+
+    @Config.Name("pygmy falcon spawn rate")
+    @Config.Comment("Spawn weight of Pygmy Falcons. (default: 5)")
+    public static int pygmyfalconSpawnRate = 5;
+
+    //avians
+    @Config.Name("Swallow spawns")
+    @Config.Comment("Enables natural spawning of swallows.")
+    public static boolean swallowSpawns = true;
+
+    @Config.Name("Swallow spawn rate")
+    @Config.Comment("Spawn weight of swallows. (default: 25)")
+    public static int swallowSpawnRate = 25;
+
 }

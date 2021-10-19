@@ -4,10 +4,14 @@ import com.creatures.afrikinzi.Creatures;
 import com.creatures.afrikinzi.config.CreaturesConfig;
 import com.creatures.afrikinzi.entity.arowana.EntityArowana;
 import com.creatures.afrikinzi.entity.barn_owl.EntityBarnOwl;
+import com.creatures.afrikinzi.entity.blue_tang.EntityBlueTang;
+import com.creatures.afrikinzi.entity.chickadee.EntityChickadee;
 import com.creatures.afrikinzi.entity.conure.EntityConure;
 import com.creatures.afrikinzi.entity.dottyback.EntityDottyback;
 import com.creatures.afrikinzi.entity.dove.EntityDove;
 import com.creatures.afrikinzi.entity.fairy_wren.EntityFairyWren;
+import com.creatures.afrikinzi.entity.fire_goby.EntityFireGoby;
+import com.creatures.afrikinzi.entity.flame_angelfish.EntityFlameAngelfish;
 import com.creatures.afrikinzi.entity.ghostcrab.EntityGhostCrab;
 import com.creatures.afrikinzi.entity.golden_eagle.EntityGoldenEagle;
 import com.creatures.afrikinzi.entity.goldfish.EntityGoldfish;
@@ -21,6 +25,7 @@ import com.creatures.afrikinzi.entity.lorikeet.EntityLorikeet;
 import com.creatures.afrikinzi.entity.lovebird.EntityLovebird;
 import com.creatures.afrikinzi.entity.mandarin_duck.EntityMandarinDuck;
 import com.creatures.afrikinzi.entity.pike.EntityPike;
+import com.creatures.afrikinzi.entity.pygmy_goose.EntityPygmyGoose;
 import com.creatures.afrikinzi.entity.pygmyfalcon.EntityPygmyFalcon;
 import com.creatures.afrikinzi.entity.raven.EntityRaven;
 import com.creatures.afrikinzi.entity.red_kite.EntityRedKite;
@@ -28,6 +33,8 @@ import com.creatures.afrikinzi.entity.roller.EntityRoller;
 import com.creatures.afrikinzi.entity.shrimp.EntityShrimp;
 import com.creatures.afrikinzi.entity.creatures_spoonbill.EntityCreaturesSpoonbill;
 import com.creatures.afrikinzi.entity.stellers_sea_eagle.EntityStellersSeaEagle;
+import com.creatures.afrikinzi.entity.swallow.EntitySwallow;
+import com.creatures.afrikinzi.entity.trout.EntityTrout;
 import com.creatures.afrikinzi.entity.wild_duck.EntityWildDuck;
 import com.creatures.afrikinzi.util.Reference;
 import com.creatures.afrikinzi.util.handlers.helper.RegistryHelper;
@@ -41,7 +48,6 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class EntityInit {
     public static String[] FRESHWATER_BIOMES = {"RIVER", "SWAMP"};
-    public static String[] SALTWATER_BIOMES = {"OCEAN"};
     public static String[] MANDARIN_DUCK = {"FOREST", "RIVER"};
     public static String[] RED_KITE = {"FOREST", "SWAMP", "MESA"};
     public static String[] GOLDEN_EAGLE = {"FOREST", "PLAINS", "MOUNTAIN", "SANDY", "WASTELAND"};
@@ -49,6 +55,7 @@ public class EntityInit {
     public static String[] FAIRY_WREN = {"FOREST", "DENSE", "LUSH"};
     public static String[] BARN_OWL = {"FOREST", "MOUNTAIN", "HILLS"};
     public static String[] DUCKS = {"RIVER", "SWAMP"};
+    public static String[] SWALLOW = {"FOREST", "SWAMP", "PLAINS", "SAVANNAH"};
 
     public static void registerEntities()
     {
@@ -77,9 +84,16 @@ public class EntityInit {
         registerEntity("pygmy_falcon", EntityPygmyFalcon.class, Reference.ENTITY_PYGMY_FALCON, 50, 8097951, 15724012);
         registerEntity("barn_owl", EntityBarnOwl.class, Reference.ENTITY_BARN_OWL, 80, 16777215, 11897942);
         registerEntity("wild_duck", EntityWildDuck.class, Reference.ENTITY_WILD_DUCK, 80, 15702874, 7901340);
-        registerEntity("roller", EntityRoller.class, Reference.ENTITY_ROLLER, 80, 15702874, 7901340);
+        registerEntity("roller", EntityRoller.class, Reference.ENTITY_ROLLER, 80, 1414724, 13192647);
         registerEntity("goldfish", EntityGoldfish.class, Reference.ENTITY_GOLDFISH, 80, 14501642, 14318603);
         registerEntity("ranchu", EntityRanchuGoldfish.class, Reference.ENTITY_RANCHU, 80, 14501642, 11);
+        registerEntity("chickadee", EntityChickadee.class, Reference.ENTITY_CHICKADEE, 80, 13879499, 11);
+        registerEntity("pygmygoose", EntityPygmyGoose.class, Reference.ENTITY_PYGMY_GOOSE, 80, 2772553, 15964498);
+        registerEntity("fire_goby", EntityFireGoby.class, Reference.ENTITY_FIRE_GOBY, 80, 14080426, 14895873);
+        registerEntity("blue_tang", EntityBlueTang.class, Reference.ENTITY_BLUE_TANG, 80, 3895524, 722696);
+        registerEntity("creatures_trout", EntityTrout.class, Reference.ENTITY_TROUT, 80, 9861465, 11822456);
+        registerEntity("swallow", EntitySwallow.class, Reference.ENTITY_SWALLOW, 80, 6588890, 11953480);
+        registerEntity("flame_angelfish", EntityFlameAngelfish.class, Reference.ENTITY_FLAME_ANGELFISH, 80, 16396073, 16611846);
 
         //spawn placement
         EntitySpawnPlacementRegistry.setPlacementType(EntityKoi.class, EntityLiving.SpawnPlacementType.IN_WATER);
@@ -89,6 +103,12 @@ public class EntityInit {
         EntitySpawnPlacementRegistry.setPlacementType(EntityShrimp.class, EntityLiving.SpawnPlacementType.IN_WATER);
         EntitySpawnPlacementRegistry.setPlacementType(EntityGuppy.class, EntityLiving.SpawnPlacementType.IN_WATER);
         EntitySpawnPlacementRegistry.setPlacementType(EntityGourami.class, EntityLiving.SpawnPlacementType.IN_WATER);
+        EntitySpawnPlacementRegistry.setPlacementType(EntityGoldfish.class, EntityLiving.SpawnPlacementType.IN_WATER);
+        EntitySpawnPlacementRegistry.setPlacementType(EntityRanchuGoldfish.class, EntityLiving.SpawnPlacementType.IN_WATER);
+        EntitySpawnPlacementRegistry.setPlacementType(EntityFireGoby.class, EntityLiving.SpawnPlacementType.IN_WATER);
+        EntitySpawnPlacementRegistry.setPlacementType(EntityBlueTang.class, EntityLiving.SpawnPlacementType.IN_WATER);
+        EntitySpawnPlacementRegistry.setPlacementType(EntityTrout.class, EntityLiving.SpawnPlacementType.IN_WATER);
+        EntitySpawnPlacementRegistry.setPlacementType(EntityFlameAngelfish.class, EntityLiving.SpawnPlacementType.IN_WATER);
 
         if (CreaturesConfig.allSpawns == true) {
             //spawns
@@ -99,6 +119,15 @@ public class EntityInit {
             }
             if (CreaturesConfig.dottybackSpawns) {
                 EntityRegistry.addSpawn(EntityDottyback.class, CreaturesConfig.dottybackSpawnRate, 2, 5, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.OCEAN));
+            }
+            if (CreaturesConfig.firegobySpawns) {
+                EntityRegistry.addSpawn(EntityFireGoby.class, CreaturesConfig.firegobySpawnRate, 1, 1, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.OCEAN));
+            }
+            if (CreaturesConfig.flameangelfishSpawns) {
+                EntityRegistry.addSpawn(EntityFlameAngelfish.class, CreaturesConfig.flameangelfishSpawnRate, 1, 1, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.OCEAN));
+            }
+            if (CreaturesConfig.bluetangSpawns) {
+                EntityRegistry.addSpawn(EntityBlueTang.class, CreaturesConfig.bluetangSpawnRate, 1, 1, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.OCEAN));
             }
             if (CreaturesConfig.pikeSpawns) {
                 EntityRegistry.addSpawn(EntityPike.class, CreaturesConfig.pikeSpawnRate, 1, 1, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.RIVER));
@@ -111,6 +140,9 @@ public class EntityInit {
             }
             if (CreaturesConfig.guppySpawns) {
                 EntityRegistry.addSpawn(EntityGuppy.class, CreaturesConfig.guppySpawnRate, 3, 8, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.RIVER));
+            }
+            if (CreaturesConfig.troutSpawns) {
+                EntityRegistry.addSpawn(EntityTrout.class, CreaturesConfig.troutSpawnRate, 1, 2, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.RIVER));
             }
             if (CreaturesConfig.gouramiSpawns) {
                 EntityRegistry.addSpawn(EntityGourami.class, CreaturesConfig.gouramiSpawnRate, 2, 3, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.RIVER)); }
@@ -185,6 +217,19 @@ public class EntityInit {
             if (CreaturesConfig.ranchuSpawns) {
                 for (BiomeDictionary.Type t : RegistryHelper.Entities.getBiomeTypesFromString(FRESHWATER_BIOMES)) {
                     EntityRegistry.addSpawn(EntityRanchuGoldfish.class, CreaturesConfig.ranchuSpawnRate, 2, 5, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));
+                }
+            }
+            if (CreaturesConfig.chickadeeSpawns) {
+                EntityRegistry.addSpawn(EntityChickadee.class, CreaturesConfig.chickadeeSpawnRate, 2, 3, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.FOREST));
+            }
+            if (CreaturesConfig.pygmygooseSpawns) {
+                for (BiomeDictionary.Type t : RegistryHelper.Entities.getBiomeTypesFromString(DUCKS)) {
+                    EntityRegistry.addSpawn(EntityPygmyGoose.class, CreaturesConfig.pygmygooseSpawnRate, 2, 3, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));
+                }
+            }
+            if (CreaturesConfig.swallowSpawns) {
+                for (BiomeDictionary.Type t : RegistryHelper.Entities.getBiomeTypesFromString(SWALLOW)) {
+                    EntityRegistry.addSpawn(EntitySwallow.class, CreaturesConfig.swallowSpawnRate, 3, 5, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));
                 }
             }
 

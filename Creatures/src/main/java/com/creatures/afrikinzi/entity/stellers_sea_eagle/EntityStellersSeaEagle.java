@@ -1,6 +1,8 @@
 package com.creatures.afrikinzi.entity.stellers_sea_eagle;
 
+import com.creatures.afrikinzi.config.CreaturesConfig;
 import com.creatures.afrikinzi.entity.RaptorBase;
+import com.creatures.afrikinzi.entity.arowana.EntityArowana;
 import com.creatures.afrikinzi.entity.koi.EntityKoi;
 import com.creatures.afrikinzi.entity.mandarin_duck.EntityMandarinDuck;
 import com.creatures.afrikinzi.entity.raven.EntityRaven;
@@ -45,7 +47,7 @@ public class EntityStellersSeaEagle extends RaptorBase implements IAnimatable {
         this.setSize(1.8F, 1.5F);
         this.moveHelper = new EntityFlyHelper(this);
         this.setPathPriority(PathNodeType.WATER, 1.0F);
-        Set<Item> TAME_ITEMS = Sets.newHashSet(Items.FISH, Items.COOKED_FISH);
+        Set<Item> TAME_ITEMS = Sets.newHashSet(Items.FISH, Items.COOKED_FISH, ItemInit.RAW_AROWANA, ItemInit.RAW_KOI, ItemInit.RAW_PIKE, ItemInit.RAW_GOURAMI);
     }
 
     @Override
@@ -63,10 +65,12 @@ public class EntityStellersSeaEagle extends RaptorBase implements IAnimatable {
         this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
         this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
         //this.targetTasks.addTask(6, new EntityStellersSeaEagle.AIFishing(this));
-        this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityRabbit.class, false, (Predicate) null));
-        //this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChicken.class, false, (Predicate) null));
-        this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityKoi.class, false, (Predicate) null));
-        this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntitySquid.class, false, (Predicate) null));
+        if (CreaturesConfig.eagleAttacks == true) {
+            this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityArowana.class, false, (Predicate) null));
+            //this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChicken.class, false, (Predicate) null));
+            this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityKoi.class, false, (Predicate) null));
+            this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntitySquid.class, false, (Predicate) null));
+        }
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
@@ -102,7 +106,7 @@ public class EntityStellersSeaEagle extends RaptorBase implements IAnimatable {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(35.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(25.0D);
         this.getEntityAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue(3.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.40000000298023224D);
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
@@ -172,7 +176,7 @@ public class EntityStellersSeaEagle extends RaptorBase implements IAnimatable {
     @Override
     public boolean isBreedingItem(ItemStack stack)
     {
-        return stack.getItem() == Items.FISH;
+        return TAME_ITEMS.contains(stack.getItem());
     }
 
     @Override

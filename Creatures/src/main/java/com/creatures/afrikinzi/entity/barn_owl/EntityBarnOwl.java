@@ -1,13 +1,22 @@
 package com.creatures.afrikinzi.entity.barn_owl;
 
+import com.creatures.afrikinzi.config.CreaturesConfig;
 import com.creatures.afrikinzi.entity.RaptorBase;
+import com.creatures.afrikinzi.entity.arowana.EntityArowana;
+import com.creatures.afrikinzi.entity.chickadee.EntityChickadee;
+import com.creatures.afrikinzi.entity.fairy_wren.EntityFairyWren;
+import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Sets;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
@@ -19,8 +28,11 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+import java.util.Set;
+
 public class EntityBarnOwl extends RaptorBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
+    private static final Set<Item> TEMPTATION_ITEMS = Sets.newHashSet(ItemInit.RAW_SMALL_WILD_BIRD_MEAT, Items.CHICKEN, ItemInit.RAW_LARGE_WILD_BIRD_MEAT);
 
     public EntityBarnOwl(World worldIn) {
         super(worldIn);
@@ -41,6 +53,11 @@ public class EntityBarnOwl extends RaptorBase implements IAnimatable {
         this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
         this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
         this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
+        if (CreaturesConfig.eagleAttacks == true) {
+            this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityFairyWren.class, false, (Predicate) null));
+            this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChicken.class, false, (Predicate) null));
+            this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChickadee.class, false, (Predicate) null));
+        }
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
@@ -86,7 +103,7 @@ public class EntityBarnOwl extends RaptorBase implements IAnimatable {
     @Override
     public boolean isBreedingItem(ItemStack stack)
     {
-        return stack.getItem() == Items.CHICKEN;
+        return TEMPTATION_ITEMS.contains(stack.getItem());
     }
 
     @Override
@@ -131,7 +148,7 @@ public class EntityBarnOwl extends RaptorBase implements IAnimatable {
     public void onLivingUpdate()
     {
         if (this.onGround) {
-            setSleeping(world.getWorldTime() <= 10000 && world.getWorldTime() >= 23000);
+            setSleeping(world.getWorldTime() >= 1000 && world.getWorldTime() <= 23000);
         }
         if (this.shouldSleep() == false) {
             setSleeping(false);

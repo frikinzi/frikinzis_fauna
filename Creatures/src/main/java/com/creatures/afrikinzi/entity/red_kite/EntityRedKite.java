@@ -1,12 +1,16 @@
 package com.creatures.afrikinzi.entity.red_kite;
 
+import com.creatures.afrikinzi.config.CreaturesConfig;
 import com.creatures.afrikinzi.entity.RaptorBase;
+import com.creatures.afrikinzi.entity.chickadee.EntityChickadee;
 import com.creatures.afrikinzi.entity.stellers_sea_eagle.EntityStellersSeaEagle;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
+import com.google.common.base.Predicate;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -42,6 +46,9 @@ public class EntityRedKite extends RaptorBase implements IAnimatable {
         this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
         this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
         this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
+        if (CreaturesConfig.eagleAttacks == true) {
+            this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChickadee.class, false, (Predicate) null));
+        }
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {

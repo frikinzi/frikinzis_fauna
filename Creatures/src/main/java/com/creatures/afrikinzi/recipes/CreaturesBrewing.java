@@ -10,5 +10,8 @@ public class CreaturesBrewing {
         PotionHelper.addMix(PotionTypes.AWKWARD, ItemInit.RAW_AROWANA, PotionTypes.LONG_WATER_BREATHING);
         PotionHelper.addMix(PotionTypes.AWKWARD, ItemInit.RAW_GOURAMI, PotionTypes.SWIFTNESS);
         PotionHelper.addMix(PotionTypes.AWKWARD, ItemInit.BIRD_OF_PREY_FEATHER, PotionTypes.LONG_STRENGTH);
+        PotionHelper.addMix(PotionTypes.AWKWARD, ItemInit.RAVEN_FEATHER, PotionTypes.NIGHT_VISION);
+        PotionHelper.addMix(PotionTypes.AWKWARD, ItemInit.GOLDFISH, PotionTypes.REGENERATION);
+        PotionHelper.addMix(PotionTypes.AWKWARD, ItemInit.PARROT_FEATHER, PotionTypes.LONG_REGENERATION);
     }
 }

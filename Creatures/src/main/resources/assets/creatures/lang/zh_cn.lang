@@ -24,6 +24,16 @@ entity.ghost_crab.name=沙蟹
 entity.pygmy_falcon.name=非洲侏隼
 entity.barn_owl.name=谷仓猫头鹰
 entity.wild_duck.name=野鸭
+entity.roller.name=佛法僧
+entity.chickadee.name=山雀
+entity.pygmygoose.name=凫
+entity.fire_goby.name=雷达虾虎
+entity.blue_tang.name=蓝唐王鱼
+entity.creatures_trout.name=鳟鱼
+entity.goldfish.name=金鱼
+entity.ranchu.name=兰寿金鱼
+entity.swallow.name=燕子
+entity.flame_angelfish.name=火焰神仙鱼
 
 //Sounds
 entity.mandarin_duck.quack=鸳鸯：嘎嘎叫
@@ -39,6 +49,10 @@ entity.raven.caw=乌鸦：哇哇叫
 entity.fairy_wren.ambient=细尾鹩莺: 歌声
 entity.pygmy_falcon.ambient=非洲侏隼: 歌声
 entity.barn_owl.ambient=谷仓猫头鹰: 尖叫声
+entity.wild_duck.ambient=野鸭: 嘎嘎叫
+entity.roller.ambient=佛法僧：喧叫
+entity.chickadee.ambient=山雀：歌声
+entity.chickadee.ambient2=山雀：警报声
 
 //Messages
 message.creatures.male=性：雄
@@ -54,6 +68,11 @@ message.creatures.lovebird.masked=种：黄领牡丹鹦鹉 (学名：Agapornis p
 message.creatures.lovebird.maskedmutation=种：黄领牡丹鹦鹉 [蓝色变种] (学名：Agapornis personatus)
 message.creatures.lovebird.peach=种：桃脸牡丹鹦鹉 (学名：Agapornis roseicollis)
 message.creatures.lovebird.madagascar=种：灰头牡丹鹦鹉 (学名：Agapornis canus)
+message.creatures.variegated=种: 杂色细尾鹩莺 (学名：Malurus lamberti)
+message.creatures.splendid=种：辉蓝细尾鹩莺 (学名：Malurus splendens)
+message.creatures.whitewinged=种：白肩细尾鹩莺 (学名：Malurus leucopterus)
+message.creatures.blackwinged=种：红背细尾鹩莺 (学名：Malurus melanocephalus)
+message.creatures.purplecrowned=种：紫冠细尾鹩莺 (学名：Malurus coronatus)
 
 //items
 item.duck_feather.name=鸭毛
@@ -72,3 +91,12 @@ item.roasted_large_wild_bird_meat.name=熟大野鸟肉
 item.raw_small_wild_bird_meat.name=生小野鸟肉
 item.roasted_small_wild_bird_meat.name=熟小野鸟肉
 item.bird_of_prey_feather.name=雕毛
+item.raven_feather.name=乌鸦毛
+item.parrot_feather.name=鹦鹉毛
+item.creatures_nectar.name=花蜜
+item.item_goldfish.name=金鱼
+item.item_trout.name=新鲜鳟鱼
+item.cooked_trout.name=烧鳟鱼
+
+//tab
+itemGroup.itemsblockstabcreatures=Frikinzi的野生动物

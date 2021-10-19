@@ -36,7 +36,7 @@ public class EntityGhostCrab extends EntityAnimal implements IAnimatable {
     public EntityGhostCrab(World worldIn)
     {
         super(worldIn);
-        this.setSize(1F, 1F);
+        this.setSize(0.5F, 0.5F);
     }
 
     protected void initEntityAI()
@@ -63,7 +63,7 @@ public class EntityGhostCrab extends EntityAnimal implements IAnimatable {
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(5.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(4.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.40000001192092896D);
     }
 
