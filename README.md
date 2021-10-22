@@ -1,15 +1,15 @@
-# creatures
+# Frikinzi's Fauna
  A Minecraft mod aiming to add various birds and fish to your world.
  
-![alt text](Creatures/src/main/resources/assets/creatures/creatures_logo.png)
+ <img src="https://i.imgur.com/1wqFUJy.png">
 
-The Creatures mod (for 1.12.2) adds a variety of animals to Minecraft that are not usually found in other animal mods. In its current stage, the mod is functional for creative mode. 
+Frikinzi's Fauna (for 1.12.2) adds a variety of animals to Minecraft that are not usually found in other animal mods. In its current stage, the mod is functional for creative mode. 
 
 Natural spawning and survival functionality may come later. Many of the birds are currently tameable. 
 
 **This mod will require GeckoLib for 1.12.2! Find that here: https://www.curseforge.com/minecraft/mc-mods/geckolib/files/3424174**
 
-The mod currently has 21 animals. Not all are guaranteed to stay for public release:
+The mod currently has 21 animals.
 **aquatic creatures**
 - Koi (6 variants)
 - Dottyback (3 species)
