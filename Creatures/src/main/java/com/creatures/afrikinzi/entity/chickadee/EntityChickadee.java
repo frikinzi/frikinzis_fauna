@@ -1,7 +1,9 @@
 package com.creatures.afrikinzi.entity.chickadee;
 
+import com.creatures.afrikinzi.entity.RaptorBase;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
+import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
@@ -10,6 +12,8 @@ import net.minecraft.entity.passive.EntityFlying;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -32,17 +36,18 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
+import java.util.Set;
 
 public class EntityChickadee extends EntityAnimal implements EntityFlying, IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityChickadee.class, DataSerializers.VARINT);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityChickadee.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Integer> GENDER = EntityDataManager.<Integer>createKey(EntityChickadee.class, DataSerializers.VARINT);
     public float flap;
     public float flapSpeed;
     public float oFlapSpeed;
     public float oFlap;
     public float flapping = 1.0F;
+    private static Set<Item> BREEDING_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
 
     public EntityChickadee(World worldIn)
     {
@@ -61,6 +66,7 @@ public class EntityChickadee extends EntityAnimal implements EntityFlying, IAnim
         this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
         this.tasks.addTask(3, new EntityAIAvoidEntity(this, EntityPlayer.class, 6.0F, 1.0D, 1.2D));
+        this.tasks.addTask(3, new EntityAIAvoidEntity(this, RaptorBase.class, 7.0F, 1.0D, 1.2D));
     }
 
 
@@ -104,7 +110,6 @@ public class EntityChickadee extends EntityAnimal implements EntityFlying, IAnim
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
         this.setVariant(this.rand.nextInt(4));
-        this.setGender(this.rand.nextInt(3));
         return super.onInitialSpawn(difficulty, livingdata);
     }
 
@@ -185,11 +190,7 @@ public class EntityChickadee extends EntityAnimal implements EntityFlying, IAnim
         else
         {
             EntityChickadee entitychickadee = (EntityChickadee)otherAnimal;
-            if (this.getGender() == entitychickadee.getGender()) {
-                return false;
-            } else {
                 return this.isInLove() && entitychickadee.isInLove();
-            }
         }
 
 
@@ -200,12 +201,6 @@ public class EntityChickadee extends EntityAnimal implements EntityFlying, IAnim
     {
         EntityChickadee entitychickadee = new EntityChickadee(this.world);
         entitychickadee.setVariant(this.getVariant());
-        int j = this.rand.nextInt(2);
-        if (j == 0) {
-            entitychickadee.setGender(1);
-        } else {
-            entitychickadee.setGender(2);
-        }
 
         return entitychickadee;
     }
@@ -241,22 +236,11 @@ public class EntityChickadee extends EntityAnimal implements EntityFlying, IAnim
         this.dataManager.set(VARIANT, Integer.valueOf(p_191997_1_));
     }
 
-    public int getGender()
-    {
-        return MathHelper.clamp(((Integer)this.dataManager.get(GENDER)).intValue(), 1, 3);
-    }
-
-    public void setGender(int p_191997_1_)
-    {
-        this.dataManager.set(GENDER, Integer.valueOf(p_191997_1_));
-    }
-
     protected void entityInit()
     {
         super.entityInit();
         this.dataManager.register(VARIANT, Integer.valueOf(0));
         this.dataManager.register(SLEEPING, Boolean.valueOf(false));
-        this.dataManager.register(GENDER, Integer.valueOf(0));
     }
 
     public void writeEntityToNBT(NBTTagCompound compound)
@@ -264,14 +248,12 @@ public class EntityChickadee extends EntityAnimal implements EntityFlying, IAnim
         super.writeEntityToNBT(compound);
         compound.setInteger("Variant", this.getVariant());
         compound.setBoolean("Sleeping", this.isSleeping());
-        compound.setInteger("Gender", this.getGender());
     }
 
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         this.setVariant(compound.getInteger("Variant"));
         this.setSleeping(compound.getBoolean("Sleeping"));
-        this.setGender(compound.getInteger("Gender"));
     }
 
     public void setSleeping(boolean value) {
@@ -299,6 +281,11 @@ public class EntityChickadee extends EntityAnimal implements EntityFlying, IAnim
         } else {
             return null;
         }
+    }
+
+    public boolean isBreedingItem(ItemStack stack)
+    {
+        return BREEDING_ITEMS.contains(stack.getItem());
     }
 
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)

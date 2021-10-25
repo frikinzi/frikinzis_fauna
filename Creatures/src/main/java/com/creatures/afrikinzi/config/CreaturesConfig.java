@@ -3,7 +3,7 @@ package com.creatures.afrikinzi.config;
 import com.creatures.afrikinzi.util.Reference;
 import net.minecraftforge.common.config.Config;
 
-@Config(modid = Reference.MOD_ID, name = "Creatures-" + Reference.VERSION + " Config")
+@Config(modid = Reference.MOD_ID, name = "Frikinzis_Fauna_" + Reference.VERSION + "_Config")
 @Config.LangKey("config.creatures.title")
 public class CreaturesConfig {
     //Gameplay
@@ -15,9 +15,21 @@ public class CreaturesConfig {
     @Config.Comment("Set to true if you want this mod's fish to be in fishing loot")
     public static boolean fishLoot = true;
 
+    @Config.Name("Fish Despawn")
+    @Config.Comment("Set to true if you want fish to despawn naturally")
+    public static boolean fishDespawns = true;
+
     @Config.Name("Villager trades")
     @Config.Comment("Enable or disable villager trades with Creatures items")
     public static boolean villagerTrades = true;
+
+    @Config.Name("Eagle throwing prey up high")
+    @Config.Comment("Enable or disable eagles throwing prey up high upon contact")
+    public static boolean eagleThrows = true;
+
+    @Config.Name("Raven giving gifts")
+    @Config.Comment("Enable or disable ravens giving gifts")
+    public static boolean ravenGifts = true;
 
     @Config.Name("All spawns")
     @Config.Comment("Enables natural spawning of entities from Creatures.")
@@ -32,7 +44,7 @@ public class CreaturesConfig {
 
     @Config.Name("Koi spawn rate")
     @Config.Comment("Spawn weight of Koi. (default: 80)")
-    public static int koiSpawnRate = 80;
+    public static int koiSpawnRate = 20;
 
     //dottyback
     @Config.Name("Dottyback spawns")
@@ -41,7 +53,7 @@ public class CreaturesConfig {
 
     @Config.Name("Dottyback spawn rate")
     @Config.Comment("Spawn weight of Dottybacks. (default: 80)")
-    public static int dottybackSpawnRate = 80;
+    public static int dottybackSpawnRate = 20;
 
     //pike
     @Config.Name("Pike spawns")
@@ -50,7 +62,7 @@ public class CreaturesConfig {
 
     @Config.Name("Pike spawn rate")
     @Config.Comment("Spawn weight of Pike. (default: 80)")
-    public static int pikeSpawnRate = 80;
+    public static int pikeSpawnRate = 20;
 
     //arowana
     @Config.Name("Arowana spawns")
@@ -68,7 +80,7 @@ public class CreaturesConfig {
 
     @Config.Name("Shrimp spawn rate")
     @Config.Comment("Spawn weight of Shrimp. (default: 80)")
-    public static int shrimpSpawnRate = 80;
+    public static int shrimpSpawnRate = 20;
 
     //guppy
     @Config.Name("Guppy spawns")
@@ -77,7 +89,7 @@ public class CreaturesConfig {
 
     @Config.Name("Guppy spawn rate")
     @Config.Comment("Spawn weight of Guppies. (default: 80)")
-    public static int guppySpawnRate = 80;
+    public static int guppySpawnRate = 20;
 
     //gourami
     @Config.Name("Gourami spawns")
@@ -86,7 +98,7 @@ public class CreaturesConfig {
 
     @Config.Name("Gourami spawn rate")
     @Config.Comment("Spawn weight of Gouramis. (default: 80)")
-    public static int gouramiSpawnRate = 80;
+    public static int gouramiSpawnRate = 20;
 
     //Ghost crab
     @Config.Name("Ghost crab spawns")
@@ -104,7 +116,7 @@ public class CreaturesConfig {
 
     @Config.Name("Goldfish spawn rate")
     @Config.Comment("Spawn weight of Goldfish. (default: 80)")
-    public static int goldfishSpawnRate = 80;
+    public static int goldfishSpawnRate = 20;
 
     //Ranchu
     @Config.Name("Ranchu spawns")
@@ -113,7 +125,7 @@ public class CreaturesConfig {
 
     @Config.Name("Ranchu spawn rate")
     @Config.Comment("Spawn weight of Ranchu. (default: 80)")
-    public static int ranchuSpawnRate = 80;
+    public static int ranchuSpawnRate = 20;
 
     //Fire Goby
     @Config.Name("Fire Goby spawns")
@@ -122,7 +134,7 @@ public class CreaturesConfig {
 
     @Config.Name("Ranchu spawn rate")
     @Config.Comment("Spawn weight of Fire Gobies. (default: 70)")
-    public static int firegobySpawnRate = 70;
+    public static int firegobySpawnRate = 20;
 
     //Blue Tang
     @Config.Name("Blue Tang spawns")
@@ -131,7 +143,7 @@ public class CreaturesConfig {
 
     @Config.Name("Blue Tang spawn rate")
     @Config.Comment("Spawn weight of Blue Tangs. (default: 70)")
-    public static int bluetangSpawnRate = 70;
+    public static int bluetangSpawnRate = 20;
 
     //Flame Angelfish
     @Config.Name("Flame Angelfish spawns")
@@ -140,7 +152,7 @@ public class CreaturesConfig {
 
     @Config.Name("Flame Angelfish spawn rate")
     @Config.Comment("Spawn weight of Flame Angelfish. (default: 70)")
-    public static int flameangelfishSpawnRate = 70;
+    public static int flameangelfishSpawnRate = 20;
 
     //Trout
     @Config.Name("Trout spawns")
@@ -149,7 +161,7 @@ public class CreaturesConfig {
 
     @Config.Name("Trout spawn rate")
     @Config.Comment("Spawn weight of Trout. (default: 90)")
-    public static int troutSpawnRate = 90;
+    public static int troutSpawnRate = 20;
 
     //avians
     @Config.Name("Lovebird spawns")

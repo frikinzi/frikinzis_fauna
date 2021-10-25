@@ -1,7 +1,6 @@
 package com.creatures.afrikinzi.entity.goldfish;
 
 import com.creatures.afrikinzi.entity.FishBase;
-import com.creatures.afrikinzi.entity.gourami.EntityGourami;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -30,7 +29,7 @@ public class EntityGoldfish extends FishBase implements IAnimatable{
     public EntityGoldfish(World worldIn)
     {
         super(worldIn);
-        this.setSize(0.6F, 0.6F);
+        this.setSize(0.4F, 0.4F);
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)

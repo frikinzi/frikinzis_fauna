@@ -1,0 +1,28 @@
+{
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "mushroom_island_shore": "2021-10-24 15:24:42 -0400",
+      "mushroom_island": "2021-10-24 15:24:43 -0400",
+      "ocean": "2021-10-24 15:24:28 -0400"
+    },
+    "done": false
+  },
+  "minecraft:husbandry/tame_an_animal": {
+    "criteria": {
+      "tamed_animal": "2021-10-24 15:24:59 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/bookshelf": {
+    "criteria": {
+      "has_book": "2021-10-24 15:24:47 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/writable_book": {
+    "criteria": {
+      "has_book": "2021-10-24 15:24:47 -0400"
+    },
+    "done": true
+  }
+}

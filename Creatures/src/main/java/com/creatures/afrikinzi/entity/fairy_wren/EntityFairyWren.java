@@ -1,6 +1,7 @@
 package com.creatures.afrikinzi.entity.fairy_wren;
 
 import com.creatures.afrikinzi.entity.FlyingEntityTameableBase;
+import com.creatures.afrikinzi.entity.RaptorBase;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
@@ -62,8 +63,9 @@ public class EntityFairyWren extends FlyingEntityTameableBase implements IAnimat
         this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
         this.tasks.addTask(2, this.aiSit);
         this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(2, new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F));
         this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
+        this.tasks.addTask(3, new EntityAIAvoidEntity(this, EntityPlayer.class, 6.0F, 1.0D, 1.2D));
+        this.tasks.addTask(3, new EntityAIAvoidEntity(this, RaptorBase.class, 7.0F, 1.0D, 1.2D));
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
@@ -129,37 +131,7 @@ public class EntityFairyWren extends FlyingEntityTameableBase implements IAnimat
     {
         ItemStack itemstack = player.getHeldItem(hand);
 
-        if (!this.isTamed() && TAME_ITEMS.contains(itemstack.getItem()) && !this.isSleeping())
-        {
-            if (!player.capabilities.isCreativeMode)
-            {
-                itemstack.shrink(1);
-            }
-
-            if (!this.isSilent())
-            {
-                this.world.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_PARROT_EAT, this.getSoundCategory(), 1.0F, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
-            }
-
-            if (!this.world.isRemote)
-            {
-                if (this.rand.nextInt(10) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player))
-                {
-                    this.setTamedBy(player);
-                    this.playTameEffect(true);
-                    this.world.setEntityState(this, (byte)7);
-                }
-                else
-                {
-                    this.playTameEffect(false);
-                    this.world.setEntityState(this, (byte)6);
-                }
-            }
-
-            return true;
-        }
-
-        else if (itemstack.getItem() == Items.BOOK)
+        if (itemstack.getItem() == Items.BOOK)
         {
             Minecraft mc = Minecraft.getMinecraft();
             if (this.getGender() == 1) {
@@ -182,10 +154,6 @@ public class EntityFairyWren extends FlyingEntityTameableBase implements IAnimat
 
         else
         {
-            if (!this.world.isRemote && !this.isFlying() && this.isTamed() && this.isOwner(player))
-            {
-                this.aiSit.setSitting(!this.isSitting());
-            }
 
             return super.processInteract(player, hand);
         }
@@ -272,8 +240,11 @@ public class EntityFairyWren extends FlyingEntityTameableBase implements IAnimat
         if (this.getVariant() == 4) {
             return new TextComponentTranslation("message.creatures.blackwinged");
         }
-        else {
+        if (this.getVariant() == 5) {
             return new TextComponentTranslation("message.creatures.purplecrowned");
+        }
+        else {
+            return new TextComponentTranslation("message.creatures.superb");
         }
     }
 

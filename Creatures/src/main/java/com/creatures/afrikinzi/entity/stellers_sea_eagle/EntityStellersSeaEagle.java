@@ -6,6 +6,7 @@ import com.creatures.afrikinzi.entity.arowana.EntityArowana;
 import com.creatures.afrikinzi.entity.koi.EntityKoi;
 import com.creatures.afrikinzi.entity.mandarin_duck.EntityMandarinDuck;
 import com.creatures.afrikinzi.entity.raven.EntityRaven;
+import com.creatures.afrikinzi.entity.trout.EntityTrout;
 import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.base.Predicate;
@@ -66,6 +67,7 @@ public class EntityStellersSeaEagle extends RaptorBase implements IAnimatable {
         this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
         //this.targetTasks.addTask(6, new EntityStellersSeaEagle.AIFishing(this));
         if (CreaturesConfig.eagleAttacks == true) {
+            this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityTrout.class, false, (Predicate) null));
             this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityArowana.class, false, (Predicate) null));
             //this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChicken.class, false, (Predicate) null));
             this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityKoi.class, false, (Predicate) null));
@@ -106,7 +108,7 @@ public class EntityStellersSeaEagle extends RaptorBase implements IAnimatable {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(25.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
         this.getEntityAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue(3.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.40000000298023224D);
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);

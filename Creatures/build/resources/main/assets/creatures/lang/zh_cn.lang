@@ -26,6 +26,14 @@ entity.barn_owl.name=谷仓猫头鹰
 entity.wild_duck.name=野鸭
 entity.roller.name=佛法僧
 entity.chickadee.name=山雀
+entity.pygmygoose.name=凫
+entity.fire_goby.name=雷达虾虎
+entity.blue_tang.name=蓝唐王鱼
+entity.creatures_trout.name=鳟鱼
+entity.goldfish.name=金鱼
+entity.ranchu.name=兰寿金鱼
+entity.swallow.name=燕子
+entity.flame_angelfish.name=火焰神仙鱼
 
 //Sounds
 entity.mandarin_duck.quack=鸳鸯：嘎嘎叫
@@ -44,6 +52,9 @@ entity.barn_owl.ambient=谷仓猫头鹰: 尖叫声
 entity.wild_duck.ambient=野鸭: 嘎嘎叫
 entity.roller.ambient=佛法僧：喧叫
 entity.chickadee.ambient=山雀：歌声
+entity.chickadee.ambient2=山雀：警报声
+entity.swallow.swallow_ambient=燕子：叫声
+entity.pygmygoose.pygmy_goose_ambient=凫：歌声
 
 //Messages
 message.creatures.male=性：雄
@@ -53,12 +64,21 @@ message.creatures.dove.release=种：白鸽（学名：Columba livia domestica�
 message.creatures.dove.rose=种：粉顶果鸠（学名：Ptilinopus regina）
 message.creatures.dove.rock=种：原鸽（学名：Columba livia）
 message.creatures.dove.flame=种：橙色果鸠（学名：Ptilinopus victor）
+message.creatures.dove.goldenheart=种：红喉鸡鸠 (学名：Gallicolumba rufigula)
+message.creatures.dove.mbleeding=种：巴氏鸡鸠 (学名：Gallicolumba crinigera)
+message.creatures.dove.orangebellied=种：橙腹果鸠 (学名：Ptilinopus iozonus)
 message.creatures.lovebird.fischers=种：费氏牡丹鹦鹉 (学名：Agapornis fischeri)
 message.creatures.lovebird.fischersmutation=种：费氏牡丹鹦鹉 [黄化变种] (学名：Agapornis fischeri)
 message.creatures.lovebird.masked=种：黄领牡丹鹦鹉 (学名：Agapornis personatus)
 message.creatures.lovebird.maskedmutation=种：黄领牡丹鹦鹉 [蓝色变种] (学名：Agapornis personatus)
 message.creatures.lovebird.peach=种：桃脸牡丹鹦鹉 (学名：Agapornis roseicollis)
 message.creatures.lovebird.madagascar=种：灰头牡丹鹦鹉 (学名：Agapornis canus)
+message.creatures.variegated=种: 杂色细尾鹩莺 (学名：Malurus lamberti)
+message.creatures.splendid=种：辉蓝细尾鹩莺 (学名：Malurus splendens)
+message.creatures.whitewinged=种：白肩细尾鹩莺 (学名：Malurus leucopterus)
+message.creatures.blackwinged=种：红背细尾鹩莺 (学名：Malurus melanocephalus)
+message.creatures.purplecrowned=种：紫冠细尾鹩莺 (学名：Malurus coronatus)
+message.creatures.superb=种: 壮丽细尾鹩莺 (学名：Malurus cyaneus)
 
 //items
 item.duck_feather.name=鸭毛
@@ -77,3 +97,12 @@ item.roasted_large_wild_bird_meat.name=熟大野鸟肉
 item.raw_small_wild_bird_meat.name=生小野鸟肉
 item.roasted_small_wild_bird_meat.name=熟小野鸟肉
 item.bird_of_prey_feather.name=雕毛
+item.raven_feather.name=乌鸦毛
+item.parrot_feather.name=鹦鹉毛
+item.creatures_nectar.name=花蜜
+item.item_goldfish.name=金鱼
+item.item_trout.name=新鲜鳟鱼
+item.cooked_trout.name=烧鳟鱼
+
+//tab
+itemGroup.itemsblockstabcreatures=Frikinzi的野生动物

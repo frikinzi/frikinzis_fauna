@@ -21,6 +21,9 @@ public class ModelPygmyGoose extends AnimatedGeoModel<EntityPygmyGoose> {
         if (object.isChild()) {
             return new ResourceLocation(Reference.MOD_ID, "textures/entity/pygmygoose/pygmygooseduckling.png");
         }
+        if (object.isSleeping()) {
+            return new ResourceLocation(Reference.MOD_ID, "textures/entity/pygmygoose/pygmygoose" + object.getVariant() + object.getGenderName() + "sleep.png");
+        }
         return new ResourceLocation(Reference.MOD_ID, "textures/entity/pygmygoose/pygmygoose" + object.getVariant() + object.getGenderName() + ".png");
     }
 

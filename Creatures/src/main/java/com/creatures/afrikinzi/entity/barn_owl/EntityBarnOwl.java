@@ -5,6 +5,7 @@ import com.creatures.afrikinzi.entity.RaptorBase;
 import com.creatures.afrikinzi.entity.arowana.EntityArowana;
 import com.creatures.afrikinzi.entity.chickadee.EntityChickadee;
 import com.creatures.afrikinzi.entity.fairy_wren.EntityFairyWren;
+import com.creatures.afrikinzi.entity.swallow.EntitySwallow;
 import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.base.Predicate;
@@ -57,6 +58,7 @@ public class EntityBarnOwl extends RaptorBase implements IAnimatable {
             this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityFairyWren.class, false, (Predicate) null));
             this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChicken.class, false, (Predicate) null));
             this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChickadee.class, false, (Predicate) null));
+            this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntitySwallow.class, false, (Predicate) null));
         }
     }
 
@@ -145,25 +147,8 @@ public class EntityBarnOwl extends RaptorBase implements IAnimatable {
     }
 
     @Override
-    public void onLivingUpdate()
-    {
-        if (this.onGround) {
-            setSleeping(world.getWorldTime() >= 1000 && world.getWorldTime() <= 23000);
-        }
-        if (this.shouldSleep() == false) {
-            setSleeping(false);
-        }
-        if (this.getAttackTarget() != null) {
-            setAttacking(true);
-        } else if (this.getAttackTarget() == null) {
-            setAttacking(false);
-        }
-        if (this.hasPrey() && this.onGround && !this.isFlying() && !this.isInWater()) {
-            this.dropItem(Items.FISH, 1);
-            this.setPrey(false);
-        }
-        super.onLivingUpdate();
-        this.calculateFlapping();
+    public void getsleep() {
+        setSleeping(world.getWorldTime() > 1000 && world.getWorldTime() <= 12000);
     }
 
 

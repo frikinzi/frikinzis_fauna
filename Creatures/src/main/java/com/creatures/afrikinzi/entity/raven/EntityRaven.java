@@ -1,5 +1,7 @@
 package com.creatures.afrikinzi.entity.raven;
 
+import com.creatures.afrikinzi.config.CreaturesConfig;
+import com.creatures.afrikinzi.entity.dove.EntityDove;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
@@ -7,6 +9,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -27,6 +30,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -37,12 +41,14 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+import javax.annotation.Nullable;
 import java.util.Set;
 
 public class EntityRaven extends EntityTameable implements IAnimatable, EntityFlying {
 
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Set<Item> TAME_ITEMS = Sets.newHashSet(Items.EGG, Items.ROTTEN_FLESH);
+    private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityRaven.class, DataSerializers.VARINT);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityRaven.class, DataSerializers.BOOLEAN);
     protected static final DataParameter<Boolean> WANDERING = EntityDataManager.createKey(EntityRaven.class, DataSerializers.BOOLEAN);
     public float flap;
@@ -111,6 +117,13 @@ public class EntityRaven extends EntityTameable implements IAnimatable, EntityFl
         return this.factory;
     }
 
+    @Nullable
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
+    {
+        this.setVariant(determineAlbinism());
+        return super.onInitialSpawn(difficulty, livingdata);
+    }
+
 
     @Override
     protected ResourceLocation getLootTable()
@@ -144,7 +157,7 @@ public class EntityRaven extends EntityTameable implements IAnimatable, EntityFl
         if (this.inWater || this.isInWater() || this.isInLava() || this.isBurning()) {
             setSleeping(false);
         }
-        if (!this.world.isRemote && this.isTamed() && --this.timeUntilNextGift <= 0)
+        if (!this.world.isRemote && this.isTamed() && --this.timeUntilNextGift <= 0 && CreaturesConfig.ravenGifts == true)
         {
             this.playSound(SoundsHandler.RAVEN_AMBIENT, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
             int a = this.rand.nextInt(20);
@@ -311,6 +324,7 @@ public class EntityRaven extends EntityTameable implements IAnimatable, EntityFl
         super.entityInit();
         this.dataManager.register(SLEEPING, Boolean.valueOf(false));
         this.dataManager.register(WANDERING, Boolean.valueOf(false));
+        this.dataManager.register(VARIANT, Integer.valueOf(0));
     }
 
     public void writeEntityToNBT(NBTTagCompound compound)
@@ -319,12 +333,14 @@ public class EntityRaven extends EntityTameable implements IAnimatable, EntityFl
         compound.setBoolean("Sleeping", this.isSleeping());
         compound.setBoolean("Wandering", this.isWandering());
         compound.setInteger("GiftTime", this.timeUntilNextGift);
+        compound.setInteger("Variant", this.getVariant());
     }
 
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         this.setSleeping(compound.getBoolean("Sleeping"));
         this.setWandering(compound.getBoolean("Wandering"));
+        this.setVariant(compound.getInteger("Variant"));
         if (compound.hasKey("GiftTime"))
         {
             this.timeUntilNextGift = compound.getInteger("GiftTime");
@@ -345,6 +361,16 @@ public class EntityRaven extends EntityTameable implements IAnimatable, EntityFl
 
     public boolean isWandering() {
         return this.dataManager.get(WANDERING);
+    }
+
+    public int getVariant()
+    {
+        return MathHelper.clamp(((Integer)this.dataManager.get(VARIANT)).intValue(), 1, 3);
+    }
+
+    public void setVariant(int p_191997_1_)
+    {
+        this.dataManager.set(VARIANT, Integer.valueOf(p_191997_1_));
     }
 
     @Override
@@ -394,8 +420,21 @@ public class EntityRaven extends EntityTameable implements IAnimatable, EntityFl
     public EntityRaven createChild(EntityAgeable ageable)
     {
         EntityRaven entityraven = new EntityRaven(this.world);
+        int i = this.rand.nextInt(1000);
+        if (i == 1) {
+            entityraven.setVariant(1);
+        } else {
+            entityraven.setVariant(this.getVariant()); }
 
         return entityraven;
+    }
+
+    private int determineAlbinism() {
+        int i = this.rand.nextInt(1000);
+        if (i == 1) {
+            return 1;
+        }
+        return 0;
     }
 
 }

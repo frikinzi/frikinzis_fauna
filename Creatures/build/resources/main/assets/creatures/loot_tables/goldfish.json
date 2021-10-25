@@ -7,7 +7,7 @@
 				{
 					"type": "item",
 					"weight": 100,
-					"name": "creatures:goldfish",
+					"name": "creatures:item_goldfish",
 					"functions": [
 						{
 							"function": "set_count",

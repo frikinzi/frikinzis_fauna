@@ -1,5 +1,6 @@
 package com.creatures.afrikinzi.entity.conure;
 
+import com.creatures.afrikinzi.entity.chickadee.EntityChickadee;
 import com.creatures.afrikinzi.entity.lovebird.EntityLovebird;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
@@ -83,6 +84,8 @@ public class EntityConure extends EntityTameable implements IAnimatable {
         this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(2, new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F));
         this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
+        this.tasks.addTask(9, new EntityAIMate(this, 0.8D));
+        this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
@@ -273,7 +276,7 @@ public class EntityConure extends EntityTameable implements IAnimatable {
 
     public boolean isBreedingItem(ItemStack stack)
     {
-        return false;
+        return TAME_ITEMS.contains(stack.getItem());
     }
 
     public void fall(float distance, float damageMultiplier)
@@ -286,13 +289,39 @@ public class EntityConure extends EntityTameable implements IAnimatable {
 
     public boolean canMateWith(EntityAnimal otherAnimal)
     {
-        return false;
+        if (otherAnimal == this)
+        {
+            return false;
+        }
+        else if (!(otherAnimal instanceof EntityConure))
+        {
+            return false;
+        }
+        else
+        {
+            EntityConure entityconure = (EntityConure)otherAnimal;
+            if (this.getGender() == entityconure.getGender()) {
+                return false;
+            }
+            else {
+            return this.isInLove() && entityconure.isInLove();
+            }
+        }
     }
 
     @Nullable
     public EntityAgeable createChild(EntityAgeable ageable)
     {
-        return null;
+        EntityConure entityconure = new EntityConure(this.world);
+        entityconure.setVariant(this.getVariant());
+        int j = this.rand.nextInt(2);
+        if (j == 0) {
+            entityconure.setGender(1);
+        } else {
+            entityconure.setGender(2);
+        }
+
+        return entityconure;
     }
 
     public boolean canBePushed()

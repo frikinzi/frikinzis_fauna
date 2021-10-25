@@ -47,7 +47,7 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class EntityInit {
-    public static String[] FRESHWATER_BIOMES = {"RIVER", "SWAMP"};
+    public static String[] FRESHWATER_BIOMES = {"RIVER", "SWAMP", "FOREST"};
     public static String[] MANDARIN_DUCK = {"FOREST", "RIVER"};
     public static String[] RED_KITE = {"FOREST", "SWAMP", "MESA"};
     public static String[] GOLDEN_EAGLE = {"FOREST", "PLAINS", "MOUNTAIN", "SANDY", "WASTELAND"};
@@ -56,6 +56,7 @@ public class EntityInit {
     public static String[] BARN_OWL = {"FOREST", "MOUNTAIN", "HILLS"};
     public static String[] DUCKS = {"RIVER", "SWAMP"};
     public static String[] SWALLOW = {"FOREST", "SWAMP", "PLAINS", "SAVANNAH"};
+    public static String[] DOVE = {"FOREST", "JUNGLE", "PLAINS"};
 
     public static void registerEntities()
     {
@@ -71,7 +72,7 @@ public class EntityInit {
         registerEntity("shrimp", EntityShrimp.class, Reference.ENTITY_SHRIMP, 30, 16583198, 16490917);
         registerEntity("raven", EntityRaven.class, Reference.ENTITY_RAVEN, 50, 9536, 4152450);
         registerEntity("gourami", EntityGourami.class, Reference.ENTITY_GOURAMI, 50, 4152450, 16777215);
-        registerEntity("dove", EntityDove.class, Reference.ENTITY_DOVE, 50, 14935271, 16755148);
+        registerEntity("dove", EntityDove.class, Reference.ENTITY_DOVE, 50, 14935271, 15395538);
         registerEntity("red_kite", EntityRedKite.class, Reference.ENTITY_RED_KITE, 50, 13651220, 4152450);
         registerEntity("golden_eagle", EntityGoldenEagle.class, Reference.ENTITY_GOLDEN_EAGLE, 80, 4525319, 10125934);
         registerEntity("stellers_sea_eagle", EntityStellersSeaEagle.class, Reference.ENTITY_STELLERS_SEA_EAGLE, 80, 5322812, 16515071);
@@ -163,7 +164,9 @@ public class EntityInit {
             if (CreaturesConfig.ravenSpawns) {
                 EntityRegistry.addSpawn(EntityRaven.class, CreaturesConfig.ravenSpawnRate, 1, 3, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.FOREST)); }
             if (CreaturesConfig.doveSpawns) {
-                EntityRegistry.addSpawn(EntityDove.class, CreaturesConfig.doveSpawnRate, 1, 1, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.LUSH)); }
+                for (BiomeDictionary.Type t : RegistryHelper.Entities.getBiomeTypesFromString(DOVE)) {
+                EntityRegistry.addSpawn(EntityDove.class, CreaturesConfig.doveSpawnRate, 2, 5, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(t)); }
+            }
             if (CreaturesConfig.redkiteSpawns) {
             for (BiomeDictionary.Type t : RegistryHelper.Entities.getBiomeTypesFromString(RED_KITE)) {
                 EntityRegistry.addSpawn(EntityRedKite.class, CreaturesConfig.redkiteSpawnRate, 1, 1, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(t));

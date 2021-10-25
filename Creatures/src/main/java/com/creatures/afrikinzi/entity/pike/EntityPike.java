@@ -1,20 +1,10 @@
 package com.creatures.afrikinzi.entity.pike;
 
 import com.creatures.afrikinzi.entity.FishBase;
-import com.creatures.afrikinzi.entity.dottyback.EntityDottyback;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.passive.EntitySquid;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootTableList;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -26,16 +16,10 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public class EntityPike extends FishBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
 
-    @Override
-    protected boolean canDespawn()
-    {
-        return false;
-    }
-
     public EntityPike(World worldIn)
     {
         super(worldIn);
-        this.setSize(2F, 1F);
+        this.setSize(1F, 0.5F);
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
@@ -69,6 +53,7 @@ public class EntityPike extends FishBase implements IAnimatable {
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
     }
 

@@ -1,12 +1,9 @@
 package com.creatures.afrikinzi.entity.arowana;
 
 import com.creatures.afrikinzi.entity.FishBase;
-import com.creatures.afrikinzi.entity.koi.EntityKoi;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.passive.EntitySquid;
-import net.minecraft.init.MobEffects;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -15,7 +12,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootTableList;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -28,18 +24,13 @@ import javax.annotation.Nullable;
 
 public class EntityArowana extends FishBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
-    @Override
-    protected boolean canDespawn()
-    {
-        return false;
-    }
 
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityArowana.class, DataSerializers.VARINT);
 
     public EntityArowana(World worldIn)
     {
         super(worldIn);
-        this.setSize(1F, 1F);
+        this.setSize(0.5F, 0.5F);
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)

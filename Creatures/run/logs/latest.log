@@ -1,48 +1,49 @@
-[16:54:04] [main/INFO] [LaunchWrapper]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
-[16:54:04] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
-[16:54:04] [main/INFO] [FML]: Forge Mod Loader version 14.23.5.2855 for Minecraft 1.12.2 loading
-[16:54:04] [main/INFO] [FML]: Java is OpenJDK 64-Bit Server VM, version 1.8.0_292, running on Mac OS X:x86_64:10.15.6, installed at /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre
-[16:54:04] [main/ERROR] [FML]: Apache Maven library folder was not in the format expected. Using default libraries directory.
-[16:54:04] [main/ERROR] [FML]: Full: /Users/angela/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-artifact/3.5.3/7dc72b6d6d8a6dced3d294ed54c2cc3515ade9f4/maven-artifact-3.5.3.jar
-[16:54:04] [main/ERROR] [FML]: Trimmed: /users/angela/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-artifact/3.5.3/
-[16:54:05] [main/INFO] [FML]: Managed to load a deobfuscated Minecraft name- we are in a deobfuscated environment. Skipping runtime deobfuscation
-[16:54:05] [main/INFO] [FML]: Detected deobfuscated environment, loading log configs for colored console logs.
-[16:54:05] [main/INFO] [FML]: Ignoring missing certificate for coremod FMLCorePlugin (net.minecraftforge.fml.relauncher.FMLCorePlugin), we are in deobf and it's a forge core plugin
-[16:54:05] [main/INFO] [FML]: Ignoring missing certificate for coremod FMLForgePlugin (net.minecraftforge.classloading.FMLForgePlugin), we are in deobf and it's a forge core plugin
-[16:54:05] [main/INFO] [FML]: Searching /Users/angela/Documents/MC/Creatures/run/./mods for mods
-[16:54:05] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
-[16:54:05] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
-[16:54:05] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
-[16:54:05] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
-[16:54:05] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
-[16:54:06] [main/ERROR] [FML]: FML appears to be missing any signature data. This is not a good thing
-[16:54:06] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
-[16:54:06] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
-[16:54:06] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.TerminalTweaker
-[16:54:06] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.TerminalTweaker
-[16:54:06] [main/INFO] [LaunchWrapper]: Launching wrapped minecraft {net.minecraft.client.main.Main}
-[16:54:07] [Client thread/INFO] [net.minecraft.client.Minecraft]: Setting user: Player643
-[16:54:10] [Client thread/WARN] [net.minecraft.client.settings.GameSettings]: Skipping bad option: lastServer:
-[16:54:10] [Client thread/INFO] [net.minecraft.client.Minecraft]: LWJGL Version: 2.9.2
-[16:54:11] [Client thread/INFO] [FML]: -- System Details --
+[00:19:12] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[00:19:12] [main/INFO] [LaunchWrapper]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[00:19:12] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
+[00:19:12] [main/INFO] [FML]: Forge Mod Loader version 14.23.5.2855 for Minecraft 1.12.2 loading
+[00:19:12] [main/INFO] [FML]: Java is OpenJDK 64-Bit Server VM, version 1.8.0_292, running on Mac OS X:x86_64:10.15.6, installed at /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre
+[00:19:12] [main/ERROR] [FML]: Apache Maven library folder was not in the format expected. Using default libraries directory.
+[00:19:12] [main/ERROR] [FML]: Full: /Users/angela/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-artifact/3.5.3/7dc72b6d6d8a6dced3d294ed54c2cc3515ade9f4/maven-artifact-3.5.3.jar
+[00:19:12] [main/ERROR] [FML]: Trimmed: /users/angela/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-artifact/3.5.3/
+[00:19:12] [main/INFO] [FML]: Managed to load a deobfuscated Minecraft name- we are in a deobfuscated environment. Skipping runtime deobfuscation
+[00:19:12] [main/INFO] [FML]: Detected deobfuscated environment, loading log configs for colored console logs.
+[00:19:13] [main/INFO] [FML]: Ignoring missing certificate for coremod FMLCorePlugin (net.minecraftforge.fml.relauncher.FMLCorePlugin), we are in deobf and it's a forge core plugin
+[00:19:13] [main/INFO] [FML]: Ignoring missing certificate for coremod FMLForgePlugin (net.minecraftforge.classloading.FMLForgePlugin), we are in deobf and it's a forge core plugin
+[00:19:13] [main/INFO] [FML]: Searching /Users/angela/Documents/MC/Creatures/run/./mods for mods
+[00:19:13] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[00:19:13] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[00:19:13] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[00:19:13] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[00:19:13] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[00:19:14] [main/ERROR] [FML]: FML appears to be missing any signature data. This is not a good thing
+[00:19:14] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[00:19:14] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[00:19:14] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.TerminalTweaker
+[00:19:14] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.TerminalTweaker
+[00:19:14] [main/INFO] [LaunchWrapper]: Launching wrapped minecraft {net.minecraft.client.main.Main}
+[00:19:15] [Client thread/INFO] [net.minecraft.client.Minecraft]: Setting user: Player246
+[00:19:17] [Client thread/WARN] [net.minecraft.client.settings.GameSettings]: Skipping bad option: lastServer:
+[00:19:17] [Client thread/INFO] [net.minecraft.client.Minecraft]: LWJGL Version: 2.9.2
+[00:19:18] [Client thread/INFO] [FML]: -- System Details --
 Details:
 	Minecraft Version: 1.12.2
 	Operating System: Mac OS X (x86_64) version 10.15.6
 	Java Version: 1.8.0_292, AdoptOpenJDK
 	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode), AdoptOpenJDK
-	Memory: 754073832 bytes (719 MB) / 868745216 bytes (828 MB) up to 3817865216 bytes (3641 MB)
+	Memory: 604715216 bytes (576 MB) / 725614592 bytes (692 MB) up to 3817865216 bytes (3641 MB)
 	JVM Flags: 0 total; 
 	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
 	FML: 
 	Loaded coremods (and transformers): 
 	GL info: ' Vendor: 'Intel Inc.' Version: '2.1 INTEL-14.7.8' Renderer: 'Intel(R) Iris(TM) Plus Graphics OpenGL Engine'
-[16:54:11] [Client thread/INFO] [FML]: MinecraftForge v14.23.5.2855 Initialized
-[16:54:11] [Client thread/INFO] [FML]: Starts to replace vanilla recipe ingredients with ore ingredients.
-[16:54:11] [Client thread/INFO] [FML]: Invalid recipe found with multiple oredict ingredients in the same ingredient...
-[16:54:11] [Client thread/INFO] [FML]: Replaced 1227 ore ingredients
-[16:54:11] [Client thread/INFO] [FML]: Searching /Users/angela/Documents/MC/Creatures/run/./mods for mods
-[16:54:12] [Client thread/WARN] [FML]: Mod geckolib3 is missing the required element 'version' and a version.properties file could not be found. Falling back to metadata version 3.0.0
-[16:54:13] [Client thread/ERROR] [FML]: Unable to read a class file correctly
+[00:19:18] [Client thread/INFO] [FML]: MinecraftForge v14.23.5.2855 Initialized
+[00:19:18] [Client thread/INFO] [FML]: Starts to replace vanilla recipe ingredients with ore ingredients.
+[00:19:18] [Client thread/INFO] [FML]: Invalid recipe found with multiple oredict ingredients in the same ingredient...
+[00:19:18] [Client thread/INFO] [FML]: Replaced 1227 ore ingredients
+[00:19:18] [Client thread/INFO] [FML]: Searching /Users/angela/Documents/MC/Creatures/run/./mods for mods
+[00:19:19] [Client thread/WARN] [FML]: Mod geckolib3 is missing the required element 'version' and a version.properties file could not be found. Falling back to metadata version 3.0.0
+[00:19:20] [Client thread/ERROR] [FML]: Unable to read a class file correctly
 java.lang.IllegalArgumentException: null
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:185) ~[asm-debug-all-5.2.jar:5.2]
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:168) ~[asm-debug-all-5.2.jar:5.2]
@@ -71,7 +72,7 @@ java.lang.IllegalArgumentException: null
 	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_292]
 	at net.minecraftforge.legacydev.Main.start(Main.java:86) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
 	at net.minecraftforge.legacydev.MainClient.main(MainClient.java:29) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
-[16:54:13] [Client thread/ERROR] [FML]: There was a problem reading the entry module-info.class in the jar /Users/angela/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-util/6.2/a9690730f92cc79eeadc20e400ebb41eccce10b1/asm-util-6.2.jar - probably a corrupt zip
+[00:19:20] [Client thread/ERROR] [FML]: There was a problem reading the entry module-info.class in the jar /Users/angela/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-util/6.2/a9690730f92cc79eeadc20e400ebb41eccce10b1/asm-util-6.2.jar - probably a corrupt zip
 net.minecraftforge.fml.common.LoaderException: java.lang.IllegalArgumentException
 
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:63) ~[ASMModParser.class:?]
@@ -104,7 +105,7 @@ Caused by: java.lang.IllegalArgumentException
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:439) ~[asm-debug-all-5.2.jar:5.2]
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:57) ~[ASMModParser.class:?]
 	... 23 more
-[16:54:13] [Client thread/WARN] [FML]: Zip file asm-util-6.2.jar failed to read properly, it will be ignored
+[00:19:20] [Client thread/WARN] [FML]: Zip file asm-util-6.2.jar failed to read properly, it will be ignored
 net.minecraftforge.fml.common.LoaderException: java.lang.IllegalArgumentException
 
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:63) ~[ASMModParser.class:?]
@@ -137,7 +138,7 @@ Caused by: java.lang.IllegalArgumentException
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:439) ~[asm-debug-all-5.2.jar:5.2]
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:57) ~[ASMModParser.class:?]
 	... 23 more
-[16:54:13] [Client thread/ERROR] [FML]: Unable to read a class file correctly
+[00:19:20] [Client thread/ERROR] [FML]: Unable to read a class file correctly
 java.lang.IllegalArgumentException: null
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:185) ~[asm-debug-all-5.2.jar:5.2]
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:168) ~[asm-debug-all-5.2.jar:5.2]
@@ -166,7 +167,7 @@ java.lang.IllegalArgumentException: null
 	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_292]
 	at net.minecraftforge.legacydev.Main.start(Main.java:86) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
 	at net.minecraftforge.legacydev.MainClient.main(MainClient.java:29) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
-[16:54:13] [Client thread/ERROR] [FML]: There was a problem reading the entry module-info.class in the jar /Users/angela/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/6.2/61570e046111559f38d4e0e580c005f75988c0a6/asm-tree-6.2.jar - probably a corrupt zip
+[00:19:20] [Client thread/ERROR] [FML]: There was a problem reading the entry module-info.class in the jar /Users/angela/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/6.2/61570e046111559f38d4e0e580c005f75988c0a6/asm-tree-6.2.jar - probably a corrupt zip
 net.minecraftforge.fml.common.LoaderException: java.lang.IllegalArgumentException
 
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:63) ~[ASMModParser.class:?]
@@ -199,7 +200,7 @@ Caused by: java.lang.IllegalArgumentException
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:439) ~[asm-debug-all-5.2.jar:5.2]
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:57) ~[ASMModParser.class:?]
 	... 23 more
-[16:54:13] [Client thread/WARN] [FML]: Zip file asm-tree-6.2.jar failed to read properly, it will be ignored
+[00:19:20] [Client thread/WARN] [FML]: Zip file asm-tree-6.2.jar failed to read properly, it will be ignored
 net.minecraftforge.fml.common.LoaderException: java.lang.IllegalArgumentException
 
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:63) ~[ASMModParser.class:?]
@@ -232,7 +233,7 @@ Caused by: java.lang.IllegalArgumentException
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:439) ~[asm-debug-all-5.2.jar:5.2]
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:57) ~[ASMModParser.class:?]
 	... 23 more
-[16:54:13] [Client thread/ERROR] [FML]: Unable to read a class file correctly
+[00:19:20] [Client thread/ERROR] [FML]: Unable to read a class file correctly
 java.lang.IllegalArgumentException: null
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:185) ~[asm-debug-all-5.2.jar:5.2]
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:168) ~[asm-debug-all-5.2.jar:5.2]
@@ -261,7 +262,7 @@ java.lang.IllegalArgumentException: null
 	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_292]
 	at net.minecraftforge.legacydev.Main.start(Main.java:86) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
 	at net.minecraftforge.legacydev.MainClient.main(MainClient.java:29) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
-[16:54:13] [Client thread/ERROR] [FML]: There was a problem reading the entry module-info.class in the jar /Users/angela/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/6.2/1b6c4ff09ce03f3052429139c2a68e295cae6604/asm-6.2.jar - probably a corrupt zip
+[00:19:20] [Client thread/ERROR] [FML]: There was a problem reading the entry module-info.class in the jar /Users/angela/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/6.2/1b6c4ff09ce03f3052429139c2a68e295cae6604/asm-6.2.jar - probably a corrupt zip
 net.minecraftforge.fml.common.LoaderException: java.lang.IllegalArgumentException
 
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:63) ~[ASMModParser.class:?]
@@ -294,7 +295,7 @@ Caused by: java.lang.IllegalArgumentException
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:439) ~[asm-debug-all-5.2.jar:5.2]
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:57) ~[ASMModParser.class:?]
 	... 23 more
-[16:54:13] [Client thread/WARN] [FML]: Zip file asm-6.2.jar failed to read properly, it will be ignored
+[00:19:20] [Client thread/WARN] [FML]: Zip file asm-6.2.jar failed to read properly, it will be ignored
 net.minecraftforge.fml.common.LoaderException: java.lang.IllegalArgumentException
 
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:63) ~[ASMModParser.class:?]
@@ -327,7 +328,7 @@ Caused by: java.lang.IllegalArgumentException
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:439) ~[asm-debug-all-5.2.jar:5.2]
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:57) ~[ASMModParser.class:?]
 	... 23 more
-[16:54:13] [Client thread/ERROR] [FML]: Unable to read a class file correctly
+[00:19:20] [Client thread/ERROR] [FML]: Unable to read a class file correctly
 java.lang.IllegalArgumentException: null
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:185) ~[asm-debug-all-5.2.jar:5.2]
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:168) ~[asm-debug-all-5.2.jar:5.2]
@@ -356,7 +357,7 @@ java.lang.IllegalArgumentException: null
 	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_292]
 	at net.minecraftforge.legacydev.Main.start(Main.java:86) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
 	at net.minecraftforge.legacydev.MainClient.main(MainClient.java:29) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
-[16:54:13] [Client thread/ERROR] [FML]: There was a problem reading the entry module-info.class in the jar /Users/angela/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-analysis/6.2/c7d9a90d221cbb977848d2c777eb3aa7637e89df/asm-analysis-6.2.jar - probably a corrupt zip
+[00:19:20] [Client thread/ERROR] [FML]: There was a problem reading the entry module-info.class in the jar /Users/angela/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-analysis/6.2/c7d9a90d221cbb977848d2c777eb3aa7637e89df/asm-analysis-6.2.jar - probably a corrupt zip
 net.minecraftforge.fml.common.LoaderException: java.lang.IllegalArgumentException
 
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:63) ~[ASMModParser.class:?]
@@ -389,7 +390,7 @@ Caused by: java.lang.IllegalArgumentException
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:439) ~[asm-debug-all-5.2.jar:5.2]
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:57) ~[ASMModParser.class:?]
 	... 23 more
-[16:54:13] [Client thread/WARN] [FML]: Zip file asm-analysis-6.2.jar failed to read properly, it will be ignored
+[00:19:20] [Client thread/WARN] [FML]: Zip file asm-analysis-6.2.jar failed to read properly, it will be ignored
 net.minecraftforge.fml.common.LoaderException: java.lang.IllegalArgumentException
 
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:63) ~[ASMModParser.class:?]
@@ -422,243 +423,243 @@ Caused by: java.lang.IllegalArgumentException
 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:439) ~[asm-debug-all-5.2.jar:5.2]
 	at net.minecraftforge.fml.common.discovery.asm.ASMModParser.<init>(ASMModParser.java:57) ~[ASMModParser.class:?]
 	... 23 more
-[16:54:13] [Client thread/INFO] [FML]: Forge Mod Loader has identified 6 mods to load
-[16:54:13] [Thread-3/INFO] [FML]: Using sync timing. 200 frames of Display.update took 143417754 nanos
-[16:54:13] [Client thread/INFO] [FML]: Attempting connection with missing mods [minecraft, mcp, FML, forge, creatures, geckolib3] at CLIENT
-[16:54:13] [Client thread/INFO] [FML]: Attempting connection with missing mods [minecraft, mcp, FML, forge, creatures, geckolib3] at SERVER
-[16:54:14] [Client thread/INFO] [net.minecraft.client.resources.SimpleReloadableResourceManager]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Creatures, FMLFileResourcePack:GeckoLib
-[16:54:14] [Client thread/INFO] [FML]: Processing ObjectHolder annotations
-[16:54:14] [Client thread/INFO] [FML]: Found 1168 ObjectHolder annotations
-[16:54:14] [Client thread/INFO] [FML]: Identifying ItemStackHolder annotations
-[16:54:14] [Client thread/INFO] [FML]: Found 0 ItemStackHolder annotations
-[16:54:14] [Client thread/INFO] [FML]: Configured a dormant chunk cache size of 0
-[16:54:14] [Forge Version Check/INFO] [forge.VersionCheck]: [forge] Starting version check at http://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json
-[16:54:15] [Forge Version Check/INFO] [forge.VersionCheck]: [forge] Found status: UP_TO_DATE Target: null
-[16:54:18] [Client thread/INFO] [FML]: Applying holder lookups
-[16:54:18] [Client thread/INFO] [FML]: Holder lookups applied
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesItem@66bf08d has been registered twice for the same name creatures:duck_feather.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@6edd2ef4 has been registered twice for the same name creatures:raw_koi.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@2ad557a5 has been registered twice for the same name creatures:roasted_koi.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@771e08ed has been registered twice for the same name creatures:raw_shrimp.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@2ea8611b has been registered twice for the same name creatures:cooked_shrimp.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@298550b4 has been registered twice for the same name creatures:raw_pike.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@29ed425e has been registered twice for the same name creatures:cooked_pike.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@2eb37eee has been registered twice for the same name creatures:raw_arowana.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@43fe629a has been registered twice for the same name creatures:raw_gourami.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@40fd8aa1 has been registered twice for the same name creatures:cooked_arowana.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@341df52 has been registered twice for the same name creatures:raw_large_wild_bird_meat.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@36b085da has been registered twice for the same name creatures:roasted_large_wild_bird_meat.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@66adb24 has been registered twice for the same name creatures:raw_small_wild_bird_meat.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@2aeef1ca has been registered twice for the same name creatures:roasted_small_wild_bird_meat.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesItem@27d8008a has been registered twice for the same name creatures:guppy_tail.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesItem@15f4dffe has been registered twice for the same name creatures:bird_of_prey_feather.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesItem@4517959f has been registered twice for the same name creatures:raven_feather.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesItem@182a5c56 has been registered twice for the same name creatures:parrot_feather.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesItem@7f91d389 has been registered twice for the same name creatures:crab_pincers.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@4c29f8aa has been registered twice for the same name creatures:item_goldfish.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@356b37dd has been registered twice for the same name creatures:creatures_nectar.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@7fe915ca has been registered twice for the same name creatures:item_trout.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@e158c25 has been registered twice for the same name creatures:cooked_trout.
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
-[16:54:18] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
-[16:54:18] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_5_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
-[16:54:18] [Client thread/WARN] [FML]: ****************************************
-[16:54:18] [Client thread/INFO] [FML]: Applying holder lookups
-[16:54:18] [Client thread/INFO] [FML]: Holder lookups applied
-[16:54:18] [Client thread/INFO] [FML]: Applying holder lookups
-[16:54:18] [Client thread/INFO] [FML]: Holder lookups applied
-[16:54:18] [Client thread/INFO] [FML]: Applying holder lookups
-[16:54:18] [Client thread/INFO] [FML]: Holder lookups applied
-[16:54:18] [Client thread/INFO] [FML]: Injecting itemstacks
-[16:54:18] [Client thread/INFO] [FML]: Itemstack injection complete
-[16:54:19] [Sound Library Loader/INFO] [net.minecraft.client.audio.SoundManager]: Starting up SoundSystem...
-[16:54:19] [Thread-4/INFO] [net.minecraft.client.audio.SoundManager]: Initializing LWJGL OpenAL
-[16:54:19] [Thread-4/INFO] [net.minecraft.client.audio.SoundManager]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[16:54:19] [Thread-4/INFO] [net.minecraft.client.audio.SoundManager]: OpenAL initialized.
-[16:54:20] [Sound Library Loader/INFO] [net.minecraft.client.audio.SoundManager]: Sound engine started
-[16:54:23] [Client thread/INFO] [FML]: Max texture size: 16384
-[16:54:24] [Client thread/INFO] [net.minecraft.client.renderer.texture.TextureMap]: Created: 512x512 textures-atlas
-[16:54:25] [Client thread/ERROR] [FML]: Parsing error loading recipe creatures:nectar
+[00:19:20] [Client thread/INFO] [FML]: Forge Mod Loader has identified 6 mods to load
+[00:19:20] [Thread-3/INFO] [FML]: Using sync timing. 200 frames of Display.update took 166526744 nanos
+[00:19:20] [Client thread/INFO] [FML]: Attempting connection with missing mods [minecraft, mcp, FML, forge, creatures, geckolib3] at CLIENT
+[00:19:20] [Client thread/INFO] [FML]: Attempting connection with missing mods [minecraft, mcp, FML, forge, creatures, geckolib3] at SERVER
+[00:19:21] [Client thread/INFO] [net.minecraft.client.resources.SimpleReloadableResourceManager]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Frikinzi's Fauna, FMLFileResourcePack:GeckoLib
+[00:19:21] [Client thread/INFO] [FML]: Processing ObjectHolder annotations
+[00:19:21] [Client thread/INFO] [FML]: Found 1168 ObjectHolder annotations
+[00:19:21] [Client thread/INFO] [FML]: Identifying ItemStackHolder annotations
+[00:19:21] [Client thread/INFO] [FML]: Found 0 ItemStackHolder annotations
+[00:19:21] [Client thread/INFO] [FML]: Configured a dormant chunk cache size of 0
+[00:19:21] [Forge Version Check/INFO] [forge.VersionCheck]: [forge] Starting version check at http://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json
+[00:19:22] [Forge Version Check/INFO] [forge.VersionCheck]: [forge] Found status: UP_TO_DATE Target: null
+[00:19:25] [Client thread/INFO] [FML]: Applying holder lookups
+[00:19:25] [Client thread/INFO] [FML]: Holder lookups applied
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesItem@7dc26ace has been registered twice for the same name creatures:duck_feather.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@43defae6 has been registered twice for the same name creatures:raw_koi.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@509c1d50 has been registered twice for the same name creatures:roasted_koi.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@ea5e6f has been registered twice for the same name creatures:raw_shrimp.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@6e10c0a6 has been registered twice for the same name creatures:cooked_shrimp.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@5a2d1e48 has been registered twice for the same name creatures:raw_pike.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@6a6beec0 has been registered twice for the same name creatures:cooked_pike.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@38a0ccc4 has been registered twice for the same name creatures:raw_arowana.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@50dd2e86 has been registered twice for the same name creatures:raw_gourami.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@62b0a58b has been registered twice for the same name creatures:cooked_arowana.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@57184af3 has been registered twice for the same name creatures:raw_large_wild_bird_meat.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@69e06a38 has been registered twice for the same name creatures:roasted_large_wild_bird_meat.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@50f0d09c has been registered twice for the same name creatures:raw_small_wild_bird_meat.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@370babf4 has been registered twice for the same name creatures:roasted_small_wild_bird_meat.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesItem@22d12034 has been registered twice for the same name creatures:guppy_tail.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesItem@480a3ffc has been registered twice for the same name creatures:bird_of_prey_feather.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesItem@1e287251 has been registered twice for the same name creatures:raven_feather.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesItem@74962e6b has been registered twice for the same name creatures:parrot_feather.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesItem@5fed604d has been registered twice for the same name creatures:crab_pincers.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@46014193 has been registered twice for the same name creatures:item_goldfish.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@1be609f8 has been registered twice for the same name creatures:creatures_nectar.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@5e469999 has been registered twice for the same name creatures:item_trout.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/WARN] [FML]: * Registry Item: The object com.creatures.afrikinzi.objects.items.CreaturesFoodItem@6a9d7514 has been registered twice for the same name creatures:cooked_trout.
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:307)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.add(ForgeRegistry.java:288)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.register(ForgeRegistry.java:120)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.registries.ForgeRegistry.registerAll(ForgeRegistry.java:161)
+[00:19:25] [Client thread/WARN] [FML]: *  at com.creatures.afrikinzi.util.handlers.RegistryHandler.onItemRegister(RegistryHandler.java:30)
+[00:19:25] [Client thread/WARN] [FML]: *  at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_6_RegistryHandler_onItemRegister_Register.invoke(.dynamic)...
+[00:19:25] [Client thread/WARN] [FML]: ****************************************
+[00:19:25] [Client thread/INFO] [FML]: Applying holder lookups
+[00:19:25] [Client thread/INFO] [FML]: Holder lookups applied
+[00:19:25] [Client thread/INFO] [FML]: Applying holder lookups
+[00:19:25] [Client thread/INFO] [FML]: Holder lookups applied
+[00:19:25] [Client thread/INFO] [FML]: Applying holder lookups
+[00:19:25] [Client thread/INFO] [FML]: Holder lookups applied
+[00:19:25] [Client thread/INFO] [FML]: Injecting itemstacks
+[00:19:25] [Client thread/INFO] [FML]: Itemstack injection complete
+[00:19:26] [Sound Library Loader/INFO] [net.minecraft.client.audio.SoundManager]: Starting up SoundSystem...
+[00:19:26] [Thread-4/INFO] [net.minecraft.client.audio.SoundManager]: Initializing LWJGL OpenAL
+[00:19:26] [Thread-4/INFO] [net.minecraft.client.audio.SoundManager]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[00:19:27] [Thread-4/INFO] [net.minecraft.client.audio.SoundManager]: OpenAL initialized.
+[00:19:27] [Sound Library Loader/INFO] [net.minecraft.client.audio.SoundManager]: Sound engine started
+[00:19:30] [Client thread/INFO] [FML]: Max texture size: 16384
+[00:19:31] [Client thread/INFO] [net.minecraft.client.renderer.texture.TextureMap]: Created: 512x512 textures-atlas
+[00:19:32] [Client thread/ERROR] [FML]: Parsing error loading recipe creatures:nectar
 com.google.gson.JsonParseException: Missing data for item 'minecraft:red_flower'
 	at net.minecraftforge.common.crafting.CraftingHelper.getItemStackBasic(CraftingHelper.java:265) ~[CraftingHelper.class:?]
 	at net.minecraftforge.common.crafting.CraftingHelper.lambda$init$16(CraftingHelper.java:544) ~[CraftingHelper.class:?]
@@ -687,7 +688,7 @@ com.google.gson.JsonParseException: Missing data for item 'minecraft:red_flower'
 	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_292]
 	at net.minecraftforge.legacydev.Main.start(Main.java:86) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
 	at net.minecraftforge.legacydev.MainClient.main(MainClient.java:29) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
-[16:54:25] [Client thread/ERROR] [FML]: Parsing error loading recipe creatures:book_and_quill
+[00:19:32] [Client thread/ERROR] [FML]: Parsing error loading recipe creatures:book_and_quill
 com.google.gson.JsonSyntaxException: Unknown item 'minecraft:ink_sac'
 	at net.minecraftforge.common.crafting.CraftingHelper.getItemStackBasic(CraftingHelper.java:262) ~[CraftingHelper.class:?]
 	at net.minecraftforge.common.crafting.CraftingHelper.lambda$init$16(CraftingHelper.java:544) ~[CraftingHelper.class:?]
@@ -716,50 +717,57 @@ com.google.gson.JsonSyntaxException: Unknown item 'minecraft:ink_sac'
 	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_292]
 	at net.minecraftforge.legacydev.Main.start(Main.java:86) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
 	at net.minecraftforge.legacydev.MainClient.main(MainClient.java:29) [legacydev-0.2.3.1-fatjar.jar:0.2.3.1+4+372be23]
-[16:54:25] [Client thread/INFO] [FML]: Applying holder lookups
-[16:54:25] [Client thread/INFO] [FML]: Holder lookups applied
-[16:54:25] [Client thread/INFO] [FML]: Injecting itemstacks
-[16:54:25] [Client thread/INFO] [FML]: Itemstack injection complete
-[16:54:26] [Client thread/INFO] [FML]: Forge Mod Loader has successfully loaded 6 mods
-[16:54:26] [Client thread/WARN] [net.minecraft.client.settings.GameSettings]: Skipping bad option: lastServer:
-[16:54:27] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient]: Could not authorize you against Realms server: Invalid session id
-[16:54:30] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Starting integrated minecraft server version 1.12.2
-[16:54:30] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Generating keypair
-[16:54:30] [Server thread/INFO] [FML]: Injecting existing registry data into this server instance
-[16:54:30] [Server thread/INFO] [FML]: Applying holder lookups
-[16:54:30] [Server thread/INFO] [FML]: Holder lookups applied
-[16:54:31] [Server thread/INFO] [FML]: Loading dimension 0 (New World) (net.minecraft.server.integrated.IntegratedServer@5006fe96)
-[16:54:31] [Server thread/INFO] [net.minecraft.advancements.AdvancementList]: Loaded 488 advancements
-[16:54:31] [Server thread/INFO] [FML]: Loading dimension -1 (New World) (net.minecraft.server.integrated.IntegratedServer@5006fe96)
-[16:54:31] [Server thread/INFO] [FML]: Loading dimension 1 (New World) (net.minecraft.server.integrated.IntegratedServer@5006fe96)
-[16:54:31] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing start region for level 0
-[16:54:32] [Server thread/WARN] [net.minecraft.network.datasync.EntityDataManager]: defineId called for: class com.creatures.afrikinzi.entity.koi.EntityKoi from class com.creatures.afrikinzi.entity.trout.EntityTrout
-[16:54:32] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 57%
-[16:54:33] [Server thread/INFO] [FML]: Unloading dimension -1
-[16:54:33] [Server thread/INFO] [FML]: Unloading dimension 1
-[16:54:33] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Changing view distance to 12, from 10
-[16:54:33] [Netty Local Client IO #0/INFO] [FML]: Server protocol version 2
-[16:54:33] [Netty Server IO #1/INFO] [FML]: Client protocol version 2
-[16:54:33] [Netty Server IO #1/INFO] [FML]: Client attempting to join with 6 mods : minecraft@1.12.2,FML@8.0.99.99,creatures@1.0,forge@14.23.5.2855,geckolib3@3.0.0,mcp@9.42
-[16:54:33] [Netty Local Client IO #0/INFO] [FML]: [Netty Local Client IO #0] Client side modded connection established
-[16:54:33] [Server thread/INFO] [FML]: [Server thread] Server side modded connection established
-[16:54:33] [Server thread/INFO] [net.minecraft.server.management.PlayerList]: Player643[local:E:b95005f3] logged in with entity id 188 at (444.48481152267, 69.0, -1539.1892125408938)
-[16:54:33] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Player643加入了游戏
-[16:54:35] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Saving and pausing game...
-[16:54:35] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
-[16:54:35] [Client thread/INFO] [net.minecraft.advancements.AdvancementList]: Loaded 2 advancements
-[16:55:20] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Saving and pausing game...
-[16:55:20] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
-[16:55:21] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Stopping server
-[16:55:21] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving players
-[16:55:21] [Server thread/INFO] [net.minecraft.network.NetHandlerPlayServer]: Player643 lost connection: 连接中止
-[16:55:21] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Player643退出了游戏
-[16:55:21] [Server thread/INFO] [net.minecraft.network.NetHandlerPlayServer]: Stopping singleplayer server as player logged out
-[16:55:21] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving worlds
-[16:55:21] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
-[16:55:21] [Server thread/INFO] [FML]: Unloading dimension 0
-[16:55:21] [Server thread/INFO] [FML]: Applying holder lookups
-[16:55:21] [Server thread/INFO] [FML]: Holder lookups applied
-[16:55:22] [Client thread/INFO] [net.minecraft.client.Minecraft]: Stopping!
-[16:55:22] [Client thread/INFO] [net.minecraft.client.audio.SoundManager]: SoundSystem shutting down...
-[16:55:22] [Client thread/WARN] [net.minecraft.client.audio.SoundManager]: Author: Paul Lamb, www.paulscode.com
+[00:19:32] [Client thread/INFO] [FML]: Applying holder lookups
+[00:19:32] [Client thread/INFO] [FML]: Holder lookups applied
+[00:19:32] [Client thread/INFO] [FML]: Injecting itemstacks
+[00:19:32] [Client thread/INFO] [FML]: Itemstack injection complete
+[00:19:33] [Client thread/INFO] [FML]: Forge Mod Loader has successfully loaded 6 mods
+[00:19:33] [Client thread/WARN] [net.minecraft.client.settings.GameSettings]: Skipping bad option: lastServer:
+[00:19:33] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient]: Could not authorize you against Realms server: Invalid session id
+[00:19:37] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Starting integrated minecraft server version 1.12.2
+[00:19:37] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Generating keypair
+[00:19:37] [Server thread/INFO] [FML]: Injecting existing registry data into this server instance
+[00:19:37] [Server thread/INFO] [FML]: Applying holder lookups
+[00:19:37] [Server thread/INFO] [FML]: Holder lookups applied
+[00:19:38] [Server thread/INFO] [FML]: Loading dimension 0 (New World) (net.minecraft.server.integrated.IntegratedServer@5470640a)
+[00:19:38] [Server thread/INFO] [net.minecraft.advancements.AdvancementList]: Loaded 488 advancements
+[00:19:38] [Server thread/INFO] [FML]: Loading dimension -1 (New World) (net.minecraft.server.integrated.IntegratedServer@5470640a)
+[00:19:38] [Server thread/INFO] [FML]: Loading dimension 1 (New World) (net.minecraft.server.integrated.IntegratedServer@5470640a)
+[00:19:38] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing start region for level 0
+[00:19:39] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 72%
+[00:19:39] [Server thread/INFO] [FML]: Unloading dimension -1
+[00:19:39] [Server thread/INFO] [FML]: Unloading dimension 1
+[00:19:39] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Changing view distance to 12, from 10
+[00:19:40] [Netty Local Client IO #0/INFO] [FML]: Server protocol version 2
+[00:19:40] [Netty Server IO #1/INFO] [FML]: Client protocol version 2
+[00:19:40] [Netty Server IO #1/INFO] [FML]: Client attempting to join with 6 mods : minecraft@1.12.2,FML@8.0.99.99,creatures@1.0,forge@14.23.5.2855,geckolib3@3.0.0,mcp@9.42
+[00:19:40] [Netty Local Client IO #0/INFO] [FML]: [Netty Local Client IO #0] Client side modded connection established
+[00:19:40] [Server thread/INFO] [FML]: [Server thread] Server side modded connection established
+[00:19:40] [Server thread/INFO] [net.minecraft.server.management.PlayerList]: Player246[local:E:d768002c] logged in with entity id 120 at (175.11008070220626, 63.021981472654986, 882.8359311857057)
+[00:19:40] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Player246 joined the game
+[00:19:42] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Saving and pausing game...
+[00:19:42] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
+[00:19:42] [Client thread/INFO] [net.minecraft.advancements.AdvancementList]: Loaded 23 advancements
+[00:19:45] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Player246 fell out of the world
+[00:19:45] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: [Player246: Killed Player246]
+[00:19:45] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Player246 fell out of the world
+[00:19:45] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Killed Player246
+[00:19:55] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Saving and pausing game...
+[00:19:55] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
+[00:21:22] [Client thread/INFO] [net.minecraft.advancements.AdvancementList]: Loaded 30 advancements
+[00:21:46] [Client thread/INFO] [net.minecraft.advancements.AdvancementList]: Loaded 36 advancements
+[00:21:50] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Saving and pausing game...
+[00:21:50] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
+[00:21:52] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Stopping server
+[00:21:52] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving players
+[00:21:52] [Server thread/INFO] [net.minecraft.network.NetHandlerPlayServer]: Player246 lost connection: Disconnected
+[00:21:52] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Player246 left the game
+[00:21:52] [Server thread/INFO] [net.minecraft.network.NetHandlerPlayServer]: Stopping singleplayer server as player logged out
+[00:21:52] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving worlds
+[00:21:52] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
+[00:21:52] [Server thread/INFO] [FML]: Unloading dimension 0
+[00:21:52] [Server thread/INFO] [FML]: Applying holder lookups
+[00:21:52] [Server thread/INFO] [FML]: Holder lookups applied
+[00:21:53] [Client thread/INFO] [net.minecraft.client.Minecraft]: Stopping!
+[00:21:53] [Client thread/INFO] [net.minecraft.client.audio.SoundManager]: SoundSystem shutting down...
+[00:21:53] [Client thread/WARN] [net.minecraft.client.audio.SoundManager]: Author: Paul Lamb, www.paulscode.com

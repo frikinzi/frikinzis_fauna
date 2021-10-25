@@ -7,7 +7,7 @@
 				{
 					"type": "item",
 					"weight": 100,
-					"name": "creatures:raw_arowana",
+					"name": "creatures:raw_pike",
 					"functions": [
 						{
 							"function": "set_count",

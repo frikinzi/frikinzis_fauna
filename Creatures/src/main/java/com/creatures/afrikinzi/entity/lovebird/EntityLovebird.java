@@ -308,7 +308,7 @@ public class EntityLovebird extends EntityShoulderRiding implements IAnimatable,
 
     public boolean isBreedingItem(ItemStack stack)
     {
-        return stack.getItem() == Items.WHEAT_SEEDS;
+        return TAME_ITEMS.contains(stack.getItem());
     }
 
     public void fall(float distance, float damageMultiplier)

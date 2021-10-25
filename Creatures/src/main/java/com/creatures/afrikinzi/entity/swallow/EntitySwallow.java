@@ -1,5 +1,6 @@
 package com.creatures.afrikinzi.entity.swallow;
 
+import com.creatures.afrikinzi.entity.RaptorBase;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
@@ -14,6 +15,7 @@ import net.minecraft.entity.passive.EntityFlying;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -41,8 +43,7 @@ public class EntitySwallow extends EntityAnimal implements EntityFlying, IAnimat
     private AnimationFactory factory = new AnimationFactory(this);
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntitySwallow.class, DataSerializers.VARINT);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntitySwallow.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Integer> GENDER = EntityDataManager.<Integer>createKey(EntitySwallow.class, DataSerializers.VARINT);
-    private static final Set<Item> TAME_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
+    private static final Set<Item> BREEDING_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
     public float flap;
     public float flapSpeed;
     public float oFlapSpeed;
@@ -67,6 +68,7 @@ public class EntitySwallow extends EntityAnimal implements EntityFlying, IAnimat
         this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
         this.tasks.addTask(3, new EntityAIAvoidEntity(this, EntityPlayer.class, 6.0F, 1.0D, 1.2D));
+        this.tasks.addTask(3, new EntityAIAvoidEntity(this, RaptorBase.class, 7.0F, 1.0D, 1.2D));
         //this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChicken.class, false, (Predicate)null));
     }
 
@@ -110,7 +112,6 @@ public class EntitySwallow extends EntityAnimal implements EntityFlying, IAnimat
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
         this.setVariant(this.rand.nextInt(6));
-        this.setGender(this.rand.nextInt(3));
         return super.onInitialSpawn(difficulty, livingdata);
     }
 
@@ -191,11 +192,7 @@ public class EntitySwallow extends EntityAnimal implements EntityFlying, IAnimat
         else
         {
             EntitySwallow entityswallow = (EntitySwallow)otherAnimal;
-            if (this.getGender() == entityswallow.getGender()) {
-                return false;
-            } else {
                 return this.isInLove() && entityswallow.isInLove();
-            }
         }
 
 
@@ -206,12 +203,6 @@ public class EntitySwallow extends EntityAnimal implements EntityFlying, IAnimat
     {
         EntitySwallow entityswallow = new EntitySwallow(this.world);
         entityswallow.setVariant(this.getVariant());
-        int j = this.rand.nextInt(2);
-        if (j == 0) {
-            entityswallow.setGender(1);
-        } else {
-            entityswallow.setGender(2);
-        }
 
         return entityswallow;
     }
@@ -247,22 +238,11 @@ public class EntitySwallow extends EntityAnimal implements EntityFlying, IAnimat
         this.dataManager.set(VARIANT, Integer.valueOf(p_191997_1_));
     }
 
-    public int getGender()
-    {
-        return MathHelper.clamp(((Integer)this.dataManager.get(GENDER)).intValue(), 1, 3);
-    }
-
-    public void setGender(int p_191997_1_)
-    {
-        this.dataManager.set(GENDER, Integer.valueOf(p_191997_1_));
-    }
-
     protected void entityInit()
     {
         super.entityInit();
         this.dataManager.register(VARIANT, Integer.valueOf(0));
         this.dataManager.register(SLEEPING, Boolean.valueOf(false));
-        this.dataManager.register(GENDER, Integer.valueOf(0));
     }
 
     public void writeEntityToNBT(NBTTagCompound compound)
@@ -270,14 +250,12 @@ public class EntitySwallow extends EntityAnimal implements EntityFlying, IAnimat
         super.writeEntityToNBT(compound);
         compound.setInteger("Variant", this.getVariant());
         compound.setBoolean("Sleeping", this.isSleeping());
-        compound.setInteger("Gender", this.getGender());
     }
 
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         this.setVariant(compound.getInteger("Variant"));
         this.setSleeping(compound.getBoolean("Sleeping"));
-        this.setGender(compound.getInteger("Gender"));
     }
 
     public void setSleeping(boolean value) {
@@ -306,6 +284,11 @@ public class EntitySwallow extends EntityAnimal implements EntityFlying, IAnimat
         } else {
             return null;
         }
+    }
+
+    public boolean isBreedingItem(ItemStack stack)
+    {
+        return BREEDING_ITEMS.contains(stack.getItem());
     }
 
 

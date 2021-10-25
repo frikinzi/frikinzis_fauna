@@ -54,6 +54,7 @@ public class EntityGoldenEagle extends RaptorBase implements IAnimatable {
         this.tasks.addTask(2, new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F));
         this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
         this.tasks.addTask(9, new EntityAIMate(this, 0.8D));
+        this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
         if (!this.isChild()) {
         this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
         this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));

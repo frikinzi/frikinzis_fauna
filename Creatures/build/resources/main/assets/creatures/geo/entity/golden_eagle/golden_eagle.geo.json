@@ -51,7 +51,7 @@
 					]
 				},
 				{
-					"name": "Wing",
+					"name": "Wing4",
 					"parent": "bone10",
 					"pivot": [-4.4, 17.4, 0],
 					"cubes": [

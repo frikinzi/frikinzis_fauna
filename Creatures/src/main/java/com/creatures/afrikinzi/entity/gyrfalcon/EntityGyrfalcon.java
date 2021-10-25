@@ -4,6 +4,7 @@ import com.creatures.afrikinzi.config.CreaturesConfig;
 import com.creatures.afrikinzi.entity.RaptorBase;
 import com.creatures.afrikinzi.entity.chickadee.EntityChickadee;
 import com.creatures.afrikinzi.entity.koi.EntityKoi;
+import com.creatures.afrikinzi.entity.swallow.EntitySwallow;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Sets;
@@ -53,6 +54,7 @@ public class EntityGyrfalcon extends RaptorBase implements IAnimatable {
         if (CreaturesConfig.eagleAttacks == true) {
         this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityRabbit.class, false, (Predicate) null));
         this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChicken.class, false, (Predicate) null));
+        this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntitySwallow.class, false, (Predicate) null));
         this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChickadee.class, false, (Predicate) null));
         }
     }

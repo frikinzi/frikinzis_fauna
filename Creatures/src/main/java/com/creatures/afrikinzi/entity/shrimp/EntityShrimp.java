@@ -1,7 +1,6 @@
 package com.creatures.afrikinzi.entity.shrimp;
 
-import com.creatures.afrikinzi.entity.FishBase;
-import com.creatures.afrikinzi.entity.arowana.EntityArowana;
+import com.creatures.afrikinzi.entity.ShrimpBase;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -23,13 +22,8 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 
-public class EntityShrimp extends FishBase implements IAnimatable {
+public class EntityShrimp extends ShrimpBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
-    @Override
-    protected boolean canDespawn()
-    {
-        return false;
-    }
 
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityShrimp.class, DataSerializers.VARINT);
 

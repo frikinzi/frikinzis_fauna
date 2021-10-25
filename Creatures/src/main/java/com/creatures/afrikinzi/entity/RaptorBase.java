@@ -1,5 +1,6 @@
 package com.creatures.afrikinzi.entity;
 
+import com.creatures.afrikinzi.config.CreaturesConfig;
 import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.google.common.collect.Sets;
@@ -77,10 +78,11 @@ public class RaptorBase extends EntityTameable implements EntityFlying {
         return pathnavigateflying;
     }
 
+
     public void onLivingUpdate()
     {
         if (this.onGround) {
-            setSleeping(world.getWorldTime() >= 12000 && world.getWorldTime() <= 23000);
+            getsleep();
         }
         if (this.shouldSleep() == false) {
             setSleeping(false);
@@ -241,7 +243,7 @@ public class RaptorBase extends EntityTameable implements EntityFlying {
             super.collideWithEntity(entityIn);
         }
         //grab and throw in the air
-        if (this.getAttackTarget() == entityIn && this.getHealth() > ((EntityLivingBase) entityIn).getHealth()) {
+        if (this.getAttackTarget() == entityIn && this.getHealth() > ((EntityLivingBase) entityIn).getHealth() && CreaturesConfig.eagleThrows == true && this.posY < 100) {
             this.motionY = 1.5D;
             entityIn.motionY = 1.5D;
         }
@@ -376,6 +378,10 @@ public class RaptorBase extends EntityTameable implements EntityFlying {
                 return true;
             }
         }
+    }
+
+    public void getsleep() {
+        setSleeping(world.getWorldTime() >= 12000 && world.getWorldTime() <= 23000);
     }
 
 }

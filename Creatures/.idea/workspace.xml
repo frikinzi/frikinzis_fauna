@@ -61,7 +61,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/lorikeet" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/raven" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -69,11 +69,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/lorikeet" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/sounds/entity/pygmy_goose" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/sounds/entity/swallow" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/flame_angelfish" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/flame_angelfish" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/raven" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/pygmygoose" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/lang" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/dove" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/raven" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/animations" />

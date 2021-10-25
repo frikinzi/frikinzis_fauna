@@ -28,6 +28,12 @@ entity.goldfish.name=Goldfish
 entity.ranchu.name=Ranchu Goldfish
 entity.roller.name=Roller Bird
 entity.chickadee.name=Chickadee
+entity.pygmygoose.name=Pygmy Goose
+entity.fire_goby.name=Fire Goby
+entity.blue_tang.name=Blue Tang
+entity.creatures_trout.name=Trout
+entity.swallow.name=Swallow
+entity.flame_angelfish.name=Flame Angelfish
 
 //Sounds
 entity.mandarin_duck.quack=Mandarin duck quacks
@@ -47,6 +53,9 @@ entity.barn_owl.ambient=Barn owl screeches
 entity.wild_duck.ambient=Duck sings
 entity.roller.ambient=Roller screeches
 entity.chickadee.ambient=Chickadee sings
+entity.chickadee.ambient2=Chickadee alarm
+entity.pygmygoose.pygmy_goose_ambient=Pygmy goose calls
+entity.swallow.swallow_ambient=Swallow chirps
 
 //Messages
 message.creatures.male=Sex: male
@@ -56,6 +65,9 @@ message.creatures.dove.release=Species Name: Domestic pigeon (Columba livia dome
 message.creatures.dove.rose=Species Name: Rose-crowned fruit dove (Ptilinopus regina)
 message.creatures.dove.rock=Species Name: Rock dove (Columba livia)
 message.creatures.dove.flame=Species Name: Flame dove (Ptilinopus victor)
+message.creatures.dove.goldenheart=Species Name: Golden-heart dove (Gallicolumba rufigula)
+message.creatures.dove.mbleeding=Species Name: Mindanao bleeding-heart (Gallicolumba crinigera)
+message.creatures.dove.orangebellied=Species Name: Orange-bellied fruit dove (Ptilinopus iozonus)
 message.creatures.lovebird.fischers=Species Name: Fischer's lovebird (Agapornis fischeri)
 message.creatures.lovebird.fischersmutation=Species Name: Fischer's lovebird [lutino mutation] (Agapornis fischeri)
 message.creatures.lovebird.masked=Species Name: Masked lovebird (Agapornis personatus)
@@ -67,6 +79,7 @@ message.creatures.splendid=Species Name: Splendid Fairywren (Malurus splendens)
 message.creatures.whitewinged=Species Name: White-winged Fairywren (Malurus leucopterus)
 message.creatures.blackwinged=Species Name: Red-backed Fairywren (Malurus melanocephalus)
 message.creatures.purplecrowned=Species Name: Purple-crowned Fairywren (Malurus coronatus)
+message.creatures.superb=Species Name: Superb Fairywren (Malurus cyaneus)
 
 //items
 item.duck_feather.name=Duck Feather
@@ -87,6 +100,10 @@ item.roasted_small_wild_bird_meat.name=Roasted Small Wild Bird Meat
 item.bird_of_prey_feather.name=Bird of Prey Feather
 item.raven_feather.name=Raven Feather
 item.parrot_feather.name=Parrot Feather
+item.creatures_nectar.name=Nectar
+item.item_goldfish.name=Goldfish
+item.item_trout.name=Raw Trout
+item.cooked_trout.name=Cooked Trout
 
 //tab
-itemGroup.itemsblockstab=Creatures
+itemGroup.itemsblockstabcreatures=Creatures

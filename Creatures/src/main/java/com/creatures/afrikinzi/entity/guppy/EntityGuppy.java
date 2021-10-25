@@ -1,11 +1,9 @@
 package com.creatures.afrikinzi.entity.guppy;
 
 import com.creatures.afrikinzi.entity.FishBase;
-import com.creatures.afrikinzi.entity.arowana.EntityArowana;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -14,7 +12,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootTableList;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -27,11 +24,6 @@ import javax.annotation.Nullable;
 
 public class EntityGuppy extends FishBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
-    @Override
-    protected boolean canDespawn()
-    {
-        return false;
-    }
 
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityGuppy.class, DataSerializers.VARINT);
 

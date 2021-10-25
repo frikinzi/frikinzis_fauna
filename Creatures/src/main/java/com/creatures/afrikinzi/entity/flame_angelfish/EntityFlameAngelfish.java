@@ -14,12 +14,6 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public class EntityFlameAngelfish extends FishBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
 
-    @Override
-    protected boolean canDespawn()
-    {
-        return false;
-    }
-
     public EntityFlameAngelfish(World worldIn)
     {
         super(worldIn);

@@ -14,6 +14,9 @@ public class RenderConure extends GeoEntityRenderer<EntityConure> {
     @Override
     public void renderEarly(EntityConure animatable, float ticks, float red, float green, float blue, float partialTicks)
     {
+        if (animatable.isChild()) {
+            GlStateManager.scale(0.5F, 0.5F, 0.5F);
+        }
         GlStateManager.scale(0.8F, 0.8F, 0.8F);
     }
 }

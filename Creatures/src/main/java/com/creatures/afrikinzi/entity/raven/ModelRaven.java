@@ -19,9 +19,19 @@ public class ModelRaven extends AnimatedGeoModel<EntityRaven> {
     public ResourceLocation getTextureLocation(EntityRaven object)
     {
         if (object.isFlying() || !object.onGround) {
+            if (object.getVariant() == 1) {
             return new ResourceLocation(Reference.MOD_ID, "textures/entity/raven/ravenfly.png");
+            } else {
+                return new ResourceLocation(Reference.MOD_ID, "textures/entity/raven/ravenalbinofly.png");
+            }
         } else if (object.isSleeping()) {
+            if (object.getVariant() == 2) {
+                return new ResourceLocation(Reference.MOD_ID, "textures/entity/raven/ravenalbinosleep.png");
+            }
             return new ResourceLocation(Reference.MOD_ID, "textures/entity/raven/ravensleep.png");
+        }
+        if (object.getVariant() == 2) {
+            return new ResourceLocation(Reference.MOD_ID, "textures/entity/raven/ravenalbino.png");
         }
         return new ResourceLocation(Reference.MOD_ID, "textures/entity/raven/raven.png");
     }

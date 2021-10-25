@@ -2,6 +2,7 @@ package com.creatures.afrikinzi.entity.dove;
 
 import com.creatures.afrikinzi.entity.lovebird.EntityLovebird;
 import com.creatures.afrikinzi.entity.raven.EntityRaven;
+import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
@@ -37,7 +38,10 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeDesert;
 import net.minecraft.world.storage.loot.LootTableList;
+import net.minecraftforge.common.BiomeDictionary;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -52,7 +56,9 @@ import java.util.Set;
 public class EntityDove extends EntityTameable implements IAnimatable, EntityFlying {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Item LEARN_ITEM = Items.BOOK;
-    private static Set<Item> TAME_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.PUMPKIN_SEEDS, Items.APPLE);
+    private static Set<Item> TAME_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.PUMPKIN_SEEDS, Items.APPLE, Items.MELON, Items.BEETROOT_SEEDS, Items.MELON_SEEDS);
+    private static Set<Item> FRUIT_FOOD = Sets.newHashSet(Items.APPLE, Items.MELON);
+    private static Set<Item> SEED_FOOD = Sets.newHashSet(Items.WHEAT_SEEDS, Items.BEETROOT_SEEDS, Items.PUMPKIN_SEEDS, Items.MELON_SEEDS);
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityDove.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> GENDER = EntityDataManager.<Integer>createKey(EntityDove.class, DataSerializers.VARINT);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityDove.class, DataSerializers.BOOLEAN);
@@ -73,7 +79,7 @@ public class EntityDove extends EntityTameable implements IAnimatable, EntityFly
     @Nullable
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
-        this.setVariant(this.rand.nextInt(6));
+        this.setVariant(getRandomDoveType());
         this.setGender(this.rand.nextInt(3));
         return super.onInitialSpawn(difficulty, livingdata);
     }
@@ -126,7 +132,7 @@ public class EntityDove extends EntityTameable implements IAnimatable, EntityFly
     @Override
     protected ResourceLocation getLootTable()
     {
-        return LootTableList.ENTITIES_PARROT;
+        return LootTableHandler.GENERIC_BIRD;
     }
 
     protected void applyEntityAttributes() {
@@ -247,6 +253,18 @@ public class EntityDove extends EntityTameable implements IAnimatable, EntityFly
                 if (this.world.isRemote) {
                 mc.player.sendMessage(new TextComponentTranslation("message.creatures.dove.flame"));}
             }
+            else if (this.getVariant() == 6) {
+                if (this.world.isRemote) {
+                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.dove.goldenheart"));}
+            }
+            else if (this.getVariant() == 7) {
+                if (this.world.isRemote) {
+                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.dove.mbleeding"));}
+            }
+            else if (this.getVariant() == 8) {
+                if (this.world.isRemote) {
+                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.dove.orangebellied"));}
+            }
             return true;
         }
         else if (itemstack.getItem() == Items.STICK && this.isTamed()) {
@@ -285,7 +303,9 @@ public class EntityDove extends EntityTameable implements IAnimatable, EntityFly
 
     public boolean isBreedingItem(ItemStack stack)
     {
-        return false;
+        if (this.getVariant() == 2 || this.getVariant() == 4 || this.getVariant() == 7 || this.getVariant() == 6) {
+        return SEED_FOOD.contains(stack.getItem()); }
+        return FRUIT_FOOD.contains(stack.getItem());
     }
 
     public void fall(float distance, float damageMultiplier)
@@ -395,7 +415,7 @@ public class EntityDove extends EntityTameable implements IAnimatable, EntityFly
 
     public int getVariant()
     {
-        return MathHelper.clamp(((Integer)this.dataManager.get(VARIANT)).intValue(), 1, 6);
+        return MathHelper.clamp(((Integer)this.dataManager.get(VARIANT)).intValue(), 1, 9);
     }
 
     public void setVariant(int p_191997_1_)
@@ -431,12 +451,47 @@ public class EntityDove extends EntityTameable implements IAnimatable, EntityFly
     }
 
     public Set<Item> getTameItems() {
-        if (this.getVariant() == 2 || this.getVariant() == 4) {
+        if (this.getVariant() == 2 || this.getVariant() == 4 || this.getVariant() == 7 || this.getVariant() == 6) {
         TAME_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.PUMPKIN_SEEDS, Items.BREAD);
         } else {
             TAME_ITEMS = Sets.newHashSet(Items.APPLE, Items.MELON, Items.CHORUS_FRUIT);
         }
         return TAME_ITEMS;
+    }
+
+    private int getRandomDoveType()
+    {
+        Biome biome = this.world.getBiome(new BlockPos(this));
+        int i = this.rand.nextInt(100);
+
+        if (BiomeDictionary.getTypes(biome).contains(BiomeDictionary.Type.JUNGLE))
+        {
+            if (i < 20) {
+                return 1;
+            }
+            else if (i < 40) {
+                return 3;
+            }
+            else if (i < 60) {
+                return 7;
+            } else if (i < 80) {
+                return 8;
+            }
+            else {
+                return 5;
+            }
+        }
+        else
+        {
+            if (i < 33) {
+                return 2;
+            } else if (i < 66) {
+                return 6;
+            }
+            else {
+                return 4;
+            }
+        }
     }
 
 }

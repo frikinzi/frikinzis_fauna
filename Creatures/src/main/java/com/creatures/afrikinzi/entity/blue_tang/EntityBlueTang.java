@@ -14,16 +14,10 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public class EntityBlueTang extends FishBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
 
-    @Override
-    protected boolean canDespawn()
-    {
-        return false;
-    }
-
     public EntityBlueTang(World worldIn)
     {
         super(worldIn);
-        this.setSize(0.5F, 0.7F);
+        this.setSize(0.4F, 0.4F);
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)

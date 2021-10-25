@@ -17,6 +17,6 @@ public class RenderFairyWren extends GeoEntityRenderer<EntityFairyWren> {
         if (animatable.isChild()) {
             GlStateManager.scale(0.5F, 0.5F, 0.5F);
         }
-        GlStateManager.scale(0.8F, 0.8F, 0.8F);
+        GlStateManager.scale(0.7F, 0.7F, 0.7F);
     }
 }

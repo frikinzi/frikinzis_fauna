@@ -11,8 +11,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.minecraft.entity.passive.EntitySquid;
-import net.minecraft.world.storage.loot.LootTableList;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -23,24 +21,17 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 
 public class EntityKoi extends FishBase implements IAnimatable
 {
     private AnimationFactory factory = new AnimationFactory(this);
 
-    @Override
-    protected boolean canDespawn()
-    {
-        return false;
-    }
-
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityKoi.class, DataSerializers.VARINT);
     public EntityKoi(World worldIn)
     {
         super(worldIn);
-        this.setSize(1F, 1F);
+        this.setSize(1F, 0.5F);
     }
 
 

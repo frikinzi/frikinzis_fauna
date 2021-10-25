@@ -54,7 +54,8 @@ entity.wild_duck.ambient=Duck sings
 entity.roller.ambient=Roller screeches
 entity.chickadee.ambient=Chickadee sings
 entity.chickadee.ambient2=Chickadee alarm
-entity.swallow.ambient=Swallow calls
+entity.pygmygoose.pygmy_goose_ambient=Pygmy goose calls
+entity.swallow.swallow_ambient=Swallow chirps
 
 //Messages
 message.creatures.male=Sex: male
@@ -64,6 +65,9 @@ message.creatures.dove.release=Species Name: Domestic pigeon (Columba livia dome
 message.creatures.dove.rose=Species Name: Rose-crowned fruit dove (Ptilinopus regina)
 message.creatures.dove.rock=Species Name: Rock dove (Columba livia)
 message.creatures.dove.flame=Species Name: Flame dove (Ptilinopus victor)
+message.creatures.dove.goldenheart=Species Name: Golden-heart dove (Gallicolumba rufigula)
+message.creatures.dove.mbleeding=Species Name: Mindanao bleeding-heart (Gallicolumba crinigera)
+message.creatures.dove.orangebellied=Species Name: Orange-bellied fruit dove (Ptilinopus iozonus)
 message.creatures.lovebird.fischers=Species Name: Fischer's lovebird (Agapornis fischeri)
 message.creatures.lovebird.fischersmutation=Species Name: Fischer's lovebird [lutino mutation] (Agapornis fischeri)
 message.creatures.lovebird.masked=Species Name: Masked lovebird (Agapornis personatus)
@@ -75,6 +79,7 @@ message.creatures.splendid=Species Name: Splendid Fairywren (Malurus splendens)
 message.creatures.whitewinged=Species Name: White-winged Fairywren (Malurus leucopterus)
 message.creatures.blackwinged=Species Name: Red-backed Fairywren (Malurus melanocephalus)
 message.creatures.purplecrowned=Species Name: Purple-crowned Fairywren (Malurus coronatus)
+message.creatures.superb=Species Name: Superb Fairywren (Malurus cyaneus)
 
 //items
 item.duck_feather.name=Duck Feather
@@ -99,6 +104,7 @@ item.creatures_nectar.name=Nectar
 item.item_goldfish.name=Goldfish
 item.item_trout.name=Raw Trout
 item.cooked_trout.name=Cooked Trout
+item.crab_pincers.name=Crab Pincers
 
 //tab
 itemGroup.itemsblockstabcreatures=Creatures
