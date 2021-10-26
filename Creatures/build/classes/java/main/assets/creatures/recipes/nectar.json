@@ -1,18 +1,83 @@
-
-
 {
-	"type": "minecraft:crafting_shapeless",
-	"ingredients": [
-		{
-			"item": "minecraft:red_flower",
-			"data": 2
-		},
-		{
-			"item": "minecraft:red_flower"
-		}
+	"type": "crafting_shaped",
+	"pattern": [
+		"##",
+		"##"
 	],
+	"key": {
+		"#": [
+			{
+				"item": "minecraft:red_flower",
+				"data": 0
+			},
+			{
+				"item": "minecraft:red_flower",
+				"data": 1
+			},
+			{
+				"item": "minecraft:red_flower",
+				"data": 2
+			},
+			{
+				"item": "minecraft:red_flower",
+				"data": 3
+			},
+			{
+				"item": "minecraft:red_flower",
+				"data": 4
+			},
+			{
+				"item": "minecraft:red_flower",
+				"data": 5
+			},
+			{
+				"item": "minecraft:red_flower",
+				"data": 6
+			},
+			{
+				"item": "minecraft:red_flower",
+				"data": 7
+			},
+			{
+				"item": "minecraft:red_flower",
+				"data": 8
+			},
+			{
+				"item": "minecraft:yellow_flower",
+				"data": 8
+			},
+			{
+				"item": "minecraft:double_plant",
+				"data": 0
+			},
+			{
+				"item": "minecraft:double_plant",
+				"data": 1
+			},
+			{
+				"item": "minecraft:double_plant",
+				"data": 2
+			},
+			{
+				"item": "minecraft:double_plant",
+				"data": 3
+			},
+			{
+				"item": "minecraft:double_plant",
+				"data": 4
+			},
+			{
+				"item": "minecraft:double_plant",
+				"data": 5
+			},
+			{
+				"item": "minecraft:yellow_flower",
+				"data": 0
+			}
+		]
+	},
 	"result": {
 		"item": "creatures:creatures_nectar",
-		"count": 1
+		"count": 3
 	}
 }

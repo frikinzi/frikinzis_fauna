@@ -104,6 +104,7 @@ item.creatures_nectar.name=Nectar
 item.item_goldfish.name=Goldfish
 item.item_trout.name=Raw Trout
 item.cooked_trout.name=Cooked Trout
+item.crab_pincers.name=Crab Pincers
 
 //tab
-itemGroup.itemsblockstabcreatures=Creatures
+itemGroup.itemsblockstabcreatures=Frikinzi's Fauna

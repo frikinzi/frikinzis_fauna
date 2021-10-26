@@ -1,23 +1,18 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"   ",
-		"AB ",
-		" C "
-	],
-	"key": {
-		"A": {
+	"type": "crafting_shapeless",
+	"ingredients": [
+		{
 			"item": "minecraft:book"
 		},
-		"B": {
-			"item": "minecraft:ink_sac"
+		{
+			"item": "minecraft:dye",
+			"data": 0
 		},
-		"C": {
+		{
 			"item": "creatures:duck_feather"
 		}
-	},
+	],
 	"result": {
-		"item": "minecraft:writable_book",
-		"count": 1
+		"item": "minecraft:writable_book"
 	}
 }

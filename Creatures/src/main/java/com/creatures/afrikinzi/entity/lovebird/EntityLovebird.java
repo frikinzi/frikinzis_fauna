@@ -1,9 +1,8 @@
 package com.creatures.afrikinzi.entity.lovebird;
 
-import com.creatures.afrikinzi.entity.lorikeet.EntityLorikeet;
+import com.creatures.afrikinzi.config.CreaturesConfig;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
-import com.google.common.base.Predicate;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -33,7 +32,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootTableList;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -80,7 +78,8 @@ public class EntityLovebird extends EntityShoulderRiding implements IAnimatable,
         this.tasks.addTask(4, new EntityAILeapAtTarget(this, 0.4F));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, false, new Class[0]));
         this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(2, new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F));
+        if (CreaturesConfig.birdsFollow == true) {
+        this.tasks.addTask(2, new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F)); }
         this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
         //this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChicken.class, false, (Predicate)null));
     }
@@ -126,7 +125,7 @@ public class EntityLovebird extends EntityShoulderRiding implements IAnimatable,
     @Nullable
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
-        this.setVariant(this.rand.nextInt(7));
+        this.setVariant(getWildVariant());
         this.setGender(this.rand.nextInt(3));
         return super.onInitialSpawn(difficulty, livingdata);
     }
@@ -347,7 +346,24 @@ public class EntityLovebird extends EntityShoulderRiding implements IAnimatable,
     public EntityAgeable createChild(EntityAgeable ageable)
     {
         EntityLovebird entitylovebird = new EntityLovebird(this.world);
+        int i = this.rand.nextInt(CreaturesConfig.mutationLovebird);
+        if (this.getVariant() == 1) {
+            if (i == 1) {
+                entitylovebird.setVariant(2);
+            } else {
+                entitylovebird.setVariant(this.getVariant());
+            }
+        }
+        else if (this.getVariant() == 3) {
+            if (i == 1) {
+                entitylovebird.setVariant(4);
+            } else {
+                entitylovebird.setVariant(this.getVariant());
+            }
+        }
+        else {
         entitylovebird.setVariant(this.getVariant());
+        }
         int j = this.rand.nextInt(2);
         if (j == 0) {
             entitylovebird.setGender(1);
@@ -478,6 +494,21 @@ public class EntityLovebird extends EntityShoulderRiding implements IAnimatable,
 
     public boolean isWandering() {
         return this.dataManager.get(WANDERING);
+    }
+
+    public int getWildVariant() {
+        int e = this.rand.nextInt(101);
+
+        if (e < 25) {
+            return 1;
+        } else if (e < 50) {
+            return 3;
+        } else if (e < 75) {
+            return 5;
+        } else {
+            return 6;
+        }
+
     }
 
 

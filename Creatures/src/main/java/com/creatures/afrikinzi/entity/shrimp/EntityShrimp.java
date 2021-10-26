@@ -58,13 +58,13 @@ public class EntityShrimp extends ShrimpBase implements IAnimatable {
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(3.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(2.0D);
     }
 
     @Nullable
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
-        this.setVariant(this.rand.nextInt(9));
+        this.setVariant(getWildColor());
         return super.onInitialSpawn(difficulty, livingdata);
     }
 
@@ -99,5 +99,31 @@ public class EntityShrimp extends ShrimpBase implements IAnimatable {
     protected ResourceLocation getLootTable()
     {
         return LootTableHandler.SHRIMP;
+    }
+
+    protected int getWildColor() {
+        int d = this.rand.nextInt(100);
+        if (d < 90) {
+            return 4;
+        }
+        else {
+            int c = this.rand.nextInt(8);
+            if (c == 1) {
+                    return 1;
+                } if (c == 2) {
+                    return 2;
+                } if (c == 3) {
+                    return 3;
+                } if (c == 4) {
+                    return 5;
+                } if (c == 5) {
+                    return 6;
+                } if (c == 6) {
+                    return 7;
+                } else {
+                    return 8;
+                }
+
+            }
     }
 }

@@ -92,9 +92,9 @@ public class EntityInit {
         registerEntity("pygmygoose", EntityPygmyGoose.class, Reference.ENTITY_PYGMY_GOOSE, 80, 2772553, 15964498);
         registerEntity("fire_goby", EntityFireGoby.class, Reference.ENTITY_FIRE_GOBY, 80, 14080426, 14895873);
         registerEntity("blue_tang", EntityBlueTang.class, Reference.ENTITY_BLUE_TANG, 80, 3895524, 722696);
+        registerEntity("flame_angelfish", EntityFlameAngelfish.class, Reference.ENTITY_FLAME_ANGELFISH, 80, 16396073, 16611846);
         registerEntity("creatures_trout", EntityTrout.class, Reference.ENTITY_TROUT, 80, 9861465, 11822456);
         registerEntity("swallow", EntitySwallow.class, Reference.ENTITY_SWALLOW, 80, 6588890, 11953480);
-        registerEntity("flame_angelfish", EntityFlameAngelfish.class, Reference.ENTITY_FLAME_ANGELFISH, 80, 16396073, 16611846);
 
         //spawn placement
         EntitySpawnPlacementRegistry.setPlacementType(EntityKoi.class, EntityLiving.SpawnPlacementType.IN_WATER);

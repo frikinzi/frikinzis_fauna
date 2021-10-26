@@ -1,7 +1,6 @@
 package com.creatures.afrikinzi.entity.raven;
 
 import com.creatures.afrikinzi.config.CreaturesConfig;
-import com.creatures.afrikinzi.entity.dove.EntityDove;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
@@ -32,7 +31,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootTableList;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -80,7 +78,8 @@ public class EntityRaven extends EntityTameable implements IAnimatable, EntityFl
         this.tasks.addTask(4, new EntityAILeapAtTarget(this, 0.4F));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true, new Class[0]));
         this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(2, new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F));
+        if (CreaturesConfig.birdsFollow == true) {
+        this.tasks.addTask(2, new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F)); }
         this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
         //this.tasks.addTask(3, new EntityAIFollow(this, 1.0D, 3.0F, 7.0F));
         this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
@@ -134,7 +133,11 @@ public class EntityRaven extends EntityTameable implements IAnimatable, EntityFl
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
+        if (this.getVariant() == 0) {
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D); }
+        if (this.getVariant() == 1) {
+            this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
+        }
         this.getEntityAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue(1.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20000000298023224D);
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
@@ -420,7 +423,7 @@ public class EntityRaven extends EntityTameable implements IAnimatable, EntityFl
     public EntityRaven createChild(EntityAgeable ageable)
     {
         EntityRaven entityraven = new EntityRaven(this.world);
-        int i = this.rand.nextInt(1000);
+        int i = this.rand.nextInt(CreaturesConfig.albinoRaven);
         if (i == 1) {
             entityraven.setVariant(1);
         } else {

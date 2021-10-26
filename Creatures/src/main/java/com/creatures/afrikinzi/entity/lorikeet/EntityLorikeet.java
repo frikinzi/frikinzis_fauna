@@ -1,42 +1,33 @@
 package com.creatures.afrikinzi.entity.lorikeet;
 
+import com.creatures.afrikinzi.config.CreaturesConfig;
 import com.creatures.afrikinzi.entity.FlyingEntityTameableBase;
 import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.pathfinding.PathNavigate;
-import net.minecraft.pathfinding.PathNavigateFlying;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootTableList;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -46,7 +37,6 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 import java.util.Set;
 
 public class EntityLorikeet extends FlyingEntityTameableBase implements IAnimatable {
@@ -76,7 +66,8 @@ public class EntityLorikeet extends FlyingEntityTameableBase implements IAnimata
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, this.aiSit);
         this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(2, follow);
+        if (CreaturesConfig.birdsFollow == true) {
+        this.tasks.addTask(2, follow); }
         this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
     }
 
@@ -121,7 +112,7 @@ public class EntityLorikeet extends FlyingEntityTameableBase implements IAnimata
     @Nullable
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
-        this.setVariant(this.rand.nextInt(6));
+        this.setVariant(getWildColor());
         this.setGender(this.rand.nextInt(3));
         return super.onInitialSpawn(difficulty, livingdata);
     }
@@ -308,7 +299,16 @@ public class EntityLorikeet extends FlyingEntityTameableBase implements IAnimata
     public EntityLorikeet createChild(EntityAgeable ageable)
     {
         EntityLorikeet entitylorikeet = new EntityLorikeet(this.world);
-        entitylorikeet.setVariant(this.getVariant());
+        if (this.getVariant() == 1) {
+        int r = this.rand.nextInt(CreaturesConfig.mutationLorikeet);
+        if (r == 1) {
+            entitylorikeet.setVariant(3);
+        } else {
+        entitylorikeet.setVariant(this.getVariant()); }
+        }
+        else {
+            entitylorikeet.setVariant(this.getVariant());
+        }
 
         return entitylorikeet;
     }
@@ -324,6 +324,19 @@ public class EntityLorikeet extends FlyingEntityTameableBase implements IAnimata
             return SoundsHandler.LORIKEET_AMBIENT;
         } else {
             return null;
+        }
+    }
+
+    public int getWildColor() {
+        int i = this.rand.nextInt(100);
+        if (i < 40) {
+            return 1;
+        } else if (i < 60) {
+            return 2;
+        } else if (i < 90) {
+            return 4;
+        } else {
+            return 5;
         }
     }
 

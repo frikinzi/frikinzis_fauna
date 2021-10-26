@@ -46,6 +46,7 @@ public class EntityGhostCrab extends EntityAnimal implements IAnimatable {
         this.tasks.addTask(10, new EntityAIWanderAvoidWater(this, 0.8D, 1.0000001E-2F));
         this.tasks.addTask(0, new EntityAIPanic(this, 1.25D));
         this.tasks.addTask(3, new EntityAIAvoidEntity(this, EntityPlayer.class, 6.0F, 1.0D, 1.2D));
+        this.tasks.addTask(7, new EntityAIMate(this, 1.0D));
 
     }
 
@@ -122,12 +123,27 @@ public class EntityGhostCrab extends EntityAnimal implements IAnimatable {
 
     public boolean isBreedingItem(ItemStack stack)
     {
+        if (new ItemStack(Blocks.DEADBUSH, (int) (1)).getItem() == stack.getItem()) {
+            return true;
+        }
         return false;
     }
 
     public boolean canMateWith(EntityAnimal otherAnimal)
     {
-        return false;
+        if (otherAnimal == this)
+        {
+            return false;
+        }
+        else if (!(otherAnimal instanceof EntityGhostCrab))
+        {
+            return false;
+        }
+        else
+        {
+            EntityGhostCrab entityghostcrab = (EntityGhostCrab)otherAnimal;
+            return this.isInLove() && entityghostcrab.isInLove();
+        }
 
     }
 
@@ -167,7 +183,10 @@ public class EntityGhostCrab extends EntityAnimal implements IAnimatable {
     @Nullable
     public EntityAgeable createChild(EntityAgeable ageable)
     {
-        return null;
+        EntityGhostCrab entityghostcrab = new EntityGhostCrab(this.world);
+        entityghostcrab.setVariant(this.getVariant());
+
+        return entityghostcrab;
     }
 
     @Nullable
