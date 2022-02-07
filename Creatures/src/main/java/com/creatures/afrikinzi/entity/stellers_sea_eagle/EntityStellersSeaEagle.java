@@ -1,7 +1,9 @@
 package com.creatures.afrikinzi.entity.stellers_sea_eagle;
 
 import com.creatures.afrikinzi.config.CreaturesConfig;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.entity.RaptorBase;
+import com.creatures.afrikinzi.entity.ai.EntityAIFollowOwnerCreatures;
 import com.creatures.afrikinzi.entity.arowana.EntityArowana;
 import com.creatures.afrikinzi.entity.koi.EntityKoi;
 import com.creatures.afrikinzi.entity.mandarin_duck.EntityMandarinDuck;
@@ -40,7 +42,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import java.util.Set;
 
-public class EntityStellersSeaEagle extends RaptorBase implements IAnimatable {
+public class EntityStellersSeaEagle extends RaptorBase implements IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
 
     public EntityStellersSeaEagle(World worldIn) {
@@ -48,7 +50,7 @@ public class EntityStellersSeaEagle extends RaptorBase implements IAnimatable {
         this.setSize(1.8F, 1.5F);
         this.moveHelper = new EntityFlyHelper(this);
         this.setPathPriority(PathNodeType.WATER, 1.0F);
-        Set<Item> TAME_ITEMS = Sets.newHashSet(Items.FISH, Items.COOKED_FISH, ItemInit.RAW_AROWANA, ItemInit.RAW_KOI, ItemInit.RAW_PIKE, ItemInit.RAW_GOURAMI);
+        Set<Item> TAME_ITEMS = Sets.newHashSet(Items.FISH, Items.COOKED_FISH, ItemInit.RAW_AROWANA, ItemInit.RAW_TROUT, ItemInit.RAW_KOI, ItemInit.RAW_PIKE, ItemInit.RAW_GOURAMI);
     }
 
     @Override
@@ -56,23 +58,23 @@ public class EntityStellersSeaEagle extends RaptorBase implements IAnimatable {
         this.aiSit = new EntityAISit(this);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, this.aiSit);
-        this.tasks.addTask(7, new EntityAIMate(this, 1.0D));
+        this.tasks.addTask(5, new EntityAIMate(this, 1.0D));
         this.tasks.addTask(5, new EntityAIAttackMelee(this, 1.2D, true));
         this.tasks.addTask(4, new EntityAILeapAtTarget(this, 0.4F));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, false, new Class[0]));
         this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         if (CreaturesConfig.raptorsFollow == true) {
-        this.tasks.addTask(2, new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F)); }
-        this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
+        this.tasks.addTask(6, new EntityAIFollowOwnerCreatures(this, 1.0D, 5.0F, 1.0F)); }
+        this.tasks.addTask(7, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
         this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
         this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
         //this.targetTasks.addTask(6, new EntityStellersSeaEagle.AIFishing(this));
         if (CreaturesConfig.eagleAttacks == true) {
-            this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityTrout.class, false, (Predicate) null));
-            this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityArowana.class, false, (Predicate) null));
+            this.targetTasks.addTask(8, new EntityAITargetNonTamed(this, EntityTrout.class, false, (Predicate) null));
+            this.targetTasks.addTask(8, new EntityAITargetNonTamed(this, EntityArowana.class, false, (Predicate) null));
             //this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChicken.class, false, (Predicate) null));
-            this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityKoi.class, false, (Predicate) null));
-            this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntitySquid.class, false, (Predicate) null));
+            this.targetTasks.addTask(8, new EntityAITargetNonTamed(this, EntityKoi.class, false, (Predicate) null));
+            this.targetTasks.addTask(8, new EntityAITargetNonTamed(this, EntitySquid.class, false, (Predicate) null));
         }
     }
 
@@ -206,13 +208,14 @@ public class EntityStellersSeaEagle extends RaptorBase implements IAnimatable {
     public EntityStellersSeaEagle createChild(EntityAgeable ageable)
     {
         EntityStellersSeaEagle entitystellersseaeagle = new EntityStellersSeaEagle(this.world);
+        entitystellersseaeagle.setGender(this.rand.nextInt(2));
 
         return entitystellersseaeagle;
     }
 
     @Override
     public Set<Item> getTameItems() {
-        TAME_ITEMS = Sets.newHashSet(Items.FISH, ItemInit.RAW_AROWANA, ItemInit.RAW_KOI, ItemInit.RAW_GOURAMI, ItemInit.RAW_PIKE);
+        TAME_ITEMS = Sets.newHashSet(Items.FISH, ItemInit.RAW_AROWANA, ItemInit.RAW_TROUT, ItemInit.RAW_KOI, ItemInit.RAW_GOURAMI, ItemInit.RAW_PIKE);
         return TAME_ITEMS;
     }
 

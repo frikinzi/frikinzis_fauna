@@ -1,0 +1,142 @@
+---- Minecraft Crash Report ----
+// Everything's going to plan. No, really, that was supposed to happen.
+
+Time: 1/19/22 8:04 PM
+Description: Rendering entity in world
+
+software.bernie.geckolib3.geo.exception.GeoModelException: creatures:geo/entity/eagleowl/eagleowlfly.geo.json: Could not find model.
+	at software.bernie.geckolib3.model.AnimatedGeoModel.getModel(AnimatedGeoModel.java:116)
+	at software.bernie.geckolib3.renderers.geo.GeoEntityRenderer.doRender(GeoEntityRenderer.java:132)
+	at software.bernie.geckolib3.renderers.geo.GeoEntityRenderer.doRender(GeoEntityRenderer.java:36)
+	at net.minecraft.client.renderer.entity.RenderManager.renderEntity(RenderManager.java:384)
+	at net.minecraft.client.renderer.entity.RenderManager.renderEntityStatic(RenderManager.java:368)
+	at net.minecraft.client.renderer.RenderGlobal.renderEntities(RenderGlobal.java:628)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorldPass(EntityRenderer.java:1347)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorld(EntityRenderer.java:1259)
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1062)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1119)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:398)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.legacydev.Main.start(Main.java:86)
+	at net.minecraftforge.legacydev.MainClient.main(MainClient.java:29)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Client thread
+Stacktrace:
+	at software.bernie.geckolib3.model.AnimatedGeoModel.getModel(AnimatedGeoModel.java:116)
+	at software.bernie.geckolib3.renderers.geo.GeoEntityRenderer.doRender(GeoEntityRenderer.java:132)
+	at software.bernie.geckolib3.renderers.geo.GeoEntityRenderer.doRender(GeoEntityRenderer.java:36)
+
+-- Entity being rendered --
+Details:
+	Entity Type: creatures:eagleowl (com.creatures.afrikinzi.entity.eagleowl.EntityEagleOwl)
+	Entity ID: 878
+	Entity Name: entity.eagleowl.name
+	Entity's Exact location: -267.50, 65.00, -196.50
+	Entity's Block location: World: (-268,65,-197), Chunk: (at 4,4,11 in -17,-13; contains blocks -272,0,-208 to -257,255,-193), Region: (-1,-1; contains chunks -32,-32 to -1,-1, blocks -512,0,-512 to -1,255,-1)
+	Entity's Momentum: 0.00, 0.00, 0.00
+	Entity's Passengers: []
+	Entity's Vehicle: ~~ERROR~~ NullPointerException: null
+
+-- Renderer details --
+Details:
+	Assigned renderer: com.creatures.afrikinzi.entity.eagleowl.RenderEagleOwl@70c38e0
+	Location: -1.91,0.00,-0.29 - World: (-2,0,-1), Chunk: (at 14,0,15 in -1,-1; contains blocks -16,0,-16 to -1,255,-1), Region: (-1,-1; contains chunks -32,-32 to -1,-1, blocks -512,0,-512 to -1,255,-1)
+	Rotation: -39.375
+	Delta: 0.27999723
+Stacktrace:
+	at net.minecraft.client.renderer.entity.RenderManager.renderEntity(RenderManager.java:384)
+	at net.minecraft.client.renderer.entity.RenderManager.renderEntityStatic(RenderManager.java:368)
+	at net.minecraft.client.renderer.RenderGlobal.renderEntities(RenderGlobal.java:628)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorldPass(EntityRenderer.java:1347)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorld(EntityRenderer.java:1259)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player523'/508, l='MpServer', x=-265.59, y=65.00, z=-196.21]]
+	Chunk stats: MultiplayerChunkCache: 625, 625
+	Level seed: 0
+	Level generator: ID 00 - default, ver 1. Features enabled: false
+	Level generator options: 
+	Level spawn location: World: (-306,64,-228), Chunk: (at 14,4,12 in -20,-15; contains blocks -320,0,-240 to -305,255,-225), Region: (-1,-1; contains chunks -32,-32 to -1,-1, blocks -512,0,-512 to -1,255,-1)
+	Level time: 265710 game time, 2897 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 241 total; [EntitySkeleton['Skeleton'/168, l='MpServer', x=-332.73, y=18.00, z=-245.53], EntityRoller['Roller Bird'/170, l='MpServer', x=-309.74, y=64.00, z=-228.27], EntityWildDuck['Wild Duck'/175, l='MpServer', x=-312.37, y=63.00, z=-234.77], EntityRoller['Roller Bird'/176, l='MpServer', x=-314.10, y=63.00, z=-236.10], EntityBarnOwl['Barn Owl'/177, l='MpServer', x=-306.38, y=63.00, z=-236.39], EntityBushtit['entity.bushtit.name'/178, l='MpServer', x=-314.60, y=63.00, z=-233.72], EntityHorse['Horse'/180, l='MpServer', x=-316.99, y=64.00, z=-232.73], EntityFiddlerCrab['Fiddler Crab'/185, l='MpServer', x=-310.33, y=64.00, z=-226.49], EntityCreeper['Creeper'/187, l='MpServer', x=-308.85, y=20.00, z=-163.53], EntityBat['Bat'/188, l='MpServer', x=-310.75, y=22.02, z=-166.25], EntityCreeper['Creeper'/189, l='MpServer', x=-317.43, y=22.00, z=-171.80], EntityWoodDuck['Wood Duck'/190, l='MpServer', x=-307.42, y=62.31, z=-161.80], EntityCreeper['Creeper'/191, l='MpServer', x=-305.50, y=42.00, z=-154.50], EntityGoldenEagle['Golden Eagle'/193, l='MpServer', x=-288.08, y=63.00, z=-240.59], EntityWoodDuck['Wood Duck'/194, l='MpServer', x=-299.65, y=61.27, z=-227.51], EntityPygmyGoose['Pygmy Goose'/195, l='MpServer', x=-297.84, y=61.38, z=-227.21], EntityFiddlerCrab['Fiddler Crab'/196, l='MpServer', x=-290.25, y=62.00, z=-221.25], EntityPygmyGoose['Pygmy Goose'/197, l='MpServer', x=-297.21, y=61.40, z=-219.58], EntitySparrow['entity.sparrow.name'/198, l='MpServer', x=-292.41, y=61.49, z=-222.02], EntityPygmyGoose['Pygmy Goose'/199, l='MpServer', x=-290.74, y=62.00, z=-221.91], EntitySparrow['entity.sparrow.name'/200, l='MpServer', x=-292.27, y=62.02, z=-220.20], EntityConure['Conure'/201, l='MpServer', x=-294.21, y=64.00, z=-208.29], EntityIbis['Ibis'/202, l='MpServer', x=-293.23, y=64.00, z=-214.34], EntityRoller['Roller Bird'/203, l='MpServer', x=-286.87, y=64.00, z=-220.92], EntityBushtit['entity.bushtit.name'/204, l='MpServer', x=-298.97, y=62.65, z=-163.04], EntityLaughingthrush['entity.laughingthrush.name'/205, l='MpServer', x=-290.62, y=53.00, z=-169.58], EntitySkeleton['Skeleton'/206, l='MpServer', x=-273.50, y=22.00, z=-260.50], EntityIbis['Ibis'/210, l='MpServer', x=-272.47, y=65.00, z=-238.06], EntityGhostCrab['Ghost Crab'/211, l='MpServer', x=-278.51, y=64.00, z=-239.46], EntityIbis['Ibis'/213, l='MpServer', x=-274.49, y=64.00, z=-232.22], EntityRoller['Roller Bird'/214, l='MpServer', x=-274.33, y=64.00, z=-226.33], EntityWoodDuck['Wood Duck'/215, l='MpServer', x=-289.28, y=64.00, z=-220.26], EntityLaughingthrush['entity.laughingthrush.name'/216, l='MpServer', x=-279.48, y=63.00, z=-218.60], EntityFiddlerCrab['Fiddler Crab'/217, l='MpServer', x=-281.82, y=65.00, z=-218.47], EntityPeafowl['entity.peafowl.name'/218, l='MpServer', x=-283.12, y=64.00, z=-222.10], EntityRaven['Raven'/219, l='MpServer', x=-275.28, y=66.02, z=-219.91], EntityIbis['Ibis'/220, l='MpServer', x=-275.90, y=65.00, z=-204.79], EntityIbis['Ibis'/221, l='MpServer', x=-273.07, y=70.00, z=-204.57], EntitySparrow['entity.sparrow.name'/222, l='MpServer', x=-273.99, y=65.00, z=-207.32], EntitySparrow['entity.sparrow.name'/223, l='MpServer', x=-271.73, y=65.00, z=-205.83], EntityBushtit['entity.bushtit.name'/224, l='MpServer', x=-273.96, y=65.00, z=-205.24], EntityFiddlerCrab['Fiddler Crab'/225, l='MpServer', x=-279.48, y=65.00, z=-206.28], EntityPygmyGoose['Pygmy Goose'/226, l='MpServer', x=-278.46, y=65.00, z=-206.69], EntityRoller['Roller Bird'/227, l='MpServer', x=-272.55, y=65.00, z=-207.66], EntityRoller['Roller Bird'/228, l='MpServer', x=-271.73, y=70.00, z=-205.63], EntitySkeleton['Skeleton'/229, l='MpServer', x=-281.50, y=16.00, z=-178.50], EntityIbis['Ibis'/230, l='MpServer', x=-283.60, y=57.00, z=-171.43], EntityBushtit['entity.bushtit.name'/231, l='MpServer', x=-279.16, y=64.00, z=-185.04], EntitySparrow['entity.sparrow.name'/232, l='MpServer', x=-281.40, y=56.00, z=-168.38], EntitySparrow['entity.sparrow.name'/233, l='MpServer', x=-276.78, y=57.00, z=-175.60], EntityLaughingthrush['entity.laughingthrush.name'/234, l='MpServer', x=-273.82, y=63.05, z=-168.39], EntityBarnOwl['Barn Owl'/235, l='MpServer', x=-281.12, y=57.00, z=-170.10], EntitySparrow['entity.sparrow.name'/236, l='MpServer', x=-269.56, y=64.00, z=-167.17], EntityIbis['Ibis'/237, l='MpServer', x=-280.46, y=62.46, z=-165.86], EntityLaughingthrush['entity.laughingthrush.name'/238, l='MpServer', x=-282.77, y=62.52, z=-166.55], EntitySparrow['entity.sparrow.name'/239, l='MpServer', x=-278.36, y=63.00, z=-180.53], EntitySparrow['entity.sparrow.name'/240, l='MpServer', x=-270.44, y=58.00, z=-179.60], EntityBat['Bat'/241, l='MpServer', x=-280.25, y=59.10, z=-170.38], EntityBushtit['entity.bushtit.name'/242, l='MpServer', x=-281.40, y=62.51, z=-166.49], EntityBushtit['entity.bushtit.name'/243, l='MpServer', x=-268.36, y=63.00, z=-165.79], EntityGoldenEagle['Golden Eagle'/244, l='MpServer', x=-279.26, y=57.00, z=-171.90], EntitySparrow['entity.sparrow.name'/245, l='MpServer', x=-263.77, y=63.00, z=-168.69], EntitySparrow['entity.sparrow.name'/246, l='MpServer', x=-278.60, y=57.00, z=-175.60], EntitySparrow['entity.sparrow.name'/247, l='MpServer', x=-272.42, y=57.00, z=-174.40], EntityBat['Bat'/759, l='MpServer', x=-201.77, y=44.91, z=-262.51], EntityBushtit['entity.bushtit.name'/248, l='MpServer', x=-272.97, y=63.00, z=-164.67], EntitySkeleton['Skeleton'/249, l='MpServer', x=-277.90, y=57.00, z=-171.38], EntityDove['Dove'/250, l='MpServer', x=-279.87, y=63.00, z=-181.50], EntityItem['item.item.arrow'/763, l='MpServer', x=-238.17, y=62.00, z=-167.03], EntityZombie['Zombie'/256, l='MpServer', x=-262.47, y=22.00, z=-268.20], EntityZombie['Zombie'/257, l='MpServer', x=-256.50, y=21.00, z=-261.50], EntityZombie['Zombie'/259, l='MpServer', x=-248.76, y=48.00, z=-252.50], EntityZombie['Zombie'/260, l='MpServer', x=-265.50, y=33.00, z=-263.50], EntityWitch['Witch'/261, l='MpServer', x=-256.50, y=52.00, z=-243.50], EntitySkeleton['Skeleton'/774, l='MpServer', x=-199.50, y=29.00, z=-172.50], EntityZombie['Zombie'/775, l='MpServer', x=-201.50, y=29.00, z=-170.50], EntityIbis['Ibis'/265, l='MpServer', x=-258.52, y=65.00, z=-230.26], EntityIbis['Ibis'/266, l='MpServer', x=-262.35, y=66.00, z=-231.27], EntityIbis['Ibis'/267, l='MpServer', x=-265.66, y=65.00, z=-228.23], EntityWoodDuck['Wood Duck'/268, l='MpServer', x=-261.70, y=66.00, z=-238.24], EntityWoodDuck['Wood Duck'/270, l='MpServer', x=-267.70, y=67.00, z=-234.50], EntityFiddlerCrab['Fiddler Crab'/271, l='MpServer', x=-258.38, y=65.00, z=-229.32], EntityRaven['Raven'/273, l='MpServer', x=-262.04, y=66.00, z=-230.09], EntityIbis['Ibis'/274, l='MpServer', x=-271.24, y=65.00, z=-232.60], EntitySkeleton['Skeleton'/786, l='MpServer', x=-262.50, y=48.00, z=-259.50], EntityCreeper['Creeper'/787, l='MpServer', x=-202.50, y=31.00, z=-188.50], EntityRoller['Roller Bird'/276, l='MpServer', x=-254.74, y=64.00, z=-199.80], EntitySpider['Spider'/788, l='MpServer', x=-237.50, y=22.00, z=-264.50], EntityLaughingthrush['entity.laughingthrush.name'/277, l='MpServer', x=-263.66, y=65.00, z=-203.65], EntityRoller['Roller Bird'/278, l='MpServer', x=-264.10, y=65.00, z=-225.59], EntitySkeleton['Skeleton'/790, l='MpServer', x=-238.50, y=22.00, z=-265.50], EntityFiddlerCrab['Fiddler Crab'/279, l='MpServer', x=-263.63, y=65.00, z=-205.34], EntityZombie['Zombie'/791, l='MpServer', x=-191.50, y=30.00, z=-204.50], EntityIbis['Ibis'/280, l='MpServer', x=-271.95, y=70.00, z=-204.62], EntityBushtit['entity.bushtit.name'/281, l='MpServer', x=-259.53, y=64.00, z=-186.98], EntityZombie['Zombie'/793, l='MpServer', x=-191.50, y=30.00, z=-203.50], EntityCreaturesSpoonbill['Spoonbill'/282, l='MpServer', x=-255.35, y=65.00, z=-220.81], EntitySparrow['entity.sparrow.name'/283, l='MpServer', x=-253.40, y=64.00, z=-186.92], EntityPygmyGoose['Pygmy Goose'/284, l='MpServer', x=-257.14, y=64.00, z=-208.92], EntityRoller['Roller Bird'/285, l='MpServer', x=-270.68, y=65.00, z=-206.67], EntityBushtit['entity.bushtit.name'/286, l='MpServer', x=-266.80, y=65.00, z=-203.06], EntityFiddlerCrab['Fiddler Crab'/287, l='MpServer', x=-262.46, y=64.00, z=-197.35], EntityCreaturesSpoonbill['Spoonbill'/288, l='MpServer', x=-260.24, y=64.00, z=-188.40], EntityBat['Bat'/800, l='MpServer', x=-268.49, y=22.42, z=-258.56], EntitySkeleton['Skeleton'/290, l='MpServer', x=-265.50, y=15.00, z=-183.50], EntityStellersSeaEagle['Steller's Sea Eagle'/291, l='MpServer', x=-263.90, y=58.00, z=-176.98], EntityIbis['Ibis'/292, l='MpServer', x=-253.33, y=60.76, z=-175.60], EntityBat['Bat'/804, l='MpServer', x=-327.61, y=41.00, z=-210.14], EntityLovebird['Lovebird'/293, l='MpServer', x=-265.40, y=58.00, z=-176.40], EntityWoodDuck['Wood Duck'/294, l='MpServer', x=-263.78, y=64.00, z=-193.31], EntityBushtit['entity.bushtit.name'/295, l='MpServer', x=-254.47, y=64.00, z=-186.28], EntitySpider['Spider'/296, l='MpServer', x=-256.52, y=64.00, z=-179.96], EntityBat['Bat'/808, l='MpServer', x=-204.72, y=43.09, z=-264.46], EntityCreeper['Creeper'/297, l='MpServer', x=-261.43, y=64.00, z=-190.01], EntityItem['item.item.rottenFlesh'/298, l='MpServer', x=-269.06, y=64.00, z=-181.48], EntityWoodDuck['Wood Duck'/299, l='MpServer', x=-267.27, y=64.00, z=-184.42], EntityLaughingthrush['entity.laughingthrush.name'/300, l='MpServer', x=-263.14, y=64.00, z=-194.17], EntityFiddlerCrab['Fiddler Crab'/301, l='MpServer', x=-267.71, y=64.00, z=-185.22], EntityCreaturesSpoonbill['Spoonbill'/302, l='MpServer', x=-261.29, y=64.00, z=-200.45], EntityFiddlerCrab['Fiddler Crab'/303, l='MpServer', x=-280.49, y=64.00, z=-203.34], EntityLaughingthrush['entity.laughingthrush.name'/304, l='MpServer', x=-254.62, y=64.46, z=-164.69], EntityItem['item.item.rottenFlesh'/305, l='MpServer', x=-269.56, y=63.00, z=-175.40], EntityWoodDuck['Wood Duck'/306, l='MpServer', x=-269.51, y=63.00, z=-165.23], EntitySparrow['entity.sparrow.name'/307, l='MpServer', x=-275.08, y=63.00, z=-170.93], EntityCreaturesSpoonbill['Spoonbill'/308, l='MpServer', x=-253.00, y=63.00, z=-168.46], EntityLaughingthrush['entity.laughingthrush.name'/309, l='MpServer', x=-261.52, y=63.00, z=-161.55], EntityGhostCrab['Ghost Crab'/310, l='MpServer', x=-262.18, y=60.00, z=-172.42], EntityLaughingthrush['entity.laughingthrush.name'/311, l='MpServer', x=-235.76, y=63.00, z=-173.67], EntityBushtit['entity.bushtit.name'/312, l='MpServer', x=-252.89, y=59.00, z=-171.49], EntityBushtit['entity.bushtit.name'/313, l='MpServer', x=-249.67, y=63.00, z=-164.22], EntityBat['Bat'/314, l='MpServer', x=-260.36, y=47.13, z=-138.64], EntityGoldenEagle['Golden Eagle'/315, l='MpServer', x=-264.19, y=62.63, z=-144.56], EntitySparrow['entity.sparrow.name'/316, l='MpServer', x=-263.40, y=62.00, z=-150.40], EntityRedKite['Red Kite'/317, l='MpServer', x=-258.35, y=63.00, z=-148.22], EntityGoldenEagle['Golden Eagle'/318, l='MpServer', x=-263.87, y=63.00, z=-148.70], EntityGoldenEagle['Golden Eagle'/319, l='MpServer', x=-262.03, y=63.00, z=-144.28], EntityDove['Dove'/321, l='MpServer', x=-259.71, y=63.00, z=-148.61], EntitySparrow['entity.sparrow.name'/322, l='MpServer', x=-260.55, y=63.00, z=-147.01], EntityPygmyFalcon['African Pygmy Falcon'/323, l='MpServer', x=-264.20, y=63.00, z=-151.99], EntityCreeper['Creeper'/835, l='MpServer', x=-199.50, y=43.00, z=-259.50], EntitySparrow['entity.sparrow.name'/325, l='MpServer', x=-256.19, y=63.00, z=-152.71], EntityPygmyFalcon['African Pygmy Falcon'/326, l='MpServer', x=-259.58, y=63.00, z=-147.16], EntityPeafowl['entity.peafowl.name'/327, l='MpServer', x=-257.83, y=63.00, z=-155.88], EntitySparrow['entity.sparrow.name'/328, l='MpServer', x=-258.14, y=67.00, z=-146.41], EntitySparrow['entity.sparrow.name'/329, l='MpServer', x=-259.53, y=66.00, z=-146.72], EntityDove['Dove'/330, l='MpServer', x=-256.50, y=67.00, z=-146.21], EntityGoldenEagle['Golden Eagle'/331, l='MpServer', x=-265.94, y=62.51, z=-141.57], EntitySkeleton['Skeleton'/339, l='MpServer', x=-255.73, y=21.00, z=-275.53], EntityBat['Bat'/340, l='MpServer', x=-258.95, y=47.93, z=-223.39], EntityRoller['Roller Bird'/341, l='MpServer', x=-246.24, y=64.00, z=-225.77], EntityBushtit['entity.bushtit.name'/343, l='MpServer', x=-245.89, y=64.00, z=-224.46], EntityRoller['Roller Bird'/345, l='MpServer', x=-245.63, y=69.00, z=-209.40], EntityRoller['Roller Bird'/346, l='MpServer', x=-246.60, y=69.00, z=-209.78], EntityRoller['Roller Bird'/347, l='MpServer', x=-247.41, y=67.50, z=-208.03], EntityCreaturesSpoonbill['Spoonbill'/348, l='MpServer', x=-249.50, y=64.00, z=-213.93], EntityCreaturesSpoonbill['Spoonbill'/349, l='MpServer', x=-244.67, y=64.00, z=-224.21], EntityRoller['Roller Bird'/350, l='MpServer', x=-247.40, y=64.00, z=-210.18], EntitySparrow['entity.sparrow.name'/351, l='MpServer', x=-249.12, y=64.00, z=-209.91], EntityBat['Bat'/352, l='MpServer', x=-227.29, y=36.27, z=-211.68], EntitySparrow['entity.sparrow.name'/353, l='MpServer', x=-248.81, y=54.00, z=-204.60], EntitySparrow['entity.sparrow.name'/354, l='MpServer', x=-245.36, y=58.00, z=-189.64], EntitySparrow['entity.sparrow.name'/355, l='MpServer', x=-245.60, y=56.00, z=-196.58], EntityGhostCrab['Ghost Crab'/356, l='MpServer', x=-238.38, y=64.00, z=-193.56], EntityFiddlerCrab['Fiddler Crab'/357, l='MpServer', x=-242.66, y=64.00, z=-198.61], EntityPeafowl['entity.peafowl.name'/358, l='MpServer', x=-258.57, y=64.00, z=-204.24], EntityBarnOwl['Barn Owl'/359, l='MpServer', x=-247.58, y=64.00, z=-204.45], EntitySparrow['entity.sparrow.name'/360, l='MpServer', x=-245.36, y=64.27, z=-202.65], EntityCreaturesSpoonbill['Spoonbill'/361, l='MpServer', x=-253.28, y=64.00, z=-191.52], EntityWoodDuck['Wood Duck'/362, l='MpServer', x=-229.45, y=64.00, z=-189.65], EntityCreaturesSpoonbill['Spoonbill'/363, l='MpServer', x=-257.76, y=64.00, z=-205.39], EntityLaughingthrush['entity.laughingthrush.name'/364, l='MpServer', x=-229.78, y=64.00, z=-191.72], EntitySparrow['entity.sparrow.name'/365, l='MpServer', x=-245.60, y=58.00, z=-188.02], EntitySparrow['entity.sparrow.name'/366, l='MpServer', x=-242.40, y=59.00, z=-181.60], EntityEagleOwl['entity.eagleowl.name'/878, l='MpServer', x=-267.50, y=65.00, z=-196.50], EntityLaughingthrush['entity.laughingthrush.name'/367, l='MpServer', x=-245.60, y=58.00, z=-190.50], EntitySparrow['entity.sparrow.name'/368, l='MpServer', x=-247.50, y=59.00, z=-176.35], EntityWoodDuck['Wood Duck'/369, l='MpServer', x=-240.50, y=63.00, z=-180.74], EntityCreaturesSpoonbill['Spoonbill'/370, l='MpServer', x=-252.20, y=64.00, z=-200.26], EntityPeafowl['entity.peafowl.name'/371, l='MpServer', x=-236.27, y=63.00, z=-181.81], EntityWoodDuck['Wood Duck'/372, l='MpServer', x=-255.42, y=64.00, z=-189.66], EntityItem['item.item.rottenFlesh'/373, l='MpServer', x=-245.47, y=64.00, z=-182.46], EntityBushtit['entity.bushtit.name'/374, l='MpServer', x=-245.81, y=64.00, z=-186.88], EntityLaughingthrush['entity.laughingthrush.name'/375, l='MpServer', x=-251.60, y=60.00, z=-176.05], EntityPeafowl['entity.peafowl.name'/376, l='MpServer', x=-240.09, y=64.00, z=-191.94], EntitySkeleton['Skeleton'/378, l='MpServer', x=-241.50, y=37.00, z=-171.50], EntitySkeleton['Skeleton'/379, l='MpServer', x=-234.71, y=34.00, z=-175.48], EntityGyrfalcon['Gyrfalcon'/381, l='MpServer', x=-245.03, y=59.00, z=-173.62], EntityPeafowl['entity.peafowl.name'/382, l='MpServer', x=-253.71, y=63.00, z=-170.03], EntitySparrow['entity.sparrow.name'/383, l='MpServer', x=-248.12, y=60.56, z=-173.20], EntityPeafowl['entity.peafowl.name'/384, l='MpServer', x=-255.10, y=63.00, z=-160.07], EntitySparrow['entity.sparrow.name'/385, l='MpServer', x=-249.60, y=59.00, z=-176.60], EntityBushtit['entity.bushtit.name'/386, l='MpServer', x=-253.11, y=63.00, z=-160.92], EntityBushtit['entity.bushtit.name'/387, l='MpServer', x=-254.59, y=59.00, z=-174.90], EntitySparrow['entity.sparrow.name'/388, l='MpServer', x=-250.76, y=59.00, z=-174.84], EntityBushtit['entity.bushtit.name'/389, l='MpServer', x=-243.40, y=58.00, z=-190.73], EntityPeafowl['entity.peafowl.name'/390, l='MpServer', x=-247.08, y=63.00, z=-147.14], EntitySparrow['entity.sparrow.name'/391, l='MpServer', x=-251.20, y=63.00, z=-148.69], EntitySparrow['entity.sparrow.name'/392, l='MpServer', x=-256.83, y=63.00, z=-148.54], EntityRedKite['Red Kite'/393, l='MpServer', x=-254.89, y=63.00, z=-147.10], EntitySparrow['entity.sparrow.name'/394, l='MpServer', x=-251.00, y=63.00, z=-157.88], EntitySparrow['entity.sparrow.name'/395, l='MpServer', x=-258.17, y=63.00, z=-146.58], EntitySkeleton['Skeleton'/397, l='MpServer', x=-242.50, y=22.00, z=-134.50], EntityBarnOwl['Barn Owl'/401, l='MpServer', x=-252.25, y=63.00, z=-138.67], EntityItem['item.item.rottenFlesh'/402, l='MpServer', x=-251.16, y=63.00, z=-138.09], EntityCreeper['Creeper'/403, l='MpServer', x=-246.50, y=19.00, z=-123.50], EntityGoldenEagle['Golden Eagle'/415, l='MpServer', x=-241.64, y=63.00, z=-123.64], EntityGoldenEagle['Golden Eagle'/421, l='MpServer', x=-253.62, y=64.00, z=-119.21], EntityDove['Dove'/429, l='MpServer', x=-227.57, y=63.00, z=-227.21], EntityItem['item.item.arrow'/431, l='MpServer', x=-225.85, y=64.00, z=-215.19], EntityZombie['Zombie'/434, l='MpServer', x=-226.50, y=31.00, z=-186.50], EntityLaughingthrush['entity.laughingthrush.name'/435, l='MpServer', x=-228.69, y=64.00, z=-204.47], EntityWoodDuck['Wood Duck'/436, l='MpServer', x=-234.61, y=63.00, z=-181.25], EntityFiddlerCrab['Fiddler Crab'/437, l='MpServer', x=-228.46, y=64.00, z=-183.28], EntityFiddlerCrab['Fiddler Crab'/439, l='MpServer', x=-237.49, y=64.00, z=-200.39], EntityLaughingthrush['entity.laughingthrush.name'/440, l='MpServer', x=-237.13, y=62.57, z=-160.06], EntityDove['Dove'/442, l='MpServer', x=-239.30, y=63.00, z=-172.08], EntitySkeleton['Skeleton'/447, l='MpServer', x=-209.50, y=17.00, z=-260.50], EntityZombie['Zombie'/448, l='MpServer', x=-217.50, y=39.00, z=-258.50], EntitySkeleton['Skeleton'/449, l='MpServer', x=-214.70, y=40.00, z=-258.70], EntitySkeleton['Skeleton'/450, l='MpServer', x=-208.50, y=31.00, z=-255.50], EntityBat['Bat'/453, l='MpServer', x=-190.07, y=26.88, z=-188.23], EntityItem['item.item.rottenFlesh'/456, l='MpServer', x=-223.34, y=64.00, z=-222.07], EntityHorse['Horse'/458, l='MpServer', x=-216.88, y=64.00, z=-206.92], EntityZombie['Zombie'/459, l='MpServer', x=-209.95, y=31.00, z=-188.49], EntityZombie['Zombie'/460, l='MpServer', x=-217.28, y=33.00, z=-184.52], EntityCreeper['Creeper'/462, l='MpServer', x=-211.47, y=28.00, z=-173.85], EntityCreeper['Creeper'/463, l='MpServer', x=-216.50, y=33.00, z=-163.50], EntitySkeleton['Skeleton'/466, l='MpServer', x=-205.50, y=42.00, z=-268.50], EntitySkeleton['Skeleton'/467, l='MpServer', x=-201.50, y=39.00, z=-270.50], EntityHorse['Horse'/469, l='MpServer', x=-205.18, y=63.00, z=-259.47], EntityHorse['Horse'/475, l='MpServer', x=-193.87, y=64.00, z=-206.06], EntityZombie['Zombie'/476, l='MpServer', x=-198.50, y=29.00, z=-176.50], EntityCreeper['Creeper'/477, l='MpServer', x=-206.50, y=30.00, z=-191.80], EntitySpider['Spider'/478, l='MpServer', x=-199.50, y=44.00, z=-184.50], EntitySkeleton['Skeleton'/479, l='MpServer', x=-207.28, y=30.00, z=-167.50], EntityBat['Bat'/480, l='MpServer', x=-203.60, y=30.10, z=-173.72], EntityBat['Bat'/481, l='MpServer', x=-204.25, y=30.00, z=-166.68], EntitySkeleton['Skeleton'/485, l='MpServer', x=-204.50, y=30.00, z=-133.50], EntityBat['Bat'/488, l='MpServer', x=-188.79, y=43.10, z=-270.58], EntityHorse['Horse'/491, l='MpServer', x=-187.84, y=65.00, z=-218.93], EntityPlayerSP['Player523'/508, l='MpServer', x=-265.59, y=65.00, z=-196.21]]
+	Retry entities: 0 total; []
+	Server brand: fml,forge
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:420)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2741)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:419)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.legacydev.Main.start(Main.java:86)
+	at net.minecraftforge.legacydev.MainClient.main(MainClient.java:29)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.12.2
+	Operating System: Mac OS X (x86_64) version 10.15.7
+	Java Version: 1.8.0_292, AdoptOpenJDK
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode), AdoptOpenJDK
+	Memory: 700807120 bytes (668 MB) / 1676148736 bytes (1598 MB) up to 3817865216 bytes (3641 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 12, tallocated: 94
+	FML: MCP 9.42 Powered by Forge 14.23.5.2855 6 mods loaded, 6 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+
+	| State  | ID        | Version      | Source                                                               | Signature |
+	|:------ |:--------- |:------------ |:-------------------------------------------------------------------- |:--------- |
+	| LCHIJA | minecraft | 1.12.2       | minecraft.jar                                                        | None      |
+	| LCHIJA | mcp       | 9.42         | minecraft.jar                                                        | None      |
+	| LCHIJA | FML       | 8.0.99.99    | forge-1.12.2-14.23.5.2855_mapped_snapshot_20171003-1.12-recomp.jar   | None      |
+	| LCHIJA | forge     | 14.23.5.2855 | forge-1.12.2-14.23.5.2855_mapped_snapshot_20171003-1.12-recomp.jar   | None      |
+	| LCHIJA | creatures | 1.0          | main                                                                 | None      |
+	| LCHIJA | geckolib3 | 3.0.0        | forge-1.12.2-geckolib-3.0.0-beta.7_mapped_snapshot_20171003-1.12.jar | None      |
+
+	Loaded coremods (and transformers): 
+	GL info: ' Vendor: 'Intel Inc.' Version: '2.1 INTEL-14.7.8' Renderer: 'Intel(R) Iris(TM) Plus Graphics OpenGL Engine'
+	Launched Version: ${MC_VERSION}
+	LWJGL: 2.9.2
+	OpenGL: Intel(R) Iris(TM) Plus Graphics OpenGL Engine GL version 2.1 INTEL-14.7.8, Intel Inc.
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because ARB_framebuffer_object is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'fml,forge'
+	Type: Client (map_client.txt)
+	Resource Packs: 
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 8x Intel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz

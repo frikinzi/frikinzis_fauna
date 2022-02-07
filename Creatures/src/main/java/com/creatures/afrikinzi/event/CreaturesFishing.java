@@ -33,6 +33,7 @@ public class CreaturesFishing {
                 main.addEntry(new LootEntryItem(ItemInit.RAW_SHRIMP, 10, 0, new LootFunction[0], new LootCondition[] {new RandomChance(0.1F)}, "creatures:raw_shrimp"));
                 main.addEntry(new LootEntryItem(ItemInit.RAW_AROWANA, 3, 0, new LootFunction[0], new LootCondition[] {new RandomChance(0.1F)}, "creatures:arowana_loot"));
                 main.addEntry(new LootEntryItem(ItemInit.RAW_TROUT, 15, 0, new LootFunction[0], new LootCondition[] {new RandomChance(0.1F)}, "creatures:trout_loot"));
+                main.addEntry(new LootEntryItem(ItemInit.RAW_RED_SNAPPER, 15, 0, new LootFunction[0], new LootCondition[] {new RandomChance(0.1F)}, "creatures:red_snapper_loot"));
             }
 
         }

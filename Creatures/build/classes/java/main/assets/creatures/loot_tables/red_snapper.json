@@ -1,0 +1,33 @@
+{
+	"pools": [
+		{
+			"name": "red_snapper",
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "item",
+					"weight": 100,
+					"name": "creatures:raw_red_snapper",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": 1
+						},
+						{
+							"function": "furnace_smelt",
+							"conditions": [
+								{
+									"condition": "entity_properties",
+									"entity": "this",
+									"properties": {
+										"on_fire": true
+									}
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

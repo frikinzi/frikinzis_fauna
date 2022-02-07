@@ -1,7 +1,9 @@
 package com.creatures.afrikinzi.entity.koi;
 
 import com.creatures.afrikinzi.entity.FishBase;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -23,7 +25,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nullable;
 
 
-public class EntityKoi extends FishBase implements IAnimatable
+public class EntityKoi extends FishBase implements IAnimatable, ICreaturesEntity
 {
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -98,6 +100,11 @@ public class EntityKoi extends FishBase implements IAnimatable
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         this.setVariant(compound.getInteger("Variant"));
+    }
+
+    public String getSpeciesName() {
+        String s1 = I18n.format("entity.koi.name");
+        return s1;
     }
 
 }

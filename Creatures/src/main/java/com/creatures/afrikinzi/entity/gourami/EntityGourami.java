@@ -1,7 +1,9 @@
 package com.creatures.afrikinzi.entity.gourami;
 
 import com.creatures.afrikinzi.entity.FishBase;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.nbt.NBTTagCompound;
@@ -22,7 +24,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 
-public class EntityGourami extends FishBase implements IAnimatable {
+public class EntityGourami extends FishBase implements IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
 
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityGourami.class, DataSerializers.VARINT);
@@ -105,5 +107,10 @@ public class EntityGourami extends FishBase implements IAnimatable {
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         this.setVariant(compound.getInteger("Variant"));
+    }
+
+    public String getSpeciesName() {
+        String s1 = I18n.format("entity.gourami.name");
+        return s1;
     }
 }

@@ -1,5 +1,7 @@
 package com.creatures.afrikinzi.entity.ghostcrab;
 
+import com.creatures.afrikinzi.entity.AbstractCreaturesNonTameable;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
@@ -28,7 +30,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 
-public class EntityGhostCrab extends EntityAnimal implements IAnimatable {
+public class EntityGhostCrab extends AbstractCreaturesNonTameable implements IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityGhostCrab.class, DataSerializers.BOOLEAN);
     protected static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(EntityGhostCrab.class, DataSerializers.VARINT);
@@ -185,6 +187,7 @@ public class EntityGhostCrab extends EntityAnimal implements IAnimatable {
     {
         EntityGhostCrab entityghostcrab = new EntityGhostCrab(this.world);
         entityghostcrab.setVariant(this.getVariant());
+        entityghostcrab.setGender(this.rand.nextInt(2));
 
         return entityghostcrab;
     }

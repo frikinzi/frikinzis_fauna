@@ -9,6 +9,9 @@ public class ModelRedKite extends AnimatedGeoModel<EntityRedKite> {
     @Override
     public ResourceLocation getModelLocation(EntityRedKite object)
     {
+        if (object.isChild()) {
+            return new ResourceLocation(Reference.MOD_ID, "geo/entity/baby_eagle/babyraptor.geo.json");
+        }
         if (object.isFlying() || !object.onGround) {
             return new ResourceLocation(Reference.MOD_ID, "geo/entity/red_kite/red_kitefly.geo.json");
         }
@@ -18,6 +21,9 @@ public class ModelRedKite extends AnimatedGeoModel<EntityRedKite> {
     @Override
     public ResourceLocation getTextureLocation(EntityRedKite object)
     {
+        if (object.isChild()) {
+            return new ResourceLocation(Reference.MOD_ID, "textures/entity/baby_eagle/redkiteb.png");
+        }
         if (object.isFlying() || !object.onGround) {
             return new ResourceLocation(Reference.MOD_ID, "textures/entity/red_kite/redkitefly.png");
         } else if (object.isSleeping()) {
@@ -29,6 +35,9 @@ public class ModelRedKite extends AnimatedGeoModel<EntityRedKite> {
     @Override
     public ResourceLocation getAnimationFileLocation(EntityRedKite object)
     {
+        if (object.isChild()) {
+            return new ResourceLocation(Reference.MOD_ID, "animations/animation.babyraptor.json");
+        }
         if (object.isFlying() || !object.onGround) {
             return new ResourceLocation(Reference.MOD_ID, "animations/animation.red_kite.fly.json");
         }

@@ -1,6 +1,8 @@
 package com.creatures.afrikinzi.entity.dottyback;
 
 import com.creatures.afrikinzi.entity.FishBase;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -20,7 +22,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 
-public class EntityDottyback extends FishBase implements IAnimatable
+public class EntityDottyback extends FishBase implements IAnimatable, ICreaturesEntity
 {
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -87,6 +89,27 @@ public class EntityDottyback extends FishBase implements IAnimatable
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         this.setVariant(compound.getInteger("Variant"));
+    }
+
+    public String getSpeciesName() {
+        if (this.getVariant() == 1) {
+            String s1 = I18n.format("message.creatures.neon");
+            return s1;
+        }
+        else if (this.getVariant() == 2) {
+            String s1 = I18n.format("message.creatures.diadem");
+            return s1;
+        }
+        else if (this.getVariant() == 3) {
+            String s1 = I18n.format("message.creatures.striped");
+            return s1;
+        }
+        else if (this.getVariant() == 4) {
+            String s1 = I18n.format("message.creatures.springers");
+            return s1;
+        } else {
+            return "Unknown";
+        }
     }
 
 

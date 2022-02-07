@@ -1,11 +1,13 @@
 package com.creatures.afrikinzi.entity.fairy_wren;
 
 import com.creatures.afrikinzi.entity.FlyingEntityTameableBase;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.entity.RaptorBase;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -38,7 +40,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nullable;
 import java.util.Set;
 
-public class EntityFairyWren extends FlyingEntityTameableBase implements IAnimatable {
+public class EntityFairyWren extends FlyingEntityTameableBase implements IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityFairyWren.class, DataSerializers.VARINT);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityFairyWren.class, DataSerializers.BOOLEAN);
@@ -103,7 +105,6 @@ public class EntityFairyWren extends FlyingEntityTameableBase implements IAnimat
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
         this.setVariant(this.rand.nextInt(7));
-        this.setGender(this.rand.nextInt(3));
         return super.onInitialSpawn(difficulty, livingdata);
     }
 
@@ -131,28 +132,6 @@ public class EntityFairyWren extends FlyingEntityTameableBase implements IAnimat
     {
         ItemStack itemstack = player.getHeldItem(hand);
 
-        if (itemstack.getItem() == Items.BOOK)
-        {
-            Minecraft mc = Minecraft.getMinecraft();
-            if (this.getGender() == 1) {
-                if (this.world.isRemote) {
-                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.male"));
-                }
-
-            }
-            else {
-                if (this.world.isRemote) {
-                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.female"));
-                }
-            }
-            if (this.world.isRemote) {
-            mc.player.sendMessage(this.getVariantName());
-            }
-
-            return true;
-        }
-
-        else
         {
 
             return super.processInteract(player, hand);
@@ -167,16 +146,6 @@ public class EntityFairyWren extends FlyingEntityTameableBase implements IAnimat
     public void setVariant(int p_191997_1_)
     {
         this.dataManager.set(VARIANT, Integer.valueOf(p_191997_1_));
-    }
-
-    public int getGender()
-    {
-        return MathHelper.clamp(((Integer)this.dataManager.get(GENDER)).intValue(), 1, 3);
-    }
-
-    public void setGender(int p_191997_1_)
-    {
-        this.dataManager.set(GENDER, Integer.valueOf(p_191997_1_));
     }
 
     protected void entityInit()
@@ -248,6 +217,35 @@ public class EntityFairyWren extends FlyingEntityTameableBase implements IAnimat
         }
     }
 
+    public String getSpeciesName() {
+        if (this.getVariant() == 1) {
+            String s1 = I18n.format("essage.creatures.variegated");
+            return s1;
+        }
+        else if (this.getVariant() == 2) {
+            String s1 = I18n.format("message.creatures.splendid");
+            return s1;
+        }
+        else if (this.getVariant() == 3) {
+            String s1 = I18n.format("message.creatures.whitewinged");
+            return s1;
+        }
+        else if (this.getVariant() == 4) {
+            String s1 = I18n.format("message.creatures.blackwinged");
+            return s1;
+        }
+        else if (this.getVariant() == 5) {
+            String s1 = I18n.format("message.creatures.purplecrowned");
+            return s1;
+        }
+        else if (this.getVariant() == 6) {
+            String s1 = I18n.format("message.creatures.superb");
+            return s1;
+        } else {
+            return "???";
+        }
+    }
+
     public boolean isBreedingItem(ItemStack stack)
     {
         return stack.getItem() == Items.WHEAT_SEEDS;
@@ -279,12 +277,7 @@ public class EntityFairyWren extends FlyingEntityTameableBase implements IAnimat
     {
         EntityFairyWren entityfairywren = new EntityFairyWren(this.world);
         entityfairywren.setVariant(this.getVariant());
-        int j = this.rand.nextInt(2);
-        if (j == 0) {
-            entityfairywren.setGender(1);
-        } else {
-            entityfairywren.setGender(2);
-        }
+        entityfairywren.setGender(this.rand.nextInt(2));
 
         return entityfairywren;
     }

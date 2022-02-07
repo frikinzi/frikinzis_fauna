@@ -3,7 +3,7 @@ Implementation-Title: Creatures
 Implementation-Version: 1.0
 Specification-Vendor: examplemodsareus
 Specification-Title: examplemod
-Implementation-Timestamp: 2021-10-26T14:18:09-0400
+Implementation-Timestamp: 2021-12-23T19:17:19-0500
 Specification-Version: 1
 Implementation-Vendor: examplemodsareus
 

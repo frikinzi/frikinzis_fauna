@@ -1,6 +1,7 @@
 package com.creatures.afrikinzi.entity.fire_goby;
 
 import com.creatures.afrikinzi.entity.FishBase;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -11,7 +12,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class EntityFireGoby extends FishBase implements IAnimatable {
+public class EntityFireGoby extends FishBase implements IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
 
     public EntityFireGoby(World worldIn)

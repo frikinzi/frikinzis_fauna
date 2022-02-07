@@ -1,11 +1,17 @@
 package com.creatures.afrikinzi.entity.lovebird;
 
+import com.creatures.afrikinzi.Creatures;
 import com.creatures.afrikinzi.config.CreaturesConfig;
+import com.creatures.afrikinzi.entity.AbstractCreaturesTameable;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
+import com.creatures.afrikinzi.entity.ai.EntityAIFollowOwnerCreatures;
+import com.creatures.afrikinzi.util.Reference;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.*;
@@ -32,6 +38,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -43,7 +50,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nullable;
 import java.util.Set;
 
-public class EntityLovebird extends EntityShoulderRiding implements IAnimatable, EntityFlying {
+public class EntityLovebird extends AbstractCreaturesTameable implements IAnimatable, EntityFlying, ICreaturesEntity {
 
     private AnimationFactory factory = new AnimationFactory(this);
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityLovebird.class, DataSerializers.VARINT);
@@ -77,9 +84,9 @@ public class EntityLovebird extends EntityShoulderRiding implements IAnimatable,
         this.tasks.addTask(5, new EntityAIAttackMelee(this, 1.0D, true));
         this.tasks.addTask(4, new EntityAILeapAtTarget(this, 0.4F));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, false, new Class[0]));
-        this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         if (CreaturesConfig.birdsFollow == true) {
-        this.tasks.addTask(2, new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F)); }
+        this.tasks.addTask(2, new EntityAIFollowOwnerCreatures(this, 1.0D, 5.0F, 1.0F)); }
         this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
         //this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChicken.class, false, (Predicate)null));
     }
@@ -126,7 +133,7 @@ public class EntityLovebird extends EntityShoulderRiding implements IAnimatable,
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
         this.setVariant(getWildVariant());
-        this.setGender(this.rand.nextInt(3));
+        this.setGender(this.rand.nextInt(2));
         return super.onInitialSpawn(difficulty, livingdata);
     }
 
@@ -137,6 +144,10 @@ public class EntityLovebird extends EntityShoulderRiding implements IAnimatable,
         this.getEntityAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue(1.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20000000298023224D);
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
+    }
+
+    protected void setObject() {
+        Creatures.CREATURES_OBJECT = this;
     }
 
     protected PathNavigate createNavigator(World worldIn)
@@ -185,6 +196,8 @@ public class EntityLovebird extends EntityShoulderRiding implements IAnimatable,
     public boolean processInteract(EntityPlayer player, EnumHand hand)
     {
         ItemStack itemstack = player.getHeldItem(hand);
+
+
 
         if (!this.isTamed() && TAME_ITEMS.contains(itemstack.getItem()))
         {
@@ -364,12 +377,7 @@ public class EntityLovebird extends EntityShoulderRiding implements IAnimatable,
         else {
         entitylovebird.setVariant(this.getVariant());
         }
-        int j = this.rand.nextInt(2);
-        if (j == 0) {
-            entitylovebird.setGender(1);
-        } else {
-            entitylovebird.setGender(2);
-        }
+        entitylovebird.setGender(this.rand.nextInt(2));
 
         return entitylovebird;
     }
@@ -417,16 +425,6 @@ public class EntityLovebird extends EntityShoulderRiding implements IAnimatable,
     public void setVariant(int p_191997_1_)
     {
         this.dataManager.set(VARIANT, Integer.valueOf(p_191997_1_));
-    }
-
-    public int getGender()
-    {
-        return MathHelper.clamp(((Integer)this.dataManager.get(GENDER)).intValue(), 1, 3);
-    }
-
-    public void setGender(int p_191997_1_)
-    {
-        this.dataManager.set(GENDER, Integer.valueOf(p_191997_1_));
     }
 
     protected void entityInit()
@@ -509,6 +507,35 @@ public class EntityLovebird extends EntityShoulderRiding implements IAnimatable,
             return 6;
         }
 
+    }
+
+    public String getSpeciesName() {
+        if (this.getVariant() == 1) {
+            String s1 = I18n.format("message.creatures.lovebird.fischers");
+            return s1;
+        }
+        else if (this.getVariant() == 2) {
+            String s1 = I18n.format("message.creatures.lovebird.fischersmutation");
+            return s1;
+        }
+        else if (this.getVariant() == 3) {
+            String s1 = I18n.format("message.creatures.lovebird.masked");
+            return s1;
+        }
+        else if (this.getVariant() == 4) {
+            String s1 = I18n.format("message.creatures.lovebird.maskedmutation");
+            return s1;
+        }
+        else if (this.getVariant() == 5) {
+            String s1 = I18n.format("message.creatures.lovebird.peach");
+            return s1;
+        }
+        else if (this.getVariant() == 6) {
+            String s1 = I18n.format("message.creatures.lovebird.madagascar");
+            return s1;
+        } else {
+            return "Unknown";
+        }
     }
 
 

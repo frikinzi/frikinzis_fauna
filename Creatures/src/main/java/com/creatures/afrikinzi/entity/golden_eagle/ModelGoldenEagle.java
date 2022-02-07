@@ -9,6 +9,9 @@ public class ModelGoldenEagle extends AnimatedGeoModel<EntityGoldenEagle> {
     @Override
     public ResourceLocation getModelLocation(EntityGoldenEagle object)
     {
+        if (object.isChild()) {
+            return new ResourceLocation(Reference.MOD_ID, "geo/entity/baby_eagle/babyraptor.geo.json");
+        }
         if (object.isFlying() || !object.onGround) {
             return new ResourceLocation(Reference.MOD_ID, "geo/entity/golden_eagle/golden_eaglefly.geo.json");
         }
@@ -18,6 +21,9 @@ public class ModelGoldenEagle extends AnimatedGeoModel<EntityGoldenEagle> {
     @Override
     public ResourceLocation getTextureLocation(EntityGoldenEagle object)
     {
+        if (object.isChild()) {
+            return new ResourceLocation(Reference.MOD_ID, "textures/entity/baby_eagle/goldeneagleb.png");
+        }
         if (object.isFlying() || !object.onGround) {
             return new ResourceLocation(Reference.MOD_ID, "textures/entity/golden_eagle/golden_eaglefly.png");
         } else if (object.isSleeping()) {
@@ -29,6 +35,9 @@ public class ModelGoldenEagle extends AnimatedGeoModel<EntityGoldenEagle> {
     @Override
     public ResourceLocation getAnimationFileLocation(EntityGoldenEagle object)
     {
+        if (object.isChild()) {
+            return new ResourceLocation(Reference.MOD_ID, "animations/animation.babyraptor.json");
+        }
         if (object.isFlying() || !object.onGround) {
             return new ResourceLocation(Reference.MOD_ID, "animations/animation.golden_eagle.fly.json");
         }

@@ -26,6 +26,7 @@ public class Creatures
 {
     @Mod.Instance
     public static Creatures instance;
+    public static Object CREATURES_OBJECT;
 
     public static final CreativeTabs itemsblockstab = new CreaturesTab("itemsblockstabcreatures");
 

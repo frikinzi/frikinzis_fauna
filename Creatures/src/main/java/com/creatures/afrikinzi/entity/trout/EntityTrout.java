@@ -1,6 +1,7 @@
 package com.creatures.afrikinzi.entity.trout;
 
 import com.creatures.afrikinzi.entity.FishBase;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -22,7 +23,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 
-public class EntityTrout extends FishBase implements IAnimatable {
+public class EntityTrout extends FishBase implements IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
 
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityTrout.class, DataSerializers.VARINT);

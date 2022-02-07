@@ -34,6 +34,10 @@ entity.goldfish.name=金魚
 entity.ranchu.name=蘭壽金魚
 entity.swallow.name=燕子
 entity.flame_angelfish.name=火焰神仙魚
+entity.fiddlercrab.name=招潮蟹
+entity.ibis.name=朱鹮
+entity.red_snapper.name=紅鯛
+entity.wood_duck.name=林鴛鴦
 
 //Sounds
 entity.mandarin_duck.quack=鴛鴦：嘎嘎叫
@@ -55,6 +59,10 @@ entity.chickadee.ambient=山雀：歌聲
 entity.chickadee.ambient2=山雀：警報聲
 entity.swallow.swallow_ambient=燕子：叫聲
 entity.pygmygoose.pygmy_goose_ambient=鳧：歌聲
+entity.ibis.ibis_ambient=朱鹮：叫声
+entity.red_kite.ambient=红鸢：叫声
+entity.wood_duck.wood_duck_ambient1=林鸳鸯：叫声
+entity.wood_duck.wood_duck_ambient2=林鸳鸯：叫声
 
 //Messages
 message.creatures.male=性：雄
@@ -103,6 +111,8 @@ item.creatures_nectar.name=花蜜
 item.item_goldfish.name=金魚
 item.item_trout.name=新鮮鱒魚
 item.cooked_trout.name=燒鱒魚
+item.raw_red_snapper.name=生红鲷
+item.cooked_red_snapper.name=熟红鲷
 
 //tab
 itemGroup.itemsblockstabcreatures=Frikinzi的野生動物

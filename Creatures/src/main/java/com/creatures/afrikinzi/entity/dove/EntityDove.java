@@ -1,11 +1,16 @@
 package com.creatures.afrikinzi.entity.dove;
 
 import com.creatures.afrikinzi.config.CreaturesConfig;
+import com.creatures.afrikinzi.entity.AbstractCreaturesTameable;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
+import com.creatures.afrikinzi.entity.ai.EntityAIFollowOwnerCreatures;
+import com.creatures.afrikinzi.entity.wild_duck.EntityWildDuck;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
@@ -47,7 +52,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nullable;
 import java.util.Set;
 
-public class EntityDove extends EntityTameable implements IAnimatable, EntityFlying {
+public class EntityDove extends AbstractCreaturesTameable implements IAnimatable, EntityFlying, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Item LEARN_ITEM = Items.BOOK;
     private static Set<Item> TAME_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.PUMPKIN_SEEDS, Items.APPLE, Items.MELON, Items.BEETROOT_SEEDS, Items.MELON_SEEDS);
@@ -74,7 +79,6 @@ public class EntityDove extends EntityTameable implements IAnimatable, EntityFly
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
         this.setVariant(getRandomDoveType());
-        this.setGender(this.rand.nextInt(3));
         return super.onInitialSpawn(difficulty, livingdata);
     }
 
@@ -87,7 +91,7 @@ public class EntityDove extends EntityTameable implements IAnimatable, EntityFly
         this.tasks.addTask(2, this.aiSit);
         this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         if (CreaturesConfig.birdsFollow == true) {
-        this.tasks.addTask(2, new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F));
+        this.tasks.addTask(2, new EntityAIFollowOwnerCreatures(this, 1.0D, 5.0F, 1.0F));
         }
         this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
         //this.tasks.addTask(3, new EntityAIFollow(this, 1.0D, 3.0F, 7.0F));
@@ -314,13 +318,32 @@ public class EntityDove extends EntityTameable implements IAnimatable, EntityFly
 
     public boolean canMateWith(EntityAnimal otherAnimal)
     {
-        return false;
+        if (otherAnimal == this)
+        {
+            return false;
+        }
+        else if (!(otherAnimal instanceof EntityDove))
+        {
+            return false;
+        }
+        else
+        {
+            EntityDove entitywildduck = (EntityDove)otherAnimal;
+            if (this.getGender() == entitywildduck.getGender()) {
+                return false;
+            }
+            return this.isInLove() && entitywildduck.isInLove();
+        }
     }
 
     @Nullable
     public EntityAgeable createChild(EntityAgeable ageable)
     {
-        return null;
+        EntityDove entitywildduck = new EntityDove(this.world);
+        entitywildduck.setVariant(this.getVariant());
+        entitywildduck.setGender(this.rand.nextInt(2));
+
+        return entitywildduck;
     }
 
     public boolean canBePushed()
@@ -419,16 +442,6 @@ public class EntityDove extends EntityTameable implements IAnimatable, EntityFly
         this.dataManager.set(VARIANT, Integer.valueOf(p_191997_1_));
     }
 
-    public int getGender()
-    {
-        return MathHelper.clamp(((Integer)this.dataManager.get(GENDER)).intValue(), 1, 3);
-    }
-
-    public void setGender(int p_191997_1_)
-    {
-        this.dataManager.set(GENDER, Integer.valueOf(p_191997_1_));
-    }
-
     public SoundEvent getAmbientSound() {
         if (!this.isSleeping()) {
 
@@ -457,36 +470,70 @@ public class EntityDove extends EntityTameable implements IAnimatable, EntityFly
 
     private int getRandomDoveType()
     {
+        if (CreaturesConfig.biomeSpecificVariants == true) {
         Biome biome = this.world.getBiome(new BlockPos(this));
         int i = this.rand.nextInt(100);
 
-        if (BiomeDictionary.getTypes(biome).contains(BiomeDictionary.Type.JUNGLE))
-        {
+        if (BiomeDictionary.getTypes(biome).contains(BiomeDictionary.Type.JUNGLE)) {
             if (i < 20) {
                 return 1;
-            }
-            else if (i < 40) {
+            } else if (i < 40) {
                 return 3;
-            }
-            else if (i < 60) {
+            } else if (i < 60) {
                 return 7;
             } else if (i < 80) {
                 return 8;
-            }
-            else {
+            } else {
                 return 5;
             }
-        }
-        else
-        {
+        } else {
             if (i < 33) {
                 return 2;
             } else if (i < 66) {
                 return 6;
-            }
-            else {
+            } else {
                 return 4;
             }
+        }
+    }
+        else {
+            return this.rand.nextInt(9);
+        }
+    }
+
+    public String getSpeciesName() {
+        if (this.getVariant() == 1) {
+            String s1 = I18n.format("message.creatures.dove.jambu");
+            return s1;
+        }
+        else if (this.getVariant() == 2) {
+            String s1 = I18n.format("message.creatures.dove.release");
+            return s1;
+        }
+        else if (this.getVariant() == 3) {
+            String s1 = I18n.format("message.creatures.dove.rose");
+            return s1;
+        }
+        else if (this.getVariant() == 4) {
+            String s1 = I18n.format("message.creatures.dove.rock");
+            return s1;
+        }
+        else if (this.getVariant() == 5) {
+            String s1 = I18n.format("message.creatures.dove.flame");
+            return s1;
+        }
+        else if (this.getVariant() == 6) {
+            String s1 = I18n.format("message.creatures.dove.goldenheart");
+            return s1;
+        }  else if (this.getVariant() == 7) {
+            String s1 = I18n.format("message.creatures.dove.mbleeding");
+            return s1;
+        }  else if (this.getVariant() == 8) {
+            String s1 = I18n.format("message.creatures.dove.orangebellied");
+            return s1;
+        }
+        else {
+            return "Unknown";
         }
     }
 

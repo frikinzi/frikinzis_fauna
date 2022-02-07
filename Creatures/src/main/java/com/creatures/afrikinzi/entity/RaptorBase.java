@@ -1,6 +1,8 @@
 package com.creatures.afrikinzi.entity;
 
 import com.creatures.afrikinzi.config.CreaturesConfig;
+import com.creatures.afrikinzi.entity.ai.BabyNoFlyMoveHelper;
+import com.creatures.afrikinzi.entity.ai.BabyNoFlyPathNavigator;
 import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.google.common.collect.Sets;
@@ -23,6 +25,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNavigateFlying;
+import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
@@ -36,7 +39,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Set;
 
-public class RaptorBase extends EntityTameable implements EntityFlying {
+public class RaptorBase extends AbstractCreaturesTameable implements EntityFlying {
     public static Set<Item> TAME_ITEMS = Sets.newHashSet(Items.RABBIT, Items.PORKCHOP, Items.CHICKEN, ItemInit.RAW_LARGE_WILD_BIRD_MEAT, ItemInit.RAW_SMALL_WILD_BIRD_MEAT);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(RaptorBase.class, DataSerializers.BOOLEAN);
     protected static final DataParameter<Boolean> WANDERING = EntityDataManager.createKey(RaptorBase.class, DataSerializers.BOOLEAN);
@@ -48,12 +51,13 @@ public class RaptorBase extends EntityTameable implements EntityFlying {
     public float oFlap;
     public float flapping = 1.0F;
     public int HungerTime;
+    public World worldIn;
 
     public RaptorBase(World worldIn)
     {
         super(worldIn);
         //this.setSize(1.8F, 1.5F);
-        this.moveHelper = new EntityFlyHelper(this);
+        this.moveHelper = new BabyNoFlyMoveHelper(this);
         this.HungerTime = 0;
     }
 
@@ -73,7 +77,6 @@ public class RaptorBase extends EntityTameable implements EntityFlying {
     {
         PathNavigateFlying pathnavigateflying = new PathNavigateFlying(this, worldIn);
         pathnavigateflying.setCanOpenDoors(false);
-        pathnavigateflying.setCanFloat(true);
         pathnavigateflying.setCanEnterDoors(true);
         return pathnavigateflying;
     }
@@ -81,6 +84,9 @@ public class RaptorBase extends EntityTameable implements EntityFlying {
 
     public void onLivingUpdate()
     {
+        if (this.isChild()) {
+            this.navigator = new PathNavigateGround(this, world);
+        }
         if (this.onGround) {
             getsleep();
         }

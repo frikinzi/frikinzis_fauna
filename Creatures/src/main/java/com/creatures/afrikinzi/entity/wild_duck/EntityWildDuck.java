@@ -1,7 +1,10 @@
 package com.creatures.afrikinzi.entity.wild_duck;
 
+import com.creatures.afrikinzi.entity.AbstractCreaturesNonTameable;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -30,7 +33,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 
-public class EntityWildDuck extends EntityAnimal implements IAnimatable {
+public class EntityWildDuck extends AbstractCreaturesNonTameable implements IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityWildDuck.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> GENDER = EntityDataManager.<Integer>createKey(EntityWildDuck.class, DataSerializers.VARINT);
@@ -116,7 +119,6 @@ public class EntityWildDuck extends EntityAnimal implements IAnimatable {
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
         this.setVariant(this.rand.nextInt(4));
-        this.setGender(this.rand.nextInt(3));
         return super.onInitialSpawn(difficulty, livingdata);
     }
 
@@ -159,12 +161,7 @@ public class EntityWildDuck extends EntityAnimal implements IAnimatable {
     {
         EntityWildDuck entitywildduck = new EntityWildDuck(this.world);
         entitywildduck.setVariant(this.getVariant());
-        int j = this.rand.nextInt(2);
-        if (j == 0) {
-            entitywildduck.setGender(1);
-        } else {
-            entitywildduck.setGender(2);
-        }
+        entitywildduck.setGender(this.rand.nextInt(2));
 
         return entitywildduck;
     }
@@ -208,16 +205,6 @@ public class EntityWildDuck extends EntityAnimal implements IAnimatable {
         }
     }
 
-    public int getGender()
-    {
-        return MathHelper.clamp(((Integer)this.dataManager.get(GENDER)).intValue(), 1, 3);
-    }
-
-    public void setGender(int p_191997_1_)
-    {
-        this.dataManager.set(GENDER, Integer.valueOf(p_191997_1_));
-    }
-
     public void setSleeping(boolean value) {
         this.dataManager.set(SLEEPING, Boolean.valueOf(value));
     }
@@ -258,6 +245,24 @@ public class EntityWildDuck extends EntityAnimal implements IAnimatable {
     protected ResourceLocation getLootTable()
     {
         return LootTableHandler.DUCK;
+    }
+
+    @Override
+    public String getSpeciesName() {
+        if (this.getVariant() == 1) {
+            String s1 = I18n.format("message.creatures.torrent");
+            return s1;
+        }
+        else if (this.getVariant() == 2) {
+            String s1 = I18n.format("message.creatures.redhead");
+            return s1;
+        }
+        else if (this.getVariant() == 3) {
+            String s1 = I18n.format("message.creatures.greenwing");
+            return s1;
+        } else {
+            return "Unknown";
+        }
     }
 
 }

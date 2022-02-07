@@ -8,7 +8,7 @@
   "url": "https://www.curseforge.com/minecraft/mc-mods/creatures",
   "updateUrl": "",
   "authorList": ["Frikinzi"],
-  "credits": "xeno-canto for bird sounds, P-Plum for the lorikeet model help. Thank you!",
+  "credits": "xeno-canto for bird sounds, P-Plum for the lorikeet model help, and everyone who supported me on the way. Thank you!",
   "logoFile": "assets/creatures/creatures_logo.png",
   "screenshots": [],
   "dependencies": ["forge", "geckolib"]

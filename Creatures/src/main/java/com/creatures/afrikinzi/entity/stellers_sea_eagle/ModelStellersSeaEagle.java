@@ -12,6 +12,9 @@ public class ModelStellersSeaEagle extends AnimatedGeoModel<EntityStellersSeaEag
     @Override
     public ResourceLocation getModelLocation(EntityStellersSeaEagle object)
     {
+        if (object.isChild()) {
+            return new ResourceLocation(Reference.MOD_ID, "geo/entity/baby_eagle/babyraptor.geo.json");
+        }
         if (object.isFlying() || !object.onGround) {
             return new ResourceLocation(Reference.MOD_ID, "geo/entity/stellers_sea_eagle/stellers_sea_eaglefly.geo.json");
         }
@@ -21,6 +24,9 @@ public class ModelStellersSeaEagle extends AnimatedGeoModel<EntityStellersSeaEag
     @Override
     public ResourceLocation getTextureLocation(EntityStellersSeaEagle object)
     {
+        if (object.isChild()) {
+            return new ResourceLocation(Reference.MOD_ID, "textures/entity/baby_eagle/stellersseaeagleb.png");
+        }
         if (object.isFlying() || !object.onGround) {
             return new ResourceLocation(Reference.MOD_ID, "textures/entity/stellers_sea_eagle/stellers_sea_eaglefly.png");
         } else if (object.isSleeping()) {
@@ -32,6 +38,9 @@ public class ModelStellersSeaEagle extends AnimatedGeoModel<EntityStellersSeaEag
     @Override
     public ResourceLocation getAnimationFileLocation(EntityStellersSeaEagle object)
     {
+        if (object.isChild()) {
+            return new ResourceLocation(Reference.MOD_ID, "animations/animation.babyraptor.json");
+        }
         if (object.isFlying() || !object.onGround) {
             return new ResourceLocation(Reference.MOD_ID, "animations/animation.stellers_sea_eaglefly.json");
         }

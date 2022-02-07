@@ -1,5 +1,8 @@
 package com.creatures.afrikinzi.entity.shrimp;
 
+import com.creatures.afrikinzi.config.CreaturesConfig;
+import com.creatures.afrikinzi.entity.FishBase;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.entity.ShrimpBase;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import net.minecraft.entity.IEntityLivingData;
@@ -22,7 +25,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 
-public class EntityShrimp extends ShrimpBase implements IAnimatable {
+public class EntityShrimp extends FishBase implements IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
 
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityShrimp.class, DataSerializers.VARINT);
@@ -102,28 +105,37 @@ public class EntityShrimp extends ShrimpBase implements IAnimatable {
     }
 
     protected int getWildColor() {
-        int d = this.rand.nextInt(100);
-        if (d < 90) {
-            return 4;
-        }
-        else {
-            int c = this.rand.nextInt(8);
-            if (c == 1) {
+        if (CreaturesConfig.rareVariants == true) {
+            int d = this.rand.nextInt(100);
+            if (d < 90) {
+                return 4;
+            } else {
+                int c = this.rand.nextInt(8);
+                if (c == 1) {
                     return 1;
-                } if (c == 2) {
+                }
+                if (c == 2) {
                     return 2;
-                } if (c == 3) {
+                }
+                if (c == 3) {
                     return 3;
-                } if (c == 4) {
+                }
+                if (c == 4) {
                     return 5;
-                } if (c == 5) {
+                }
+                if (c == 5) {
                     return 6;
-                } if (c == 6) {
+                }
+                if (c == 6) {
                     return 7;
                 } else {
                     return 8;
                 }
 
             }
+        }
+        else {
+            return this.rand.nextInt(9);
+        }
     }
 }

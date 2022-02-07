@@ -1,5 +1,7 @@
 package com.creatures.afrikinzi.entity.pygmy_goose;
 
+import com.creatures.afrikinzi.entity.AbstractCreaturesNonTameable;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import net.minecraft.entity.EntityAgeable;
@@ -30,7 +32,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 
-public class EntityPygmyGoose extends EntityAnimal implements IAnimatable {
+public class EntityPygmyGoose extends AbstractCreaturesNonTameable implements IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityPygmyGoose.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> GENDER = EntityDataManager.<Integer>createKey(EntityPygmyGoose.class, DataSerializers.VARINT);
@@ -118,7 +120,6 @@ public class EntityPygmyGoose extends EntityAnimal implements IAnimatable {
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
         this.setVariant(this.rand.nextInt(4));
-        this.setGender(this.rand.nextInt(3));
         return super.onInitialSpawn(difficulty, livingdata);
     }
 
@@ -162,12 +163,7 @@ public class EntityPygmyGoose extends EntityAnimal implements IAnimatable {
     {
         EntityPygmyGoose entitypygmygoose = new EntityPygmyGoose(this.world);
         entitypygmygoose.setVariant(this.getVariant());
-        int j = this.rand.nextInt(2);
-        if (j == 0) {
-            entitypygmygoose.setGender(1);
-        } else {
-            entitypygmygoose.setGender(2);
-        }
+        entitypygmygoose.setGender(this.rand.nextInt(2));
 
         return entitypygmygoose;
     }
@@ -209,16 +205,6 @@ public class EntityPygmyGoose extends EntityAnimal implements IAnimatable {
         } else {
             return super.isMovementBlocked();
         }
-    }
-
-    public int getGender()
-    {
-        return MathHelper.clamp(((Integer)this.dataManager.get(GENDER)).intValue(), 1, 3);
-    }
-
-    public void setGender(int p_191997_1_)
-    {
-        this.dataManager.set(GENDER, Integer.valueOf(p_191997_1_));
     }
 
     public void setSleeping(boolean value) {

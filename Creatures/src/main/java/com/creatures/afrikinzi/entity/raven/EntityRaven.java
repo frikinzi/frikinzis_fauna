@@ -1,6 +1,9 @@
 package com.creatures.afrikinzi.entity.raven;
 
 import com.creatures.afrikinzi.config.CreaturesConfig;
+import com.creatures.afrikinzi.entity.AbstractCreaturesTameable;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
+import com.creatures.afrikinzi.entity.ai.EntityAIFollowOwnerCreatures;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
@@ -42,7 +45,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nullable;
 import java.util.Set;
 
-public class EntityRaven extends EntityTameable implements IAnimatable, EntityFlying {
+public class EntityRaven extends AbstractCreaturesTameable implements IAnimatable, EntityFlying, ICreaturesEntity {
 
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Set<Item> TAME_ITEMS = Sets.newHashSet(Items.EGG, Items.ROTTEN_FLESH);
@@ -72,15 +75,15 @@ public class EntityRaven extends EntityTameable implements IAnimatable, EntityFl
         this.tasks.addTask(0, new EntityAIPanic(this, 1.25D));
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, this.aiSit);
-        this.tasks.addTask(7, new EntityAIMate(this, 1.0D));
+        this.tasks.addTask(6, new EntityAIMate(this, 1.0D));
         this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
         this.tasks.addTask(5, new EntityAIAttackMelee(this, 1.0D, true));
         this.tasks.addTask(4, new EntityAILeapAtTarget(this, 0.4F));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true, new Class[0]));
         this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         if (CreaturesConfig.birdsFollow == true) {
-        this.tasks.addTask(2, new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F)); }
-        this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
+        this.tasks.addTask(6, new EntityAIFollowOwnerCreatures(this, 1.0D, 5.0F, 1.0F)); }
+        this.tasks.addTask(7, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
         //this.tasks.addTask(3, new EntityAIFollow(this, 1.0D, 3.0F, 7.0F));
         this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
     }
@@ -428,6 +431,7 @@ public class EntityRaven extends EntityTameable implements IAnimatable, EntityFl
             entityraven.setVariant(1);
         } else {
             entityraven.setVariant(this.getVariant()); }
+        entityraven.setGender(this.rand.nextInt(2));
 
         return entityraven;
     }

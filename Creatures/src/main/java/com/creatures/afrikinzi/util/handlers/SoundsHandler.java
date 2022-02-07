@@ -31,6 +31,16 @@ public class SoundsHandler {
     public static SoundEvent CHICKADEE_AMBIENT2;
     public static SoundEvent SWALLOW_AMBIENT;
     public static SoundEvent PYGMY_GOOSE_AMBIENT;
+    public static SoundEvent IBIS_AMBIENT;
+    public static SoundEvent WOOD_DUCK_AMBIENT1;
+    public static SoundEvent WOOD_DUCK_AMBIENT2;
+    public static SoundEvent PEAFOWL_AMBIENT;
+    public static SoundEvent SPARROW_AMBIENT;
+    public static SoundEvent BUSHTIT_AMBIENT;
+    public static SoundEvent LAUGHINGTHRUSH_AMBIENT;
+    public static SoundEvent EAGLEOWL_AMBIENT;
+    public static SoundEvent ROBIN_AMBIENT;
+    public static SoundEvent MAGPIE_AMBIENT;
 
     public static void registerSounds() {
         LOVEBIRD_AMBIENT = registerSound("entity.lovebird.lovebird_ambient");
@@ -57,6 +67,16 @@ public class SoundsHandler {
         CHICKADEE_AMBIENT2 = registerSound("entity.chickadee.chickadee_ambient2");
         SWALLOW_AMBIENT = registerSound("entity.swallow.swallow_ambient");
         PYGMY_GOOSE_AMBIENT = registerSound("entity.pygmygoose.pygmy_goose_ambient");
+        IBIS_AMBIENT = registerSound("entity.ibis.ibis_ambient");
+        WOOD_DUCK_AMBIENT1 = registerSound("entity.wood_duck.wood_duck_ambient1");
+        WOOD_DUCK_AMBIENT2 = registerSound("entity.wood_duck.wood_duck_ambient2");
+        PEAFOWL_AMBIENT = registerSound("entity.peafowl.peafowl_ambient");
+        SPARROW_AMBIENT = registerSound("entity.sparrow.sparrow_ambient");
+        BUSHTIT_AMBIENT = registerSound("entity.bushtit.bushtit_ambient");
+        LAUGHINGTHRUSH_AMBIENT = registerSound("entity.laughingthrush.laughingthrush_ambient");
+        EAGLEOWL_AMBIENT = registerSound("entity.eagleowl.eagleowl_ambient");
+        MAGPIE_AMBIENT = registerSound("entity.magpie.magpie_ambient");
+        ROBIN_AMBIENT = registerSound("entity.robin.robin_ambient");
     }
 
     private static SoundEvent registerSound(String name) {

@@ -1,21 +1,27 @@
 package com.creatures.afrikinzi.entity.gyrfalcon;
 
 import com.creatures.afrikinzi.config.CreaturesConfig;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.entity.RaptorBase;
+import com.creatures.afrikinzi.entity.ai.EntityAIFollowOwnerCreatures;
 import com.creatures.afrikinzi.entity.chickadee.EntityChickadee;
+import com.creatures.afrikinzi.entity.golden_eagle.EntityGoldenEagle;
 import com.creatures.afrikinzi.entity.koi.EntityKoi;
 import com.creatures.afrikinzi.entity.swallow.EntitySwallow;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Sets;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityRabbit;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
@@ -29,7 +35,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import java.util.Set;
 
-public class EntityGyrfalcon extends RaptorBase implements IAnimatable {
+public class EntityGyrfalcon extends RaptorBase implements IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
 
     public EntityGyrfalcon(World worldIn) {
@@ -41,6 +47,7 @@ public class EntityGyrfalcon extends RaptorBase implements IAnimatable {
     @Override
     protected void initEntityAI() {
         this.aiSit = new EntityAISit(this);
+        this.tasks.addTask(5, new EntityAIMate(this, 0.8D));
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, this.aiSit);
         this.tasks.addTask(5, new EntityAIAttackMelee(this, 1.4D, true));
@@ -48,16 +55,16 @@ public class EntityGyrfalcon extends RaptorBase implements IAnimatable {
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, false, new Class[0]));
         this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         if (CreaturesConfig.raptorsFollow == true) {
-        this.tasks.addTask(2, new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F));
+        this.tasks.addTask(6, new EntityAIFollowOwnerCreatures(this, 1.0D, 5.0F, 1.0F));
         }
-        this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
+        this.tasks.addTask(7, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
         this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
         this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
         if (CreaturesConfig.eagleAttacks == true) {
-        this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityRabbit.class, false, (Predicate) null));
-        this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChicken.class, false, (Predicate) null));
-        this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntitySwallow.class, false, (Predicate) null));
-        this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChickadee.class, false, (Predicate) null));
+        this.targetTasks.addTask(8, new EntityAITargetNonTamed(this, EntityRabbit.class, false, (Predicate) null));
+        this.targetTasks.addTask(8, new EntityAITargetNonTamed(this, EntityChicken.class, false, (Predicate) null));
+        this.targetTasks.addTask(8, new EntityAITargetNonTamed(this, EntitySwallow.class, false, (Predicate) null));
+        this.targetTasks.addTask(8, new EntityAITargetNonTamed(this, EntityChickadee.class, false, (Predicate) null));
         }
     }
 
@@ -109,5 +116,36 @@ public class EntityGyrfalcon extends RaptorBase implements IAnimatable {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public boolean isBreedingItem(ItemStack stack)
+    {
+        return TAME_ITEMS.contains(stack.getItem());
+    }
+
+
+    @Override
+    public boolean canMateWith(EntityAnimal otherAnimal)
+    {
+        if (otherAnimal == this)
+        {
+            return false;
+        }
+        else if (!(otherAnimal instanceof EntityGyrfalcon))
+        {
+            return false;
+        }
+        EntityGyrfalcon entitygyrfalcon = (EntityGyrfalcon)otherAnimal;
+        return this.isInLove() && entitygyrfalcon.isInLove();
+    }
+
+    @Override
+    public EntityGyrfalcon createChild(EntityAgeable ageable)
+    {
+        EntityGyrfalcon entitygyrfalcon = new EntityGyrfalcon(this.world);
+        entitygyrfalcon.setGender(this.rand.nextInt(2));
+        return entitygyrfalcon;
+
     }
 }

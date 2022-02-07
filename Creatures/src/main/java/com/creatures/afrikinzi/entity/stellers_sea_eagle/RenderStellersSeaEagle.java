@@ -13,11 +13,7 @@ public class RenderStellersSeaEagle extends GeoEntityRenderer<EntityStellersSeaE
     @Override
     public void renderEarly(EntityStellersSeaEagle animatable, float ticks, float red, float green, float blue, float partialTicks)
     {
-        if (animatable.isChild()) {
-        GlStateManager.scale(0.5F, 0.5F, 0.5F);
-        } else{
             GlStateManager.scale(0.8F, 0.8F, 0.8F);
-        }
     }
 
 }

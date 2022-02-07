@@ -2,10 +2,13 @@ package com.creatures.afrikinzi.entity.lorikeet;
 
 import com.creatures.afrikinzi.config.CreaturesConfig;
 import com.creatures.afrikinzi.entity.FlyingEntityTameableBase;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
+import com.creatures.afrikinzi.entity.ai.EntityAIFollowOwnerCreatures;
 import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -39,14 +42,14 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nullable;
 import java.util.Set;
 
-public class EntityLorikeet extends FlyingEntityTameableBase implements IAnimatable {
+public class EntityLorikeet extends FlyingEntityTameableBase implements IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityLorikeet.class, DataSerializers.VARINT);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityLorikeet.class, DataSerializers.BOOLEAN);
     protected static final DataParameter<Boolean> WANDERING = EntityDataManager.createKey(EntityLorikeet.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> GENDER = EntityDataManager.<Integer>createKey(EntityLorikeet.class, DataSerializers.VARINT);
     private static final Set<Item> TAME_ITEMS = Sets.newHashSet(ItemInit.NECTAR);
-    protected EntityAIFollowOwnerFlying follow;
+    protected EntityAIFollowOwnerCreatures follow;
 
     public EntityLorikeet(World worldIn)
     {
@@ -58,7 +61,7 @@ public class EntityLorikeet extends FlyingEntityTameableBase implements IAnimata
     @Override
     protected void initEntityAI()
     {
-        this.follow = new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F);
+        this.follow = new EntityAIFollowOwnerCreatures(this, 1.0D, 5.0F, 1.0F);
         this.aiSit = new EntityAISit(this);
         this.tasks.addTask(0, new EntityAIPanic(this, 1.25D));
         this.tasks.addTask(7, new EntityAIMate(this, 1.0D));
@@ -113,7 +116,7 @@ public class EntityLorikeet extends FlyingEntityTameableBase implements IAnimata
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
         this.setVariant(getWildColor());
-        this.setGender(this.rand.nextInt(3));
+        this.setGender(this.rand.nextInt(2));
         return super.onInitialSpawn(difficulty, livingdata);
     }
 
@@ -215,16 +218,6 @@ public class EntityLorikeet extends FlyingEntityTameableBase implements IAnimata
         this.dataManager.set(VARIANT, Integer.valueOf(p_191997_1_));
     }
 
-    public int getGender()
-    {
-        return MathHelper.clamp(((Integer)this.dataManager.get(GENDER)).intValue(), 1, 3);
-    }
-
-    public void setGender(int p_191997_1_)
-    {
-        this.dataManager.set(GENDER, Integer.valueOf(p_191997_1_));
-    }
-
     protected void entityInit()
     {
         super.entityInit();
@@ -309,6 +302,7 @@ public class EntityLorikeet extends FlyingEntityTameableBase implements IAnimata
         else {
             entitylorikeet.setVariant(this.getVariant());
         }
+        entitylorikeet.setGender(this.rand.nextInt(2));
 
         return entitylorikeet;
     }
@@ -337,6 +331,35 @@ public class EntityLorikeet extends FlyingEntityTameableBase implements IAnimata
             return 4;
         } else {
             return 5;
+        }
+    }
+
+    public String getSpeciesName() {
+        if (this.getVariant() == 1) {
+            String s1 = I18n.format("message.creatures.lorikeet.rainbow");
+            return s1;
+        }
+        else if (this.getVariant() == 2) {
+            String s1 = I18n.format("message.creatures.lorikeet.black");
+            return s1;
+        }
+        else if (this.getVariant() == 3) {
+            String s1 = I18n.format("message.creatures.lorikeet.blue");
+            return s1;
+        }
+        else if (this.getVariant() == 4) {
+            String s1 = I18n.format("message.creatures.lorikeet.olive");
+            return s1;
+        }
+        else if (this.getVariant() == 5) {
+            String s1 = I18n.format("message.creatures.lorikeet.chattering");
+            return s1;
+        }
+        else if (this.getVariant() == 6) {
+            String s1 = I18n.format("message.creatures.lovebird.madagascar");
+            return s1;
+        } else {
+            return "Unknown";
         }
     }
 

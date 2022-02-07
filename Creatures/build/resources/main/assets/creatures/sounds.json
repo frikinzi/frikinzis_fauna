@@ -2,19 +2,19 @@
 	"entity.lovebird.lovebird_ambient":
 	{
 		"category": "entity",
-		"subtitle": "Lovebird chirps",
+		"subtitle": "entity.lovebird.ambient",
 		"sounds": [{"name": "creatures:entity/lovebird/lovebird_ambient", "stream": true }]
 	},
 	"entity.kakapo.kakapo_ambient":
 	{
 		"category": "entity",
-		"subtitle": "Kakapo calls",
+		"subtitle": "entity.kakapo.ambient",
 		"sounds": [{"name": "creatures:entity/kakapo/kakapo_ambient", "stream": true }]
 	},
 	"entity.kakapo.kakapo_hurt":
 	{
 		"category": "entity",
-		"subtitle": "Kakapo screeches",
+		"subtitle": "entity.kakapo.hurt",
 		"sounds": [{"name": "creatures:entity/kakapo/kakapo_hurt", "stream": true }]
 	},
 	"entity.creatures_spoonbill.spoonbill_ambient":
@@ -143,5 +143,23 @@
 		"category": "entity",
 		"subtitle": "entity.pygmygoose.pygmy_goose_ambient",
 		"sounds": [{"name": "creatures:entity/pygmy_goose/pygmy_goose_ambient", "stream": true }]
+	},
+	"entity.ibis.ibis_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.ibis.ibis_ambient",
+		"sounds": [{"name": "creatures:entity/ibis/ibis_ambient", "stream": true }]
+	},
+	"entity.wood_duck.wood_duck_ambient1":
+	{
+		"category": "entity",
+		"subtitle": "entity.wood_duck.wood_duck_ambient1",
+		"sounds": [{"name": "creatures:entity/wood_duck/wood_duck_ambient1", "stream": true }]
+	},
+	"entity.wood_duck.wood_duck_ambient2":
+	{
+		"category": "entity",
+		"subtitle": "entity.wood_duck.wood_duck_ambient2",
+		"sounds": [{"name": "creatures:entity/wood_duck/wood_duck_ambient2", "stream": true }]
 	}
 }

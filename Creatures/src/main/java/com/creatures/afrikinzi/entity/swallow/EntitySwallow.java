@@ -1,5 +1,7 @@
 package com.creatures.afrikinzi.entity.swallow;
 
+import com.creatures.afrikinzi.entity.AbstractCreaturesNonTameable;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.entity.RaptorBase;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
@@ -39,7 +41,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nullable;
 import java.util.Set;
 
-public class EntitySwallow extends EntityAnimal implements EntityFlying, IAnimatable {
+public class EntitySwallow extends AbstractCreaturesNonTameable implements EntityFlying, IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntitySwallow.class, DataSerializers.VARINT);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntitySwallow.class, DataSerializers.BOOLEAN);

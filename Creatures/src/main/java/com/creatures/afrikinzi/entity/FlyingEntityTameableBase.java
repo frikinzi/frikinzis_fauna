@@ -27,7 +27,7 @@ import net.minecraft.world.storage.loot.LootTableList;
 
 import javax.annotation.Nullable;
 
-public class FlyingEntityTameableBase extends EntityTameable implements EntityFlying {
+public class FlyingEntityTameableBase extends AbstractCreaturesTameable implements EntityFlying {
     public float flap;
     public float flapSpeed;
     public float oFlapSpeed;

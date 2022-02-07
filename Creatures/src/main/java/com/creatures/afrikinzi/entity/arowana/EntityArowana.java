@@ -1,7 +1,9 @@
 package com.creatures.afrikinzi.entity.arowana;
 
 import com.creatures.afrikinzi.entity.FishBase;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,6 +12,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -22,7 +25,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 
-public class EntityArowana extends FishBase implements IAnimatable {
+public class EntityArowana extends FishBase implements IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
 
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityArowana.class, DataSerializers.VARINT);
@@ -100,4 +103,10 @@ public class EntityArowana extends FishBase implements IAnimatable {
         super.readEntityFromNBT(compound);
         this.setVariant(compound.getInteger("Variant"));
     }
+
+    public String getSpeciesName() {
+        String s1 = I18n.format("entity.arowana.name");
+        return s1;
+    }
+
 }

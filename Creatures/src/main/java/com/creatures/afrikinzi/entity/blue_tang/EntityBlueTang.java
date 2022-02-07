@@ -1,6 +1,8 @@
 package com.creatures.afrikinzi.entity.blue_tang;
 
 import com.creatures.afrikinzi.entity.FishBase;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -11,7 +13,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class EntityBlueTang extends FishBase implements IAnimatable {
+public class EntityBlueTang extends FishBase implements IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
 
     public EntityBlueTang(World worldIn)
@@ -47,5 +49,10 @@ public class EntityBlueTang extends FishBase implements IAnimatable {
     protected void entityInit()
     {
         super.entityInit();
+    }
+
+    public String getSpeciesName() {
+        String s1 = I18n.format("entity.blue_tang.name");
+        return s1;
     }
 }

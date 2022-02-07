@@ -1,5 +1,7 @@
 package com.creatures.afrikinzi.entity.roller;
 
+import com.creatures.afrikinzi.entity.AbstractCreaturesNonTameable;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
@@ -15,6 +17,7 @@ import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -39,7 +42,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nullable;
 import java.util.Set;
 
-public class EntityRoller extends EntityAnimal implements IAnimatable, EntityFlying {
+public class EntityRoller extends AbstractCreaturesNonTameable implements IAnimatable, EntityFlying, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityRoller.class, DataSerializers.VARINT);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityRoller.class, DataSerializers.BOOLEAN);
@@ -206,11 +209,7 @@ public class EntityRoller extends EntityAnimal implements IAnimatable, EntityFly
         EntityRoller entityroller = new EntityRoller(this.world);
         entityroller.setVariant(this.getVariant());
         int j = this.rand.nextInt(2);
-        if (j == 0) {
-            entityroller.setGender(1);
-        } else {
-            entityroller.setGender(2);
-        }
+        entityroller.setGender(this.rand.nextInt(2));
 
         return entityroller;
     }
@@ -305,6 +304,11 @@ public class EntityRoller extends EntityAnimal implements IAnimatable, EntityFly
         } else {
             return null;
         }
+    }
+
+    public boolean isBreedingItem(ItemStack stack)
+    {
+        return TAME_ITEMS.contains(stack.getItem());
     }
 
 }

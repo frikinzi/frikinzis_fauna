@@ -1,23 +1,35 @@
 package com.creatures.afrikinzi.entity;
 
+import com.creatures.afrikinzi.Creatures;
 import com.creatures.afrikinzi.config.CreaturesConfig;
+import com.creatures.afrikinzi.init.ItemInit;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNavigateSwimmer;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class FishBase extends EntityCreature {
     private static final DataParameter<Boolean> MOVING = EntityDataManager.<Boolean>createKey(FishBase.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> GENDER = EntityDataManager.<Integer>createKey(FishBase.class, DataSerializers.VARINT);
     protected float clientSideTailAnimation;
     protected float clientSideTailAnimationO;
     protected float clientSideTailAnimationSpeed;
@@ -53,6 +65,7 @@ public class FishBase extends EntityCreature {
     {
         super.entityInit();
         this.dataManager.register(MOVING, Boolean.valueOf(false));
+        this.dataManager.register(GENDER, Integer.valueOf(0));
     }
 
     public boolean isMoving()
@@ -68,6 +81,13 @@ public class FishBase extends EntityCreature {
     protected boolean canTriggerWalking()
     {
         return false;
+    }
+
+    @Nullable
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
+    {
+        this.setGender(this.rand.nextInt(2));
+        return super.onInitialSpawn(difficulty, livingdata);
     }
 
 
@@ -261,6 +281,68 @@ public class FishBase extends EntityCreature {
         else {
             return false;
         }
+    }
+
+
+    public int getGender()
+    {
+        return this.dataManager.get(GENDER);
+    }
+
+    public void setGender(int p_191997_1_)
+    {
+        this.dataManager.set(GENDER, Integer.valueOf(p_191997_1_));
+    }
+
+    public String getGenderString() {
+        if (this.getGender() == 1) {
+            return "Male";
+        } else {
+            return "Female";
+        }
+    }
+
+    public String getSpeciesName() {
+        return "";
+    }
+
+    public void writeEntityToNBT(NBTTagCompound compound)
+    {
+        super.writeEntityToNBT(compound);
+        compound.setInteger("Gender", this.getGender());
+    }
+
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        this.setGender(compound.getInteger("Gender"));
+    }
+
+    public boolean processInteract(EntityPlayer player, EnumHand hand)
+    {
+        ItemStack itemstack = player.getHeldItem(hand);
+        if (itemstack != ItemStack.EMPTY && itemstack.getItem() == ItemInit.FF_GUIDE)
+        {
+            if (this.world.isRemote) {
+                this.setObject();
+                player.openGui(Creatures.instance, 1, this.world, (int) this.posX, (int) this.posY, (int) this.posZ);
+            }
+            return true;
+        }
+        else
+        {
+
+            return super.processInteract(player, hand);
+        }
+    }
+
+    protected void setObject() {
+        Creatures.CREATURES_OBJECT = this;
+    }
+
+    public boolean getCanSpawnHere() {
+        List<FishBase> list = this.world.<FishBase>getEntitiesWithinAABB(FishBase.class, this.getEntityBoundingBox().grow(16.0D, 16.0D, 16.0D));
+
+        return list.size() <= 4;
     }
 
 }

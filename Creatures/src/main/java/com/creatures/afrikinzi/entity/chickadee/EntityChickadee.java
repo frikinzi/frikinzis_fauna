@@ -1,10 +1,13 @@
 package com.creatures.afrikinzi.entity.chickadee;
 
+import com.creatures.afrikinzi.entity.AbstractCreaturesNonTameable;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.entity.RaptorBase;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -38,7 +41,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nullable;
 import java.util.Set;
 
-public class EntityChickadee extends EntityAnimal implements EntityFlying, IAnimatable {
+public class EntityChickadee extends AbstractCreaturesNonTameable implements EntityFlying, IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityChickadee.class, DataSerializers.VARINT);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityChickadee.class, DataSerializers.BOOLEAN);
@@ -201,6 +204,7 @@ public class EntityChickadee extends EntityAnimal implements EntityFlying, IAnim
     {
         EntityChickadee entitychickadee = new EntityChickadee(this.world);
         entitychickadee.setVariant(this.getVariant());
+        entitychickadee.setGender(this.rand.nextInt(2));
 
         return entitychickadee;
     }
@@ -291,6 +295,23 @@ public class EntityChickadee extends EntityAnimal implements EntityFlying, IAnim
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundsHandler.CHICKADEE_AMBIENT2;
+    }
+
+    public String getSpeciesName() {
+        if (this.getVariant() == 1) {
+            String s1 = I18n.format("message.creatures.blackcapped");
+            return s1;
+        }
+        else if (this.getVariant() == 2) {
+            String s1 = I18n.format("message.creatures.chestnutbacked");
+            return s1;
+        }
+        else if (this.getVariant() == 3) {
+            String s1 = I18n.format("message.creatures.grayheaded");
+            return s1;
+        } else {
+            return "Unknown";
+        }
     }
 
 }

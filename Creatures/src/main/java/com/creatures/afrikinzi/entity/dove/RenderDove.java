@@ -14,6 +14,6 @@ public class RenderDove extends GeoEntityRenderer<EntityDove> {
     @Override
     public void renderEarly(EntityDove animatable, float ticks, float red, float green, float blue, float partialTicks)
     {
-        GlStateManager.scale(0.8F, 0.8F, 0.8F);
+        GlStateManager.scale(0.7F, 0.7F, 0.7F);
     }
 }

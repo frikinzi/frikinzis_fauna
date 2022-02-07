@@ -45,4 +45,17 @@ public class Reference
      public static final int ENTITY_FLAME_ANGELFISH = 282;
      public static final int ENTITY_TROUT = 283;
      public static final int ENTITY_SWALLOW = 284;
+     public static final int ENTITY_FIDDLER_CRAB = 285;
+     public static final int ENTITY_IBIS = 286;
+     public static final int ENTITY_RED_SNAPPER = 287;
+     public static final int ENTITY_WOOD_DUCK = 288;
+     public static final int ENTITY_PEAFOWL = 289;
+     public static final int ENTITY_SPARROW = 290;
+     public static final int ENTITY_BUSHTIT = 291;
+     public static final int ENTITY_LAUGHINGTHRUSH = 292;
+     public static final int ENTITY_EAGLE_OWL = 293;
+     public static final int ENTITY_ROBIN = 294;
+     public static final int ENTITY_MAGPIE = 295;
+
+     public static final int GUI_CREATURES = 1;
 }

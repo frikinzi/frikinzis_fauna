@@ -1,7 +1,9 @@
 package com.creatures.afrikinzi.entity.red_kite;
 
 import com.creatures.afrikinzi.config.CreaturesConfig;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.entity.RaptorBase;
+import com.creatures.afrikinzi.entity.ai.EntityAIFollowOwnerCreatures;
 import com.creatures.afrikinzi.entity.chickadee.EntityChickadee;
 import com.creatures.afrikinzi.entity.stellers_sea_eagle.EntityStellersSeaEagle;
 import com.creatures.afrikinzi.entity.swallow.EntitySwallow;
@@ -25,7 +27,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class EntityRedKite extends RaptorBase implements IAnimatable {
+public class EntityRedKite extends RaptorBase implements IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
 
     public EntityRedKite(World worldIn) {
@@ -36,21 +38,22 @@ public class EntityRedKite extends RaptorBase implements IAnimatable {
 
     @Override
     protected void initEntityAI() {
+        this.tasks.addTask(5, new EntityAIMate(this, 0.8D));
         this.aiSit = new EntityAISit(this);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, this.aiSit);
         this.tasks.addTask(5, new EntityAIAttackMelee(this, 1.4D, true));
         this.tasks.addTask(4, new EntityAILeapAtTarget(this, 0.4F));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, false, new Class[0]));
-        this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         if (CreaturesConfig.raptorsFollow == true) {
-        this.tasks.addTask(2, new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F)); }
-        this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
+        this.tasks.addTask(6, new EntityAIFollowOwnerCreatures(this, 1.0D, 5.0F, 1.0F)); }
+        this.tasks.addTask(7, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
         this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
         this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
         if (CreaturesConfig.eagleAttacks == true) {
-            this.targetTasks.addTask(7, new EntityAITargetNonTamed(this, EntitySwallow.class, false, (Predicate) null));
-            this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChickadee.class, false, (Predicate) null));
+            this.targetTasks.addTask(8, new EntityAITargetNonTamed(this, EntitySwallow.class, false, (Predicate) null));
+            this.targetTasks.addTask(9, new EntityAITargetNonTamed(this, EntityChickadee.class, false, (Predicate) null));
         }
     }
 
@@ -124,6 +127,7 @@ public class EntityRedKite extends RaptorBase implements IAnimatable {
     public EntityRedKite createChild(EntityAgeable ageable)
     {
         EntityRedKite entityredkite = new EntityRedKite(this.world);
+        entityredkite.setGender(this.rand.nextInt(2));
 
         return entityredkite;
     }

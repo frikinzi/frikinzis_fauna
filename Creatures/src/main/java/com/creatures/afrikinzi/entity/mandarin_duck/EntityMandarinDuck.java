@@ -1,8 +1,11 @@
 package com.creatures.afrikinzi.entity.mandarin_duck;
 
+import com.creatures.afrikinzi.entity.AbstractCreaturesNonTameable;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.entity.raven.EntityRaven;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.IEntityLivingData;
@@ -34,7 +37,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class EntityMandarinDuck extends EntityAnimal implements IAnimatable {
+public class EntityMandarinDuck extends AbstractCreaturesNonTameable implements IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityMandarinDuck.class, DataSerializers.VARINT);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityMandarinDuck.class, DataSerializers.BOOLEAN);
@@ -67,6 +70,7 @@ public class EntityMandarinDuck extends EntityAnimal implements IAnimatable {
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
+        if (this.isChild()) {
         if (event.isMoving()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("walking", true));
             return PlayState.CONTINUE;
@@ -79,6 +83,25 @@ public class EntityMandarinDuck extends EntityAnimal implements IAnimatable {
     }
         event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
         return PlayState.CONTINUE;
+        }
+        else {
+            if (event.isMoving()) {
+                event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+                return PlayState.CONTINUE;
+            } if (!this.onGround && !this.isInWater()) {
+                event.getController().setAnimation(new AnimationBuilder().addAnimation("fly", true));
+                return PlayState.CONTINUE;
+            } if (this.isInWater()) {
+                event.getController().setAnimation(new AnimationBuilder().addAnimation("swim", true));
+                return PlayState.CONTINUE;
+            }
+            if (this.isSleeping()) {
+                event.getController().setAnimation(new AnimationBuilder().addAnimation("sleep", true));
+                return PlayState.CONTINUE;
+            }
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
+            return PlayState.CONTINUE;
+        }
     }
 
     @Override
@@ -140,12 +163,7 @@ public class EntityMandarinDuck extends EntityAnimal implements IAnimatable {
     public EntityMandarinDuck createChild(EntityAgeable ageable)
     {
         EntityMandarinDuck entitymandarinduck = new EntityMandarinDuck(this.world);
-        int j = this.rand.nextInt(2);
-        if (j == 0) {
-            entitymandarinduck.setVariant(1);
-        } else {
-            entitymandarinduck.setVariant(2);
-        }
+        entitymandarinduck.setGender(this.rand.nextInt(2));
 
         return entitymandarinduck;
     }
@@ -250,5 +268,9 @@ public class EntityMandarinDuck extends EntityAnimal implements IAnimatable {
         return LootTableHandler.DUCK;
     }
 
+    public String getSpeciesName() {
+        String s1 = I18n.format("entity.mandarin_duck.name");
+        return s1;
+    }
 
 }

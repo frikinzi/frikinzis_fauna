@@ -1,6 +1,5 @@
 package com.creatures.afrikinzi.entity.pygmy_goose;
 
-import com.creatures.afrikinzi.entity.wild_duck.EntityWildDuck;
 import com.creatures.afrikinzi.util.Reference;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;

@@ -1,10 +1,13 @@
 package com.creatures.afrikinzi.entity.creatures_spoonbill;
 
+import com.creatures.afrikinzi.entity.AbstractCreaturesNonTameable;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -37,7 +40,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nullable;
 import java.util.Set;
 
-public class EntityCreaturesSpoonbill extends EntityAnimal implements IAnimatable {
+public class EntityCreaturesSpoonbill extends AbstractCreaturesNonTameable implements IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityCreaturesSpoonbill.class, DataSerializers.VARINT);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityCreaturesSpoonbill.class, DataSerializers.BOOLEAN);
@@ -68,10 +71,10 @@ public class EntityCreaturesSpoonbill extends EntityAnimal implements IAnimatabl
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
         if (event.isMoving() && this.onGround) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("walking", true));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
             return PlayState.CONTINUE;
         } if (!this.onGround || this.isFlying()) {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("flying", true));
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("fly", true));
         return PlayState.CONTINUE;
     } if (this.isSleeping()) {
         event.getController().setAnimation(new AnimationBuilder().addAnimation("sleep", true));
@@ -221,8 +224,34 @@ public class EntityCreaturesSpoonbill extends EntityAnimal implements IAnimatabl
     {
         EntityCreaturesSpoonbill entityspoonbill = new EntityCreaturesSpoonbill(this.world);
         entityspoonbill.setVariant(this.getVariant());
+        entityspoonbill.setGender(this.rand.nextInt(2));
 
         return entityspoonbill;
+    }
+
+    public String getSpeciesName() {
+        if (this.getVariant() == 1) {
+            String s1 = I18n.format("message.creatures.roseate");
+            return s1;
+        }
+        else if (this.getVariant() == 2) {
+            String s1 = I18n.format("message.creatures.royal");
+            return s1;
+        }
+        else if (this.getVariant() == 3) {
+            String s1 = I18n.format("message.creatures.african");
+            return s1;
+        }
+        else if (this.getVariant() == 4) {
+            String s1 = I18n.format("message.creatures.eurasiansp");
+            return s1;
+        }
+        else if (this.getVariant() == 5) {
+            String s1 = I18n.format("message.creatures.yellowbilled");
+            return s1;
+        } else {
+            return "Unknown";
+        }
     }
 
 }

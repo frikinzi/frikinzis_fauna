@@ -1,7 +1,9 @@
 package com.creatures.afrikinzi.entity.golden_eagle;
 
 import com.creatures.afrikinzi.config.CreaturesConfig;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.entity.RaptorBase;
+import com.creatures.afrikinzi.entity.ai.EntityAIFollowOwnerCreatures;
 import com.creatures.afrikinzi.entity.raven.EntityRaven;
 import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
@@ -30,7 +32,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import java.util.Set;
 
-public class EntityGoldenEagle extends RaptorBase implements IAnimatable {
+public class EntityGoldenEagle extends RaptorBase implements IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Set<Item> TAME_ITEMS = Sets.newHashSet(Items.RABBIT, Items.PORKCHOP, Items.CHICKEN, ItemInit.RAW_LARGE_WILD_BIRD_MEAT, ItemInit.RAW_SMALL_WILD_BIRD_MEAT, Items.RABBIT);
 
@@ -52,10 +54,10 @@ public class EntityGoldenEagle extends RaptorBase implements IAnimatable {
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, false, new Class[0]));
         this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         if (CreaturesConfig.raptorsFollow == true) {
-        this.tasks.addTask(2, new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F));
+        this.tasks.addTask(6, new EntityAIFollowOwnerCreatures(this, 1.0D, 5.0F, 1.0F));
         }
-        this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
-        this.tasks.addTask(9, new EntityAIMate(this, 0.8D));
+        this.tasks.addTask(7, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
+        this.tasks.addTask(5, new EntityAIMate(this, 0.8D));
         this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
         if (!this.isChild()) {
         this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
@@ -137,12 +139,9 @@ public class EntityGoldenEagle extends RaptorBase implements IAnimatable {
     @Override
     public EntityGoldenEagle createChild(EntityAgeable ageable)
     {
-        int j = this.rand.nextInt(5);
-        for (int i = 0; i < j; i ++) {
             EntityGoldenEagle entitygoldeneagle = new EntityGoldenEagle(this.world);
+            entitygoldeneagle.setGender(this.rand.nextInt(2));
             return entitygoldeneagle;
-        }
-        return null;
 
     }
 

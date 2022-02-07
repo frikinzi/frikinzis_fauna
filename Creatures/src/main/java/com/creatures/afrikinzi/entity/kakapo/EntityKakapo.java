@@ -1,10 +1,14 @@
 package com.creatures.afrikinzi.entity.kakapo;
 
 import com.creatures.afrikinzi.config.CreaturesConfig;
+import com.creatures.afrikinzi.entity.AbstractCreaturesNonTameable;
+import com.creatures.afrikinzi.entity.AbstractCreaturesTameable;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -35,7 +39,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nullable;
 import java.util.Set;
 
-public class EntityKakapo extends EntityTameable implements IAnimatable {
+public class EntityKakapo extends AbstractCreaturesTameable implements IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityKakapo.class, DataSerializers.BOOLEAN);
     protected static final DataParameter<Boolean> WANDERING = EntityDataManager.createKey(EntityKakapo.class, DataSerializers.BOOLEAN);
@@ -208,6 +212,7 @@ public class EntityKakapo extends EntityTameable implements IAnimatable {
             entitykakapo.setOwnerId(this.getOwnerId());
             entitykakapo.setTamed(true);
         }
+        entitykakapo.setGender(this.rand.nextInt(2));
 
         return entitykakapo;
     }
@@ -306,6 +311,12 @@ public class EntityKakapo extends EntityTameable implements IAnimatable {
         }
         super.onLivingUpdate();
     }
+
+    @Override
+    public String getSpeciesName() {
+            String s1 = I18n.format("entity.kakapo.name");
+            return s1;
+        }
 
 
 }

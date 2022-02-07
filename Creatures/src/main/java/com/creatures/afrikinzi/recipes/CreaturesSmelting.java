@@ -13,6 +13,7 @@ public class CreaturesSmelting {
             GameRegistry.addSmelting(new ItemStack(ItemInit.RAW_AROWANA), new ItemStack(ItemInit.COOKED_AROWANA), 0.25F);
             GameRegistry.addSmelting(new ItemStack(ItemInit.RAW_PIKE), new ItemStack(ItemInit.COOKED_PIKE), 0.25F);
             GameRegistry.addSmelting(new ItemStack(ItemInit.RAW_TROUT), new ItemStack(ItemInit.COOKED_TROUT), 0.25F);
+            GameRegistry.addSmelting(new ItemStack(ItemInit.RAW_RED_SNAPPER), new ItemStack(ItemInit.COOKED_RED_SNAPPER), 0.25F);
             GameRegistry.addSmelting(new ItemStack(ItemInit.RAW_LARGE_WILD_BIRD_MEAT), new ItemStack(ItemInit.ROASTED_LARGE_WILD_BIRD_MEAT), 0.25F);
             GameRegistry.addSmelting(new ItemStack(ItemInit.RAW_SMALL_WILD_BIRD_MEAT), new ItemStack(ItemInit.ROASTED_SMALL_WILD_BIRD_MEAT), 0.25F);
         }

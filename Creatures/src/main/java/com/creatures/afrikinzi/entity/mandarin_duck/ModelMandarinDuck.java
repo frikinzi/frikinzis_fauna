@@ -22,9 +22,9 @@ public class ModelMandarinDuck extends AnimatedGeoModel<EntityMandarinDuck> {
             return new ResourceLocation(Reference.MOD_ID, "textures/entity/mandarin_duck/mandarin_duckling.png");
         } else {
             if (object.isSleeping()) {
-                return new ResourceLocation(Reference.MOD_ID, "textures/entity/mandarin_duck/mandarin_duck_" + object.getVariant() + "_sleep.png");
+                return new ResourceLocation(Reference.MOD_ID, "textures/entity/mandarin_duck/mandarinduck" + object.getGender() + "sleep.png");
             }
-            return new ResourceLocation(Reference.MOD_ID, "textures/entity/mandarin_duck/mandarin_duck_" + object.getVariant() + ".png");
+            return new ResourceLocation(Reference.MOD_ID, "textures/entity/mandarin_duck/mandarinduck" + object.getGender() + ".png");
         }
     }
 
@@ -32,7 +32,7 @@ public class ModelMandarinDuck extends AnimatedGeoModel<EntityMandarinDuck> {
         if (object.isChild()) {
             return new ResourceLocation(Reference.MOD_ID, "animations/animation.mandarin_duckling.json");
         } else {
-            return new ResourceLocation(Reference.MOD_ID, "animations/animation.mandarin_duck.json");
+            return new ResourceLocation(Reference.MOD_ID, "animations/mandarin_duck.animation.json");
         }
     }
 

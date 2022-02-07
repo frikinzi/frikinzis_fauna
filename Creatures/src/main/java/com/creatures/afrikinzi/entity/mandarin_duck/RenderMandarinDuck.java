@@ -14,9 +14,9 @@ public class RenderMandarinDuck extends GeoEntityRenderer<EntityMandarinDuck> {
     public void renderEarly(EntityMandarinDuck animatable, float ticks, float red, float green, float blue, float partialTicks)
     {
         if (!animatable.isChild()) {
-        GlStateManager.scale(0.6F, 0.6F, 0.6F);
+        GlStateManager.scale(1F, 1F, 1F);
         } else {
-            GlStateManager.scale(0.8F, 0.8F, 0.8F);
+            GlStateManager.scale(0.7F, 0.7F, 0.7F);
         }
     }
 

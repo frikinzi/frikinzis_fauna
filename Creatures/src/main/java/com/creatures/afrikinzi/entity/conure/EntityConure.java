@@ -1,11 +1,15 @@
 package com.creatures.afrikinzi.entity.conure;
 
 import com.creatures.afrikinzi.config.CreaturesConfig;
+import com.creatures.afrikinzi.entity.AbstractCreaturesTameable;
+import com.creatures.afrikinzi.entity.ICreaturesEntity;
+import com.creatures.afrikinzi.entity.ai.EntityAIFollowOwnerCreatures;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
@@ -45,7 +49,7 @@ import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.Set;
 
-public class EntityConure extends EntityTameable implements IAnimatable {
+public class EntityConure extends AbstractCreaturesTameable implements IAnimatable, ICreaturesEntity {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final DataParameter<Integer> VARIANT = EntityDataManager.<Integer>createKey(EntityConure.class, DataSerializers.VARINT);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityConure.class, DataSerializers.BOOLEAN);
@@ -73,9 +77,9 @@ public class EntityConure extends EntityTameable implements IAnimatable {
         this.tasks.addTask(0, new EntityAIPanic(this, 1.25D));
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, this.aiSit);
-        this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         if (CreaturesConfig.birdsFollow == true) {
-        this.tasks.addTask(2, new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F)); }
+        this.tasks.addTask(2, new EntityAIFollowOwnerCreatures(this, 1.0D, 5.0F, 1.0F)); }
         this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
         this.tasks.addTask(9, new EntityAIMate(this, 0.8D));
         this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
@@ -123,7 +127,7 @@ public class EntityConure extends EntityTameable implements IAnimatable {
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
         this.setVariant(getRandomSpecies(this.world.rand));
-        this.setGender(this.rand.nextInt(3));
+        this.setGender(this.rand.nextInt(2));
         return super.onInitialSpawn(difficulty, livingdata);
     }
 
@@ -307,12 +311,7 @@ public class EntityConure extends EntityTameable implements IAnimatable {
     {
         EntityConure entityconure = new EntityConure(this.world);
         entityconure.setVariant(this.getVariant());
-        int j = this.rand.nextInt(2);
-        if (j == 0) {
-            entityconure.setGender(1);
-        } else {
-            entityconure.setGender(2);
-        }
+        entityconure.setGender(this.rand.nextInt(2));
 
         return entityconure;
     }
@@ -360,16 +359,6 @@ public class EntityConure extends EntityTameable implements IAnimatable {
     public void setVariant(int p_191997_1_)
     {
         this.dataManager.set(VARIANT, Integer.valueOf(p_191997_1_));
-    }
-
-    public int getGender()
-    {
-        return MathHelper.clamp(((Integer)this.dataManager.get(GENDER)).intValue(), 1, 3);
-    }
-
-    public void setGender(int p_191997_1_)
-    {
-        this.dataManager.set(GENDER, Integer.valueOf(p_191997_1_));
     }
 
     protected void entityInit()
@@ -434,21 +423,37 @@ public class EntityConure extends EntityTameable implements IAnimatable {
         }
     }
 
-    public static int getRandomSpecies(Random random)
-    {
-        int i = random.nextInt(100);
+    public int getRandomSpecies(Random random) {
+        if (CreaturesConfig.rareVariants == true) {
+            int i = random.nextInt(100);
 
-        if (i < 45)
-        {
-            return 1;
+            if (i < 45) {
+                return 1;
+            } else if (i < 99) {
+                return 2;
+            } else {
+                return 3;
+            }
         }
-        else if (i < 99)
-        {
-            return 2;
+        else {
+            return this.rand.nextInt(4);
         }
-        else
-        {
-            return 3;
+    }
+
+    public String getSpeciesName() {
+        if (this.getVariant() == 1) {
+            String s1 = I18n.format("message.creatures.sun");
+            return s1;
+        }
+        else if (this.getVariant() == 2) {
+            String s1 = I18n.format("message.creatures.greencheeked");
+            return s1;
+        }
+        else if (this.getVariant() == 3) {
+            String s1 = I18n.format("message.creatures.golden");
+            return s1;
+        } else {
+            return "Unknown";
         }
     }
 }

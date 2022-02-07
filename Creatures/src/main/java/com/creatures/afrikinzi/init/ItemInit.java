@@ -9,6 +9,7 @@ import java.util.List;
 public class ItemInit {
     public static final List<Item> ITEMS = new ArrayList<Item>();
 
+    public static final Item FF_GUIDE = new CreaturesItem("ff_guide");
     public static final Item DUCK_FEATHER = new CreaturesItem("duck_feather");
     public static final Item RAW_KOI = new CreaturesFoodItem("raw_koi", 1, false);
     public static final Item ROASTED_KOI = new CreaturesFoodItem("roasted_koi", 5, false);
@@ -32,5 +33,7 @@ public class ItemInit {
     public static final Item NECTAR = new CreaturesFoodItem("creatures_nectar", 1, false);
     public static final Item RAW_TROUT = new CreaturesFoodItem("item_trout", 2, false);
     public static final Item COOKED_TROUT = new CreaturesFoodItem("cooked_trout", 6, false);
+    public static final Item RAW_RED_SNAPPER = new CreaturesFoodItem("raw_red_snapper", 2, false);
+    public static final Item COOKED_RED_SNAPPER = new CreaturesFoodItem("cooked_red_snapper", 6, false);
 
 }
