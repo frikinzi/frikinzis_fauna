@@ -8,6 +8,9 @@ public class ModelPeafowl extends AnimatedGeoModel<EntityPeafowl> {
     @Override
     public ResourceLocation getModelLocation(EntityPeafowl object)
     {
+        if (object.isChild()) {
+            return new ResourceLocation(Reference.MOD_ID, "geo/entity/peafowl/peafowlchick.geo.json");
+        }
         if (object.getGender() == 0) {
         return new ResourceLocation(Reference.MOD_ID, "geo/entity/peafowl/peafowlf.geo.json"); }
         else {
@@ -18,6 +21,9 @@ public class ModelPeafowl extends AnimatedGeoModel<EntityPeafowl> {
     @Override
     public ResourceLocation getTextureLocation(EntityPeafowl object)
     {
+        if (object.isChild()) {
+            return new ResourceLocation(Reference.MOD_ID, "textures/entity/peafowl/peafowlchick" + object.getVariant() + ".png");
+        }
         if (object.isSleeping()) {
             return new ResourceLocation(Reference.MOD_ID, "textures/entity/peafowl/peafowl" + object.getVariant() + object.getGenderName() + "sleep.png");
         }
@@ -27,6 +33,9 @@ public class ModelPeafowl extends AnimatedGeoModel<EntityPeafowl> {
     @Override
     public ResourceLocation getAnimationFileLocation(EntityPeafowl object)
     {
+        if (object.isChild()) {
+            return new ResourceLocation(Reference.MOD_ID, "animations/animation.peachick.json");
+        }
         if (object.getGender() == 1) {
             return new ResourceLocation(Reference.MOD_ID, "animations/animation.peafowlm.json");
         }

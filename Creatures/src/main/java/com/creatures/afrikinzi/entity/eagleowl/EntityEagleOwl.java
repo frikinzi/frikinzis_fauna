@@ -133,6 +133,10 @@ public class EntityEagleOwl extends RaptorBase implements IAnimatable, ICreature
         {
             return false;
         }
+        else if (!this.isTamed())
+        {
+            return false;
+        }
         else if (!(otherAnimal instanceof EntityEagleOwl))
         {
             return false;
@@ -209,6 +213,10 @@ public class EntityEagleOwl extends RaptorBase implements IAnimatable, ICreature
         } else {
             return "Unknown";
         }
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.CHICKEN.getUnlocalizedName() + ".name").trim();
     }
 
 

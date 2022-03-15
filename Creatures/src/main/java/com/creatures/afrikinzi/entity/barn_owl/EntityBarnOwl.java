@@ -118,6 +118,10 @@ public class EntityBarnOwl extends RaptorBase implements IAnimatable, ICreatures
         {
             return false;
         }
+        else if (!this.isTamed())
+        {
+            return false;
+        }
         else if (!(otherAnimal instanceof EntityBarnOwl))
         {
             return false;
@@ -158,6 +162,10 @@ public class EntityBarnOwl extends RaptorBase implements IAnimatable, ICreatures
     public String getSpeciesName() {
         String s1 = I18n.format("entity.barn_owl.name");
         return s1;
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.CHICKEN.getUnlocalizedName() + ".name").trim();
     }
 
 }

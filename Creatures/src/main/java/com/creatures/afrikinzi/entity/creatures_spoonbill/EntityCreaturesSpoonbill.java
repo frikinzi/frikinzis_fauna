@@ -254,4 +254,8 @@ public class EntityCreaturesSpoonbill extends AbstractCreaturesNonTameable imple
         }
     }
 
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.FISH.getUnlocalizedName() + ".name").trim();
+    }
+
 }

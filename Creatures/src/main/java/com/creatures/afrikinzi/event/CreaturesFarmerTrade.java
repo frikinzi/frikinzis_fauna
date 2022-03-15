@@ -16,5 +16,6 @@ public class CreaturesFarmerTrade implements EntityVillager.ITradeList {
     {
         recipeList.add(new MerchantRecipe(new ItemStack(ItemInit.DUCK_FEATHER,5),new ItemStack(Items.EMERALD,1)));
         recipeList.add(new MerchantRecipe(new ItemStack(ItemInit.RAW_AROWANA,1),new ItemStack(Items.EMERALD,1)));
+        recipeList.add(new MerchantRecipe(new ItemStack(ItemInit.PEAFOWL_FEATHER,2),new ItemStack(Items.EMERALD,3)));
     }
 }

@@ -4,8 +4,10 @@ import com.creatures.afrikinzi.Creatures;
 import com.creatures.afrikinzi.config.CreaturesConfig;
 import com.creatures.afrikinzi.init.ItemInit;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -27,7 +29,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class FishBase extends EntityCreature {
+public class FishBase extends EntityAnimal {
     private static final DataParameter<Boolean> MOVING = EntityDataManager.<Boolean>createKey(FishBase.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> GENDER = EntityDataManager.<Integer>createKey(FishBase.class, DataSerializers.VARINT);
     protected float clientSideTailAnimation;
@@ -59,6 +61,7 @@ public class FishBase extends EntityCreature {
         this.wander = new EntityAIWander(this, 0.2D, 1);
         this.tasks.addTask(7, this.wander);
         this.wander.setMutexBits(3);
+        this.tasks.addTask(6, new EntityAIMate(this, 0.8D));
     }
 
     protected void entityInit()
@@ -296,13 +299,19 @@ public class FishBase extends EntityCreature {
 
     public String getGenderString() {
         if (this.getGender() == 1) {
-            return "Male";
+            String s1 = I18n.format("gui.male");
+            return s1;
         } else {
-            return "Female";
+            String s1 = I18n.format("gui.female");
+            return s1;
         }
     }
 
     public String getSpeciesName() {
+        return "";
+    }
+
+    public String getFoodName() {
         return "";
     }
 
@@ -339,10 +348,25 @@ public class FishBase extends EntityCreature {
         Creatures.CREATURES_OBJECT = this;
     }
 
+    @Override
     public boolean getCanSpawnHere() {
         List<FishBase> list = this.world.<FishBase>getEntitiesWithinAABB(FishBase.class, this.getEntityBoundingBox().grow(16.0D, 16.0D, 16.0D));
 
         return list.size() <= 4;
     }
+
+
+    public boolean canMateWith(EntityAnimal otherAnimal)
+    {
+        return false;
+    }
+
+    @Nullable
+    public EntityAgeable createChild(EntityAgeable ageable)
+    {
+        return null;
+    }
+
+
 
 }

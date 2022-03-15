@@ -3,6 +3,7 @@ package com.creatures.afrikinzi.entity.ghostcrab;
 import com.creatures.afrikinzi.entity.AbstractCreaturesNonTameable;
 import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -10,6 +11,7 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -34,6 +36,7 @@ public class EntityGhostCrab extends AbstractCreaturesNonTameable implements IAn
     private AnimationFactory factory = new AnimationFactory(this);
     protected static final DataParameter<Boolean> SLEEPING = EntityDataManager.createKey(EntityGhostCrab.class, DataSerializers.BOOLEAN);
     protected static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(EntityGhostCrab.class, DataSerializers.VARINT);
+    ItemStack stack;
 
     public EntityGhostCrab(World worldIn)
     {
@@ -207,6 +210,31 @@ public class EntityGhostCrab extends AbstractCreaturesNonTameable implements IAn
     public void setVariant(int p_191997_1_)
     {
         this.dataManager.set(VARIANT, Integer.valueOf(p_191997_1_));
+    }
+
+    public String getSpeciesName() {
+        if (this.getVariant() == 1) {
+            String s1 = I18n.format("message.creatures.redghost");
+            return s1;
+        }
+        else if (this.getVariant() == 2) {
+            String s1 = I18n.format("message.creatures.atlanticghost");
+            return s1;
+        }
+        else if (this.getVariant() == 3) {
+            String s1 = I18n.format("message.creatures.greenhorned");
+            return s1;
+        }
+        else if (this.getVariant() == 4) {
+            String s1 = I18n.format("message.creatures.purplehorned");
+            return s1;
+        } else {
+            return "Unknown";
+        }
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(new ItemStack(Blocks.DEADBUSH, (int) (1)).getItem().getUnlocalizedName() + ".name").trim();
     }
 
 }

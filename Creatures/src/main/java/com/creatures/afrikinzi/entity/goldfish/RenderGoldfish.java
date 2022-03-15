@@ -14,6 +14,9 @@ public class RenderGoldfish extends GeoEntityRenderer<EntityGoldfish> {
     @Override
     public void renderEarly(EntityGoldfish animatable, float ticks, float red, float green, float blue, float partialTicks)
     {
+        if (animatable.isChild()) {
+            GlStateManager.scale(0.4F, 0.4F, 0.4F);
+        }
         GlStateManager.scale(0.6F, 0.6F, 0.6F);
     }
 }

@@ -31,5 +31,6 @@ public class LootTableHandler {
     public static final ResourceLocation GOLDFISH = LootTableList.register(new ResourceLocation(Reference.MOD_ID, "goldfish"));
     public static final ResourceLocation TROUT = LootTableList.register(new ResourceLocation(Reference.MOD_ID, "trout"));
     public static final ResourceLocation RED_SNAPPER = LootTableList.register(new ResourceLocation(Reference.MOD_ID, "red_snapper"));
+    public static final ResourceLocation PEAFOWL = LootTableList.register(new ResourceLocation(Reference.MOD_ID, "peafowl"));
 
 }

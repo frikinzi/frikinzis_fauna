@@ -57,7 +57,7 @@ public class EntityBushtit extends AbstractCreaturesNonTameable implements Entit
     public EntityBushtit(World worldIn)
     {
         super(worldIn);
-        this.setSize(0.8F, 0.8F);
+        this.setSize(0.6F, 0.6F);
         this.moveHelper = new EntityFlyHelper(this);
     }
 
@@ -308,11 +308,15 @@ public class EntityBushtit extends AbstractCreaturesNonTameable implements Entit
             return s1;
         }
         else if (this.getVariant() == 4) {
-            String s1 = I18n.format("message.creatures.lovebird.abushtit");
+            String s1 = I18n.format("message.creatures.abushtit");
             return s1;
         } else {
             return "Unknown";
         }
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.WHEAT_SEEDS.getUnlocalizedName() + ".name").trim();
     }
 
 }

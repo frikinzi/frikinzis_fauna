@@ -6,6 +6,7 @@ import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
@@ -54,7 +55,7 @@ public class EntityRobin extends AbstractCreaturesNonTameable implements IAnimat
     public EntityRobin(World worldIn)
     {
         super(worldIn);
-        this.setSize(0.8F, 0.8F);
+        this.setSize(0.5F, 0.5F);
         this.moveHelper = new EntityFlyHelper(this);
     }
 
@@ -290,6 +291,35 @@ public class EntityRobin extends AbstractCreaturesNonTameable implements IAnimat
     public boolean isBreedingItem(ItemStack stack)
     {
         return TAME_ITEMS.contains(stack.getItem());
+    }
+
+    public String getSpeciesName() {
+        if (this.getVariant() == 1) {
+            String s1 = I18n.format("message.creatures.europeanrobin");
+            return s1;
+        }
+        else if (this.getVariant() == 2) {
+            String s1 = I18n.format("message.creatures.roserobin");
+            return s1;
+        }
+        else if (this.getVariant() == 3) {
+            String s1 = I18n.format("message.creatures.easternyellow");
+            return s1;
+        }
+        else if (this.getVariant() == 4) {
+            String s1 = I18n.format("message.creatures.japaneserobin");
+            return s1;
+        }
+        else if (this.getVariant() == 5) {
+            String s1 = I18n.format("message.creatures.scarletrobin");
+            return s1;
+        } else {
+            return "Unknown";
+        }
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.WHEAT_SEEDS.getUnlocalizedName() + ".name").trim();
     }
 
 }

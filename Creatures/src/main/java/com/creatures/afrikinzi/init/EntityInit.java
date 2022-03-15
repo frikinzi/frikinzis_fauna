@@ -77,7 +77,7 @@ public class EntityInit {
         registerEntity("dottyback", EntityDottyback.class, Reference.ENTITY_DOTTYBACK, 30, 16740608, 6058495);
         registerEntity("lovebird", EntityLovebird.class, Reference.ENTITY_LOVEBIRD, 30, 16749375, 16765696);
         registerEntity("pike", EntityPike.class, Reference.ENTITY_PIKE, 30, 10973747, 16777215);
-        registerEntity("kakapo", EntityKakapo.class, Reference.ENTITY_KAKAPO, 30, 9607980, 12299667);
+        registerEntity("creatures_kakapo", EntityKakapo.class, Reference.ENTITY_KAKAPO, 30, 9607980, 12299667);
         registerEntity("creatures_spoonbill", EntityCreaturesSpoonbill.class, Reference.ENTITY_SPOONBILL, 30, 16490917, 16583198);
         registerEntity("mandarin_duck", EntityMandarinDuck.class, Reference.ENTITY_MANDARIN_DUCK, 30, 11798553, 16640178);
         registerEntity("arowana", EntityArowana.class, Reference.ENTITY_AROWANA, 30, 16771881, 16758578);

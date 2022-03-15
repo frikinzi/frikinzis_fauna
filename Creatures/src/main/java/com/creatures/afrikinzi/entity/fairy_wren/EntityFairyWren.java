@@ -50,7 +50,7 @@ public class EntityFairyWren extends FlyingEntityTameableBase implements IAnimat
     public EntityFairyWren(World worldIn)
     {
         super(worldIn);
-        this.setSize(1.0F, 1.0F);
+        this.setSize(0.6F, 0.6F);
         this.moveHelper = new EntityFlyHelper(this);
     }
 
@@ -219,7 +219,7 @@ public class EntityFairyWren extends FlyingEntityTameableBase implements IAnimat
 
     public String getSpeciesName() {
         if (this.getVariant() == 1) {
-            String s1 = I18n.format("essage.creatures.variegated");
+            String s1 = I18n.format("message.creatures.variegated");
             return s1;
         }
         else if (this.getVariant() == 2) {
@@ -297,7 +297,9 @@ public class EntityFairyWren extends FlyingEntityTameableBase implements IAnimat
         return LootTableHandler.GENERIC_BIRD;
     }
 
-
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.WHEAT_SEEDS.getUnlocalizedName() + ".name").trim();
+    }
 
 
 }

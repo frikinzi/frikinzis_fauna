@@ -17,6 +17,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -219,6 +220,13 @@ public class EntityStellersSeaEagle extends RaptorBase implements IAnimatable, I
         return TAME_ITEMS;
     }
 
+    public String getSpeciesName() {
+        String s1 = I18n.format("entity.stellers_sea_eagle.name");
+        return s1;
+    }
 
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.FISH.getUnlocalizedName() + ".name").trim();
+    }
 
 }

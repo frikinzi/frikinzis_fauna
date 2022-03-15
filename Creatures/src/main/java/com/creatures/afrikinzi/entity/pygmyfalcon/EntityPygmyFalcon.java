@@ -6,14 +6,17 @@ import com.creatures.afrikinzi.entity.RaptorBase;
 import com.creatures.afrikinzi.entity.ai.EntityAIFollowOwnerCreatures;
 import com.creatures.afrikinzi.entity.fairy_wren.EntityFairyWren;
 import com.creatures.afrikinzi.entity.gyrfalcon.EntityGyrfalcon;
+import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -160,6 +163,10 @@ public class EntityPygmyFalcon extends RaptorBase implements IAnimatable, ICreat
         {
             return false;
         }
+        else if (!this.isTamed())
+        {
+            return false;
+        }
         else if (!(otherAnimal instanceof EntityPygmyFalcon))
         {
             return false;
@@ -177,6 +184,13 @@ public class EntityPygmyFalcon extends RaptorBase implements IAnimatable, ICreat
 
     }
 
+    public String getSpeciesName() {
+        String s1 = I18n.format("entity.pygmy_falcon.name");
+        return s1;
+    }
 
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(ItemInit.RAW_SMALL_WILD_BIRD_MEAT.getUnlocalizedName() + ".name").trim();
+    }
 
 }

@@ -61,7 +61,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/assets/creatures/models/item" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/gui" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -69,11 +69,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/gui" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/animations" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/peafowl" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/peafowl" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/models/item" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/items" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/sounds/entity/sparrow" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/sounds/entity/robin" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/sounds/entity/eagleowl" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/sounds/entity/peafowl" />
@@ -93,7 +93,7 @@
       <recent name="com.creatures.afrikinzi.entity.laughingthrush" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.runClient">
+  <component name="RunManager" selected="Gradle.Creatures [build]">
     <configuration name="Creatures [buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -175,5 +175,8 @@
       <updated>1624977057267</updated>
     </task>
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.lang" />
   </component>
 </project>

@@ -2,8 +2,12 @@ package com.creatures.afrikinzi.entity.dottyback;
 
 import com.creatures.afrikinzi.entity.FishBase;
 import com.creatures.afrikinzi.entity.ICreaturesEntity;
+import com.creatures.afrikinzi.entity.koi.EntityKoi;
+import com.creatures.afrikinzi.init.ItemInit;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.*;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -109,6 +113,38 @@ public class EntityDottyback extends FishBase implements IAnimatable, ICreatures
             return s1;
         } else {
             return "Unknown";
+        }
+    }
+
+
+    public EntityDottyback createChild(EntityAgeable ageable)
+    {
+        EntityDottyback entitypeafowl = new EntityDottyback(this.world);
+        entitypeafowl.setVariant(this.getVariant());
+        entitypeafowl.setGender(this.rand.nextInt(2));
+
+        return entitypeafowl;
+    }
+
+    public boolean isBreedingItem(ItemStack stack)
+    {
+        return stack.getItem() == ItemInit.RAW_SHRIMP;
+    }
+
+    public boolean canMateWith(EntityAnimal otherAnimal)
+    {
+        if (otherAnimal == this)
+        {
+            return false;
+        }
+        else if (!(otherAnimal instanceof EntityDottyback))
+        {
+            return false;
+        }
+        else
+        {
+            EntityDottyback entitykakapo = (EntityDottyback)otherAnimal;
+            return this.isInLove() && entitykakapo.isInLove();
         }
     }
 

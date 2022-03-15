@@ -29,6 +29,7 @@ public class ItemInit {
     public static final Item RAVEN_FEATHER = new CreaturesItem("raven_feather");
     public static final Item PARROT_FEATHER = new CreaturesItem("parrot_feather");
     public static final Item CRAB_PINCERS = new CreaturesItem("crab_pincers");
+    public static final Item PEAFOWL_FEATHER = new CreaturesItem("peafowl_feather");
     public static final Item GOLDFISH = new CreaturesFoodItem("item_goldfish", 1, true);
     public static final Item NECTAR = new CreaturesFoodItem("creatures_nectar", 1, false);
     public static final Item RAW_TROUT = new CreaturesFoodItem("item_trout", 2, false);

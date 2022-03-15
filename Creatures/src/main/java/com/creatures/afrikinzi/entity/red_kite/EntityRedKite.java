@@ -9,6 +9,7 @@ import com.creatures.afrikinzi.entity.stellers_sea_eagle.EntityStellersSeaEagle;
 import com.creatures.afrikinzi.entity.swallow.EntitySwallow;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.base.Predicate;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -110,6 +111,10 @@ public class EntityRedKite extends RaptorBase implements IAnimatable, ICreatures
         {
             return false;
         }
+        else if (!this.isTamed())
+        {
+            return false;
+        }
         else if (!(otherAnimal instanceof EntityRedKite))
         {
             return false;
@@ -140,6 +145,15 @@ public class EntityRedKite extends RaptorBase implements IAnimatable, ICreatures
         } else {
             return null;
         }
+    }
+
+    public String getSpeciesName() {
+        String s1 = I18n.format("entity.red_kite.name");
+        return s1;
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.CHICKEN.getUnlocalizedName() + ".name").trim();
     }
 
 

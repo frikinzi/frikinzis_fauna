@@ -68,7 +68,7 @@ public class EntityLovebird extends AbstractCreaturesTameable implements IAnimat
     public EntityLovebird(World worldIn)
     {
         super(worldIn);
-        this.setSize(0.8F, 0.8F);
+        this.setSize(0.7F, 0.7F);
         this.moveHelper = new EntityFlyHelper(this);
     }
 
@@ -536,6 +536,10 @@ public class EntityLovebird extends AbstractCreaturesTameable implements IAnimat
         } else {
             return "Unknown";
         }
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.WHEAT_SEEDS.getUnlocalizedName() + ".name").trim();
     }
 
 

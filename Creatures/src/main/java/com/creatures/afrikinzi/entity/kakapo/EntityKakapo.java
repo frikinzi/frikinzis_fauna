@@ -314,9 +314,13 @@ public class EntityKakapo extends AbstractCreaturesTameable implements IAnimatab
 
     @Override
     public String getSpeciesName() {
-            String s1 = I18n.format("entity.kakapo.name");
+            String s1 = I18n.format("entity.creatures_kakapo.name");
             return s1;
         }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.APPLE.getUnlocalizedName() + ".name").trim();
+    }
 
 
 }

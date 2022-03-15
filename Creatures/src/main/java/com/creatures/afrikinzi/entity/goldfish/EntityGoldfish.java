@@ -2,9 +2,16 @@ package com.creatures.afrikinzi.entity.goldfish;
 
 import com.creatures.afrikinzi.entity.FishBase;
 import com.creatures.afrikinzi.entity.ICreaturesEntity;
+import com.creatures.afrikinzi.entity.flame_angelfish.EntityFlameAngelfish;
+import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -97,5 +104,45 @@ public class EntityGoldfish extends FishBase implements IAnimatable, ICreaturesE
     {
         return LootTableHandler.GOLDFISH;
     }
+
+    public String getSpeciesName() {
+        String s1 = I18n.format("entity.goldfish.name");
+        return s1;
+    }
+
+    public EntityGoldfish createChild(EntityAgeable ageable)
+    {
+        EntityGoldfish entitypeafowl = new EntityGoldfish(this.world);
+        entitypeafowl.setGender(this.rand.nextInt(2));
+
+        return entitypeafowl;
+    }
+
+    public boolean isBreedingItem(ItemStack stack)
+    {
+        return stack.getItem() == ItemInit.RAW_SHRIMP;
+    }
+
+    public boolean canMateWith(EntityAnimal otherAnimal)
+    {
+        if (otherAnimal == this)
+        {
+            return false;
+        }
+        else if (!(otherAnimal instanceof EntityGoldfish))
+        {
+            return false;
+        }
+        else
+        {
+            EntityGoldfish entitykakapo = (EntityGoldfish)otherAnimal;
+            return this.isInLove() && entitykakapo.isInLove();
+        }
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(ItemInit.RAW_SHRIMP.getUnlocalizedName() + ".name").trim();
+    }
+
 
 }

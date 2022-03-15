@@ -4,6 +4,7 @@ import com.creatures.afrikinzi.entity.AbstractCreaturesNonTameable;
 import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -246,6 +247,27 @@ public class EntityPygmyGoose extends AbstractCreaturesNonTameable implements IA
     public boolean isBreedingItem(ItemStack stack)
     {
         return stack.getItem() == Items.WHEAT_SEEDS;
+    }
+
+    public String getSpeciesName() {
+        if (this.getVariant() == 1) {
+            String s1 = I18n.format("message.creatures.africanpygmy");
+            return s1;
+        }
+        else if (this.getVariant() == 2) {
+            String s1 = I18n.format("message.creatures.cottonpygmy");
+            return s1;
+        }
+        else if (this.getVariant() == 3) {
+            String s1 = I18n.format("message.creatures.greenpygmy");
+            return s1;
+        } else {
+            return "Unknown";
+        }
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.WHEAT_SEEDS.getUnlocalizedName() + ".name").trim();
     }
 
 }

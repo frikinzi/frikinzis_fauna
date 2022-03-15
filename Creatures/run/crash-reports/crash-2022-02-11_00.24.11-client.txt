@@ -1,0 +1,148 @@
+---- Minecraft Crash Report ----
+// Who set us up the TNT?
+
+Time: 2/11/22 12:24 AM
+Description: Rendering entity in world
+
+java.lang.NullPointerException: Rendering entity in world
+	at software.bernie.geckolib3.core.controller.AnimationController.process(AnimationController.java:432)
+	at software.bernie.geckolib3.core.processor.AnimationProcessor.tickAnimation(AnimationProcessor.java:65)
+	at software.bernie.geckolib3.model.AnimatedGeoModel.setLivingAnimations(AnimatedGeoModel.java:87)
+	at software.bernie.geckolib3.model.AnimatedGeoModel.setLivingAnimations(AnimatedGeoModel.java:33)
+	at software.bernie.geckolib3.renderers.geo.GeoEntityRenderer.doRender(GeoEntityRenderer.java:135)
+	at software.bernie.geckolib3.renderers.geo.GeoEntityRenderer.doRender(GeoEntityRenderer.java:36)
+	at net.minecraft.client.renderer.entity.RenderManager.renderEntity(RenderManager.java:384)
+	at net.minecraft.client.renderer.entity.RenderManager.renderEntityStatic(RenderManager.java:368)
+	at net.minecraft.client.renderer.RenderGlobal.renderEntities(RenderGlobal.java:628)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorldPass(EntityRenderer.java:1347)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorld(EntityRenderer.java:1259)
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1062)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1119)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:398)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.legacydev.Main.start(Main.java:86)
+	at net.minecraftforge.legacydev.MainClient.main(MainClient.java:29)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Client thread
+Stacktrace:
+	at software.bernie.geckolib3.core.controller.AnimationController.process(AnimationController.java:432)
+	at software.bernie.geckolib3.core.processor.AnimationProcessor.tickAnimation(AnimationProcessor.java:65)
+	at software.bernie.geckolib3.model.AnimatedGeoModel.setLivingAnimations(AnimatedGeoModel.java:87)
+	at software.bernie.geckolib3.model.AnimatedGeoModel.setLivingAnimations(AnimatedGeoModel.java:33)
+	at software.bernie.geckolib3.renderers.geo.GeoEntityRenderer.doRender(GeoEntityRenderer.java:135)
+	at software.bernie.geckolib3.renderers.geo.GeoEntityRenderer.doRender(GeoEntityRenderer.java:36)
+
+-- Entity being rendered --
+Details:
+	Entity Type: creatures:peafowl (com.creatures.afrikinzi.entity.peafowl.EntityPeafowl)
+	Entity ID: 498
+	Entity Name: Peafowl
+	Entity's Exact location: 1827.88, 70.00, 895.33
+	Entity's Block location: World: (1827,70,895), Chunk: (at 3,4,15 in 114,55; contains blocks 1824,0,880 to 1839,255,895), Region: (3,1; contains chunks 96,32 to 127,63, blocks 1536,0,512 to 2047,255,1023)
+	Entity's Momentum: 0.00, -0.08, 0.03
+	Entity's Passengers: []
+	Entity's Vehicle: ~~ERROR~~ NullPointerException: null
+
+-- Renderer details --
+Details:
+	Assigned renderer: com.creatures.afrikinzi.entity.peafowl.RenderPeafowl@6f004070
+	Location: 4.24,-0.18,-23.92 - World: (4,-1,-24), Chunk: (at 4,-1,8 in 0,-2; contains blocks 0,0,-32 to 15,255,-17), Region: (0,-1; contains chunks 0,-32 to 31,-1, blocks 0,0,-512 to 511,255,-1)
+	Rotation: 33.51628
+	Delta: 0.06000781
+Stacktrace:
+	at net.minecraft.client.renderer.entity.RenderManager.renderEntity(RenderManager.java:384)
+	at net.minecraft.client.renderer.entity.RenderManager.renderEntityStatic(RenderManager.java:368)
+	at net.minecraft.client.renderer.RenderGlobal.renderEntities(RenderGlobal.java:628)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorldPass(EntityRenderer.java:1347)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorld(EntityRenderer.java:1259)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player849'/208, l='MpServer', x=1823.86, y=70.18, z=919.30]]
+	Chunk stats: MultiplayerChunkCache: 625, 625
+	Level seed: 0
+	Level generator: ID 00 - default, ver 1. Features enabled: false
+	Level generator options: 
+	Level spawn location: World: (132,64,248), Chunk: (at 4,4,8 in 8,15; contains blocks 128,0,240 to 143,255,255), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Level time: 55365 game time, 3932 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 160 total; [EntityDove['Dove'/514, l='MpServer', x=1826.46, y=71.01, z=928.10], EntityLaughingthrush['Laughingthrush'/515, l='MpServer', x=1835.27, y=65.00, z=940.44], EntitySpider['Spider'/6666, l='MpServer', x=1868.50, y=21.00, z=970.50], EntityZombie['Zombie'/6667, l='MpServer', x=1871.40, y=22.00, z=969.44], EntityPeafowl['Peafowl'/524, l='MpServer', x=1831.00, y=70.00, z=936.08], EntityPeafowl['Peafowl'/526, l='MpServer', x=1823.88, y=63.00, z=962.99], EntityPygmyGoose['Pygmy Goose'/527, l='MpServer', x=1806.50, y=64.00, z=959.89], EntityPygmyGoose['Pygmy Goose'/531, l='MpServer', x=1823.28, y=69.00, z=904.65], EntityPeafowl['Peafowl'/532, l='MpServer', x=1785.64, y=70.00, z=918.15], EntityPeafowl['Peafowl'/533, l='MpServer', x=1800.79, y=68.00, z=941.97], EntityZombie['Zombie'/6677, l='MpServer', x=1879.50, y=37.00, z=934.50], EntityPeafowl['Peafowl'/534, l='MpServer', x=1808.81, y=70.00, z=921.90], EntitySparrow['Sparrow'/535, l='MpServer', x=1810.24, y=69.00, z=930.56], EntityPeafowl['Peafowl'/536, l='MpServer', x=1812.98, y=66.00, z=951.91], EntityLaughingthrush['Laughingthrush'/537, l='MpServer', x=1818.24, y=68.00, z=938.66], EntityCreeper['Creeper'/4633, l='MpServer', x=1848.50, y=39.00, z=927.50], EntityZombie['Zombie'/6169, l='MpServer', x=1902.50, y=44.00, z=947.50], EntityPygmyGoose['Pygmy Goose'/538, l='MpServer', x=1806.76, y=64.00, z=963.71], EntityZombie['Zombie'/6170, l='MpServer', x=1897.50, y=44.00, z=950.50], EntitySwallow['Swallow'/539, l='MpServer', x=1812.50, y=63.00, z=967.40], EntityPeafowl['Peafowl'/540, l='MpServer', x=1814.01, y=64.00, z=960.03], EntityPeafowl['Peafowl'/541, l='MpServer', x=1811.18, y=66.00, z=950.94], EntityIbis['Ibis'/542, l='MpServer', x=1793.50, y=64.00, z=958.30], EntityPeafowl['Peafowl'/543, l='MpServer', x=1825.21, y=68.00, z=942.89], EntityPeafowl['Peafowl'/544, l='MpServer', x=1822.12, y=63.00, z=961.80], EntityPeafowl['Peafowl'/545, l='MpServer', x=1807.84, y=64.00, z=960.89], EntitySwallow['Swallow'/546, l='MpServer', x=1817.36, y=65.00, z=957.11], EntityWildDuck['Wild Duck'/547, l='MpServer', x=1820.31, y=69.00, z=927.61], EntityCreeper['Creeper'/6179, l='MpServer', x=1866.30, y=34.00, z=883.30], EntitySwallow['Swallow'/548, l='MpServer', x=1817.16, y=63.00, z=968.15], EntityLaughingthrush['Laughingthrush'/549, l='MpServer', x=1797.78, y=64.00, z=966.67], EntityKoi['Koi'/3113, l='MpServer', x=1803.60, y=68.00, z=922.52], EntitySwallow['Swallow'/554, l='MpServer', x=1796.24, y=64.00, z=955.51], EntityPeafowl['Peafowl'/555, l='MpServer', x=1812.26, y=64.00, z=964.98], EntityKoi['Koi'/3115, l='MpServer', x=1798.61, y=68.05, z=922.66], EntityCreeper['Creeper'/6706, l='MpServer', x=1849.50, y=39.00, z=923.50], EntityRanchuGoldfish['Ranchu Goldfish'/563, l='MpServer', x=1842.94, y=61.88, z=947.27], EntityZombie['Zombie'/6707, l='MpServer', x=1850.50, y=39.00, z=918.50], EntityZombie['Zombie'/6708, l='MpServer', x=1848.50, y=39.00, z=920.50], EntitySwallow['Swallow'/565, l='MpServer', x=1836.07, y=64.00, z=967.15], EntitySpider['Spider'/3655, l='MpServer', x=1883.00, y=20.10, z=947.70], EntityCreeper['Creeper'/3145, l='MpServer', x=1786.85, y=49.00, z=948.53], EntityGhostCrab['Ghost Crab'/589, l='MpServer', x=1824.48, y=73.00, z=870.61], EntityIbis['Ibis'/590, l='MpServer', x=1837.22, y=72.00, z=871.08], EntityIbis['Ibis'/592, l='MpServer', x=1825.81, y=72.00, z=873.80], EntityKoi['Koi'/3168, l='MpServer', x=1797.42, y=68.12, z=918.35], EntityBat['Bat'/6240, l='MpServer', x=1774.32, y=19.87, z=869.37], EntityBat['Bat'/5752, l='MpServer', x=1876.69, y=57.55, z=995.67], EntitySparrow['Sparrow'/637, l='MpServer', x=1850.52, y=62.54, z=890.65], EntityBat['Bat'/5757, l='MpServer', x=1768.14, y=21.02, z=861.40], EntitySparrow['Sparrow'/638, l='MpServer', x=1852.70, y=69.00, z=889.15], EntitySparrow['Sparrow'/639, l='MpServer', x=1852.42, y=69.00, z=889.98], EntitySparrow['Sparrow'/640, l='MpServer', x=1854.09, y=66.00, z=887.96], EntitySparrow['Sparrow'/641, l='MpServer', x=1852.05, y=69.00, z=891.80], EntityBat['Bat'/6278, l='MpServer', x=1757.62, y=38.64, z=989.75], EntityBat['Bat'/5255, l='MpServer', x=1767.75, y=42.10, z=938.50], EntityZombie['Zombie'/3207, l='MpServer', x=1745.23, y=37.00, z=989.50], EntityBat['Bat'/5257, l='MpServer', x=1768.91, y=41.08, z=941.71], EntityLaughingthrush['Laughingthrush'/661, l='MpServer', x=1840.40, y=66.00, z=899.06], EntityLaughingthrush['Laughingthrush'/662, l='MpServer', x=1811.48, y=72.00, z=882.53], EntityPeafowl['Peafowl'/663, l='MpServer', x=1833.99, y=70.00, z=892.87], EntityLaughingthrush['Laughingthrush'/664, l='MpServer', x=1807.18, y=70.00, z=891.88], EntityGhostCrab['Ghost Crab'/665, l='MpServer', x=1826.66, y=70.00, z=892.76], EntityMagpie['Magpie'/666, l='MpServer', x=1816.82, y=69.00, z=930.79], EntityDove['Dove'/687, l='MpServer', x=1844.14, y=64.00, z=922.17], EntityPeafowl['Peafowl'/688, l='MpServer', x=1839.84, y=68.00, z=919.90], EntityBat['Bat'/692, l='MpServer', x=1878.50, y=36.87, z=873.38], EntityLaughingthrush['Laughingthrush'/695, l='MpServer', x=1834.53, y=69.00, z=889.76], EntityCreeper['Creeper'/3773, l='MpServer', x=1850.50, y=39.00, z=927.50], EntityDove['Dove'/703, l='MpServer', x=1858.83, y=63.00, z=923.88], EntityPeafowl['Peafowl'/209, l='MpServer', x=1819.88, y=69.00, z=910.90], EntityPeafowl['Peafowl'/210, l='MpServer', x=1825.85, y=69.00, z=909.94], EntityPeafowl['Peafowl'/211, l='MpServer', x=1828.82, y=70.00, z=919.23], EntityKoi['Koi'/212, l='MpServer', x=1826.50, y=68.01, z=921.38], EntityCreaturesSpoonbill['Spoonbill'/213, l='MpServer', x=1826.18, y=70.00, z=928.66], EntityKoi['Koi'/214, l='MpServer', x=1824.39, y=68.10, z=923.51], EntityMagpie['Magpie'/215, l='MpServer', x=1809.24, y=71.27, z=925.70], EntityMandarinDuck['Mandarin Duck'/216, l='MpServer', x=1833.56, y=70.00, z=920.05], EntityKoi['Koi'/217, l='MpServer', x=1823.90, y=68.05, z=919.82], EntityLaughingthrush['Laughingthrush'/218, l='MpServer', x=1808.99, y=68.00, z=944.02], EntityKoi['Koi'/219, l='MpServer', x=1820.74, y=68.06, z=922.51], EntityKoi['Koi'/220, l='MpServer', x=1825.60, y=68.10, z=924.15], EntityKoi['Koi'/221, l='MpServer', x=1824.24, y=68.02, z=924.96], EntityCreeper['Creeper'/6384, l='MpServer', x=1763.50, y=25.00, z=856.50], EntityCreeper['Creeper'/3831, l='MpServer', x=1783.50, y=47.00, z=942.50], EntityCreeper['Creeper'/3832, l='MpServer', x=1784.50, y=47.00, z=944.50], EntitySkeleton['Skeleton'/6413, l='MpServer', x=1752.50, y=42.00, z=936.50], EntityCreeper['Creeper'/5903, l='MpServer', x=1763.50, y=41.00, z=932.50], EntityPlayerSP['Player849'/208, l='MpServer', x=1823.86, y=70.18, z=919.30], EntityCreeper['Creeper'/3358, l='MpServer', x=1866.70, y=36.00, z=848.30], EntitySheep['Sheep'/302, l='MpServer', x=1744.51, y=66.00, z=975.70], EntityZombie['Zombie'/5962, l='MpServer', x=1772.50, y=41.00, z=944.50], EntitySheep['Sheep'/337, l='MpServer', x=1744.73, y=73.00, z=988.49], EntitySheep['Sheep'/338, l='MpServer', x=1747.28, y=66.00, z=977.49], EntityZombie['Zombie'/5980, l='MpServer', x=1869.50, y=38.00, z=892.50], EntityZombie['Zombie'/4453, l='MpServer', x=1860.50, y=21.00, z=970.50], EntityDove['Dove'/367, l='MpServer', x=1804.71, y=73.00, z=871.05], EntityWildDuck['Wild Duck'/368, l='MpServer', x=1799.66, y=73.00, z=871.43], EntityPeafowl['Peafowl'/371, l='MpServer', x=1795.50, y=71.00, z=879.50], EntityDove['Dove'/372, l='MpServer', x=1781.60, y=70.00, z=888.54], EntityArowana['Arowana'/3444, l='MpServer', x=1850.43, y=62.04, z=929.09], EntityPeafowl['Peafowl'/375, l='MpServer', x=1774.89, y=72.00, z=901.89], EntityPeafowl['Peafowl'/378, l='MpServer', x=1774.73, y=71.00, z=902.60], EntityPeafowl['Peafowl'/380, l='MpServer', x=1774.25, y=71.00, z=903.55], EntityTrout['Trout'/3455, l='MpServer', x=1853.51, y=62.14, z=897.42], EntityXPOrb['Experience Orb'/1408, l='MpServer', x=1833.07, y=56.00, z=958.99], EntityBat['Bat'/4480, l='MpServer', x=1869.40, y=38.10, z=922.88], EntityDove['Dove'/390, l='MpServer', x=1778.58, y=72.00, z=871.50], EntityPygmyGoose['Pygmy Goose'/393, l='MpServer', x=1820.51, y=71.00, z=886.71], EntityLaughingthrush['Laughingthrush'/394, l='MpServer', x=1822.25, y=72.00, z=882.71], EntityLaughingthrush['Laughingthrush'/395, l='MpServer', x=1791.82, y=71.00, z=905.81], EntityLaughingthrush['Laughingthrush'/396, l='MpServer', x=1797.93, y=71.00, z=894.53], EntityMagpie['Magpie'/397, l='MpServer', x=1796.83, y=71.00, z=903.95], EntityPeafowl['Peafowl'/398, l='MpServer', x=1802.86, y=70.00, z=900.92], EntityZombie['Zombie'/3982, l='MpServer', x=1753.50, y=25.00, z=851.50], EntityLaughingthrush['Laughingthrush'/399, l='MpServer', x=1795.99, y=70.00, z=914.39], EntityDove['Dove'/400, l='MpServer', x=1780.71, y=74.00, z=917.97], EntityIbis['Ibis'/401, l='MpServer', x=1781.60, y=74.00, z=916.96], EntityWoodDuck['Wood Duck'/403, l='MpServer', x=1780.30, y=66.00, z=924.49], EntityWildDuck['Wild Duck'/405, l='MpServer', x=1779.99, y=70.00, z=913.44], EntityWildDuck['Wild Duck'/407, l='MpServer', x=1776.77, y=62.22, z=936.55], EntityMandarinDuck['Mandarin Duck'/408, l='MpServer', x=1803.35, y=68.46, z=920.35], EntityDove['Dove'/409, l='MpServer', x=1776.82, y=70.00, z=914.14], EntityPeafowl['Peafowl'/410, l='MpServer', x=1778.86, y=71.00, z=904.93], EntityGhostCrab['Ghost Crab'/415, l='MpServer', x=1808.23, y=73.00, z=870.64], EntitySpider['Spider'/6049, l='MpServer', x=1749.41, y=23.10, z=850.70], EntityPeafowl['Peafowl'/435, l='MpServer', x=1814.86, y=72.00, z=879.89], EntityPygmyGoose['Pygmy Goose'/439, l='MpServer', x=1799.95, y=71.00, z=888.12], EntitySkeleton['Skeleton'/5562, l='MpServer', x=1890.50, y=22.00, z=942.50], EntityGhostCrab['Ghost Crab'/460, l='MpServer', x=1801.45, y=70.00, z=898.36], EntitySquid['Squid'/5581, l='MpServer', x=1770.74, y=61.87, z=940.47], EntityGhostCrab['Ghost Crab'/461, l='MpServer', x=1777.55, y=71.00, z=898.60], EntityIbis['Ibis'/462, l='MpServer', x=1778.06, y=71.00, z=911.03], EntityRanchuGoldfish['Ranchu Goldfish'/5583, l='MpServer', x=1786.06, y=62.03, z=953.73], EntityRanchuGoldfish['Ranchu Goldfish'/5584, l='MpServer', x=1775.47, y=62.00, z=943.42], EntityDove['Dove'/475, l='MpServer', x=1794.97, y=74.00, z=939.94], EntitySkeleton['Skeleton'/5097, l='MpServer', x=1837.50, y=32.00, z=848.50], EntityLaughingthrush['Laughingthrush'/490, l='MpServer', x=1810.71, y=64.00, z=959.43], EntitySwallow['Swallow'/491, l='MpServer', x=1796.16, y=67.00, z=944.88], EntityZombie['Zombie'/6123, l='MpServer', x=1758.26, y=19.00, z=853.48], EntityPeafowl['Peafowl'/492, l='MpServer', x=1805.50, y=65.00, z=954.50], EntityPeafowl['Peafowl'/493, l='MpServer', x=1800.98, y=64.00, z=966.97], EntitySkeleton['Skeleton'/6637, l='MpServer', x=1889.07, y=38.00, z=846.58], EntitySquid['Squid'/5614, l='MpServer', x=1768.40, y=62.00, z=965.40], EntityLaughingthrush['Laughingthrush'/495, l='MpServer', x=1785.38, y=63.00, z=968.88], EntityPeafowl['Peafowl'/498, l='MpServer', x=1827.88, y=70.00, z=895.33], EntityPeafowl['Peafowl'/499, l='MpServer', x=1826.78, y=70.00, z=894.93], EntityLaughingthrush['Laughingthrush'/500, l='MpServer', x=1811.28, y=70.00, z=891.76], EntityMagpie['Magpie'/501, l='MpServer', x=1825.60, y=68.47, z=918.40], EntityItem['item.item.raw_koi'/502, l='MpServer', x=1814.19, y=69.00, z=904.47], EntityItem['item.item.raw_koi'/503, l='MpServer', x=1814.49, y=69.00, z=906.29], EntityMagpie['Magpie'/504, l='MpServer', x=1821.82, y=69.72, z=897.42], EntityLaughingthrush['Laughingthrush'/505, l='MpServer', x=1789.48, y=62.52, z=939.40], EntitySwallow['Swallow'/506, l='MpServer', x=1786.04, y=62.58, z=942.39], EntityLaughingthrush['Laughingthrush'/507, l='MpServer', x=1787.62, y=69.00, z=931.15], EntityWildDuck['Wild Duck'/508, l='MpServer', x=1796.69, y=68.00, z=938.45], EntitySwallow['Swallow'/509, l='MpServer', x=1785.57, y=67.00, z=937.84], EntitySkeleton['Skeleton'/4605, l='MpServer', x=1892.50, y=23.00, z=955.50], EntityPeafowl['Peafowl'/510, l='MpServer', x=1785.85, y=68.00, z=938.86], EntityPeafowl['Peafowl'/511, l='MpServer', x=1786.64, y=68.00, z=938.66]]
+	Retry entities: 0 total; []
+	Server brand: fml,forge
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:420)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2741)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:419)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.legacydev.Main.start(Main.java:86)
+	at net.minecraftforge.legacydev.MainClient.main(MainClient.java:29)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.12.2
+	Operating System: Mac OS X (x86_64) version 10.15.7
+	Java Version: 1.8.0_292, AdoptOpenJDK
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode), AdoptOpenJDK
+	Memory: 548765736 bytes (523 MB) / 1315438592 bytes (1254 MB) up to 3817865216 bytes (3641 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 12, tallocated: 94
+	FML: MCP 9.42 Powered by Forge 14.23.5.2855 6 mods loaded, 6 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+
+	| State  | ID        | Version      | Source                                                               | Signature |
+	|:------ |:--------- |:------------ |:-------------------------------------------------------------------- |:--------- |
+	| LCHIJA | minecraft | 1.12.2       | minecraft.jar                                                        | None      |
+	| LCHIJA | mcp       | 9.42         | minecraft.jar                                                        | None      |
+	| LCHIJA | FML       | 8.0.99.99    | forge-1.12.2-14.23.5.2855_mapped_snapshot_20171003-1.12-recomp.jar   | None      |
+	| LCHIJA | forge     | 14.23.5.2855 | forge-1.12.2-14.23.5.2855_mapped_snapshot_20171003-1.12-recomp.jar   | None      |
+	| LCHIJA | creatures | 1.0          | main                                                                 | None      |
+	| LCHIJA | geckolib3 | 3.0.0        | forge-1.12.2-geckolib-3.0.0-beta.7_mapped_snapshot_20171003-1.12.jar | None      |
+
+	Loaded coremods (and transformers): 
+	GL info: ' Vendor: 'Intel Inc.' Version: '2.1 INTEL-14.7.8' Renderer: 'Intel(R) Iris(TM) Plus Graphics OpenGL Engine'
+	Launched Version: ${MC_VERSION}
+	LWJGL: 2.9.2
+	OpenGL: Intel(R) Iris(TM) Plus Graphics OpenGL Engine GL version 2.1 INTEL-14.7.8, Intel Inc.
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because ARB_framebuffer_object is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'fml,forge'
+	Type: Client (map_client.txt)
+	Resource Packs: 
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 8x Intel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz

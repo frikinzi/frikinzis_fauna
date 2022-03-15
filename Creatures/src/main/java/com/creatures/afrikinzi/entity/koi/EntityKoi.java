@@ -2,9 +2,14 @@ package com.creatures.afrikinzi.entity.koi;
 
 import com.creatures.afrikinzi.entity.FishBase;
 import com.creatures.afrikinzi.entity.ICreaturesEntity;
+import com.creatures.afrikinzi.entity.peafowl.EntityPeafowl;
+import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.*;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -105,6 +110,38 @@ public class EntityKoi extends FishBase implements IAnimatable, ICreaturesEntity
     public String getSpeciesName() {
         String s1 = I18n.format("entity.koi.name");
         return s1;
+    }
+
+
+    public EntityKoi createChild(EntityAgeable ageable)
+    {
+        EntityKoi entitypeafowl = new EntityKoi(this.world);
+        entitypeafowl.setVariant(this.getVariant());
+        entitypeafowl.setGender(this.rand.nextInt(2));
+
+        return entitypeafowl;
+    }
+
+    public boolean isBreedingItem(ItemStack stack)
+    {
+        return stack.getItem() == ItemInit.RAW_SHRIMP;
+    }
+
+    public boolean canMateWith(EntityAnimal otherAnimal)
+    {
+        if (otherAnimal == this)
+        {
+            return false;
+        }
+        else if (!(otherAnimal instanceof EntityKoi))
+        {
+            return false;
+        }
+        else
+        {
+            EntityKoi entitykakapo = (EntityKoi)otherAnimal;
+            return this.isInLove() && entitykakapo.isInLove();
+        }
     }
 
 }

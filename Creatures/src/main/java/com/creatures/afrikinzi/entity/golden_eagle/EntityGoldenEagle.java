@@ -9,6 +9,7 @@ import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Sets;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -122,6 +123,10 @@ public class EntityGoldenEagle extends RaptorBase implements IAnimatable, ICreat
         {
             return false;
         }
+        else if (!this.isTamed())
+        {
+            return false;
+        }
         else if (!(otherAnimal instanceof EntityGoldenEagle))
         {
             return false;
@@ -189,6 +194,15 @@ public class EntityGoldenEagle extends RaptorBase implements IAnimatable, ICreat
         } else {
             return null;
         }
+    }
+
+    public String getSpeciesName() {
+        String s1 = I18n.format("entity.golden_eagle.name");
+        return s1;
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.CHICKEN.getUnlocalizedName() + ".name").trim();
     }
 
 

@@ -3,6 +3,7 @@ package com.creatures.afrikinzi.entity.fiddler_crab;
 import com.creatures.afrikinzi.entity.AbstractCreaturesNonTameable;
 import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -210,6 +211,35 @@ public class EntityFiddlerCrab extends AbstractCreaturesNonTameable implements I
     public void setVariant(int p_191997_1_)
     {
         this.dataManager.set(VARIANT, Integer.valueOf(p_191997_1_));
+    }
+
+    public String getSpeciesName() {
+        if (this.getVariant() == 1) {
+            String s1 = I18n.format("message.creatures.thicklegged");
+            return s1;
+        }
+        else if (this.getVariant() == 2) {
+            String s1 = I18n.format("message.creatures.atlanticfiddler");
+            return s1;
+        }
+        else if (this.getVariant() == 3) {
+            String s1 = I18n.format("message.creatures.africanfiddler");
+            return s1;
+        }
+        else if (this.getVariant() == 4) {
+            String s1 = I18n.format("message.creatures.demanding");
+            return s1;
+        }
+        else if (this.getVariant() == 5) {
+            String s1 = I18n.format("message.creatures.flamebacked");
+            return s1;
+        } else {
+            return "Unknown";
+        }
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(new ItemStack(Blocks.DEADBUSH, (int) (1)).getItem().getUnlocalizedName() + ".name").trim();
     }
 
 }

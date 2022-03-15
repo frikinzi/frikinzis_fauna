@@ -273,6 +273,10 @@ public class EntityLorikeet extends FlyingEntityTameableBase implements IAnimata
         {
             return false;
         }
+        else if (!this.isTamed())
+        {
+            return false;
+        }
         else if (!(otherAnimal instanceof EntityLorikeet))
         {
             return false;
@@ -354,13 +358,13 @@ public class EntityLorikeet extends FlyingEntityTameableBase implements IAnimata
         else if (this.getVariant() == 5) {
             String s1 = I18n.format("message.creatures.lorikeet.chattering");
             return s1;
-        }
-        else if (this.getVariant() == 6) {
-            String s1 = I18n.format("message.creatures.lovebird.madagascar");
-            return s1;
         } else {
             return "Unknown";
         }
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(ItemInit.NECTAR.getUnlocalizedName() + ".name").trim();
     }
 
 }

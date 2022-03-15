@@ -161,5 +161,47 @@
 		"category": "entity",
 		"subtitle": "entity.wood_duck.wood_duck_ambient2",
 		"sounds": [{"name": "creatures:entity/wood_duck/wood_duck_ambient2", "stream": true }]
+	},
+	"entity.laughingthrush.laughingthrush_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.laughingthrush.laughingthrush_ambient",
+		"sounds": [{"name": "creatures:entity/laughingthrush/laughingthrush_ambient", "stream": true }]
+	},
+	"entity.magpie.magpie_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.magpie.magpie_ambient",
+		"sounds": [{"name": "creatures:entity/magpie/magpie_ambient", "stream": true }]
+	},
+	"entity.bushtit.bushtit_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.bushtit.bushtit_ambient",
+		"sounds": [{"name": "creatures:entity/bushtit/bushtit_ambient", "stream": true }]
+	},
+	"entity.eagleowl.eagleowl_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.eagleowl.eagleowl_ambient",
+		"sounds": [{"name": "creatures:entity/eagleowl/eagleowl_ambient", "stream": true }]
+	},
+	"entity.robin.robin_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.robin.robin_ambient",
+		"sounds": [{"name": "creatures:entity/robin/robin_ambient", "stream": true }]
+	},
+	"entity.peafowl.peafowl_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.peafowl.peafowl_ambient",
+		"sounds": [{"name": "creatures:entity/peafowl/peafowl_ambient", "stream": true }]
+	},
+	"entity.sparrow.sparrow_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.sparrow.sparrow_ambient",
+		"sounds": [{"name": "creatures:entity/sparrow/sparrow_ambient", "stream": true }]
 	}
 }

@@ -17,8 +17,7 @@ public class RenderBushtit extends GeoEntityRenderer<EntityBushtit> {
     {
         if (animatable.isChild()) {
             GlStateManager.scale(0.5F, 0.5F, 0.5F);
-        } else {
-            GlStateManager.scale(0.7F, 0.7F, 0.7F);
         }
+            GlStateManager.scale(0.7F, 0.7F, 0.7F);
     }
 }

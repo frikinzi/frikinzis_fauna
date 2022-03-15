@@ -12,6 +12,7 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -157,6 +158,11 @@ public class EntityWildDuck extends AbstractCreaturesNonTameable implements IAni
         this.setGender(compound.getInteger("Gender"));
     }
 
+    public boolean isBreedingItem(ItemStack stack)
+    {
+        return stack.getItem() == Items.BREAD;
+    }
+
     public EntityWildDuck createChild(EntityAgeable ageable)
     {
         EntityWildDuck entitywildduck = new EntityWildDuck(this.world);
@@ -263,6 +269,10 @@ public class EntityWildDuck extends AbstractCreaturesNonTameable implements IAni
         } else {
             return "Unknown";
         }
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.BREAD.getUnlocalizedName() + ".name").trim();
     }
 
 }

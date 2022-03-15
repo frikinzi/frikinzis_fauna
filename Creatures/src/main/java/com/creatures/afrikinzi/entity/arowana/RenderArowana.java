@@ -14,6 +14,9 @@ public class RenderArowana extends GeoEntityRenderer<EntityArowana> {
     @Override
     public void renderEarly(EntityArowana animatable, float ticks, float red, float green, float blue, float partialTicks)
     {
+        if (animatable.isChild()) {
+            GlStateManager.scale(0.4F, 0.4F, 0.4F);
+        }
         GlStateManager.scale(1.2F, 1.2F, 1.2F);
     }
 }

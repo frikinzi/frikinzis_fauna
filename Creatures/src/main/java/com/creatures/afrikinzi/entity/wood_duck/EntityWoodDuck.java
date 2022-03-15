@@ -5,6 +5,7 @@ import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.entity.ai.CreaturesAISwimming;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -12,6 +13,7 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -274,6 +276,15 @@ public class EntityWoodDuck extends AbstractCreaturesNonTameable implements IAni
         } else {
             return "f";
         }
+    }
+
+    public String getSpeciesName() {
+        String s1 = I18n.format("entity.wood_duck.name");
+        return s1;
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.BREAD.getUnlocalizedName() + ".name").trim();
     }
 
 }

@@ -3,6 +3,7 @@ package com.creatures.afrikinzi.entity;
 import com.creatures.afrikinzi.Creatures;
 import com.creatures.afrikinzi.entity.lovebird.EntityLovebird;
 import com.creatures.afrikinzi.init.ItemInit;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -79,13 +80,19 @@ public abstract class AbstractCreaturesNonTameable extends EntityAnimal {
 
     public String getGenderString() {
         if (this.getGender() == 1) {
-            return "Male";
+            String s1 = I18n.format("gui.male");
+            return s1;
         } else {
-            return "Female";
+            String s1 = I18n.format("gui.female");
+            return s1;
         }
     }
 
     public String getSpeciesName() {
+        return "";
+    }
+
+    public String getFoodName() {
         return "";
     }
 

@@ -3,10 +3,12 @@ package com.creatures.afrikinzi.entity.peafowl;
 import com.creatures.afrikinzi.config.CreaturesConfig;
 import com.creatures.afrikinzi.entity.AbstractCreaturesTameable;
 import com.creatures.afrikinzi.entity.ICreaturesEntity;
+import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -50,7 +52,7 @@ public class EntityPeafowl extends AbstractCreaturesTameable implements IAnimata
     protected static final DataParameter<Integer> GENDER = EntityDataManager.createKey(EntityPeafowl.class, DataSerializers.VARINT);
     protected static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(EntityPeafowl.class, DataSerializers.VARINT);
     private EntityAITempt aiTempt;
-    private static final Set<Item> TAME_ITEMS = Sets.newHashSet(Items.APPLE, Items.MELON);
+    private static final Set<Item> TAME_ITEMS = Sets.newHashSet(Items.APPLE, Items.MELON, Items.WHEAT_SEEDS);
     public int timeUntilDisplayingEnds;
 
     public EntityPeafowl(World worldIn)
@@ -164,7 +166,7 @@ public class EntityPeafowl extends AbstractCreaturesTameable implements IAnimata
     @Nullable
     protected ResourceLocation getLootTable()
     {
-        return LootTableHandler.PARROT;
+        return LootTableHandler.PEAFOWL;
     }
 
     public boolean processInteract(EntityPlayer player, EnumHand hand)
@@ -240,6 +242,7 @@ public class EntityPeafowl extends AbstractCreaturesTameable implements IAnimata
             entitypeafowl.setOwnerId(this.getOwnerId());
             entitypeafowl.setTamed(true);
         }
+        entitypeafowl.setVariant(this.getVariant());
         entitypeafowl.setGender(this.rand.nextInt(2));
 
         return entitypeafowl;
@@ -367,7 +370,7 @@ public class EntityPeafowl extends AbstractCreaturesTameable implements IAnimata
         if (this.inWater || this.isInWater() || this.isInLava() || this.isBurning()) {
             setSleeping(false);
         }
-        if (this.determineDisplay() == true) {
+        if (this.determineDisplay() == true && this.rand.nextInt(50) == 1) {
             this.timeUntilDisplayingEnds = 20;
             setOnDisplay(true);
         }
@@ -384,7 +387,7 @@ public class EntityPeafowl extends AbstractCreaturesTameable implements IAnimata
         double d0 = Double.MAX_VALUE;
 
         for (EntityPeafowl entityanimal1 : list) {
-            if (entityanimal1 instanceof EntityPeafowl && entityanimal1.getGender() == 2) {
+            if (entityanimal1 instanceof EntityPeafowl && entityanimal1.getGender() == 0) {
                 double d1 = this.getDistanceSq(entityanimal1);
 
                 if (d1 <= d0) {
@@ -396,7 +399,7 @@ public class EntityPeafowl extends AbstractCreaturesTameable implements IAnimata
         if (entityanimal == null) {
             return false;
         }
-        else if (this.getGender() == 1 && !this.isSleeping()) {
+        else if (!this.isChild() && this.getGender() == 1 && !this.isSleeping()) {
             return true;
         } else if (d0 > 12.0D) {
             return false;
@@ -412,6 +415,27 @@ public class EntityPeafowl extends AbstractCreaturesTameable implements IAnimata
         } else {
             return "f";
         }
+    }
+
+    public String getSpeciesName() {
+        if (this.getVariant() == 1) {
+            String s1 = I18n.format("message.creatures.greenpeafowl");
+            return s1;
+        }
+        else if (this.getVariant() == 2) {
+            String s1 = I18n.format("message.creatures.indianpeafowl");
+            return s1;
+        }
+        else if (this.getVariant() == 3) {
+            String s1 = I18n.format("message.creatures.albinopeafowl");
+            return s1;
+        } else {
+            return "Unknown";
+        }
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.APPLE.getUnlocalizedName() + ".name").trim();
     }
 
 

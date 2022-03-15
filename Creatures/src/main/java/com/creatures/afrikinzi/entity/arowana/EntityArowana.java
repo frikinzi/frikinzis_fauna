@@ -2,10 +2,15 @@ package com.creatures.afrikinzi.entity.arowana;
 
 import com.creatures.afrikinzi.entity.FishBase;
 import com.creatures.afrikinzi.entity.ICreaturesEntity;
+import com.creatures.afrikinzi.entity.koi.EntityKoi;
+import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -107,6 +112,38 @@ public class EntityArowana extends FishBase implements IAnimatable, ICreaturesEn
     public String getSpeciesName() {
         String s1 = I18n.format("entity.arowana.name");
         return s1;
+    }
+
+
+    public EntityArowana createChild(EntityAgeable ageable)
+    {
+        EntityArowana entitypeafowl = new EntityArowana(this.world);
+        entitypeafowl.setVariant(this.getVariant());
+        entitypeafowl.setGender(this.rand.nextInt(2));
+
+        return entitypeafowl;
+    }
+
+    public boolean isBreedingItem(ItemStack stack)
+    {
+        return stack.getItem() == ItemInit.RAW_SHRIMP;
+    }
+
+    public boolean canMateWith(EntityAnimal otherAnimal)
+    {
+        if (otherAnimal == this)
+        {
+            return false;
+        }
+        else if (!(otherAnimal instanceof EntityArowana))
+        {
+            return false;
+        }
+        else
+        {
+            EntityArowana entitykakapo = (EntityArowana)otherAnimal;
+            return this.isInLove() && entitykakapo.isInLove();
+        }
     }
 
 }

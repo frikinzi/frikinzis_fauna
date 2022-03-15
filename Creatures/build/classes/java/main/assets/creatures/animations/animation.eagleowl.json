@@ -129,6 +129,40 @@
 					}
 				}
 			}
+		},
+		"sit": {
+			"loop": true,
+			"animation_length": 2,
+			"bones": {
+				"bone": {
+					"position": {
+						"vector": [0, -2, 0]
+					}
+				},
+				"bone6": {
+					"rotation": {
+						"0.0": {
+							"vector": [10, 0, 0]
+						},
+						"1.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [10, 0, 0]
+						}
+					}
+				},
+				"bone4": {
+					"position": {
+						"vector": [0, 2, 0]
+					}
+				},
+				"bone5": {
+					"position": {
+						"vector": [0, 2, 0]
+					}
+				}
+			}
 		}
 	}
 }

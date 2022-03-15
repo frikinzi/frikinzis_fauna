@@ -9,6 +9,7 @@ import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
@@ -410,6 +411,10 @@ public class EntityRaven extends AbstractCreaturesTameable implements IAnimatabl
         {
             return false;
         }
+        else if (!this.isTamed())
+        {
+            return false;
+        }
         else if (!(otherAnimal instanceof EntityRaven))
         {
             return false;
@@ -442,6 +447,15 @@ public class EntityRaven extends AbstractCreaturesTameable implements IAnimatabl
             return 1;
         }
         return 0;
+    }
+
+    public String getSpeciesName() {
+        String s1 = I18n.format("entity.raven.name");
+        return s1;
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.ROTTEN_FLESH.getUnlocalizedName() + ".name").trim();
     }
 
 }

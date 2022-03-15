@@ -7,6 +7,7 @@ import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
@@ -291,6 +292,43 @@ public class EntityLaughingthrush extends AbstractCreaturesNonTameable implement
     public boolean isBreedingItem(ItemStack stack)
     {
         return BREEDING_ITEMS.contains(stack.getItem());
+    }
+
+    public String getSpeciesName() {
+        if (this.getVariant() == 1) {
+            String s1 = I18n.format("message.creatures.chinesehua");
+            return s1;
+        }
+        else if (this.getVariant() == 2) {
+            String s1 = I18n.format("message.creatures.whitecrested");
+            return s1;
+        }
+        else if (this.getVariant() == 3) {
+            String s1 = I18n.format("message.creatures.chinesehua");
+            return s1;
+        }
+        else if (this.getVariant() == 4) {
+            String s1 = I18n.format("message.creatures.blackhooded");
+            return s1;
+        }
+        else if (this.getVariant() == 5) {
+            String s1 = I18n.format("message.creatures.bluecrowned");
+            return s1;
+        }
+        else if (this.getVariant() == 6) {
+            String s1 = I18n.format("message.creatures.whitecheeked");
+            return s1;
+        }
+        else if (this.getVariant() == 7) {
+            String s1 = I18n.format("message.creatures.redtailed");
+            return s1;
+        } else {
+            return "Unknown";
+        }
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.WHEAT_SEEDS.getUnlocalizedName() + ".name").trim();
     }
 
 }

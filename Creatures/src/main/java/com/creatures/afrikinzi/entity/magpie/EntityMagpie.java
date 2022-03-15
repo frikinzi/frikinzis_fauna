@@ -7,6 +7,7 @@ import com.creatures.afrikinzi.util.handlers.LootTableHandler;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
@@ -55,7 +56,7 @@ public class EntityMagpie extends AbstractCreaturesNonTameable implements Entity
     public EntityMagpie(World worldIn)
     {
         super(worldIn);
-        this.setSize(0.8F, 0.8F);
+        this.setSize(0.6F, 0.6F);
         this.moveHelper = new EntityFlyHelper(this);
     }
 
@@ -290,6 +291,39 @@ public class EntityMagpie extends AbstractCreaturesNonTameable implements Entity
     public boolean isBreedingItem(ItemStack stack)
     {
         return BREEDING_ITEMS.contains(stack.getItem());
+    }
+
+    public String getSpeciesName() {
+        if (this.getVariant() == 1) {
+            String s1 = I18n.format("message.creatures.eurasianmagpie");
+            return s1;
+        }
+        else if (this.getVariant() == 2) {
+            String s1 = I18n.format("message.creatures.australianmagpie");
+            return s1;
+        }
+        else if (this.getVariant() == 3) {
+            String s1 = I18n.format("message.creatures.javan");
+            return s1;
+        }
+        else if (this.getVariant() == 4) {
+            String s1 = I18n.format("message.creatures.taiwan");
+            return s1;
+        }
+        else if (this.getVariant() == 5) {
+            String s1 = I18n.format("message.creatures.iberianmagpie");
+            return s1;
+        }
+        else if (this.getVariant() == 6) {
+            String s1 = I18n.format("message.creatures.srilanka");
+            return s1;
+        } else {
+            return "Unknown";
+        }
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.WHEAT_SEEDS.getUnlocalizedName() + ".name").trim();
     }
 
 }

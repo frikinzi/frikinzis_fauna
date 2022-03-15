@@ -2,8 +2,14 @@ package com.creatures.afrikinzi.entity.red_snapper;
 
 import com.creatures.afrikinzi.entity.FishBase;
 import com.creatures.afrikinzi.entity.ICreaturesEntity;
+import com.creatures.afrikinzi.entity.pike.EntityPike;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -63,5 +69,43 @@ public class EntityRedSnapper extends FishBase implements IAnimatable, ICreature
         super.entityInit();
     }
 
+    public String getSpeciesName() {
+        String s1 = I18n.format("entity.red_snapper.name");
+        return s1;
+    }
+
+    public EntityRedSnapper createChild(EntityAgeable ageable)
+    {
+        EntityRedSnapper entitypeafowl = new EntityRedSnapper(this.world);
+        entitypeafowl.setGender(this.rand.nextInt(2));
+
+        return entitypeafowl;
+    }
+
+    public boolean isBreedingItem(ItemStack stack)
+    {
+        return stack.getItem() == Items.FISH;
+    }
+
+    public boolean canMateWith(EntityAnimal otherAnimal)
+    {
+        if (otherAnimal == this)
+        {
+            return false;
+        }
+        else if (!(otherAnimal instanceof EntityRedSnapper))
+        {
+            return false;
+        }
+        else
+        {
+            EntityRedSnapper entitykakapo = (EntityRedSnapper)otherAnimal;
+            return this.isInLove() && entitykakapo.isInLove();
+        }
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.FISH.getUnlocalizedName() + ".name").trim();
+    }
 
 }

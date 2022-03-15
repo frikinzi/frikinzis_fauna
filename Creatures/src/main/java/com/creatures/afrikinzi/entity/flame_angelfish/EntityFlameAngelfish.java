@@ -2,7 +2,13 @@ package com.creatures.afrikinzi.entity.flame_angelfish;
 
 import com.creatures.afrikinzi.entity.FishBase;
 import com.creatures.afrikinzi.entity.ICreaturesEntity;
+import com.creatures.afrikinzi.entity.koi.EntityKoi;
+import com.creatures.afrikinzi.init.ItemInit;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -48,5 +54,41 @@ public class EntityFlameAngelfish extends FishBase implements IAnimatable, ICrea
     protected void entityInit()
     {
         super.entityInit();
+    }
+
+    public String getSpeciesName() {
+        String s1 = I18n.format("entity.flame_angelfish.name");
+        return s1;
+    }
+
+
+    public EntityFlameAngelfish createChild(EntityAgeable ageable)
+    {
+        EntityFlameAngelfish entitypeafowl = new EntityFlameAngelfish(this.world);
+        entitypeafowl.setGender(this.rand.nextInt(2));
+
+        return entitypeafowl;
+    }
+
+    public boolean isBreedingItem(ItemStack stack)
+    {
+        return stack.getItem() == ItemInit.RAW_SHRIMP;
+    }
+
+    public boolean canMateWith(EntityAnimal otherAnimal)
+    {
+        if (otherAnimal == this)
+        {
+            return false;
+        }
+        else if (!(otherAnimal instanceof EntityFlameAngelfish))
+        {
+            return false;
+        }
+        else
+        {
+            EntityFlameAngelfish entitykakapo = (EntityFlameAngelfish)otherAnimal;
+            return this.isInLove() && entitykakapo.isInLove();
+        }
     }
 }

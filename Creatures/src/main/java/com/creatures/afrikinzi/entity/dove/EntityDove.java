@@ -305,7 +305,9 @@ public class EntityDove extends AbstractCreaturesTameable implements IAnimatable
     {
         if (this.getVariant() == 2 || this.getVariant() == 4 || this.getVariant() == 7 || this.getVariant() == 6) {
         return SEED_FOOD.contains(stack.getItem()); }
+        else {
         return FRUIT_FOOD.contains(stack.getItem());
+        }
     }
 
     public void fall(float distance, float damageMultiplier)
@@ -319,6 +321,10 @@ public class EntityDove extends AbstractCreaturesTameable implements IAnimatable
     public boolean canMateWith(EntityAnimal otherAnimal)
     {
         if (otherAnimal == this)
+        {
+            return false;
+        }
+        else if (!this.isTamed())
         {
             return false;
         }
@@ -536,5 +542,12 @@ public class EntityDove extends AbstractCreaturesTameable implements IAnimatable
             return "Unknown";
         }
     }
+
+    public String getFoodName() {
+        if (this.getVariant() == 2 || this.getVariant() == 4 || this.getVariant() == 7 || this.getVariant() == 6) {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.WHEAT_SEEDS.getUnlocalizedName() + ".name").trim(); }
+        else {
+            return net.minecraft.util.text.translation.I18n.translateToLocal(Items.APPLE.getUnlocalizedName() + ".name").trim(); }
+        }
 
 }

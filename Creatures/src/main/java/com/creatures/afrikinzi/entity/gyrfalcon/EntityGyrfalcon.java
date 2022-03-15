@@ -11,6 +11,7 @@ import com.creatures.afrikinzi.entity.swallow.EntitySwallow;
 import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Sets;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -132,6 +133,10 @@ public class EntityGyrfalcon extends RaptorBase implements IAnimatable, ICreatur
         {
             return false;
         }
+        else if (!this.isTamed())
+        {
+            return false;
+        }
         else if (!(otherAnimal instanceof EntityGyrfalcon))
         {
             return false;
@@ -147,5 +152,14 @@ public class EntityGyrfalcon extends RaptorBase implements IAnimatable, ICreatur
         entitygyrfalcon.setGender(this.rand.nextInt(2));
         return entitygyrfalcon;
 
+    }
+
+    public String getSpeciesName() {
+        String s1 = I18n.format("entity.gyrfalcon.name");
+        return s1;
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.CHICKEN.getUnlocalizedName() + ".name").trim();
     }
 }

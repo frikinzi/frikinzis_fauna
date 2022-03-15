@@ -55,7 +55,7 @@ public class EntityChickadee extends AbstractCreaturesNonTameable implements Ent
     public EntityChickadee(World worldIn)
     {
         super(worldIn);
-        this.setSize(0.8F, 0.8F);
+        this.setSize(0.6F, 0.6F);
         this.moveHelper = new EntityFlyHelper(this);
     }
 
@@ -312,6 +312,10 @@ public class EntityChickadee extends AbstractCreaturesNonTameable implements Ent
         } else {
             return "Unknown";
         }
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.WHEAT_SEEDS.getUnlocalizedName() + ".name").trim();
     }
 
 }

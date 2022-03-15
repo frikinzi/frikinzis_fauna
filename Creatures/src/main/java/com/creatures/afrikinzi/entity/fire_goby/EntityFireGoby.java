@@ -2,7 +2,13 @@ package com.creatures.afrikinzi.entity.fire_goby;
 
 import com.creatures.afrikinzi.entity.FishBase;
 import com.creatures.afrikinzi.entity.ICreaturesEntity;
+import com.creatures.afrikinzi.entity.koi.EntityKoi;
+import com.creatures.afrikinzi.init.ItemInit;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -48,6 +54,42 @@ public class EntityFireGoby extends FishBase implements IAnimatable, ICreaturesE
     protected void entityInit()
     {
         super.entityInit();
+    }
+
+    public String getSpeciesName() {
+        String s1 = I18n.format("entity.fire_goby.name");
+        return s1;
+    }
+
+
+    public EntityFireGoby createChild(EntityAgeable ageable)
+    {
+        EntityFireGoby entitypeafowl = new EntityFireGoby(this.world);
+        entitypeafowl.setGender(this.rand.nextInt(2));
+
+        return entitypeafowl;
+    }
+
+    public boolean isBreedingItem(ItemStack stack)
+    {
+        return stack.getItem() == ItemInit.RAW_SHRIMP;
+    }
+
+    public boolean canMateWith(EntityAnimal otherAnimal)
+    {
+        if (otherAnimal == this)
+        {
+            return false;
+        }
+        else if (!(otherAnimal instanceof EntityFireGoby))
+        {
+            return false;
+        }
+        else
+        {
+            EntityFireGoby entitykakapo = (EntityFireGoby)otherAnimal;
+            return this.isInLove() && entitykakapo.isInLove();
+        }
     }
 
 }

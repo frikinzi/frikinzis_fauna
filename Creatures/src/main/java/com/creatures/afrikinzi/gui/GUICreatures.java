@@ -14,6 +14,8 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
@@ -28,6 +30,7 @@ public class GUICreatures extends GuiScreen {
     protected int guiTop;
     public final int xGui = 390;
     public final int yGui = 320;
+    ItemStack stack;
 
     public GUICreatures()
     {
@@ -75,7 +78,7 @@ public class GUICreatures extends GuiScreen {
         int i = (this.width - this.bookImageWidth) / 2;
         int j = (this.height - this.bookImageHeight) / 2;
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        drawEntityOnScreen(offLeft + 247, 120 + offTop, 70, (float)(i + 51) - mousePosX, (float)(j + 75 - 50) - mousePosY, (EntityLivingBase) Creatures.CREATURES_OBJECT);
+        drawEntityOnScreen(offLeft + 227, 140 + offTop, 70, (float)(i + 51) - mousePosX, (float)(j + 75 - 50) - mousePosY, (EntityLivingBase) Creatures.CREATURES_OBJECT);
         GlStateManager.disableRescaleNormal();
         RenderHelper.disableStandardItemLighting();
         GlStateManager.disableLighting();
@@ -106,7 +109,7 @@ public class GUICreatures extends GuiScreen {
 
     public static void drawEntityOnScreen(int posX, int posY, int scale, float mouseX, float mouseY, EntityLivingBase ent)
     {
-        ent.onGround=true;
+        //ent.onGround=true;
         GlStateManager.enableColorMaterial();
         GlStateManager.pushMatrix();
         GlStateManager.translate((float)posX, (float)posY, 50.0F);
@@ -150,6 +153,7 @@ public class GUICreatures extends GuiScreen {
         int l = (this.height - this.ySize) / 2;
         drawModalRectWithCustomSizedTexture(k, l, 0, 0, this.xSize, this.ySize, (390.625F), (390.625F));
         GlStateManager.pushMatrix();
+
         GlStateManager.popMatrix();
     }
 
@@ -160,7 +164,7 @@ public class GUICreatures extends GuiScreen {
     }
 
     public void renderFirstPage(Entity entity) {
-        int wordLength = 70;
+        int wordLength = 90;
         if (entity instanceof AbstractCreaturesTameable) {
             AbstractCreaturesTameable bird = (AbstractCreaturesTameable) entity;
             GlStateManager.pushMatrix();
@@ -186,6 +190,10 @@ public class GUICreatures extends GuiScreen {
                 String s2 = I18n.format("gui.owner") + " " + name;
                 printStringXY(!name.equals("") ? s2 : s1, wordLength / 2, 140, 157, 126, 103);
             }
+            {
+                String s1 = I18n.format("gui.food") + " " + bird.getFoodName();
+                printStringXY(s1, wordLength / 2, 150, 157, 126, 103);
+            }
         }
         if (entity instanceof AbstractCreaturesNonTameable) {
             AbstractCreaturesNonTameable bird = (AbstractCreaturesNonTameable) entity;
@@ -206,6 +214,10 @@ public class GUICreatures extends GuiScreen {
                 String s1 = I18n.format("gui.species") + " " + bird.getSpeciesName();
                 printStringXY(s1, wordLength / 2, 130, 157, 126, 103);
             }
+            {
+                String s1 = I18n.format("gui.food") + " " + bird.getFoodName();
+                printStringXY(s1, wordLength / 2, 140, 157, 126, 103);
+            }
         }
         if (entity instanceof FishBase) {
             FishBase fish = (FishBase) entity;
@@ -225,6 +237,10 @@ public class GUICreatures extends GuiScreen {
             {
                 String s1 = I18n.format("gui.species") + " " + fish.getSpeciesName();
                 printStringXY(s1, wordLength / 2, 130, 157, 126, 103);
+            }
+            {
+                String s1 = I18n.format("gui.food") + " " + fish.getFoodName();
+                printStringXY(s1, wordLength / 2, 140, 157, 126, 103);
             }
         }
     }

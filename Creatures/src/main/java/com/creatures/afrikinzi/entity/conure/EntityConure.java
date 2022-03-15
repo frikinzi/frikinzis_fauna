@@ -290,6 +290,10 @@ public class EntityConure extends AbstractCreaturesTameable implements IAnimatab
         {
             return false;
         }
+        else if (!this.isTamed())
+        {
+            return false;
+        }
         else if (!(otherAnimal instanceof EntityConure))
         {
             return false;
@@ -455,5 +459,9 @@ public class EntityConure extends AbstractCreaturesTameable implements IAnimatab
         } else {
             return "Unknown";
         }
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.WHEAT_SEEDS.getUnlocalizedName() + ".name").trim();
     }
 }

@@ -273,4 +273,8 @@ public class EntityMandarinDuck extends AbstractCreaturesNonTameable implements 
         return s1;
     }
 
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.BREAD.getUnlocalizedName() + ".name").trim();
+    }
+
 }

@@ -2,8 +2,15 @@ package com.creatures.afrikinzi.entity.pike;
 
 import com.creatures.afrikinzi.entity.FishBase;
 import com.creatures.afrikinzi.entity.ICreaturesEntity;
+import com.creatures.afrikinzi.entity.guppy.EntityGuppy;
+import com.creatures.afrikinzi.init.ItemInit;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -62,6 +69,47 @@ public class EntityPike extends FishBase implements IAnimatable, ICreaturesEntit
     {
         super.entityInit();
     }
+
+    public String getSpeciesName() {
+        String s1 = I18n.format("entity.pike.name");
+        return s1;
+    }
+
+
+    public EntityPike createChild(EntityAgeable ageable)
+    {
+        EntityPike entitypeafowl = new EntityPike(this.world);
+        entitypeafowl.setGender(this.rand.nextInt(2));
+
+        return entitypeafowl;
+    }
+
+    public boolean isBreedingItem(ItemStack stack)
+    {
+        return stack.getItem() == Items.FISH;
+    }
+
+    public boolean canMateWith(EntityAnimal otherAnimal)
+    {
+        if (otherAnimal == this)
+        {
+            return false;
+        }
+        else if (!(otherAnimal instanceof EntityPike))
+        {
+            return false;
+        }
+        else
+        {
+            EntityPike entitykakapo = (EntityPike)otherAnimal;
+            return this.isInLove() && entitykakapo.isInLove();
+        }
+    }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(Items.FISH.getUnlocalizedName() + ".name").trim();
+    }
+
 
 
 }

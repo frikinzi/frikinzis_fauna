@@ -4,9 +4,15 @@ import com.creatures.afrikinzi.config.CreaturesConfig;
 import com.creatures.afrikinzi.entity.FishBase;
 import com.creatures.afrikinzi.entity.ICreaturesEntity;
 import com.creatures.afrikinzi.entity.ShrimpBase;
+import com.creatures.afrikinzi.entity.blue_tang.EntityBlueTang;
 import com.creatures.afrikinzi.util.handlers.LootTableHandler;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -136,6 +142,45 @@ public class EntityShrimp extends FishBase implements IAnimatable, ICreaturesEnt
         }
         else {
             return this.rand.nextInt(9);
+        }
+    }
+
+    public String getSpeciesName() {
+        String s1 = I18n.format("entity.shrimp.name");
+        return s1;
+    }
+
+
+    public EntityShrimp createChild(EntityAgeable ageable)
+    {
+        EntityShrimp entitypeafowl = new EntityShrimp(this.world);
+        entitypeafowl.setGender(this.rand.nextInt(2));
+
+        return entitypeafowl;
+    }
+
+    public boolean isBreedingItem(ItemStack stack)
+    {
+        if (new ItemStack(Blocks.GRASS, (int) (1)).getItem() == stack.getItem()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean canMateWith(EntityAnimal otherAnimal)
+    {
+        if (otherAnimal == this)
+        {
+            return false;
+        }
+        else if (!(otherAnimal instanceof EntityShrimp))
+        {
+            return false;
+        }
+        else
+        {
+            EntityShrimp entitykakapo = (EntityShrimp)otherAnimal;
+            return this.isInLove() && entitykakapo.isInLove();
         }
     }
 }
