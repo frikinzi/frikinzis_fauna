@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: Creatures
-Implementation-Version: 1.0
-Specification-Vendor: examplemodsareus
-Specification-Title: examplemod
-Implementation-Timestamp: 2022-03-08T15:49:51-0500
-Specification-Version: 1
-Implementation-Vendor: examplemodsareus
-

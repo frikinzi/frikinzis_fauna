@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "creatures:raw_large_wild_bird_meat"
+    },
+    "result": "creatures:roasted_large_wild_bird_meat",
+    "experience": 0.35,
+    "cookingtime": 200
+}

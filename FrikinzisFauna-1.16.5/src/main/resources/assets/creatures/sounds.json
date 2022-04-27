@@ -1,0 +1,131 @@
+{
+  "entity.lovebird.ambient": {
+    "subtitle": "entity.lovebird.ambient",
+    "sounds": [ "creatures:entity/lovebird/lovebird_ambient" ]
+  },
+  "entity.creatures_spoonbill.ambient": {
+    "subtitle": "entity.spoonbill.ambient",
+    "sounds": [ "creatures:entity/spoonbill/spoonbill_ambient" ]
+  },
+  "entity.kakapo.ambient": {
+    "subtitle": "entity.kakapo.ambient",
+    "sounds": [ "creatures:entity/kakapo/kakapo_ambient" ]
+  },
+  "entity.mandarin_duck.ambient": {
+    "subtitle": "entity.mandarin_duck.ambient",
+    "sounds": [ "creatures:entity/mandarin_duck/mandarin_duck_ambient" ]
+  },
+  "entity.raven.ambient": {
+    "subtitle": "entity.raven.ambient",
+    "sounds": [ "creatures:entity/raven/raven_ambient" ]
+  },
+  "entity.dove.ambient": {
+    "subtitle": "entity.dove.ambient",
+    "sounds": [ "creatures:entity/dove/dove_ambient" ]
+  },
+  "entity.stellers_sea_eagle.ambient": {
+    "subtitle": "entity.stellers_sea_eagle.ambient",
+    "sounds": [ "creatures:entity/stellers_sea_eagle/stellers_sea_eagle_ambient" ]
+  },
+  "entity.golden_eagle.ambient": {
+    "subtitle": "entity.golden_eagle.ambient",
+    "sounds": [ "creatures:entity/golden_eagle/golden_eagle_ambient" ]
+  },
+  "entity.gyrfalcon.ambient": {
+    "subtitle": "entity.gyrfalcon.ambient",
+    "sounds": [ "creatures:entity/gyrfalcon/gyrfalcon_ambient" ]
+  },
+  "entity.lorikeet.ambient": {
+    "subtitle": "entity.lorikeet.ambient",
+    "sounds": [ "creatures:entity/lorikeet/lorikeet_ambient" ]
+  },
+  "entity.lorikeet.ambient2": {
+    "subtitle": "entity.lorikeet.ambient2",
+    "sounds": [ "creatures:entity/lorikeet/lorikeet_ambient2" ]
+  },
+  "entity.conure.ambient": {
+    "subtitle": "entity.conure.ambient",
+    "sounds": [ "creatures:entity/conure/conure_ambient" ]
+  },
+  "entity.fairywren.ambient": {
+    "subtitle": "entity.fairywren.ambient",
+    "sounds": [ "creatures:entity/fairy_wren/fairy_wren_ambient" ]
+  },
+  "entity.pygmyfalcon.ambient": {
+    "subtitle": "entity.pygmyfalcon.ambient",
+    "sounds": [ "creatures:entity/pygmyfalcon/pygmy_falcon_ambient" ]
+  },
+  "entity.barn_owl.ambient": {
+    "subtitle": "entity.barn_owl.ambient",
+    "sounds": [ "creatures:entity/barn_owl/barn_owl_ambient" ]
+  },
+  "entity.wild_duck.ambient": {
+    "subtitle": "entity.wild_duck.ambient",
+    "sounds": [ "creatures:entity/wild_duck/wild_duck_ambient" ]
+  },
+  "entity.chickadee.ambient": {
+    "subtitle": "entity.chickadee.ambient",
+    "sounds": [ "creatures:entity/chickadee/chickadee_ambient" ]
+  },
+  "entity.chickadee.ambient2": {
+    "subtitle": "entity.chickadee.ambient2",
+    "sounds": [ "creatures:entity/chickadee/chickadee_ambient2" ]
+  },
+  "entity.pygmy_goose.ambient": {
+    "subtitle": "entity.pygmy_goose.ambient",
+    "sounds": [ "creatures:entity/pygmy_goose/pygmy_goose_ambient" ]
+  },
+  "entity.roller.ambient": {
+    "subtitle": "entity.roller.ambient",
+    "sounds": [ "creatures:entity/roller/roller_ambient" ]
+  },
+  "entity.swallow.ambient": {
+    "subtitle": "entity.swallow.ambient",
+    "sounds": [ "creatures:entity/swallow/swallow_ambient" ]
+  },
+  "entity.red_kite.ambient": {
+    "subtitle": "entity.red_kite.ambient",
+    "sounds": [ "creatures:entity/red_kite/red_kite_ambient" ]
+  },
+  "entity.ibis.ambient": {
+    "subtitle": "entity.ibis.ambient",
+    "sounds": [ "creatures:entity/ibis/ibis_ambient" ]
+  },
+  "entity.wood_duck.ambient1": {
+    "subtitle": "entity.wood_duck.ambient1",
+    "sounds": [ "creatures:entity/woodduck/wood_duck_ambient1" ]
+  },
+  "entity.wood_duck.ambient2": {
+    "subtitle": "entity.wood_duck.ambient2",
+    "sounds": [ "creatures:entity/woodduck/wood_duck_ambient2" ]
+  },
+  "entity.peafowl.ambient": {
+    "subtitle": "entity.peafowl.ambient",
+    "sounds": [ "creatures:entity/peafowl/peafowl_ambient" ]
+  },
+  "entity.sparrow.ambient": {
+    "subtitle": "entity.sparrow.ambient",
+    "sounds": [ "creatures:entity/sparrow/sparrow_ambient" ]
+  },
+  "entity.bushtit.ambient": {
+    "subtitle": "entity.bushtit.ambient",
+    "sounds": [ "creatures:entity/bushtit/bushtit_ambient" ]
+  },
+  "entity.laughingthrush.ambient": {
+    "subtitle": "entity.laughingthrush.ambient",
+    "sounds": [ "creatures:entity/laughingthrush/laughingthrush_ambient" ]
+  },
+  "entity.eagleowl.ambient": {
+    "subtitle": "entity.eagleowl.ambient",
+    "sounds": [ "creatures:entity/eagleowl/eagleowl_ambient" ]
+  },
+  "entity.robin.ambient": {
+    "subtitle": "entity.robin.ambient",
+    "sounds": [ "creatures:entity/robin/robin_ambient" ]
+  },
+  "entity.magpie.ambient": {
+    "subtitle": "entity.magpie.ambient",
+    "sounds": [ "creatures:entity/magpie/magpie_ambient" ]
+  }
+
+}
