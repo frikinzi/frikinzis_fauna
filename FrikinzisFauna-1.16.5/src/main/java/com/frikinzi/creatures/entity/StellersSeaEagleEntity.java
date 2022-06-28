@@ -142,4 +142,12 @@ public class StellersSeaEagleEntity extends RaptorBase implements IAnimatable {
         return new ItemStack(CreaturesItems.RAW_TROUT, 1);
     }
 
+    public float getHatchChance() {
+        return CreaturesConfig.stellers_sea_eagle_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.stellers_sea_eagle_clutch_size.get());
+    }
+
 }

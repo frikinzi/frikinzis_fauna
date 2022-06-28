@@ -1,12 +1,11 @@
 package com.frikinzi.creatures.entity.base;
 
 import com.frikinzi.creatures.Creatures;
+import com.frikinzi.creatures.entity.ai.MateGoal;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.google.common.collect.Sets;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,16 +32,12 @@ import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.Set;
 
-public class NonTameableBirdBase extends AnimalEntity {
+public class NonTameableBirdBase extends CreaturesBirdEntity {
     private static final DataParameter<Integer> DATA_TYPE_ID = EntityDataManager.defineId(NonTameableBirdBase.class, DataSerializers.INT);
     private static final DataParameter<Byte> DATA_FLAGS_ID = EntityDataManager.defineId(NonTameableBirdBase.class, DataSerializers.BYTE);
     private static final DataParameter<Integer> DATA_VARIANT_ID = EntityDataManager.defineId(NonTameableBirdBase.class, DataSerializers.INT);
     private static final DataParameter<Integer> GENDER = EntityDataManager.defineId(NonTameableBirdBase.class, DataSerializers.INT);
     public static Set<Item> BREED_FOOD = Sets.newHashSet(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
-    public float flap;
-    public float flapSpeed;
-    public float oFlapSpeed;
-    public float oFlap;
     private float flapping = 1.0F;
 
     public NonTameableBirdBase(EntityType<? extends NonTameableBirdBase> p_i50251_1_, World p_i50251_2_) {
@@ -68,7 +63,8 @@ public class NonTameableBirdBase extends AnimalEntity {
         this.goalSelector.addGoal(0, new PanicGoal(this, 1.25D));
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
-        this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
+        //this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
+        this.goalSelector.addGoal(2, new MateGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(1, new NonTameableBirdBase.SleepGoal());
@@ -95,6 +91,7 @@ public class NonTameableBirdBase extends AnimalEntity {
         return null;
     }
 
+    @Override
     public int getVariant() {
         return MathHelper.clamp(this.entityData.get(DATA_VARIANT_ID), 1, determineVariant());
     }
@@ -209,7 +206,7 @@ public class NonTameableBirdBase extends AnimalEntity {
     public ActionResultType mobInteract(PlayerEntity p_230254_1_, Hand p_230254_2_) {
         ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
         if (itemstack.getItem() == CreaturesItems.FF_GUIDE) {
-            if (!this.level.isClientSide) {
+            if (this.level.isClientSide) {
                 Creatures.PROXY.setReferencedMob(this);
                 Creatures.PROXY.openCreaturesGUI(itemstack);
                 return ActionResultType.sidedSuccess(this.level.isClientSide);
@@ -229,5 +226,7 @@ public class NonTameableBirdBase extends AnimalEntity {
     public ItemStack getFoodItem() {
         return new ItemStack(Items.WHEAT_SEEDS, 1);
     }
+
+
 
 }

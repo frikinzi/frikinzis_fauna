@@ -284,6 +284,7 @@
   "gui.owner":"主人：",
   "gui.sex":"性：",
   "gui.female":"母",
-  "gui.male":"雄"
+  "gui.male":"雄",
+  "gui.food":"食物："
 
 }

@@ -1,5 +1,6 @@
 package com.frikinzi.creatures.entity;
 
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.entity.base.TameableBirdBase;
 import com.frikinzi.creatures.registry.CreaturesSound;
@@ -155,6 +156,16 @@ public class FairywrenEntity extends NonTameableFlyingBirdBase implements IAnima
         } else {
             return "???";
         }
+    }
+
+    @Override
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.fairywren_clutch_size.get());
+    }
+
+    @Override
+    public float getHatchChance() {
+        return CreaturesConfig.fairywren_hatch_chance.get();
     }
 
 }

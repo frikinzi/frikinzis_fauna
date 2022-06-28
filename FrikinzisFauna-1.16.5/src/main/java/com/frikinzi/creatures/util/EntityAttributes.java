@@ -4,10 +4,12 @@ import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.entity.*;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.entity.base.TameableBirdBase;
+import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
 import com.frikinzi.creatures.registry.ModEntityTypes;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
+import net.minecraft.entity.projectile.EggEntity;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -153,6 +155,9 @@ public class EntityAttributes {
         EntitySpawnPlacementRegistry.register(ModEntityTypes.MAGPIE.get(),
                 EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING,
                 TameableBirdBase::checkBirdSpawnRules);
+        EntitySpawnPlacementRegistry.register(ModEntityTypes.GOOSE.get(),
+                EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING,
+                TameableBirdBase::checkBirdSpawnRules);
 
 
 
@@ -201,6 +206,13 @@ public class EntityAttributes {
         event.put(ModEntityTypes.ROBIN.get(), RobinEntity.createAttributes().build());
         event.put(ModEntityTypes.MAGPIE.get(), MagpieEntity.createAttributes().build());
         event.put(ModEntityTypes.LAUGHINGTHRUSH.get(), LaughingthrushEntity.createAttributes().build());
+        event.put(ModEntityTypes.GOOSE.get(), GooseEntity.createAttributes().build());
+        event.put(ModEntityTypes.OSPREY.get(), OspreyEntity.createAttributes().build());
+        event.put(ModEntityTypes.KINGFISHER.get(), KingfisherEntity.createAttributes().build());
+        event.put(ModEntityTypes.PELICAN.get(), PelicanEntity.createAttributes().build());
+        event.put(ModEntityTypes.LAPWING.get(), LapwingEntity.createAttributes().build());
+        event.put(ModEntityTypes.SKUA.get(), SkuaEntity.createAttributes().build());
+        event.put(ModEntityTypes.EGG.get(), CreaturesEggEntity.createAttributes().build());
     }
 
 }

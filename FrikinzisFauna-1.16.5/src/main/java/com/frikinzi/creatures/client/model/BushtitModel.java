@@ -20,6 +20,9 @@ public class BushtitModel extends AnimatedGeoModel<BushtitEntity> {
     @Override
     public ResourceLocation getTextureLocation(BushtitEntity object)
     {
+        if (object.isSleeping()) {
+            return new ResourceLocation(Creatures.MODID, "textures/entity/bushtit/bushtit" + object.getVariant() + "sleep.png");
+        }
         if (object.isFlying()) {
             return new ResourceLocation(Creatures.MODID, "textures/entity/bushtit/bushtit" + object.getVariant() + "fly.png");
         }

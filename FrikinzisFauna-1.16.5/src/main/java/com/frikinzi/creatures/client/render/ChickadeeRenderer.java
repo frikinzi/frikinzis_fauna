@@ -2,6 +2,7 @@ package com.frikinzi.creatures.client.render;
 
 import com.frikinzi.creatures.client.model.ChickadeeModel;
 import com.frikinzi.creatures.client.model.ConureModel;
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.ChickadeeEntity;
 import com.frikinzi.creatures.entity.ConureEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -13,7 +14,7 @@ import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 public class ChickadeeRenderer extends GeoEntityRenderer<ChickadeeEntity> {
     public ChickadeeRenderer(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new ChickadeeModel());
-        this.shadowRadius = 0.4F;
+        this.shadowRadius = 0.3F;
     }
 
     @Override
@@ -22,9 +23,15 @@ public class ChickadeeRenderer extends GeoEntityRenderer<ChickadeeEntity> {
                             float red, float green, float blue, float partialTicks) {
         super.renderEarly(animatable, stackIn, ticks, renderTypeBuffer, vertexBuilder, packedLightIn, packedOverlayIn,
                 red, green, blue, partialTicks);
-        if (animatable.isBaby()) {
-            stackIn.scale(0.5F, 0.5F, 0.5F);
+        Float multiplier;
+        if (CreaturesConfig.height_on.get() == true) {
+            multiplier = animatable.getHeightMultiplier();
+        } else {
+            multiplier = 1.0F;
         }
-        stackIn.scale(0.7F, 0.7F, 0.7F);
+        if (animatable.isBaby()) {
+            stackIn.scale(0.5F * multiplier, 0.5F * multiplier, 0.5F * multiplier);
+        }
+        stackIn.scale(0.7F * multiplier, 0.7F * multiplier, 0.7F * multiplier);
     }
 }

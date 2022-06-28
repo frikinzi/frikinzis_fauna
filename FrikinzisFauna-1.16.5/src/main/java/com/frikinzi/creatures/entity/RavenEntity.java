@@ -1,8 +1,11 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.TameableBirdBase;
+import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
 import com.frikinzi.creatures.registry.CreaturesSound;
+import com.frikinzi.creatures.registry.ModEntityTypes;
 import com.frikinzi.creatures.util.CreaturesLootTables;
 import com.google.common.collect.Sets;
 import net.minecraft.entity.AgeableEntity;
@@ -100,6 +103,17 @@ public class RavenEntity extends TameableBirdBase implements IAnimatable {
         return ravenentity;
     }
 
+    public CreaturesEggEntity layEgg(CreaturesBirdEntity animal) {
+        CreaturesEggEntity egg = new CreaturesEggEntity(ModEntityTypes.EGG.get(), this.level);
+        if (this.random.nextInt(CreaturesConfig.raven_albino_chance.get() * 2) == 1) {
+            egg.setVariant(2);
+        } else {
+            egg.setVariant(this.getVariant());
+        }
+        egg.setGender(this.random.nextInt(2));
+        return egg;
+    }
+
     @Override
     public boolean canMate(AnimalEntity p_70878_1_) {
         if (p_70878_1_ == this) {
@@ -132,6 +146,14 @@ public class RavenEntity extends TameableBirdBase implements IAnimatable {
 
     public ItemStack getFoodItem() {
         return new ItemStack(Items.ROTTEN_FLESH, 1);
+    }
+
+    public float getHatchChance() {
+        return CreaturesConfig.raven_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.raven_clutch_size.get());
     }
 
 }

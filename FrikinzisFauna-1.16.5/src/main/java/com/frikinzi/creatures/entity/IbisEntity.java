@@ -1,5 +1,6 @@
 package com.frikinzi.creatures.entity;
 
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
@@ -79,7 +80,7 @@ public class IbisEntity extends NonTameableFlyingBirdBase implements IAnimatable
     }
 
     public int determineVariant() {
-        return 7;
+        return 11;
     }
 
     @Override
@@ -140,9 +141,30 @@ public class IbisEntity extends NonTameableFlyingBirdBase implements IAnimatable
         else if (this.getVariant() == 6) {
             ITextComponent s1 = new TranslationTextComponent("message.creatures.southern");
             return s1.getString();
+        }
+        else if (this.getVariant() == 7) {
+            ITextComponent s1 = new TranslationTextComponent("message.creatures.northernibis");
+            return s1.getString();
+        }   else if (this.getVariant() == 8) {
+            ITextComponent s1 = new TranslationTextComponent("message.creatures.americanwhiteibis");
+            return s1.getString();
+        } else if (this.getVariant() == 9) {
+            ITextComponent s1 = new TranslationTextComponent("message.creatures.glossy");
+            return s1.getString();
+        }  else if (this.getVariant() == 10) {
+            ITextComponent s1 = new TranslationTextComponent("message.creatures.binchicken");
+            return s1.getString();
         } else {
             return "Unknown";
         }
+    }
+
+    public float getHatchChance() {
+        return CreaturesConfig.ibis_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.ibis_clutch_size.get());
     }
 
 }

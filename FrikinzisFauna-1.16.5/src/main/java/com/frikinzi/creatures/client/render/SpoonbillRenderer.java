@@ -2,6 +2,7 @@ package com.frikinzi.creatures.client.render;
 
 import com.frikinzi.creatures.client.model.PikeModel;
 import com.frikinzi.creatures.client.model.SpoonbillModel;
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.LovebirdEntity;
 import com.frikinzi.creatures.entity.PikeEntity;
 import com.frikinzi.creatures.entity.SpoonbillEntity;
@@ -23,9 +24,15 @@ public class SpoonbillRenderer extends GeoEntityRenderer<SpoonbillEntity>{
                             float red, float green, float blue, float partialTicks) {
         super.renderEarly(animatable, stackIn, ticks, renderTypeBuffer, vertexBuilder, packedLightIn, packedOverlayIn,
                 red, green, blue, partialTicks);
-        if (animatable.isBaby()) {
-            stackIn.scale(0.5F, 0.5F, 0.5F);
+        Float multiplier;
+        if (CreaturesConfig.height_on.get() == true) {
+            multiplier = animatable.getHeightMultiplier();
+        } else {
+            multiplier = 1.0F;
         }
-        stackIn.scale(0.8F, 0.8F, 0.8F);
+        if (animatable.isBaby()) {
+            stackIn.scale(0.5F * multiplier, 0.5F * multiplier, 0.5F * multiplier);
+        }
+        stackIn.scale(0.8F * multiplier, 0.8F * multiplier, 0.8F * multiplier);
     }
 }

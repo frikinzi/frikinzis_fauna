@@ -1,5 +1,6 @@
 package com.frikinzi.creatures.entity;
 
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.TameableBirdBase;
 import com.frikinzi.creatures.entity.base.TameableWalkingBirdBase;
 import com.frikinzi.creatures.registry.CreaturesSound;
@@ -55,8 +56,8 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
-        if (this.isDisplaying() && this.getGender() == 1) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("closing", false).addAnimation("idle", true));
+        if (this.isInSittingPose()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("sleep", true));
             return PlayState.CONTINUE;
         }
         if (this.isOnDisplay()) {
@@ -98,7 +99,7 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D).add(Attributes.FLYING_SPEED, (double)0.8F).add(Attributes.MOVEMENT_SPEED, (double)0.1F);
+        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 12.0D).add(Attributes.MOVEMENT_SPEED, (double)0.2F);
     }
 
     public int determineVariant() {
@@ -120,6 +121,13 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
         } else if (p_70878_1_.getClass() != this.getClass()) {
             return false;
         } else {
+            PeafowlEntity ospreyentity = (PeafowlEntity) p_70878_1_;
+            if (!ospreyentity.isTame()) {
+                return false;
+            }
+            else if (ospreyentity.isInSittingPose()) {
+                return false;
+            }
             return this.isInLove() && p_70878_1_.isInLove();
         }
     }
@@ -241,6 +249,14 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
         } else {
             return "Unknown";
         }
+    }
+
+    public float getHatchChance() {
+        return CreaturesConfig.peafowl_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.peafowl_clutch_size.get());
     }
 
 }

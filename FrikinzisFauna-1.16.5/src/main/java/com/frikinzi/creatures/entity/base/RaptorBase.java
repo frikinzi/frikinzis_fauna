@@ -27,7 +27,7 @@ import java.util.EnumSet;
 import java.util.Set;
 
 public abstract class RaptorBase extends TameableBirdBase {
-    public RaptorBase(EntityType<? extends TameableBirdBase> p_i50251_1_, World p_i50251_2_) {
+    public RaptorBase(EntityType<? extends RaptorBase> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
     }
 

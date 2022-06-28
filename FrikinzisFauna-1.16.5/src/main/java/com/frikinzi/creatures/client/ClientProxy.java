@@ -15,7 +15,6 @@ import net.minecraftforge.fml.common.Mod;
 public class ClientProxy extends CommonProxy {
     private LivingEntity referencedMob = null;
 
-    @OnlyIn(Dist.CLIENT)
     @Override
     public void openCreaturesGUI(ItemStack book) {
         Minecraft.getInstance().setScreen(new GUICreatures());

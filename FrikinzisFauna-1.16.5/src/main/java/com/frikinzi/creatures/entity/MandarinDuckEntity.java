@@ -1,5 +1,6 @@
 package com.frikinzi.creatures.entity;
 
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.NonTameableBirdBase;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
@@ -143,6 +144,14 @@ public class MandarinDuckEntity extends NonTameableBirdBase implements IAnimatab
 
     public ItemStack getFoodItem() {
         return new ItemStack(Items.BREAD, 1);
+    }
+
+    public float getHatchChance() {
+        return CreaturesConfig.mandarin_duck_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.mandarin_duck_clutch_size.get());
     }
 
 }

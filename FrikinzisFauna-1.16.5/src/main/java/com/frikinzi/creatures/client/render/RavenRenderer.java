@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.client.render;
 
 import com.frikinzi.creatures.client.model.RavenModel;
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.RavenEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -29,8 +30,16 @@ public class RavenRenderer extends GeoEntityRenderer<RavenEntity>{
                             float red, float green, float blue, float partialTicks) {
         super.renderEarly(animatable, stackIn, ticks, renderTypeBuffer, vertexBuilder, packedLightIn, packedOverlayIn,
                 red, green, blue, partialTicks);
+        Float multiplier;
+        if (CreaturesConfig.height_on.get() == true) {
+            multiplier = animatable.getHeightMultiplier();
+        } else {
+            multiplier = 1.0F;
+        }
         if (animatable.isBaby()) {
-            stackIn.scale(0.4F, 0.4F, 0.4F);
+            stackIn.scale(0.4F * multiplier, 0.4F * multiplier, 0.4F * multiplier);
+        } else {
+            stackIn.scale(multiplier, multiplier, multiplier);
         }
     }
 

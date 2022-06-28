@@ -137,4 +137,12 @@ public class GyrfalconEntity extends RaptorBase implements IAnimatable {
         return new ItemStack(Items.CHICKEN, 1);
     }
 
+    public float getHatchChance() {
+        return CreaturesConfig.gyrfalcon_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.gyrfalcon_clutch_size.get());
+    }
+
 }

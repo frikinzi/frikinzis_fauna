@@ -59,6 +59,13 @@ public class ClientModEventSubscriber {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ROBIN.get(), RobinRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.LAUGHINGTHRUSH.get(), LaughingthrushRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.MAGPIE.get(), MagpieRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.GOOSE.get(), GooseRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.OSPREY.get(), OspreyRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.KINGFISHER.get(), KingfisherRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.PELICAN.get(), PelicanRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.LAPWING.get(), LapwingRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.SKUA.get(), SkuaRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.EGG.get(), EggRenderer::new);
     }
 
 }

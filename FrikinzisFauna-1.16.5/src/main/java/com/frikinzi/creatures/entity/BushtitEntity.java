@@ -1,5 +1,6 @@
 package com.frikinzi.creatures.entity;
 
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
@@ -74,7 +75,7 @@ public class BushtitEntity extends NonTameableFlyingBirdBase implements IAnimata
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.FLYING_SPEED, (double)0.8F).add(Attributes.MOVEMENT_SPEED, (double)0.4F);
+        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D).add(Attributes.FLYING_SPEED, (double)0.8F).add(Attributes.MOVEMENT_SPEED, (double)0.4F);
     }
 
     public int determineVariant() {
@@ -143,6 +144,16 @@ public class BushtitEntity extends NonTameableFlyingBirdBase implements IAnimata
 
     public String getFoodName() {
         return StringUtils.capitalizeFirstLetter(Items.WHEAT_SEEDS.toString());
+    }
+
+    @Override
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.bushtit_clutch_size.get());
+    }
+
+    @Override
+    public float getHatchChance() {
+        return CreaturesConfig.bushtit_hatch_chance.get();
     }
 
 }

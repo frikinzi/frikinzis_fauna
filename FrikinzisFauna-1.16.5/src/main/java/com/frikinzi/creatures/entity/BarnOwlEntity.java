@@ -1,5 +1,6 @@
 package com.frikinzi.creatures.entity;
 
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.RaptorBase;
 import com.frikinzi.creatures.entity.base.TameableBirdBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
@@ -94,6 +95,13 @@ public class BarnOwlEntity extends RaptorBase implements IAnimatable {
         } else if (p_70878_1_.getClass() != this.getClass()) {
             return false;
         } else {
+            BarnOwlEntity barnowlentity = (BarnOwlEntity) p_70878_1_;
+            if (!barnowlentity.isTame()) {
+                return false;
+            }
+            else if (barnowlentity.isInSittingPose()) {
+                return false;
+            }
             return this.isInLove() && p_70878_1_.isInLove();
         }
     }
@@ -129,6 +137,14 @@ public class BarnOwlEntity extends RaptorBase implements IAnimatable {
 
     public ItemStack getFoodItem() {
         return new ItemStack(Items.CHICKEN, 1);
+    }
+
+    public float getHatchChance() {
+        return CreaturesConfig.barn_owl_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.barn_owl_clutch_size.get());
     }
 
 }

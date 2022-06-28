@@ -1,7 +1,9 @@
 package com.frikinzi.creatures.entity;
 
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.NonTameableBirdBase;
 import com.frikinzi.creatures.entity.base.TameableBirdBase;
+import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
@@ -143,6 +145,14 @@ public class SpoonbillEntity extends NonTameableBirdBase implements IAnimatable 
 
     public ItemStack getFoodItem() {
         return new ItemStack(CreaturesItems.CRAB_PINCERS, 1);
+    }
+
+    public float getHatchChance() {
+        return CreaturesConfig.spoonbill_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.spoonbill_clutch_size.get());
     }
 
 }

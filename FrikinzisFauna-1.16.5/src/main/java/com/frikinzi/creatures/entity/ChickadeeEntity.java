@@ -1,5 +1,6 @@
 package com.frikinzi.creatures.entity;
 
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.entity.base.RaptorBase;
 import com.frikinzi.creatures.registry.CreaturesSound;
@@ -142,6 +143,14 @@ public class ChickadeeEntity extends NonTameableFlyingBirdBase implements IAnima
 
     public String getFoodName() {
         return StringUtils.capitalizeFirstLetter(Items.WHEAT_SEEDS.toString());
+    }
+
+    public float getHatchChance() {
+        return CreaturesConfig.chickadee_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.chickadee_clutch_size.get());
     }
 
 

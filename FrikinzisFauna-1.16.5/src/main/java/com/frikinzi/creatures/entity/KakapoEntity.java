@@ -1,5 +1,6 @@
 package com.frikinzi.creatures.entity;
 
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.NonTameableBirdBase;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
@@ -110,6 +111,14 @@ public class KakapoEntity extends NonTameableBirdBase implements IAnimatable {
 
     public ItemStack getFoodItem() {
         return new ItemStack(Items.APPLE, 1);
+    }
+
+    public float getHatchChance() {
+        return CreaturesConfig.kakapo_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.kakapo_clutch_size.get());
     }
 
 }

@@ -1,5 +1,6 @@
 package com.frikinzi.creatures.entity;
 
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.TameableBirdBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
@@ -152,6 +153,17 @@ public class ConureEntity extends TameableBirdBase implements IAnimatable {
     public String getFoodName() {
         ITextComponent o = new TranslationTextComponent("minecraft:wheat_seeds");
         return StringUtils.capitalizeFirstLetter(Items.WHEAT_SEEDS.toString());
+    }
+
+    public float getHatchChance() {
+        if (this.getVariant() == 3) {
+            return (CreaturesConfig.conure_hatch_chance.get()) / 2;
+        }
+        return CreaturesConfig.conure_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.conure_clutch_size.get());
     }
 
 }

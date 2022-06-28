@@ -2,6 +2,7 @@ package com.frikinzi.creatures.client.render;
 
 import com.frikinzi.creatures.client.model.ConureModel;
 import com.frikinzi.creatures.client.model.LorikeetModel;
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.ConureEntity;
 import com.frikinzi.creatures.entity.LorikeetEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -22,9 +23,15 @@ public class ConureRenderer extends GeoEntityRenderer<ConureEntity> {
                             float red, float green, float blue, float partialTicks) {
         super.renderEarly(animatable, stackIn, ticks, renderTypeBuffer, vertexBuilder, packedLightIn, packedOverlayIn,
                 red, green, blue, partialTicks);
-        if (animatable.isBaby()) {
-            stackIn.scale(0.5F, 0.5F, 0.5F);
+        Float multiplier;
+        if (CreaturesConfig.height_on.get() == true) {
+            multiplier = animatable.getHeightMultiplier();
+        } else {
+            multiplier = 1.0F;
         }
-        stackIn.scale(0.8F, 0.8F, 0.8F);
+        if (animatable.isBaby()) {
+            stackIn.scale(0.5F * multiplier, 0.5F * multiplier, 0.5F * multiplier);
+        }
+        stackIn.scale(0.8F * multiplier, 0.8F * multiplier, 0.8F * multiplier);
     }
 }

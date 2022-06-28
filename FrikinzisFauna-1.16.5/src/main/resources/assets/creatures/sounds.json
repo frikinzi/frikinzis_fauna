@@ -126,6 +126,37 @@
   "entity.magpie.ambient": {
     "subtitle": "entity.magpie.ambient",
     "sounds": [ "creatures:entity/magpie/magpie_ambient" ]
+  },
+  "entity.goose.ambient": {
+    "subtitle": "entity.goose.ambient",
+    "sounds": [ "creatures:entity/goose/goose_ambient" ]
+  },
+  "entity.goose.fly": {
+    "subtitle": "entity.goose.fly",
+    "sounds": [ "creatures:entity/goose/goose_fly" ]
+  },
+  "entity.osprey.ambient": {
+    "subtitle": "entity.osprey.ambient",
+    "sounds": [ "creatures:entity/osprey/osprey_ambient" ]
+  },
+  "entity.kingfisher.ambient": {
+    "subtitle": "entity.kingfisher.ambient",
+    "sounds": [ "creatures:entity/kingfisher/kingfisher_ambient" ]
+  },
+  "entity.pelican.ambient": {
+    "subtitle": "entity.pelican.ambient",
+    "sounds": [ "creatures:entity/pelican/pelican_ambient" ]
+  },
+  "entity.lapwing.ambient": {
+    "subtitle": "entity.lapwing.ambient",
+    "sounds": [ "creatures:entity/lapwing/lapwing_ambient" ]
+  },
+  "entity.skua.ambient": {
+    "subtitle": "entity.skua.ambient",
+    "sounds": [ "creatures:entity/skua/skua_ambient" ]
+  },
+  "entity.egg.hatch": {
+    "subtitle": "entity.egg.hatch",
+    "sounds": [ "creatures:entity/egg/hatch" ]
   }
-
 }

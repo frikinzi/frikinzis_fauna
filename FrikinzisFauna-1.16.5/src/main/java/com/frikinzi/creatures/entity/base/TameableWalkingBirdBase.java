@@ -3,13 +3,12 @@ package com.frikinzi.creatures.entity.base;
 import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.ai.CreaturesFollowGoal;
+import com.frikinzi.creatures.entity.ai.MateGoal;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.google.common.collect.Sets;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.IFlyingAnimal;
@@ -18,6 +17,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.DebugPacketSender;
 import net.minecraft.network.datasync.DataParameter;
@@ -45,17 +45,17 @@ import java.util.EnumSet;
 import java.util.Random;
 import java.util.Set;
 
-public class TameableWalkingBirdBase extends TameableEntity {
+public class TameableWalkingBirdBase extends CreaturesBirdEntity {
     private static final DataParameter<Integer> DATA_VARIANT_ID = EntityDataManager.defineId(TameableWalkingBirdBase.class, DataSerializers.INT);
     private static final DataParameter<Integer> GENDER = EntityDataManager.defineId(TameableWalkingBirdBase.class, DataSerializers.INT);
     public static Set<Item> TAME_FOOD = Sets.newHashSet(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
     private float flapping = 1.0F;
     public World world;
 
     public TameableWalkingBirdBase(EntityType<? extends TameableWalkingBirdBase> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
         this.setPathfindingMalus(PathNodeType.DANGER_FIRE, -1.0F);
-        this.setPathfindingMalus(PathNodeType.DAMAGE_FIRE, -1.0F);
         this.setPathfindingMalus(PathNodeType.COCOA, -1.0F);
 
     }
@@ -77,7 +77,7 @@ public class TameableWalkingBirdBase extends TameableEntity {
         this.goalSelector.addGoal(0, new PanicGoal(this, 1.25D));
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
-        this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
+        this.goalSelector.addGoal(2, new MateGoal(this, 1.0D));
         this.goalSelector.addGoal(10, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(1, new SitGoal(this));
         this.goalSelector.addGoal(6, new CreaturesFollowGoal(this,1.0D, 5.0F, 1.0F, true));
@@ -93,7 +93,7 @@ public class TameableWalkingBirdBase extends TameableEntity {
     public ActionResultType mobInteract(PlayerEntity p_230254_1_, Hand p_230254_2_) {
         ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
         if (itemstack.getItem() == CreaturesItems.FF_GUIDE) {
-            if (!this.level.isClientSide) {
+            if (this.level.isClientSide) {
                 Creatures.PROXY.setReferencedMob(this);
                 Creatures.PROXY.openCreaturesGUI(itemstack);
                 return ActionResultType.sidedSuccess(this.level.isClientSide);
@@ -118,7 +118,7 @@ public class TameableWalkingBirdBase extends TameableEntity {
             }
 
             return ActionResultType.sidedSuccess(this.level.isClientSide);
-        }  else if (!!getTamedFood().contains(itemstack.getItem()) && this.isTame() && this.isOwnedBy(p_230254_1_)) {
+        }  else if (!getTamedFood().contains(itemstack.getItem()) && this.isTame() && this.isOwnedBy(p_230254_1_)) {
             if (!this.level.isClientSide) {
                 this.setOrderedToSit(!this.isOrderedToSit());
             }
@@ -294,5 +294,8 @@ public class TameableWalkingBirdBase extends TameableEntity {
         return new ItemStack(Items.WHEAT_SEEDS, 1);
     }
 
+    public boolean isFood(ItemStack p_70877_1_) {
+        return FOOD_ITEMS.test(p_70877_1_);
+    }
 
 }

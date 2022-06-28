@@ -1,5 +1,6 @@
 package com.frikinzi.creatures.entity;
 
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.NonTameableBirdBase;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
@@ -159,6 +160,14 @@ public class WildDuckEntity extends NonTameableBirdBase implements IAnimatable {
         } else {
             return "Unknown";
         }
+    }
+
+    public float getHatchChance() {
+        return CreaturesConfig.wild_duck_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.wild_duck_clutch_size.get());
     }
 
 }

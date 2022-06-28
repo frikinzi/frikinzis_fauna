@@ -157,4 +157,12 @@ public class PygmyFalconEntity extends RaptorBase implements IAnimatable {
         return new ItemStack(Items.CHICKEN, 1);
     }
 
+    public float getHatchChance() {
+        return CreaturesConfig.pygmy_falcon_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.pygmy_falcon_clutch_size.get());
+    }
+
 }

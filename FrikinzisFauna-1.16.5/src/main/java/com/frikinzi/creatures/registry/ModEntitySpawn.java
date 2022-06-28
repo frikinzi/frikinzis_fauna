@@ -211,6 +211,26 @@ public class ModEntitySpawn {
             spawns.addSpawn(EntityClassification.CREATURE,
                     new MobSpawnInfo.Spawners(ModEntityTypes.MAGPIE.get(), CreaturesConfig.magpie_spawn_weight.get(), CreaturesConfig.magpie_min_group.get(), CreaturesConfig.magpie_max_group.get()));
         }
+        if (CreaturesConfig.goose_spawns.get() == true && types.contains(BiomeDictionary.Type.FOREST) || types.contains(BiomeDictionary.Type.RIVER) || types.contains(BiomeDictionary.Type.SWAMP)) {
+            spawns.addSpawn(EntityClassification.CREATURE,
+                    new MobSpawnInfo.Spawners(ModEntityTypes.GOOSE.get(), CreaturesConfig.goose_spawn_weight.get(), CreaturesConfig.goose_min_group.get(), CreaturesConfig.goose_max_group.get()));
+        }
+        if (CreaturesConfig.osprey_spawns.get() == true && types.contains(BiomeDictionary.Type.BEACH) || types.contains(BiomeDictionary.Type.RIVER) || types.contains(BiomeDictionary.Type.SWAMP)) {
+            spawns.addSpawn(EntityClassification.CREATURE,
+                    new MobSpawnInfo.Spawners(ModEntityTypes.OSPREY.get(), CreaturesConfig.osprey_spawn_weight.get(), CreaturesConfig.osprey_min_group.get(), CreaturesConfig.osprey_max_group.get()));
+        }
+        if (CreaturesConfig.kingfisher_spawns.get() == true && types.contains(BiomeDictionary.Type.BEACH) || types.contains(BiomeDictionary.Type.RIVER) || types.contains(BiomeDictionary.Type.SWAMP)) {
+            spawns.addSpawn(EntityClassification.CREATURE,
+                    new MobSpawnInfo.Spawners(ModEntityTypes.KINGFISHER.get(), CreaturesConfig.kingfisher_spawn_weight.get(), CreaturesConfig.kingfisher_min_group.get(), CreaturesConfig.kingfisher_max_group.get()));
+        }
+        if (CreaturesConfig.pelican_spawns.get() == true && types.contains(BiomeDictionary.Type.BEACH)) {
+            spawns.addSpawn(EntityClassification.CREATURE,
+                    new MobSpawnInfo.Spawners(ModEntityTypes.PELICAN.get(), CreaturesConfig.pelican_spawn_weight.get(), CreaturesConfig.pelican_min_group.get(), CreaturesConfig.pelican_max_group.get()));
+        }
+        if (CreaturesConfig.skua_spawns.get() == true && types.contains(BiomeDictionary.Type.BEACH) || types.contains(BiomeDictionary.Type.SNOWY)) {
+            spawns.addSpawn(EntityClassification.CREATURE,
+                    new MobSpawnInfo.Spawners(ModEntityTypes.SKUA.get(), CreaturesConfig.skua_spawn_weight.get(), CreaturesConfig.skua_min_group.get(), CreaturesConfig.skua_max_group.get()));
+        }
 
     }
 

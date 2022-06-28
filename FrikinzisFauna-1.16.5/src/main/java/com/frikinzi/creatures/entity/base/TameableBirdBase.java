@@ -4,6 +4,7 @@ import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.client.gui.GUICreatures;
 import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.ai.CreaturesFollowGoal;
+import com.frikinzi.creatures.entity.ai.MateGoal;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
@@ -49,7 +50,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.function.Predicate;
 
-public class TameableBirdBase extends TameableEntity implements IFlyingAnimal {
+public class TameableBirdBase extends CreaturesBirdEntity implements IFlyingAnimal {
     private static final DataParameter<Integer> DATA_VARIANT_ID = EntityDataManager.defineId(TameableBirdBase.class, DataSerializers.INT);
     private static final DataParameter<Integer> GENDER = EntityDataManager.defineId(TameableBirdBase.class, DataSerializers.INT);
     public static Set<Item> TAME_FOOD = Sets.newHashSet(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
@@ -88,7 +89,7 @@ public class TameableBirdBase extends TameableEntity implements IFlyingAnimal {
         this.goalSelector.addGoal(0, new PanicGoal(this, 1.25D));
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
-        this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
+        this.goalSelector.addGoal(2, new MateGoal(this, 1.0D));
         this.goalSelector.addGoal(10, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(1, new SitGoal(this));
         this.goalSelector.addGoal(6, new CreaturesFollowGoal(this,1.0D, 5.0F, 1.0F, true));
@@ -142,7 +143,7 @@ public class TameableBirdBase extends TameableEntity implements IFlyingAnimal {
         ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
         if (itemstack.getItem() == CreaturesItems.FF_GUIDE) {
             Creatures.PROXY.setReferencedMob(this);
-            if (!this.level.isClientSide) {
+            if (this.level.isClientSide) {
             Creatures.PROXY.openCreaturesGUI(itemstack);
             return ActionResultType.sidedSuccess(this.level.isClientSide);
             }

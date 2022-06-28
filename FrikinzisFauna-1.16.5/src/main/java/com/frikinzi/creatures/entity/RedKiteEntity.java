@@ -138,4 +138,12 @@ public class RedKiteEntity extends RaptorBase implements IAnimatable {
         return new ItemStack(Items.CHICKEN, 1);
     }
 
+    public float getHatchChance() {
+        return CreaturesConfig.red_kite_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.red_kite_clutch_size.get());
+    }
+
 }

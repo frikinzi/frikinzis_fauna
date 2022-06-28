@@ -283,5 +283,6 @@
   "gui.owner":"Dono:",
   "gui.sex":"Sexo:",
   "gui.female":"Fêmea",
-  "gui.male":"Macho"
+  "gui.male":"Macho",
+  "gui.food":"Comida"
 }

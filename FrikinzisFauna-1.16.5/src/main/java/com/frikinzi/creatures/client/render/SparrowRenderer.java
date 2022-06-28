@@ -2,6 +2,7 @@ package com.frikinzi.creatures.client.render;
 
 import com.frikinzi.creatures.client.model.RollerModel;
 import com.frikinzi.creatures.client.model.SparrowModel;
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.RollerEntity;
 import com.frikinzi.creatures.entity.SparrowEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -22,9 +23,15 @@ public class SparrowRenderer extends GeoEntityRenderer<SparrowEntity> {
                             float red, float green, float blue, float partialTicks) {
         super.renderEarly(animatable, stackIn, ticks, renderTypeBuffer, vertexBuilder, packedLightIn, packedOverlayIn,
                 red, green, blue, partialTicks);
-        if (animatable.isBaby()) {
-            stackIn.scale(0.5F, 0.5F, 0.5F);
+        Float multiplier;
+        if (CreaturesConfig.height_on.get() == true) {
+            multiplier = animatable.getHeightMultiplier();
+        } else {
+            multiplier = 1.0F;
         }
-        stackIn.scale(0.7F, 0.7F, 0.7F);
+        if (animatable.isBaby()) {
+            stackIn.scale(0.5F * multiplier, 0.5F * multiplier, 0.5F * multiplier);
+        }
+        stackIn.scale(0.7F * multiplier, 0.7F * multiplier, 0.7F * multiplier);
     }
 }

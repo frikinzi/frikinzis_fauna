@@ -220,5 +220,13 @@ public class DoveEntity extends TameableBirdBase implements IAnimatable {
         }
     }
 
+    public float getHatchChance() {
+        return CreaturesConfig.dove_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.dove_clutch_size.get());
+    }
+
 
 }

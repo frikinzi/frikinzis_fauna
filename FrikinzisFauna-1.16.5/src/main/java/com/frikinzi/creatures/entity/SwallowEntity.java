@@ -1,5 +1,6 @@
 package com.frikinzi.creatures.entity;
 
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
@@ -139,6 +140,14 @@ public class SwallowEntity extends NonTameableFlyingBirdBase implements IAnimata
         } else {
             return "Unknown";
         }
+    }
+
+    public float getHatchChance() {
+        return CreaturesConfig.swallow_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.swallow_clutch_size.get());
     }
 
 }

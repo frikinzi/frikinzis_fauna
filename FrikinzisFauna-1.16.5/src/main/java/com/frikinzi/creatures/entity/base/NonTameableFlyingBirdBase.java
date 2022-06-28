@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity.base;
 
 import com.frikinzi.creatures.Creatures;
+import com.frikinzi.creatures.entity.ai.MateGoal;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.google.common.collect.Sets;
 import net.minecraft.block.BlockState;
@@ -8,6 +9,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.*;
+import net.minecraft.entity.passive.fish.AbstractGroupFishEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -37,7 +39,7 @@ import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.Set;
 
-public class NonTameableFlyingBirdBase extends AnimalEntity implements IFlyingAnimal {
+public class NonTameableFlyingBirdBase extends CreaturesBirdEntity implements IFlyingAnimal {
     private static final DataParameter<Integer> DATA_VARIANT_ID = EntityDataManager.defineId(NonTameableFlyingBirdBase.class, DataSerializers.INT);
     private static final DataParameter<Integer> GENDER = EntityDataManager.defineId(NonTameableFlyingBirdBase.class, DataSerializers.INT);
     private static final DataParameter<Integer> DATA_TYPE_ID = EntityDataManager.defineId(NonTameableFlyingBirdBase.class, DataSerializers.INT);
@@ -74,7 +76,7 @@ public class NonTameableFlyingBirdBase extends AnimalEntity implements IFlyingAn
         this.goalSelector.addGoal(0, new PanicGoal(this, 1.25D));
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
-        this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
+        this.goalSelector.addGoal(2, new MateGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomFlyingGoal(this, 1.0D));
         this.goalSelector.addGoal(1, new NonTameableFlyingBirdBase.SleepGoal());
@@ -252,7 +254,7 @@ public class NonTameableFlyingBirdBase extends AnimalEntity implements IFlyingAn
     public ActionResultType mobInteract(PlayerEntity p_230254_1_, Hand p_230254_2_) {
         ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
         if (itemstack.getItem() == CreaturesItems.FF_GUIDE) {
-            if (!this.level.isClientSide) {
+            if (this.level.isClientSide) {
                 Creatures.PROXY.setReferencedMob(this);
                 Creatures.PROXY.openCreaturesGUI(itemstack);
                 return ActionResultType.sidedSuccess(this.level.isClientSide);

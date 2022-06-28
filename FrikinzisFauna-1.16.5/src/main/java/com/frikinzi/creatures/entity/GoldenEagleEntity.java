@@ -129,6 +129,13 @@ public class GoldenEagleEntity extends RaptorBase implements IAnimatable {
         } else if (p_70878_1_.getClass() != this.getClass()) {
             return false;
         } else {
+            GoldenEagleEntity ospreyentity = (GoldenEagleEntity) p_70878_1_;
+            if (!ospreyentity.isTame()) {
+                return false;
+            }
+            else if (ospreyentity.isInSittingPose()) {
+                return false;
+            }
             return this.isInLove() && p_70878_1_.isInLove();
         }
     }
@@ -145,7 +152,7 @@ public class GoldenEagleEntity extends RaptorBase implements IAnimatable {
 
     @Override
     public Set<Item> getTamedFood() {
-        TAME_FOOD = Sets.newHashSet(Items.CHICKEN, Items.ROTTEN_FLESH, CreaturesItems.SMALL_BIRD_MEAT);
+        TAME_FOOD = Sets.newHashSet(Items.CHICKEN, Items.ROTTEN_FLESH, CreaturesItems.SMALL_BIRD_MEAT, Items.RABBIT);
         return TAME_FOOD;
     }
 
@@ -155,6 +162,14 @@ public class GoldenEagleEntity extends RaptorBase implements IAnimatable {
 
     public ItemStack getFoodItem() {
         return new ItemStack(Items.CHICKEN, 1);
+    }
+
+    public float getHatchChance() {
+        return CreaturesConfig.golden_eagle_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.golden_eagle_clutch_size.get());
     }
 
 }

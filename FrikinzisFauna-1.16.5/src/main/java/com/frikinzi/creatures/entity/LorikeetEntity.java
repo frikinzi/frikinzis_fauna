@@ -196,4 +196,12 @@ public class LorikeetEntity extends TameableBirdBase implements IAnimatable {
         return new ItemStack(CreaturesItems.NECTAR, 1);
     }
 
+    public float getHatchChance() {
+        return CreaturesConfig.lorikeet_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.lorikeet_clutch_size.get());
+    }
+
 }

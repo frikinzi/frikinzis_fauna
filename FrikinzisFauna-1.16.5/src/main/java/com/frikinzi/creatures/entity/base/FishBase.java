@@ -161,7 +161,7 @@ public abstract class FishBase extends AbstractFishEntity {
     public ActionResultType mobInteract(PlayerEntity p_230254_1_, Hand p_230254_2_) {
         ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
         if (itemstack.getItem() == CreaturesItems.FF_GUIDE) {
-            if (!this.level.isClientSide) {
+            if (this.level.isClientSide) {
                 Creatures.PROXY.setReferencedMob(this);
                 Creatures.PROXY.openCreaturesGUI(itemstack);
                 return ActionResultType.sidedSuccess(this.level.isClientSide);

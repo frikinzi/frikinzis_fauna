@@ -147,5 +147,23 @@ public class CreaturesSpawnEggs {
     public static final RegistryObject<ModSpawnEgg> MAGPIE_SPAWN_EGG = ITEMS.register("magpie_spawn_egg",
             () -> new ModSpawnEgg(() -> ModEntityTypes.MAGPIE.get(), 1908259, 4480395,
                     new Item.Properties().tab(Creatures.CreaturesItemGroup)));
+    public static final RegistryObject<ModSpawnEgg> GOOSE_SPAWN_EGG = ITEMS.register("goose_spawn_egg",
+            () -> new ModSpawnEgg(() -> ModEntityTypes.GOOSE.get(), 7888451, 525056,
+                    new Item.Properties().tab(Creatures.CreaturesItemGroup)));
+    public static final RegistryObject<ModSpawnEgg> OSPREY_SPAWN_EGG = ITEMS.register("osprey_spawn_egg",
+            () -> new ModSpawnEgg(() -> ModEntityTypes.OSPREY.get(), 14869470, 4732721,
+                    new Item.Properties().tab(Creatures.CreaturesItemGroup)));
+    public static final RegistryObject<ModSpawnEgg> KINGFISHER_SPAWN_EGG = ITEMS.register("kingfisher_spawn_egg",
+            () -> new ModSpawnEgg(() -> ModEntityTypes.KINGFISHER.get(), 29897, 13722630,
+                    new Item.Properties().tab(Creatures.CreaturesItemGroup)));
+    public static final RegistryObject<ModSpawnEgg> PELICAN_SPAWN_EGG = ITEMS.register("pelican_spawn_egg",
+            () -> new ModSpawnEgg(() -> ModEntityTypes.PELICAN.get(), 15787740, 14585696,
+                    new Item.Properties().tab(Creatures.CreaturesItemGroup)));
+    public static final RegistryObject<ModSpawnEgg> LAPWING_SPAWN_EGG = ITEMS.register("lapwing_spawn_egg",
+            () -> new ModSpawnEgg(() -> ModEntityTypes.LAPWING.get(), 1921595, 528151,
+                    new Item.Properties().tab(Creatures.CreaturesItemGroup)));
+    public static final RegistryObject<ModSpawnEgg> SKUA_SPAWN_EGG = ITEMS.register("skua_spawn_egg",
+            () -> new ModSpawnEgg(() -> ModEntityTypes.SKUA.get(), 6182224, 4011831,
+                    new Item.Properties().tab(Creatures.CreaturesItemGroup)));
 
 }

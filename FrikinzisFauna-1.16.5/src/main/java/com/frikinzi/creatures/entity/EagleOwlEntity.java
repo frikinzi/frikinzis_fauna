@@ -1,5 +1,6 @@
 package com.frikinzi.creatures.entity;
 
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.RaptorBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
@@ -95,6 +96,13 @@ public class EagleOwlEntity extends RaptorBase implements IAnimatable {
         } else if (p_70878_1_.getClass() != this.getClass()) {
             return false;
         } else {
+            EagleOwlEntity eagleowlentity = (EagleOwlEntity) p_70878_1_;
+            if (!eagleowlentity.isTame()) {
+                return false;
+            }
+            else if (eagleowlentity.isInSittingPose()) {
+                return false;
+            }
             return this.isInLove() && p_70878_1_.isInLove();
         }
     }
@@ -139,6 +147,14 @@ public class EagleOwlEntity extends RaptorBase implements IAnimatable {
 
     public ItemStack getFoodItem() {
         return new ItemStack(Items.CHICKEN, 1);
+    }
+
+    public float getHatchChance() {
+        return CreaturesConfig.eagleowl_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.eagleowl_clutch_size.get());
     }
 
 }

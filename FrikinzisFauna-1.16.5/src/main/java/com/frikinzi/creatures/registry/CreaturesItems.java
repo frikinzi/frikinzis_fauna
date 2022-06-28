@@ -1,10 +1,8 @@
 package com.frikinzi.creatures.registry;
 
 import com.frikinzi.creatures.Creatures;
-import com.frikinzi.creatures.entity.KoiEntity;
-import com.frikinzi.creatures.item.CreaturesFishBucket;
 import com.frikinzi.creatures.item.CreaturesFood;
-import net.minecraft.block.Blocks;
+import com.frikinzi.creatures.item.EggItem;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
@@ -30,6 +28,43 @@ public class CreaturesItems {
     public static Item TROUT_BUCKET = new FishBucketItem(() -> ModEntityTypes.TROUT.get(), () -> Fluids.WATER, new Item.Properties().tab(Creatures.CreaturesItemGroup));
     public static Item FLAME_ANGELFISH_BUCKET = new FishBucketItem(() -> ModEntityTypes.FLAME_ANGELFISH.get(), () -> Fluids.WATER, new Item.Properties().tab(Creatures.CreaturesItemGroup));
     public static Item RED_SNAPPER_BUCKET = new FishBucketItem(() -> ModEntityTypes.RED_SNAPPER.get(), () -> Fluids.WATER, new Item.Properties().tab(Creatures.CreaturesItemGroup));
+
+    static int i = 0;
+    public static Item LOVEBIRD_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item SPOONBILL_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item KAKAPO_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item MANDARIN_DUCK_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item RAVEN_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item DOVE_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item RED_KITE_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item GOLDEN_EAGLE_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item STELLERS_SEA_EAGLE_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item GYRFALCON_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item LORIKEET_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item CONURE_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item FAIRYWREN_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item PYGMY_FALCON_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item BARN_OWL_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item WILD_DUCK_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item ROLLER_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item CHICKADEE_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item PYGMY_GOOSE_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item SWALLOW_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item IBIS_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item WOOD_DUCK_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item PEAFOWL_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item SPARROW_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item BUSHTIT_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item EAGLEOWL_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item ROBIN_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item LAUGHINGTHRUSH_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item MAGPIE_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item GOOSE_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item OSPREY_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item KINGFISHER_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item PELICAN_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item LAPWING_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item SKUA_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
 
     public static Item RAW_KOI = new Item((new Item.Properties()).tab(Creatures.CreaturesItemGroup).food(CreaturesFood.RAW_KOI));
     public static Item ROASTED_KOI = new Item((new Item.Properties()).tab(Creatures.CreaturesItemGroup).food(CreaturesFood.ROASTED_KOI));
@@ -100,6 +135,45 @@ public class CreaturesItems {
         registerItem(registry, setup(COOKED_TROUT, "cooked_trout"));
         registerItem(registry, setup(RAW_RED_SNAPPER, "raw_red_snapper"));
         registerItem(registry, setup(COOKED_RED_SNAPPER, "cooked_red_snapper"));
+
+        //egg
+        registerItem(registry, setup(LOVEBIRD_EGG, "lovebird_egg"));
+        registerItem(registry, setup(SPOONBILL_EGG, "spoonbill_egg"));
+        registerItem(registry, setup(KAKAPO_EGG, "kakapo_egg"));
+        registerItem(registry, setup(MANDARIN_DUCK_EGG, "mandarin_duck_egg"));
+        registerItem(registry, setup(RAVEN_EGG, "raven_egg"));
+        registerItem(registry, setup(DOVE_EGG, "dove_egg"));
+        registerItem(registry, setup(RED_KITE_EGG, "red_kite_egg"));
+        registerItem(registry, setup(GOLDEN_EAGLE_EGG, "golden_eagle_egg"));
+        registerItem(registry, setup(STELLERS_SEA_EAGLE_EGG, "stellers_sea_eagle_egg"));
+        registerItem(registry, setup(GYRFALCON_EGG, "gyrfalcon_egg"));
+        registerItem(registry, setup(LORIKEET_EGG, "lorikeet_egg"));
+        registerItem(registry, setup(CONURE_EGG, "conure_egg"));
+        registerItem(registry, setup(FAIRYWREN_EGG, "fairywren_egg"));
+        registerItem(registry, setup(PYGMY_FALCON_EGG, "pygmyfalcon_egg"));
+        registerItem(registry, setup(BARN_OWL_EGG, "barn_owl_egg"));
+        registerItem(registry, setup(WILD_DUCK_EGG, "wild_duck_egg"));
+        registerItem(registry, setup(ROLLER_EGG, "roller_egg"));
+        registerItem(registry, setup(CHICKADEE_EGG, "chickadee_egg"));
+        registerItem(registry, setup(PYGMY_GOOSE_EGG, "pygmy_goose_egg"));
+        registerItem(registry, setup(SWALLOW_EGG, "swallow_egg"));
+        registerItem(registry, setup(IBIS_EGG, "ibis_egg"));
+        registerItem(registry, setup(WOOD_DUCK_EGG, "wood_duck_egg"));
+        registerItem(registry, setup(PEAFOWL_EGG, "peafowl_egg"));
+        registerItem(registry, setup(SPARROW_EGG, "sparrow_egg"));
+        registerItem(registry, setup(BUSHTIT_EGG, "bushtit_egg"));
+        registerItem(registry, setup(EAGLEOWL_EGG, "eagleowl_egg"));
+        registerItem(registry, setup(ROBIN_EGG, "robin_egg"));
+        registerItem(registry, setup(LAUGHINGTHRUSH_EGG, "laughingthrush_egg"));
+        registerItem(registry, setup(MAGPIE_EGG, "magpie_egg"));
+        registerItem(registry, setup(GOOSE_EGG, "goose_egg"));
+        registerItem(registry, setup(OSPREY_EGG, "osprey_egg"));
+        registerItem(registry, setup(KINGFISHER_EGG, "kingfisher_egg"));
+        registerItem(registry, setup(PELICAN_EGG, "pelican_egg"));
+        registerItem(registry, setup(LAPWING_EGG, "lapwing_egg"));
+        registerItem(registry, setup(SKUA_EGG, "skua_egg"));
+
+
 
         //other
         registerItem(registry, setup(GUPPY_TAIL, "guppy_tail"));

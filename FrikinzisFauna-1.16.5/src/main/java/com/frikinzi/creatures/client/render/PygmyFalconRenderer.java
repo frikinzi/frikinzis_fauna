@@ -2,6 +2,7 @@ package com.frikinzi.creatures.client.render;
 
 import com.frikinzi.creatures.client.model.GoldenEagleModel;
 import com.frikinzi.creatures.client.model.PygmyFalconModel;
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.GoldenEagleEntity;
 import com.frikinzi.creatures.entity.PygmyFalconEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -22,10 +23,16 @@ public class PygmyFalconRenderer extends GeoEntityRenderer<PygmyFalconEntity>{
                             float red, float green, float blue, float partialTicks) {
         super.renderEarly(animatable, stackIn, ticks, renderTypeBuffer, vertexBuilder, packedLightIn, packedOverlayIn,
                 red, green, blue, partialTicks);
-        if (animatable.isBaby()) {
-            stackIn.scale(0.7F, 0.7F, 0.7F);
+        Float multiplier;
+        if (CreaturesConfig.height_on.get() == true) {
+            multiplier = animatable.getHeightMultiplier();
+        } else {
+            multiplier = 1.0F;
         }
-        stackIn.scale(0.7F, 0.7F, 0.7F);
+        if (animatable.isBaby()) {
+            stackIn.scale(0.7F * multiplier, 0.7F * multiplier, 0.7F * multiplier);
+        }
+        stackIn.scale(0.7F * multiplier, 0.7F * multiplier, 0.7F * multiplier);
     }
 
 }

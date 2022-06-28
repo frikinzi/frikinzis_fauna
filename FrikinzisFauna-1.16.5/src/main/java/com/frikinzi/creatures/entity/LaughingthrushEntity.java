@@ -1,5 +1,6 @@
 package com.frikinzi.creatures.entity;
 
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
@@ -159,6 +160,14 @@ public class LaughingthrushEntity extends NonTameableFlyingBirdBase implements I
         } else {
             return "Unknown";
         }
+    }
+
+    public float getHatchChance() {
+        return CreaturesConfig.laughingthrush_spawn_weight.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.laughingthrush_clutch_size.get());
     }
 
 }

@@ -1,8 +1,12 @@
 package com.frikinzi.creatures.entity;
 
+import com.frikinzi.creatures.client.model.LovebirdModel;
 import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.TameableBirdBase;
+import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
 import com.frikinzi.creatures.registry.CreaturesSound;
+import com.frikinzi.creatures.registry.ModEntityTypes;
 import com.frikinzi.creatures.util.CreaturesLootTables;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.AgeableEntity;
@@ -17,6 +21,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IWorld;
@@ -100,6 +105,29 @@ public class LovebirdEntity extends TameableBirdBase implements IAnimatable {
         return lovebirdentity;
     }
 
+    public CreaturesEggEntity layEgg(CreaturesBirdEntity animal) {
+        CreaturesEggEntity egg = new CreaturesEggEntity(ModEntityTypes.EGG.get(), this.level);
+        egg.setSpecies(ModEntityTypes.getIntFromBirdEntity(animal));
+        egg.setGender(this.random.nextInt(2));
+        if (this.getVariant() == 1) {
+            if (this.random.nextInt(CreaturesConfig.lovebird_mutation_chance.get()) == 2) {
+                egg.setVariant(2); }
+            else {
+                egg.setVariant(this.getVariant());
+            }
+        }
+        else if (this.getVariant() == 3) {
+            if (this.random.nextInt(CreaturesConfig.lovebird_mutation_chance.get()) == 1) {
+                egg.setVariant(4); }
+            else {
+                egg.setVariant(this.getVariant());
+            }
+        } else {
+            egg.setVariant(this.getVariant());
+        }
+        return egg;
+    }
+
     @Override
     public boolean canMate(AnimalEntity p_70878_1_) {
         if (p_70878_1_ == this) {
@@ -168,6 +196,14 @@ public class LovebirdEntity extends TameableBirdBase implements IAnimatable {
         } else {
             return "Unknown";
         }
+    }
+
+    public float getHatchChance() {
+        return CreaturesConfig.lovebird_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.lovebird_clutch_size.get());
     }
 
 }
