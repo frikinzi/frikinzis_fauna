@@ -10,7 +10,7 @@ public class PelicanModel extends AnimatedGeoModel<PelicanEntity> {
     @Override
     public ResourceLocation getModelLocation(PelicanEntity object)
     {
-        if (object.isFlying()) {
+        if (object.isFlying() && !object.isInWater()) {
             return new ResourceLocation(Creatures.MODID, "geo/entity/pelican/pelicanfly.geo.json");
         }
         return new ResourceLocation(Creatures.MODID, "geo/entity/pelican/pelican.geo.json");
@@ -20,7 +20,7 @@ public class PelicanModel extends AnimatedGeoModel<PelicanEntity> {
     @Override
     public ResourceLocation getTextureLocation(PelicanEntity object)
     {
-        if (object.isFlying()) {
+        if (object.isFlying() && !object.isInWater()) {
             return new ResourceLocation(Creatures.MODID, "textures/entity/pelican/pelican" + object.getVariant() + "fly.png");
         }
         if (object.isSleeping()) {
@@ -32,7 +32,7 @@ public class PelicanModel extends AnimatedGeoModel<PelicanEntity> {
     @Override
     public ResourceLocation getAnimationFileLocation(PelicanEntity object)
     {
-        if (object.isFlying()) {
+        if (object.isFlying() && !object.isInWater()) {
             return new ResourceLocation(Creatures.MODID, "animations/animation.pelican.fly.json");
         }
         return new ResourceLocation(Creatures.MODID, "animations/animation.pelican.json");

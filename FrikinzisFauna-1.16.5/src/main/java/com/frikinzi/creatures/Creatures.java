@@ -2,6 +2,7 @@ package com.frikinzi.creatures;
 
 import com.frikinzi.creatures.client.ClientProxy;
 import com.frikinzi.creatures.client.CommonProxy;
+import com.frikinzi.creatures.client.block.CreaturesBlocks;
 import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.item.ModSpawnEgg;
 import com.frikinzi.creatures.registry.CreaturesItems;
@@ -58,6 +59,8 @@ public class Creatures
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+        CreaturesBlocks.register(modEventBus);
+        CreaturesItems.register(modEventBus);
         ModEntityTypes.ENTITY_TYPES.register(modEventBus);
         CreaturesSpawnEggs.ITEMS.register(modEventBus);
 
@@ -107,6 +110,7 @@ public class Creatures
     public static class RegistryEvents {
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
+
         }
 
         @SubscribeEvent

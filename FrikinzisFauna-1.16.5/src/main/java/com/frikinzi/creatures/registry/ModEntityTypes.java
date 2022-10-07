@@ -21,7 +21,7 @@ public class ModEntityTypes {
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "koi").toString()));
     public static final RegistryObject<EntityType<LovebirdEntity>> LOVEBIRD = ENTITY_TYPES.register("lovebird",
-            () -> EntityType.Builder.of(LovebirdEntity::new, EntityClassification.CREATURE).sized(0.4f, 0.4F)
+            () -> EntityType.Builder.of(LovebirdEntity::new, EntityClassification.CREATURE).sized(0.6f, 0.6F)
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "lovebird").toString()));
     public static final RegistryObject<EntityType<DottybackEntity>> DOTTYBACK = ENTITY_TYPES.register("dottyback",
@@ -37,7 +37,7 @@ public class ModEntityTypes {
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "guppy").toString()));
     public static final RegistryObject<EntityType<SpoonbillEntity>> SPOONBILL = ENTITY_TYPES.register("creatures_spoonbill",
-            () -> EntityType.Builder.of(SpoonbillEntity::new, EntityClassification.CREATURE).sized(0.5F, 0.5F)
+            () -> EntityType.Builder.of(SpoonbillEntity::new, EntityClassification.CREATURE).sized(0.6F, 0.6F)
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "spoonbill").toString()));
     public static final RegistryObject<EntityType<KakapoEntity>> KAKAPO = ENTITY_TYPES.register("kakapo",
@@ -89,7 +89,7 @@ public class ModEntityTypes {
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "conure").toString()));
     public static final RegistryObject<EntityType<FairywrenEntity>> FAIRYWREN = ENTITY_TYPES.register("fairywren",
-            () -> EntityType.Builder.of(FairywrenEntity::new, EntityClassification.CREATURE).sized(0.5F, 0.5F)
+            () -> EntityType.Builder.of(FairywrenEntity::new, EntityClassification.CREATURE).sized(0.6F, 0.6F)
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "fairy_wren").toString()));
     public static final RegistryObject<EntityType<GhostCrabEntity>> GHOST_CRAB = ENTITY_TYPES.register("ghostcrab",
@@ -101,7 +101,7 @@ public class ModEntityTypes {
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "gourami").toString()));
     public static final RegistryObject<EntityType<PygmyFalconEntity>> PYGMY_FALCON = ENTITY_TYPES.register("pygmyfalcon",
-            () -> EntityType.Builder.of(PygmyFalconEntity::new, EntityClassification.CREATURE).sized(0.5F, 0.5F)
+            () -> EntityType.Builder.of(PygmyFalconEntity::new, EntityClassification.CREATURE).sized(0.6F, 0.6F)
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "pygmyfalcon").toString()));
     public static final RegistryObject<EntityType<BarnOwlEntity>> BARN_OWL = ENTITY_TYPES.register("barn_owl",
@@ -125,7 +125,7 @@ public class ModEntityTypes {
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "ranchu").toString()));
     public static final RegistryObject<EntityType<ChickadeeEntity>> CHICKADEE = ENTITY_TYPES.register("chickadee",
-            () -> EntityType.Builder.of(ChickadeeEntity::new, EntityClassification.CREATURE).sized(0.4F, 0.4F)
+            () -> EntityType.Builder.of(ChickadeeEntity::new, EntityClassification.CREATURE).sized(0.6F, 0.6F)
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "chickadee").toString()));
     public static final RegistryObject<EntityType<PygmyGooseEntity>> PYGMY_GOOSE = ENTITY_TYPES.register("pygmy_goose",
@@ -205,7 +205,7 @@ public class ModEntityTypes {
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "osprey").toString()));
     public static final RegistryObject<EntityType<KingfisherEntity>> KINGFISHER = ENTITY_TYPES.register("kingfisher",
-            () -> EntityType.Builder.of(KingfisherEntity::new, EntityClassification.CREATURE).sized(0.5F, 0.5F)
+            () -> EntityType.Builder.of(KingfisherEntity::new, EntityClassification.CREATURE).sized(0.6F, 0.6F)
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "kingfisher").toString()));
     public static final RegistryObject<EntityType<PelicanEntity>> PELICAN = ENTITY_TYPES.register("pelican",

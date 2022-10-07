@@ -88,6 +88,7 @@ public class ConureEntity extends TameableBirdBase implements IAnimatable {
         ConureEntity conureentity = (ConureEntity) getType().create(p_241840_1_);
         conureentity.setVariant(this.getVariant());
         conureentity.setGender(this.random.nextInt(2));
+        conureentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return conureentity;
     }
 
@@ -157,9 +158,9 @@ public class ConureEntity extends TameableBirdBase implements IAnimatable {
 
     public float getHatchChance() {
         if (this.getVariant() == 3) {
-            return (CreaturesConfig.conure_hatch_chance.get()) / 2;
+            return (Double.valueOf(CreaturesConfig.conure_hatch_chance.get()).floatValue() / 2);
         }
-        return CreaturesConfig.conure_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.conure_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

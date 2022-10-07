@@ -87,6 +87,7 @@ public class LaughingthrushEntity extends NonTameableFlyingBirdBase implements I
         LaughingthrushEntity rollerentity = (LaughingthrushEntity) getType().create(p_241840_1_);
         rollerentity.setVariant(this.getVariant());
         rollerentity.setGender(this.random.nextInt(2));
+        rollerentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return rollerentity;
     }
 
@@ -163,7 +164,7 @@ public class LaughingthrushEntity extends NonTameableFlyingBirdBase implements I
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.laughingthrush_spawn_weight.get();
+        return Double.valueOf(CreaturesConfig.laughingthrush_spawn_weight.get()).floatValue();
     }
 
     public int getClutchSize() {

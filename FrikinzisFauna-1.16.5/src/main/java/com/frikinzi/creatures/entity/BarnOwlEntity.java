@@ -85,6 +85,7 @@ public class BarnOwlEntity extends RaptorBase implements IAnimatable {
     public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         BarnOwlEntity barnowlentity = (BarnOwlEntity) getType().create(p_241840_1_);
         barnowlentity.setGender(this.random.nextInt(2));
+        barnowlentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return barnowlentity;
     }
 
@@ -140,7 +141,7 @@ public class BarnOwlEntity extends RaptorBase implements IAnimatable {
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.barn_owl_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.barn_owl_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

@@ -1,14 +1,18 @@
 package com.frikinzi.creatures.entity;
 
+import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.entity.ai.ConfigNonTamedTargetGoal;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
+import com.frikinzi.creatures.registry.ModEntityTypes;
 import com.frikinzi.creatures.util.CreaturesLootTables;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.HurtByTargetGoal;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.monster.AbstractSkeletonEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
@@ -31,6 +35,7 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
+import java.util.function.Predicate;
 
 public class PikeEntity extends FishBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
@@ -38,9 +43,32 @@ public class PikeEntity extends FishBase implements IAnimatable {
         super(p_i50246_1_, p_i50246_2_);
     }
 
+    public static final Predicate<LivingEntity> PREY_SELECTOR = (p_213440_0_) -> {
+        EntityType<?> entitytype = p_213440_0_.getType();
+        return entitytype == ModEntityTypes.TROUT.get() || entitytype == EntityType.SALMON|| entitytype == ModEntityTypes.WILD_DUCK.get();
+    };
+
     @Nullable
     public ILivingEntityData finalizeSpawn(IServerWorld p_213386_1_, DifficultyInstance p_213386_2_, SpawnReason p_213386_3_, @Nullable ILivingEntityData p_213386_4_, @Nullable CompoundNBT p_213386_5_) {
+        if (p_213386_3_ != SpawnReason.BUCKET) {
+            float f = (float) (this.random.nextGaussian() * CreaturesConfig.height_standard_deviation.get() + CreaturesConfig.height_base_multiplier.get());
+            this.setHeightMultiplier(f);
+        }
+        if (p_213386_5_ != null) {
+            if (p_213386_5_.contains("BucketHeightMultiplier")) {
+                this.setHeightMultiplier(p_213386_5_.getFloat("BucketHeightMultiplier"));
+            }
+            return p_213386_4_;
+        }
         return super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_, p_213386_4_, p_213386_5_);
+    }
+
+    protected void registerGoals() {
+        super.registerGoals();
+        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, TroutEntity.class, false));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, WildDuckEntity.class, false));
     }
 
     protected SoundEvent getAmbientSound() {
@@ -96,7 +124,7 @@ public class PikeEntity extends FishBase implements IAnimatable {
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 8.0D).add(Attributes.MOVEMENT_SPEED, 0.1D);
+        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 8.0D).add(Attributes.MOVEMENT_SPEED, 0.1D).add(Attributes.ATTACK_DAMAGE, 2.0D);
     }
 
     public ResourceLocation getDefaultLootTable() {

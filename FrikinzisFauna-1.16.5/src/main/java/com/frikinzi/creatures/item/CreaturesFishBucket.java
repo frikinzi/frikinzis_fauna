@@ -1,5 +1,6 @@
 package com.frikinzi.creatures.item;
 
+import com.frikinzi.creatures.entity.base.AbstractFish;
 import com.frikinzi.creatures.entity.base.FishBase;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -10,6 +11,7 @@ import net.minecraft.entity.passive.fish.TropicalFishEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.BucketItem;
+import net.minecraft.item.FishBucketItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -29,37 +31,33 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class CreaturesFishBucket extends BucketItem {
+public class CreaturesFishBucket extends FishBucketItem {
     private final EntityType<?> type;
 
     @Deprecated
     public CreaturesFishBucket(EntityType<?> p_i49022_1_, Fluid p_i49022_2_, Item.Properties p_i49022_3_) {
-        super(p_i49022_2_, p_i49022_3_);
+        super(p_i49022_1_, p_i49022_2_, p_i49022_3_);
         this.type = p_i49022_1_;
         this.fishTypeSupplier = () -> p_i49022_1_;
     }
 
     public CreaturesFishBucket(java.util.function.Supplier<? extends EntityType<?>> fishTypeIn, java.util.function.Supplier<? extends Fluid> p_i49022_2_, Item.Properties builder) {
-        super(p_i49022_2_, builder);
+        super(fishTypeIn, p_i49022_2_, builder);
         this.type = null;
         this.fishTypeSupplier = fishTypeIn;
     }
 
-    public void checkExtraContent(World p_203792_1_, ItemStack p_203792_2_, BlockPos p_203792_3_) {
-        if (p_203792_1_ instanceof ServerWorld) {
-            this.spawn((ServerWorld)p_203792_1_, p_203792_2_, p_203792_3_);
-        }
+ //  public void checkExtraContent(World p_203792_1_, ItemStack p_203792_2_, BlockPos p_203792_3_) {
+ //      if (p_203792_1_ instanceof ServerWorld) {
+ //          this.spawn((ServerWorld)p_203792_1_, p_203792_2_, p_203792_3_);
+ //      }
 
-    }
-
-    protected void playEmptySound(@Nullable PlayerEntity p_203791_1_, IWorld p_203791_2_, BlockPos p_203791_3_) {
-        p_203791_2_.playSound(p_203791_1_, p_203791_3_, SoundEvents.BUCKET_EMPTY_FISH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-    }
+ //  }
 
     private void spawn(ServerWorld p_205357_1_, ItemStack p_205357_2_, BlockPos p_205357_3_) {
         Entity entity = this.type.spawn(p_205357_1_, p_205357_2_, (PlayerEntity)null, p_205357_3_, SpawnReason.BUCKET, true, false);
         if (entity != null) {
-            ((AbstractFishEntity)entity).setFromBucket(true);
+            ((AbstractFish)entity).setFromBucket(true);
         }
 
     }

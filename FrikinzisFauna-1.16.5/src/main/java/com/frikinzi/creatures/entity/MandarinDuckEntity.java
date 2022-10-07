@@ -2,6 +2,7 @@ package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.NonTameableBirdBase;
+import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
 import net.minecraft.entity.AgeableEntity;
@@ -17,6 +18,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeMod;
@@ -31,10 +33,19 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public class MandarinDuckEntity extends NonTameableBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.BREAD, Items.WHEAT_SEEDS);
+    public int featherTime = this.random.nextInt(6000) + 6000;
 
     public MandarinDuckEntity(EntityType<? extends MandarinDuckEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
         this.setPathfindingMalus(PathNodeType.WATER, 1.0F);
+    }
+
+    public void aiStep() {
+        super.aiStep();
+        if (!this.level.isClientSide && this.isAlive() && CreaturesConfig.drop_feather.get() && !this.isBaby() && --this.featherTime <= 0) {
+            this.spawnAtLocation(CreaturesItems.DUCK_FEATHER);
+            this.featherTime = this.random.nextInt(6000) + 6000;
+        }
     }
 
     protected void registerGoals() {
@@ -109,6 +120,7 @@ public class MandarinDuckEntity extends NonTameableBirdBase implements IAnimatab
     public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         MandarinDuckEntity mandarinduckentity = (MandarinDuckEntity) getType().create(p_241840_1_);
         mandarinduckentity.setGender(this.random.nextInt(2));
+        mandarinduckentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return mandarinduckentity;
     }
 
@@ -147,7 +159,7 @@ public class MandarinDuckEntity extends NonTameableBirdBase implements IAnimatab
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.mandarin_duck_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.mandarin_duck_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

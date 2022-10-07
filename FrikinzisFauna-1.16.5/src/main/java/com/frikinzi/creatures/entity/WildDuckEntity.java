@@ -2,6 +2,7 @@ package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.NonTameableBirdBase;
+import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
 import net.minecraft.client.resources.I18n;
@@ -34,6 +35,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public class WildDuckEntity extends NonTameableBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.BREAD, Items.WHEAT_SEEDS);
+    public int featherTime = this.random.nextInt(6000) + 6000;
 
     public WildDuckEntity(EntityType<? extends WildDuckEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -94,6 +96,14 @@ public class WildDuckEntity extends NonTameableBirdBase implements IAnimatable {
         return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D).add(ForgeMod.SWIM_SPEED.get(), 3.0).add(Attributes.MOVEMENT_SPEED, (double)0.2F);
     }
 
+    public void aiStep() {
+        super.aiStep();
+        if (!this.level.isClientSide && this.isAlive() && CreaturesConfig.drop_feather.get() && !this.isBaby() && --this.featherTime <= 0) {
+            this.spawnAtLocation(CreaturesItems.DUCK_FEATHER);
+            this.featherTime = this.random.nextInt(6000) + 6000;
+        }
+    }
+
     public int determineVariant() {
         return 4;
     }
@@ -103,6 +113,7 @@ public class WildDuckEntity extends NonTameableBirdBase implements IAnimatable {
         WildDuckEntity wildduckentity = (WildDuckEntity) getType().create(p_241840_1_);
         wildduckentity.setVariant(this.getVariant());
         wildduckentity.setGender(this.random.nextInt(2));
+        wildduckentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return wildduckentity;
     }
 
@@ -163,7 +174,7 @@ public class WildDuckEntity extends NonTameableBirdBase implements IAnimatable {
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.wild_duck_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.wild_duck_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

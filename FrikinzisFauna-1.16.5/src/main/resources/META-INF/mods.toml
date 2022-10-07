@@ -19,7 +19,7 @@ modId="creatures" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
 # ${file.jarVersion} will substitute the value of the Implementation-Version as read from the mod's JAR file metadata
 # see the associated build.gradle script for how to populate this completely automatically during a build
-version="v1.3.0-1.16.5" #mandatory
+version="v1.4.0-1.16.5" #mandatory
  # A display name for the mod
 displayName="Frikinzi's Fauna" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification https://mcforge.readthedocs.io/en/latest/gettingstarted/autoupdate/
@@ -29,12 +29,12 @@ displayURL="https://www.curseforge.com/minecraft/mc-mods/creatures" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="creatures-logo.png" #optional
 # A text field displayed in the mod UI
-credits="Discord people for suggesting all sorts of animals and being supportive! xeno-canto for bird sounds, P-Plum for the ibis model, and discord server members for translations. Thank you!" #optional
+credits="https://github.com/frikinzi/frikinzis_fauna/wiki/Credits" #optional
 # A text field displayed in the mod UI
 authors="Frikinzi" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-Frikinzi's Fauna aims to spice up your world with a lot of new wild birds and some fish.
+Frikinzi's Fauna adds a plethora of avian and aquatic wildlife to your Minecraft world.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.creatures]] #optional

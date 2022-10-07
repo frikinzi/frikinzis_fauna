@@ -72,7 +72,7 @@ public class StellersSeaEagleEntity extends RaptorBase implements IAnimatable {
     protected void registerGoals() {
         super.registerGoals();
         if (!this.isBaby() && CreaturesConfig.raptor_attacks.get() == true) {
-        this.targetSelector.addGoal(5, new ConfigNonTamedTargetGoal<>(this, AnimalEntity.class, false, PREY_SELECTOR));
+        this.targetSelector.addGoal(5, new ConfigNonTamedTargetGoal<>(this, LivingEntity.class, false, PREY_SELECTOR));
         }
     }
 
@@ -100,6 +100,7 @@ public class StellersSeaEagleEntity extends RaptorBase implements IAnimatable {
     public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         StellersSeaEagleEntity stellersseaeagleentity = (StellersSeaEagleEntity) getType().create(p_241840_1_);
         stellersseaeagleentity.setGender(this.random.nextInt(2));
+        stellersseaeagleentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return stellersseaeagleentity;
     }
 
@@ -143,7 +144,7 @@ public class StellersSeaEagleEntity extends RaptorBase implements IAnimatable {
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.stellers_sea_eagle_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.stellers_sea_eagle_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

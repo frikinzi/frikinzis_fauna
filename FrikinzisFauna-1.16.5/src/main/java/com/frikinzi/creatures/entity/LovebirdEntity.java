@@ -79,7 +79,7 @@ public class LovebirdEntity extends TameableBirdBase implements IAnimatable {
     }
 
     public int determineVariant() {
-        return 7;
+        return 14;
     }
 
     @Override
@@ -99,9 +99,19 @@ public class LovebirdEntity extends TameableBirdBase implements IAnimatable {
             else {
                 lovebirdentity.setVariant(this.getVariant());
             }
+        }
+        else if (this.getVariant() == 5) {
+            if (this.random.nextInt(CreaturesConfig.lovebird_mutation_chance.get()) == 1) {
+                lovebirdentity.setVariant(13); }
+            if (this.random.nextInt(CreaturesConfig.lovebird_mutation_chance.get()) == 2) {
+                lovebirdentity.setVariant(12); }
+            else {
+                lovebirdentity.setVariant(this.getVariant());
+            }
         } else {
             lovebirdentity.setVariant(this.getVariant());
         }
+        lovebirdentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return lovebirdentity;
     }
 
@@ -122,7 +132,17 @@ public class LovebirdEntity extends TameableBirdBase implements IAnimatable {
             else {
                 egg.setVariant(this.getVariant());
             }
-        } else {
+        }
+        else if (this.getVariant() == 5) {
+            if (this.random.nextInt(CreaturesConfig.lovebird_mutation_chance.get()) == 1) {
+                egg.setVariant(13); }
+            if (this.random.nextInt(CreaturesConfig.lovebird_mutation_chance.get()) == 2) {
+                egg.setVariant(12); }
+            else {
+                egg.setVariant(this.getVariant());
+            }
+        }
+        else {
             egg.setVariant(this.getVariant());
         }
         return egg;
@@ -158,7 +178,7 @@ public class LovebirdEntity extends TameableBirdBase implements IAnimatable {
     public int methodofDeterminingVariant(IWorld p_213610_1_) {
         if (CreaturesConfig.breed_only_variants.get() == true) {
         int i = this.random.nextInt(determineVariant());
-        while (i == 2 || i == 4) {
+        while (i == 2 || i == 4 || i == 12 || i == 13) {
             i = this.random.nextInt(determineVariant());
         }
         return i; }
@@ -193,13 +213,35 @@ public class LovebirdEntity extends TameableBirdBase implements IAnimatable {
         else if (this.getVariant() == 6) {
             ITextComponent s1 = new TranslationTextComponent("message.creatures.lovebird.madagascar");
             return s1.getString();
+        }
+        else if (this.getVariant() == 7) {
+            ITextComponent s1 = new TranslationTextComponent("message.creatures.lovebird.blackwingedlovebird");
+            return s1.getString();
+        }   else if (this.getVariant() == 8) {
+            ITextComponent s1 = new TranslationTextComponent("message.creatures.lovebird.redfaced");
+            return s1.getString();
+        } else if (this.getVariant() == 9) {
+            ITextComponent s1 = new TranslationTextComponent("message.creatures.lovebird.swindern");
+            return s1.getString();
+        } else if (this.getVariant() == 10) {
+            ITextComponent s1 = new TranslationTextComponent("message.creatures.lovebird.blackcheeked");
+            return s1.getString();
+        } else if (this.getVariant() == 11) {
+            ITextComponent s1 = new TranslationTextComponent("message.creatures.lovebird.lilians");
+            return s1.getString();
+        } else if (this.getVariant() == 12) {
+            ITextComponent s1 = new TranslationTextComponent("message.creatures.lovebird.aquamarine");
+            return s1.getString();
+        } else if (this.getVariant() == 13) {
+            ITextComponent s1 = new TranslationTextComponent("message.creatures.lovebird.bluepeachfaced");
+            return s1.getString();
         } else {
             return "Unknown";
         }
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.lovebird_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.lovebird_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

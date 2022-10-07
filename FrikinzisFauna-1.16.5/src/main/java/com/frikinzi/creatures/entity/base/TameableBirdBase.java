@@ -16,7 +16,10 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.monster.CreeperEntity;
+import net.minecraft.entity.monster.GhastEntity;
 import net.minecraft.entity.passive.*;
+import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -52,6 +55,7 @@ import java.util.function.Predicate;
 
 public class TameableBirdBase extends CreaturesBirdEntity implements IFlyingAnimal {
     private static final DataParameter<Integer> DATA_VARIANT_ID = EntityDataManager.defineId(TameableBirdBase.class, DataSerializers.INT);
+    private static final DataParameter<Integer> WANDERING = EntityDataManager.defineId(TameableBirdBase.class, DataSerializers.INT);
     private static final DataParameter<Integer> GENDER = EntityDataManager.defineId(TameableBirdBase.class, DataSerializers.INT);
     public static Set<Item> TAME_FOOD = Sets.newHashSet(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
     public float flap;
@@ -75,6 +79,7 @@ public class TameableBirdBase extends CreaturesBirdEntity implements IFlyingAnim
     @Nullable
     public ILivingEntityData finalizeSpawn(IServerWorld p_213386_1_, DifficultyInstance p_213386_2_, SpawnReason p_213386_3_, @Nullable ILivingEntityData p_213386_4_, @Nullable CompoundNBT p_213386_5_) {
         this.setVariant(methodofDeterminingVariant(p_213386_1_));
+        this.setWandering(0);
         this.setGender(this.random.nextInt(2));
         if (p_213386_4_ == null) {
             p_213386_4_ = new AgeableEntity.AgeableData(false);
@@ -95,6 +100,7 @@ public class TameableBirdBase extends CreaturesBirdEntity implements IFlyingAnim
         this.goalSelector.addGoal(6, new CreaturesFollowGoal(this,1.0D, 5.0F, 1.0F, true));
         this.targetSelector.addGoal(7, new TameableBirdBase.FlyingGoal());
         this.goalSelector.addGoal(0, new TameableBirdBase.SleepGoal());
+        this.targetSelector.addGoal(1, (new CreaturesBirdEntity.HurtByTargetGoal()));
         this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
     }
 
@@ -167,7 +173,32 @@ public class TameableBirdBase extends CreaturesBirdEntity implements IFlyingAnim
             }
 
             return ActionResultType.sidedSuccess(this.level.isClientSide);
-        }  else if (!this.isFlying() && !getTamedFood().contains(itemstack.getItem()) && this.isTame() && this.isOwnedBy(p_230254_1_)) {
+        }
+        else if (this.isTame() && itemstack.getItem() == Items.STICK) {
+            if (this.getWandering() == 0) {
+                if (this.level.isClientSide) {
+                    ITextComponent i = new TranslationTextComponent("message.wander");
+                    this.getOwner().sendMessage(i, Util.NIL_UUID);
+                }
+                this.setWandering(1);
+            } else {
+                if (this.level.isClientSide) {
+                    ITextComponent i = new TranslationTextComponent("message.follow");
+                    this.getOwner().sendMessage(i, Util.NIL_UUID);
+                }
+                this.setWandering(0);
+            }
+            return ActionResultType.sidedSuccess(this.level.isClientSide);
+        }
+            else if (this.isTame() && this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
+                if (!p_230254_1_.abilities.instabuild) {
+                    itemstack.shrink(1);
+                }
+
+                this.heal((float) 4.0);
+                return ActionResultType.SUCCESS;
+            }
+        else if (!this.isFlying() && itemstack.getItem() != CreaturesItems.FF_GUIDE && !getTamedFood().contains(itemstack.getItem()) && this.isTame() && this.isOwnedBy(p_230254_1_)) {
             if (!this.level.isClientSide) {
                 this.setOrderedToSit(!this.isOrderedToSit());
             }
@@ -237,9 +268,18 @@ public class TameableBirdBase extends CreaturesBirdEntity implements IFlyingAnim
         this.entityData.set(GENDER, p_191997_1_);
     }
 
+    public int getWandering() {
+        return MathHelper.clamp(this.entityData.get(WANDERING), 0, 2);
+    }
+
+    public void setWandering(int p_191997_1_) {
+        this.entityData.set(WANDERING, p_191997_1_);
+    }
+
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(DATA_VARIANT_ID, 0);
+        this.entityData.define(WANDERING, 0);
         this.entityData.define(GENDER, 0);
     }
 
@@ -248,6 +288,7 @@ public class TameableBirdBase extends CreaturesBirdEntity implements IFlyingAnim
         p_213281_1_.putBoolean("Sleeping", this.isSleeping());
         p_213281_1_.putInt("Variant", this.getVariant());
         p_213281_1_.putInt("Gender", this.getGender());
+        p_213281_1_.putInt("Wandering", this.getWandering());
     }
 
     public void readAdditionalSaveData(CompoundNBT p_70037_1_) {
@@ -255,6 +296,7 @@ public class TameableBirdBase extends CreaturesBirdEntity implements IFlyingAnim
         this.setSleeping(p_70037_1_.getBoolean("Sleeping"));
         this.setVariant(p_70037_1_.getInt("Variant"));
         this.setGender(p_70037_1_.getInt("Gender"));
+        this.setWandering(p_70037_1_.getInt("Wandering"));
     }
 
     public boolean isSleeping() {
@@ -298,7 +340,7 @@ public class TameableBirdBase extends CreaturesBirdEntity implements IFlyingAnim
         }
 
         public boolean canUse() {
-            if (!TameableBirdBase.this.isInSittingPose() && TameableBirdBase.this.isTame() && CreaturesConfig.following.get() == true) {
+            if (!TameableBirdBase.this.isInSittingPose() && TameableBirdBase.this.isTame() && CreaturesConfig.following.get() == true && TameableBirdBase.this.getTarget() != null) {
                 return false;
             }
             if (TameableBirdBase.this.xxa == 0.0F && TameableBirdBase.this.yya == 0.0F && TameableBirdBase.this.zza == 0.0F) {
@@ -587,6 +629,19 @@ public class TameableBirdBase extends CreaturesBirdEntity implements IFlyingAnim
 
     public ItemStack getFoodItem() {
         return new ItemStack(Items.WHEAT_SEEDS, 1);
+    }
+
+    public boolean wantsToAttack(LivingEntity p_142018_1_, LivingEntity p_142018_2_) {
+            if (p_142018_1_ instanceof TameableBirdBase) {
+                TameableBirdBase tameableBirdBase = (TameableBirdBase)p_142018_1_;
+                return !tameableBirdBase.isTame() || tameableBirdBase.getOwner() != p_142018_2_;
+            } else if (p_142018_1_ instanceof PlayerEntity && p_142018_2_ instanceof PlayerEntity && !((PlayerEntity)p_142018_2_).canHarmPlayer((PlayerEntity)p_142018_1_)) {
+                return false;
+            } else if (p_142018_1_ instanceof AbstractHorseEntity && ((AbstractHorseEntity)p_142018_1_).isTamed()) {
+                return false;
+            } else {
+                return !(p_142018_1_ instanceof TameableEntity) || !((TameableEntity)p_142018_1_).isTame();
+            }
     }
 
 }

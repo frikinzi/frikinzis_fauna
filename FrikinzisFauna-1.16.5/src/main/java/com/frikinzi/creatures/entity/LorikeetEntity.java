@@ -2,9 +2,12 @@ package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.TameableBirdBase;
+import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
+import com.frikinzi.creatures.registry.ModEntityTypes;
 import com.google.common.collect.Sets;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.AgeableEntity;
@@ -96,7 +99,25 @@ public class LorikeetEntity extends TameableBirdBase implements IAnimatable {
         } else {
             lorikeetentity.setVariant(this.getVariant());
         }
+        lorikeetentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return lorikeetentity;
+    }
+
+
+    public CreaturesEggEntity layEgg(CreaturesBirdEntity animal) {
+        CreaturesEggEntity egg = new CreaturesEggEntity(ModEntityTypes.EGG.get(), this.level);
+        egg.setSpecies(ModEntityTypes.getIntFromBirdEntity(animal));
+        egg.setGender(this.random.nextInt(2));
+        if (this.getVariant() == 1) {
+            if (this.random.nextInt(CreaturesConfig.lorikeet_mutation_chance.get()) == 1) {
+                egg.setVariant(3); }
+            else {
+                egg.setVariant(this.getVariant());
+            }
+        } else {
+            egg.setVariant(this.getVariant());
+        }
+        return egg;
     }
 
     @Override
@@ -197,7 +218,7 @@ public class LorikeetEntity extends TameableBirdBase implements IAnimatable {
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.lorikeet_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.lorikeet_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

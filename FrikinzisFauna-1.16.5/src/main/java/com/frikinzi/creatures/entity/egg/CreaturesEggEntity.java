@@ -23,6 +23,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -38,6 +40,7 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
@@ -54,12 +57,14 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
 
     @Nullable
     public ILivingEntityData finalizeSpawn(IServerWorld p_213386_1_, DifficultyInstance p_213386_2_, SpawnReason p_213386_3_, @Nullable ILivingEntityData p_213386_4_, @Nullable CompoundNBT p_213386_5_) {
-        if (p_213386_5_ != null && p_213386_5_.contains("EggVariant", 3)) {
+        if (p_213386_5_ != null) {
+            //System.out.print(p_213386_5_);
+            if (p_213386_5_.contains("EggVariant", 3)) {
             this.setVariant(p_213386_5_.getInt("EggVariant"));
-            this.setGender(this.random.nextInt(2));
-        }
-        if (p_213386_5_ != null && p_213386_5_.contains("EggHeightMultiplier", 3)) {
-            this.setHeightMultiplier(p_213386_5_.getFloat("EggHeightMultiplier"));
+            this.setGender(this.random.nextInt(2)); }
+            if (p_213386_5_.contains("EggHeightMultiplier", 4)) {
+                this.setHeightMultiplier(p_213386_5_.getFloat("EggHeightMultiplier"));
+            }
         }
         return p_213386_4_;
     }
@@ -666,6 +671,16 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
                 egg.remove();
             }
             this.level.broadcastEntityEvent(this, (byte)3);
+//           Random random = egg.getRandom();
+//           for (int i = 0; i < 17; ++i) {
+//               final double d0 = random.nextGaussian() * 0.02D;
+//               final double d1 = random.nextGaussian() * 0.02D;
+//               final double d2 = random.nextGaussian() * 0.02D;
+//               final double d3 = random.nextDouble() * egg.getBbWidth() * 2.0D - egg.getBbWidth();
+//               final double d4 = 0.5D + random.nextDouble() * this.egg.getBbHeight();
+//               final double d5 = random.nextDouble() * egg.getBbWidth() * 2.0D - egg.getBbWidth();
+//               this.level.addParticle(ParticleTypes.HEART, egg.getX() + d3, egg.getY() + d4, egg.getZ() + d5, d0, d1, d2);
+//           }
         }
     }
 
@@ -715,7 +730,10 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
         }
         CompoundNBT compoundnbt = p_204211_1_.getOrCreateTag();
         compoundnbt.putInt("EggVariant", this.getVariant());
+        //CompoundNBT compound = p_204211_1_.getOrCreateTagElement("EggHeightMultiplier");
         compoundnbt.putFloat("EggHeightMultiplier", this.getHeightMultiplier());
+        System.out.println(compoundnbt);
+
     }
 
     public ItemStack getEggItem() {
@@ -843,6 +861,36 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
             }
 
             this.level.broadcastEntityEvent(this, (byte)3);}
+    }
+
+    public String getHeightString() {
+        if (this.getHeightMultiplier() >= 1.5) {
+            ITextComponent i = new TranslationTextComponent("gui.giant");
+            return i.getString();
+        }
+        if (this.getHeightMultiplier() >= 1.4) {
+            ITextComponent i = new TranslationTextComponent("gui.huge");
+            return i.getString();
+        }
+        if (this.getHeightMultiplier() >= 1.21) {
+            ITextComponent i = new TranslationTextComponent("gui.large");
+            return i.getString();
+        } if (this.getHeightMultiplier() < 1.21 && this.getHeightMultiplier() > 1.11) {
+            ITextComponent i = new TranslationTextComponent("gui.above_average");
+            return i.getString();
+        }
+        if (this.getHeightMultiplier() <= 1.11 && this.getHeightMultiplier() >= 0.89) {
+            ITextComponent i = new TranslationTextComponent("gui.average");
+            return i.getString();
+        }
+        if (this.getHeightMultiplier() < 0.89 && this.getHeightMultiplier() >= 0.79) {
+            ITextComponent i = new TranslationTextComponent("gui.below_average");
+            return i.getString();
+        }
+        else {
+            ITextComponent i = new TranslationTextComponent("gui.small");
+            return i.getString();
+        }
     }
 
 }

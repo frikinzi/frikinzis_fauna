@@ -50,7 +50,7 @@ public class OspreyEntity extends RaptorBase implements IAnimatable {
     protected void registerGoals() {
         super.registerGoals();
         if (!this.isBaby() && CreaturesConfig.raptor_attacks.get() == true) {
-        this.targetSelector.addGoal(5, new ConfigNonTamedTargetGoal<>(this, AnimalEntity.class, false, PREY_SELECTOR));
+        this.targetSelector.addGoal(5, new ConfigNonTamedTargetGoal<>(this, LivingEntity.class, false, PREY_SELECTOR));
         }
     }
 
@@ -99,6 +99,7 @@ public class OspreyEntity extends RaptorBase implements IAnimatable {
     public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         OspreyEntity ospreyentity = (OspreyEntity) getType().create(p_241840_1_);
         ospreyentity.setGender(this.random.nextInt(2));
+        ospreyentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return ospreyentity;
     }
 
@@ -148,7 +149,7 @@ public class OspreyEntity extends RaptorBase implements IAnimatable {
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.osprey_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.osprey_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

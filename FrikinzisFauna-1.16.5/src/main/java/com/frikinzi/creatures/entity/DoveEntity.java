@@ -93,6 +93,7 @@ public class DoveEntity extends TameableBirdBase implements IAnimatable {
         DoveEntity doveentity = (DoveEntity) getType().create(p_241840_1_);
         doveentity.setGender(this.random.nextInt(2));
         doveentity.setVariant(this.getVariant());
+        doveentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return doveentity;
     }
 
@@ -221,7 +222,7 @@ public class DoveEntity extends TameableBirdBase implements IAnimatable {
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.dove_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.dove_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

@@ -30,7 +30,7 @@ public class ChickadeeRenderer extends GeoEntityRenderer<ChickadeeEntity> {
             multiplier = 1.0F;
         }
         if (animatable.isBaby()) {
-            stackIn.scale(0.5F * multiplier, 0.5F * multiplier, 0.5F * multiplier);
+            stackIn.scale(0.7F, 0.7F, 0.7F);
         }
         stackIn.scale(0.7F * multiplier, 0.7F * multiplier, 0.7F * multiplier);
     }

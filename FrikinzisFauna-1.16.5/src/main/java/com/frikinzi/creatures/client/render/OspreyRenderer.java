@@ -29,6 +29,9 @@ public class OspreyRenderer extends GeoEntityRenderer<OspreyEntity> {
         } else {
             multiplier = 1.0F;
         }
+        if (animatable.getGender() == 1) {
+            stackIn.scale(0.8F, 0.8F, 0.8F);
+        }
         stackIn.scale(0.8F * multiplier, 0.8F * multiplier, 0.8F * multiplier);
     }
 }

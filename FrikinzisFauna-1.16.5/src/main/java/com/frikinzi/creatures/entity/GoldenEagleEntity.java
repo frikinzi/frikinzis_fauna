@@ -14,7 +14,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -50,7 +49,7 @@ public class GoldenEagleEntity extends RaptorBase implements IAnimatable {
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
         if (!this.isBaby()) {
-        if (this.isAggressive() == true && !this.onGround) {
+        if (this.isAggressive() && !this.onGround & this.getDeltaMovement().y < 0.0D) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", true));
             return PlayState.CONTINUE;
         }
@@ -119,6 +118,7 @@ public class GoldenEagleEntity extends RaptorBase implements IAnimatable {
     public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         GoldenEagleEntity goldeneagleentity = (GoldenEagleEntity) getType().create(p_241840_1_);
         goldeneagleentity.setGender(this.random.nextInt(2));
+        goldeneagleentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return goldeneagleentity;
     }
 
@@ -165,7 +165,7 @@ public class GoldenEagleEntity extends RaptorBase implements IAnimatable {
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.golden_eagle_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.golden_eagle_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

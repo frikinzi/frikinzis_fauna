@@ -88,6 +88,7 @@ public class FairywrenEntity extends NonTameableFlyingBirdBase implements IAnima
         FairywrenEntity fairywrenentity = (FairywrenEntity) getType().create(p_241840_1_);
         fairywrenentity.setVariant(this.getVariant());
         fairywrenentity.setGender(this.random.nextInt(2));
+        fairywrenentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return fairywrenentity;
     }
 
@@ -165,7 +166,7 @@ public class FairywrenEntity extends NonTameableFlyingBirdBase implements IAnima
 
     @Override
     public float getHatchChance() {
-        return CreaturesConfig.fairywren_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.fairywren_hatch_chance.get()).floatValue();
     }
 
 }

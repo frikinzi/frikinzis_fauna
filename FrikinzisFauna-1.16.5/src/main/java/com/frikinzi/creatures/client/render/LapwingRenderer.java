@@ -29,6 +29,9 @@ public class LapwingRenderer extends GeoEntityRenderer<LapwingEntity> {
         } else {
             multiplier = 1.0F;
         }
+        if (animatable.isBaby()) {
+            stackIn.scale(0.8F, 0.8F, 0.8F);
+        }
         stackIn.scale(0.7F * multiplier, 0.7F * multiplier, 0.7F * multiplier);
     }
 }

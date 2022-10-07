@@ -87,6 +87,7 @@ public class MagpieEntity extends NonTameableFlyingBirdBase implements IAnimatab
         MagpieEntity rollerentity = (MagpieEntity) getType().create(p_241840_1_);
         rollerentity.setVariant(this.getVariant());
         rollerentity.setGender(this.random.nextInt(2));
+        rollerentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return rollerentity;
     }
 
@@ -150,7 +151,7 @@ public class MagpieEntity extends NonTameableFlyingBirdBase implements IAnimatab
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.magpie_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.magpie_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

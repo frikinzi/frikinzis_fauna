@@ -30,7 +30,10 @@ public class GoldenEagleRenderer extends GeoEntityRenderer<GoldenEagleEntity>{
             multiplier = 1.0F;
         }
         if (animatable.isBaby()) {
-            stackIn.scale(1F * multiplier, 1F * multiplier, 1F * multiplier);
+            stackIn.scale(1F, 1F, 1F);
+        }
+        if (animatable.getGender() == 1) {
+            stackIn.scale(0.8F, 0.8F, 0.8F);
         }
         stackIn.scale(0.7F * multiplier, 0.7F * multiplier, 0.7F * multiplier);
     }

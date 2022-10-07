@@ -87,6 +87,7 @@ public class RobinEntity extends NonTameableFlyingBirdBase implements IAnimatabl
         RobinEntity rollerentity = (RobinEntity) getType().create(p_241840_1_);
         rollerentity.setVariant(this.getVariant());
         rollerentity.setGender(this.random.nextInt(2));
+        rollerentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return rollerentity;
     }
 
@@ -146,7 +147,7 @@ public class RobinEntity extends NonTameableFlyingBirdBase implements IAnimatabl
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.robin_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.robin_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

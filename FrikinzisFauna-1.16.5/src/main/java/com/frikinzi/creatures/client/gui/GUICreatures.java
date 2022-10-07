@@ -174,6 +174,8 @@ public class GUICreatures extends Screen {
                 matrices.pushPose();
                 ITextComponent species = new TranslationTextComponent("gui.species");
                 this.font.draw(matrices, species.getString() + " " + bird.getSpeciesName(), offLeft, offTop + 90, 0);
+                ITextComponent height = new TranslationTextComponent("gui.height");
+                this.font.draw(matrices, height.getString() + " " + bird.getHeightString(), offLeft, offTop + 100, 0);
                 matrices.popPose();
             }
             if (entity instanceof GroupFishBase) {
@@ -188,6 +190,8 @@ public class GUICreatures extends Screen {
                 matrices.pushPose();
                 ITextComponent species = new TranslationTextComponent("gui.species");
                 this.font.draw(matrices, species.getString() + " " + bird.getSpeciesName(), offLeft, offTop + 90, 0);
+                ITextComponent height = new TranslationTextComponent("gui.height");
+                this.font.draw(matrices, height.getString() + " " + bird.getHeightString(), offLeft, offTop + 100, 0);
                 matrices.popPose();
             }
             if (entity instanceof AbstractCrabBase) {
@@ -202,9 +206,11 @@ public class GUICreatures extends Screen {
                 matrices.pushPose();
                 ITextComponent species = new TranslationTextComponent("gui.species");
                 this.font.draw(matrices, bird.getSpeciesName(), offLeft, offTop + 90, 0);
+                ITextComponent height = new TranslationTextComponent("gui.height");
+                this.font.draw(matrices, height.getString() + " " + bird.getHeightString(), offLeft, offTop + 100, 0);
                 ITextComponent food = new TranslationTextComponent("gui.food");
-                this.font.draw(matrices, food.getString() + " ", offLeft, offTop + 110, 0);
-                this.itemRenderer.renderGuiItem(bird.getFoodItem(), offLeft + 30, 100 + offTop);
+                this.font.draw(matrices, food.getString() + " ", offLeft, offTop + 120, 0);
+                this.itemRenderer.renderGuiItem(bird.getFoodItem(), offLeft + 30, 110 + offTop);
                 matrices.popPose();
             }  if (entity instanceof CreaturesEggEntity) {
             CreaturesEggEntity bird = (CreaturesEggEntity) entity;
@@ -221,7 +227,7 @@ public class GUICreatures extends Screen {
             this.font.draw(matrices, bird.getEggItem().getDisplayName(), offLeft, offTop + 90, 0);
             ITextComponent food = new TranslationTextComponent("gui.egg");
             //this.font.draw(matrices, bird.getSpecies() + " ", offLeft, offTop + 110, 0);
-            this.itemRenderer.renderGuiItem(bird.getEggItem(), offLeft + 0, 100 + offTop);
+            this.itemRenderer.renderGuiItem(bird.getEggItem(), offLeft + 0, 110 + offTop);
             matrices.popPose();
         }
 

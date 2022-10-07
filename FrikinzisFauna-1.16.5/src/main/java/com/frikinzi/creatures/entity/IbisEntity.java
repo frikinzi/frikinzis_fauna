@@ -88,6 +88,7 @@ public class IbisEntity extends NonTameableFlyingBirdBase implements IAnimatable
         IbisEntity ibisentity = (IbisEntity) getType().create(p_241840_1_);
         ibisentity.setVariant(this.getVariant());
         ibisentity.setGender(this.random.nextInt(2));
+        ibisentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return ibisentity;
     }
 
@@ -160,7 +161,7 @@ public class IbisEntity extends NonTameableFlyingBirdBase implements IAnimatable
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.ibis_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.ibis_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

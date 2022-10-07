@@ -100,6 +100,7 @@ public class PygmyFalconEntity extends RaptorBase implements IAnimatable {
     public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         PygmyFalconEntity pygmyfalconentity = (PygmyFalconEntity) getType().create(p_241840_1_);
         pygmyfalconentity.setGender(this.random.nextInt(2));
+        pygmyfalconentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return pygmyfalconentity;
     }
 
@@ -158,7 +159,7 @@ public class PygmyFalconEntity extends RaptorBase implements IAnimatable {
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.pygmy_falcon_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.pygmy_falcon_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

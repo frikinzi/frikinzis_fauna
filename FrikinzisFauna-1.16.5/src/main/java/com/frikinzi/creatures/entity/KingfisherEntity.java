@@ -4,24 +4,35 @@ import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
+import com.frikinzi.creatures.registry.ModEntityTypes;
 import com.frikinzi.creatures.util.CreaturesLootTables;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.NonTamedTargetGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.WaterMobEntity;
+import net.minecraft.entity.passive.fish.AbstractFishEntity;
+import net.minecraft.fluid.WaterFluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.fluids.FluidAttributes;
 import org.codehaus.plexus.util.StringUtils;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -31,9 +42,16 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+import java.util.function.Predicate;
+
 public class KingfisherEntity extends NonTameableFlyingBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(CreaturesItems.CRAB_PINCERS, CreaturesItems.GOURAMI, CreaturesItems.RAW_TROUT, Items.COD);
+    protected BlockPos blockPos = BlockPos.ZERO;
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(CreaturesItems.CRAB_PINCERS, CreaturesItems.GOURAMI, CreaturesItems.RAW_TROUT, Items.COD, Items.SALMON);
+    public static final Predicate<LivingEntity> PREY_SELECTOR = (p_213440_0_) -> {
+        EntityType<?> entitytype = p_213440_0_.getType();
+        return entitytype == ModEntityTypes.GOLDFISH.get() || entitytype == EntityType.SALMON || entitytype == ModEntityTypes.GOURAMI.get() || entitytype == ModEntityTypes.GUPPY.get() || entitytype == ModEntityTypes.SHRIMP.get();
+    };
 
     public KingfisherEntity(EntityType<? extends KingfisherEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -42,11 +60,22 @@ public class KingfisherEntity extends NonTameableFlyingBirdBase implements IAnim
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, false, FOOD_ITEMS));
-        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, OspreyEntity.class, 16.0F, 1.5D, 1.2D));
+        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, OspreyEntity.class, 6.0F, 1.0D, 1.2D));
+        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, true));
+        this.targetSelector.addGoal(5, new NonTamedTargetGoal<>(this, WaterMobEntity.class, false, PREY_SELECTOR));
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
+
+        World world = this.level;
+        BlockPos blockpos = this.blockPos.below();
+        //BlockState blockstate = world.getBlockState(blockpos);
+        //Block block = blockstate.getBlock();
+        if (this.isAggressive() && !this.onGround & this.getDeltaMovement().y < 0.0D & !this.isInWater()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("dive", true));
+            return PlayState.CONTINUE;
+        }
         if (event.isMoving() && this.onGround) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
             return PlayState.CONTINUE;
@@ -74,7 +103,7 @@ public class KingfisherEntity extends NonTameableFlyingBirdBase implements IAnim
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D).add(Attributes.FLYING_SPEED, (double)0.8F).add(Attributes.MOVEMENT_SPEED, (double)0.4F);
+        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D).add(Attributes.FLYING_SPEED, (double)0.8F).add(Attributes.MOVEMENT_SPEED, (double)0.4F).add(Attributes.ATTACK_DAMAGE, (double)1.0F);
     }
 
     public int determineVariant() {
@@ -150,7 +179,7 @@ public class KingfisherEntity extends NonTameableFlyingBirdBase implements IAnim
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.kingfisher_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.kingfisher_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {
@@ -159,6 +188,22 @@ public class KingfisherEntity extends NonTameableFlyingBirdBase implements IAnim
 
     public ItemStack getFoodItem() {
         return new ItemStack(Items.COD, 1);
+    }
+
+    public void aiStep() {
+        super.aiStep();
+        Vector3d vector3d = this.getDeltaMovement();
+        if (this.isAggressive() & !this.onGround && vector3d.y < 0.0D) {
+            this.setDeltaMovement(vector3d.multiply(1.0D, 2.0D, 1.0D));
+        }
+    }
+
+
+    public boolean canBreatheUnderwater() {
+        if (this.isAggressive()) {
+        return true; } else {
+            return false;
+        }
     }
 
 }

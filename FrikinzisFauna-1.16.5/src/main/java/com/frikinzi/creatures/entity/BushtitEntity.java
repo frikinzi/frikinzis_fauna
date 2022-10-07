@@ -84,10 +84,11 @@ public class BushtitEntity extends NonTameableFlyingBirdBase implements IAnimata
 
     @Override
     public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-        BushtitEntity rollerentity = (BushtitEntity) getType().create(p_241840_1_);
-        rollerentity.setVariant(this.getVariant());
-        rollerentity.setGender(this.random.nextInt(2));
-        return rollerentity;
+        BushtitEntity bushtitEntity = (BushtitEntity) getType().create(p_241840_1_);
+        bushtitEntity.setVariant(this.getVariant());
+        bushtitEntity.setGender(this.random.nextInt(2));
+        bushtitEntity.setHeightMultiplier(getSpawnEggOffspringHeight());
+        return bushtitEntity;
     }
 
     @Override
@@ -153,7 +154,7 @@ public class BushtitEntity extends NonTameableFlyingBirdBase implements IAnimata
 
     @Override
     public float getHatchChance() {
-        return CreaturesConfig.bushtit_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.bushtit_hatch_chance.get()).floatValue();
     }
 
 }

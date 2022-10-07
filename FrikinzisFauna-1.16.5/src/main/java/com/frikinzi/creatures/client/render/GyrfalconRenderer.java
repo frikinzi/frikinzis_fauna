@@ -30,7 +30,7 @@ public class GyrfalconRenderer extends GeoEntityRenderer<GyrfalconEntity>{
             multiplier = 1.0F;
         }
         if (animatable.isBaby()) {
-            stackIn.scale(1F * multiplier, 1F * multiplier, 1F * multiplier);
+            stackIn.scale(1F, 1F, 1F);
         }
         stackIn.scale(0.7F * multiplier, 0.7F * multiplier, 0.7F * multiplier);
     }

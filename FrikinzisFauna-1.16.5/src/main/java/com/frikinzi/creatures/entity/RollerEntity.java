@@ -87,6 +87,7 @@ public class RollerEntity extends NonTameableFlyingBirdBase implements IAnimatab
         RollerEntity rollerentity = (RollerEntity) getType().create(p_241840_1_);
         rollerentity.setVariant(this.getVariant());
         rollerentity.setGender(this.random.nextInt(2));
+        rollerentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return rollerentity;
     }
 
@@ -146,7 +147,7 @@ public class RollerEntity extends NonTameableFlyingBirdBase implements IAnimatab
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.roller_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.roller_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

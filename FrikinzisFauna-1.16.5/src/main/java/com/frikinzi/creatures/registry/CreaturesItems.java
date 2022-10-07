@@ -1,19 +1,27 @@
 package com.frikinzi.creatures.registry;
 
 import com.frikinzi.creatures.Creatures;
+import com.frikinzi.creatures.client.block.CreaturesBlocks;
+import com.frikinzi.creatures.item.CreaturesFishBucket;
 import com.frikinzi.creatures.item.CreaturesFood;
 import com.frikinzi.creatures.item.EggItem;
+import net.minecraft.block.Block;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 @Mod.EventBusSubscriber(modid = Creatures.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CreaturesItems {
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Creatures.MODID);
     public static Item KOI_BUCKET = new FishBucketItem(() -> ModEntityTypes.KOI.get(), () -> Fluids.WATER, new Item.Properties().tab(Creatures.CreaturesItemGroup));
     public static Item DOTTYBACK_BUCKET = new FishBucketItem(() -> ModEntityTypes.DOTTYBACK.get(), () -> Fluids.WATER, new Item.Properties().tab(Creatures.CreaturesItemGroup));
     public static Item PIKE_BUCKET = new FishBucketItem(() -> ModEntityTypes.PIKE.get(), () -> Fluids.WATER, new Item.Properties().tab(Creatures.CreaturesItemGroup));
@@ -94,6 +102,8 @@ public class CreaturesItems {
     public static final Item PARROT_FEATHER = new Item((new Item.Properties()).tab(Creatures.CreaturesItemGroup));
     public static final Item FF_GUIDE = new Item((new Item.Properties()).tab(Creatures.CreaturesItemGroup));
     public static final Item PEAFOWL_FEATHER = new Item((new Item.Properties()).tab(Creatures.CreaturesItemGroup));
+
+    //public static final Item TOY1 = new BlockItem(CreaturesBlocks.TOY1.get(),(new Item.Properties()).tab(Creatures.CreaturesItemGroup));
 
     @SubscribeEvent
     public static void onRegisterItems(RegistryEvent.Register<Item> event)
@@ -186,9 +196,11 @@ public class CreaturesItems {
         registerItem(registry, setup(FF_GUIDE, "ff_guide"));
         registerItem(registry, setup(PEAFOWL_FEATHER, "peafowl_feather"));
 
+        //blocks
+
     }
 
-    private static void registerItem(IForgeRegistry<Item> registry, Item item)
+    public static void registerItem(IForgeRegistry<Item> registry, Item item)
     {
         registerItem(registry, item, false);
     }
@@ -208,5 +220,10 @@ public class CreaturesItems {
         entry.setRegistryName(registryName);
         return entry;
     }
+
+    public static void register(IEventBus eventBus) {
+        ITEMS.register(eventBus);
+    }
+
 }
 

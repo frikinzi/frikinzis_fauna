@@ -87,6 +87,7 @@ public class SparrowEntity extends NonTameableFlyingBirdBase implements IAnimata
         SparrowEntity rollerentity = (SparrowEntity) getType().create(p_241840_1_);
         rollerentity.setVariant(this.getVariant());
         rollerentity.setGender(this.random.nextInt(2));
+        rollerentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return rollerentity;
     }
 
@@ -159,7 +160,7 @@ public class SparrowEntity extends NonTameableFlyingBirdBase implements IAnimata
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.sparrow_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.sparrow_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

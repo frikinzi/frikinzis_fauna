@@ -1,6 +1,9 @@
 package com.frikinzi.creatures.entity.ai;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
+import com.frikinzi.creatures.entity.base.TameableBirdBase;
+import com.frikinzi.creatures.entity.base.TameableWalkingBirdBase;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.entity.LivingEntity;
@@ -37,6 +40,18 @@ public class CreaturesFollowGoal extends Goal {
 
     public boolean canUse() {
         LivingEntity livingentity = this.tamable.getOwner();
+        if (this.tamable instanceof TameableBirdBase) {
+            TameableBirdBase bird = (TameableBirdBase) this.tamable;
+            if (bird.getWandering() == 1) {
+                return false;
+            }
+        }
+        if (this.tamable instanceof TameableWalkingBirdBase) {
+            TameableWalkingBirdBase bird = (TameableWalkingBirdBase) this.tamable;
+            if (bird.getWandering() == 1) {
+                return false;
+            }
+        }
         if (CreaturesConfig.following.get() == false) {
             return false;
         }

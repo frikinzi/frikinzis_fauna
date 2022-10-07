@@ -2,6 +2,7 @@ package com.frikinzi.creatures.client.render;
 
 import com.frikinzi.creatures.client.model.ArowanaModel;
 import com.frikinzi.creatures.client.model.FireGobyModel;
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.ArowanaEntity;
 import com.frikinzi.creatures.entity.ConureEntity;
 import com.frikinzi.creatures.entity.FireGobyEntity;
@@ -23,6 +24,12 @@ public class FireGobyRenderer extends GeoEntityRenderer<FireGobyEntity>{
                             float red, float green, float blue, float partialTicks) {
         super.renderEarly(animatable, stackIn, ticks, renderTypeBuffer, vertexBuilder, packedLightIn, packedOverlayIn,
                 red, green, blue, partialTicks);
-        stackIn.scale(0.6F, 0.6F, 0.6F);
+        Float multiplier;
+        if (CreaturesConfig.height_on.get() == true) {
+            multiplier = animatable.getHeightMultiplier();
+        } else {
+            multiplier = 1.0F;
+        }
+        stackIn.scale(0.6F * multiplier, 0.6F * multiplier, 0.6F * multiplier);
     }
 }

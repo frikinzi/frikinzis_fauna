@@ -30,7 +30,7 @@ public class BushtitRenderer extends GeoEntityRenderer<BushtitEntity> {
             multiplier = 1.0F;
         }
         if (animatable.isBaby()) {
-            stackIn.scale(0.5F * multiplier, 0.5F * multiplier, 0.5F * multiplier);
+            stackIn.scale(0.6F, 0.6F, 0.6F);
         }
         stackIn.scale(0.7F * multiplier, 0.7F * multiplier, 0.7F * multiplier);
     }

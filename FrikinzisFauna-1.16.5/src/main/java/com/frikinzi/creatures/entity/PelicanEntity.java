@@ -11,8 +11,13 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.fish.CodEntity;
+import net.minecraft.entity.passive.fish.SalmonEntity;
+import net.minecraft.entity.passive.fish.TropicalFishEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -45,11 +50,16 @@ public class PelicanEntity extends NonTameableFlyingBirdBase implements IAnimata
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, false, FOOD_ITEMS));
+        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, true));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, CodEntity.class, false));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, SalmonEntity.class, false));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, TropicalFishEntity.class, false));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, RedSnapperEntity.class, false));
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
-        if (event.isMoving() && this.onGround) {
+        if (event.isMoving() && this.onGround || this.isInWater()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
             return PlayState.CONTINUE;
         } if (!this.onGround || this.isFlying()) {
@@ -76,7 +86,7 @@ public class PelicanEntity extends NonTameableFlyingBirdBase implements IAnimata
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.FLYING_SPEED, (double)0.8F).add(Attributes.MOVEMENT_SPEED, (double)0.4F);
+        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.FLYING_SPEED, (double)0.8F).add(Attributes.MOVEMENT_SPEED, (double)0.4F).add(Attributes.ATTACK_DAMAGE, 1.0D);
     }
 
     public int determineVariant() {
@@ -88,6 +98,7 @@ public class PelicanEntity extends NonTameableFlyingBirdBase implements IAnimata
         PelicanEntity rollerentity = (PelicanEntity) getType().create(p_241840_1_);
         rollerentity.setVariant(this.getVariant());
         rollerentity.setGender(this.random.nextInt(2));
+        rollerentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return rollerentity;
     }
 
@@ -157,7 +168,7 @@ public class PelicanEntity extends NonTameableFlyingBirdBase implements IAnimata
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.pelican_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.pelican_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

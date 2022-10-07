@@ -1,5 +1,6 @@
 package com.frikinzi.creatures.entity;
 
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import net.minecraft.entity.EntityType;
@@ -39,7 +40,21 @@ public class FlameAngelfishEntity extends FishBase implements IAnimatable {
 
     @Nullable
     public ILivingEntityData finalizeSpawn(IServerWorld p_213386_1_, DifficultyInstance p_213386_2_, SpawnReason p_213386_3_, @Nullable ILivingEntityData p_213386_4_, @Nullable CompoundNBT p_213386_5_) {
-        this.setVariant(this.random.nextInt(1));
+        if (p_213386_3_ != SpawnReason.BUCKET) {
+            this.setVariant(this.random.nextInt(1));
+            float f = (float) (this.random.nextGaussian() * CreaturesConfig.height_standard_deviation.get() + CreaturesConfig.height_base_multiplier.get());
+            this.setHeightMultiplier(f);
+        }
+        if (p_213386_5_ != null) {
+            if (p_213386_5_.contains("BucketVariantTag", 3)) {
+                this.setVariant(p_213386_5_.getInt("BucketVariantTag"));
+                //return p_213386_4_;
+            }
+            if (p_213386_5_.contains("BucketHeightMultiplier")) {
+                this.setHeightMultiplier(p_213386_5_.getFloat("BucketHeightMultiplier"));
+            }
+            return p_213386_4_;
+        }
         return super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_, p_213386_4_, p_213386_5_);
     }
 

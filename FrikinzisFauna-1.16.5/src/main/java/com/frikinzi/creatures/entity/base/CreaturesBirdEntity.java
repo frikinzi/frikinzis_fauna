@@ -5,9 +5,9 @@ import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.ModEntityTypes;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.passive.PolarBearEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -26,6 +26,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.function.Predicate;
 
 abstract public class CreaturesBirdEntity extends TameableEntity {
     World world;
@@ -93,6 +94,7 @@ abstract public class CreaturesBirdEntity extends TameableEntity {
         }
     }
 
+
     public void addAdditionalSaveData(CompoundNBT p_213281_1_) {
         p_213281_1_.putFloat("HeightMultiplier", this.getHeightMultiplier());
         super.addAdditionalSaveData(p_213281_1_);
@@ -143,5 +145,67 @@ abstract public class CreaturesBirdEntity extends TameableEntity {
                 return ActionResultType.SUCCESS;
             }
         } return super.mobInteract(p_230254_1_, p_230254_2_);
+    }
+
+    public float getSpawnEggOffspringHeight() {
+        return (float)(this.getRandom().nextGaussian() * 0.05 + this.getHeightMultiplier());
+    }
+
+    public class DefendBabyGoal extends NearestAttackableTargetGoal<CreatureEntity> {
+        public DefendBabyGoal() {
+            super(CreaturesBirdEntity.this, CreatureEntity.class, 20, true, true, (Predicate<LivingEntity>)null);
+        }
+
+        public boolean canUse() {
+            if (CreaturesBirdEntity.this.isBaby() || CreaturesBirdEntity.this.isTame()) {
+                return false;
+            } else {
+                if (super.canUse()) {
+                    for(CreaturesBirdEntity birdEntity : CreaturesBirdEntity.this.level.getEntitiesOfClass(CreaturesBirdEntity.class, CreaturesBirdEntity.this.getBoundingBox().inflate(4.0D, 4.0D, 4.0D))) {
+                        if (birdEntity.isBaby()) {
+                            if (this.target.getClass() == CreaturesBirdEntity.this.getClass() && this.target.getClass() != CreaturesEggEntity.class) {
+                                return false;
+                            }
+                            return true;
+                        }
+                    } for(CreaturesEggEntity eggEntity : CreaturesBirdEntity.this.level.getEntitiesOfClass(CreaturesEggEntity.class, CreaturesBirdEntity.this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {
+                        if (eggEntity.getSpecies() == ModEntityTypes.getIntFromBirdEntity(CreaturesBirdEntity.this)) {
+                            if (this.target.getClass() == CreaturesBirdEntity.this.getClass() && !this.target.isBaby()) {
+                                return false;
+                            }
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+            }
+        }
+
+        protected double getFollowDistance() {
+            return super.getFollowDistance() * 0.5D;
+        }
+    }
+
+    class HurtByTargetGoal extends net.minecraft.entity.ai.goal.HurtByTargetGoal {
+        public HurtByTargetGoal() {
+            super(CreaturesBirdEntity.this);
+        }
+
+        public void start() {
+            super.start();
+            if (CreaturesBirdEntity.this.isBaby()) {
+                this.alertOthers();
+                this.stop();
+            }
+
+        }
+
+        protected void alertOther(MobEntity p_220793_1_, LivingEntity p_220793_2_) {
+            if (p_220793_1_.getClass() == CreaturesBirdEntity.this.getClass() && !p_220793_1_.isBaby()) {
+                super.alertOther(p_220793_1_, p_220793_2_);
+            }
+
+        }
     }
 }

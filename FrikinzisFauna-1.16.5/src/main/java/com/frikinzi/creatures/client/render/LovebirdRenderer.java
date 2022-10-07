@@ -28,7 +28,7 @@ public class LovebirdRenderer extends GeoEntityRenderer<LovebirdEntity> {
             multiplier = 1.0F;
         }
         if (animatable.isBaby()) {
-            stackIn.scale(0.4F * multiplier, 0.4F * multiplier, 0.4F * multiplier);
+            stackIn.scale(0.6F, 0.6F, 0.6F);
         }
         stackIn.scale(0.7F * multiplier, 0.7F * multiplier, 0.7F * multiplier);
     }

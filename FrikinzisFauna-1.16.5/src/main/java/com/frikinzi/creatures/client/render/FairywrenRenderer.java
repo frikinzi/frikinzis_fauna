@@ -30,7 +30,7 @@ public class FairywrenRenderer extends GeoEntityRenderer<FairywrenEntity> {
             multiplier = 1.0F;
         }
         if (animatable.isBaby()) {
-            stackIn.scale(0.5F * multiplier, 0.5F * multiplier, 0.5F * multiplier);
+            stackIn.scale(0.5F, 0.5F, 0.5F);
         }
         stackIn.scale(0.8F * multiplier, 0.8F * multiplier, 0.8F * multiplier);
     }

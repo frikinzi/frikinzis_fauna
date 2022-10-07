@@ -100,6 +100,7 @@ public class RedKiteEntity extends RaptorBase implements IAnimatable {
     public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         RedKiteEntity redkiteentity = (RedKiteEntity) getType().create(p_241840_1_);
         redkiteentity.setGender(this.random.nextInt(2));
+        redkiteentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return redkiteentity;
     }
 
@@ -139,7 +140,7 @@ public class RedKiteEntity extends RaptorBase implements IAnimatable {
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.red_kite_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.red_kite_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

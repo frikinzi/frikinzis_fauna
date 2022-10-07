@@ -92,10 +92,11 @@ public class ChickadeeEntity extends NonTameableFlyingBirdBase implements IAnima
 
     @Override
     public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-        ChickadeeEntity rollerentity = (ChickadeeEntity) getType().create(p_241840_1_);
-        rollerentity.setVariant(this.getVariant());
-        rollerentity.setGender(this.random.nextInt(2));
-        return rollerentity;
+        ChickadeeEntity chickadeeEntity = (ChickadeeEntity) getType().create(p_241840_1_);
+        chickadeeEntity.setVariant(this.getVariant());
+        chickadeeEntity.setGender(this.random.nextInt(2));
+        chickadeeEntity.setHeightMultiplier(getSpawnEggOffspringHeight());
+        return chickadeeEntity;
     }
 
     @Override
@@ -146,7 +147,7 @@ public class ChickadeeEntity extends NonTameableFlyingBirdBase implements IAnima
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.chickadee_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.chickadee_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

@@ -12,7 +12,7 @@ public class GooseModel extends AnimatedGeoModel<GooseEntity> {
         if (object.isBaby()) {
                 return new ResourceLocation(Creatures.MODID, "geo/entity/mandarin_duck/mandarin_duckling.geo.json");
         }
-        if (!object.isBaby() && object.isFlying()) {
+        if (!object.isBaby() && object.isFlying() && !object.isInWater()) {
             return new ResourceLocation(Creatures.MODID, "geo/entity/goose/goosefly.geo.json");
         }
         return new ResourceLocation(Creatures.MODID, "geo/entity/goose/goose.geo.json");
@@ -21,7 +21,7 @@ public class GooseModel extends AnimatedGeoModel<GooseEntity> {
     @Override
     public ResourceLocation getTextureLocation(GooseEntity object)
     {
-        if (object.isBaby()) {
+        if (object.isBaby() && !object.isInWater()) {
             if (object.isSleeping()) {
                 return new ResourceLocation(Creatures.MODID, "textures/entity/goose/babygoose" + object.getVariant() + "sleep.png");
             }
@@ -42,7 +42,7 @@ public class GooseModel extends AnimatedGeoModel<GooseEntity> {
     {
         if (object.isBaby()) {
             return new ResourceLocation(Creatures.MODID, "animations/animation.mandarin_duckling.json");
-        } if (!object.isBaby() && object.isFlying()) {
+        } if (!object.isBaby() && object.isFlying() && !object.isInWater()) {
         return new ResourceLocation(Creatures.MODID, "animations/animation.goosefly.json");
     }
         else {

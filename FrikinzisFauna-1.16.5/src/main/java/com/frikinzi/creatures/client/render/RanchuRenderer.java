@@ -2,7 +2,9 @@ package com.frikinzi.creatures.client.render;
 
 import com.frikinzi.creatures.client.model.GoldfishModel;
 import com.frikinzi.creatures.client.model.RanchuModel;
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.GoldfishEntity;
+import com.frikinzi.creatures.entity.GuppyEntity;
 import com.frikinzi.creatures.entity.RanchuEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -22,7 +24,13 @@ public class RanchuRenderer extends GeoEntityRenderer<RanchuEntity>{
                             float red, float green, float blue, float partialTicks) {
         super.renderEarly(animatable, stackIn, ticks, renderTypeBuffer, vertexBuilder, packedLightIn, packedOverlayIn,
                 red, green, blue, partialTicks);
-        stackIn.scale(0.7F, 0.7F, 0.7F);
+        Float multiplier;
+        if (CreaturesConfig.height_on.get() == true) {
+            multiplier = animatable.getHeightMultiplier();
+        } else {
+            multiplier = 1.0F;
+        }
+        stackIn.scale(0.7F * multiplier, 0.7F * multiplier, 0.7F * multiplier);
     }
 
 }

@@ -1,9 +1,12 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.TameableBirdBase;
 import com.frikinzi.creatures.entity.base.TameableWalkingBirdBase;
+import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
 import com.frikinzi.creatures.registry.CreaturesSound;
+import com.frikinzi.creatures.registry.ModEntityTypes;
 import com.frikinzi.creatures.util.CreaturesLootTables;
 import com.google.common.collect.Sets;
 import net.minecraft.client.resources.I18n;
@@ -13,7 +16,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.EvokerEntity;
 import net.minecraft.entity.monster.SpellcastingIllagerEntity;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -46,6 +49,7 @@ import java.util.Set;
 
 public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
+    private PanicGoal PanicGoal;
     private static final DataParameter<Boolean> DISPLAYING = EntityDataManager.defineId(PeafowlEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> ON_DISPLAY = EntityDataManager.defineId(PeafowlEntity.class, DataSerializers.BOOLEAN);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.BEETROOT_SEEDS, Items.PUMPKIN_SEEDS);
@@ -83,6 +87,12 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
 
     protected void registerGoals() {
         super.registerGoals();
+        if (!this.isBaby()) {
+            this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
+            this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
+            this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)));
+            this.targetSelector.removeGoal(PanicGoal);
+        }
         this.goalSelector.addGoal(1, new PeafowlEntity.DisplayGoal());
     }
 
@@ -99,7 +109,7 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 12.0D).add(Attributes.MOVEMENT_SPEED, (double)0.2F);
+        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 12.0D).add(Attributes.MOVEMENT_SPEED, (double)0.2F).add(Attributes.ATTACK_DAMAGE, 1.0D);
     }
 
     public int determineVariant() {
@@ -111,6 +121,7 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
         PeafowlEntity conureentity = (PeafowlEntity) getType().create(p_241840_1_);
         conureentity.setVariant(this.getVariant());
         conureentity.setGender(this.random.nextInt(2));
+        conureentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return conureentity;
     }
 
@@ -163,6 +174,22 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
         }
     }
 
+    public CreaturesEggEntity layEgg(CreaturesBirdEntity animal) {
+        CreaturesEggEntity egg = new CreaturesEggEntity(ModEntityTypes.EGG.get(), this.level);
+        egg.setSpecies(ModEntityTypes.getIntFromBirdEntity(animal));
+        egg.setGender(this.random.nextInt(2));
+        if (this.getVariant() == 1) {
+            if (this.random.nextInt(CreaturesConfig.lovebird_mutation_chance.get()) == 2) {
+                egg.setVariant(3); }
+            else {
+                egg.setVariant(this.getVariant());
+            }
+        } else {
+            egg.setVariant(this.getVariant());
+        }
+        return egg;
+    }
+
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(DISPLAYING, false);
@@ -187,7 +214,7 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
 
     public class DisplayGoal extends Goal {
         private final EntityPredicate predicate = (new EntityPredicate()).range(16.0D).allowInvulnerable().selector((p_220844_0_) -> {
-            return ((PeafowlEntity)p_220844_0_).getGender() == 0;
+            return ((PeafowlEntity)p_220844_0_).getGender() == 0 && !((PeafowlEntity)p_220844_0_).isBaby();
         });
 
         protected DisplayGoal() {
@@ -252,7 +279,7 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.peafowl_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.peafowl_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

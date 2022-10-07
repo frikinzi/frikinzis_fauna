@@ -88,6 +88,7 @@ public class LapwingEntity extends NonTameableFlyingBirdBase implements IAnimata
         LapwingEntity rollerentity = (LapwingEntity) getType().create(p_241840_1_);
         rollerentity.setVariant(this.getVariant());
         rollerentity.setGender(this.random.nextInt(2));
+        rollerentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return rollerentity;
     }
 
@@ -152,7 +153,7 @@ public class LapwingEntity extends NonTameableFlyingBirdBase implements IAnimata
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.lapwing_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.lapwing_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

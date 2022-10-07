@@ -47,6 +47,8 @@ public class RavenEntity extends TameableBirdBase implements IAnimatable {
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
+        this.targetSelector.addGoal(2, new CreaturesBirdEntity.DefendBabyGoal());
+
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
@@ -100,6 +102,7 @@ public class RavenEntity extends TameableBirdBase implements IAnimatable {
             ravenentity.setVariant(this.getVariant());
         }
         ravenentity.setGender(this.random.nextInt(2));
+        ravenentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return ravenentity;
     }
 
@@ -111,6 +114,7 @@ public class RavenEntity extends TameableBirdBase implements IAnimatable {
             egg.setVariant(this.getVariant());
         }
         egg.setGender(this.random.nextInt(2));
+        egg.setSpecies(ModEntityTypes.getIntFromBirdEntity(animal));
         return egg;
     }
 
@@ -149,7 +153,7 @@ public class RavenEntity extends TameableBirdBase implements IAnimatable {
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.raven_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.raven_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

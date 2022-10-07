@@ -1,7 +1,9 @@
 package com.frikinzi.creatures.entity.base;
 
 import com.frikinzi.creatures.Creatures;
+import com.frikinzi.creatures.entity.ai.FlyController;
 import com.frikinzi.creatures.entity.ai.MateGoal;
+import com.frikinzi.creatures.entity.ai.BabyNoFlyNavigator;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.google.common.collect.Sets;
 import net.minecraft.block.BlockState;
@@ -53,7 +55,7 @@ public class NonTameableFlyingBirdBase extends CreaturesBirdEntity implements IF
 
     public NonTameableFlyingBirdBase(EntityType<? extends NonTameableFlyingBirdBase> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
-        this.moveControl = new FlyingMovementController(this, 10, false);
+        this.moveControl = new FlyController(this, 10, false);
         this.setPathfindingMalus(PathNodeType.DANGER_FIRE, -1.0F);
         this.setPathfindingMalus(PathNodeType.DAMAGE_FIRE, -1.0F);
         this.setPathfindingMalus(PathNodeType.COCOA, -1.0F);
@@ -88,7 +90,7 @@ public class NonTameableFlyingBirdBase extends CreaturesBirdEntity implements IF
 
 
     protected PathNavigator createNavigation(World p_175447_1_) {
-        FlyingPathNavigator flyingpathnavigator = new FlyingPathNavigator(this, p_175447_1_);
+        BabyNoFlyNavigator flyingpathnavigator = new BabyNoFlyNavigator(this, p_175447_1_);
         flyingpathnavigator.setCanOpenDoors(false);
         flyingpathnavigator.setCanFloat(true);
         flyingpathnavigator.setCanPassDoors(true);

@@ -2,6 +2,7 @@ package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.NonTameableBirdBase;
+import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
 import net.minecraft.client.resources.I18n;
@@ -34,6 +35,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public class PygmyGooseEntity extends NonTameableBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.BREAD, Items.WHEAT_SEEDS);
+    public int featherTime = this.random.nextInt(6000) + 6000;
 
     public PygmyGooseEntity(EntityType<? extends PygmyGooseEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -43,6 +45,14 @@ public class PygmyGooseEntity extends NonTameableBirdBase implements IAnimatable
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, false, FOOD_ITEMS));
+    }
+
+    public void aiStep() {
+        super.aiStep();
+        if (!this.level.isClientSide && CreaturesConfig.drop_feather.get() && this.isAlive() && !this.isBaby() && --this.featherTime <= 0) {
+            this.spawnAtLocation(CreaturesItems.DUCK_FEATHER);
+            this.featherTime = this.random.nextInt(6000) + 6000;
+        }
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
@@ -103,6 +113,7 @@ public class PygmyGooseEntity extends NonTameableBirdBase implements IAnimatable
         PygmyGooseEntity pygmygooseentity = (PygmyGooseEntity) getType().create(p_241840_1_);
         pygmygooseentity.setVariant(this.getVariant());
         pygmygooseentity.setGender(this.random.nextInt(2));
+        pygmygooseentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return pygmygooseentity;
     }
 
@@ -166,7 +177,7 @@ public class PygmyGooseEntity extends NonTameableBirdBase implements IAnimatable
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.pygmy_goose_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.pygmy_goose_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

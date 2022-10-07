@@ -86,6 +86,7 @@ public class SpoonbillEntity extends NonTameableBirdBase implements IAnimatable 
         SpoonbillEntity spoonbillentity = (SpoonbillEntity) getType().create(p_241840_1_);
         spoonbillentity.setVariant(this.getVariant());
         spoonbillentity.setGender(this.random.nextInt(2));
+        spoonbillentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return spoonbillentity;
     }
 
@@ -105,7 +106,7 @@ public class SpoonbillEntity extends NonTameableBirdBase implements IAnimatable 
     }
 
     protected SoundEvent getAmbientSound() {
-        if (this.isSleeping()) {
+        if (!this.isSleeping()) {
             return CreaturesSound.SPOONBILL_AMBIENT;
         }
         else
@@ -148,7 +149,7 @@ public class SpoonbillEntity extends NonTameableBirdBase implements IAnimatable 
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.spoonbill_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.spoonbill_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

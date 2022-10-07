@@ -2,6 +2,7 @@ package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
+import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
@@ -43,6 +44,7 @@ import java.util.function.Predicate;
 
 public class SkuaEntity extends NonTameableFlyingBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
+    CreaturesEggEntity egg;
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.CHICKEN, CreaturesItems.SMALL_BIRD_MEAT, Items.EGG, Items.COD, CreaturesItems.RAW_TROUT);
 
     public SkuaEntity(EntityType<? extends SkuaEntity> p_i50251_1_, World p_i50251_2_) {
@@ -52,7 +54,7 @@ public class SkuaEntity extends NonTameableFlyingBirdBase implements IAnimatable
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, false, FOOD_ITEMS));
-        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
+        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)));
         this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, true));
         this.targetSelector.addGoal(2, new SkuaEntity.AttackBabyGoal());
     }
@@ -98,7 +100,7 @@ public class SkuaEntity extends NonTameableFlyingBirdBase implements IAnimatable
         SkuaEntity rollerentity = (SkuaEntity) getType().create(p_241840_1_);
         rollerentity.setVariant(this.getVariant());
         rollerentity.setGender(this.random.nextInt(2));
-        this.spawnAtLocation(Items.EGG);
+        rollerentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return rollerentity;
     }
 
@@ -170,7 +172,7 @@ public class SkuaEntity extends NonTameableFlyingBirdBase implements IAnimatable
         }
 
     public float getHatchChance() {
-        return CreaturesConfig.skua_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.skua_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

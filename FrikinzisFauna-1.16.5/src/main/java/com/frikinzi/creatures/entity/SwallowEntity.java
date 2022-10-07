@@ -85,6 +85,7 @@ public class SwallowEntity extends NonTameableFlyingBirdBase implements IAnimata
         SwallowEntity swallowentity = (SwallowEntity) getType().create(p_241840_1_);
         swallowentity.setVariant(this.getVariant());
         swallowentity.setGender(this.random.nextInt(2));
+        swallowentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return swallowentity;
     }
 
@@ -143,7 +144,7 @@ public class SwallowEntity extends NonTameableFlyingBirdBase implements IAnimata
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.swallow_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.swallow_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

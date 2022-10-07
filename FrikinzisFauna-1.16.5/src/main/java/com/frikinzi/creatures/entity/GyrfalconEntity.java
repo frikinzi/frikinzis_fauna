@@ -99,6 +99,7 @@ public class GyrfalconEntity extends RaptorBase implements IAnimatable {
     public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         GyrfalconEntity gyrfalconentity = (GyrfalconEntity) getType().create(p_241840_1_);
         gyrfalconentity.setGender(this.random.nextInt(2));
+        gyrfalconentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return gyrfalconentity;
     }
 
@@ -138,7 +139,7 @@ public class GyrfalconEntity extends RaptorBase implements IAnimatable {
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.gyrfalcon_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.gyrfalcon_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

@@ -80,6 +80,7 @@ public class KakapoEntity extends NonTameableBirdBase implements IAnimatable {
         KakapoEntity kakapoentity = (KakapoEntity) getType().create(p_241840_1_);
         kakapoentity.setVariant(this.getVariant());
         kakapoentity.setGender(this.random.nextInt(2));
+        kakapoentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return kakapoentity;
     }
 
@@ -114,7 +115,7 @@ public class KakapoEntity extends NonTameableBirdBase implements IAnimatable {
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.kakapo_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.kakapo_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {

@@ -30,7 +30,7 @@ public class IbisRenderer extends GeoEntityRenderer<IbisEntity> {
             multiplier = 1.0F;
         }
         if (animatable.isBaby()) {
-            stackIn.scale(0.4F * multiplier, 0.4F * multiplier, 0.4F * multiplier);
+            stackIn.scale(0.5F, 0.5F, 0.5F);
         }
         stackIn.scale(0.6F * multiplier, 0.6F * multiplier, 0.6F * multiplier);
     }

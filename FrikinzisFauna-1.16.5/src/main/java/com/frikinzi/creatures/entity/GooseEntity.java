@@ -55,15 +55,15 @@ public class GooseEntity extends NonTameableFlyingBirdBase implements IAnimatabl
                 event.getController().setAnimation(new AnimationBuilder().addAnimation("walking", true));
                 return PlayState.CONTINUE;
             }
-            if (!this.onGround || this.isFlying()) {
+            if (!this.onGround || this.isFlying() && !this.isInWater()) {
                 event.getController().setAnimation(new AnimationBuilder().addAnimation("flying", true));
                 return PlayState.CONTINUE;
             }
         }
-        if (event.isMoving() && this.onGround) {
+        if (event.isMoving() && this.onGround || this.isInWater()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
             return PlayState.CONTINUE;
-        } if (!this.onGround || this.isFlying()) {
+        } if (!this.onGround || this.isFlying() && !this.isInWater()) {
         event.getController().setAnimation(new AnimationBuilder().addAnimation("fly", true));
         return PlayState.CONTINUE;
     } if (this.isSleeping()) {
@@ -96,10 +96,11 @@ public class GooseEntity extends NonTameableFlyingBirdBase implements IAnimatabl
 
     @Override
     public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-        GooseEntity rollerentity = (GooseEntity) getType().create(p_241840_1_);
-        rollerentity.setVariant(this.getVariant());
-        rollerentity.setGender(this.random.nextInt(2));
-        return rollerentity;
+        GooseEntity gooseEntity = (GooseEntity) getType().create(p_241840_1_);
+        gooseEntity.setVariant(this.getVariant());
+        gooseEntity.setGender(this.random.nextInt(2));
+        gooseEntity.setHeightMultiplier(getSpawnEggOffspringHeight());
+        return gooseEntity;
     }
 
     @Override
@@ -149,7 +150,7 @@ public class GooseEntity extends NonTameableFlyingBirdBase implements IAnimatabl
             ITextComponent s1 = new TranslationTextComponent("message.creatures.snow");
             return s1.getString();
         }
-        else if (this.getVariant() == 3) {
+        else if (this.getVariant() == 5) {
             ITextComponent s1 = new TranslationTextComponent("message.creatures.orinoco");
             return s1.getString();
         }
@@ -163,7 +164,7 @@ public class GooseEntity extends NonTameableFlyingBirdBase implements IAnimatabl
     }
 
     public float getHatchChance() {
-        return CreaturesConfig.goose_hatch_chance.get();
+        return Double.valueOf(CreaturesConfig.goose_hatch_chance.get()).floatValue();
     }
 
     public int getClutchSize() {
