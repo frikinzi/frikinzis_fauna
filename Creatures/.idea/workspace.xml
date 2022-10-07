@@ -61,36 +61,36 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/gui" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/gui" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/animations" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/geo/entity/peafowl" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/peafowl" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/models/item" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/baby_eagle" />
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity/ibis" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/textures/entity" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/sounds/entity/peafowl" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/animations" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/sounds/entity/golden_eagle" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/sounds/entity/stellers_sea_eagle" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/creatures/sounds/entity/gyrfalcon" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.creatures.afrikinzi.entity" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.creatures.afrikinzi.entity.magpie" />
-      <recent name="com.creatures.afrikinzi.entity" />
-      <recent name="com.creatures.afrikinzi.entity.robin" />
-      <recent name="com.creatures.afrikinzi.entity.eagleowl" />
-      <recent name="com.creatures.afrikinzi.entity.laughingthrush" />
+      <recent name="com.creatures.afrikinzi.entity.skua" />
+      <recent name="com.creatures.afrikinzi.entity.lapwing" />
+      <recent name="com.creatures.afrikinzi.entity.pelican" />
+      <recent name="com.creatures.afrikinzi.entity.kingfisher" />
+      <recent name="com.creatures.afrikinzi.entity.osprey" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.Creatures [build]">

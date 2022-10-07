@@ -113,7 +113,7 @@ public class EntityIbis extends AbstractCreaturesNonTameable implements IAnimata
     @Nullable
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
-        this.setVariant(this.rand.nextInt(7));
+        this.setVariant(this.rand.nextInt(11));
         this.setGender(this.rand.nextInt(3));
         return super.onInitialSpawn(difficulty, livingdata);
     }
@@ -233,7 +233,7 @@ public class EntityIbis extends AbstractCreaturesNonTameable implements IAnimata
 
     public int getVariant()
     {
-        return MathHelper.clamp(((Integer)this.dataManager.get(VARIANT)).intValue(), 1, 7);
+        return MathHelper.clamp(((Integer)this.dataManager.get(VARIANT)).intValue(), 1, 11);
     }
 
     public void setVariant(int p_191997_1_)
@@ -330,6 +330,22 @@ public class EntityIbis extends AbstractCreaturesNonTameable implements IAnimata
         }
         else if (this.getVariant() == 6) {
             String s1 = I18n.format("message.creatures.southern");
+            return s1;
+        }
+        else if (this.getVariant() == 7) {
+            String s1 = I18n.format("message.creatures.northernibis");
+            return s1;
+        }
+        else if (this.getVariant() == 8) {
+            String s1 = I18n.format("message.creatures.americanwhiteibis");
+            return s1;
+        }
+        else if (this.getVariant() == 9) {
+            String s1 = I18n.format("message.creatures.glossy");
+            return s1;
+        }
+        else if (this.getVariant() == 10) {
+            String s1 = I18n.format("message.creatures.binchicken");
             return s1;
         } else {
             return "Unknown";

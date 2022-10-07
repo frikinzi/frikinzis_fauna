@@ -21,7 +21,9 @@ public class ModelBushtit extends AnimatedGeoModel<EntityBushtit> {
     {
         if (object.isFlying() || !object.onGround) {
             return new ResourceLocation(Reference.MOD_ID, "textures/entity/bushtit/bushtit" + object.getVariant() + "fly.png");
-        }
+        } if (object.isSleeping()) {
+        return new ResourceLocation(Reference.MOD_ID, "textures/entity/bushtit/bushtit" + object.getVariant() + "sleep.png");
+    }
         return new ResourceLocation(Reference.MOD_ID, "textures/entity/bushtit/bushtit" + object.getVariant() + ".png");
     }
 

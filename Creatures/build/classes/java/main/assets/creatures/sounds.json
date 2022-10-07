@@ -203,5 +203,47 @@
 		"category": "entity",
 		"subtitle": "entity.sparrow.sparrow_ambient",
 		"sounds": [{"name": "creatures:entity/sparrow/sparrow_ambient", "stream": true }]
+	},
+	"entity.osprey.osprey_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.osprey.osprey_ambient",
+		"sounds": [{"name": "creatures:entity/osprey/osprey_ambient", "stream": true }]
+	},
+	"entity.goose.goose_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.goose.goose_ambient",
+		"sounds": [{"name": "creatures:entity/goose/goose_ambient", "stream": true }]
+	},
+	"entity.goose.goose_ambient_fly":
+	{
+		"category": "entity",
+		"subtitle": "entity.goose.goose_ambient_fly",
+		"sounds": [{"name": "creatures:entity/goose/goose_ambient_fly", "stream": true }]
+	},
+	"entity.kingfisher.kingfisher_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.kingfisher.kingfisher_ambient",
+		"sounds": [{"name": "creatures:entity/kingfisher/kingfisher_ambient", "stream": true }]
+	},
+	"entity.pelican.pelican_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.pelican.pelican_ambient",
+		"sounds": [{"name": "creatures:entity/pelican/pelican_ambient", "stream": true }]
+	},
+	"entity.lapwing.lapwing_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.lapwing.lapwing_ambient",
+		"sounds": [{"name": "creatures:entity/lapwing/lapwing_ambient", "stream": true }]
+	},
+	"entity.skua.skua_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.skua.skua_ambient",
+		"sounds": [{"name": "creatures:entity/skua/skua_ambient", "stream": true }]
 	}
 }

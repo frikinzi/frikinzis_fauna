@@ -833,4 +833,106 @@ public class CreaturesConfig {
     @Config.Comment("Max group of magpies. (default: 4)")
     public static int magpieMaxGroup = 4;
 
+    //goose
+    @Config.Name("Spawns: Goose spawns")
+    @Config.Comment("Enables natural spawning of geese.")
+    public static boolean gooseSpawns = true;
+
+    @Config.Name("Spawns: Goose spawn rate")
+    @Config.Comment("Spawn weight of geese. (default: 20)")
+    public static int gooseSpawnRate = 20;
+
+    @Config.Name("Spawns: Goose min group")
+    @Config.Comment("Min group of geese. (default: 3)")
+    public static int gooseMinGroup = 3;
+
+    @Config.Name("Spawns: Goose max group")
+    @Config.Comment("Max group of geese. (default: 5)")
+    public static int gooseMaxGroup = 5;
+
+    //osprey
+    @Config.Name("Spawns: Osprey spawns")
+    @Config.Comment("Enables natural spawning of ospreys.")
+    public static boolean ospreySpawns = true;
+
+    @Config.Name("Spawns: Osprey spawn rate")
+    @Config.Comment("Spawn weight of ospreys. (default: 5)")
+    public static int ospreySpawnRate = 5;
+
+    @Config.Name("Spawns: Osprey min group")
+    @Config.Comment("Min group of ospreys. (default: 1)")
+    public static int ospreyMinGroup = 1;
+
+    @Config.Name("Spawns: Osprey max group")
+    @Config.Comment("Max group of ospreys. (default: 2)")
+    public static int ospreyMaxGroup = 2;
+
+    //kingfisher
+    @Config.Name("Spawns: Kingfisher spawns")
+    @Config.Comment("Enables natural spawning of kingfishers.")
+    public static boolean kingfisherSpawns = true;
+
+    @Config.Name("Spawns: Kingfisher spawn rate")
+    @Config.Comment("Spawn weight of kingfishers. (default: 20)")
+    public static int kingfisherSpawnRate = 20;
+
+    @Config.Name("Spawns: Kingfisher min group")
+    @Config.Comment("Min group of kingfishers. (default: 3)")
+    public static int kingfisherMinGroup = 3;
+
+    @Config.Name("Spawns: Kingfisher max group")
+    @Config.Comment("Max group of kingfishers. (default: 5)")
+    public static int kingfisherMaxGroup = 5;
+
+    //pelican
+    @Config.Name("Spawns: Pelican spawns")
+    @Config.Comment("Enables natural spawning of pelicans.")
+    public static boolean pelicanSpawns = true;
+
+    @Config.Name("Spawns: Pelican spawn rate")
+    @Config.Comment("Spawn weight of pelicans. (default: 20)")
+    public static int pelicanSpawnRate = 20;
+
+    @Config.Name("Spawns: Pelican min group")
+    @Config.Comment("Min group of pelicans. (default: 3)")
+    public static int pelicanMinGroup = 3;
+
+    @Config.Name("Spawns: Pelican max group")
+    @Config.Comment("Max group of pelicans. (default: 6)")
+    public static int pelicanMaxGroup = 6;
+
+    //lapwing
+    @Config.Name("Spawns: Lapwing spawns")
+    @Config.Comment("Enables natural spawning of lapwings.")
+    public static boolean lapwingSpawns = true;
+
+    @Config.Name("Spawns: Lapwing spawn rate")
+    @Config.Comment("Spawn weight of lapwings. (default: 20)")
+    public static int lapwingSpawnRate = 20;
+
+    @Config.Name("Spawns: Lapwing min group")
+    @Config.Comment("Min group of lapwings. (default: 3)")
+    public static int lapwingMinGroup = 3;
+
+    @Config.Name("Spawns: Lapwing max group")
+    @Config.Comment("Max group of lapwings. (default: 6)")
+    public static int lapwingMaxGroup = 6;
+
+    //skua
+    @Config.Name("Spawns: Skua spawns")
+    @Config.Comment("Enables natural spawning of skuas.")
+    public static boolean skuaSpawns = true;
+
+    @Config.Name("Spawns: Skua spawn rate")
+    @Config.Comment("Spawn weight of skuas. (default: 20)")
+    public static int skuaSpawnRate = 20;
+
+    @Config.Name("Spawns: Skua min group")
+    @Config.Comment("Min group of skuas. (default: 1)")
+    public static int skuaMinGroup = 1;
+
+    @Config.Name("Spawns: Skua max group")
+    @Config.Comment("Max group of skuas. (default: 3)")
+    public static int skuaMaxGroup = 3;
+
 }

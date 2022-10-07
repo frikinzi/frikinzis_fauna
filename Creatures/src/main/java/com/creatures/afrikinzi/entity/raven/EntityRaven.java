@@ -73,7 +73,7 @@ public class EntityRaven extends AbstractCreaturesTameable implements IAnimatabl
     protected void initEntityAI()
     {
         this.aiSit = new EntityAISit(this);
-        this.tasks.addTask(0, new EntityAIPanic(this, 1.25D));
+        //this.tasks.addTask(0, new EntityAIPanic(this, 1.25D));
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, this.aiSit);
         this.tasks.addTask(6, new EntityAIMate(this, 1.0D));

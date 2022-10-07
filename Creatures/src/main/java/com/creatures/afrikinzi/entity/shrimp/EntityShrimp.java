@@ -183,4 +183,8 @@ public class EntityShrimp extends FishBase implements IAnimatable, ICreaturesEnt
             return this.isInLove() && entitykakapo.isInLove();
         }
     }
+
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(new ItemStack(Blocks.GRASS, (int) (1)).getItem().getUnlocalizedName() + ".name").trim();
+    }
 }

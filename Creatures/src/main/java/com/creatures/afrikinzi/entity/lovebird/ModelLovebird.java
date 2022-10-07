@@ -20,17 +20,17 @@ public class ModelLovebird extends AnimatedGeoModel<EntityLovebird> {
     public ResourceLocation getTextureLocation(EntityLovebird object)
     {
         if (object.isFlying() || !object.onGround) {
-            if (object.getVariant() == 6) {
+            if (object.getVariant() == 6 || object.getVariant() == 7 || object.getVariant() == 8) {
                 return new ResourceLocation(Reference.MOD_ID, "textures/entity/lovebird/lovebird" + object.getVariant() + object.getGender() + "fly.png");
             }
             return new ResourceLocation(Reference.MOD_ID, "textures/entity/lovebird/lovebird" + object.getVariant() + "fly.png");
         } else if (object.isSleeping()) {
-            if (object.getVariant() == 6) {
+            if (object.getVariant() == 6 || object.getVariant() == 7 || object.getVariant() == 8) {
                 return new ResourceLocation(Reference.MOD_ID, "textures/entity/lovebird/lovebird" + object.getVariant() + object.getGender() + "sleep.png");
             }
             return new ResourceLocation(Reference.MOD_ID, "textures/entity/lovebird/lovebird" + object.getVariant() + "sleep.png");
         }
-        if (object.getVariant() == 6) {
+        if (object.getVariant() == 6 || object.getVariant() == 7 || object.getVariant() == 8) {
             return new ResourceLocation(Reference.MOD_ID, "textures/entity/lovebird/lovebird" + object.getVariant() + object.getGender() + ".png");
         }
             return new ResourceLocation(Reference.MOD_ID, "textures/entity/lovebird/lovebird" + object.getVariant() + ".png");

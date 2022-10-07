@@ -56,6 +56,12 @@ public class Reference
      public static final int ENTITY_EAGLE_OWL = 293;
      public static final int ENTITY_ROBIN = 294;
      public static final int ENTITY_MAGPIE = 295;
+     public static final int ENTITY_GOOSE = 296;
+     public static final int ENTITY_OSPREY = 297;
+     public static final int ENTITY_KINGFISHER = 298;
+     public static final int ENTITY_PELICAN = 299;
+     public static final int ENTITY_LAPWING = 300;
+     public static final int ENTITY_SKUA = 301;
 
      public static final int GUI_CREATURES = 1;
 }

@@ -9,6 +9,7 @@ import com.creatures.afrikinzi.util.handlers.SoundsHandler;
 import com.google.common.collect.Sets;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -75,6 +76,9 @@ public class EntityPeafowl extends AbstractCreaturesTameable implements IAnimata
         this.tasks.addTask(9, new EntityAIMate(this, 0.8D));
         this.tasks.addTask(10, new EntityAIWanderAvoidWater(this, 0.8D, 1.0000001E-5F));
         this.tasks.addTask(11, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
+        this.tasks.addTask(5, new EntityAIAttackMelee(this, 1.2D, true));
+        this.tasks.addTask(4, new EntityAILeapAtTarget(this, 0.4F));
+        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, false, new Class[0]));
     }
 
     protected void entityInit()
@@ -101,10 +105,15 @@ public class EntityPeafowl extends AbstractCreaturesTameable implements IAnimata
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30000001192092896D);
+        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0D);
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
+        if (this.isSitting()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("sleep", true));
+            return PlayState.CONTINUE;
+        }
         if (this.isDisplaying() && this.getGender() == 1) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("closing", false).addAnimation("idle", true));
             return PlayState.CONTINUE;
@@ -259,21 +268,27 @@ public class EntityPeafowl extends AbstractCreaturesTameable implements IAnimata
         {
             return false;
         }
+        if (this.isSitting()) {
+            return false;
+        }
+        if (!this.isTamed()) {
+            return false;
+        }
         else if (!(otherAnimal instanceof EntityPeafowl))
         {
             return false;
         }
         else
         {
-            EntityPeafowl entitykakapo = (EntityPeafowl)otherAnimal;
+            EntityPeafowl entitypeafowl = (EntityPeafowl)otherAnimal;
 
-            if (!entitykakapo.isTamed())
+            if (!entitypeafowl.isTamed())
             {
                 return false;
             }
             else
             {
-                return this.isInLove() && entitykakapo.isInLove();
+                return this.isInLove() && entitypeafowl.isInLove();
             }
         }
     }
@@ -436,6 +451,11 @@ public class EntityPeafowl extends AbstractCreaturesTameable implements IAnimata
 
     public String getFoodName() {
         return net.minecraft.util.text.translation.I18n.translateToLocal(Items.APPLE.getUnlocalizedName() + ".name").trim();
+    }
+
+    public boolean attackEntityAsMob(Entity entityIn)
+    {
+        return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 1.0F);
     }
 
 

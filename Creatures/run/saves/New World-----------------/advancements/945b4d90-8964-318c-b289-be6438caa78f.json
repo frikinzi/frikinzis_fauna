@@ -1,0 +1,9 @@
+{
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "river": "2022-08-22 18:00:06 -0400",
+      "desert": "2022-08-22 18:00:11 -0400"
+    },
+    "done": false
+  }
+}

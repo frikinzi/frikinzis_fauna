@@ -41,6 +41,14 @@ public class SoundsHandler {
     public static SoundEvent EAGLEOWL_AMBIENT;
     public static SoundEvent ROBIN_AMBIENT;
     public static SoundEvent MAGPIE_AMBIENT;
+    public static SoundEvent GOOSE_AMBIENT;
+    public static SoundEvent GOOSE_AMBIENT_FLY;
+    public static SoundEvent OSPREY_AMBIENT;
+    public static SoundEvent KINGFISHER_AMBIENT;
+    public static SoundEvent PELICAN_AMBIENT;
+    public static SoundEvent LAPWING_AMBIENT;
+    public static SoundEvent SKUA_AMBIENT;
+    public static SoundEvent HATCH;
 
     public static void registerSounds() {
         LOVEBIRD_AMBIENT = registerSound("entity.lovebird.lovebird_ambient");
@@ -77,6 +85,13 @@ public class SoundsHandler {
         EAGLEOWL_AMBIENT = registerSound("entity.eagleowl.eagleowl_ambient");
         MAGPIE_AMBIENT = registerSound("entity.magpie.magpie_ambient");
         ROBIN_AMBIENT = registerSound("entity.robin.robin_ambient");
+        GOOSE_AMBIENT = registerSound("entity.goose.goose_ambient");
+        GOOSE_AMBIENT_FLY = registerSound("entity.goose.goose_ambient_fly");
+        OSPREY_AMBIENT = registerSound("entity.osprey.osprey_ambient");
+        KINGFISHER_AMBIENT = registerSound("entity.kingfisher.kingfisher_ambient");
+        PELICAN_AMBIENT = registerSound("entity.pelican.pelican_ambient");
+        LAPWING_AMBIENT = registerSound("entity.lapwing.lapwing_ambient");
+        SKUA_AMBIENT = registerSound("entity.skua.skua_ambient");
     }
 
     private static SoundEvent registerSound(String name) {

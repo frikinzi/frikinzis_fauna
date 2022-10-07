@@ -19,18 +19,23 @@ import com.creatures.afrikinzi.entity.ghostcrab.EntityGhostCrab;
 import com.creatures.afrikinzi.entity.golden_eagle.EntityGoldenEagle;
 import com.creatures.afrikinzi.entity.goldfish.EntityGoldfish;
 import com.creatures.afrikinzi.entity.goldfish.EntityRanchuGoldfish;
+import com.creatures.afrikinzi.entity.goose.EntityGoose;
 import com.creatures.afrikinzi.entity.gourami.EntityGourami;
 import com.creatures.afrikinzi.entity.guppy.EntityGuppy;
 import com.creatures.afrikinzi.entity.gyrfalcon.EntityGyrfalcon;
 import com.creatures.afrikinzi.entity.ibis.EntityIbis;
 import com.creatures.afrikinzi.entity.kakapo.EntityKakapo;
+import com.creatures.afrikinzi.entity.kingfisher.EntityKingfisher;
 import com.creatures.afrikinzi.entity.koi.EntityKoi;
+import com.creatures.afrikinzi.entity.lapwing.EntityLapwing;
 import com.creatures.afrikinzi.entity.laughingthrush.EntityLaughingthrush;
 import com.creatures.afrikinzi.entity.lorikeet.EntityLorikeet;
 import com.creatures.afrikinzi.entity.lovebird.EntityLovebird;
 import com.creatures.afrikinzi.entity.magpie.EntityMagpie;
 import com.creatures.afrikinzi.entity.mandarin_duck.EntityMandarinDuck;
+import com.creatures.afrikinzi.entity.osprey.EntityOsprey;
 import com.creatures.afrikinzi.entity.peafowl.EntityPeafowl;
+import com.creatures.afrikinzi.entity.pelican.EntityPelican;
 import com.creatures.afrikinzi.entity.pike.EntityPike;
 import com.creatures.afrikinzi.entity.pygmy_goose.EntityPygmyGoose;
 import com.creatures.afrikinzi.entity.pygmyfalcon.EntityPygmyFalcon;
@@ -41,6 +46,7 @@ import com.creatures.afrikinzi.entity.robin.EntityRobin;
 import com.creatures.afrikinzi.entity.roller.EntityRoller;
 import com.creatures.afrikinzi.entity.shrimp.EntityShrimp;
 import com.creatures.afrikinzi.entity.creatures_spoonbill.EntityCreaturesSpoonbill;
+import com.creatures.afrikinzi.entity.skua.EntitySkua;
 import com.creatures.afrikinzi.entity.sparrow.EntitySparrow;
 import com.creatures.afrikinzi.entity.stellers_sea_eagle.EntityStellersSeaEagle;
 import com.creatures.afrikinzi.entity.swallow.EntitySwallow;
@@ -119,6 +125,12 @@ public class EntityInit {
         registerEntity("eagleowl", EntityEagleOwl.class, Reference.ENTITY_EAGLE_OWL, 50, 13608552, 4798501);
         registerEntity("robin", EntityRobin.class, Reference.ENTITY_ROBIN, 50, 9600343, 13723915);
         registerEntity("magpie", EntityMagpie.class, Reference.ENTITY_MAGPIE, 50, 1908259, 4480395);
+        registerEntity("wild_goose", EntityGoose.class, Reference.ENTITY_GOOSE, 50, 7888451, 525056);
+        registerEntity("osprey", EntityOsprey.class, Reference.ENTITY_OSPREY, 50, 14869470, 4732721);
+        registerEntity("kingfisher", EntityKingfisher.class, Reference.ENTITY_KINGFISHER, 50, 29897, 13722630);
+        registerEntity("pelican", EntityPelican.class, Reference.ENTITY_PELICAN, 50, 15787740, 14585696);
+        registerEntity("lapwing", EntityLapwing.class, Reference.ENTITY_LAPWING, 50, 1921595, 528151);
+        registerEntity("creatures_skua", EntitySkua.class, Reference.ENTITY_SKUA, 50, 6182224, 4011831);
 
         //spawn placement
         EntitySpawnPlacementRegistry.setPlacementType(EntityKoi.class, EntityLiving.SpawnPlacementType.IN_WATER);
@@ -177,7 +189,7 @@ public class EntityInit {
                 EntityRegistry.addSpawn(EntityGourami.class, CreaturesConfig.gouramiSpawnRate, CreaturesConfig.gouramiMinGroup, CreaturesConfig.gouramiMaxGroup, EnumCreatureType.WATER_CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.RIVER)); }
             if (CreaturesConfig.ghostcrabSpawns) {
                 EntityRegistry.addSpawn(EntityGhostCrab.class, CreaturesConfig.ghostcrabSpawnRate, CreaturesConfig.ghostcrabMinGroup, CreaturesConfig.ghostcrabMaxGroup, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.BEACH)); }
-            if (CreaturesConfig.fiddlercrabSpawns) {
+            if (CreaturesConfig.ghostcrabSpawns) {
                 EntityRegistry.addSpawn(EntityFiddlerCrab.class, CreaturesConfig.fiddlercrabSpawnRate, CreaturesConfig.fiddlercrabMinGroup, CreaturesConfig.fiddlercrabMaxGroup, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.BEACH)); }
 
             //avians
@@ -299,6 +311,24 @@ public class EntityInit {
             }
             if (CreaturesConfig.magpieSpawns) {
                 EntityRegistry.addSpawn(EntityMagpie.class, CreaturesConfig.magpieSpawnRate, CreaturesConfig.magpieMinGroup, CreaturesConfig.magpieMaxGroup, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.FOREST));
+            }
+            if (CreaturesConfig.gooseSpawns) {
+                EntityRegistry.addSpawn(EntityGoose.class, CreaturesConfig.gooseSpawnRate, CreaturesConfig.gooseMinGroup, CreaturesConfig.gooseMaxGroup, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.RIVER));
+            }
+            if (CreaturesConfig.ospreySpawns) {
+                EntityRegistry.addSpawn(EntityOsprey.class, CreaturesConfig.ospreySpawnRate, CreaturesConfig.ospreyMinGroup, CreaturesConfig.ospreyMaxGroup, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.RIVER));
+            }
+            if (CreaturesConfig.kingfisherSpawns) {
+                EntityRegistry.addSpawn(EntityKingfisher.class, CreaturesConfig.kingfisherSpawnRate, CreaturesConfig.kingfisherMinGroup, CreaturesConfig.kingfisherMaxGroup, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.RIVER));
+            }
+            if (CreaturesConfig.lapwingSpawns) {
+                EntityRegistry.addSpawn(EntityLapwing.class, CreaturesConfig.lapwingSpawnRate, CreaturesConfig.lapwingMinGroup, CreaturesConfig.lapwingMaxGroup, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.PLAINS));
+            }
+            if (CreaturesConfig.pelicanSpawns) {
+                EntityRegistry.addSpawn(EntityPelican.class, CreaturesConfig.pelicanSpawnRate, CreaturesConfig.pelicanMinGroup, CreaturesConfig.pelicanMaxGroup, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.BEACH));
+            }
+            if (CreaturesConfig.skuaSpawns) {
+                EntityRegistry.addSpawn(EntitySkua.class, CreaturesConfig.skuaSpawnRate, CreaturesConfig.skuaMinGroup, CreaturesConfig.skuaMaxGroup, EnumCreatureType.CREATURE, RegistryHelper.Entities.grabBiomesFromType(BiomeDictionary.Type.COLD));
             }
 
         }

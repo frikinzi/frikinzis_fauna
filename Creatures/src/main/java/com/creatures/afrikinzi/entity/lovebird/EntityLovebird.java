@@ -65,16 +65,14 @@ public class EntityLovebird extends AbstractCreaturesTameable implements IAnimat
     public float oFlap;
     public float flapping = 1.0F;
 
-    public EntityLovebird(World worldIn)
-    {
+    public EntityLovebird(World worldIn) {
         super(worldIn);
         this.setSize(0.7F, 0.7F);
         this.moveHelper = new EntityFlyHelper(this);
     }
 
     @Override
-    protected void initEntityAI()
-    {
+    protected void initEntityAI() {
         this.aiSit = new EntityAISit(this);
         this.tasks.addTask(0, new EntityAIPanic(this, 1.25D));
         this.tasks.addTask(0, new EntityAISwimming(this));
@@ -86,52 +84,51 @@ public class EntityLovebird extends AbstractCreaturesTameable implements IAnimat
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, false, new Class[0]));
         this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         if (CreaturesConfig.birdsFollow == true) {
-        this.tasks.addTask(2, new EntityAIFollowOwnerCreatures(this, 1.0D, 5.0F, 1.0F)); }
+            this.tasks.addTask(2, new EntityAIFollowOwnerCreatures(this, 1.0D, 5.0F, 1.0F));
+        }
         this.tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
         //this.targetTasks.addTask(6, new EntityAITargetNonTamed(this, EntityChicken.class, false, (Predicate)null));
     }
 
-    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
-    {
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         if (event.isMoving() && this.onGround) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.lovebird.walking", true));
             return PlayState.CONTINUE;
-        } if (!this.onGround || this.isFlying()) {
+        }
+        if (!this.onGround || this.isFlying()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("flying", true));
             return PlayState.CONTINUE;
-        } if (this.isSleeping()) {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.lovebird.sleep", true));
-        return PlayState.CONTINUE;
-    } if (this.isSitting()) {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("sit", true));
-        return PlayState.CONTINUE;
-    }
+        }
+        if (this.isSleeping()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.lovebird.sleep", true));
+            return PlayState.CONTINUE;
+        }
+        if (this.isSitting()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("sit", true));
+            return PlayState.CONTINUE;
+        }
         event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.lovebird.idle", true));
         return PlayState.CONTINUE;
     }
 
     @Override
-    public void registerControllers(AnimationData data)
-    {
+    public void registerControllers(AnimationData data) {
         data.addAnimationController(new AnimationController(this, "controller", 0, this::predicate));
     }
 
     @Override
-    public AnimationFactory getFactory()
-    {
+    public AnimationFactory getFactory() {
         return this.factory;
     }
 
 
     @Override
-    protected ResourceLocation getLootTable()
-    {
+    protected ResourceLocation getLootTable() {
         return LootTableHandler.PARROT;
     }
 
     @Nullable
-    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
-    {
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
         this.setVariant(getWildVariant());
         this.setGender(this.rand.nextInt(2));
         return super.onInitialSpawn(difficulty, livingdata);
@@ -150,8 +147,7 @@ public class EntityLovebird extends AbstractCreaturesTameable implements IAnimat
         Creatures.CREATURES_OBJECT = this;
     }
 
-    protected PathNavigate createNavigator(World worldIn)
-    {
+    protected PathNavigate createNavigator(World worldIn) {
         PathNavigateFlying pathnavigateflying = new PathNavigateFlying(this, worldIn);
         pathnavigateflying.setCanOpenDoors(false);
         pathnavigateflying.setCanFloat(true);
@@ -159,8 +155,7 @@ public class EntityLovebird extends AbstractCreaturesTameable implements IAnimat
         return pathnavigateflying;
     }
 
-    public void onLivingUpdate()
-    {
+    public void onLivingUpdate() {
         if (this.onGround) {
             setSleeping(world.getWorldTime() >= 13000 && world.getWorldTime() <= 23000);
         }
@@ -171,89 +166,70 @@ public class EntityLovebird extends AbstractCreaturesTameable implements IAnimat
         this.calculateFlapping();
     }
 
-    private void calculateFlapping()
-    {
+    private void calculateFlapping() {
         this.oFlap = this.flap;
         this.oFlapSpeed = this.flapSpeed;
-        this.flapSpeed = (float)((double)this.flapSpeed + (double)(this.onGround ? -1 : 4) * 0.3D);
+        this.flapSpeed = (float) ((double) this.flapSpeed + (double) (this.onGround ? -1 : 4) * 0.3D);
         this.flapSpeed = MathHelper.clamp(this.flapSpeed, 0.0F, 1.0F);
 
-        if (!this.onGround && this.flapping < 1.0F)
-        {
+        if (!this.onGround && this.flapping < 1.0F) {
             this.flapping = 1.0F;
         }
 
-        this.flapping = (float)((double)this.flapping * 0.9D);
+        this.flapping = (float) ((double) this.flapping * 0.9D);
 
-        if (!this.onGround && this.motionY < 0.0D)
-        {
+        if (!this.onGround && this.motionY < 0.0D) {
             this.motionY *= 0.6D;
         }
 
         this.flap += this.flapping * 2.0F;
     }
 
-    public boolean processInteract(EntityPlayer player, EnumHand hand)
-    {
+    public boolean processInteract(EntityPlayer player, EnumHand hand) {
         ItemStack itemstack = player.getHeldItem(hand);
 
 
-
-        if (!this.isTamed() && TAME_ITEMS.contains(itemstack.getItem()))
-        {
-            if (!player.capabilities.isCreativeMode)
-            {
+        if (!this.isTamed() && TAME_ITEMS.contains(itemstack.getItem())) {
+            if (!player.capabilities.isCreativeMode) {
                 itemstack.shrink(1);
             }
 
-            if (!this.isSilent())
-            {
-                this.world.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_PARROT_EAT, this.getSoundCategory(), 1.0F, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
+            if (!this.isSilent()) {
+                this.world.playSound((EntityPlayer) null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_PARROT_EAT, this.getSoundCategory(), 1.0F, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
             }
 
-            if (!this.world.isRemote)
-            {
-                if (this.rand.nextInt(10) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player))
-                {
+            if (!this.world.isRemote) {
+                if (this.rand.nextInt(10) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
                     this.setTamedBy(player);
                     this.playTameEffect(true);
-                    this.world.setEntityState(this, (byte)7);
-                }
-                else
-                {
+                    this.world.setEntityState(this, (byte) 7);
+                } else {
                     this.playTameEffect(false);
-                    this.world.setEntityState(this, (byte)6);
+                    this.world.setEntityState(this, (byte) 6);
                 }
             }
 
             return true;
-        }
-        else if (itemstack.getItem() == DEADLY_ITEM)
-        {
-            if (!player.capabilities.isCreativeMode)
-            {
+        } else if (itemstack.getItem() == DEADLY_ITEM) {
+            if (!player.capabilities.isCreativeMode) {
                 itemstack.shrink(1);
             }
 
             this.addPotionEffect(new PotionEffect(MobEffects.POISON, 900));
 
-            if (player.isCreative() || !this.getIsInvulnerable())
-            {
+            if (player.isCreative() || !this.getIsInvulnerable()) {
                 this.attackEntityFrom(DamageSource.causePlayerDamage(player), Float.MAX_VALUE);
             }
 
             return true;
-        }
-        else if (itemstack.getItem() == Items.BOOK)
-        {
+        } else if (itemstack.getItem() == Items.BOOK) {
             if (this.getGender() == 1) {
                 Minecraft mc = Minecraft.getMinecraft();
                 if (this.world.isRemote) {
                     mc.player.sendMessage(new TextComponentTranslation("message.creatures.male"));
                 }
 
-            }
-            else {
+            } else {
                 Minecraft mc = Minecraft.getMinecraft();
                 if (this.world.isRemote) {
                     mc.player.sendMessage(new TextComponentTranslation("message.creatures.female"));
@@ -262,32 +238,64 @@ public class EntityLovebird extends AbstractCreaturesTameable implements IAnimat
             Minecraft mc = Minecraft.getMinecraft();
             if (this.getVariant() == 1) {
                 if (this.world.isRemote) {
-                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.lovebird.fischers"));}
+                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.lovebird.fischers"));
+                }
             } else if (this.getVariant() == 2) {
                 if (this.world.isRemote) {
-                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.lovebird.fischersmutation"));}
+                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.lovebird.fischersmutation"));
+                }
             } else if (this.getVariant() == 3) {
                 if (this.world.isRemote) {
-                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.lovebird.masked"));}
-            }
-            else if (this.getVariant() == 4) {
+                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.lovebird.masked"));
+                }
+            } else if (this.getVariant() == 4) {
                 if (this.world.isRemote) {
-                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.lovebird.maskedmutation"));}
+                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.lovebird.maskedmutation"));
+                }
             } else if (this.getVariant() == 5) {
                 if (this.world.isRemote) {
-                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.lovebird.peach"));}
+                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.lovebird.peach"));
+                }
             } else if (this.getVariant() == 6) {
                 if (this.world.isRemote) {
-                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.lovebird.madagascar"));}
+                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.lovebird.madagascar"));
+                }
+            } else if (this.getVariant() == 7) {
+                if (this.world.isRemote) {
+                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.lovebird.blackwingedlovebird"));
+                }
+            } else if (this.getVariant() == 8) {
+                if (this.world.isRemote) {
+                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.lovebird.redfaced"));
+                }
+            } else if (this.getVariant() == 9) {
+                if (this.world.isRemote) {
+                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.lovebird.swindern"));
+                }
+            } else if (this.getVariant() == 10) {
+                if (this.world.isRemote) {
+                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.lovebird.blackcheeked"));
+                }
+            } else if (this.getVariant() == 11) {
+                if (this.world.isRemote) {
+                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.lovebird.lilians"));
+                }
+            } else if (this.getVariant() == 12) {
+                if (this.world.isRemote) {
+                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.lovebird.aquamarine"));
+                }
+            } else if (this.getVariant() == 13) {
+                if (this.world.isRemote) {
+                    mc.player.sendMessage(new TextComponentTranslation("message.creatures.lovebird.bluepeachfaced"));
+                }
             }
             return true;
-        }
-
-        else if (itemstack.getItem() == Items.STICK && this.isTamed()) {
+        } else if (itemstack.getItem() == Items.STICK && this.isTamed()) {
             if (this.isWandering() == false) {
                 for (Object entry : this.tasks.taskEntries.toArray()) {
                     EntityAIBase ai = ((EntityAITasks.EntityAITaskEntry) entry).action;
-                    if (ai instanceof EntityAIFollowOwner || ai instanceof EntityAIFollowOwnerFlying) this.tasks.removeTask(ai);
+                    if (ai instanceof EntityAIFollowOwner || ai instanceof EntityAIFollowOwnerFlying)
+                        this.tasks.removeTask(ai);
                     this.setWandering(true);
                 }
                 Minecraft mc = Minecraft.getMinecraft();
@@ -305,12 +313,8 @@ public class EntityLovebird extends AbstractCreaturesTameable implements IAnimat
                 }
                 return true;
             }
-        }
-
-        else
-        {
-            if (!this.world.isRemote && !this.isFlying() && this.isTamed() && this.isOwner(player))
-            {
+        } else {
+            if (!this.world.isRemote && !this.isFlying() && this.isTamed() && this.isOwner(player)) {
                 this.aiSit.setSitting(!this.isSitting());
             }
 
@@ -318,37 +322,28 @@ public class EntityLovebird extends AbstractCreaturesTameable implements IAnimat
         }
     }
 
-    public boolean isBreedingItem(ItemStack stack)
-    {
+    public boolean isBreedingItem(ItemStack stack) {
         return TAME_ITEMS.contains(stack.getItem());
     }
 
-    public void fall(float distance, float damageMultiplier)
-    {
+    public void fall(float distance, float damageMultiplier) {
     }
 
-    protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos)
-    {
+    protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos) {
     }
 
-    public boolean canMateWith(EntityAnimal otherAnimal)
-    {
+    public boolean canMateWith(EntityAnimal otherAnimal) {
 
-        if (otherAnimal == this)
-        {
+        if (otherAnimal == this) {
             return false;
-        }
-        else if (!(otherAnimal instanceof EntityLovebird))
-        {
+        } else if (!(otherAnimal instanceof EntityLovebird)) {
             return false;
-        }
-        else
-        {
-            EntityLovebird entitylovebird = (EntityLovebird)otherAnimal;
+        } else {
+            EntityLovebird entitylovebird = (EntityLovebird) otherAnimal;
             if (this.getGender() == entitylovebird.getGender()) {
                 return false;
             } else {
-            return this.isInLove() && entitylovebird.isInLove();
+                return this.isInLove() && entitylovebird.isInLove();
             }
         }
 
@@ -356,8 +351,7 @@ public class EntityLovebird extends AbstractCreaturesTameable implements IAnimat
     }
 
     @Nullable
-    public EntityAgeable createChild(EntityAgeable ageable)
-    {
+    public EntityAgeable createChild(EntityAgeable ageable) {
         EntityLovebird entitylovebird = new EntityLovebird(this.world);
         int i = this.rand.nextInt(CreaturesConfig.mutationLovebird);
         if (this.getVariant() == 1) {
@@ -366,45 +360,44 @@ public class EntityLovebird extends AbstractCreaturesTameable implements IAnimat
             } else {
                 entitylovebird.setVariant(this.getVariant());
             }
-        }
-        else if (this.getVariant() == 3) {
+        } else if (this.getVariant() == 3) {
             if (i == 1) {
                 entitylovebird.setVariant(4);
             } else {
                 entitylovebird.setVariant(this.getVariant());
             }
         }
-        else {
-        entitylovebird.setVariant(this.getVariant());
+        else if (this.getVariant() == 5) {
+            if (i == 1) {
+                entitylovebird.setVariant(13); }
+            if (i == 2) {
+                entitylovebird.setVariant(12); }
+            else {
+                entitylovebird.setVariant(this.getVariant());
+            }
+        } else {
+            entitylovebird.setVariant(this.getVariant());
         }
         entitylovebird.setGender(this.rand.nextInt(2));
 
         return entitylovebird;
     }
 
-    public boolean canBePushed()
-    {
+    public boolean canBePushed() {
         return true;
     }
 
-    protected void collideWithEntity(Entity entityIn)
-    {
-        if (!(entityIn instanceof EntityPlayer))
-        {
+    protected void collideWithEntity(Entity entityIn) {
+        if (!(entityIn instanceof EntityPlayer)) {
             super.collideWithEntity(entityIn);
         }
     }
 
-    public boolean attackEntityFrom(DamageSource source, float amount)
-    {
-        if (this.isEntityInvulnerable(source))
-        {
+    public boolean attackEntityFrom(DamageSource source, float amount) {
+        if (this.isEntityInvulnerable(source)) {
             return false;
-        }
-        else
-        {
-            if (this.aiSit != null)
-            {
+        } else {
+            if (this.aiSit != null) {
                 this.aiSit.setSitting(false);
             }
 
@@ -412,23 +405,19 @@ public class EntityLovebird extends AbstractCreaturesTameable implements IAnimat
         }
     }
 
-    public boolean isFlying()
-    {
+    public boolean isFlying() {
         return !this.onGround;
     }
 
-    public int getVariant()
-    {
-        return MathHelper.clamp(((Integer)this.dataManager.get(VARIANT)).intValue(), 1, 7);
+    public int getVariant() {
+        return MathHelper.clamp(((Integer) this.dataManager.get(VARIANT)).intValue(), 1, 14);
     }
 
-    public void setVariant(int p_191997_1_)
-    {
+    public void setVariant(int p_191997_1_) {
         this.dataManager.set(VARIANT, Integer.valueOf(p_191997_1_));
     }
 
-    protected void entityInit()
-    {
+    protected void entityInit() {
         super.entityInit();
         this.dataManager.register(VARIANT, Integer.valueOf(0));
         this.dataManager.register(SLEEPING, Boolean.valueOf(false));
@@ -436,8 +425,7 @@ public class EntityLovebird extends AbstractCreaturesTameable implements IAnimat
         this.dataManager.register(GENDER, Integer.valueOf(0));
     }
 
-    public void writeEntityToNBT(NBTTagCompound compound)
-    {
+    public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
         compound.setInteger("Variant", this.getVariant());
         compound.setBoolean("Sleeping", this.isSleeping());
@@ -453,18 +441,16 @@ public class EntityLovebird extends AbstractCreaturesTameable implements IAnimat
         this.setGender(compound.getInteger("Gender"));
     }
 
-    public SoundEvent getAmbientSound()
-    {
+    public SoundEvent getAmbientSound() {
         if (!this.isSleeping()) {
 
-        return SoundsHandler.LOVEBIRD_AMBIENT;
+            return SoundsHandler.LOVEBIRD_AMBIENT;
         } else {
             return null;
         }
     }
 
-    public boolean attackEntityAsMob(Entity entityIn)
-    {
+    public boolean attackEntityAsMob(Entity entityIn) {
         return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 1.0F);
     }
 
@@ -478,10 +464,9 @@ public class EntityLovebird extends AbstractCreaturesTameable implements IAnimat
 
     @Override
     public boolean isMovementBlocked() {
-        if(this.onGround) {
+        if (this.onGround) {
             return super.isMovementBlocked() || isSleeping();
-        }
-        else{
+        } else {
             return super.isMovementBlocked();
         }
     }
@@ -495,18 +480,11 @@ public class EntityLovebird extends AbstractCreaturesTameable implements IAnimat
     }
 
     public int getWildVariant() {
-        int e = this.rand.nextInt(101);
-
-        if (e < 25) {
-            return 1;
-        } else if (e < 50) {
-            return 3;
-        } else if (e < 75) {
-            return 5;
-        } else {
-            return 6;
+        int i = this.rand.nextInt(14);
+        while (i == 2 || i == 4 || i == 12 || i == 13) {
+            i = this.rand.nextInt(14);
         }
-
+        return i;
     }
 
     public String getSpeciesName() {
@@ -533,7 +511,36 @@ public class EntityLovebird extends AbstractCreaturesTameable implements IAnimat
         else if (this.getVariant() == 6) {
             String s1 = I18n.format("message.creatures.lovebird.madagascar");
             return s1;
-        } else {
+        }
+        else if (this.getVariant() == 7) {
+            String s1 = I18n.format("message.creatures.lovebird.blackwingedlovebird");
+            return s1;
+        }
+        else if (this.getVariant() == 8) {
+            String s1 = I18n.format("message.creatures.lovebird.redfaced");
+            return s1;
+        }
+        else if (this.getVariant() == 9) {
+            String s1 = I18n.format("message.creatures.lovebird.swindern");
+            return s1;
+        }
+        else if (this.getVariant() == 10) {
+            String s1 = I18n.format("message.creatures.lovebird.blackcheeked");
+            return s1;
+        }
+        else if (this.getVariant() == 11) {
+            String s1 = I18n.format("message.creatures.lovebird.lilians");
+            return s1;
+        }
+        else if (this.getVariant() == 12) {
+            String s1 = I18n.format("message.creatures.lovebird.aquamarine");
+            return s1;
+        }
+        else if (this.getVariant() == 13) {
+            String s1 = I18n.format("message.creatures.lovebird.bluepeachfaced");
+            return s1;
+        }
+        else {
             return "Unknown";
         }
     }

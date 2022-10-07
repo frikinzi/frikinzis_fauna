@@ -144,5 +144,9 @@ public class EntityKoi extends FishBase implements IAnimatable, ICreaturesEntity
         }
     }
 
+    public String getFoodName() {
+        return net.minecraft.util.text.translation.I18n.translateToLocal(ItemInit.RAW_SHRIMP.getUnlocalizedName() + ".name").trim();
+    }
+
 }
 
