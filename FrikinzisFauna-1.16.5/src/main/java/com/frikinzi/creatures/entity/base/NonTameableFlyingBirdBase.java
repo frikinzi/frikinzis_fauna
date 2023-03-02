@@ -1,17 +1,13 @@
 package com.frikinzi.creatures.entity.base;
 
 import com.frikinzi.creatures.Creatures;
-import com.frikinzi.creatures.entity.ai.FlyController;
-import com.frikinzi.creatures.entity.ai.MateGoal;
-import com.frikinzi.creatures.entity.ai.BabyNoFlyNavigator;
+import com.frikinzi.creatures.entity.ai.*;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.google.common.collect.Sets;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.*;
-import net.minecraft.entity.passive.fish.AbstractGroupFishEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -34,6 +30,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
@@ -63,13 +60,17 @@ public class NonTameableFlyingBirdBase extends CreaturesBirdEntity implements IF
 
     @Nullable
     public ILivingEntityData finalizeSpawn(IServerWorld p_213386_1_, DifficultyInstance p_213386_2_, SpawnReason p_213386_3_, @Nullable ILivingEntityData p_213386_4_, @Nullable CompoundNBT p_213386_5_) {
-        this.setVariant(this.random.nextInt(determineVariant()));
+        this.setVariant(this.methodofDeterminingVariant(p_213386_1_));
         this.setGender(this.random.nextInt(2));
         if (p_213386_4_ == null) {
             p_213386_4_ = new AgeableData(false);
         }
 
         return super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_, p_213386_4_, p_213386_5_);
+    }
+
+    public int methodofDeterminingVariant(IWorld p_213610_1_) {
+        return this.random.nextInt(determineVariant());
     }
 
 
@@ -82,6 +83,8 @@ public class NonTameableFlyingBirdBase extends CreaturesBirdEntity implements IF
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomFlyingGoal(this, 1.0D));
         this.goalSelector.addGoal(1, new NonTameableFlyingBirdBase.SleepGoal());
+        this.goalSelector.addGoal(1, new StayCloseToEggGoal(this, 1.0D));
+        this.goalSelector.addGoal(1, new StayCloseToMateGoal(this, 1.0D));
     }
 
     public int determineVariant() {

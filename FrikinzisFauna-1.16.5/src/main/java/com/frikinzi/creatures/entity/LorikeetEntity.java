@@ -1,6 +1,5 @@
 package com.frikinzi.creatures.entity;
 
-import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.TameableBirdBase;
@@ -9,7 +8,6 @@ import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.registry.ModEntityTypes;
 import com.google.common.collect.Sets;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
@@ -18,7 +16,6 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.SoundEvent;
@@ -83,7 +80,7 @@ public class LorikeetEntity extends TameableBirdBase implements IAnimatable {
     }
 
     public int determineVariant() {
-        return 6;
+        return 7;
     }
 
     @Override
@@ -207,6 +204,10 @@ public class LorikeetEntity extends TameableBirdBase implements IAnimatable {
         }
         else if (this.getVariant() == 5) {
             ITextComponent s1 = new TranslationTextComponent("message.creatures.lorikeet.chattering");
+            return s1.getString();
+        }
+        else if (this.getVariant() == 6) {
+            ITextComponent s1 = new TranslationTextComponent("message.creatures.lorikeet.duskylory");
             return s1.getString();
         } else {
             return "Unknown";

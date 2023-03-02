@@ -2,6 +2,8 @@ package com.frikinzi.creatures.entity.base;
 
 import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.entity.ai.MateGoal;
+import com.frikinzi.creatures.entity.ai.StayCloseToEggGoal;
+import com.frikinzi.creatures.entity.ai.StayCloseToMateGoal;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.google.common.collect.Sets;
 import net.minecraft.block.BlockState;
@@ -68,6 +70,8 @@ public class NonTameableBirdBase extends CreaturesBirdEntity {
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(1, new NonTameableBirdBase.SleepGoal());
+        this.goalSelector.addGoal(1, new StayCloseToEggGoal(this, 1.0D));
+        this.goalSelector.addGoal(1, new StayCloseToMateGoal(this, 1.0D));
     }
 
     public int determineVariant() {

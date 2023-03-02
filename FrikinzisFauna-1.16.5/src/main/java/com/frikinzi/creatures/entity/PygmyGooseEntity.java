@@ -172,6 +172,11 @@ public class PygmyGooseEntity extends NonTameableBirdBase implements IAnimatable
         }
     }
 
+    @Override
+    public boolean isMonogamous() {
+        return true;
+    }
+
     public ItemStack getFoodItem() {
         return new ItemStack(Items.BREAD, 1);
     }

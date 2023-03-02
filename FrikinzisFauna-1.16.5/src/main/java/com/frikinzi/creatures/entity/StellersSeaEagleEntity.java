@@ -151,4 +151,9 @@ public class StellersSeaEagleEntity extends RaptorBase implements IAnimatable {
         return this.random.nextInt(CreaturesConfig.stellers_sea_eagle_clutch_size.get());
     }
 
+    @Override
+    public boolean isMonogamous() {
+        return true;
+    }
+
 }

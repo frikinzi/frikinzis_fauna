@@ -2,6 +2,7 @@ package com.frikinzi.creatures.client;
 
 import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.client.render.*;
+import com.frikinzi.creatures.entity.TanagerEntity;
 import com.frikinzi.creatures.registry.ModEntityTypes;
 import net.minecraft.client.renderer.entity.ChickenRenderer;
 import net.minecraftforge.api.distmarker.Dist;
@@ -65,6 +66,14 @@ public class ClientModEventSubscriber {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.PELICAN.get(), PelicanRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.LAPWING.get(), LapwingRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.SKUA.get(), SkuaRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BUNTING.get(), BuntingRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.MONAL.get(), MonalRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TANAGER.get(), TanagerRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.FINCH.get(), FinchRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.VAMPIRECRAB.get(), VampireCrabRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TARANTULA.get(), TarantulaRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.CAPERCAILLIE.get(), CapercaillieRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TIGERBARB.get(), TigerBarbRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.EGG.get(), EggRenderer::new);
     }
 

@@ -47,7 +47,7 @@ public class RavenEntity extends TameableBirdBase implements IAnimatable {
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
-        this.targetSelector.addGoal(2, new CreaturesBirdEntity.DefendBabyGoal());
+        this.targetSelector.addGoal(1, new CreaturesBirdEntity.DefendBabyGoal());
 
     }
 
@@ -158,6 +158,11 @@ public class RavenEntity extends TameableBirdBase implements IAnimatable {
 
     public int getClutchSize() {
         return this.random.nextInt(CreaturesConfig.raven_clutch_size.get());
+    }
+
+    @Override
+    public boolean isMonogamous() {
+        return true;
     }
 
 }

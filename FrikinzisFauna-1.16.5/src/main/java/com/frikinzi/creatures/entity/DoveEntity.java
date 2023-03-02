@@ -138,7 +138,7 @@ public class DoveEntity extends TameableBirdBase implements IAnimatable {
 
     @Override
     public int methodofDeterminingVariant(IWorld p_213610_1_) {
-        if (CreaturesConfig.biome_only_variants.get() == true) {
+        if (CreaturesConfig.biome_only_variants.get()) {
             Biome biome = p_213610_1_.getBiome(this.blockPosition());
             RegistryKey<Biome> biomeKey = RegistryKey.create(Registry.BIOME_REGISTRY, biome.getRegistryName());
             Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biomeKey);

@@ -4,6 +4,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class CreaturesLootTables {
     public static final ResourceLocation SMALL_BIRD_GENERIC = new ResourceLocation("creatures", "entities/small_bird_generic");
+    public static final ResourceLocation LARGE_BIRD_GENERIC = new ResourceLocation("creatures", "entities/large_bird_generic");
     public static final ResourceLocation AROWANA = new ResourceLocation("creatures", "entities/arowana");
     public static final ResourceLocation TROUT = new ResourceLocation("creatures", "entities/trout");
     public static final ResourceLocation KOI = new ResourceLocation("creatures", "entities/koi");

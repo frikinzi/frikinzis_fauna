@@ -38,10 +38,10 @@ import java.util.function.Predicate;
 
 public class PygmyFalconEntity extends RaptorBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.CHICKEN, Items.ROTTEN_FLESH, CreaturesItems.SMALL_BIRD_MEAT);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.CHICKEN, Items.ROTTEN_FLESH, CreaturesItems.SMALL_BIRD_MEAT, Items.RABBIT);
     public static final Predicate<LivingEntity> PREY_SELECTOR = (p_213440_0_) -> {
         EntityType<?> entitytype = p_213440_0_.getType();
-        return entitytype == EntityType.RABBIT || entitytype == ModEntityTypes.FAIRYWREN.get();
+        return entitytype == EntityType.RABBIT || entitytype == ModEntityTypes.FAIRYWREN.get() || entitytype == ModEntityTypes.SPARROW.get();
     };
 
     public PygmyFalconEntity(EntityType<? extends PygmyFalconEntity> p_i50251_1_, World p_i50251_2_) {

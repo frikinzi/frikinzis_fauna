@@ -144,6 +144,11 @@ public class OspreyEntity extends RaptorBase implements IAnimatable {
         return CreaturesLootTables.BIRD_OF_PREY;
     }
 
+    @Override
+    public boolean isMonogamous() {
+        return true;
+    }
+
     public ItemStack getFoodItem() {
         return new ItemStack(Items.COD, 1);
     }

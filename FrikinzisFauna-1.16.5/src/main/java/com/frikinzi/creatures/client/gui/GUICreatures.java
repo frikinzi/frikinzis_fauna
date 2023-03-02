@@ -136,6 +136,7 @@ public class GUICreatures extends Screen {
                 this.font.draw(matrices, height.getString() + " " + bird.getHeightString(), offLeft, offTop + 110, 0);
                 ITextComponent food = new TranslationTextComponent("gui.food");
                 this.font.draw(matrices, food.getString() + " ", offLeft, offTop + 130, 0);
+                //this.font.draw(matrices, bird.getUUID().toString(), offLeft, offTop + 140, 0);
                 this.itemRenderer.renderGuiItem(bird.getFoodItem(), offLeft + 30, 120 + offTop);
                 matrices.popPose();
             }
@@ -226,6 +227,7 @@ public class GUICreatures extends Screen {
             ITextComponent species = new TranslationTextComponent("gui.species");
             this.font.draw(matrices, bird.getEggItem().getDisplayName(), offLeft, offTop + 90, 0);
             ITextComponent food = new TranslationTextComponent("gui.egg");
+            //this.font.draw(matrices, bird.getParentUUID().toString(), offLeft, offTop + 100, 0);
             //this.font.draw(matrices, bird.getSpecies() + " ", offLeft, offTop + 110, 0);
             this.itemRenderer.renderGuiItem(bird.getEggItem(), offLeft + 0, 110 + offTop);
             matrices.popPose();

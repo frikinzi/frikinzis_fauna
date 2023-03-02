@@ -9,6 +9,9 @@ public class LovebirdModel extends AnimatedGeoModel<LovebirdEntity> {
     @Override
     public ResourceLocation getModelLocation(LovebirdEntity object)
     {
+        if (object.isBaby()) {
+            return new ResourceLocation(Creatures.MODID, "geo/entity/baby_parrot/parrotchick.geo.json");
+        }
         if (object.isFlying() || !object.isOnGround()) {
             return new ResourceLocation(Creatures.MODID, "geo/entity/lovebird/lovebirdfly.geo.json");
         }
@@ -18,6 +21,12 @@ public class LovebirdModel extends AnimatedGeoModel<LovebirdEntity> {
     @Override
     public ResourceLocation getTextureLocation(LovebirdEntity object)
     {
+        if (object.isBaby()) {
+            if (object.getVariant() == 6 || object.getVariant() == 7 || object.getVariant() == 8) {
+                return new ResourceLocation(Creatures.MODID, "textures/entity/lovebird/baby/lovebirdbaby" + object.getVariant() + object.getGender() + ".png");
+            }
+            return new ResourceLocation(Creatures.MODID, "textures/entity/lovebird/baby/lovebirdbaby" + object.getVariant() + ".png");
+        }
         if (object.isFlying() || !object.isOnGround()) {
             if (object.getVariant() == 6 || object.getVariant() == 7 || object.getVariant() == 8) {
                 return new ResourceLocation(Creatures.MODID, "textures/entity/lovebird/lovebird" + object.getVariant() + object.getGender() + "fly.png");
@@ -38,6 +47,9 @@ public class LovebirdModel extends AnimatedGeoModel<LovebirdEntity> {
     @Override
     public ResourceLocation getAnimationFileLocation(LovebirdEntity object)
     {
+        if (object.isBaby()) {
+            return new ResourceLocation(Creatures.MODID, "animations/animation.parrotbaby.json");
+        }
         if (object.isFlying() || !object.isOnGround()) {
             return new ResourceLocation(Creatures.MODID, "animations/animation.lovebird.flying.json");
         }

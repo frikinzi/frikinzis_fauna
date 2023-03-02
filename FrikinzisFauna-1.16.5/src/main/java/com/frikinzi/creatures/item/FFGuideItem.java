@@ -8,6 +8,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -15,7 +16,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import java.util.ArrayList;
+
 public class FFGuideItem extends Item {
+    ArrayList<CreaturesBirdEntity> list = new ArrayList<CreaturesBirdEntity>();
+
     public FFGuideItem(Item.Properties properties) {
         super(properties);
     }
@@ -52,4 +57,14 @@ public class FFGuideItem extends Item {
         Minecraft mc = Minecraft.getInstance();
         mc.setScreen(new GUICreatures());
     }
+
+    public void addBirdPage(CreaturesBirdEntity e) {
+        this.list.add(e);
+    }
+
+    public boolean birdPageExist(CreaturesBirdEntity e) {
+        return this.list.contains(e);
+    }
+
+
 }

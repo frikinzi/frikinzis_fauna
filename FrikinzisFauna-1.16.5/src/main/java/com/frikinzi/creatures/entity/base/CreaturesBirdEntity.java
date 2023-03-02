@@ -1,13 +1,12 @@
 package com.frikinzi.creatures.entity.base;
 
-import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.entity.ai.StayCloseToEggGoal;
 import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.ModEntityTypes;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.passive.PolarBearEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -26,20 +25,35 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 abstract public class CreaturesBirdEntity extends TameableEntity {
     World world;
+    CreaturesBirdEntity mate;
+
     private static final DataParameter<Float> HEIGHT_MULTIPLIER = EntityDataManager.defineId(CreaturesBirdEntity.class, DataSerializers.FLOAT);
+    protected static final DataParameter<Optional<UUID>> DATA_MATEUUID_ID = EntityDataManager.defineId(CreaturesBirdEntity.class, DataSerializers.OPTIONAL_UUID);
 
     public CreaturesBirdEntity(EntityType<? extends CreaturesBirdEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
+        mate = null;
+    }
+
+    protected void registerGoals() {
+        this.goalSelector.addGoal(1, new StayCloseToEggGoal(this, 1.0D));
     }
 
     @Nullable
     public ILivingEntityData finalizeSpawn(IServerWorld p_213386_1_, DifficultyInstance p_213386_2_, SpawnReason p_213386_3_, @Nullable ILivingEntityData p_213386_4_, @Nullable CompoundNBT p_213386_5_) {
         if (p_213386_4_ == null) {
             p_213386_4_ = new AgeableData(false);
+        }
+
+        if (this.random.nextFloat() <= 0.05) {
+            this.setBaby(true);
         }
 
         float f = (float)(this.random.nextGaussian() * CreaturesConfig.height_standard_deviation.get() + CreaturesConfig.height_base_multiplier.get());
@@ -51,6 +65,15 @@ abstract public class CreaturesBirdEntity extends TameableEntity {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(HEIGHT_MULTIPLIER, 1.0F);
+        this.entityData.define(DATA_MATEUUID_ID, Optional.empty());
+    }
+
+    public CreaturesBirdEntity getMate() {
+        return this.mate;
+    }
+
+    public void setMate(CreaturesBirdEntity bird) {
+        this.mate = bird;
     }
 
     public float getHeightMultiplier() {
@@ -62,6 +85,10 @@ abstract public class CreaturesBirdEntity extends TameableEntity {
             this.entityData.set(HEIGHT_MULTIPLIER, 1.0F);
         } else {
         this.entityData.set(HEIGHT_MULTIPLIER, MathHelper.clamp(p_70606_1_, 0.7F, 1.5F)); }
+    }
+
+    public boolean isMonogamous() {
+        return false;
     }
 
     public String getHeightString() {
@@ -97,6 +124,9 @@ abstract public class CreaturesBirdEntity extends TameableEntity {
 
     public void addAdditionalSaveData(CompoundNBT p_213281_1_) {
         p_213281_1_.putFloat("HeightMultiplier", this.getHeightMultiplier());
+        if (this.getMateUUID() != null) {
+            p_213281_1_.putUUID("Mate", this.getMateUUID());
+        }
         super.addAdditionalSaveData(p_213281_1_);
     }
 
@@ -106,6 +136,24 @@ abstract public class CreaturesBirdEntity extends TameableEntity {
             this.setHeightMultiplier((float)(this.random.nextGaussian() * CreaturesConfig.height_standard_deviation.get() + CreaturesConfig.height_base_multiplier.get()));
         } else {
         this.setHeightMultiplier(p_70037_1_.getFloat("HeightMultiplier")); }
+        if (p_70037_1_.hasUUID("Mate")) {
+            uuid = p_70037_1_.getUUID("Mate");
+            if (uuid != null) {
+                try {
+                    this.setMateUUID(uuid);
+                } catch (Throwable throwable) {
+                }
+            }
+        }
+    }
+
+    @Nullable
+    public UUID getMateUUID() {
+        return this.entityData.get(DATA_MATEUUID_ID).orElse((UUID)null);
+    }
+
+    public void setMateUUID(@Nullable UUID p_184754_1_) {
+        this.entityData.set(DATA_MATEUUID_ID, Optional.ofNullable(p_184754_1_));
     }
 
     public CreaturesEggEntity layEgg(CreaturesBirdEntity animal) {
@@ -140,8 +188,27 @@ abstract public class CreaturesBirdEntity extends TameableEntity {
     public ActionResultType mobInteract(PlayerEntity p_230254_1_, Hand p_230254_2_) {
         ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
         if (itemstack.getItem() == CreaturesItems.FF_GUIDE) {
+            System.out.println(this.getUUID());
             if (this.level.isClientSide) {
-                System.out.println(this.getHeightMultiplier());
+                if (itemstack.getTag() == null) {
+                    itemstack.getOrCreateTag();
+                }
+                String s = String.valueOf(ModEntityTypes.getIntFromBirdEntity(this));
+                if (!itemstack.getTag().contains(s)) {
+                    if (this.determineVariant() == 1) {
+                        itemstack.getTag().putIntArray(s, new int[1]);
+                    } else {
+                        itemstack.getTag().putIntArray(s, new int[this.determineVariant()-1]);
+                    }
+                }
+                try {
+                    itemstack.getTag().getIntArray(s)[this.getVariant()-1] = this.getVariant();
+                } catch (Exception e) {
+                    itemstack.getTag().getIntArray(s)[0] = 1;
+                }
+
+                System.out.println(Arrays.toString(itemstack.getTag().getIntArray(s)));
+
                 return ActionResultType.SUCCESS;
             }
         } return super.mobInteract(p_230254_1_, p_230254_2_);
@@ -151,39 +218,41 @@ abstract public class CreaturesBirdEntity extends TameableEntity {
         return (float)(this.getRandom().nextGaussian() * 0.05 + this.getHeightMultiplier());
     }
 
-    public class DefendBabyGoal extends NearestAttackableTargetGoal<CreatureEntity> {
+    public class DefendBabyGoal extends NearestAttackableTargetGoal<LivingEntity> {
         public DefendBabyGoal() {
-            super(CreaturesBirdEntity.this, CreatureEntity.class, 20, true, true, (Predicate<LivingEntity>)null);
+            super(CreaturesBirdEntity.this, LivingEntity.class, 5, true, true, (Predicate<LivingEntity>)LivingEntity::attackable);
         }
 
         public boolean canUse() {
-            if (CreaturesBirdEntity.this.isBaby() || CreaturesBirdEntity.this.isTame()) {
-                return false;
-            } else {
+            if (!CreaturesBirdEntity.this.isBaby() && !CreaturesBirdEntity.this.isTame()) {
                 if (super.canUse()) {
-                    for(CreaturesBirdEntity birdEntity : CreaturesBirdEntity.this.level.getEntitiesOfClass(CreaturesBirdEntity.class, CreaturesBirdEntity.this.getBoundingBox().inflate(4.0D, 4.0D, 4.0D))) {
+                    for (CreaturesBirdEntity birdEntity : CreaturesBirdEntity.this.level.getEntitiesOfClass(CreaturesBirdEntity.class, CreaturesBirdEntity.this.getBoundingBox().inflate(4.0D, 4.0D, 4.0D))) {
                         if (birdEntity.isBaby()) {
-                            if (this.target.getClass() == CreaturesBirdEntity.this.getClass() && this.target.getClass() != CreaturesEggEntity.class) {
+
+                            if (this.target.getClass() == CreaturesBirdEntity.this.getClass() || this.target.getClass() == CreaturesEggEntity.class || this.target.isBaby()) {
                                 return false;
                             }
+                            //System.out.println(CreaturesBirdEntity.this.getName() + "defend target");
                             return true;
                         }
-                    } for(CreaturesEggEntity eggEntity : CreaturesBirdEntity.this.level.getEntitiesOfClass(CreaturesEggEntity.class, CreaturesBirdEntity.this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D))) {
+                    }
+                    for (CreaturesEggEntity eggEntity : CreaturesBirdEntity.this.level.getEntitiesOfClass(CreaturesEggEntity.class, CreaturesBirdEntity.this.getBoundingBox().inflate(3.0D, 2.0D, 3.0D))) {
                         if (eggEntity.getSpecies() == ModEntityTypes.getIntFromBirdEntity(CreaturesBirdEntity.this)) {
-                            if (this.target.getClass() == CreaturesBirdEntity.this.getClass() && !this.target.isBaby()) {
+                            if (this.target.getClass() == CreaturesBirdEntity.this.getClass() || this.target.isBaby() || this.target.getClass() == CreaturesEggEntity.class) {
                                 return false;
                             }
+                            //System.out.println("defend egg");
                             return true;
                         }
                     }
                 }
 
-                return false;
             }
+            return false;
         }
 
         protected double getFollowDistance() {
-            return super.getFollowDistance() * 0.5D;
+            return super.getFollowDistance() * 0.1D;
         }
     }
 
@@ -207,5 +276,11 @@ abstract public class CreaturesBirdEntity extends TameableEntity {
             }
 
         }
+
+
+    }
+
+    public int determineVariant() {
+        return 1;
     }
 }

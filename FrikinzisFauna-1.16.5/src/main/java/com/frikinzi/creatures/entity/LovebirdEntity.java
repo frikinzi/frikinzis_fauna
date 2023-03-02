@@ -45,6 +45,23 @@ public class LovebirdEntity extends TameableBirdBase implements IAnimatable {
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
+        if (this.isBaby()) {
+            if (event.isMoving() && this.onGround) {
+                event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+                return PlayState.CONTINUE;
+            } if (!this.onGround || this.isFlying()) {
+                event.getController().setAnimation(new AnimationBuilder().addAnimation("fly", true));
+                return PlayState.CONTINUE;
+            } if (this.isSleeping()) {
+                event.getController().setAnimation(new AnimationBuilder().addAnimation("sleep", true));
+                return PlayState.CONTINUE;
+            } if (this.isInSittingPose()) {
+                event.getController().setAnimation(new AnimationBuilder().addAnimation("sit", true));
+                return PlayState.CONTINUE;
+            }
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
+            return PlayState.CONTINUE;
+        }
         if (event.isMoving() && this.onGround) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.lovebird.walking", true));
             return PlayState.CONTINUE;
@@ -238,6 +255,11 @@ public class LovebirdEntity extends TameableBirdBase implements IAnimatable {
         } else {
             return "Unknown";
         }
+    }
+
+    @Override
+    public boolean isMonogamous() {
+        return true;
     }
 
     public float getHatchChance() {

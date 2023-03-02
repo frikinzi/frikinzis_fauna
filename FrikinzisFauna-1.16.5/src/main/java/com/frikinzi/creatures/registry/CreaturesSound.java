@@ -48,6 +48,10 @@ public class CreaturesSound {
     public static final SoundEvent PELICAN_AMBIENT = createSoundEvent("entity.pelican.ambient");
     public static final SoundEvent LAPWING_AMBIENT = createSoundEvent("entity.lapwing.ambient");
     public static final SoundEvent SKUA_AMBIENT = createSoundEvent("entity.skua.ambient");
+    public static final SoundEvent BUNTING_AMBIENT = createSoundEvent("entity.bunting.ambient");
+    public static final SoundEvent MONAL_AMBIENT = createSoundEvent("entity.monal.ambient");
+    public static final SoundEvent FINCH_AMBIENT = createSoundEvent("entity.finch.ambient");
+    public static final SoundEvent CAPERCAILLIE_AMBIENT = createSoundEvent("entity.capercaillie.ambient");
     public static final SoundEvent EGG_HATCH = createSoundEvent("entity.egg.hatch");
 
     private static SoundEvent createSoundEvent(final String soundName) {

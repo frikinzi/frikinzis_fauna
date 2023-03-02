@@ -17,7 +17,8 @@ public class ConfigNonTamedTargetGoal<T extends LivingEntity> extends NearestAtt
     }
 
     public boolean canUse() {
-        return !this.tamableMob.isBaby() && !this.tamableMob.isTame() && CreaturesConfig.raptor_attacks.get() == true && super.canUse();
+        if (super.canUse()) {
+        return !this.tamableMob.isBaby() && !this.tamableMob.isTame() && CreaturesConfig.raptor_attacks.get() && super.canUse(); } return false;
     }
 
     public boolean canContinueToUse() {

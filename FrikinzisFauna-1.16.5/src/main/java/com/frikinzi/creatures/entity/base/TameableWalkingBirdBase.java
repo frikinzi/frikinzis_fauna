@@ -4,6 +4,8 @@ import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.ai.CreaturesFollowGoal;
 import com.frikinzi.creatures.entity.ai.MateGoal;
+import com.frikinzi.creatures.entity.ai.StayCloseToEggGoal;
+import com.frikinzi.creatures.entity.ai.StayCloseToMateGoal;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.google.common.collect.Sets;
 import net.minecraft.block.BlockState;
@@ -85,6 +87,8 @@ public class TameableWalkingBirdBase extends CreaturesBirdEntity {
         this.goalSelector.addGoal(6, new CreaturesFollowGoal(this,1.0D, 5.0F, 1.0F, true));
         this.goalSelector.addGoal(0, new TameableWalkingBirdBase.SleepGoal());
         this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(1, new StayCloseToEggGoal(this, 1.0D));
+        this.goalSelector.addGoal(1, new StayCloseToMateGoal(this, 1.0D));
     }
 
     public int determineVariant() {

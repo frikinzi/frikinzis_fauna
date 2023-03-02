@@ -3,12 +3,14 @@ package com.frikinzi.creatures.entity.egg;
 import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.*;
+import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.registry.ModEntityTypes;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -18,6 +20,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ItemParticleData;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.server.management.PreYggdrasilConverter;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
@@ -40,7 +43,9 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
 import java.util.Random;
+import java.util.UUID;
 
 public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
@@ -49,10 +54,13 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
     private static final DataParameter<Integer> GENDER = EntityDataManager.defineId(CreaturesEggEntity.class, DataSerializers.INT);
     private static final DataParameter<Boolean> HATCHING = EntityDataManager.defineId(CreaturesEggEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Float> HEIGHT_MULTIPLIER = EntityDataManager.defineId(CreaturesEggEntity.class, DataSerializers.FLOAT);
+    protected static final DataParameter<Optional<UUID>> DATA_PARENTUUID_ID = EntityDataManager.defineId(CreaturesEggEntity.class, DataSerializers.OPTIONAL_UUID);
     public int hatchTime = this.random.nextInt(CreaturesConfig.base_egg_hatch_time.get()) + CreaturesConfig.base_egg_hatch_time.get();
+    private CreaturesBirdEntity parent;
 
     public CreaturesEggEntity(EntityType<? extends CreaturesEggEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
+        parent = null;
     }
 
     @Nullable
@@ -67,6 +75,14 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
             }
         }
         return p_213386_4_;
+    }
+
+    public void setParent(CreaturesBirdEntity parent) {
+        this.parent = parent;
+    }
+
+    public CreaturesBirdEntity getParent() {
+        return this.parent;
     }
 
     protected void registerGoals() {
@@ -120,7 +136,7 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
     }
 
     public int getSpecies() {
-        return MathHelper.clamp(this.entityData.get(SPECIES_ID), 0, 35);
+        return MathHelper.clamp(this.entityData.get(SPECIES_ID), 0, 1000);
     }
 
     public void setSpecies(int p_191997_1_) {
@@ -134,6 +150,7 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
         this.entityData.define(SPECIES_ID, 0);
         this.entityData.define(HATCHING, false);
         this.entityData.define(HEIGHT_MULTIPLIER, 1.0F);
+        this.entityData.define(DATA_PARENTUUID_ID, Optional.empty());
     }
 
 
@@ -144,6 +161,9 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
         p_213281_1_.putInt("Species", this.getSpecies());
         p_213281_1_.putInt("Gender", this.getGender());
         p_213281_1_.putFloat("HeightMultiplier", this.getHeightMultiplier());
+        if (this.getParentUUID() != null) {
+            p_213281_1_.putUUID("Parent", this.getParentUUID());
+        }
     }
 
     public void readAdditionalSaveData(CompoundNBT p_70037_1_) {
@@ -153,6 +173,12 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
         this.setSpecies(p_70037_1_.getInt("Species"));
         this.setGender(p_70037_1_.getInt("Gender"));
         this.setHeightMultiplier(p_70037_1_.getFloat("HeightMultiplier"));
+        UUID uuid;
+        if (p_70037_1_.hasUUID("Parent")) {
+            uuid = p_70037_1_.getUUID("Parent");
+            this.setParentUUID(uuid);
+        }
+
     }
 
     public float getHeightMultiplier() {
@@ -175,9 +201,20 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
     protected void doPush(Entity entity) {
     }
 
+    @Nullable
+    public UUID getParentUUID() {
+        return this.entityData.get(DATA_PARENTUUID_ID).orElse((UUID)null);
+    }
+
+    public void setParentUUID(@Nullable UUID p_184754_1_) {
+        this.entityData.set(DATA_PARENTUUID_ID, Optional.ofNullable(p_184754_1_));
+    }
+
     public void hatchEgg(CreaturesEggEntity egg) {
         if (egg.hatchTime <= 500) {
             egg.setHatching(true);
+        } else {
+            egg.setHatching(false);
         }
         if (--egg.hatchTime <= 0) {
             if (egg.getSpecies() == 0 & !this.level.isClientSide) {
@@ -669,6 +706,76 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
                 if (this.random.nextFloat() < birdie.getHatchChance()) {
                 this.level.addFreshEntity(birdie); }
                 egg.remove();
+            } if (egg.getSpecies() == 35 & !this.level.isClientSide) {
+                BuntingEntity birdie = new BuntingEntity(ModEntityTypes.BUNTING.get(), egg.level);
+
+                if (egg.hasCustomName()) {
+                    birdie.setCustomName(egg.getCustomName());
+                }
+                birdie.setVariant(egg.getVariant());
+                birdie.setGender(egg.getGender());
+                birdie.setHeightMultiplier(this.getHeightMultiplier());
+                birdie.setBaby(true);
+                birdie.setPos(egg.getX(), egg.getY(), egg.getZ());
+                if (this.random.nextFloat() < birdie.getHatchChance()) {
+                    this.level.addFreshEntity(birdie); }
+                egg.remove();
+            } if (egg.getSpecies() == 36 & !this.level.isClientSide) {
+                MonalEntity birdie = new MonalEntity(ModEntityTypes.MONAL.get(), egg.level);
+
+                if (egg.hasCustomName()) {
+                    birdie.setCustomName(egg.getCustomName());
+                }
+                birdie.setVariant(egg.getVariant());
+                birdie.setGender(egg.getGender());
+                birdie.setHeightMultiplier(this.getHeightMultiplier());
+                birdie.setBaby(true);
+                birdie.setPos(egg.getX(), egg.getY(), egg.getZ());
+                if (this.random.nextFloat() < birdie.getHatchChance()) {
+                    this.level.addFreshEntity(birdie); }
+                egg.remove();
+            } if (egg.getSpecies() == 37 & !this.level.isClientSide) {
+                TanagerEntity birdie = new TanagerEntity(ModEntityTypes.TANAGER.get(), egg.level);
+
+                if (egg.hasCustomName()) {
+                    birdie.setCustomName(egg.getCustomName());
+                }
+                birdie.setVariant(egg.getVariant());
+                birdie.setGender(egg.getGender());
+                birdie.setHeightMultiplier(this.getHeightMultiplier());
+                birdie.setBaby(true);
+                birdie.setPos(egg.getX(), egg.getY(), egg.getZ());
+                if (this.random.nextFloat() < birdie.getHatchChance()) {
+                    this.level.addFreshEntity(birdie); }
+                egg.remove();
+            } if (egg.getSpecies() == 38 & !this.level.isClientSide) {
+                FinchEntity birdie = new FinchEntity(ModEntityTypes.FINCH.get(), egg.level);
+
+                if (egg.hasCustomName()) {
+                    birdie.setCustomName(egg.getCustomName());
+                }
+                birdie.setVariant(egg.getVariant());
+                birdie.setGender(egg.getGender());
+                birdie.setHeightMultiplier(this.getHeightMultiplier());
+                birdie.setBaby(true);
+                birdie.setPos(egg.getX(), egg.getY(), egg.getZ());
+                if (this.random.nextFloat() < birdie.getHatchChance()) {
+                    this.level.addFreshEntity(birdie); }
+                egg.remove();
+            } if (egg.getSpecies() == 39 & !this.level.isClientSide) {
+                CapercaillieEntity birdie = new CapercaillieEntity(ModEntityTypes.CAPERCAILLIE.get(), egg.level);
+
+                if (egg.hasCustomName()) {
+                    birdie.setCustomName(egg.getCustomName());
+                }
+                birdie.setVariant(egg.getVariant());
+                birdie.setGender(egg.getGender());
+                birdie.setHeightMultiplier(this.getHeightMultiplier());
+                birdie.setBaby(true);
+                birdie.setPos(egg.getX(), egg.getY(), egg.getZ());
+                if (this.random.nextFloat() < birdie.getHatchChance()) {
+                    this.level.addFreshEntity(birdie); }
+                egg.remove();
             }
             this.level.broadcastEntityEvent(this, (byte)3);
 //           Random random = egg.getRandom();
@@ -715,6 +822,7 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
             return ActionResultType.sidedSuccess(this.level.isClientSide);
         }
         if (itemstack.getItem() == CreaturesItems.FF_GUIDE) {
+            System.out.println(this.getParentUUID());
             Creatures.PROXY.setReferencedMob(this);
             if (this.level.isClientSide) {
                 Creatures.PROXY.openCreaturesGUI(itemstack);
@@ -808,8 +916,18 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
             return new ItemStack(CreaturesItems.LAPWING_EGG);
         } else if (this.getSpecies() == 34) {
             return new ItemStack(CreaturesItems.SKUA_EGG);
-        } else {
-            return null;
+        }  else if (this.getSpecies() == 35) {
+            return new ItemStack(CreaturesItems.BUNTING_EGG);
+        }  else if (this.getSpecies() == 36) {
+            return new ItemStack(CreaturesItems.MONAL_EGG);
+        }  else if (this.getSpecies() == 37) {
+            return new ItemStack(CreaturesItems.TANAGER_EGG);
+        }  else if (this.getSpecies() == 38) {
+            return new ItemStack(CreaturesItems.FINCH_EGG);
+        }   else if (this.getSpecies() == 39) {
+            return new ItemStack(CreaturesItems.CAPERCAILLIE_EGG);
+        }else {
+            return new ItemStack(CreaturesItems.LOVEBIRD_EGG);
         }
     }
 

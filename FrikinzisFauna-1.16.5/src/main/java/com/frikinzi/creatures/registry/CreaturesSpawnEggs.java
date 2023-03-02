@@ -165,5 +165,29 @@ public class CreaturesSpawnEggs {
     public static final RegistryObject<ModSpawnEgg> SKUA_SPAWN_EGG = ITEMS.register("skua_spawn_egg",
             () -> new ModSpawnEgg(() -> ModEntityTypes.SKUA.get(), 6182224, 4011831,
                     new Item.Properties().tab(Creatures.CreaturesItemGroup)));
+    public static final RegistryObject<ModSpawnEgg> BUNTING_SPAWN_EGG = ITEMS.register("bunting_spawn_egg",
+            () -> new ModSpawnEgg(() -> ModEntityTypes.BUNTING.get(), 4138700, 13379110,
+                    new Item.Properties().tab(Creatures.CreaturesItemGroup)));
+    public static final RegistryObject<ModSpawnEgg> MONAL_SPAWN_EGG  = ITEMS.register("monal_spawn_egg",
+            () -> new ModSpawnEgg(() -> ModEntityTypes.MONAL.get(), 1447449, 5493427,
+                    new Item.Properties().tab(Creatures.CreaturesItemGroup)));
+    public static final RegistryObject<ModSpawnEgg> TANAGER_SPAWN_EGG  = ITEMS.register("tanager_spawn_egg",
+            () -> new ModSpawnEgg(() -> ModEntityTypes.TANAGER.get(), 1973286, 11066120,
+                    new Item.Properties().tab(Creatures.CreaturesItemGroup)));
+    public static final RegistryObject<ModSpawnEgg> FINCH_SPAWN_EGG  = ITEMS.register("finch_spawn_egg",
+            () -> new ModSpawnEgg(() -> ModEntityTypes.FINCH.get(), 10590093, 11557643,
+                    new Item.Properties().tab(Creatures.CreaturesItemGroup)));
+    public static final RegistryObject<ModSpawnEgg> VAMPIRE_CRAB_SPAWN_EGG  = ITEMS.register("vampirecrab_spawn_egg",
+            () -> new ModSpawnEgg(() -> ModEntityTypes.VAMPIRECRAB.get(), 1579024, 7024730,
+                    new Item.Properties().tab(Creatures.CreaturesItemGroup)));
+    public static final RegistryObject<ModSpawnEgg> TARANTULA_SPAWN_EGG  = ITEMS.register("tarantula_spawn_egg",
+            () -> new ModSpawnEgg(() -> ModEntityTypes.TARANTULA.get(), 657678, 11427379,
+                    new Item.Properties().tab(Creatures.CreaturesItemGroup)));
+    public static final RegistryObject<ModSpawnEgg> CAPERCAILLIE_SPAWN_EGG  = ITEMS.register("capercaillie_spawn_egg",
+            () -> new ModSpawnEgg(() -> ModEntityTypes.CAPERCAILLIE.get(), 3685214, 16316664,
+                    new Item.Properties().tab(Creatures.CreaturesItemGroup)));
+    public static final RegistryObject<ModSpawnEgg> TIGERBARB_SPAWN_EGG  = ITEMS.register("tigerbarb_spawn_egg",
+            () -> new ModSpawnEgg(() -> ModEntityTypes.TIGERBARB.get(), 10718525, 1250617,
+                    new Item.Properties().tab(Creatures.CreaturesItemGroup)));
 
 }

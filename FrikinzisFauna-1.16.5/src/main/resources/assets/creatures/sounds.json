@@ -155,6 +155,26 @@
     "subtitle": "entity.skua.ambient",
     "sounds": [ "creatures:entity/skua/skua_ambient" ]
   },
+  "entity.bunting.ambient": {
+    "subtitle": "entity.bunting.ambient",
+    "sounds": [ "creatures:entity/bunting/bunting_ambient" ]
+  },
+  "entity.monal.ambient": {
+    "subtitle": "entity.monal.ambient",
+    "sounds": [ "creatures:entity/monal/monal_ambient" ]
+  },
+  "entity.tanager.ambient": {
+    "subtitle": "entity.tanager.ambient",
+    "sounds": [ "creatures:entity/tanager/tanager_ambient" ]
+  },
+  "entity.finch.ambient": {
+    "subtitle": "entity.finch.ambient",
+    "sounds": [ "creatures:entity/finch/finch_ambient" ]
+  },
+  "entity.capercaillie.ambient": {
+  "subtitle": "entity.capercaillie.ambient",
+  "sounds": [ "creatures:entity/capercaillie/capercaillie_ambient" ]
+},
   "entity.egg.hatch": {
     "subtitle": "entity.egg.hatch",
     "sounds": [ "creatures:entity/egg/hatch" ]

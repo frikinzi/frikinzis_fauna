@@ -86,6 +86,7 @@ public class EagleOwlEntity extends RaptorBase implements IAnimatable {
     public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         EagleOwlEntity barnowlentity = (EagleOwlEntity) getType().create(p_241840_1_);
         barnowlentity.setGender(this.random.nextInt(2));
+        barnowlentity.setVariant(this.getVariant());
         barnowlentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return barnowlentity;
     }

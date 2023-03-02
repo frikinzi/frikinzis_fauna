@@ -9,14 +9,15 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 import java.util.Arrays;
 
 public class EggModel extends AnimatedGeoModel<CreaturesEggEntity> {
+    // which egg texture should each entity use - number of each entity defined in ModEntityTypes
     Integer[] ONE = {2,3,5,10,11,13,25,29,31,32,29};
-    Integer[] TWO = {16,19,12};
+    Integer[] TWO = {16,19,12,35};
     Integer[] THREE = {26,1,34,23,33,28};
     Integer[] FOUR = {9};
-    Integer[] FIVE = {14,0,15,13,18};
-    Integer[] SIX = {20,4,27};
-    Integer[] SEVEN = {7,22,6,30,17,24};
-    Integer[] EIGHT = {8,21};
+    Integer[] FIVE = {14,0,15,13,18,38};
+    Integer[] SIX = {20,4,27,37};
+    Integer[] SEVEN = {7,22,6,30,17,24,39};
+    Integer[] EIGHT = {8,21,36};
     @Override
     public ResourceLocation getModelLocation(CreaturesEggEntity object)
     {

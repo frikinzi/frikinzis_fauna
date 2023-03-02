@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
@@ -9,10 +10,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.entity.ai.goal.HurtByTargetGoal;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.entity.ai.goal.TemptGoal;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -43,9 +41,10 @@ public class GooseEntity extends NonTameableFlyingBirdBase implements IAnimatabl
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, false, FOOD_ITEMS));
-        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, PygmyFalconEntity.class, 16.0F, 1.5D, 1.2D));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)));
-        this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
+        this.targetSelector.addGoal(2, new CreaturesBirdEntity.DefendBabyGoal());
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
@@ -173,6 +172,10 @@ public class GooseEntity extends NonTameableFlyingBirdBase implements IAnimatabl
 
     public ItemStack getFoodItem() {
         return new ItemStack(Items.GRASS, 1);
+    }
+
+    public boolean isMonogamous() {
+        return true;
     }
 
 }

@@ -47,6 +47,7 @@ public abstract class RaptorBase extends TameableBirdBase {
         this.targetSelector.removeGoal(PanicGoal);
         }
         this.targetSelector.addGoal(1, (new HurtByTargetGoal()));
+        this.targetSelector.addGoal(1, new CreaturesBirdEntity.DefendBabyGoal());
        // this.targetSelector.addGoal(3, (new BabyHurtGoal(this)).setAlertOthers());
     }
 

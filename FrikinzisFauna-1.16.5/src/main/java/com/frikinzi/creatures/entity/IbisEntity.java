@@ -114,6 +114,10 @@ public class IbisEntity extends NonTameableFlyingBirdBase implements IAnimatable
         }
     }
 
+    public ItemStack getFoodItem() {
+        return new ItemStack(CreaturesItems.CRAB_PINCERS, 1);
+    }
+
     public ResourceLocation getDefaultLootTable() {
         return CreaturesLootTables.SMALL_BIRD_GENERIC;
     }

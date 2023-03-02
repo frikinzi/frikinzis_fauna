@@ -5,6 +5,8 @@ import com.frikinzi.creatures.client.gui.GUICreatures;
 import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.ai.CreaturesFollowGoal;
 import com.frikinzi.creatures.entity.ai.MateGoal;
+import com.frikinzi.creatures.entity.ai.StayCloseToEggGoal;
+import com.frikinzi.creatures.entity.ai.StayCloseToMateGoal;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
@@ -102,6 +104,8 @@ public class TameableBirdBase extends CreaturesBirdEntity implements IFlyingAnim
         this.goalSelector.addGoal(0, new TameableBirdBase.SleepGoal());
         this.targetSelector.addGoal(1, (new CreaturesBirdEntity.HurtByTargetGoal()));
         this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(3, new StayCloseToEggGoal(this, 1.0D));
+        this.goalSelector.addGoal(3, new StayCloseToMateGoal(this, 1.0D));
     }
 
     public int determineVariant() {

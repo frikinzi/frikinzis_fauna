@@ -333,6 +333,51 @@ public class CreaturesConfig {
     public static final ForgeConfigSpec.ConfigValue<Double> skua_hatch_chance;
     public static final ForgeConfigSpec.ConfigValue<Integer> skua_clutch_size;
 
+    public static final ForgeConfigSpec.ConfigValue<Boolean> bunting_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> bunting_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Integer> bunting_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> bunting_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> bunting_hatch_chance;
+    public static final ForgeConfigSpec.ConfigValue<Integer> bunting_clutch_size;
+
+    public static final ForgeConfigSpec.ConfigValue<Boolean> monal_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> monal_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Integer> monal_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> monal_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> monal_hatch_chance;
+    public static final ForgeConfigSpec.ConfigValue<Integer> monal_clutch_size;
+
+    public static final ForgeConfigSpec.ConfigValue<Boolean> tanager_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> tanager_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Integer> tanager_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> tanager_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> tanager_hatch_chance;
+    public static final ForgeConfigSpec.ConfigValue<Integer> tanager_clutch_size;
+
+    public static final ForgeConfigSpec.ConfigValue<Boolean> finch_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> finch_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Integer> finch_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> finch_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> finch_hatch_chance;
+    public static final ForgeConfigSpec.ConfigValue<Integer> finch_clutch_size;
+
+    public static final ForgeConfigSpec.ConfigValue<Boolean> tarantula_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> tarantula_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Integer> tarantula_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> tarantula_max_group;
+
+    public static final ForgeConfigSpec.ConfigValue<Boolean> capercaillie_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> capercaillie_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Integer> capercaillie_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> capercaillie_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> capercaillie_hatch_chance;
+    public static final ForgeConfigSpec.ConfigValue<Integer> capercaillie_clutch_size;
+
+    public static final ForgeConfigSpec.ConfigValue<Boolean> vampirecrab_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> vampirecrab_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Integer> vampirecrab_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> vampirecrab_max_group;
+
     //gameplay
     public static final ForgeConfigSpec.ConfigValue<Boolean> breed_only_variants;
     public static final ForgeConfigSpec.ConfigValue<Boolean> biome_only_variants;
@@ -657,8 +702,8 @@ public class CreaturesConfig {
         swallow_spawn_weight = BUILDER.comment("Spawn weight for swallow").define("Swallow Spawn Weight", 25);
         swallow_min_group = BUILDER.comment("Min group for swallow").define("Swallow Min Group", 3);
         swallow_max_group = BUILDER.comment("Max group for swallow").define("Swallow Max Group", 5);
-        swallow_hatch_chance = BUILDER.comment("Hatch chance for each wild duck egg").define("Wild Duck Hatch Chance", 0.6);
-        swallow_clutch_size = BUILDER.comment("Max egg clutch size for wild ducks").define("Wild Duck Clutch Size", 3);
+        swallow_hatch_chance = BUILDER.comment("Hatch chance for each swallow egg").define("Swallow Hatch Chance", 0.6);
+        swallow_clutch_size = BUILDER.comment("Max egg clutch size for swallows").define("Swallow Clutch Size", 3);
 
         BUILDER.pop();
 
@@ -878,6 +923,79 @@ public class CreaturesConfig {
         skua_max_group = BUILDER.comment("Max group for skua").define("Skua Max Group", 3);
         skua_hatch_chance = BUILDER.comment("Hatch chance for each skua egg").define("Skua Hatch Chance", 0.3);
         skua_clutch_size = BUILDER.comment("Max egg clutch size for skuas").define("Skua Clutch Size", 2);
+
+        BUILDER.pop();
+
+        BUILDER.push("Bunting");
+
+        bunting_spawns = BUILDER.comment("Enable/disable bunting spawns").define("Bunting Spawns", true);
+        bunting_spawn_weight = BUILDER.comment("Spawn weight for buntings").define("Bunting Spawn Weight", 20);
+        bunting_min_group = BUILDER.comment("Min group for bunting").define("Bunting Min Group", 1);
+        bunting_max_group = BUILDER.comment("Max group for bunting").define("Bunting Max Group", 3);
+        bunting_hatch_chance = BUILDER.comment("Hatch chance for each bunting egg").define("Bunting Hatch Chance", 0.4);
+        bunting_clutch_size = BUILDER.comment("Max egg clutch size for bunting").define("Bunting Clutch Size", 4);
+
+        BUILDER.pop();
+
+        BUILDER.push("Monal");
+
+        monal_spawns = BUILDER.comment("Enable/disable monal spawns").define("Monal Spawns", true);
+        monal_spawn_weight = BUILDER.comment("Spawn weight for monals").define("Monal Spawn Weight", 10);
+        monal_min_group = BUILDER.comment("Min group for monal").define("Monal Min Group", 1);
+        monal_max_group = BUILDER.comment("Max group for monal").define("Monal Max Group", 2);
+        monal_hatch_chance = BUILDER.comment("Hatch chance for each monal egg").define("Monal Hatch Chance", 0.3);
+        monal_clutch_size = BUILDER.comment("Max egg clutch size for monal").define("Monal Clutch Size", 5);
+
+        BUILDER.pop();
+
+        BUILDER.push("Tanager");
+
+        tanager_spawns = BUILDER.comment("Enable/disable tanager spawns").define("Tanager Spawns", true);
+        tanager_spawn_weight = BUILDER.comment("Spawn weight for tanagers").define("Tanager Spawn Weight", 20);
+        tanager_min_group = BUILDER.comment("Min group for tanager").define("Tanager Min Group", 3);
+        tanager_max_group = BUILDER.comment("Max group for tanager").define("Tanager Max Group", 5);
+        tanager_hatch_chance = BUILDER.comment("Hatch chance for each tanager egg").define("Tanager Hatch Chance", 0.4);
+        tanager_clutch_size = BUILDER.comment("Max egg clutch size for tanager").define("Tanager Clutch Size", 5);
+
+        BUILDER.pop();
+
+        BUILDER.push("Finch");
+
+        finch_spawns = BUILDER.comment("Enable/disable finch spawns").define("Finch Spawns", true);
+        finch_spawn_weight = BUILDER.comment("Spawn weight for finches").define("Finch Spawn Weight", 20);
+        finch_min_group = BUILDER.comment("Min group for finch").define("Finch Min Group", 3);
+        finch_max_group = BUILDER.comment("Max group for finch").define("Finch Max Group", 5);
+        finch_hatch_chance = BUILDER.comment("Hatch chance for each finch egg").define("Finch Hatch Chance", 0.4);
+        finch_clutch_size = BUILDER.comment("Max egg clutch size for finch").define("Finch Clutch Size", 4);
+
+        BUILDER.pop();
+
+        BUILDER.push("Tarantula");
+
+        tarantula_spawns = BUILDER.comment("Enable/disable tarantula spawns").define("Tarantula Spawns", true);
+        tarantula_spawn_weight = BUILDER.comment("Spawn weight for tarantulas").define("Tarantula Spawn Weight", 20);
+        tarantula_min_group = BUILDER.comment("Min group for tarantula").define("Tarantula Min Group", 1);
+        tarantula_max_group = BUILDER.comment("Max group for tarantula").define("Tarantula Max Group", 1);
+
+        BUILDER.pop();
+
+        BUILDER.push("Capercaillie");
+
+        capercaillie_spawns = BUILDER.comment("Enable/disable capercaillie spawns").define("Capercaillie Spawns", true);
+        capercaillie_spawn_weight = BUILDER.comment("Spawn weight for capercaillies").define("Capercaillie Spawn Weight", 5);
+        capercaillie_min_group = BUILDER.comment("Min group for capercaillie").define("Capercaillie Min Group", 1);
+        capercaillie_max_group = BUILDER.comment("Max group for capercaillie").define("Capercaillie Max Group", 2);
+        capercaillie_hatch_chance = BUILDER.comment("Hatch chance for each capercaillie egg").define("Capercaillie Hatch Chance", 0.6);
+        capercaillie_clutch_size = BUILDER.comment("Max egg clutch size for capercaillie").define("Capercaillie Clutch Size", 7);
+
+        BUILDER.pop();
+
+        BUILDER.push("Vampire Crab");
+
+        vampirecrab_spawns = BUILDER.comment("Enable/disable vampire crab spawns").define("Vampire Crab Spawns", true);
+        vampirecrab_spawn_weight = BUILDER.comment("Spawn weight for vampire crab").define("Vampire Crab Spawn Weight", 25);
+        vampirecrab_min_group = BUILDER.comment("Min group for vampire crab").define("Vampire Crab Min Group", 3);
+        vampirecrab_max_group = BUILDER.comment("Max group for vampire crab").define("Vampire Crab Max Group", 5);
 
         BUILDER.pop();
 

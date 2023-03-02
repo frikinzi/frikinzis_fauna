@@ -50,6 +50,7 @@ public class EggItem extends Item {
         if (compoundnbt != null && compoundnbt.contains("EggHeightMultiplier")) {
             egg.setHeightMultiplier(compoundnbt.getFloat("EggHeightMultiplier"));
         }
+        //System.out.println(this.species);
         p_77659_2_.level.addFreshEntity(egg);
         itemstack.shrink(1);
         return ActionResult.consume(itemstack);

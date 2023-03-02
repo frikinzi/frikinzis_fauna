@@ -55,7 +55,19 @@ public class MateGoal extends Goal {
 
         for (CreaturesBirdEntity animalentity1 : list) {
             if (animalentity1.getGender() != this.bird.getGender() && this.bird.canMate(animalentity1) && this.bird.distanceToSqr(animalentity1) < d0) {
-                animalentity = animalentity1;
+                // monogamous birds with a defined partner should only see their mate as a "Free partner"
+                if ((animalentity1.isMonogamous() && (animalentity1.getMate() != null)) || (this.bird.isMonogamous() && this.bird.getMate() != null)) {
+                    System.out.println("has mate");
+                    if (animalentity1.getMate().isDeadOrDying()) {
+                        animalentity = animalentity1;
+                    }
+                    if (animalentity1.getMate() == this.bird) {
+                        animalentity = animalentity1;
+                    }
+                } else {
+                    animalentity = animalentity1;
+                }
+
                 d0 = this.bird.distanceToSqr(animalentity1);
             }
         }
@@ -71,6 +83,8 @@ public class MateGoal extends Goal {
         this.bird.getLookControl().setLookAt(this.partner, 10.0F, (float)this.bird.getMaxHeadXRot());
         this.bird.getNavigation().moveTo(this.partner, this.speedModifier);
         ++this.loveTime;
+        this.bird.setMateUUID(this.partner.getUUID());
+        this.partner.setMateUUID(this.bird.getUUID());
         if (this.loveTime >= 60 && this.bird.distanceToSqr(this.partner) < 9.0D) {
             this.layEgg((ServerWorld)this.level);
         }
@@ -87,11 +101,13 @@ public class MateGoal extends Goal {
             this.bird.resetLove();
             this.partner.resetLove();
             CreaturesBirdEntity mother;
+
             if (this.bird.getGender() == 0) {
                 mother = this.bird;
             } else {
                 mother = this.partner;
             }
+            egg.setParentUUID(mother.getUUID());
 
             float f = (float)(this.bird.getRandom().nextGaussian() * 0.05 + ((this.bird.getHeightMultiplier() + this.partner.getHeightMultiplier())/2));
             egg.setHeightMultiplier(f);

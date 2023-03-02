@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
 import com.frikinzi.creatures.registry.CreaturesItems;
@@ -57,6 +58,7 @@ public class SkuaEntity extends NonTameableFlyingBirdBase implements IAnimatable
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)));
         this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, true));
         this.targetSelector.addGoal(2, new SkuaEntity.AttackBabyGoal());
+        this.targetSelector.addGoal(2, new CreaturesBirdEntity.DefendBabyGoal());
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
@@ -131,7 +133,7 @@ public class SkuaEntity extends NonTameableFlyingBirdBase implements IAnimatable
     }
 
     public ResourceLocation getDefaultLootTable() {
-        return CreaturesLootTables.SMALL_BIRD_GENERIC;
+        return CreaturesLootTables.LARGE_BIRD_GENERIC;
     }
 
     @Override
@@ -177,6 +179,11 @@ public class SkuaEntity extends NonTameableFlyingBirdBase implements IAnimatable
 
     public int getClutchSize() {
         return this.random.nextInt(CreaturesConfig.skua_clutch_size.get());
+    }
+
+    @Override
+    public boolean isMonogamous() {
+        return true;
     }
 
 }

@@ -5,10 +5,12 @@ import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
 import com.google.common.collect.Sets;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.TemptGoal;
@@ -17,12 +19,18 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.BiomeDictionary;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -31,11 +39,12 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+import java.util.Random;
 import java.util.Set;
 
 public class SparrowEntity extends NonTameableFlyingBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.BEETROOT_SEEDS, Items.PUMPKIN_SEEDS);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.BEETROOT_SEEDS, Items.PUMPKIN_SEEDS, Items.MELON_SEEDS);
 
     public SparrowEntity(EntityType<? extends SparrowEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -84,11 +93,15 @@ public class SparrowEntity extends NonTameableFlyingBirdBase implements IAnimata
 
     @Override
     public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-        SparrowEntity rollerentity = (SparrowEntity) getType().create(p_241840_1_);
-        rollerentity.setVariant(this.getVariant());
-        rollerentity.setGender(this.random.nextInt(2));
-        rollerentity.setHeightMultiplier(getSpawnEggOffspringHeight());
-        return rollerentity;
+        SparrowEntity sparrowentity = (SparrowEntity) getType().create(p_241840_1_);
+        sparrowentity.setVariant(this.getVariant());
+        sparrowentity.setGender(this.random.nextInt(2));
+        sparrowentity.setHeightMultiplier(getSpawnEggOffspringHeight());
+        return sparrowentity;
+    }
+
+    public static boolean checkSparrowSpawnRules(EntityType<? extends AnimalEntity> p_223316_0_, IWorld p_223316_1_, SpawnReason p_223316_2_, BlockPos p_223316_3_, Random p_223316_4_) {
+        return p_223316_1_.getBlockState(p_223316_3_.below()).is(Blocks.SAND) || p_223316_1_.getBlockState(p_223316_3_.below()).is(Blocks.GRASS_BLOCK) && p_223316_1_.getRawBrightness(p_223316_3_, 0) > 8;
     }
 
     @Override
@@ -107,7 +120,7 @@ public class SparrowEntity extends NonTameableFlyingBirdBase implements IAnimata
     }
 
     public Set<Item> getTamedFood() {
-            return TAME_FOOD = Sets.newHashSet(Items.WHEAT_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
+            return TAME_FOOD = Sets.newHashSet(Items.WHEAT_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS, Items.MELON_SEEDS);
     }
 
     protected SoundEvent getAmbientSound() {
@@ -115,6 +128,38 @@ public class SparrowEntity extends NonTameableFlyingBirdBase implements IAnimata
         return CreaturesSound.SPARROW_AMBIENT; } else {
             return null;
         }
+    }
+
+
+    @Override
+    public int methodofDeterminingVariant(IWorld p_213610_1_) {
+        if (CreaturesConfig.biome_only_variants.get()) {
+            Biome biome = p_213610_1_.getBiome(this.blockPosition());
+            RegistryKey<Biome> biomeKey = RegistryKey.create(Registry.BIOME_REGISTRY, biome.getRegistryName());
+            Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biomeKey);
+            int i = this.random.nextInt(100);
+            if (types.contains(BiomeDictionary.Type.DRY)) {
+                if (i < 50) {
+                    return 2;
+                } else {
+                    return 3;
+                }
+            } if (types.contains(BiomeDictionary.Type.JUNGLE)) {
+                return 4;
+            }
+            else {
+                if (i < 25) {
+                    return 1;
+                } else if (i < 50) {
+                    return 5;
+                } else {
+                    return 6;
+                }
+            }
+        } else {
+            return this.random.nextInt(determineVariant());
+        }
+
     }
 
 

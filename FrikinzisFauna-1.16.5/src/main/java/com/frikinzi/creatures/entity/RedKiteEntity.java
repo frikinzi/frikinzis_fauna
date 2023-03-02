@@ -147,4 +147,9 @@ public class RedKiteEntity extends RaptorBase implements IAnimatable {
         return this.random.nextInt(CreaturesConfig.red_kite_clutch_size.get());
     }
 
+    @Override
+    public boolean isMonogamous() {
+        return true;
+    }
+
 }

@@ -162,6 +162,11 @@ public class MandarinDuckEntity extends NonTameableBirdBase implements IAnimatab
         return Double.valueOf(CreaturesConfig.mandarin_duck_hatch_chance.get()).floatValue();
     }
 
+    @Override
+    public boolean isMonogamous() {
+        return true;
+    }
+
     public int getClutchSize() {
         return this.random.nextInt(CreaturesConfig.mandarin_duck_clutch_size.get());
     }

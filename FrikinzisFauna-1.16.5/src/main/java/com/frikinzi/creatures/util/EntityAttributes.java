@@ -62,6 +62,9 @@ public class EntityAttributes {
         EntitySpawnPlacementRegistry.register(ModEntityTypes.RED_SNAPPER.get(),
                 EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
                 FishBase::checkFishSpawnRules);
+        EntitySpawnPlacementRegistry.register(ModEntityTypes.TIGERBARB.get(),
+                EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
+                FishBase::checkFishSpawnRules);
         EntitySpawnPlacementRegistry.register(ModEntityTypes.LOVEBIRD.get(),
                 EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING,
                 TameableBirdBase::checkBirdSpawnRules);
@@ -139,7 +142,7 @@ public class EntityAttributes {
                 TameableBirdBase::checkBirdSpawnRules);
         EntitySpawnPlacementRegistry.register(ModEntityTypes.SPARROW.get(),
                 EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING,
-                TameableBirdBase::checkBirdSpawnRules);
+                SparrowEntity::checkSparrowSpawnRules);
         EntitySpawnPlacementRegistry.register(ModEntityTypes.BUSHTIT.get(),
                 EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING,
                 TameableBirdBase::checkBirdSpawnRules);
@@ -156,6 +159,42 @@ public class EntityAttributes {
                 EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING,
                 TameableBirdBase::checkBirdSpawnRules);
         EntitySpawnPlacementRegistry.register(ModEntityTypes.GOOSE.get(),
+                EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING,
+                TameableBirdBase::checkBirdSpawnRules);
+        EntitySpawnPlacementRegistry.register(ModEntityTypes.OSPREY.get(),
+                EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING,
+                TameableBirdBase::checkBirdSpawnRules);
+        EntitySpawnPlacementRegistry.register(ModEntityTypes.KINGFISHER.get(),
+                EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING,
+                TameableBirdBase::checkBirdSpawnRules);
+        EntitySpawnPlacementRegistry.register(ModEntityTypes.PELICAN.get(),
+                EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING,
+                PelicanEntity::checkPelicanSpawnRules);
+        EntitySpawnPlacementRegistry.register(ModEntityTypes.LAPWING.get(),
+                EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING,
+                TameableBirdBase::checkBirdSpawnRules);
+        EntitySpawnPlacementRegistry.register(ModEntityTypes.SKUA.get(),
+                EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING,
+                TameableBirdBase::checkBirdSpawnRules);
+        EntitySpawnPlacementRegistry.register(ModEntityTypes.BUNTING.get(),
+                EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING,
+                TameableBirdBase::checkBirdSpawnRules);
+        EntitySpawnPlacementRegistry.register(ModEntityTypes.MONAL.get(),
+                EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING,
+                TameableBirdBase::checkBirdSpawnRules);
+        EntitySpawnPlacementRegistry.register(ModEntityTypes.TANAGER.get(),
+                EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING,
+                TameableBirdBase::checkBirdSpawnRules);
+        EntitySpawnPlacementRegistry.register(ModEntityTypes.FINCH.get(),
+                EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING,
+                TameableBirdBase::checkBirdSpawnRules);
+        EntitySpawnPlacementRegistry.register(ModEntityTypes.VAMPIRECRAB.get(),
+                EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
+                GhostCrabEntity::checkAnimalSpawnRules);
+        EntitySpawnPlacementRegistry.register(ModEntityTypes.TARANTULA.get(),
+                EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
+                GhostCrabEntity::checkAnimalSpawnRules);
+        EntitySpawnPlacementRegistry.register(ModEntityTypes.CAPERCAILLIE.get(),
                 EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING,
                 TameableBirdBase::checkBirdSpawnRules);
 
@@ -212,6 +251,14 @@ public class EntityAttributes {
         event.put(ModEntityTypes.PELICAN.get(), PelicanEntity.createAttributes().build());
         event.put(ModEntityTypes.LAPWING.get(), LapwingEntity.createAttributes().build());
         event.put(ModEntityTypes.SKUA.get(), SkuaEntity.createAttributes().build());
+        event.put(ModEntityTypes.BUNTING.get(), BuntingEntity.createAttributes().build());
+        event.put(ModEntityTypes.MONAL.get(), MonalEntity.createAttributes().build());
+        event.put(ModEntityTypes.TANAGER.get(), TanagerEntity.createAttributes().build());
+        event.put(ModEntityTypes.FINCH.get(), FinchEntity.createAttributes().build());
+        event.put(ModEntityTypes.VAMPIRECRAB.get(), FinchEntity.createAttributes().build());
+        event.put(ModEntityTypes.TARANTULA.get(), TarantulaEntity.createAttributes().build());
+        event.put(ModEntityTypes.CAPERCAILLIE.get(), CapercaillieEntity.createAttributes().build());
+        event.put(ModEntityTypes.TIGERBARB.get(), TigerBarbEntity.createAttributes().build());
         event.put(ModEntityTypes.EGG.get(), CreaturesEggEntity.createAttributes().build());
     }
 

@@ -1,7 +1,9 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.entity.ai.StayCloseToEggGoal;
 import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
+import com.frikinzi.creatures.entity.base.NonTameableBirdBase;
 import com.frikinzi.creatures.entity.base.TameableBirdBase;
 import com.frikinzi.creatures.entity.base.TameableWalkingBirdBase;
 import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
@@ -92,8 +94,10 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
             this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
             this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)));
             this.targetSelector.removeGoal(PanicGoal);
+            this.goalSelector.addGoal(1, new PeafowlEntity.DisplayGoal());
+            //this.targetSelector.addGoal(2, new CreaturesBirdEntity.DefendBabyGoal());
         }
-        this.goalSelector.addGoal(1, new PeafowlEntity.DisplayGoal());
+
     }
 
     @Override
@@ -109,7 +113,7 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 12.0D).add(Attributes.MOVEMENT_SPEED, (double)0.2F).add(Attributes.ATTACK_DAMAGE, 1.0D);
+        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 12.0D).add(Attributes.MOVEMENT_SPEED, (double)0.2F).add(Attributes.ATTACK_DAMAGE, 2.0D);
     }
 
     public int determineVariant() {
@@ -235,6 +239,7 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
         }
 
         public void start() {
+            PeafowlEntity.this.getNavigation().stop();
             PeafowlEntity.this.setOnDisplay(true);
         }
 
@@ -244,11 +249,7 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
 
         public boolean canContinueToUse() {
             List<PeafowlEntity> list = PeafowlEntity.this.level.getNearbyEntities(PeafowlEntity.class, this.predicate, PeafowlEntity.this, PeafowlEntity.this.getBoundingBox().inflate(16.0D, 4.0D, 16.0D));
-            if (list.isEmpty() || PeafowlEntity.this.isSleeping()) {
-                return false;
-            } else {
-                return true;
-            }
+            return !(list.isEmpty() || PeafowlEntity.this.isSleeping() || PeafowlEntity.this.isInSittingPose() || PeafowlEntity.this.isBaby());
         }
 
     }

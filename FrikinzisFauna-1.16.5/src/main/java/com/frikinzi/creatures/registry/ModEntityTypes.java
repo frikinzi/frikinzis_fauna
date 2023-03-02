@@ -4,6 +4,7 @@ import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.entity.*;
 import com.frikinzi.creatures.entity.ArowanaEntity;
 import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -12,7 +13,11 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ModEntityTypes {
+
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES,
             Creatures.MODID);
 
@@ -220,6 +225,38 @@ public class ModEntityTypes {
             () -> EntityType.Builder.of(SkuaEntity::new, EntityClassification.CREATURE).sized(1F, 1F)
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "skua").toString()));
+    public static final RegistryObject<EntityType<BuntingEntity>> BUNTING = ENTITY_TYPES.register("bunting",
+            () -> EntityType.Builder.of(BuntingEntity::new, EntityClassification.CREATURE).sized(1F, 1F)
+                    .clientTrackingRange(9)
+                    .build(new ResourceLocation(Creatures.MODID, "bunting").toString()));
+    public static final RegistryObject<EntityType<MonalEntity>> MONAL = ENTITY_TYPES.register("monal",
+            () -> EntityType.Builder.of(MonalEntity::new, EntityClassification.CREATURE).sized(1F, 1F)
+                    .clientTrackingRange(9)
+                    .build(new ResourceLocation(Creatures.MODID, "monal").toString()));
+    public static final RegistryObject<EntityType<TanagerEntity>> TANAGER = ENTITY_TYPES.register("tanager",
+            () -> EntityType.Builder.of(TanagerEntity::new, EntityClassification.CREATURE).sized(1F, 1F)
+                    .clientTrackingRange(9)
+                    .build(new ResourceLocation(Creatures.MODID, "tanager").toString()));
+    public static final RegistryObject<EntityType<FinchEntity>> FINCH = ENTITY_TYPES.register("finch",
+            () -> EntityType.Builder.of(FinchEntity::new, EntityClassification.CREATURE).sized(1F, 1F)
+                    .clientTrackingRange(9)
+                    .build(new ResourceLocation(Creatures.MODID, "finch").toString()));
+    public static final RegistryObject<EntityType<VampireCrabEntity>> VAMPIRECRAB = ENTITY_TYPES.register("vampirecrab",
+            () -> EntityType.Builder.of(VampireCrabEntity::new, EntityClassification.CREATURE).sized(0.5F, 0.5F)
+                    .clientTrackingRange(9)
+                    .build(new ResourceLocation(Creatures.MODID, "vampirecrab").toString()));
+    public static final RegistryObject<EntityType<TarantulaEntity>> TARANTULA = ENTITY_TYPES.register("tarantula",
+            () -> EntityType.Builder.of(TarantulaEntity::new, EntityClassification.CREATURE).sized(0.5F, 0.5F)
+                    .clientTrackingRange(9)
+                    .build(new ResourceLocation(Creatures.MODID, "tarantula").toString()));
+    public static final RegistryObject<EntityType<CapercaillieEntity>> CAPERCAILLIE = ENTITY_TYPES.register("capercaillie",
+            () -> EntityType.Builder.of(CapercaillieEntity::new, EntityClassification.CREATURE).sized(1F, 1F)
+                    .clientTrackingRange(9)
+                    .build(new ResourceLocation(Creatures.MODID, "capercaillie").toString()));
+    public static final RegistryObject<EntityType<TigerBarbEntity>> TIGERBARB = ENTITY_TYPES.register("tigerbarb",
+            () -> EntityType.Builder.of(TigerBarbEntity::new, EntityClassification.WATER_AMBIENT).sized(0.5f, 0.5F)
+                    .clientTrackingRange(9)
+                    .build(new ResourceLocation(Creatures.MODID, "tigerbarb").toString()));
 
     public static final RegistryObject<EntityType<CreaturesEggEntity>> EGG = ENTITY_TYPES.register("egg",
             () -> EntityType.Builder.of(CreaturesEggEntity::new, EntityClassification.CREATURE).sized(0.3F, 0.3F)
@@ -298,7 +335,18 @@ public class ModEntityTypes {
             return 33;
         } else if (T instanceof SkuaEntity) {
             return 34;
-        } else {
+        }  else if (T instanceof BuntingEntity) {
+            return 35;
+        }  else if (T instanceof MonalEntity) {
+            return 36;
+        }  else if (T instanceof TanagerEntity) {
+            return 37;
+        }  else if (T instanceof FinchEntity) {
+            return 38;
+        }  else if (T instanceof CapercaillieEntity) {
+            return 39;
+        }
+        else {
             return 0;
         }
     }

@@ -154,4 +154,9 @@ public class RollerEntity extends NonTameableFlyingBirdBase implements IAnimatab
         return this.random.nextInt(CreaturesConfig.roller_clutch_size.get());
     }
 
+    @Override
+    public boolean isMonogamous() {
+        return true;
+    }
+
 }
