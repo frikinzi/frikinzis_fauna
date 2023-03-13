@@ -95,6 +95,14 @@ public class TameableWalkingBirdBase extends CreaturesBirdEntity {
         return 1;
     }
 
+    public void aiStep() {
+        super.aiStep();
+        Vector3d vector3d = this.getDeltaMovement();
+        if (!this.onGround && vector3d.y < 0.0D) {
+            this.setDeltaMovement(vector3d.multiply(1.0D, 0.6D, 1.0D));
+        }
+    }
+
 
     public ActionResultType mobInteract(PlayerEntity p_230254_1_, Hand p_230254_2_) {
         ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);

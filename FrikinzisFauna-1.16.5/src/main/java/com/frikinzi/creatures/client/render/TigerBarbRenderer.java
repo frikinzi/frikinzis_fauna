@@ -29,6 +29,9 @@ public class TigerBarbRenderer extends GeoEntityRenderer<TigerBarbEntity>{
         } else {
             multiplier = 1.0F;
         }
+        if (animatable.isBaby()) {
+            stackIn.scale(0.5F, 0.5F, 0.5F);
+        }
         stackIn.scale(0.8F * multiplier, 0.8F * multiplier, 0.8F * multiplier);
     }
 }

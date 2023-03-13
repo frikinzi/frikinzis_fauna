@@ -3,11 +3,14 @@ package com.frikinzi.creatures.registry;
 import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.entity.*;
 import com.frikinzi.creatures.entity.ArowanaEntity;
+import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
+import com.frikinzi.creatures.entity.egg.CreaturesRoeEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.fish.AbstractFishEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -62,7 +65,7 @@ public class ModEntityTypes {
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "raven").toString()));
     public static final RegistryObject<EntityType<ShrimpEntity>> SHRIMP = ENTITY_TYPES.register("shrimp",
-            () -> EntityType.Builder.of(ShrimpEntity::new, EntityClassification.WATER_AMBIENT).sized(0.8F, 0.8F)
+            () -> EntityType.Builder.of(ShrimpEntity::new, EntityClassification.WATER_AMBIENT).sized(0.5F, 0.5F)
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "shrimp").toString()));
     public static final RegistryObject<EntityType<DoveEntity>> DOVE = ENTITY_TYPES.register("dove",
@@ -70,7 +73,7 @@ public class ModEntityTypes {
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "dove").toString()));
     public static final RegistryObject<EntityType<RedKiteEntity>> RED_KITE = ENTITY_TYPES.register("red_kite",
-            () -> EntityType.Builder.of(RedKiteEntity::new, EntityClassification.CREATURE).sized(1F, 1F)
+            () -> EntityType.Builder.of(RedKiteEntity::new, EntityClassification.CREATURE).sized(0.8F, 0.8F)
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "red_kite").toString()));
     public static final RegistryObject<EntityType<GoldenEagleEntity>> GOLDEN_EAGLE = ENTITY_TYPES.register("golden_eagle",
@@ -253,15 +256,64 @@ public class ModEntityTypes {
             () -> EntityType.Builder.of(CapercaillieEntity::new, EntityClassification.CREATURE).sized(1F, 1F)
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "capercaillie").toString()));
+    public static final RegistryObject<EntityType<PheasantEntity>> PHEASANT = ENTITY_TYPES.register("pheasant",
+            () -> EntityType.Builder.of(PheasantEntity::new, EntityClassification.CREATURE).sized(1F, 1F)
+                    .clientTrackingRange(9)
+                    .build(new ResourceLocation(Creatures.MODID, "pheasant").toString()));
     public static final RegistryObject<EntityType<TigerBarbEntity>> TIGERBARB = ENTITY_TYPES.register("tigerbarb",
             () -> EntityType.Builder.of(TigerBarbEntity::new, EntityClassification.WATER_AMBIENT).sized(0.5f, 0.5F)
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "tigerbarb").toString()));
+    public static final RegistryObject<EntityType<ArapaimaEntity>> ARAPAIMA = ENTITY_TYPES.register("arapaima",
+            () -> EntityType.Builder.of(ArapaimaEntity::new, EntityClassification.WATER_AMBIENT).sized(2f, 1F)
+                    .clientTrackingRange(9)
+                    .build(new ResourceLocation(Creatures.MODID, "arapaima").toString()));
 
     public static final RegistryObject<EntityType<CreaturesEggEntity>> EGG = ENTITY_TYPES.register("egg",
             () -> EntityType.Builder.of(CreaturesEggEntity::new, EntityClassification.CREATURE).sized(0.3F, 0.3F)
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "egg").toString()));
+    public static final RegistryObject<EntityType<CreaturesRoeEntity>> ROE = ENTITY_TYPES.register("roe",
+            () -> EntityType.Builder.of(CreaturesRoeEntity::new, EntityClassification.CREATURE).sized(0.3F, 0.3F)
+                    .clientTrackingRange(9)
+                    .build(new ResourceLocation(Creatures.MODID, "roe").toString()));
+
+    public static int getIntFromFishEntity(AbstractFishEntity T) {
+        if (T instanceof KoiEntity) {
+            return 0;
+        } else if (T instanceof DottybackEntity) {
+            return 1;
+        } else if (T instanceof PikeEntity) {
+            return 2;
+        } else if (T instanceof ShrimpEntity) {
+            return 3;
+        } else if (T instanceof GuppyEntity) {
+            return 4;
+        } else if (T instanceof GouramiEntity) {
+            return 5;
+        } else if (T instanceof ArowanaEntity) {
+            return 6;
+        } else if (T instanceof GoldfishEntity) {
+            return 7;
+        } else if (T instanceof RanchuEntity) {
+            return 8;
+        } else if (T instanceof FireGobyEntity) {
+            return 9;
+        } else if (T instanceof BlueTangEntity) {
+            return 10;
+        } else if (T instanceof FlameAngelfishEntity) {
+            return 11;
+        } else if (T instanceof TroutEntity) {
+            return 12;
+        } else if (T instanceof TigerBarbEntity) {
+            return 13;
+        } else if (T instanceof RedSnapperEntity) {
+            return 14;
+        } else if (T instanceof ArapaimaEntity) {
+            return 15;
+        }
+        return 0;
+    }
 
     public static int getIntFromBirdEntity(AnimalEntity T) {
         if (T instanceof LovebirdEntity) {
@@ -345,6 +397,8 @@ public class ModEntityTypes {
             return 38;
         }  else if (T instanceof CapercaillieEntity) {
             return 39;
+        }  else if (T instanceof PheasantEntity) {
+            return 40;
         }
         else {
             return 0;

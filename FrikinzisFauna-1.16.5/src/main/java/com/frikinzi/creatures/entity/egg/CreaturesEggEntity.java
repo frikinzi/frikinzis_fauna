@@ -776,6 +776,20 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
                 if (this.random.nextFloat() < birdie.getHatchChance()) {
                     this.level.addFreshEntity(birdie); }
                 egg.remove();
+            } if (egg.getSpecies() == 40 & !this.level.isClientSide) {
+                PheasantEntity birdie = new PheasantEntity(ModEntityTypes.PHEASANT.get(), egg.level);
+
+                if (egg.hasCustomName()) {
+                    birdie.setCustomName(egg.getCustomName());
+                }
+                birdie.setVariant(egg.getVariant());
+                birdie.setGender(egg.getGender());
+                birdie.setHeightMultiplier(this.getHeightMultiplier());
+                birdie.setBaby(true);
+                birdie.setPos(egg.getX(), egg.getY(), egg.getZ());
+                if (this.random.nextFloat() < birdie.getHatchChance()) {
+                    this.level.addFreshEntity(birdie); }
+                egg.remove();
             }
             this.level.broadcastEntityEvent(this, (byte)3);
 //           Random random = egg.getRandom();
@@ -926,7 +940,9 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
             return new ItemStack(CreaturesItems.FINCH_EGG);
         }   else if (this.getSpecies() == 39) {
             return new ItemStack(CreaturesItems.CAPERCAILLIE_EGG);
-        }else {
+        }    else if (this.getSpecies() == 40) {
+            return new ItemStack(CreaturesItems.PHEASANT_EGG);
+        } else {
             return new ItemStack(CreaturesItems.LOVEBIRD_EGG);
         }
     }

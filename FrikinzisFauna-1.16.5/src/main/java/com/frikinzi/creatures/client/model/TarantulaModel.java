@@ -15,7 +15,12 @@ public class TarantulaModel extends AnimatedGeoModel<TarantulaEntity> {
     @Override
     public ResourceLocation getTextureLocation(TarantulaEntity object)
     {
-
+        if (object.isBaby()) {
+            if (object.getVariant() == 14) {
+                return new ResourceLocation(Creatures.MODID, "textures/entity/tarantula/tarantulababy2.png");
+            }
+            return new ResourceLocation(Creatures.MODID, "textures/entity/tarantula/tarantulababy.png");
+        }
         return new ResourceLocation(Creatures.MODID, "textures/entity/tarantula/tarantula" + object.getVariant() + ".png");
     }
 

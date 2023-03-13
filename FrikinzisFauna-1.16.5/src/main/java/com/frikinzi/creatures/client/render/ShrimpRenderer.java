@@ -30,6 +30,9 @@ public class ShrimpRenderer extends GeoEntityRenderer<ShrimpEntity>{
         } else {
             multiplier = 1.0F;
         }
+        if (animatable.isBaby()) {
+            stackIn.scale(0.6F * multiplier, 0.6F * multiplier, 0.6F * multiplier);
+        }
         stackIn.scale(1F * multiplier, 1F * multiplier, 1F * multiplier);
     }
 }

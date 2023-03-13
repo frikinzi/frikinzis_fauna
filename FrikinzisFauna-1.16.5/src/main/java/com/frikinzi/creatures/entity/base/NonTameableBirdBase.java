@@ -23,6 +23,7 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
@@ -131,6 +132,14 @@ public class NonTameableBirdBase extends CreaturesBirdEntity {
         this.setSleeping(p_70037_1_.getBoolean("Sleeping"));
         this.setVariant(p_70037_1_.getInt("Variant"));
         this.setGender(p_70037_1_.getInt("Gender"));
+    }
+
+    public void aiStep() {
+        super.aiStep();
+        Vector3d vector3d = this.getDeltaMovement();
+        if (!this.onGround && vector3d.y < 0.0D) {
+            this.setDeltaMovement(vector3d.multiply(1.0D, 0.6D, 1.0D));
+        }
     }
 
     public boolean isSleeping() {

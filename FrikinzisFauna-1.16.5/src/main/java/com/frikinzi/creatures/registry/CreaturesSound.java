@@ -52,6 +52,7 @@ public class CreaturesSound {
     public static final SoundEvent MONAL_AMBIENT = createSoundEvent("entity.monal.ambient");
     public static final SoundEvent FINCH_AMBIENT = createSoundEvent("entity.finch.ambient");
     public static final SoundEvent CAPERCAILLIE_AMBIENT = createSoundEvent("entity.capercaillie.ambient");
+    public static final SoundEvent PHEASANT_AMBIENT = createSoundEvent("entity.pheasant.ambient");
     public static final SoundEvent EGG_HATCH = createSoundEvent("entity.egg.hatch");
 
     private static SoundEvent createSoundEvent(final String soundName) {

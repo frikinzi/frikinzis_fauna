@@ -8,6 +8,7 @@ import com.frikinzi.creatures.item.ModSpawnEgg;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSpawnEggs;
 import com.frikinzi.creatures.registry.ModEntityTypes;
+import com.frikinzi.creatures.util.FFLootModifier;
 import com.frikinzi.creatures.util.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -16,7 +17,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SpawnEggItem;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -36,6 +39,7 @@ import org.apache.logging.log4j.Logger;
 import software.bernie.geckolib3.GeckoLib;
 import software.bernie.geckolib3.network.GeckoLibNetwork;
 
+import javax.annotation.Nonnull;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -116,6 +120,17 @@ public class Creatures
         @SubscribeEvent
         public static void onRegisterEntities(final RegistryEvent.Register<EntityType<?>> event) {
             ModSpawnEgg.initUnaddedEggs();
+        }
+
+        @SubscribeEvent
+        public static void registerModifierSerializers(@Nonnull final RegistryEvent.Register<GlobalLootModifierSerializer<?>>
+                                                               event) {
+            event.getRegistry().registerAll(
+                    new FFLootModifier.Serializer().setRegistryName
+                            (new ResourceLocation(Creatures.MODID,"mealworms_dirt")),
+                    new FFLootModifier.Serializer().setRegistryName
+                            (new ResourceLocation(Creatures.MODID,"mealworms_farmland"))
+            );
         }
     }
 

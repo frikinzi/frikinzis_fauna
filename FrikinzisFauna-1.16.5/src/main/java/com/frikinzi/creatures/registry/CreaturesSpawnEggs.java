@@ -189,5 +189,11 @@ public class CreaturesSpawnEggs {
     public static final RegistryObject<ModSpawnEgg> TIGERBARB_SPAWN_EGG  = ITEMS.register("tigerbarb_spawn_egg",
             () -> new ModSpawnEgg(() -> ModEntityTypes.TIGERBARB.get(), 10718525, 1250617,
                     new Item.Properties().tab(Creatures.CreaturesItemGroup)));
+    public static final RegistryObject<ModSpawnEgg> PHEASANT_SPAWN_EGG  = ITEMS.register("pheasant_spawn_egg",
+            () -> new ModSpawnEgg(() -> ModEntityTypes.PHEASANT.get(), 16306176, 11013921,
+                    new Item.Properties().tab(Creatures.CreaturesItemGroup)));
+    public static final RegistryObject<ModSpawnEgg> ARAPAIMA_SPAWN_EGG  = ITEMS.register("arapaima_spawn_egg",
+            () -> new ModSpawnEgg(() -> ModEntityTypes.ARAPAIMA.get(), 4739385, 11620159,
+                    new Item.Properties().tab(Creatures.CreaturesItemGroup)));
 
 }

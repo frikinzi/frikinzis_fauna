@@ -70,6 +70,10 @@ abstract public class AbstractCrabBase extends AnimalEntity {
         return new ItemStack(Items.DEAD_BUSH, 1);
     }
 
+    public String getGenderString() {
+        return "Null";
+    }
+
 
     protected void defineSynchedData() {
         super.defineSynchedData();

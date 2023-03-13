@@ -3,18 +3,22 @@ package com.frikinzi.creatures.entity;
 import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
+import com.frikinzi.creatures.util.CreaturesLootTables;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootTables;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
@@ -52,6 +56,8 @@ public class FireGobyEntity extends FishBase implements IAnimatable {
             }
             if (p_213386_5_.contains("BucketHeightMultiplier")) {
                 this.setHeightMultiplier(p_213386_5_.getFloat("BucketHeightMultiplier"));
+            } if (p_213386_5_.contains("Age")) {
+                this.setAge(p_213386_5_.getInt("Age"));
             }
             return p_213386_4_;
         }
@@ -131,5 +137,15 @@ public class FireGobyEntity extends FishBase implements IAnimatable {
     public static AttributeModifierMap.MutableAttribute createAttributes() {
         return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 8.0D).add(Attributes.MOVEMENT_SPEED, 0.1D);
     }
+
+    public Item getFoodItem() {
+        return CreaturesItems.RAW_SHRIMP;
+    }
+
+    public float getHatchChance() {
+        return Double.valueOf(CreaturesConfig.fire_goby_hatch_chance.get()).floatValue();
+    }
+
+
 
 }

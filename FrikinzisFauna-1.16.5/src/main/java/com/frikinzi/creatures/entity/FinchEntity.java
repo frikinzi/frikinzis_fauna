@@ -135,7 +135,7 @@ public class FinchEntity extends TameableBirdBase implements IAnimatable {
     }
 
     public ResourceLocation getDefaultLootTable() {
-        return CreaturesLootTables.PARROT;
+        return CreaturesLootTables.SMALL_BIRD_GENERIC;
     }
 
     @Override

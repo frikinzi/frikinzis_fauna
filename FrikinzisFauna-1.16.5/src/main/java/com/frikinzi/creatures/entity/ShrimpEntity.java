@@ -2,6 +2,7 @@ package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.FishBase;
+import com.frikinzi.creatures.entity.egg.CreaturesRoeEntity;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.util.CreaturesLootTables;
 import net.minecraft.entity.EntityType;
@@ -10,19 +11,23 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -32,6 +37,7 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class ShrimpEntity extends FishBase implements IAnimatable {
     private static final DataParameter<Integer> DATA_VARIANT_ID = EntityDataManager.defineId(ShrimpEntity.class, DataSerializers.INT);
@@ -43,7 +49,7 @@ public class ShrimpEntity extends FishBase implements IAnimatable {
     @Nullable
     public ILivingEntityData finalizeSpawn(IServerWorld p_213386_1_, DifficultyInstance p_213386_2_, SpawnReason p_213386_3_, @Nullable ILivingEntityData p_213386_4_, @Nullable CompoundNBT p_213386_5_) {
         if (p_213386_3_ != SpawnReason.BUCKET) {
-            this.setVariant(this.random.nextInt(9));
+            this.setVariant(4);
             float f = (float) (this.random.nextGaussian() * CreaturesConfig.height_standard_deviation.get() + CreaturesConfig.height_base_multiplier.get());
             this.setHeightMultiplier(f);
         }
@@ -54,6 +60,8 @@ public class ShrimpEntity extends FishBase implements IAnimatable {
             }
             if (p_213386_5_.contains("BucketHeightMultiplier")) {
                 this.setHeightMultiplier(p_213386_5_.getFloat("BucketHeightMultiplier"));
+            } if (p_213386_5_.contains("Age")) {
+                this.setAge(p_213386_5_.getInt("Age"));
             }
             return p_213386_4_;
         }
@@ -136,6 +144,54 @@ public class ShrimpEntity extends FishBase implements IAnimatable {
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
         return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 4.0D).add(Attributes.MOVEMENT_SPEED, 0.15D);
+    }
+
+    public float getHatchChance() {
+        return Double.valueOf(CreaturesConfig.shrimp_hatch_chance.get()).floatValue();
+    }
+
+    protected void layEgg(ServerWorld server, FishBase father) {
+        int c = this.getClutchSize();
+        for (int j = 0; j <= c; j++) {
+            CreaturesRoeEntity egg = this.layEgg(this);
+            if (egg != null) {
+                FishBase mother;
+                mother = this;
+
+                egg.setParentUUID(mother.getUUID());
+
+                float f = (float)(this.getRandom().nextGaussian() * 0.05 + ((this.getHeightMultiplier())));
+                egg.setHeightMultiplier(f);
+
+                int[] vars = {this.getVariant(), father.getVariant()};
+                int rnd = new Random().nextInt(vars.length);
+                egg.setVariant(vars[rnd]);
+
+                int random = this.random.nextInt(10);
+                if (random == 1) {
+                    egg.setVariant(this.random.nextInt(9));
+                }
+
+                Random rand = new Random();
+                egg.setPos(MathHelper.floor(mother.getX()) + 0.5 + (-1+rand.nextFloat()*2), MathHelper.floor(mother.getY()) + 0.5, MathHelper.floor(mother.getZ()) + 0.5 + (-1+rand.nextFloat()*2));
+                server.addFreshEntityWithPassengers(egg);
+                //System.out.println(this.bird.getClutchSize());
+            }
+            server.broadcastEntityEvent(this, (byte)18);
+        }
+        Random random = this.getRandom();
+        for (int i = 0; i < 17; ++i) {
+            final double d0 = random.nextGaussian() * 0.02D;
+            final double d1 = random.nextGaussian() * 0.02D;
+            final double d2 = random.nextGaussian() * 0.02D;
+            final double d3 = random.nextDouble() * this.getBbWidth() * 2.0D - this.getBbWidth();
+            final double d4 = 0.5D + random.nextDouble() * this.getBbHeight();
+            final double d5 = random.nextDouble() * this.getBbWidth() * 2.0D - this.getBbWidth();
+            this.level.addParticle(ParticleTypes.HEART, this.getX() + d3, this.getY() + d4, this.getZ() + d5, d0, d1, d2);
+        }
+        if (server.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
+            server.addFreshEntity(new ExperienceOrbEntity(server, this.getX(), this.getY(), this.getZ(), this.getRandom().nextInt(7) + 1));
+        }
     }
 
     public ResourceLocation getDefaultLootTable() {

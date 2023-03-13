@@ -52,6 +52,8 @@ public class BlueTangEntity extends FishBase implements IAnimatable {
             }
             if (p_213386_5_.contains("BucketHeightMultiplier")) {
                 this.setHeightMultiplier(p_213386_5_.getFloat("BucketHeightMultiplier"));
+            } if (p_213386_5_.contains("Age")) {
+                this.setAge(p_213386_5_.getInt("Age"));
             }
             return p_213386_4_;
         }
@@ -86,6 +88,7 @@ public class BlueTangEntity extends FishBase implements IAnimatable {
         super.saveToBucketTag(p_204211_1_);
         CompoundNBT compoundnbt = p_204211_1_.getOrCreateTag();
         compoundnbt.putInt("BucketVariantTag", this.getVariant());
+        compoundnbt.putInt("Age", this.getAge());
     }
 
     protected SoundEvent getAmbientSound() {
@@ -126,6 +129,10 @@ public class BlueTangEntity extends FishBase implements IAnimatable {
     public void readAdditionalSaveData(CompoundNBT p_70037_1_) {
         super.readAdditionalSaveData(p_70037_1_);
         this.setVariant(p_70037_1_.getInt("Variant"));
+    }
+
+    public float getHatchChance() {
+        return Double.valueOf(CreaturesConfig.blue_tang_hatch_chance.get()).floatValue();
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {

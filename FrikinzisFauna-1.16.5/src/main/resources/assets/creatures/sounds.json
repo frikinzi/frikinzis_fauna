@@ -175,6 +175,10 @@
   "subtitle": "entity.capercaillie.ambient",
   "sounds": [ "creatures:entity/capercaillie/capercaillie_ambient" ]
 },
+  "entity.pheasant.ambient": {
+    "subtitle": "entity.pheasant.ambient",
+    "sounds": [ "creatures:entity/pheasant/pheasant_ambient" ]
+  },
   "entity.egg.hatch": {
     "subtitle": "entity.egg.hatch",
     "sounds": [ "creatures:entity/egg/hatch" ]

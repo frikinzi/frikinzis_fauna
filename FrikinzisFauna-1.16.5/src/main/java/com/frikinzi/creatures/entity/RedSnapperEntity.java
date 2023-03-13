@@ -49,6 +49,8 @@ public class RedSnapperEntity extends GroupFishBase implements IAnimatable {
         if (p_213386_5_ != null) {
             if (p_213386_5_.contains("BucketHeightMultiplier")) {
                 this.setHeightMultiplier(p_213386_5_.getFloat("BucketHeightMultiplier"));
+            } if (p_213386_5_.contains("Age")) {
+                this.setAge(p_213386_5_.getInt("Age"));
             }
             return p_213386_4_;
         }
@@ -136,6 +138,10 @@ public class RedSnapperEntity extends GroupFishBase implements IAnimatable {
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
         return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D).add(Attributes.MOVEMENT_SPEED, 0.1D);
+    }
+
+    public float getHatchChance() {
+        return Double.valueOf(CreaturesConfig.red_snapper_hatch_chance.get()).floatValue();
     }
 
     public ResourceLocation getDefaultLootTable() {

@@ -12,6 +12,7 @@ public class CreaturesConfig {
     public static final ForgeConfigSpec.ConfigValue<Boolean> koi_spawns;
     public static final ForgeConfigSpec.ConfigValue<Integer> koi_min_group;
     public static final ForgeConfigSpec.ConfigValue<Integer> koi_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> koi_hatch_chance;
 
     public static final ForgeConfigSpec.ConfigValue<Boolean> lovebird_spawns;
     public static final ForgeConfigSpec.ConfigValue<Integer> lovebird_spawn_weight;
@@ -24,31 +25,37 @@ public class CreaturesConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> dottyback_spawn_weight;
     public static final ForgeConfigSpec.ConfigValue<Integer> dottyback_min_group;
     public static final ForgeConfigSpec.ConfigValue<Integer> dottyback_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> dottyback_hatch_chance;
 
     public static final ForgeConfigSpec.ConfigValue<Boolean> pike_spawns;
     public static final ForgeConfigSpec.ConfigValue<Integer> pike_spawn_weight;
     public static final ForgeConfigSpec.ConfigValue<Integer> pike_min_group;
     public static final ForgeConfigSpec.ConfigValue<Integer> pike_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> pike_hatch_chance;
 
     public static final ForgeConfigSpec.ConfigValue<Boolean> guppy_spawns;
     public static final ForgeConfigSpec.ConfigValue<Integer> guppy_spawn_weight;
     public static final ForgeConfigSpec.ConfigValue<Integer> guppy_min_group;
     public static final ForgeConfigSpec.ConfigValue<Integer> guppy_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> guppy_hatch_chance;
 
     public static final ForgeConfigSpec.ConfigValue<Boolean> shrimp_spawns;
     public static final ForgeConfigSpec.ConfigValue<Integer> shrimp_spawn_weight;
     public static final ForgeConfigSpec.ConfigValue<Integer> shrimp_min_group;
     public static final ForgeConfigSpec.ConfigValue<Integer> shrimp_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> shrimp_hatch_chance;
 
     public static final ForgeConfigSpec.ConfigValue<Boolean> gourami_spawns;
     public static final ForgeConfigSpec.ConfigValue<Integer> gourami_spawn_weight;
     public static final ForgeConfigSpec.ConfigValue<Integer> gourami_min_group;
     public static final ForgeConfigSpec.ConfigValue<Integer> gourami_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> gourami_hatch_chance;
 
     public static final ForgeConfigSpec.ConfigValue<Boolean> arowana_spawns;
     public static final ForgeConfigSpec.ConfigValue<Integer> arowana_spawn_weight;
     public static final ForgeConfigSpec.ConfigValue<Integer> arowana_min_group;
     public static final ForgeConfigSpec.ConfigValue<Integer> arowana_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> arowana_hatch_chance;
 
     public static final ForgeConfigSpec.ConfigValue<Boolean> ghost_crab_spawns;
     public static final ForgeConfigSpec.ConfigValue<Integer> ghost_crab_spawn_weight;
@@ -157,11 +164,13 @@ public class CreaturesConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> goldfish_spawn_weight;
     public static final ForgeConfigSpec.ConfigValue<Integer> goldfish_min_group;
     public static final ForgeConfigSpec.ConfigValue<Integer> goldfish_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> goldfish_hatch_chance;
 
     public static final ForgeConfigSpec.ConfigValue<Boolean> ranchu_spawns;
     public static final ForgeConfigSpec.ConfigValue<Integer> ranchu_spawn_weight;
     public static final ForgeConfigSpec.ConfigValue<Integer> ranchu_min_group;
     public static final ForgeConfigSpec.ConfigValue<Integer> ranchu_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> ranchu_hatch_chance;
 
     public static final ForgeConfigSpec.ConfigValue<Boolean> wild_duck_spawns;
     public static final ForgeConfigSpec.ConfigValue<Integer> wild_duck_spawn_weight;
@@ -202,21 +211,25 @@ public class CreaturesConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> fire_goby_spawn_weight;
     public static final ForgeConfigSpec.ConfigValue<Integer> fire_goby_min_group;
     public static final ForgeConfigSpec.ConfigValue<Integer> fire_goby_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> fire_goby_hatch_chance;
 
     public static final ForgeConfigSpec.ConfigValue<Boolean> blue_tang_spawns;
     public static final ForgeConfigSpec.ConfigValue<Integer> blue_tang_spawn_weight;
     public static final ForgeConfigSpec.ConfigValue<Integer> blue_tang_min_group;
     public static final ForgeConfigSpec.ConfigValue<Integer> blue_tang_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> blue_tang_hatch_chance;
 
     public static final ForgeConfigSpec.ConfigValue<Boolean> flame_angelfish_spawns;
     public static final ForgeConfigSpec.ConfigValue<Integer> flame_angelfish_spawn_weight;
     public static final ForgeConfigSpec.ConfigValue<Integer> flame_angelfish_min_group;
     public static final ForgeConfigSpec.ConfigValue<Integer> flame_angelfish_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> flame_angelfish_hatch_chance;
 
     public static final ForgeConfigSpec.ConfigValue<Boolean> trout_spawns;
     public static final ForgeConfigSpec.ConfigValue<Integer> trout_spawn_weight;
     public static final ForgeConfigSpec.ConfigValue<Integer> trout_min_group;
     public static final ForgeConfigSpec.ConfigValue<Integer> trout_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> trout_hatch_chance;
 
     public static final ForgeConfigSpec.ConfigValue<Boolean> fiddler_crab_spawns;
     public static final ForgeConfigSpec.ConfigValue<Integer> fiddler_crab_spawn_weight;
@@ -234,6 +247,7 @@ public class CreaturesConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> red_snapper_spawn_weight;
     public static final ForgeConfigSpec.ConfigValue<Integer> red_snapper_min_group;
     public static final ForgeConfigSpec.ConfigValue<Integer> red_snapper_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> red_snapper_hatch_chance;
 
     public static final ForgeConfigSpec.ConfigValue<Boolean> wood_duck_spawns;
     public static final ForgeConfigSpec.ConfigValue<Integer> wood_duck_spawn_weight;
@@ -373,10 +387,29 @@ public class CreaturesConfig {
     public static final ForgeConfigSpec.ConfigValue<Double> capercaillie_hatch_chance;
     public static final ForgeConfigSpec.ConfigValue<Integer> capercaillie_clutch_size;
 
+    public static final ForgeConfigSpec.ConfigValue<Boolean> pheasant_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> pheasant_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Integer> pheasant_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> pheasant_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> pheasant_hatch_chance;
+    public static final ForgeConfigSpec.ConfigValue<Integer> pheasant_clutch_size;
+
     public static final ForgeConfigSpec.ConfigValue<Boolean> vampirecrab_spawns;
     public static final ForgeConfigSpec.ConfigValue<Integer> vampirecrab_spawn_weight;
     public static final ForgeConfigSpec.ConfigValue<Integer> vampirecrab_min_group;
     public static final ForgeConfigSpec.ConfigValue<Integer> vampirecrab_max_group;
+
+    public static final ForgeConfigSpec.ConfigValue<Integer> arapaima_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> arapaima_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> arapaima_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> arapaima_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> arapaima_hatch_chance;
+
+    public static final ForgeConfigSpec.ConfigValue<Integer> tigerbarb_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> tigerbarb_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> tigerbarb_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> tigerbarb_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> tigerbarb_hatch_chance;
 
     //gameplay
     public static final ForgeConfigSpec.ConfigValue<Boolean> breed_only_variants;
@@ -403,6 +436,7 @@ public class CreaturesConfig {
         koi_spawn_weight = BUILDER.comment("Spawn weight for koi").define("Koi Spawn Weight", 10);
         koi_min_group = BUILDER.comment("Min group for koi").define("Koi Min Group", 1);
         koi_max_group = BUILDER.comment("Max group for koi").define("Koi Max Group", 2);
+        koi_hatch_chance = BUILDER.comment("Hatch chance for each koi roe").define("Koi Hatch Chance", 0.2);
 
         BUILDER.pop();
 
@@ -423,6 +457,7 @@ public class CreaturesConfig {
         dottyback_spawn_weight = BUILDER.comment("Spawn weight for dottybacks").define("Dottyback Spawn Weight", 20);
         dottyback_min_group = BUILDER.comment("Min group for dottybacks").define("Dottyback Min Group", 2);
         dottyback_max_group = BUILDER.comment("Max group for dottybacks").define("Dottyback Max Group", 3);
+        dottyback_hatch_chance = BUILDER.comment("Hatch chance for each dottyback roe").define("Dottyback Hatch Chance", 0.2);
 
         BUILDER.pop();
 
@@ -432,6 +467,7 @@ public class CreaturesConfig {
         pike_spawn_weight = BUILDER.comment("Spawn weight for pikes").define("Pike Spawn Weight", 8);
         pike_min_group = BUILDER.comment("Min group for pikes").define("Pike Min Group", 1);
         pike_max_group = BUILDER.comment("Max group for pikes").define("Pike Max Group", 1);
+        pike_hatch_chance = BUILDER.comment("Hatch chance for each pike roe").define("Pike Hatch Chance", 0.2);
 
         BUILDER.pop();
 
@@ -441,6 +477,7 @@ public class CreaturesConfig {
         guppy_spawn_weight = BUILDER.comment("Spawn weight for guppies").define("Guppy Spawn Weight", 10);
         guppy_min_group = BUILDER.comment("Min group for guppies").define("Guppy Min Group", 3);
         guppy_max_group = BUILDER.comment("Max group for guppies").define("Guppy Max Group", 8);
+        guppy_hatch_chance = BUILDER.comment("Hatch chance for each guppy roe").define("Guppy Hatch Chance", 0.2);
 
         BUILDER.pop();
 
@@ -450,6 +487,7 @@ public class CreaturesConfig {
         shrimp_spawn_weight = BUILDER.comment("Spawn weight for shrimp").define("Shrimp Spawn Weight", 10);
         shrimp_min_group = BUILDER.comment("Min group for shrimp").define("Shrimp Min Group", 4);
         shrimp_max_group = BUILDER.comment("Max group for shrimp").define("Shrimp Max Group", 10);
+        shrimp_hatch_chance = BUILDER.comment("Hatch chance for each shrimp roe").define("Shrimp Hatch Chance", 0.3);
 
         BUILDER.pop();
 
@@ -459,6 +497,7 @@ public class CreaturesConfig {
         gourami_spawn_weight = BUILDER.comment("Spawn weight for gourami").define("Gourami Spawn Weight", 10);
         gourami_min_group = BUILDER.comment("Min group for gourami").define("Gourami Min Group", 1);
         gourami_max_group = BUILDER.comment("Max group for gourami").define("Gourami Max Group", 1);
+        gourami_hatch_chance = BUILDER.comment("Hatch chance for each gourami roe").define("Gourami Hatch Chance", 0.2);
 
         BUILDER.pop();
 
@@ -468,6 +507,7 @@ public class CreaturesConfig {
         arowana_spawn_weight = BUILDER.comment("Spawn weight for arowana").define("Arowana Spawn Weight", 5);
         arowana_min_group = BUILDER.comment("Min group for arowana").define("Arowana Min Group", 1);
         arowana_max_group = BUILDER.comment("Max group for arowana").define("Arowana Max Group", 1);
+        arowana_hatch_chance = BUILDER.comment("Hatch chance for each arowana roe").define("Arowana Hatch Chance", 0.1);
 
         BUILDER.pop();
 
@@ -640,6 +680,7 @@ public class CreaturesConfig {
         goldfish_spawn_weight = BUILDER.comment("Spawn weight for goldfish").define("Goldfish Spawn Weight", 10);
         goldfish_min_group = BUILDER.comment("Min group for goldfish").define("Goldfish Min Group", 2);
         goldfish_max_group = BUILDER.comment("Max group for goldfish").define("Goldfish Max Group", 5);
+        goldfish_hatch_chance = BUILDER.comment("Hatch chance for each goldfish roe").define("Goldfish Hatch Chance", 0.2);
 
         BUILDER.pop();
 
@@ -649,6 +690,7 @@ public class CreaturesConfig {
         ranchu_spawn_weight = BUILDER.comment("Spawn weight for ranchu").define("Ranchu Spawn Weight", 10);
         ranchu_min_group = BUILDER.comment("Min group for ranchu").define("Ranchu Min Group", 1);
         ranchu_max_group = BUILDER.comment("Max group for ranchu").define("Ranchu Max Group", 2);
+        ranchu_hatch_chance = BUILDER.comment("Hatch chance for each ranchu roe").define("Ranchu Hatch Chance", 0.2);
 
         BUILDER.pop();
 
@@ -713,6 +755,7 @@ public class CreaturesConfig {
         fire_goby_spawn_weight = BUILDER.comment("Spawn weight for fire goby").define("Fire Goby Spawn Weight", 20);
         fire_goby_min_group = BUILDER.comment("Min group for fire goby").define("Fire Goby Min Group", 1);
         fire_goby_max_group = BUILDER.comment("Max group for fire goby").define("Fire Goby Max Group", 1);
+        fire_goby_hatch_chance = BUILDER.comment("Hatch chance for each fire goby roe").define("Fire Goby Hatch Chance", 0.2);
 
         BUILDER.pop();
 
@@ -722,6 +765,7 @@ public class CreaturesConfig {
         blue_tang_spawn_weight = BUILDER.comment("Spawn weight for blue tang").define("Blue Tang Spawn Weight", 20);
         blue_tang_min_group = BUILDER.comment("Min group for blue tang").define("Blue Tang Min Group", 1);
         blue_tang_max_group = BUILDER.comment("Max group for blue tang").define("Blue Tang Max Group", 1);
+        blue_tang_hatch_chance = BUILDER.comment("Hatch chance for each blue tang roe").define("Blue Tang Hatch Chance", 0.2);
 
         BUILDER.pop();
 
@@ -731,6 +775,7 @@ public class CreaturesConfig {
         flame_angelfish_spawn_weight = BUILDER.comment("Spawn weight for flame angelfish").define("Flame Angelfish Spawn Weight", 20);
         flame_angelfish_min_group = BUILDER.comment("Min group for flame angelfish").define("Flame Angelfish Min Group", 1);
         flame_angelfish_max_group = BUILDER.comment("Max group for flame angelfish").define("Flame Angelfish Max Group", 1);
+        flame_angelfish_hatch_chance = BUILDER.comment("Hatch chance for each flame angelfish roe").define("Flame Angelfish Hatch Chance", 0.2);
 
         BUILDER.pop();
 
@@ -740,6 +785,7 @@ public class CreaturesConfig {
         trout_spawn_weight = BUILDER.comment("Spawn weight for trout").define("Trout Spawn Weight", 10);
         trout_min_group = BUILDER.comment("Min group for trout").define("Trout Min Group", 1);
         trout_max_group = BUILDER.comment("Max group for trout").define("Trout Max Group", 1);
+        trout_hatch_chance = BUILDER.comment("Hatch chance for each trout roe").define("Trout Hatch Chance", 0.2);
 
         BUILDER.pop();
 
@@ -769,6 +815,7 @@ public class CreaturesConfig {
         red_snapper_spawn_weight = BUILDER.comment("Spawn weight for red snapper").define("Red Snapper Spawn Weight", 20);
         red_snapper_min_group = BUILDER.comment("Min group for red snapper").define("Red Snapper Min Group", 3);
         red_snapper_max_group = BUILDER.comment("Max group for red snapper").define("Red Snapper Max Group", 7);
+        red_snapper_hatch_chance = BUILDER.comment("Hatch chance for each red snapper roe").define("Red Snapper Hatch Chance", 0.2);
 
         BUILDER.pop();
 
@@ -990,12 +1037,43 @@ public class CreaturesConfig {
 
         BUILDER.pop();
 
+        BUILDER.push("Pheasant");
+
+        pheasant_spawns = BUILDER.comment("Enable/disable pheasant spawns").define("Pheasant Spawns", true);
+        pheasant_spawn_weight = BUILDER.comment("Spawn weight for pheasants").define("Pheasant Spawn Weight", 10);
+        pheasant_min_group = BUILDER.comment("Min group for pheasant").define("Pheasant Min Group", 2);
+        pheasant_max_group = BUILDER.comment("Max group for pheasant").define("Pheasant Max Group", 3);
+        pheasant_hatch_chance = BUILDER.comment("Hatch chance for each pheasant egg").define("Pheasant Hatch Chance", 0.5);
+        pheasant_clutch_size = BUILDER.comment("Max egg clutch size for pheasant").define("Pheasant Clutch Size", 8);
+
+        BUILDER.pop();
+
         BUILDER.push("Vampire Crab");
 
         vampirecrab_spawns = BUILDER.comment("Enable/disable vampire crab spawns").define("Vampire Crab Spawns", true);
         vampirecrab_spawn_weight = BUILDER.comment("Spawn weight for vampire crab").define("Vampire Crab Spawn Weight", 25);
         vampirecrab_min_group = BUILDER.comment("Min group for vampire crab").define("Vampire Crab Min Group", 3);
         vampirecrab_max_group = BUILDER.comment("Max group for vampire crab").define("Vampire Crab Max Group", 5);
+
+        BUILDER.pop();
+
+        BUILDER.push("Arapaima");
+
+        arapaima_spawns = BUILDER.comment("Enable/disable arapaima spawns").define("Arapaima Spawns", true);
+        arapaima_spawn_weight = BUILDER.comment("Spawn weight for arapaima").define("Arapaima Spawn Weight", 5);
+        arapaima_min_group = BUILDER.comment("Min group for arapaima").define("Arapaima Min Group", 1);
+        arapaima_max_group = BUILDER.comment("Max group for arapaima").define("Arapaima Max Group", 1);
+        arapaima_hatch_chance = BUILDER.comment("Hatch chance for each arapaima roe").define("Arapaima Hatch Chance", 0.1);
+
+        BUILDER.pop();
+
+        BUILDER.push("Tiger Barb");
+
+        tigerbarb_spawns = BUILDER.comment("Enable/disable tiger barb spawns").define("Tiger Barb Spawns", true);
+        tigerbarb_spawn_weight = BUILDER.comment("Spawn weight for tiger barb").define("Tiger Barb Spawn Weight", 25);
+        tigerbarb_min_group = BUILDER.comment("Min group for tiger barb").define("Tiger Barb Min Group", 1);
+        tigerbarb_max_group = BUILDER.comment("Max group for tiger barb").define("Tiger Barb Max Group", 1);
+        tigerbarb_hatch_chance = BUILDER.comment("Hatch chance for each tiger barb roe").define("Tiger Barb Hatch Chance", 0.2);
 
         BUILDER.pop();
 

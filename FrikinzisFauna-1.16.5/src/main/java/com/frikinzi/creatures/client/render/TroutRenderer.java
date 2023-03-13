@@ -30,6 +30,9 @@ public class TroutRenderer extends GeoEntityRenderer<TroutEntity>{
         } else {
             multiplier = 1.0F;
         }
+        if (animatable.isBaby()) {
+            stackIn.scale(0.5F, 0.5F, 0.5F);
+        }
         stackIn.scale(1F * multiplier, 1F * multiplier, 1F * multiplier);
     }
 }

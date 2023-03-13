@@ -3,6 +3,7 @@ package com.frikinzi.creatures.client.gui;
 import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.entity.base.*;
 import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
+import com.frikinzi.creatures.entity.egg.CreaturesRoeEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.gui.FontRenderer;
@@ -177,6 +178,9 @@ public class GUICreatures extends Screen {
                 this.font.draw(matrices, species.getString() + " " + bird.getSpeciesName(), offLeft, offTop + 90, 0);
                 ITextComponent height = new TranslationTextComponent("gui.height");
                 this.font.draw(matrices, height.getString() + " " + bird.getHeightString(), offLeft, offTop + 100, 0);
+                ITextComponent food = new TranslationTextComponent("gui.food");
+                this.font.draw(matrices, food.getString() + " ", offLeft, offTop + 120, 0);
+                this.itemRenderer.renderGuiItem(bird.getDisplayFood(), offLeft + 30, 110 + offTop);
                 matrices.popPose();
             }
             if (entity instanceof GroupFishBase) {
@@ -193,6 +197,9 @@ public class GUICreatures extends Screen {
                 this.font.draw(matrices, species.getString() + " " + bird.getSpeciesName(), offLeft, offTop + 90, 0);
                 ITextComponent height = new TranslationTextComponent("gui.height");
                 this.font.draw(matrices, height.getString() + " " + bird.getHeightString(), offLeft, offTop + 100, 0);
+                ITextComponent food = new TranslationTextComponent("gui.food");
+                this.font.draw(matrices, food.getString() + " ", offLeft, offTop + 120, 0);
+                this.itemRenderer.renderGuiItem(bird.getDisplayFood(), offLeft + 30, 110 + offTop);
                 matrices.popPose();
             }
             if (entity instanceof AbstractCrabBase) {
@@ -209,9 +216,11 @@ public class GUICreatures extends Screen {
                 this.font.draw(matrices, bird.getSpeciesName(), offLeft, offTop + 90, 0);
                 ITextComponent height = new TranslationTextComponent("gui.height");
                 this.font.draw(matrices, height.getString() + " " + bird.getHeightString(), offLeft, offTop + 100, 0);
+                ITextComponent g = new TranslationTextComponent("gui.sex");
+                this.font.draw(matrices, g.getString() + " " + bird.getGenderString(), offLeft, offTop + 110, 0);
                 ITextComponent food = new TranslationTextComponent("gui.food");
-                this.font.draw(matrices, food.getString() + " ", offLeft, offTop + 120, 0);
-                this.itemRenderer.renderGuiItem(bird.getFoodItem(), offLeft + 30, 110 + offTop);
+                this.font.draw(matrices, food.getString() + " ", offLeft, offTop + 130, 0);
+                this.itemRenderer.renderGuiItem(bird.getFoodItem(), offLeft + 30, 120 + offTop);
                 matrices.popPose();
             }  if (entity instanceof CreaturesEggEntity) {
             CreaturesEggEntity bird = (CreaturesEggEntity) entity;
@@ -230,6 +239,12 @@ public class GUICreatures extends Screen {
             //this.font.draw(matrices, bird.getParentUUID().toString(), offLeft, offTop + 100, 0);
             //this.font.draw(matrices, bird.getSpecies() + " ", offLeft, offTop + 110, 0);
             this.itemRenderer.renderGuiItem(bird.getEggItem(), offLeft + 0, 110 + offTop);
+            matrices.popPose();
+        }  if (entity instanceof CreaturesRoeEntity) {
+            CreaturesRoeEntity bird = (CreaturesRoeEntity) entity;
+            matrices.pushPose();
+            ITextComponent h = new TranslationTextComponent("gui.hatchtime");
+            this.font.draw(matrices, h.getString() + " " + bird.getHatchTime(), offLeft, offTop + 80, 0);
             matrices.popPose();
         }
 

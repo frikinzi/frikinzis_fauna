@@ -21,7 +21,9 @@ public class CapercaillieModel extends AnimatedGeoModel<CapercaillieEntity> {
     {
         if (object.isBaby()) {
             return new ResourceLocation(Creatures.MODID, "textures/entity/capercaillie/capercailliechick.png");
-        }
+        } if (object.isSleeping()) {
+        return new ResourceLocation(Creatures.MODID, "textures/entity/capercaillie/capercaillie" + object.getGenderName() + "sleep.png");
+    }
         return new ResourceLocation(Creatures.MODID, "textures/entity/capercaillie/capercaillie" + object.getGenderName() + ".png");
     }
 

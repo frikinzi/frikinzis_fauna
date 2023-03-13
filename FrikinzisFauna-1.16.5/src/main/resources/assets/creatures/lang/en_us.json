@@ -59,7 +59,9 @@
   "entity.creatures.vampirecrab": "Vampire Crab",
   "entity.creatures.tarantula": "Tarantula",
   "entity.creatures.capercaillie": "Capercaillie",
+  "entity.creatures.pheasant": "Pheasant",
   "entity.creatures.tigerbarb": "Tiger Barb",
+  "entity.creatures.arapaima": "Arapaima",
 
   "item.creatures.lovebird_spawn_egg": "Lovebird Spawn Egg",
   "item.creatures.creatures_spoonbill_spawn_egg": "Spoonbill Spawn Egg",
@@ -105,6 +107,7 @@
   "item.creatures.vampirecrab_spawn_egg": "Vampire Crab Spawn Egg",
   "item.creatures.tarantula_spawn_egg": "Tarantula Spawn Egg",
   "item.creatures.capercaillie_spawn_egg": "Capercaillie Spawn Egg",
+  "item.creatures.pheasant_spawn_egg": "Pheasant Spawn Egg",
 
   "item.creatures.koi_spawn_egg": "Koi Spawn Egg",
   "item.creatures.dottyback_spawn_egg": "Dottyback Spawn Egg",
@@ -121,6 +124,7 @@
   "item.creatures.trout_spawn_egg": "Trout Spawn Egg",
   "item.creatures.red_snapper_spawn_egg": "Red Snapper Spawn Egg",
   "item.creatures.tigerbarb_spawn_egg": "Tiger Barb Spawn Egg",
+  "item.creatures.arapaima_spawn_egg": "Arapaima Spawn Egg",
 
   "item.creatures.bucket_of_koi": "Koi Bucket",
   "item.creatures.bucket_of_dottyback": "Dottyback Bucket",
@@ -137,6 +141,7 @@
   "item.creatures.bucket_of_flame_angelfish": "Flame Angelfish Bucket",
   "item.creatures.bucket_of_red_snapper": "Red Snapper Bucket",
   "item.creatures.bucket_of_tigerbarb": "Tiger Barb Bucket",
+  "item.creatures.bucket_of_arapaima": "Arapaima Bucket",
 
   "item.creatures.lovebird_egg": "Lovebird Egg",
   "item.creatures.spoonbill_egg": "Spoonbill Egg",
@@ -178,6 +183,7 @@
   "item.creatures.tanager_egg": "Tanager Egg",
   "item.creatures.finch_egg": "Finch Egg",
   "item.creatures.capercaillie_egg": "Capercaillie Egg",
+  "item.creatures.pheasant_egg": "Pheasant Egg",
 
   "item.creatures.raw_koi": "Raw Koi",
   "item.creatures.roasted_koi": "Roasted Koi",
@@ -197,6 +203,8 @@
   "item.creatures.cooked_trout": "Cooked Trout",
   "item.creatures.raw_red_snapper": "Raw Red Snapper",
   "item.creatures.cooked_red_snapper": "Cooked Red Snapper",
+  "item.creatures.raw_arapaima": "Raw Arapaima",
+  "item.creatures.cooked_arapaima": "Cooked Arapaima",
   "item.creatures.guppy_tail": "Guppy Tail",
   "item.creatures.item_goldfish": "Goldfish",
   "item.creatures.crab_pincers": "Crab Pincers",
@@ -206,6 +214,7 @@
   "item.creatures.bird_of_prey_feather": "Bird of Prey Feather",
   "item.creatures.ff_guide": "Frikinzi's Guide",
   "item.creatures.peafowl_feather": "Peafowl Feather",
+  "item.creatures.mealworms": "Mealworms",
 
   "entity.lovebird.ambient": "Lovebird chirps",
   "entity.spoonbill.ambient": "Spoonbill calls",
@@ -251,6 +260,7 @@
   "entity.tanager.ambient": "Tanager sings",
   "entity.finch.ambient": "Finch calls",
   "entity.capercaillie.ambient": "Capercaillie calls",
+  "entity.pheasant.ambient": "Pheasant calls",
 
   "gui.sex": "Sex:",
   "gui.health": "Health:",
@@ -462,6 +472,9 @@
   "message.creatures.goldenblueleg": "Golden Blue Leg",
   "message.creatures.purpletree": "Purple Tree Tarantula",
   "message.creatures.neonblueleg": "Neon Blue Leg",
+  "message.creatures.goldenpheasant": "Golden Pheasant",
+  "message.creatures.ladyamherst": "Lady Amherst's Pheasant",
+  "message.creatures.silverpheasant": "Silver Pheasant",
 
 
   "message.wander": "Set to wandering",

@@ -34,7 +34,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class MonalEntity extends TameableWalkingBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.BEETROOT, Items.SWEET_BERRIES);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.BEETROOT, Items.SWEET_BERRIES, CreaturesItems.MEALWORMS);
 
     public MonalEntity(EntityType<? extends MonalEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -73,7 +73,7 @@ public class MonalEntity extends TameableWalkingBirdBase implements IAnimatable 
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D).add(Attributes.MOVEMENT_SPEED, (double)0.2F);
+        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 8.0D).add(Attributes.MOVEMENT_SPEED, (double)0.2F);
     }
 
     public int determineVariant() {

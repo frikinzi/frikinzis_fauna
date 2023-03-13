@@ -37,6 +37,7 @@ public class CreaturesItems {
     public static Item FLAME_ANGELFISH_BUCKET = new FishBucketItem(() -> ModEntityTypes.FLAME_ANGELFISH.get(), () -> Fluids.WATER, new Item.Properties().tab(Creatures.CreaturesItemGroup));
     public static Item RED_SNAPPER_BUCKET = new FishBucketItem(() -> ModEntityTypes.RED_SNAPPER.get(), () -> Fluids.WATER, new Item.Properties().tab(Creatures.CreaturesItemGroup));
     public static Item TIGER_BARB_BUCKET = new FishBucketItem(() -> ModEntityTypes.TIGERBARB.get(), () -> Fluids.WATER, new Item.Properties().tab(Creatures.CreaturesItemGroup));
+    public static Item ARAPAIMA_BUCKET = new FishBucketItem(() -> ModEntityTypes.ARAPAIMA.get(), () -> Fluids.WATER, new Item.Properties().tab(Creatures.CreaturesItemGroup));
 
     static int i = 0;
     public static Item LOVEBIRD_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
@@ -79,6 +80,7 @@ public class CreaturesItems {
     public static Item TANAGER_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
     public static Item FINCH_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
     public static Item CAPERCAILLIE_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
+    public static Item PHEASANT_EGG = new EggItem(i++,(new Item.Properties()).stacksTo(1).tab(Creatures.CreaturesItemGroup));
 
     public static Item RAW_KOI = new Item((new Item.Properties()).tab(Creatures.CreaturesItemGroup).food(CreaturesFood.RAW_KOI));
     public static Item ROASTED_KOI = new Item((new Item.Properties()).tab(Creatures.CreaturesItemGroup).food(CreaturesFood.ROASTED_KOI));
@@ -98,6 +100,8 @@ public class CreaturesItems {
     public static Item COOKED_TROUT = new Item((new Item.Properties()).tab(Creatures.CreaturesItemGroup).food(CreaturesFood.COOKED_TROUT));
     public static Item RAW_RED_SNAPPER = new Item((new Item.Properties()).tab(Creatures.CreaturesItemGroup).food(CreaturesFood.RAW_RED_SNAPPER));
     public static Item COOKED_RED_SNAPPER = new Item((new Item.Properties()).tab(Creatures.CreaturesItemGroup).food(CreaturesFood.COOKED_RED_SNAPPER));
+    public static Item RAW_ARAPAIMA = new Item((new Item.Properties()).tab(Creatures.CreaturesItemGroup).food(CreaturesFood.RAW_ARAPAIMA));
+    public static Item COOKED_ARAPAIMA = new Item((new Item.Properties()).tab(Creatures.CreaturesItemGroup).food(CreaturesFood.COOKED_ARAPAIMA));
 
     public static final Item GUPPY_TAIL = new Item((new Item.Properties()).tab(Creatures.CreaturesItemGroup));
     public static final Item GOLDFISH = new Item((new Item.Properties()).tab(Creatures.CreaturesItemGroup));
@@ -108,6 +112,7 @@ public class CreaturesItems {
     public static final Item PARROT_FEATHER = new Item((new Item.Properties()).tab(Creatures.CreaturesItemGroup));
     public static final Item FF_GUIDE = new Item((new Item.Properties()).tab(Creatures.CreaturesItemGroup));
     public static final Item PEAFOWL_FEATHER = new Item((new Item.Properties()).tab(Creatures.CreaturesItemGroup));
+    public static final Item MEALWORMS = new Item((new Item.Properties()).tab(Creatures.CreaturesItemGroup));
 
     //public static final Item TOY1 = new BlockItem(CreaturesBlocks.TOY1.get(),(new Item.Properties()).tab(Creatures.CreaturesItemGroup));
 
@@ -132,6 +137,7 @@ public class CreaturesItems {
         registerItem(registry, setup(FLAME_ANGELFISH_BUCKET, "bucket_of_flame_angelfish"));
         registerItem(registry, setup(RED_SNAPPER_BUCKET, "bucket_of_red_snapper"));
         registerItem(registry, setup(TIGER_BARB_BUCKET, "bucket_of_tigerbarb"));
+        registerItem(registry, setup(ARAPAIMA_BUCKET, "bucket_of_arapaima"));
 
         //food
         registerItem(registry, setup(RAW_KOI, "raw_koi"));
@@ -152,6 +158,8 @@ public class CreaturesItems {
         registerItem(registry, setup(COOKED_TROUT, "cooked_trout"));
         registerItem(registry, setup(RAW_RED_SNAPPER, "raw_red_snapper"));
         registerItem(registry, setup(COOKED_RED_SNAPPER, "cooked_red_snapper"));
+        registerItem(registry, setup(RAW_ARAPAIMA, "raw_arapaima"));
+        registerItem(registry, setup(COOKED_ARAPAIMA, "cooked_arapaima"));
 
         //egg
         registerItem(registry, setup(LOVEBIRD_EGG, "lovebird_egg"));
@@ -194,6 +202,7 @@ public class CreaturesItems {
         registerItem(registry, setup(TANAGER_EGG, "tanager_egg"));
         registerItem(registry, setup(FINCH_EGG, "finch_egg"));
         registerItem(registry, setup(CAPERCAILLIE_EGG, "capercaillie_egg"));
+        registerItem(registry, setup(PHEASANT_EGG, "pheasant_egg"));
 
 
 
@@ -207,6 +216,7 @@ public class CreaturesItems {
         registerItem(registry, setup(PARROT_FEATHER, "parrot_feather"));
         registerItem(registry, setup(FF_GUIDE, "ff_guide"));
         registerItem(registry, setup(PEAFOWL_FEATHER, "peafowl_feather"));
+        registerItem(registry, setup(MEALWORMS, "mealworms"));
 
         //blocks
 

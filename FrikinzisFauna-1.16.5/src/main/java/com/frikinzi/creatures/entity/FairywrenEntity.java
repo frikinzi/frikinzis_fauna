@@ -3,6 +3,7 @@ package com.frikinzi.creatures.entity;
 import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.entity.base.TameableBirdBase;
+import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
 import com.google.common.collect.Sets;
@@ -36,7 +37,7 @@ import java.util.Set;
 
 public class FairywrenEntity extends NonTameableFlyingBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.BEETROOT_SEEDS, Items.PUMPKIN_SEEDS);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(CreaturesItems.MEALWORMS);
 
     public FairywrenEntity(EntityType<? extends FairywrenEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -157,6 +158,10 @@ public class FairywrenEntity extends NonTameableFlyingBirdBase implements IAnima
         } else {
             return "???";
         }
+    }
+
+    public ItemStack getFoodItem() {
+        return new ItemStack(CreaturesItems.MEALWORMS, 1);
     }
 
     @Override

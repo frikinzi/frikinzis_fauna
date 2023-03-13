@@ -258,12 +258,23 @@ public class ModEntitySpawn {
         }  if (CreaturesConfig.capercaillie_spawns.get() && (!types.contains(BiomeDictionary.Type.NETHER) && types.contains(BiomeDictionary.Type.FOREST))) {
             spawns.addSpawn(EntityClassification.CREATURE,
                     new MobSpawnInfo.Spawners(ModEntityTypes.CAPERCAILLIE.get(), CreaturesConfig.capercaillie_spawn_weight.get(), CreaturesConfig.capercaillie_min_group.get(), CreaturesConfig.capercaillie_max_group.get()));
+        }   if (CreaturesConfig.pheasant_spawns.get() && (!types.contains(BiomeDictionary.Type.NETHER) && (types.contains(BiomeDictionary.Type.FOREST) || types.contains(BiomeDictionary.Type.MOUNTAIN)))) {
+            spawns.addSpawn(EntityClassification.CREATURE,
+                    new MobSpawnInfo.Spawners(ModEntityTypes.PHEASANT.get(), CreaturesConfig.pheasant_spawn_weight.get(), CreaturesConfig.pheasant_min_group.get(), CreaturesConfig.pheasant_max_group.get()));
         }  if (CreaturesConfig.tarantula_spawns.get() && !types.contains(BiomeDictionary.Type.NETHER) && (types.contains(BiomeDictionary.Type.DRY) || types.contains(BiomeDictionary.Type.JUNGLE))) {
             spawns.addSpawn(EntityClassification.CREATURE,
                     new MobSpawnInfo.Spawners(ModEntityTypes.TARANTULA.get(), CreaturesConfig.tarantula_spawn_weight.get(), CreaturesConfig.tarantula_min_group.get(), CreaturesConfig.tarantula_max_group.get()));
         }  if (CreaturesConfig.vampirecrab_spawns.get() && types.contains(BiomeDictionary.Type.RIVER)) {
             spawns.addSpawn(EntityClassification.CREATURE,
                     new MobSpawnInfo.Spawners(ModEntityTypes.VAMPIRECRAB.get(), CreaturesConfig.vampirecrab_spawn_weight.get(), CreaturesConfig.vampirecrab_min_group.get(), CreaturesConfig.vampirecrab_max_group.get()));
+        }
+        if (CreaturesConfig.arapaima_spawns.get() && types.contains(BiomeDictionary.Type.RIVER)) {
+            spawns.addSpawn(EntityClassification.WATER_AMBIENT,
+                    new MobSpawnInfo.Spawners(ModEntityTypes.ARAPAIMA.get(), CreaturesConfig.arapaima_spawn_weight.get(), CreaturesConfig.arapaima_min_group.get(), CreaturesConfig.arapaima_max_group.get()));
+        }
+        if (CreaturesConfig.tigerbarb_spawns.get() && types.contains(BiomeDictionary.Type.RIVER)) {
+            spawns.addSpawn(EntityClassification.WATER_AMBIENT,
+                    new MobSpawnInfo.Spawners(ModEntityTypes.TIGERBARB.get(), CreaturesConfig.tigerbarb_spawn_weight.get(), CreaturesConfig.tigerbarb_min_group.get(), CreaturesConfig.tigerbarb_max_group.get()));
         }
 
 

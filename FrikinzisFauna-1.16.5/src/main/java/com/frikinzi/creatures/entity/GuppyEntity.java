@@ -10,6 +10,7 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
@@ -54,6 +55,8 @@ public class GuppyEntity extends GroupFishBase implements IAnimatable {
             }
             if (p_213386_5_.contains("BucketHeightMultiplier")) {
                 this.setHeightMultiplier(p_213386_5_.getFloat("BucketHeightMultiplier"));
+            } if (p_213386_5_.contains("Age")) {
+                this.setAge(p_213386_5_.getInt("Age"));
             }
             return p_213386_4_;
         }
@@ -145,6 +148,14 @@ public class GuppyEntity extends GroupFishBase implements IAnimatable {
 
     public ResourceLocation getDefaultLootTable() {
         return CreaturesLootTables.GUPPY;
+    }
+
+    public float getHatchChance() {
+        return Double.valueOf(CreaturesConfig.guppy_hatch_chance.get()).floatValue();
+    }
+
+    public Item getFoodItem() {
+        return CreaturesItems.RAW_SHRIMP;
     }
 
 

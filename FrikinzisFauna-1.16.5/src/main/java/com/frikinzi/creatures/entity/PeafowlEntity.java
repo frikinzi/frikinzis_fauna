@@ -7,6 +7,7 @@ import com.frikinzi.creatures.entity.base.NonTameableBirdBase;
 import com.frikinzi.creatures.entity.base.TameableBirdBase;
 import com.frikinzi.creatures.entity.base.TameableWalkingBirdBase;
 import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
+import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.registry.ModEntityTypes;
 import com.frikinzi.creatures.util.CreaturesLootTables;
@@ -54,7 +55,7 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
     private PanicGoal PanicGoal;
     private static final DataParameter<Boolean> DISPLAYING = EntityDataManager.defineId(PeafowlEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> ON_DISPLAY = EntityDataManager.defineId(PeafowlEntity.class, DataSerializers.BOOLEAN);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.BEETROOT_SEEDS, Items.PUMPKIN_SEEDS);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.BEETROOT_SEEDS, Items.PUMPKIN_SEEDS, CreaturesItems.MEALWORMS);
 
     public PeafowlEntity(EntityType<? extends PeafowlEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);

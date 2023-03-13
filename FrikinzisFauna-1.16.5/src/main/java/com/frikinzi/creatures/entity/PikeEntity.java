@@ -13,7 +13,9 @@ import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.monster.AbstractSkeletonEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -57,6 +59,8 @@ public class PikeEntity extends FishBase implements IAnimatable {
         if (p_213386_5_ != null) {
             if (p_213386_5_.contains("BucketHeightMultiplier")) {
                 this.setHeightMultiplier(p_213386_5_.getFloat("BucketHeightMultiplier"));
+            } if (p_213386_5_.contains("Age")) {
+                this.setAge(p_213386_5_.getInt("Age"));
             }
             return p_213386_4_;
         }
@@ -129,6 +133,14 @@ public class PikeEntity extends FishBase implements IAnimatable {
 
     public ResourceLocation getDefaultLootTable() {
         return CreaturesLootTables.PIKE;
+    }
+
+    public float getHatchChance() {
+        return Double.valueOf(CreaturesConfig.pike_hatch_chance.get()).floatValue();
+    }
+
+    public Item getFoodItem() {
+        return Items.COD;
     }
 
 }

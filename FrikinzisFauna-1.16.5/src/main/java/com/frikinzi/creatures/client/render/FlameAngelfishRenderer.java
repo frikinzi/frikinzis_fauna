@@ -29,6 +29,9 @@ public class FlameAngelfishRenderer extends GeoEntityRenderer<FlameAngelfishEnti
         } else {
             multiplier = 1.0F;
         }
+        if (animatable.isBaby()) {
+            stackIn.scale(0.5F, 0.5F, 0.5F);
+        }
         stackIn.scale(0.6F * multiplier, 0.6F * multiplier, 0.6F * multiplier);
     }
 }

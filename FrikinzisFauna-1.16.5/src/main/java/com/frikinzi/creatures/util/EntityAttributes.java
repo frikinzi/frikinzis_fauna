@@ -5,6 +5,7 @@ import com.frikinzi.creatures.entity.*;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.entity.base.TameableBirdBase;
 import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
+import com.frikinzi.creatures.entity.egg.CreaturesRoeEntity;
 import com.frikinzi.creatures.registry.ModEntityTypes;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -63,6 +64,9 @@ public class EntityAttributes {
                 EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
                 FishBase::checkFishSpawnRules);
         EntitySpawnPlacementRegistry.register(ModEntityTypes.TIGERBARB.get(),
+                EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
+                FishBase::checkFishSpawnRules);
+        EntitySpawnPlacementRegistry.register(ModEntityTypes.ARAPAIMA.get(),
                 EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
                 FishBase::checkFishSpawnRules);
         EntitySpawnPlacementRegistry.register(ModEntityTypes.LOVEBIRD.get(),
@@ -197,6 +201,9 @@ public class EntityAttributes {
         EntitySpawnPlacementRegistry.register(ModEntityTypes.CAPERCAILLIE.get(),
                 EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING,
                 TameableBirdBase::checkBirdSpawnRules);
+        EntitySpawnPlacementRegistry.register(ModEntityTypes.PHEASANT.get(),
+                EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING,
+                TameableBirdBase::checkBirdSpawnRules);
 
 
 
@@ -259,7 +266,10 @@ public class EntityAttributes {
         event.put(ModEntityTypes.TARANTULA.get(), TarantulaEntity.createAttributes().build());
         event.put(ModEntityTypes.CAPERCAILLIE.get(), CapercaillieEntity.createAttributes().build());
         event.put(ModEntityTypes.TIGERBARB.get(), TigerBarbEntity.createAttributes().build());
+        event.put(ModEntityTypes.PHEASANT.get(), PheasantEntity.createAttributes().build());
+        event.put(ModEntityTypes.ARAPAIMA.get(), ArapaimaEntity.createAttributes().build());
         event.put(ModEntityTypes.EGG.get(), CreaturesEggEntity.createAttributes().build());
+        event.put(ModEntityTypes.ROE.get(), CreaturesRoeEntity.createAttributes().build());
     }
 
 }

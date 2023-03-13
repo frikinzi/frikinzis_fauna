@@ -21,7 +21,9 @@ public class WildDuckModel extends AnimatedGeoModel<WildDuckEntity> {
     {
         if (object.isBaby()) {
             return new ResourceLocation(Creatures.MODID, "textures/entity/wildduck/wildduckling" + object.getVariant() + ".png");
-        }
+        } if (object.isSleeping()) {
+        return new ResourceLocation(Creatures.MODID, "textures/entity/wildduck/duck" + object.getVariant() + object.getGenderName() + "sleep.png");
+    }
         return new ResourceLocation(Creatures.MODID, "textures/entity/wildduck/duck" + object.getVariant() + object.getGenderName() + ".png");
     }
 

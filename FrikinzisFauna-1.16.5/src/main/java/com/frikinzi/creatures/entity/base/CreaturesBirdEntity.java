@@ -188,7 +188,7 @@ abstract public class CreaturesBirdEntity extends TameableEntity {
     public ActionResultType mobInteract(PlayerEntity p_230254_1_, Hand p_230254_2_) {
         ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
         if (itemstack.getItem() == CreaturesItems.FF_GUIDE) {
-            System.out.println(this.getUUID());
+            //System.out.println(this.getUUID());
             if (this.level.isClientSide) {
                 if (itemstack.getTag() == null) {
                     itemstack.getOrCreateTag();

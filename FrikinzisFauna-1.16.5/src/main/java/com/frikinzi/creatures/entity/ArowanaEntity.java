@@ -10,7 +10,9 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -56,6 +58,8 @@ public class ArowanaEntity extends FishBase implements IAnimatable {
             }
             if (p_213386_5_.contains("BucketHeightMultiplier")) {
                 this.setHeightMultiplier(p_213386_5_.getFloat("BucketHeightMultiplier"));
+            } if (p_213386_5_.contains("Age")) {
+                this.setAge(p_213386_5_.getInt("Age"));
             }
             return p_213386_4_;
         }
@@ -95,6 +99,7 @@ public class ArowanaEntity extends FishBase implements IAnimatable {
         CompoundNBT compoundnbt = p_204211_1_.getOrCreateTag();
         compoundnbt.putInt("BucketVariantTag", this.getVariant());
         compoundnbt.putFloat("BucketHeightMultiplier", this.getHeightMultiplier());
+        compoundnbt.putInt("Age", this.getAge());
     }
 
     protected SoundEvent getAmbientSound() {
@@ -148,6 +153,14 @@ public class ArowanaEntity extends FishBase implements IAnimatable {
     public String getSpeciesName() {
         ITextComponent i = new TranslationTextComponent("entity.creatures.arowana");
         return i.getString();
+    }
+
+    public float getHatchChance() {
+        return Double.valueOf(CreaturesConfig.arowana_hatch_chance.get()).floatValue();
+    }
+
+    public Item getFoodItem() {
+        return CreaturesItems.RAW_SHRIMP;
     }
 
 }

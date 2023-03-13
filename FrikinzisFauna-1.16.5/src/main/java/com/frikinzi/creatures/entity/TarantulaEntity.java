@@ -1,6 +1,8 @@
 package com.frikinzi.creatures.entity;
 
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.AbstractCrabBase;
+import com.frikinzi.creatures.registry.CreaturesItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -9,6 +11,8 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.SpiderEntity;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.FoxEntity;
+import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -21,15 +25,16 @@ import net.minecraft.pathfinding.ClimberPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.BiomeDictionary;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -45,11 +50,13 @@ import java.util.Set;
 
 public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
     private int[] old_worlds = new int[] {6,9,11,13};
+    private int[] jungle_variants = new int[] {2,3,4,5,8,9,12,13,14};
+    private int[] desert_variants = new int[] {1,6,7,10,11};
     private static final DataParameter<Byte> DATA_FLAGS_ID = EntityDataManager.defineId(TarantulaEntity.class, DataSerializers.BYTE);
     private static final DataParameter<Integer> DATA_VARIANT_ID = EntityDataManager.defineId(TarantulaEntity.class, DataSerializers.INT);
     private static final DataParameter<Integer> GENDER = EntityDataManager.defineId(TarantulaEntity.class, DataSerializers.INT);
     private static final DataParameter<Boolean> THREAT = EntityDataManager.defineId(TarantulaEntity.class, DataSerializers.BOOLEAN);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.DEAD_BUSH, Items.DEAD_BRAIN_CORAL, Items.DEAD_BRAIN_CORAL_FAN, Items.DEAD_BUBBLE_CORAL, Items.DEAD_FIRE_CORAL);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(CreaturesItems.MEALWORMS);
     private AnimationFactory factory = new AnimationFactory(this);
 
     public TarantulaEntity(EntityType<? extends TarantulaEntity> p_i48550_1_, World p_i48550_2_) {
@@ -58,6 +65,7 @@ public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
 
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new SwimGoal(this));
+        this.goalSelector.addGoal(2, new TarantulaEntity.TarantulaBreedGoal(1.0D));
         this.goalSelector.addGoal(2, new LookAtGoal(this, PlayerEntity.class, 4.0F));
         this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.4F));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
@@ -70,7 +78,7 @@ public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
 
     @Nullable
     public ILivingEntityData finalizeSpawn(IServerWorld p_213386_1_, DifficultyInstance p_213386_2_, SpawnReason p_213386_3_, @Nullable ILivingEntityData p_213386_4_, @Nullable CompoundNBT p_213386_5_) {
-        this.setVariant(this.random.nextInt(14));
+        this.setVariant(this.methodofDeterminingVariant(p_213386_1_));
         this.setGender(this.random.nextInt(2));
         if (p_213386_4_ == null) {
             p_213386_4_ = new AgeableData(false);
@@ -112,6 +120,10 @@ public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
         this.entityData.define(DATA_VARIANT_ID, 0);
         this.entityData.define(GENDER, 0);
         this.entityData.define(THREAT, false);
+    }
+
+    protected float getStandingEyeHeight(Pose p_213348_1_, EntitySize p_213348_2_) {
+        return 0.13F;
     }
 
     public void tick() {
@@ -167,6 +179,7 @@ public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
     public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         TarantulaEntity fiddlercrabentity = (TarantulaEntity) getType().create(p_241840_1_);
         fiddlercrabentity.setVariant(this.getVariant());
+        fiddlercrabentity.setGender(this.random.nextInt(2));
         return fiddlercrabentity;
     }
 
@@ -202,6 +215,10 @@ public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
         } else if (p_70878_1_.getClass() != this.getClass()) {
             return false;
         } else {
+            TarantulaEntity partner = (TarantulaEntity)p_70878_1_;
+            if (this.getGender() == partner.getGender()) {
+                return false;
+            }
             return this.isInLove() && p_70878_1_.isInLove();
         }
     }
@@ -227,6 +244,11 @@ public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
 
     public void aiStep() {
         super.aiStep();
+        if (this.getTarget() != null) {
+            if (this.getTarget().isDeadOrDying()) {
+                this.setTarget(null);
+            }
+        }
         if (this.isThreatPose()) {
             TarantulaEntity.this.getNavigation().stop();
             TarantulaEntity.this.setDeltaMovement(0,0,0);
@@ -262,6 +284,23 @@ public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
 
     public void setGender(int p_191997_1_) {
         this.entityData.set(GENDER, p_191997_1_);
+    }
+
+    public int methodofDeterminingVariant(IWorld p_213610_1_) {
+        if (CreaturesConfig.biome_only_variants.get()) {
+            Biome biome = p_213610_1_.getBiome(this.blockPosition());
+            RegistryKey<Biome> biomeKey = RegistryKey.create(Registry.BIOME_REGISTRY, biome.getRegistryName());
+            Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biomeKey);
+            if (types.contains(BiomeDictionary.Type.JUNGLE)) {
+                int i = this.random.nextInt(jungle_variants.length);
+                return jungle_variants[i];
+            } if (types.contains(BiomeDictionary.Type.DRY)) {
+                int i = this.random.nextInt(desert_variants.length);
+                return desert_variants[i];
+            }
+        }
+        return this.random.nextInt(15);
+
     }
 
     public boolean contains(int[] s, int type) {
@@ -420,6 +459,57 @@ public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
         }
     }
 
+    public ItemStack getFoodItem() {
+        return new ItemStack(CreaturesItems.MEALWORMS, 1);
+    }
+
+    public class TarantulaBreedGoal extends BreedGoal {
+        private int peacetime = 0;
+        public TarantulaBreedGoal(double p_i50738_2_) {
+            super(TarantulaEntity.this, p_i50738_2_);
+        }
+
+        public void stop() {
+            int rand = this.animal.getRandom().nextInt(100);
+            TarantulaEntity tarantula = (TarantulaEntity) this.animal;
+            TarantulaEntity tarantula_boyfriend = (TarantulaEntity) this.partner;
+            if (rand <= 50) {
+                if (tarantula.getGender() == 0 && tarantula_boyfriend.getGender() == 1) {
+                    tarantula.setTarget(this.partner);
+                    //tarantula_boyfriend.goalSelector.addGoal(1, new AvoidEntityGoal<TarantulaEntity>(tarantula_boyfriend, TarantulaEntity.class, 6.0F, 1.0D, 1.2D));
+                } if (tarantula_boyfriend.getGender() == 0 && tarantula.getGender() == 1) {
+                    tarantula_boyfriend.setTarget(this.animal);
+                    //tarantula.goalSelector.addGoal(1, new AvoidEntityGoal<TarantulaEntity>(tarantula, TarantulaEntity.class, 6.0F, 1.0D, 1.2D));
+
+                }
+            }
+
+            super.stop();
+        }
+
+        public void tick() {
+            super.tick();
+
+        }
+
+        protected void breed() {
+            int rand = this.animal.getRandom().nextInt(10) + 1;
+            for (int i = 0; i < rand; i++) {
+                this.animal.spawnChildFromBreeding((ServerWorld)this.level, this.partner);
+            }
+        }
+
+    }
+
+    public String getGenderString() {
+        if (this.getGender() == 1) {
+            ITextComponent i = new TranslationTextComponent("gui.male");
+            return i.getString();
+        } else {
+            ITextComponent i = new TranslationTextComponent("gui.female");
+            return i.getString();
+        }
+    }
 
 
 }

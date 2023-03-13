@@ -2,6 +2,7 @@ package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
+import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
 import net.minecraft.client.resources.I18n;
@@ -33,7 +34,7 @@ import javax.annotation.Nullable;
 
 public class SwallowEntity extends NonTameableFlyingBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.BEETROOT_SEEDS, Items.PUMPKIN_SEEDS);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(CreaturesItems.MEALWORMS);
 
     public SwallowEntity(EntityType<? extends SwallowEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -149,6 +150,10 @@ public class SwallowEntity extends NonTameableFlyingBirdBase implements IAnimata
 
     public int getClutchSize() {
         return this.random.nextInt(CreaturesConfig.swallow_clutch_size.get());
+    }
+
+    public ItemStack getFoodItem() {
+        return new ItemStack(CreaturesItems.MEALWORMS, 1);
     }
 
 }

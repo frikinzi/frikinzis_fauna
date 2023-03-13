@@ -3,7 +3,9 @@ package com.frikinzi.creatures.entity.base;
 import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.ai.FollowLeaderGoal;
+import com.frikinzi.creatures.entity.egg.CreaturesRoeEntity;
 import com.frikinzi.creatures.registry.CreaturesItems;
+import com.frikinzi.creatures.registry.ModEntityTypes;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -12,15 +14,18 @@ import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.FollowSchoolLeaderGoal;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
+import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
 import net.minecraft.entity.passive.fish.AbstractGroupFishEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.pathfinding.SwimmerPathNavigator;
@@ -33,14 +38,20 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.*;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Random;
 
 public abstract class GroupFishBase extends AbstractGroupFishEntity {
     public static DataParameter<Boolean> DATA_ID_MOVING = EntityDataManager.defineId(GroupFishBase.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Float> HEIGHT_MULTIPLIER = EntityDataManager.defineId(GroupFishBase.class, DataSerializers.FLOAT);
+    private static final DataParameter<Boolean> BRED = EntityDataManager.defineId(GroupFishBase.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> AGE = EntityDataManager.defineId(GroupFishBase.class, DataSerializers.INT);
+    private static final DataParameter<Boolean> DATA_BABY_ID = EntityDataManager.defineId(GroupFishBase.class, DataSerializers.BOOLEAN);
+    public int coolDown = 0;
 
     protected RandomWalkingGoal randomStrollGoal;
 
@@ -54,6 +65,9 @@ public abstract class GroupFishBase extends AbstractGroupFishEntity {
     public ILivingEntityData finalizeSpawn(IServerWorld p_213386_1_, DifficultyInstance p_213386_2_, SpawnReason p_213386_3_, @Nullable ILivingEntityData p_213386_4_, @Nullable CompoundNBT p_213386_5_) {
         if (p_213386_5_ != null && p_213386_5_.contains("HeightMultiplier")) {
             this.setHeightMultiplier(p_213386_5_.getFloat("HeightMultiplier"));
+            if (p_213386_5_.contains("Age")) {
+                this.setAge(p_213386_5_.getInt("Age"));
+            }
             return p_213386_4_;
         } else {
 
@@ -62,6 +76,14 @@ public abstract class GroupFishBase extends AbstractGroupFishEntity {
         }
 
         return super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_, p_213386_4_, p_213386_5_);
+    }
+
+    public boolean isBaby() {
+        return this.getAge() < 0;
+    }
+
+    public void setBaby(boolean p_82227_1_) {
+        this.setAge(p_82227_1_ ? -24000 : 0);
     }
 
 
@@ -97,11 +119,30 @@ public abstract class GroupFishBase extends AbstractGroupFishEntity {
         return p_205022_2_.getFluidState(p_205022_1_).is(FluidTags.WATER) ? 10.0F + p_205022_2_.getBrightness(p_205022_1_) - 0.5F : super.getWalkTargetValue(p_205022_1_, p_205022_2_);
     }
 
+    public Item getFoodItem() {
+        return Items.KELP;
+    }
+
+    public ItemStack getDisplayFood() {
+        return new ItemStack(getFoodItem(), 1);
+    }
+
 
     public void aiStep() {
+        if (!this.level.isClientSide && this.coolDown > 0) {
+            --this.coolDown;
+        }
         if (this.isAlive()) {
             if (this.level.isClientSide) {
 
+            }
+            int i = this.getAge();
+            if (i < 0) {
+                ++i;
+                this.setAge(i);
+            } else if (i > 0) {
+                --i;
+                this.setAge(i);
             }
 
             if (this.isInWaterOrBubble()) {
@@ -180,6 +221,35 @@ public abstract class GroupFishBase extends AbstractGroupFishEntity {
 
     public ActionResultType mobInteract(PlayerEntity p_230254_1_, Hand p_230254_2_) {
         ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
+        if (!this.level.isClientSide()) {
+            if (itemstack.getItem() == getFoodItem() && this.isAlive() && this.coolDown <= 0 && !this.isBaby()) {
+                EntityPredicate predicate = (new EntityPredicate()).range(16.0D).allowInvulnerable().selector((p_220844_0_) -> {
+                    return ModEntityTypes.getIntFromFishEntity(((GroupFishBase)p_220844_0_)) == ModEntityTypes.getIntFromFishEntity(this);
+                });
+                List<GroupFishBase> list = this.level.getNearbyEntities(GroupFishBase.class, predicate, this, this.getBoundingBox().inflate(10.0D, 10.0D, 10.0D));
+                if (!list.isEmpty() ) {
+                    // if none of the fish in the vicinity have cooled down, can't breed
+                    boolean canbreed = false;
+                    for (int lol = 0; lol < list.size(); lol++) {
+                        if (list.get(lol).coolDown <= 0) {
+                            canbreed = true;
+                        }
+                    }
+                    if (canbreed) {
+                        this.layEgg((ServerWorld)this.level);
+                        if (!p_230254_1_.abilities.instabuild) {
+                            itemstack.shrink(1);
+                        }
+                        this.coolDown = this.random.nextInt(6000) + 6000;
+                        if (list.get(0) != null) {
+                            list.get(0).coolDown = this.random.nextInt(6000) + 6000;
+                        }
+                    }
+                }
+
+                return ActionResultType.sidedSuccess(this.level.isClientSide);
+            }
+        }
         if (itemstack.getItem() == CreaturesItems.FF_GUIDE) {
             if (this.level.isClientSide) {
                 Creatures.PROXY.setReferencedMob(this);
@@ -197,6 +267,33 @@ public abstract class GroupFishBase extends AbstractGroupFishEntity {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(HEIGHT_MULTIPLIER, 1.0F);
+        this.entityData.define(BRED, false);
+        this.entityData.define(AGE, 0);
+        this.entityData.define(DATA_BABY_ID, false);
+    }
+
+    public void onSyncedDataUpdated(DataParameter<?> p_184206_1_) {
+        if (DATA_BABY_ID.equals(p_184206_1_)) {
+            this.refreshDimensions();
+        }
+
+        super.onSyncedDataUpdated(p_184206_1_);
+    }
+
+    public int getAge() {
+        return this.entityData.get(AGE);
+    }
+
+    public void setAge(int i) {
+        this.entityData.set(AGE, i);
+    }
+
+    private boolean wasBred() {
+        return this.entityData.get(BRED);
+    }
+
+    public void setBred(boolean p_203706_1_) {
+        this.entityData.set(BRED, p_203706_1_);
     }
 
     public float getHeightMultiplier() {
@@ -244,21 +341,90 @@ public abstract class GroupFishBase extends AbstractGroupFishEntity {
         super.saveToBucketTag(p_204211_1_);
         CompoundNBT compoundnbt = p_204211_1_.getOrCreateTag();
         compoundnbt.putFloat("HeightMultiplier", this.getHeightMultiplier());
+        compoundnbt.putInt("Age", this.getAge());
     }
 
 
     public void addAdditionalSaveData(CompoundNBT p_213281_1_) {
         p_213281_1_.putFloat("HeightMultiplier", this.getHeightMultiplier());
+        p_213281_1_.putBoolean("Bred", this.wasBred());
+        p_213281_1_.putInt("Age", this.getAge());
         super.addAdditionalSaveData(p_213281_1_);
     }
 
     public void readAdditionalSaveData(CompoundNBT p_70037_1_) {
         super.readAdditionalSaveData(p_70037_1_);
+        this.setBred(p_70037_1_.getBoolean("Bred"));
+        this.setAge(p_70037_1_.getInt("Age"));
         if (!p_70037_1_.contains("HeightMultiplier") || this.getHeightMultiplier() < 0.7F || this.getHeightMultiplier() > 1.5F) {
             this.setHeightMultiplier((float)(this.random.nextGaussian() * CreaturesConfig.height_standard_deviation.get() + CreaturesConfig.height_base_multiplier.get()));
         } else {
             this.setHeightMultiplier(p_70037_1_.getFloat("HeightMultiplier")); }
     }
 
-
+    public float getHatchChance() {
+        return 1;
     }
+
+
+    public int getVariant() {
+        return 1;
+    }
+
+    public CreaturesRoeEntity layEgg(GroupFishBase animal) {
+        CreaturesRoeEntity egg = new CreaturesRoeEntity(ModEntityTypes.ROE.get(), this.level);
+        egg.setSpecies(ModEntityTypes.getIntFromFishEntity(animal));
+        egg.setGender(this.random.nextInt(2));
+        egg.setVariant(this.getVariant());
+        egg.setPos(MathHelper.floor(this.getX()) + 0.5, MathHelper.floor(this.getY()) + 0.5, MathHelper.floor(this.getZ()) + 0.5);
+        return egg;
+    }
+
+
+
+    protected void layEgg(ServerWorld server) {
+        int c = 10;
+        for (int j = 0; j <= c; j++) {
+            CreaturesRoeEntity egg = this.layEgg(this);
+            if (egg != null) {
+                GroupFishBase mother;
+                mother = this;
+
+                egg.setParentUUID(mother.getUUID());
+
+                float f = (float)(this.getRandom().nextGaussian() * 0.05 + ((this.getHeightMultiplier())));
+                egg.setHeightMultiplier(f);
+
+                Random rand = new Random();
+                egg.setPos(MathHelper.floor(mother.getX()) + 0.5 + (-1+rand.nextFloat()*2), MathHelper.floor(mother.getY()) + 0.5, MathHelper.floor(mother.getZ()) + 0.5 + (-1+rand.nextFloat()*2));
+                server.addFreshEntityWithPassengers(egg);
+                //System.out.println(this.bird.getClutchSize());
+            }
+            server.broadcastEntityEvent(this, (byte)18);
+        }
+        Random random = this.getRandom();
+        for (int i = 0; i < 17; ++i) {
+            final double d0 = random.nextGaussian() * 0.02D;
+            final double d1 = random.nextGaussian() * 0.02D;
+            final double d2 = random.nextGaussian() * 0.02D;
+            final double d3 = random.nextDouble() * this.getBbWidth() * 2.0D - this.getBbWidth();
+            final double d4 = 0.5D + random.nextDouble() * this.getBbHeight();
+            final double d5 = random.nextDouble() * this.getBbWidth() * 2.0D - this.getBbWidth();
+            this.level.addParticle(ParticleTypes.HEART, this.getX() + d3, this.getY() + d4, this.getZ() + d5, d0, d1, d2);
+        }
+        if (server.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
+            server.addFreshEntity(new ExperienceOrbEntity(server, this.getX(), this.getY(), this.getZ(), this.getRandom().nextInt(7) + 1));
+        }
+    }
+
+    public boolean requiresCustomPersistence() {
+        return super.requiresCustomPersistence() || this.wasBred();
+    }
+
+    public boolean removeWhenFarAway(double p_213397_1_) {
+        return super.removeWhenFarAway(p_213397_1_) && !this.wasBred();
+    }
+
+
+
+}

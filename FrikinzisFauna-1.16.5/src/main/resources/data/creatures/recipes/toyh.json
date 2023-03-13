@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ABC",
+        "DEF"
+    ],
+    "key": {
+        "A": {
+            "item": "minecraft:black_wool"
+        },
+        "B": {
+            "item": "minecraft:black_wool"
+        },
+        "C": {
+            "item": "minecraft:light_gray_wool"
+        },
+        "D": {
+            "item": "creatures:duck_feather"
+        },
+        "E": {
+            "item": "minecraft:black_wool"
+        },
+        "F": {
+            "item": "minecraft:black_wool"
+        }
+    },
+    "result": {
+        "item": "creatures:toyh"
+    }
+}

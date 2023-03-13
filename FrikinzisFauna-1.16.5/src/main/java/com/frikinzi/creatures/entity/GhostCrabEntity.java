@@ -43,6 +43,7 @@ import java.util.Random;
 
 public class GhostCrabEntity extends AbstractCrabBase implements IAnimatable {
     private static final DataParameter<Integer> DATA_VARIANT_ID = EntityDataManager.defineId(GhostCrabEntity.class, DataSerializers.INT);
+    private static final DataParameter<Integer> GENDER = EntityDataManager.defineId(GhostCrabEntity.class, DataSerializers.INT);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.DEAD_BUSH, Items.DEAD_BRAIN_CORAL, Items.DEAD_BRAIN_CORAL_FAN, Items.DEAD_BUBBLE_CORAL, Items.DEAD_FIRE_CORAL);
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -63,6 +64,7 @@ public class GhostCrabEntity extends AbstractCrabBase implements IAnimatable {
     @Nullable
     public ILivingEntityData finalizeSpawn(IServerWorld p_213386_1_, DifficultyInstance p_213386_2_, SpawnReason p_213386_3_, @Nullable ILivingEntityData p_213386_4_, @Nullable CompoundNBT p_213386_5_) {
         this.setVariant(this.random.nextInt(5));
+        this.setGender(this.random.nextInt(2));
         if (p_213386_4_ == null) {
             p_213386_4_ = new AgeableEntity.AgeableData(false);
         }
@@ -130,16 +132,19 @@ public class GhostCrabEntity extends AbstractCrabBase implements IAnimatable {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(DATA_VARIANT_ID, 0);
+        this.entityData.define(GENDER, 0);
     }
 
     public void addAdditionalSaveData(CompoundNBT p_213281_1_) {
         super.addAdditionalSaveData(p_213281_1_);
         p_213281_1_.putInt("Variant", this.getVariant());
+        p_213281_1_.putInt("Gender", this.getGender());
     }
 
     public void readAdditionalSaveData(CompoundNBT p_70037_1_) {
         super.readAdditionalSaveData(p_70037_1_);
         this.setVariant(p_70037_1_.getInt("Variant"));
+        this.setGender(p_70037_1_.getInt("Gender"));
     }
 
     public boolean canBreatheUnderwater() {
@@ -173,6 +178,24 @@ public class GhostCrabEntity extends AbstractCrabBase implements IAnimatable {
         } else {
             return "Unknown";
         }
+    }
+
+    public String getGenderString() {
+        if (this.getGender() == 1) {
+            ITextComponent i = new TranslationTextComponent("gui.male");
+            return i.getString();
+        } else {
+            ITextComponent i = new TranslationTextComponent("gui.female");
+            return i.getString();
+        }
+    }
+
+    public int getGender() {
+        return MathHelper.clamp(this.entityData.get(GENDER), 0, 2);
+    }
+
+    public void setGender(int p_191997_1_) {
+        this.entityData.set(GENDER, p_191997_1_);
     }
 
 }
