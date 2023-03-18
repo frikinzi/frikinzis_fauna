@@ -179,6 +179,18 @@
     "subtitle": "entity.pheasant.ambient",
     "sounds": [ "creatures:entity/pheasant/pheasant_ambient" ]
   },
+  "entity.dove.crested_pigeon_flying": {
+    "subtitle": "entity.dove.crested_pigeon_flying",
+    "sounds": [ "creatures:entity/dove/crested_pigeon_flying" ]
+  },
+  "entity.piranha.piranha_ambient": {
+    "subtitle": "entity.piranha.piranha_ambient",
+    "sounds": [ "creatures:entity/piranha/piranha_ambient" ]
+  },
+  "entity.dove.mourning_dove_ambient": {
+    "subtitle": "entity.dove.mourning_dove_ambient",
+    "sounds": [ "creatures:entity/dove/mourning_dove_ambient" ]
+  },
   "entity.egg.hatch": {
     "subtitle": "entity.egg.hatch",
     "sounds": [ "creatures:entity/egg/hatch" ]

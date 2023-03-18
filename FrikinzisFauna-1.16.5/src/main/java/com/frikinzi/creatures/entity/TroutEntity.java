@@ -94,6 +94,8 @@ public class TroutEntity extends FishBase implements IAnimatable {
         super.saveToBucketTag(p_204211_1_);
         CompoundNBT compoundnbt = p_204211_1_.getOrCreateTag();
         compoundnbt.putInt("BucketVariantTag", this.getVariant());
+        compoundnbt.putFloat("BucketHeightMultiplier", this.getHeightMultiplier());
+        compoundnbt.putInt("Age", this.getAge());
     }
 
     protected SoundEvent getAmbientSound() {

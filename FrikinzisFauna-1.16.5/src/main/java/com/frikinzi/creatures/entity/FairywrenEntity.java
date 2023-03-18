@@ -8,13 +8,13 @@ import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
 import com.google.common.collect.Sets;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -46,6 +46,7 @@ public class FairywrenEntity extends NonTameableFlyingBirdBase implements IAnima
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, false, FOOD_ITEMS));
+        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, PlayerEntity.class, 16.0F, 1.5D, 1.2D));
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
@@ -172,6 +173,10 @@ public class FairywrenEntity extends NonTameableFlyingBirdBase implements IAnima
     @Override
     public float getHatchChance() {
         return Double.valueOf(CreaturesConfig.fairywren_hatch_chance.get()).floatValue();
+    }
+
+    protected float getStandingEyeHeight(Pose p_213348_1_, EntitySize p_213348_2_) {
+        return 0.3F;
     }
 
 }

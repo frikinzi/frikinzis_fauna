@@ -96,7 +96,7 @@ public class ModEntitySpawn {
             spawns.addSpawn(EntityClassification.CREATURE,
                     new MobSpawnInfo.Spawners(ModEntityTypes.SPOONBILL.get(), CreaturesConfig.spoonbill_spawn_weight.get(), CreaturesConfig.spoonbill_min_group.get(), CreaturesConfig.spoonbill_max_group.get()));
         }
-        if (CreaturesConfig.dove_spawns.get() && !types.contains(BiomeDictionary.Type.NETHER) && ((types.contains(BiomeDictionary.Type.JUNGLE) || types.contains(BiomeDictionary.Type.FOREST) || types.contains(BiomeDictionary.Type.PLAINS)))) {
+        if (CreaturesConfig.dove_spawns.get() && !types.contains(BiomeDictionary.Type.NETHER) && ((types.contains(BiomeDictionary.Type.JUNGLE) || types.contains(BiomeDictionary.Type.FOREST) || types.contains(BiomeDictionary.Type.PLAINS) || types.contains(BiomeDictionary.Type.SWAMP) || types.contains(BiomeDictionary.Type.MESA)))) {
             spawns.addSpawn(EntityClassification.CREATURE,
                     new MobSpawnInfo.Spawners(ModEntityTypes.DOVE.get(), CreaturesConfig.dove_spawn_weight.get(), CreaturesConfig.dove_min_group.get(), CreaturesConfig.dove_max_group.get()));
         }
@@ -275,6 +275,10 @@ public class ModEntitySpawn {
         if (CreaturesConfig.tigerbarb_spawns.get() && types.contains(BiomeDictionary.Type.RIVER)) {
             spawns.addSpawn(EntityClassification.WATER_AMBIENT,
                     new MobSpawnInfo.Spawners(ModEntityTypes.TIGERBARB.get(), CreaturesConfig.tigerbarb_spawn_weight.get(), CreaturesConfig.tigerbarb_min_group.get(), CreaturesConfig.tigerbarb_max_group.get()));
+        }
+        if (CreaturesConfig.piranha_spawns.get() && types.contains(BiomeDictionary.Type.RIVER)) {
+            spawns.addSpawn(EntityClassification.WATER_AMBIENT,
+                    new MobSpawnInfo.Spawners(ModEntityTypes.PIRANHA.get(), CreaturesConfig.piranha_spawn_weight.get(), CreaturesConfig.piranha_min_group.get(), CreaturesConfig.piranha_max_group.get()));
         }
 
 

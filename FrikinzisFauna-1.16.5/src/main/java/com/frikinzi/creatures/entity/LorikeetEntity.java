@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.TameableBirdBase;
 import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
@@ -13,6 +14,10 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.HurtByTargetGoal;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.OwnerHurtByTargetGoal;
+import net.minecraft.entity.ai.goal.OwnerHurtTargetGoal;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -42,6 +47,12 @@ public class LorikeetEntity extends TameableBirdBase implements IAnimatable {
 
     public LorikeetEntity(EntityType<? extends LorikeetEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
+    }
+
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(6, new FollowFlockLeaderGoal(this));
+
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
@@ -224,6 +235,10 @@ public class LorikeetEntity extends TameableBirdBase implements IAnimatable {
 
     public int getClutchSize() {
         return this.random.nextInt(CreaturesConfig.lorikeet_clutch_size.get());
+    }
+
+    public int getMaxFlockSize() {
+        return 10;
     }
 
 }

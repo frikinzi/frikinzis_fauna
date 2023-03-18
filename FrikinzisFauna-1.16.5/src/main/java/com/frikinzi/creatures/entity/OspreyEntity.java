@@ -37,7 +37,7 @@ import java.util.function.Predicate;
 
 public class OspreyEntity extends RaptorBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.COD, Items.SALMON, CreaturesItems.RAW_RED_SNAPPER, CreaturesItems.RAW_TROUT, Items.TROPICAL_FISH);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(CreaturesItems.RAW_TROUT, Items.SALMON, Items.PUFFERFISH, Items.TROPICAL_FISH, Items.COD, CreaturesItems.RAW_KOI, CreaturesItems.RAW_ARAPAIMA, CreaturesItems.RAW_RED_SNAPPER, CreaturesItems.RAW_PIKE);
     public static final Predicate<LivingEntity> PREY_SELECTOR = (p_213440_0_) -> {
         EntityType<?> entitytype = p_213440_0_.getType();
         return entitytype == EntityType.COD || entitytype == ModEntityTypes.RED_SNAPPER.get() || entitytype == ModEntityTypes.TROUT.get();

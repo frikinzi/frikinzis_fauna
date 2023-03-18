@@ -22,7 +22,7 @@ public class ArapaimaModel extends AnimatedGeoModel<ArapaimaEntity> {
         if (object.isBaby()) {
             return new ResourceLocation(Creatures.MODID, "textures/entity/arapaima/arapaimafry.png");
         }
-        return new ResourceLocation(Creatures.MODID, "textures/entity/arapaima/arapaima.png");
+        return new ResourceLocation(Creatures.MODID, "textures/entity/arapaima/arapaima" + object.getVariant() + ".png");
     }
 
     @Override

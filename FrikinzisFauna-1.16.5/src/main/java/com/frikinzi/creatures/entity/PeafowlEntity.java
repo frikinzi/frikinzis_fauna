@@ -1,10 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
-import com.frikinzi.creatures.entity.ai.StayCloseToEggGoal;
 import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
-import com.frikinzi.creatures.entity.base.NonTameableBirdBase;
-import com.frikinzi.creatures.entity.base.TameableBirdBase;
 import com.frikinzi.creatures.entity.base.TameableWalkingBirdBase;
 import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
 import com.frikinzi.creatures.registry.CreaturesItems;
@@ -12,7 +9,6 @@ import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.registry.ModEntityTypes;
 import com.frikinzi.creatures.util.CreaturesLootTables;
 import com.google.common.collect.Sets;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.EntityType;
@@ -20,11 +16,7 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.EvokerEntity;
-import net.minecraft.entity.monster.SpellcastingIllagerEntity;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.SheepEntity;
-import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -67,7 +59,7 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
             event.getController().setAnimation(new AnimationBuilder().addAnimation("sleep", true));
             return PlayState.CONTINUE;
         }
-        if (this.isOnDisplay()) {
+        else if (this.isOnDisplay() && !this.isBaby() && !(this.getGender() == 0)) {
             if (event.isMoving()) {
                 event.getController().setAnimation(new AnimationBuilder().addAnimation("displaywalk", true));
                 return PlayState.CONTINUE;

@@ -1,15 +1,14 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
 import com.google.common.collect.Sets;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.TemptGoal;
@@ -45,6 +44,7 @@ public class IbisEntity extends NonTameableFlyingBirdBase implements IAnimatable
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, false, FOOD_ITEMS));
+        this.goalSelector.addGoal(5, new FollowFlockLeaderGoal(this));
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
@@ -170,6 +170,14 @@ public class IbisEntity extends NonTameableFlyingBirdBase implements IAnimatable
 
     public int getClutchSize() {
         return this.random.nextInt(CreaturesConfig.ibis_clutch_size.get());
+    }
+
+    public int getMaxFlockSize() {
+        return 10;
+    }
+
+    protected float getStandingEyeHeight(Pose p_213348_1_, EntitySize p_213348_2_) {
+        return 0.5F;
     }
 
 }

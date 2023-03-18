@@ -21,20 +21,20 @@ public class DoveModel extends AnimatedGeoModel<DoveEntity> {
     {
         if (object.isFlying()) {
             if (object.getVariant() == 1 || object.getVariant() == 5) {
-                return new ResourceLocation(Creatures.MODID, "textures/entity/dove/dove" + object.getVariant() + object.getGender() + "fly.png");
+                return new ResourceLocation(Creatures.MODID, "textures/entity/dove/dove" + object.getVariant() + object.getGenderName() + "fly.png");
             } else {
                 return new ResourceLocation(Creatures.MODID, "textures/entity/dove/dove" + object.getVariant() + "fly.png");
             }
         } else if (object.isSleeping()) {
             if (object.getVariant() == 1 || object.getVariant() == 5) {
-                return new ResourceLocation(Creatures.MODID, "textures/entity/dove/dove" + object.getVariant() + object.getGender() + "sleep.png");
+                return new ResourceLocation(Creatures.MODID, "textures/entity/dove/dove" + object.getVariant() + object.getGenderName() + "sleep.png");
             } else {
                 return new ResourceLocation(Creatures.MODID, "textures/entity/dove/dove" + object.getVariant() + "sleep.png");
             }
         }
         else {
             if (object.getVariant() == 1 || object.getVariant() == 5) {
-                return new ResourceLocation(Creatures.MODID, "textures/entity/dove/dove" + object.getVariant() + object.getGender() + ".png");
+                return new ResourceLocation(Creatures.MODID, "textures/entity/dove/dove" + object.getVariant() + object.getGenderName() + ".png");
             } else {
                 return new ResourceLocation(Creatures.MODID, "textures/entity/dove/dove" + object.getVariant() + ".png");
             }
@@ -44,9 +44,6 @@ public class DoveModel extends AnimatedGeoModel<DoveEntity> {
     @Override
     public ResourceLocation getAnimationFileLocation(DoveEntity object)
     {
-        if (object.isFlying()) {
-            return new ResourceLocation(Creatures.MODID, "animations/dovefly.json");
-        }
         return new ResourceLocation(Creatures.MODID, "animations/animation.dove.json");
     }
 }

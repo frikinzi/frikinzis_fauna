@@ -3,9 +3,6 @@ package com.frikinzi.creatures.registry;
 import com.frikinzi.creatures.Creatures;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 
 @SuppressWarnings("WeakerAccess")
 public class CreaturesSound {
@@ -50,10 +47,14 @@ public class CreaturesSound {
     public static final SoundEvent SKUA_AMBIENT = createSoundEvent("entity.skua.ambient");
     public static final SoundEvent BUNTING_AMBIENT = createSoundEvent("entity.bunting.ambient");
     public static final SoundEvent MONAL_AMBIENT = createSoundEvent("entity.monal.ambient");
+    public static final SoundEvent TANAGER_AMBIENT = createSoundEvent("entity.tanager.ambient");
     public static final SoundEvent FINCH_AMBIENT = createSoundEvent("entity.finch.ambient");
     public static final SoundEvent CAPERCAILLIE_AMBIENT = createSoundEvent("entity.capercaillie.ambient");
     public static final SoundEvent PHEASANT_AMBIENT = createSoundEvent("entity.pheasant.ambient");
+    public static final SoundEvent CRESTED_PIGEON = createSoundEvent("entity.dove.crested_pigeon_flying");
+    public static final SoundEvent PIRANHA_AMBIENT = createSoundEvent("entity.piranha.piranha_ambient");
     public static final SoundEvent EGG_HATCH = createSoundEvent("entity.egg.hatch");
+    public static final SoundEvent MOURNING_DOVE = createSoundEvent("entity.dove.mourning_dove_ambient");
 
     private static SoundEvent createSoundEvent(final String soundName) {
         final ResourceLocation soundID = new ResourceLocation(Creatures.MODID, soundName);

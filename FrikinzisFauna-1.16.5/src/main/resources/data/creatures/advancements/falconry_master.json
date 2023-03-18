@@ -1,0 +1,162 @@
+{
+  "parent": "creatures:falconer",
+  "display": {
+    "icon": {
+      "item": "creatures:toyl"
+    },
+    "title": {
+      "translate": "advancements.creatures.falconry_master.title"
+    },
+    "description": {
+      "translate": "advancements.creatures.falconry_master.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 500
+  },
+  "criteria": {
+    "golden_eagle": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "creatures:golden_eagle"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "stellers": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "creatures:stellers_sea_eagle"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "red_kite": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "creatures:red_kite"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "gyrfalcon": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "creatures:gyrfalcon"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "pygmyfalcon": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "creatures:pygmyfalcon"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "eagleowl": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "creatures:eagleowl"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "barn_owl": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "creatures:barn_owl"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "osprey": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "creatures:osprey"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "golden_eagle"
+    ],
+    [
+      "stellers"
+    ],
+    [
+      "red_kite"
+    ],
+    [
+      "gyrfalcon"
+    ],
+    [
+      "pygmyfalcon"
+    ],
+    [
+      "eagleowl"
+    ],
+    [
+      "barn_owl"
+    ],
+    [
+      "osprey"
+    ]
+  ]
+
+}

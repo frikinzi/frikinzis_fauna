@@ -38,7 +38,7 @@ import java.util.function.Predicate;
 
 public class RedKiteEntity extends RaptorBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.CHICKEN, Items.ROTTEN_FLESH, CreaturesItems.SMALL_BIRD_MEAT);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.CHICKEN, Items.ROTTEN_FLESH, CreaturesItems.SMALL_BIRD_MEAT, CreaturesItems.LARGE_BIRD_MEAT, Items.PORKCHOP, Items.BEEF);
     public static final Predicate<LivingEntity> PREY_SELECTOR = (p_213440_0_) -> {
         EntityType<?> entitytype = p_213440_0_.getType();
         return entitytype == EntityType.RABBIT || entitytype == ModEntityTypes.FAIRYWREN.get() || entitytype == ModEntityTypes.CHICKADEE.get() || entitytype == ModEntityTypes.SWALLOW.get();

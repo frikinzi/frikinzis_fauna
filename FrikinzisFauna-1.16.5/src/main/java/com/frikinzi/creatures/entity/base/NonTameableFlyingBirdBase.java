@@ -80,8 +80,8 @@ public class NonTameableFlyingBirdBase extends CreaturesBirdEntity implements IF
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
         this.goalSelector.addGoal(2, new MateGoal(this, 1.0D));
-        this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomFlyingGoal(this, 1.0D));
+        this.goalSelector.addGoal(11, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomFlyingGoal(this, 1.0D));
         this.goalSelector.addGoal(1, new NonTameableFlyingBirdBase.SleepGoal());
         this.goalSelector.addGoal(1, new StayCloseToEggGoal(this, 1.0D));
         this.goalSelector.addGoal(1, new StayCloseToMateGoal(this, 1.0D));
@@ -262,8 +262,9 @@ public class NonTameableFlyingBirdBase extends CreaturesBirdEntity implements IF
             if (this.level.isClientSide) {
                 Creatures.PROXY.setReferencedMob(this);
                 Creatures.PROXY.openCreaturesGUI(itemstack);
-                return ActionResultType.sidedSuccess(this.level.isClientSide);
+                //return ActionResultType.sidedSuccess(this.level.isClientSide);
             }
+            return ActionResultType.SUCCESS;
         }
         return super.mobInteract(p_230254_1_, p_230254_2_);
     }

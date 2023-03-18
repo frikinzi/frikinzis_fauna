@@ -195,5 +195,8 @@ public class CreaturesSpawnEggs {
     public static final RegistryObject<ModSpawnEgg> ARAPAIMA_SPAWN_EGG  = ITEMS.register("arapaima_spawn_egg",
             () -> new ModSpawnEgg(() -> ModEntityTypes.ARAPAIMA.get(), 4739385, 11620159,
                     new Item.Properties().tab(Creatures.CreaturesItemGroup)));
+    public static final RegistryObject<ModSpawnEgg> PIRANHA_SPAWN_EGG  = ITEMS.register("piranha_spawn_egg",
+            () -> new ModSpawnEgg(() -> ModEntityTypes.PIRANHA.get(), 8880781, 12006170,
+                    new Item.Properties().tab(Creatures.CreaturesItemGroup)));
 
 }

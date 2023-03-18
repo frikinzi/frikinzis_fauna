@@ -166,4 +166,8 @@ public class PygmyFalconEntity extends RaptorBase implements IAnimatable {
         return this.random.nextInt(CreaturesConfig.pygmy_falcon_clutch_size.get());
     }
 
+    protected float getStandingEyeHeight(Pose p_213348_1_, EntitySize p_213348_2_) {
+        return 0.3F;
+    }
+
 }

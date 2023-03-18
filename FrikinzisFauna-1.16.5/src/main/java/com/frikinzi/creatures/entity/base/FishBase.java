@@ -2,7 +2,6 @@ package com.frikinzi.creatures.entity.base;
 
 import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.config.CreaturesConfig;
-import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
 import com.frikinzi.creatures.entity.egg.CreaturesRoeEntity;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.ModEntityTypes;
@@ -13,8 +12,10 @@ import net.minecraft.entity.ai.controller.LookController;
 import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -41,6 +42,7 @@ import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Predicate;
 
 public abstract class FishBase extends AbstractFishEntity {
     public static DataParameter<Boolean> DATA_ID_MOVING = EntityDataManager.defineId(FishBase.class, DataSerializers.BOOLEAN);
@@ -57,6 +59,7 @@ public abstract class FishBase extends AbstractFishEntity {
         super(p_i48554_1_, p_i48554_2_);
         this.setPathfindingMalus(PathNodeType.WATER, 0.0F);
         this.moveControl = new FishBase.MoveHelperController(this);
+        this.setCanPickUpLoot(true);
     }
 
     @Nullable
@@ -76,9 +79,14 @@ public abstract class FishBase extends AbstractFishEntity {
 
 
     protected void registerGoals() {
-        this.randomStrollGoal = new RandomWalkingGoal(this, 1.0D, 20);
+        this.randomStrollGoal = new RandomWalkingGoal(this, this.getMoveSpeed(), 20);
         this.goalSelector.addGoal(7, this.randomStrollGoal);
         this.randomStrollGoal.setFlags(EnumSet.of(Goal.Flag.MOVE));
+        this.goalSelector.addGoal(1, new FishBase.EatFoodGoal());
+    }
+
+    public double getMoveSpeed() {
+        return 1.0D;
     }
 
     protected PathNavigator createNavigation(World p_175447_1_) {
@@ -208,12 +216,16 @@ public abstract class FishBase extends AbstractFishEntity {
         return Items.KELP;
     }
 
+    public void breed() {
+
+    }
+
     public ActionResultType mobInteract(PlayerEntity p_230254_1_, Hand p_230254_2_) {
         ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
         if (!this.level.isClientSide()) {
             if (itemstack.getItem() == getFoodItem() && this.isAlive() && this.coolDown <= 0 && !this.isBaby()) {
                 EntityPredicate predicate = (new EntityPredicate()).range(16.0D).allowInvulnerable().selector((p_220844_0_) -> {
-                    return ModEntityTypes.getIntFromFishEntity(((FishBase)p_220844_0_)) == ModEntityTypes.getIntFromFishEntity(this);
+                    return ModEntityTypes.getIntFromFishEntity(((FishBase)p_220844_0_)) == ModEntityTypes.getIntFromFishEntity(this) && !((FishBase)p_220844_0_).isBaby();
                 });
                 List<FishBase> list = this.level.getNearbyEntities(FishBase.class, predicate, this, this.getBoundingBox().inflate(10.0D, 10.0D, 10.0D));
                 if (!list.isEmpty() ) {
@@ -226,15 +238,17 @@ public abstract class FishBase extends AbstractFishEntity {
                         }
                         index += 1;
                     }
-                    if (canbreed) {
+                    if (canbreed && !FishBase.this.isBaby()) {
                         this.layEgg((ServerWorld)this.level, list.get(index));
                         if (!p_230254_1_.abilities.instabuild) {
                             itemstack.shrink(1);
                         }
+                        this.heal((float)itemstack.getItem().getFoodProperties().getNutrition());
                         this.coolDown = this.random.nextInt(6000) + 6000;
                         if (list.get(0) != null) {
                             list.get(0).coolDown = this.random.nextInt(6000) + 6000;
                         }
+                        return ActionResultType.SUCCESS;
                     }
                 }
 
@@ -247,6 +261,7 @@ public abstract class FishBase extends AbstractFishEntity {
                 Creatures.PROXY.openCreaturesGUI(itemstack);
                 return ActionResultType.sidedSuccess(this.level.isClientSide);
             }
+            return ActionResultType.SUCCESS;
         }
         return super.mobInteract(p_230254_1_, p_230254_2_);
     }
@@ -389,7 +404,7 @@ public abstract class FishBase extends AbstractFishEntity {
                 egg.setVariant(vars[rnd]);
 
                 Random rand = new Random();
-                egg.setPos(MathHelper.floor(mother.getX()) + 0.5 + (-1+rand.nextFloat()*2), MathHelper.floor(mother.getY()) + 0.5, MathHelper.floor(mother.getZ()) + 0.5 + (-1+rand.nextFloat()*2));
+                egg.setPos(MathHelper.floor(mother.getX()) + 0.5 + (-1+rand.nextFloat()), MathHelper.floor(mother.getY()) + 0.5, MathHelper.floor(mother.getZ()) + 0.5 + (-1+rand.nextFloat()));
                 server.addFreshEntityWithPassengers(egg);
                 //System.out.println(this.bird.getClutchSize());
             }
@@ -405,6 +420,7 @@ public abstract class FishBase extends AbstractFishEntity {
             final double d5 = random.nextDouble() * this.getBbWidth() * 2.0D - this.getBbWidth();
             this.level.addParticle(ParticleTypes.HEART, this.getX() + d3, this.getY() + d4, this.getZ() + d5, d0, d1, d2);
         }
+        this.setBred(true);
         if (server.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
             server.addFreshEntity(new ExperienceOrbEntity(server, this.getX(), this.getY(), this.getZ(), this.getRandom().nextInt(7) + 1));
         }
@@ -420,6 +436,131 @@ public abstract class FishBase extends AbstractFishEntity {
 
     public ItemStack getDisplayFood() {
         return new ItemStack(getFoodItem(), 1);
+    }
+
+    class EatFoodGoal extends Goal {
+        private int cooldown;
+        public final Predicate<ItemEntity> CAN_EAT = (p_205023_0_) -> {
+            return p_205023_0_.getItem().getItem() == FishBase.this.getFoodItem() && p_205023_0_.isAlive() && p_205023_0_.isInWater();
+        };
+
+        private EatFoodGoal() {
+        }
+
+        public boolean canUse() {
+            if (this.cooldown > FishBase.this.tickCount) {
+                return false;
+            } else {
+                List<ItemEntity> list = FishBase.this.level.getEntitiesOfClass(ItemEntity.class, FishBase.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), CAN_EAT);
+                return !list.isEmpty() || !FishBase.this.getItemBySlot(EquipmentSlotType.MAINHAND).isEmpty();
+            }
+        }
+
+        public void start() {
+            List<ItemEntity> list = FishBase.this.level.getEntitiesOfClass(ItemEntity.class, FishBase.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), CAN_EAT);
+            if (!list.isEmpty()) {
+                FishBase.this.getNavigation().moveTo(list.get(0), (double)1.2F);
+                //FishBase.this.playSound(SoundEvents.DOLPHIN_PLAY, 1.0F, 1.0F);
+            }
+
+            this.cooldown = 0;
+        }
+
+        public void stop() {
+            ItemStack itemstack = FishBase.this.getItemBySlot(EquipmentSlotType.MAINHAND);
+            if (!itemstack.isEmpty()) {
+                this.eat(itemstack);
+                FishBase.this.setItemSlot(EquipmentSlotType.MAINHAND, ItemStack.EMPTY);
+                this.cooldown = FishBase.this.tickCount + FishBase.this.random.nextInt(100);
+            }
+
+        }
+
+        public void tick() {
+            List<ItemEntity> list = FishBase.this.level.getEntitiesOfClass(ItemEntity.class, FishBase.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), CAN_EAT);
+            ItemStack itemstack = FishBase.this.getItemBySlot(EquipmentSlotType.MAINHAND);
+            if (!itemstack.isEmpty()) {
+                this.eat(itemstack);
+                FishBase.this.setItemSlot(EquipmentSlotType.MAINHAND, ItemStack.EMPTY);
+            } else if (!list.isEmpty()) {
+                FishBase.this.getNavigation().moveTo(list.get(0), (double)1.2F);
+                if (!FishBase.this.level.isClientSide && FishBase.this.isAlive() && !FishBase.this.dead) {
+                    for(ItemEntity itementity : FishBase.this.level.getEntitiesOfClass(ItemEntity.class, FishBase.this.getBoundingBox().inflate(1.0D, 0.0D, 1.0D), CAN_EAT)) {
+                        if (!itementity.removed && !itementity.getItem().isEmpty() && !itementity.hasPickUpDelay() && itementity.getItem().getItem() == FishBase.this.getFoodItem()) {
+                            FishBase.this.pickUpItem(itementity);
+                        }
+                    }
+                }
+            }
+
+        }
+
+        private void eat(ItemStack p_220810_1_) {
+            if (!p_220810_1_.isEmpty()) {
+                FishBase.this.setItemSlot(EquipmentSlotType.MAINHAND, ItemStack.EMPTY);
+                EntityPredicate predicate = (new EntityPredicate()).range(16.0D).allowInvulnerable().selector((p_220844_0_) -> {
+                    return ModEntityTypes.getIntFromFishEntity(((FishBase)p_220844_0_)) == ModEntityTypes.getIntFromFishEntity(FishBase.this) && !((FishBase)p_220844_0_).isBaby();
+                });
+                List<FishBase> list = FishBase.this.level.getNearbyEntities(FishBase.class, predicate, FishBase.this, FishBase.this.getBoundingBox().inflate(10.0D, 10.0D, 10.0D));
+                if (!list.isEmpty() ) {
+                    boolean canbreed = false;
+                    int index = 0;
+                    for (int lol = 0; lol < list.size(); lol++) {
+                        if (list.get(lol).coolDown <= 0) {
+                            canbreed = true;
+                            break;
+                        }
+                        index += 1;
+                    }
+                    if (canbreed && !FishBase.this.isBaby()) {
+                        FishBase.this.layEgg((ServerWorld)FishBase.this.level, list.get(index));
+                        FishBase.this.coolDown = FishBase.this.random.nextInt(6000) + 6000;
+                        if (list.get(0) != null) {
+                            list.get(0).coolDown = FishBase.this.random.nextInt(6000) + 6000;
+                        }
+                    }
+                }
+                FishBase.this.heal(FishBase.this.getMaxHealth());
+                if (FishBase.this.isBaby()) {
+                    int age = FishBase.this.getAge();
+                    age += (int)(float)(24000 / 20.0);
+                    FishBase.this.setAge(age);
+                }
+            }
+        }
+    }
+
+    public boolean canTakeItem(ItemStack p_213365_1_) {
+        EquipmentSlotType equipmentslottype = MobEntity.getEquipmentSlotForItem(p_213365_1_);
+        if (p_213365_1_.getItem() != this.getFoodItem()) {
+            return false;
+        }
+        if (!this.getItemBySlot(equipmentslottype).isEmpty()) {
+            return false;
+        } else {
+            return equipmentslottype == EquipmentSlotType.MAINHAND && super.canTakeItem(p_213365_1_);
+        }
+    }
+
+    public boolean canHoldItem(ItemStack p_175448_1_) {
+        if (p_175448_1_.getItem() != this.getFoodItem()) {
+            return false;
+        }
+        return true;
+    }
+
+    protected void pickUpItem(ItemEntity p_175445_1_) {
+        if (this.getItemBySlot(EquipmentSlotType.MAINHAND).isEmpty()) {
+            ItemStack itemstack = p_175445_1_.getItem();
+            if (this.canHoldItem(itemstack)) {
+                this.onItemPickup(p_175445_1_);
+                this.setItemSlot(EquipmentSlotType.MAINHAND, itemstack);
+                this.handDropChances[EquipmentSlotType.MAINHAND.getIndex()] = 2.0F;
+                this.take(p_175445_1_, itemstack.getCount());
+                p_175445_1_.remove();
+            }
+        }
+
     }
 
 

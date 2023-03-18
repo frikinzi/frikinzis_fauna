@@ -3,19 +3,16 @@ package com.frikinzi.creatures.entity;
 import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.AbstractCrabBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
+import com.frikinzi.creatures.util.CreaturesLootTables;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.SpiderEntity;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.FoxEntity;
-import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
@@ -25,7 +22,9 @@ import net.minecraft.pathfinding.ClimberPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.registry.Registry;
@@ -49,9 +48,9 @@ import java.util.List;
 import java.util.Set;
 
 public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
-    private int[] old_worlds = new int[] {6,9,11,13};
-    private int[] jungle_variants = new int[] {2,3,4,5,8,9,12,13,14};
-    private int[] desert_variants = new int[] {1,6,7,10,11};
+    final private int[] old_worlds = new int[] {6,9,11,13};
+    final private int[] jungle_variants = new int[] {1,2,4,5,8,9,12,13,14};
+    final private int[] desert_variants = new int[] {3,6,7,10,11};
     private static final DataParameter<Byte> DATA_FLAGS_ID = EntityDataManager.defineId(TarantulaEntity.class, DataSerializers.BYTE);
     private static final DataParameter<Integer> DATA_VARIANT_ID = EntityDataManager.defineId(TarantulaEntity.class, DataSerializers.INT);
     private static final DataParameter<Integer> GENDER = EntityDataManager.defineId(TarantulaEntity.class, DataSerializers.INT);
@@ -69,10 +68,11 @@ public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
         this.goalSelector.addGoal(2, new LookAtGoal(this, PlayerEntity.class, 4.0F));
         this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.4F));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.7D,0.0005F));
+        this.goalSelector.addGoal(5, new TarantulaEntity.WanderGoal(this, 0.7D,0.0005F));
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(1, new TarantulaEntity.ThreatGoal());
+        this.goalSelector.addGoal(4, new TarantulaEntity.AvoidEntityGoal<>(this, PlayerEntity.class, 8.0F, 2.2D, 1.2D));
 
     }
 
@@ -353,8 +353,8 @@ public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
         }
 
         public void start() {
-            TarantulaEntity.this.setDeltaMovement(0,0,0);
             TarantulaEntity.this.getLookControl().setLookAt(this.angertarget, 10.0F, (float)TarantulaEntity.this.getMaxHeadXRot());
+            TarantulaEntity.this.setDeltaMovement(0,0,0);
             TarantulaEntity.this.setDeltaMovement(TarantulaEntity.this.getDeltaMovement().scale(0));
             TarantulaEntity.this.setThreatPose(true);
         }
@@ -374,22 +374,33 @@ public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
 
     }
 
-    static class TargetGoal<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
-        public TargetGoal(SpiderEntity p_i45818_1_, Class<T> p_i45818_2_) {
-            super(p_i45818_1_, p_i45818_2_, true);
+    static class AvoidEntityGoal<T extends LivingEntity> extends net.minecraft.entity.ai.goal.AvoidEntityGoal<T> {
+        private final TarantulaEntity tarantula;
+
+        public AvoidEntityGoal(TarantulaEntity p_i50037_1_, Class<T> p_i50037_2_, float p_i50037_3_, double p_i50037_4_, double p_i50037_6_) {
+            super(p_i50037_1_, p_i50037_2_, p_i50037_3_, p_i50037_4_, p_i50037_6_, EntityPredicates.NO_CREATIVE_OR_SPECTATOR::test);
+            this.tarantula = p_i50037_1_;
         }
 
         public boolean canUse() {
-            float f = this.mob.getBrightness();
-            return f >= 0.5F ? false : super.canUse();
+            return !this.tarantula.isThreatPose() && super.canUse();
+        }
+
+        public boolean canContinueToUse() {
+            return !this.tarantula.isThreatPose() && super.canContinueToUse();
         }
     }
+
 
     public class WanderGoal extends WaterAvoidingRandomWalkingGoal {
         TarantulaEntity tarantula;
         public WanderGoal(CreatureEntity p_i47302_1_, double p_i47302_2_, float p_i47302_4_) {
             super(p_i47302_1_,p_i47302_2_,p_i47302_4_);
             tarantula = (TarantulaEntity) p_i47302_1_;
+        }
+
+        public boolean canUse() {
+            return !tarantula.isThreatPose() && super.canUse();
         }
 
         public boolean canContinueToUse() {
@@ -454,6 +465,10 @@ public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
         else if (this.getVariant() == 13) {
             ITextComponent s1 = new TranslationTextComponent("message.creatures.neonblueleg");
             return s1.getString();
+        }
+        else if (this.getVariant() == 14) {
+            ITextComponent s1 = new TranslationTextComponent("message.creatures.juruensis");
+            return s1.getString();
         } else {
             return "Unknown";
         }
@@ -464,7 +479,6 @@ public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
     }
 
     public class TarantulaBreedGoal extends BreedGoal {
-        private int peacetime = 0;
         public TarantulaBreedGoal(double p_i50738_2_) {
             super(TarantulaEntity.this, p_i50738_2_);
         }
@@ -509,6 +523,10 @@ public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
             ITextComponent i = new TranslationTextComponent("gui.female");
             return i.getString();
         }
+    }
+
+    public ResourceLocation getDefaultLootTable() {
+        return CreaturesLootTables.TARANTULA;
     }
 
 

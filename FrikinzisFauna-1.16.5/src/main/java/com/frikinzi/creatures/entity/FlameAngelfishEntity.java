@@ -3,12 +3,14 @@ package com.frikinzi.creatures.entity;
 import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SpawnReason;
+import com.frikinzi.creatures.util.CreaturesLootTables;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -16,6 +18,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
@@ -61,6 +64,10 @@ public class FlameAngelfishEntity extends FishBase implements IAnimatable {
         return super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_, p_213386_4_, p_213386_5_);
     }
 
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, PlayerEntity.class, 8.0F, 2.2D, 2.2D));
+    }
 
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
@@ -141,6 +148,18 @@ public class FlameAngelfishEntity extends FishBase implements IAnimatable {
 
     public float getHatchChance() {
         return Double.valueOf(CreaturesConfig.flame_angelfish_hatch_chance.get()).floatValue();
+    }
+
+    public double getMoveSpeed() {
+        return 1.2D;
+    }
+
+    public ResourceLocation getDefaultLootTable() {
+        return CreaturesLootTables.TROPICAL_FISH;
+    }
+
+    protected float getStandingEyeHeight(Pose p_213348_1_, EntitySize p_213348_2_) {
+        return 0.2F;
     }
 
 }

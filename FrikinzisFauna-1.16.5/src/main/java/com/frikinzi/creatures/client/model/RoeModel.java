@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class RoeModel extends AnimatedGeoModel<CreaturesRoeEntity> {
     // which roe texture should each entity use - number of each entity defined in ModEntityTypes
     Integer[] ONE = {3,6,11};
-    Integer[] TWO = {13,15};
+    Integer[] TWO = {13,15,16};
     Integer[] THREE = {2,4,5,9,10};
     Integer[] FOUR = {1,7,8,12};
     @Override

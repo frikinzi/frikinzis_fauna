@@ -119,6 +119,9 @@ public class PikeEntity extends FishBase implements IAnimatable {
 
     protected void saveToBucketTag(ItemStack p_204211_1_) {
         super.saveToBucketTag(p_204211_1_);
+        CompoundNBT compoundnbt = p_204211_1_.getOrCreateTag();
+        compoundnbt.putFloat("BucketHeightMultiplier", this.getHeightMultiplier());
+        compoundnbt.putInt("Age", this.getAge());
     }
 
 

@@ -97,9 +97,9 @@ public class TameableBirdBase extends CreaturesBirdEntity implements IFlyingAnim
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
         this.goalSelector.addGoal(1, new MateGoal(this, 1.0D));
-        this.goalSelector.addGoal(10, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.addGoal(11, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(1, new SitGoal(this));
-        this.goalSelector.addGoal(6, new CreaturesFollowGoal(this,1.0D, 5.0F, 1.0F, true));
+        this.goalSelector.addGoal(5, new CreaturesFollowGoal(this,1.0D, 5.0F, 1.0F, true));
         this.targetSelector.addGoal(7, new TameableBirdBase.FlyingGoal());
         this.goalSelector.addGoal(0, new TameableBirdBase.SleepGoal());
         this.targetSelector.addGoal(1, (new CreaturesBirdEntity.HurtByTargetGoal()));
@@ -155,8 +155,9 @@ public class TameableBirdBase extends CreaturesBirdEntity implements IFlyingAnim
             Creatures.PROXY.setReferencedMob(this);
             if (this.level.isClientSide) {
             Creatures.PROXY.openCreaturesGUI(itemstack);
-            return ActionResultType.sidedSuccess(this.level.isClientSide);
+                //return ActionResultType.sidedSuccess(this.level.isClientSide);
             }
+            return ActionResultType.SUCCESS;
         }
         if (!this.isTame() && getTamedFood().contains(itemstack.getItem())) {
             if (!p_230254_1_.abilities.instabuild) {
@@ -344,7 +345,7 @@ public class TameableBirdBase extends CreaturesBirdEntity implements IFlyingAnim
         }
 
         public boolean canUse() {
-            if (!TameableBirdBase.this.isInSittingPose() && TameableBirdBase.this.isTame() && CreaturesConfig.following.get() == true && TameableBirdBase.this.getTarget() != null) {
+            if ((!TameableBirdBase.this.isInSittingPose() && TameableBirdBase.this.isTame() && CreaturesConfig.following.get()) || TameableBirdBase.this.getTarget() != null) {
                 return false;
             }
             if (TameableBirdBase.this.xxa == 0.0F && TameableBirdBase.this.yya == 0.0F && TameableBirdBase.this.zza == 0.0F) {
@@ -359,7 +360,7 @@ public class TameableBirdBase extends CreaturesBirdEntity implements IFlyingAnim
         }
 
         private boolean canSleep() {
-                return getTime() && !TameableBirdBase.this.isInWater() && !TameableBirdBase.this.isOnFire() && TameableBirdBase.this.isOnGround();
+                return getTime() && !TameableBirdBase.this.isInWater() && !TameableBirdBase.this.isOnFire() && TameableBirdBase.this.isOnGround() && TameableBirdBase.this.getTarget() == null;
         }
 
         public void stop() {

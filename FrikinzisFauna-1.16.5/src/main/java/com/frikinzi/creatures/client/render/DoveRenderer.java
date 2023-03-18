@@ -30,8 +30,8 @@ public class DoveRenderer extends GeoEntityRenderer<DoveEntity> {
             multiplier = 1.0F;
         }
         if (animatable.isBaby()) {
-            stackIn.scale(0.4F, 0.4F, 0.4F);
+            stackIn.scale(0.5F, 0.5F, 0.5F);
         }
-        stackIn.scale(0.7F * multiplier, 0.7F * multiplier, 0.7F * multiplier);
+        stackIn.scale(0.5F * multiplier, 0.5F * multiplier, 0.5F * multiplier);
     }
 }

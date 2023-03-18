@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.registry.CreaturesSound;
@@ -45,6 +46,7 @@ public class GooseEntity extends NonTameableFlyingBirdBase implements IAnimatabl
         this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
         this.targetSelector.addGoal(2, new CreaturesBirdEntity.DefendBabyGoal());
+        this.goalSelector.addGoal(5, new FollowFlockLeaderGoal(this));
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
@@ -176,6 +178,10 @@ public class GooseEntity extends NonTameableFlyingBirdBase implements IAnimatabl
 
     public boolean isMonogamous() {
         return true;
+    }
+
+    public int getMaxFlockSize() {
+        return 10;
     }
 
 }

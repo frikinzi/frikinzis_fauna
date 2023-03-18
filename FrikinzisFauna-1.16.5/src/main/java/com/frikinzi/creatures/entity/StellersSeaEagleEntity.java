@@ -38,7 +38,7 @@ import java.util.function.Predicate;
 
 public class StellersSeaEagleEntity extends RaptorBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(CreaturesItems.RAW_TROUT, Items.SALMON, Items.RABBIT, CreaturesItems.RAW_KOI);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(CreaturesItems.RAW_TROUT, Items.SALMON, Items.PUFFERFISH, Items.TROPICAL_FISH, Items.COD, CreaturesItems.RAW_KOI, CreaturesItems.RAW_ARAPAIMA, CreaturesItems.RAW_RED_SNAPPER, CreaturesItems.RAW_PIKE);
     public static final Predicate<LivingEntity> PREY_SELECTOR = (p_213440_0_) -> {
         EntityType<?> entitytype = p_213440_0_.getType();
         return entitytype == ModEntityTypes.KOI.get() || entitytype == EntityType.RABBIT || entitytype == ModEntityTypes.TROUT.get() || entitytype == EntityType.SALMON || entitytype == EntityType.COD;

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "creatures:ff_guide"
+    ]
+  },
+  "criteria": {
+    "has_duck_feather": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "creatures:duck_feather"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:ff_guide"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_duck_feather",
+      "has_the_recipe"
+    ]
+  ]
+}

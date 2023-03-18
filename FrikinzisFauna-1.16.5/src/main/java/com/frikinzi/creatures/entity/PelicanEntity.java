@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
@@ -60,6 +61,7 @@ public class PelicanEntity extends NonTameableFlyingBirdBase implements IAnimata
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, SalmonEntity.class, false));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, TropicalFishEntity.class, false));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, RedSnapperEntity.class, false));
+        this.goalSelector.addGoal(6, new FollowFlockLeaderGoal(this));
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
@@ -182,6 +184,10 @@ public class PelicanEntity extends NonTameableFlyingBirdBase implements IAnimata
 
     public static boolean checkPelicanSpawnRules(EntityType<? extends AnimalEntity> p_223316_0_, IWorld p_223316_1_, SpawnReason p_223316_2_, BlockPos p_223316_3_, Random p_223316_4_) {
         return p_223316_1_.getBlockState(p_223316_3_.below()).is(Blocks.SAND) || p_223316_1_.getBlockState(p_223316_3_.below()).is(Blocks.GRASS_BLOCK) && p_223316_1_.getRawBrightness(p_223316_3_, 0) > 8;
+    }
+
+    public int getMaxFlockSize() {
+        return 5;
     }
 
 }

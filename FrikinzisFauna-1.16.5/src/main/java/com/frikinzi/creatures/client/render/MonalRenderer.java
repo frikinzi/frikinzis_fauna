@@ -29,6 +29,9 @@ public class MonalRenderer extends GeoEntityRenderer<MonalEntity>{
         } else {
             multiplier = 1.0F;
         }
+        if (animatable.isBaby()) {
+            stackIn.scale(0.6F,0.6F,0.6F);
+        }
         stackIn.scale(0.8F * multiplier, 0.8F * multiplier, 0.8F * multiplier);
     }
 

@@ -10,6 +10,8 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -100,6 +102,8 @@ public class TigerBarbEntity extends GroupFishBase implements IAnimatable {
         super.saveToBucketTag(p_204211_1_);
         CompoundNBT compoundnbt = p_204211_1_.getOrCreateTag();
         compoundnbt.putInt("BucketVariantTag", this.getVariant());
+        compoundnbt.putFloat("BucketHeightMultiplier", this.getHeightMultiplier());
+        compoundnbt.putInt("Age", this.getAge());
     }
 
     protected SoundEvent getAmbientSound() {
@@ -154,5 +158,9 @@ public class TigerBarbEntity extends GroupFishBase implements IAnimatable {
         return CreaturesItems.RAW_SHRIMP;
     }
 
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, PlayerEntity.class, 8.0F, 2.2D, 2.2D));
+    }
 
 }

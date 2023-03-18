@@ -1,15 +1,14 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.entity.base.RaptorBase;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
 import com.google.common.collect.Sets;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
@@ -51,7 +50,9 @@ public class ChickadeeEntity extends NonTameableFlyingBirdBase implements IAnima
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, false, FOOD_ITEMS));
-        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, PygmyFalconEntity.class, 16.0F, 1.5D, 1.2D));
+        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, GoldenEagleEntity.class, 16.0F, 1.5D, 1.2D));
+        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, PlayerEntity.class, 16.0F, 1.5D, 1.2D));
+        this.goalSelector.addGoal(5, new FollowFlockLeaderGoal(this));
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
@@ -152,6 +153,14 @@ public class ChickadeeEntity extends NonTameableFlyingBirdBase implements IAnima
 
     public int getClutchSize() {
         return this.random.nextInt(CreaturesConfig.chickadee_clutch_size.get());
+    }
+
+    public int getMaxFlockSize() {
+        return 7;
+    }
+
+    protected float getStandingEyeHeight(Pose p_213348_1_, EntitySize p_213348_2_) {
+        return 0.3F;
     }
 
 

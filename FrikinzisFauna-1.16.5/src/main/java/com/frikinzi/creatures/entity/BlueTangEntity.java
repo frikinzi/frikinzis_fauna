@@ -3,10 +3,8 @@ package com.frikinzi.creatures.entity;
 import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SpawnReason;
+import com.frikinzi.creatures.util.CreaturesLootTables;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.item.ItemStack;
@@ -15,6 +13,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
@@ -89,6 +88,7 @@ public class BlueTangEntity extends FishBase implements IAnimatable {
         CompoundNBT compoundnbt = p_204211_1_.getOrCreateTag();
         compoundnbt.putInt("BucketVariantTag", this.getVariant());
         compoundnbt.putInt("Age", this.getAge());
+        compoundnbt.putFloat("BucketHeightMultiplier", this.getHeightMultiplier());
     }
 
     protected SoundEvent getAmbientSound() {
@@ -137,6 +137,14 @@ public class BlueTangEntity extends FishBase implements IAnimatable {
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
         return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D).add(Attributes.MOVEMENT_SPEED, 0.1D);
+    }
+
+    public ResourceLocation getDefaultLootTable() {
+        return CreaturesLootTables.TROPICAL_FISH;
+    }
+
+    protected float getStandingEyeHeight(Pose p_213348_1_, EntitySize p_213348_2_) {
+        return 0.2F;
     }
 
 }

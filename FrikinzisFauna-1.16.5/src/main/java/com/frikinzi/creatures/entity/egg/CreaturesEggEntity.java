@@ -836,7 +836,7 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
             return ActionResultType.sidedSuccess(this.level.isClientSide);
         }
         if (itemstack.getItem() == CreaturesItems.FF_GUIDE) {
-            System.out.println(this.getParentUUID());
+            //System.out.println(this.getParentUUID());
             Creatures.PROXY.setReferencedMob(this);
             if (this.level.isClientSide) {
                 Creatures.PROXY.openCreaturesGUI(itemstack);

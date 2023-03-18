@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.entity.base.TameableBirdBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
@@ -42,6 +43,12 @@ public class ConureEntity extends TameableBirdBase implements IAnimatable {
 
     public ConureEntity(EntityType<? extends ConureEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
+    }
+
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(6, new FollowFlockLeaderGoal(this));
+
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
@@ -165,6 +172,10 @@ public class ConureEntity extends TameableBirdBase implements IAnimatable {
 
     public int getClutchSize() {
         return this.random.nextInt(CreaturesConfig.conure_clutch_size.get());
+    }
+
+    public int getMaxFlockSize() {
+        return 10;
     }
 
 }

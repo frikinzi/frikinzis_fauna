@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.TameableBirdBase;
 import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
@@ -48,6 +49,7 @@ public class RavenEntity extends TameableBirdBase implements IAnimatable {
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
         this.targetSelector.addGoal(1, new CreaturesBirdEntity.DefendBabyGoal());
+        this.goalSelector.addGoal(6, new FollowFlockLeaderGoal(this));
 
     }
 
@@ -160,9 +162,12 @@ public class RavenEntity extends TameableBirdBase implements IAnimatable {
         return this.random.nextInt(CreaturesConfig.raven_clutch_size.get());
     }
 
-    @Override
     public boolean isMonogamous() {
         return true;
+    }
+
+    public int getMaxFlockSize() {
+        return 4;
     }
 
 }

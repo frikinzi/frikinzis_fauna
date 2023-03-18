@@ -66,6 +66,9 @@ public class EntityAttributes {
         EntitySpawnPlacementRegistry.register(ModEntityTypes.TIGERBARB.get(),
                 EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
                 FishBase::checkFishSpawnRules);
+        EntitySpawnPlacementRegistry.register(ModEntityTypes.PIRANHA.get(),
+                EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
+                FishBase::checkFishSpawnRules);
         EntitySpawnPlacementRegistry.register(ModEntityTypes.ARAPAIMA.get(),
                 EntitySpawnPlacementRegistry.PlacementType.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
                 FishBase::checkFishSpawnRules);
@@ -268,6 +271,7 @@ public class EntityAttributes {
         event.put(ModEntityTypes.TIGERBARB.get(), TigerBarbEntity.createAttributes().build());
         event.put(ModEntityTypes.PHEASANT.get(), PheasantEntity.createAttributes().build());
         event.put(ModEntityTypes.ARAPAIMA.get(), ArapaimaEntity.createAttributes().build());
+        event.put(ModEntityTypes.PIRANHA.get(), PiranhaEntity.createAttributes().build());
         event.put(ModEntityTypes.EGG.get(), CreaturesEggEntity.createAttributes().build());
         event.put(ModEntityTypes.ROE.get(), CreaturesRoeEntity.createAttributes().build());
     }

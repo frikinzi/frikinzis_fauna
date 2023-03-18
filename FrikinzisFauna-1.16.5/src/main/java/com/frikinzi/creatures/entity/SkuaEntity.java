@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
@@ -56,9 +57,10 @@ public class SkuaEntity extends NonTameableFlyingBirdBase implements IAnimatable
         super.registerGoals();
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, false, FOOD_ITEMS));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)));
-        this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, true));
         this.targetSelector.addGoal(2, new SkuaEntity.AttackBabyGoal());
         this.targetSelector.addGoal(2, new CreaturesBirdEntity.DefendBabyGoal());
+        this.goalSelector.addGoal(5, new FollowFlockLeaderGoal(this));
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
@@ -184,6 +186,10 @@ public class SkuaEntity extends NonTameableFlyingBirdBase implements IAnimatable
     @Override
     public boolean isMonogamous() {
         return true;
+    }
+
+    public int getMaxFlockSize() {
+        return 10;
     }
 
 }

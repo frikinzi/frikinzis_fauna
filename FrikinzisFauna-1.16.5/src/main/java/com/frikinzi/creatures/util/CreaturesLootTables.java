@@ -21,4 +21,7 @@ public class CreaturesLootTables {
     public static final ResourceLocation RED_SNAPPER = new ResourceLocation("creatures", "entities/red_snapper");
     public static final ResourceLocation PEAFOWL = new ResourceLocation("creatures", "entities/peafowl");
     public static final ResourceLocation ARAPAIMA = new ResourceLocation("creatures", "entities/arapaima");
+    public static final ResourceLocation PIRANHA = new ResourceLocation("creatures", "entities/piranha");
+    public static final ResourceLocation TROPICAL_FISH = new ResourceLocation("creatures", "entities/tropical_fish");
+    public static final ResourceLocation TARANTULA = new ResourceLocation("creatures", "entities/tarantula");
 }

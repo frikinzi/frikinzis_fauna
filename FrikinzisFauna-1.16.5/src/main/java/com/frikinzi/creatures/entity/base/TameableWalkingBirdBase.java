@@ -110,8 +110,9 @@ public class TameableWalkingBirdBase extends CreaturesBirdEntity {
             if (this.level.isClientSide) {
                 Creatures.PROXY.setReferencedMob(this);
                 Creatures.PROXY.openCreaturesGUI(itemstack);
-                return ActionResultType.sidedSuccess(this.level.isClientSide);
+                //return ActionResultType.sidedSuccess(this.level.isClientSide);
             }
+            return ActionResultType.SUCCESS;
         }
         if (!this.isTame() && getTamedFood().contains(itemstack.getItem())) {
             if (!p_230254_1_.abilities.instabuild) {

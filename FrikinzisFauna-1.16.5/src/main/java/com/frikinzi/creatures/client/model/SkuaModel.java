@@ -20,9 +20,6 @@ public class SkuaModel extends AnimatedGeoModel<SkuaEntity> {
     @Override
     public ResourceLocation getTextureLocation(SkuaEntity object)
     {
-        if (object.isBaby()) {
-            return new ResourceLocation(Creatures.MODID, "textures/entity/skua/skua" + object.getVariant() + ".png");
-        }
         if (object.isFlying()) {
             return new ResourceLocation(Creatures.MODID, "textures/entity/skua/skua" + object.getVariant() + "fly.png");
         }

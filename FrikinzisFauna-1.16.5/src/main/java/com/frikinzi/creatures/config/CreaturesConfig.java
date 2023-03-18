@@ -411,6 +411,12 @@ public class CreaturesConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> tigerbarb_max_group;
     public static final ForgeConfigSpec.ConfigValue<Double> tigerbarb_hatch_chance;
 
+    public static final ForgeConfigSpec.ConfigValue<Integer> piranha_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> piranha_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> piranha_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> piranha_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> piranha_hatch_chance;
+
     //gameplay
     public static final ForgeConfigSpec.ConfigValue<Boolean> breed_only_variants;
     public static final ForgeConfigSpec.ConfigValue<Boolean> biome_only_variants;
@@ -1074,6 +1080,16 @@ public class CreaturesConfig {
         tigerbarb_min_group = BUILDER.comment("Min group for tiger barb").define("Tiger Barb Min Group", 1);
         tigerbarb_max_group = BUILDER.comment("Max group for tiger barb").define("Tiger Barb Max Group", 1);
         tigerbarb_hatch_chance = BUILDER.comment("Hatch chance for each tiger barb roe").define("Tiger Barb Hatch Chance", 0.2);
+
+        BUILDER.pop();
+
+        BUILDER.push("Piranha");
+
+        piranha_spawns = BUILDER.comment("Enable/disable piranha spawns").define("Piranha Spawns", true);
+        piranha_spawn_weight = BUILDER.comment("Spawn weight for piranha").define("Piranha Spawn Weight", 10);
+        piranha_min_group = BUILDER.comment("Min group for piranha").define("Piranha Min Group", 3);
+        piranha_max_group = BUILDER.comment("Max group for piranha").define("Piranha Max Group", 6);
+        piranha_hatch_chance = BUILDER.comment("Hatch chance for each piranha roe").define("Piranha Hatch Chance", 0.4);
 
         BUILDER.pop();
 

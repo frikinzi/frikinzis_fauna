@@ -10,7 +10,9 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -94,6 +96,8 @@ public class RedSnapperEntity extends GroupFishBase implements IAnimatable {
         super.saveToBucketTag(p_204211_1_);
         CompoundNBT compoundnbt = p_204211_1_.getOrCreateTag();
         compoundnbt.putInt("BucketVariantTag", this.getVariant());
+        compoundnbt.putFloat("BucketHeightMultiplier", this.getHeightMultiplier());
+        compoundnbt.putInt("Age", this.getAge());
     }
 
     protected SoundEvent getAmbientSound() {
@@ -146,6 +150,10 @@ public class RedSnapperEntity extends GroupFishBase implements IAnimatable {
 
     public ResourceLocation getDefaultLootTable() {
         return CreaturesLootTables.RED_SNAPPER;
+    }
+
+    public Item getFoodItem() {
+        return CreaturesItems.RAW_SHRIMP;
     }
 
 

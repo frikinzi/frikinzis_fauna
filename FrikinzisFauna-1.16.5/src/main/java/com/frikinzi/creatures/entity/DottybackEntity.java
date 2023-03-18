@@ -4,6 +4,7 @@ import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.entity.base.GroupFishBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
+import com.frikinzi.creatures.util.CreaturesLootTables;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -11,6 +12,8 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -18,6 +21,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
@@ -85,6 +89,11 @@ public class DottybackEntity extends GroupFishBase implements IAnimatable {
         return this.factory;
     }
 
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, PlayerEntity.class, 8.0F, 2.2D, 2.2D));
+    }
+
 
     public int getMaxSchoolSize() {
         return 10;
@@ -98,6 +107,8 @@ public class DottybackEntity extends GroupFishBase implements IAnimatable {
         super.saveToBucketTag(p_204211_1_);
         CompoundNBT compoundnbt = p_204211_1_.getOrCreateTag();
         compoundnbt.putInt("BucketVariantTag", this.getVariant());
+        compoundnbt.putFloat("BucketHeightMultiplier", this.getHeightMultiplier());
+        compoundnbt.putInt("Age", this.getAge());
     }
 
     protected SoundEvent getAmbientSound() {
@@ -171,6 +182,14 @@ public class DottybackEntity extends GroupFishBase implements IAnimatable {
 
     public Item getFoodItem() {
         return CreaturesItems.RAW_SHRIMP;
+    }
+
+    public double getMoveSpeed() {
+        return 1.2D;
+    }
+
+    public ResourceLocation getDefaultLootTable() {
+        return CreaturesLootTables.TROPICAL_FISH;
     }
 
 

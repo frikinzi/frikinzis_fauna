@@ -36,10 +36,10 @@ import java.util.function.Predicate;
 
 public class GoldenEagleEntity extends RaptorBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.CHICKEN, Items.RABBIT, Items.ROTTEN_FLESH, CreaturesItems.SMALL_BIRD_MEAT);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.CHICKEN, Items.RABBIT, Items.ROTTEN_FLESH, CreaturesItems.SMALL_BIRD_MEAT, CreaturesItems.LARGE_BIRD_MEAT, Items.PORKCHOP, Items.BEEF);
     public static final Predicate<LivingEntity> PREY_SELECTOR = (p_213440_0_) -> {
         EntityType<?> entitytype = p_213440_0_.getType();
-        return entitytype == EntityType.CHICKEN ||entitytype == ModEntityTypes.SWALLOW.get() || entitytype == ModEntityTypes.CHICKADEE.get() || entitytype == EntityType.RABBIT || entitytype == EntityType.FOX;
+        return entitytype == EntityType.CHICKEN || entitytype == ModEntityTypes.PHEASANT.get() || entitytype == ModEntityTypes.WILD_DUCK.get() ||entitytype == ModEntityTypes.BUNTING.get() || entitytype == ModEntityTypes.TANAGER.get() ||entitytype == ModEntityTypes.SWALLOW.get() || entitytype == ModEntityTypes.CHICKADEE.get() || entitytype == EntityType.RABBIT || entitytype == EntityType.FOX;
     };
 
     public GoldenEagleEntity(EntityType<? extends GoldenEagleEntity> p_i50251_1_, World p_i50251_2_) {

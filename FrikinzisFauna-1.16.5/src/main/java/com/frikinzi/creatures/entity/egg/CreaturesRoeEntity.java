@@ -190,10 +190,6 @@ public class CreaturesRoeEntity extends WaterMobEntity implements IAnimatable {
         this.entityData.set(HATCHING, p_213485_1_);
     }
 
-    @Override
-    protected void doPush(Entity entity) {
-    }
-
     @Nullable
     public UUID getParentUUID() {
         return this.entityData.get(DATA_PARENTUUID_ID).orElse((UUID)null);
@@ -448,6 +444,21 @@ public class CreaturesRoeEntity extends WaterMobEntity implements IAnimatable {
                     this.level.addFreshEntity(fish); }
                 egg.remove();
             }
+            if (egg.getSpecies() == 16 & !this.level.isClientSide) {
+                PiranhaEntity fish = new PiranhaEntity(ModEntityTypes.PIRANHA.get(), egg.level);
+
+                if (egg.hasCustomName()) {
+                    fish.setCustomName(egg.getCustomName());
+                }
+                fish.setVariant(this.getVariant());
+                fish.setHeightMultiplier(this.getHeightMultiplier());
+                fish.setPos(egg.getX(), egg.getY(), egg.getZ());
+                fish.setBaby(true);
+                fish.setBred(true);
+                if (this.random.nextFloat() < fish.getHatchChance()) {
+                    this.level.addFreshEntity(fish); }
+                egg.remove();
+            }
             this.level.broadcastEntityEvent(this, (byte)3);
         }
     }
@@ -554,6 +565,10 @@ public class CreaturesRoeEntity extends WaterMobEntity implements IAnimatable {
             ITextComponent i = new TranslationTextComponent("gui.small");
             return i.getString();
         }
+    }
+
+    public boolean removeWhenFarAway(double p_213397_1_) {
+        return false;
     }
 
 }

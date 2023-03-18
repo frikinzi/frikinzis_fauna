@@ -4,12 +4,11 @@ import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.util.CreaturesLootTables;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTables;
@@ -64,6 +63,15 @@ public class FireGobyEntity extends FishBase implements IAnimatable {
         return super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_, p_213386_4_, p_213386_5_);
     }
 
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, PlayerEntity.class, 8.0F, 2.2D, 2.2D));
+    }
+
+    public double getMoveSpeed() {
+        return 1.2D;
+    }
+
 
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
@@ -92,6 +100,8 @@ public class FireGobyEntity extends FishBase implements IAnimatable {
         super.saveToBucketTag(p_204211_1_);
         CompoundNBT compoundnbt = p_204211_1_.getOrCreateTag();
         compoundnbt.putInt("BucketVariantTag", this.getVariant());
+        compoundnbt.putFloat("BucketHeightMultiplier", this.getHeightMultiplier());
+        compoundnbt.putInt("Age", this.getAge());
     }
 
     protected SoundEvent getAmbientSound() {
@@ -146,6 +156,12 @@ public class FireGobyEntity extends FishBase implements IAnimatable {
         return Double.valueOf(CreaturesConfig.fire_goby_hatch_chance.get()).floatValue();
     }
 
+    public ResourceLocation getDefaultLootTable() {
+        return CreaturesLootTables.TROPICAL_FISH;
+    }
 
+    protected float getStandingEyeHeight(Pose p_213348_1_, EntitySize p_213348_2_) {
+        return 0.1F;
+    }
 
 }

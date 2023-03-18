@@ -615,6 +615,12 @@
 					}
 				}
 			}
+		},
+		"display": {
+			"loop": true
+		},
+		"displaywalk": {
+			"loop": true
 		}
 	}
 }
