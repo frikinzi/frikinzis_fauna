@@ -1,0 +1,7 @@
+{
+	"parent": "item/generated",
+	"textures":
+	{
+		"layer0": "creatures:item/bucket_of_gourami"
+	}
+}

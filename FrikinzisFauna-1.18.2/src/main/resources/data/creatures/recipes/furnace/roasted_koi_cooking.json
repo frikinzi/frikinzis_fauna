@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:campfire_cooking",
+    "ingredient": {
+        "item": "creatures:raw_koi"
+    },
+    "result": "creatures:roasted_koi",
+    "experience": 0.35,
+    "cookingtime": 200
+}

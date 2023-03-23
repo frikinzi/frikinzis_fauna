@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "creatures:raw_arapaima"
+    },
+    "result": "creatures:cooked_arapaima",
+    "experience": 0.35,
+    "cookingtime": 200
+}
