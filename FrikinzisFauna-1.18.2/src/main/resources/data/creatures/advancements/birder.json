@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "creatures:ff_guide"
+            "items": ["creatures:ff_guide"]
           }
         ]
       }

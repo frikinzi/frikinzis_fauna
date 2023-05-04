@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.entity.ai.MateGoal;
 import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.util.registry.CreaturesEntities;
@@ -53,6 +54,8 @@ public class MandarinDuckEntity extends CreaturesBirdEntity implements IAnimatab
         this.goalSelector.addGoal(2, new FollowParentGoal(this, 1.1D));
         this.goalSelector.addGoal(3, new MateGoal(this, 1.0D));
         this.goalSelector.addGoal(4, new TemptGoal(this, 1.1D, this.getBirdFood(), false));
+        this.goalSelector.addGoal(5, new FollowFlockLeaderGoal(this));
+
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
@@ -155,7 +158,7 @@ public class MandarinDuckEntity extends CreaturesBirdEntity implements IAnimatab
     }
 
     public Ingredient getBirdFood() {
-        return Ingredient.of(Items.BREAD, Items.WHEAT_SEEDS);
+        return Ingredient.of(Items.BREAD, Items.WHEAT_SEEDS, Items.KELP);
     }
 
     protected SoundEvent getAmbientSound() {
@@ -166,12 +169,16 @@ public class MandarinDuckEntity extends CreaturesBirdEntity implements IAnimatab
     }
 
     public ItemStack getFoodItem() {
-        return new ItemStack(Items.BREAD, 1);
+        return new ItemStack(Items.WHEAT_SEEDS, 1);
     }
 
 
     public double getHatchChance() {
         return CreaturesConfig.mandarin_duck_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.mandarin_duck_clutch_size.get());
     }
 
 }

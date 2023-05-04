@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "creatures:critter_keeper"
+    ]
+  },
+  "criteria": {
+    "has_duck_feather": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["minecraft:copper_ingot"]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_duck_feather"
+    ]
+  ]
+}

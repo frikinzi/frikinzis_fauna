@@ -1,14 +1,18 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.entity.base.TameableFlyingBirdEntity;
 import com.frikinzi.creatures.util.registry.CreaturesEntities;
+import com.frikinzi.creatures.util.registry.CreaturesLootTables;
 import com.frikinzi.creatures.util.registry.CreaturesSound;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -26,14 +30,37 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class LovebirdEntity extends TameableFlyingBirdEntity implements IAnimatable, IAnimationTickable {
     private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    public static Map<Integer, TranslatableComponent> SPECIES_NAMES = new HashMap<Integer, TranslatableComponent>() {{
+        put(1, new TranslatableComponent("message.creatures.lovebird.fischers"));
+        put(2, new TranslatableComponent("message.creatures.lovebird.fischersmutation"));
+        put(3, new TranslatableComponent("message.creatures.lovebird.masked"));
+        put(4, new TranslatableComponent("message.creatures.lovebird.maskedmutation"));
+        put(5, new TranslatableComponent("message.creatures.lovebird.peach"));
+        put(6, new TranslatableComponent("message.creatures.lovebird.madagascar"));
+        put(7, new TranslatableComponent("message.creatures.lovebird.blackwingedlovebird"));
+        put(8, new TranslatableComponent("message.creatures.lovebird.redfaced"));
+        put(9, new TranslatableComponent("message.creatures.lovebird.swindern"));
+        put(10, new TranslatableComponent("message.creatures.lovebird.blackcheeked"));
+        put(11, new TranslatableComponent("message.creatures.lovebird.lilians"));
+        put(12, new TranslatableComponent("message.creatures.lovebird.aquamarine"));
+        put(13, new TranslatableComponent("message.creatures.lovebird.bluepeachfaced"));
+    }};
 
     public LovebirdEntity(EntityType<? extends LovebirdEntity> p_29362_, Level p_29363_) {
         super(p_29362_, p_29363_);
 
+    }
+
+
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(5, new FollowFlockLeaderGoal(this));
     }
 
 
@@ -155,50 +182,8 @@ public class LovebirdEntity extends TameableFlyingBirdEntity implements IAnimata
     }
 
     public String getSpeciesName() {
-        if (this.getVariant() == 1) {
-            net.minecraft.network.chat.Component s1 = new TranslatableComponent("message.creatures.lovebird.fischers");
-            return s1.getString();
-        }
-        else if (this.getVariant() == 2) {
-            net.minecraft.network.chat.Component s1 = new TranslatableComponent("message.creatures.lovebird.fischersmutation");
-            return s1.getString();
-        }
-        else if (this.getVariant() == 3) {
-            net.minecraft.network.chat.Component s1 = new TranslatableComponent("message.creatures.lovebird.masked");
-            return s1.getString();
-        }
-        else if (this.getVariant() == 4) {
-            net.minecraft.network.chat.Component s1 = new TranslatableComponent("message.creatures.lovebird.maskedmutation");
-            return s1.getString();
-        }
-        else if (this.getVariant() == 5) {
-            net.minecraft.network.chat.Component s1 = new TranslatableComponent("message.creatures.lovebird.peach");
-            return s1.getString();
-        }
-        else if (this.getVariant() == 6) {
-            net.minecraft.network.chat.Component s1 = new TranslatableComponent("message.creatures.lovebird.madagascar");
-            return s1.getString();
-        }
-        else if (this.getVariant() == 7) {
-            net.minecraft.network.chat.Component s1 = new TranslatableComponent("message.creatures.lovebird.blackwingedlovebird");
-            return s1.getString();
-        }   else if (this.getVariant() == 8) {
-            net.minecraft.network.chat.Component s1 = new TranslatableComponent("message.creatures.lovebird.redfaced");
-            return s1.getString();
-        } else if (this.getVariant() == 9) {
-            net.minecraft.network.chat.Component s1 = new TranslatableComponent("message.creatures.lovebird.swindern");
-            return s1.getString();
-        } else if (this.getVariant() == 10) {
-            net.minecraft.network.chat.Component s1 = new TranslatableComponent("message.creatures.lovebird.blackcheeked");
-            return s1.getString();
-        } else if (this.getVariant() == 11) {
-            net.minecraft.network.chat.Component s1 = new TranslatableComponent("message.creatures.lovebird.lilians");
-            return s1.getString();
-        } else if (this.getVariant() == 12) {
-            net.minecraft.network.chat.Component s1 = new TranslatableComponent("message.creatures.lovebird.aquamarine");
-            return s1.getString();
-        } else if (this.getVariant() == 13) {
-            net.minecraft.network.chat.Component s1 = new TranslatableComponent("message.creatures.lovebird.bluepeachfaced");
+        TranslatableComponent s1 = SPECIES_NAMES.get(this.getVariant());
+        if (s1 != null) {
             return s1.getString();
         } else {
             return "Unknown";
@@ -216,9 +201,24 @@ public class LovebirdEntity extends TameableFlyingBirdEntity implements IAnimata
         }
     }
 
+    public boolean isInvulnerableTo(DamageSource p_180431_1_) {
+        if (p_180431_1_ == DamageSource.CACTUS) {
+            return true;
+        }
+        return super.isInvulnerableTo(p_180431_1_);
+    }
+
 
     public double getHatchChance() {
         return CreaturesConfig.lovebird_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.lovebird_clutch_size.get());
+    }
+
+    public ResourceLocation getDefaultLootTable() {
+        return CreaturesLootTables.PARROT;
     }
 
 }

@@ -130,11 +130,15 @@ public class KakapoEntity extends CreaturesBirdEntity implements IAnimatable, IA
     }
 
     public ItemStack getFoodItem() {
-        return new ItemStack(CreaturesItems.CRAB_PINCERS.get(), 1);
+        return new ItemStack(Items.APPLE, 1);
     }
 
     public double getHatchChance() {
         return CreaturesConfig.kakapo_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.kakapo_clutch_size.get());
     }
 
 

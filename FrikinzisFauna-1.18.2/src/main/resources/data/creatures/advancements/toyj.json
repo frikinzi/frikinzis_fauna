@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "creatures:duck_feather"
+            "items": ["creatures:duck_feather"]
           }
         ]
       }

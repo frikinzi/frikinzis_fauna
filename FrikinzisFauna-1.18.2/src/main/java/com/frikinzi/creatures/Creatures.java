@@ -1,17 +1,25 @@
 package com.frikinzi.creatures;
 
 import com.frikinzi.creatures.client.ClientProxy;
+import com.frikinzi.creatures.client.block.CreaturesBlocks;
+import com.frikinzi.creatures.client.painting.CreaturesPaintings;
 import com.frikinzi.creatures.config.CreaturesConfig;
+import com.frikinzi.creatures.util.FFLootModifier;
+import com.frikinzi.creatures.util.registry.BrewingRecipe;
 import com.frikinzi.creatures.util.registry.CreaturesEntities;
 import com.frikinzi.creatures.util.registry.CreaturesItems;
 import com.frikinzi.creatures.util.registry.ModEntitySpawn;
 import com.mojang.logging.LogUtils;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
+import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -30,6 +38,7 @@ import org.slf4j.Logger;
 import software.bernie.geckolib3.GeckoLib;
 import software.bernie.geckolib3.network.GeckoLibNetwork;
 
+import javax.annotation.Nonnull;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -54,18 +63,20 @@ public class Creatures
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
 
         // Register ourselves for server and other game events we are interested in
-        CreaturesItems.ITEMS.register(modEventBus);
+        CreaturesBlocks.register(modEventBus);
         CreaturesEntities.ENTITY_TYPES.register(modEventBus);
+        CreaturesItems.ITEMS.register(modEventBus);
+        CreaturesPaintings.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CreaturesConfig.SPEC, "frikinzis-fauna-common.toml");
         GeckoLib.initialize();
         GeckoLibNetwork.initialize();
     }
 
-    @SubscribeEvent
-    public void onBiomeLoad(BiomeLoadingEvent event) {
-        ModEntitySpawn.onBiomesLoad(event);
-    }
+    //@SubscribeEvent
+    //public void onBiomeLoad(BiomeLoadingEvent event) {
+    //    ModEntitySpawn.onBiomesLoad(event);
+    //}
 
 
     public static final CreativeModeTab CREATURES_TAB = (new CreativeModeTab("creaturesitems") {
@@ -77,13 +88,27 @@ public class Creatures
 
     private void setup(final FMLCommonSetupEvent event)
     {
-       // LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+        event.enqueueWork(() -> {
+            BrewingRecipeRegistry.addRecipe(new BrewingRecipe(Potions.AWKWARD,
+                    CreaturesItems.GUPPY_TAIL.get(), Potions.WATER_BREATHING));
+            BrewingRecipeRegistry.addRecipe(new BrewingRecipe(Potions.AWKWARD,
+                    CreaturesItems.GOLDFISH.get(), Potions.LUCK));
+            BrewingRecipeRegistry.addRecipe(new BrewingRecipe(Potions.AWKWARD,
+                    CreaturesItems.GOURAMI.get(), Potions.SWIFTNESS));
+            BrewingRecipeRegistry.addRecipe(new BrewingRecipe(Potions.AWKWARD,
+                    CreaturesItems.RAW_AROWANA.get(), Potions.LONG_WATER_BREATHING));
+            BrewingRecipeRegistry.addRecipe(new BrewingRecipe(Potions.AWKWARD,
+                    CreaturesItems.BIRD_OF_PREY_FEATHER.get(), Potions.STRENGTH));
+            BrewingRecipeRegistry.addRecipe(new BrewingRecipe(Potions.AWKWARD,
+                    CreaturesItems.RAVEN_FEATHER.get(), Potions.NIGHT_VISION));
+            BrewingRecipeRegistry.addRecipe(new BrewingRecipe(Potions.AWKWARD,
+                    CreaturesItems.PARROT_FEATHER.get(), Potions.REGENERATION));
+        });
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
-        // Some example code to dispatch IMC to another mod
-        InterModComms.sendTo("examplemod", "helloworld", () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
+
     }
 
     private void processIMC(final InterModProcessEvent event)
@@ -98,20 +123,26 @@ public class Creatures
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event)
     {
-        // Do something when the server starts
-        //LOGGER.info("HELLO from server starting");
+
     }
 
-    // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
-    // Event bus for receiving Registry Events)
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents
     {
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent)
         {
-            // Register a new block here
-            //LOGGER.info("HELLO from Register Block");
+        }
+
+        @SubscribeEvent
+        public static void registerModifierSerializers(@Nonnull final RegistryEvent.Register<GlobalLootModifierSerializer<?>>
+                                                               event) {
+            event.getRegistry().registerAll(
+                    new FFLootModifier.Serializer().setRegistryName
+                            (new ResourceLocation(Creatures.MODID,"mealworms_dirt")),
+                    new FFLootModifier.Serializer().setRegistryName
+                            (new ResourceLocation(Creatures.MODID,"mealworms_farmland"))
+            );
         }
     }
 }

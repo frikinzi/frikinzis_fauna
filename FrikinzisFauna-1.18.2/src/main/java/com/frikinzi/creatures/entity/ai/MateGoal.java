@@ -113,7 +113,7 @@ public class MateGoal extends Goal {
                 egg.setHeightMultiplier(f);
 
                 Random rand = new Random();
-                egg.setPos(Mth.floor(mother.getX()) + 0.5 + (-1 + rand.nextFloat() * 2), Mth.floor(mother.getY()) + 0.5, Mth.floor(mother.getZ()) + 0.5 + (-1 + rand.nextFloat() * 2));
+                egg.setPos(Mth.floor(mother.getX()) + 0.5 + (-1 + rand.nextFloat() * 1.2), Mth.floor(mother.getY()) + 0.5, Mth.floor(mother.getZ()) + 0.5 + (-1 + rand.nextFloat() * 1.2));
                 server.addFreshEntityWithPassengers(egg);
                 //System.out.println(this.bird.getClutchSize());
             }

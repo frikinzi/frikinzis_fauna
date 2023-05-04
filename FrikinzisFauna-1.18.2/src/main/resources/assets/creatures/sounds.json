@@ -9,7 +9,12 @@
   },
   "entity.kakapo.ambient": {
     "subtitle": "entity.kakapo.ambient",
-    "sounds": [ "creatures:entity/kakapo/kakapo_ambient" ]
+    "sounds": [
+      {
+        "name": "creatures:entity/kakapo/kakapo_ambient",
+        "volume": 0.5
+      }
+    ]
   },
   "entity.mandarin_duck.ambient": {
     "subtitle": "entity.mandarin_duck.ambient",
@@ -190,6 +195,14 @@
   "entity.dove.mourning_dove_ambient": {
     "subtitle": "entity.dove.mourning_dove_ambient",
     "sounds": [ "creatures:entity/dove/mourning_dove_ambient" ]
+  },
+  "entity.stork.stork_ambient": {
+    "subtitle": "entity.stork.stork_ambient",
+    "sounds": [ "creatures:entity/stork/stork_ambient" ]
+  },
+  "entity.stork.stork_hurt": {
+    "subtitle": "entity.stork.stork_hurt",
+    "sounds": [ "creatures:entity/stork/stork_hurt" ]
   },
   "entity.egg.hatch": {
     "subtitle": "entity.egg.hatch",

@@ -2,6 +2,7 @@ package com.frikinzi.creatures.client.render;
 
 import com.frikinzi.creatures.client.model.LovebirdModel;
 import com.frikinzi.creatures.client.model.RavenModel;
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.LovebirdEntity;
 import com.frikinzi.creatures.entity.RavenEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -24,7 +25,11 @@ public class RavenRenderer extends GeoEntityRenderer<RavenEntity> {
         super.renderEarly(animatable, stack, partialTick, bufferSource, buffer, packedLight, packedOverlay, red,
                 green, blue, partialTicks);
         Float multiplier;
-        multiplier = animatable.getHeightMultiplier();
+        if (CreaturesConfig.height_on.get()) {
+            multiplier = animatable.getHeightMultiplier();
+        } else {
+            multiplier = 1.0F;
+        }
 
         if (animatable.isBaby()) {
             stack.scale(0.5F, 0.5F, 0.5F);

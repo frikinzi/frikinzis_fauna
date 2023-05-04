@@ -3,9 +3,12 @@ package com.frikinzi.creatures.entity.base;
 import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.egg.EggEntity;
+import com.frikinzi.creatures.util.ModEventSubscriber;
 import com.frikinzi.creatures.util.registry.CreaturesEntities;
 import com.frikinzi.creatures.util.registry.CreaturesItems;
+import com.frikinzi.creatures.util.registry.CreaturesLootTables;
 import com.google.common.collect.Sets;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -13,6 +16,7 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
@@ -21,9 +25,11 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.control.FlyingMoveControl;
 import net.minecraft.world.entity.ai.control.LookControl;
+import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.animal.AbstractFish;
+import net.minecraft.world.entity.animal.AbstractSchoolingFish;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -36,22 +42,31 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 
 import javax.annotation.Nullable;
-import java.util.EnumSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Stream;
 
 abstract public class CreaturesBirdEntity extends TamableAnimal {
     private static final EntityDataAccessor<Integer> DATA_VARIANT_ID = SynchedEntityData.defineId(CreaturesBirdEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> GENDER = SynchedEntityData.defineId(CreaturesBirdEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> WANDERING = SynchedEntityData.defineId(CreaturesBirdEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Float> HEIGHT_MULTIPLIER = SynchedEntityData.defineId(CreaturesBirdEntity.class, EntityDataSerializers.FLOAT);
+    private static final EntityDataAccessor<Boolean> GROOMING = SynchedEntityData.defineId(CreaturesBirdEntity.class, EntityDataSerializers.BOOLEAN);
+
+    @Nullable
+    private CreaturesBirdEntity leader;
+    private int schoolSize = 1;
+
     private static final Set<Item> TAME_FOOD = Sets.newHashSet(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
     private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(CreaturesBirdEntity.class, EntityDataSerializers.BYTE);
-
+    public int sitProgress;
+    public int ticksToSit;
 
     public CreaturesBirdEntity(EntityType<? extends CreaturesBirdEntity> p_29362_, Level p_29363_) {
         super(p_29362_, p_29363_);
         this.lookControl = new CreaturesBirdEntity.BirdLookControl();
         this.setPathfindingMalus(BlockPathTypes.DANGER_FIRE, -1.0F);
         this.setPathfindingMalus(BlockPathTypes.DAMAGE_FIRE, -1.0F);
+        this.ticksToSit = 40;
     }
 
     @Nullable
@@ -97,6 +112,73 @@ abstract public class CreaturesBirdEntity extends TamableAnimal {
         }
     }
 
+    public boolean isFollower() {
+        return this.leader != null && this.leader.isAlive();
+    }
+
+    public CreaturesBirdEntity startFollowing(CreaturesBirdEntity p_27526_) {
+        this.leader = p_27526_;
+        p_27526_.addFollower();
+        return p_27526_;
+    }
+
+
+    public void stopFollowing() {
+        this.leader.removeFollower();
+        this.leader = null;
+    }
+
+    private void addFollower() {
+        ++this.schoolSize;
+    }
+
+    private void removeFollower() {
+        --this.schoolSize;
+    }
+
+    public boolean canBeFollowed() {
+        return this.hasFollowers() && this.schoolSize < this.getMaxSchoolSize();
+    }
+
+    public void tick() {
+        super.tick();
+        if (this.hasFollowers() && this.level.random.nextInt(200) == 1) {
+            List<? extends CreaturesBirdEntity> list = this.level.getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D));
+            if (list.size() <= 1) {
+                this.schoolSize = 1;
+            }
+        }
+
+    }
+
+
+    public boolean hasFollowers() {
+        return this.schoolSize > 1;
+    }
+
+    public boolean inRangeOfLeader() {
+        return this.distanceToSqr(this.leader) <= 121.0D;
+    }
+
+    public void pathToLeader() {
+        if (this.isFollower()) {
+            this.getNavigation().moveTo(this.leader, 1.0D);
+        }
+
+    }
+
+    public void addFollowers(Stream<? extends CreaturesBirdEntity> p_27534_) {
+        p_27534_.limit((long)(this.getMaxSchoolSize() - this.schoolSize)).filter((p_27538_) -> {
+            return p_27538_ != this;
+        }).forEach((p_27536_) -> {
+            p_27536_.startFollowing(this);
+        });
+    }
+
+    public int getMaxSchoolSize() {
+        return super.getMaxSpawnClusterSize();
+    }
+
     @Nullable
     public AgeableMob getBreedOffspring(ServerLevel p_148993_, AgeableMob p_148994_) {
         return null;
@@ -134,6 +216,12 @@ abstract public class CreaturesBirdEntity extends TamableAnimal {
 
 
     public boolean hurt(DamageSource p_29378_, float p_29379_) {
+        if (this.isGrooming()) {
+            this.setGrooming(false);
+        }
+        if (this.isSleeping()) {
+            this.setSleeping(false);
+        }
         if (this.isInvulnerableTo(p_29378_)) {
             return false;
         } else {
@@ -159,6 +247,14 @@ abstract public class CreaturesBirdEntity extends TamableAnimal {
 
     public void setGender(int p_29449_) {
         this.entityData.set(GENDER, p_29449_);
+    }
+
+    public int isWandering() {
+        return Mth.clamp(this.entityData.get(WANDERING), 0, 2);
+    }
+
+    public void setWandering(int p_29449_) {
+        this.entityData.set(WANDERING, p_29449_);
     }
 
     public float getHeightMultiplier() {
@@ -203,16 +299,20 @@ abstract public class CreaturesBirdEntity extends TamableAnimal {
         super.defineSynchedData();
         this.entityData.define(DATA_VARIANT_ID, 0);
         this.entityData.define(GENDER, 0);
+        this.entityData.define(WANDERING, 0);
         this.entityData.define(HEIGHT_MULTIPLIER, 1.0F);
         this.entityData.define(DATA_FLAGS_ID, (byte)0);
+        this.entityData.define(GROOMING, false);
     }
 
     public void addAdditionalSaveData(CompoundTag p_29422_) {
         super.addAdditionalSaveData(p_29422_);
         p_29422_.putBoolean("Sleeping", this.isSleeping());
+        p_29422_.putBoolean("Grooming", this.isGrooming());
         p_29422_.putInt("Variant", this.getVariant());
         p_29422_.putFloat("HeightMultiplier", this.getHeightMultiplier());
         p_29422_.putInt("Gender", this.getGender());
+        p_29422_.putInt("Wandering", this.isWandering());
     }
 
     public void readAdditionalSaveData(CompoundTag p_29402_) {
@@ -222,10 +322,42 @@ abstract public class CreaturesBirdEntity extends TamableAnimal {
         } else {
             this.setHeightMultiplier(p_29402_.getFloat("HeightMultiplier"));
         }
+        this.setGrooming(p_29402_.getBoolean("Grooming"));
         this.setSleeping(p_29402_.getBoolean("Sleeping"));
         this.setVariant(p_29402_.getInt("Variant"));
         this.setGender(p_29402_.getInt("Gender"));
+        this.setWandering(p_29402_.getInt("Wandering"));
     }
+
+    public void setGrooming(boolean grooming) {
+        this.entityData.set(GROOMING, grooming);
+    }
+
+    public boolean isGrooming() {
+        return (this.entityData.get(GROOMING));
+    }
+
+    public boolean isNotMoving(){
+        return this.getDeltaMovement().x == 0 && this.getDeltaMovement().z == 0;
+    }
+
+    public void aiStep() {
+        if (!this.level.isClientSide) {
+            if (!this.getNavigation().isDone() && (this.isGrooming() || this.isSleeping())) {
+                this.setGrooming(false);
+                this.setSleeping(false);
+            }
+        }
+        if (this.isGrooming() && this.sitProgress < this.ticksToSit) {
+            this.sitProgress++;
+        } else if (!this.isGrooming() && this.sitProgress > 0) {
+            this.sitProgress--;
+        }
+        super.aiStep();
+
+    }
+
+
 
     public boolean isSleeping() {
         return this.getFlag(32);
@@ -256,8 +388,8 @@ abstract public class CreaturesBirdEntity extends TamableAnimal {
         this.setSleeping(false);
     }
 
-    boolean canMove() {
-        return !this.isSleeping();
+    protected boolean canMove() {
+        return !this.isSleeping() && !this.isGrooming();
     }
 
     public Ingredient getBirdFood() {
@@ -294,6 +426,15 @@ abstract public class CreaturesBirdEntity extends TamableAnimal {
         }
 
         public boolean canUse() {
+            if (CreaturesBirdEntity.this instanceof RaptorEntity) {
+                RaptorEntity raptor = (RaptorEntity)CreaturesBirdEntity.this;
+                if (raptor.isHunting() == 1) {
+                    return false;
+                }
+                if (CreaturesBirdEntity.this.isTame() && CreaturesBirdEntity.this.isWandering() == 0) {
+                    return false;
+                }
+            }
             if (CreaturesBirdEntity.this.xxa == 0.0F && CreaturesBirdEntity.this.yya == 0.0F && CreaturesBirdEntity.this.zza == 0.0F) {
                 return this.canSleep() || CreaturesBirdEntity.this.isSleeping();
             } return false;
@@ -304,7 +445,7 @@ abstract public class CreaturesBirdEntity extends TamableAnimal {
         }
 
         private boolean canSleep() {
-            return CreaturesBirdEntity.this.level.isNight() && CreaturesBirdEntity.this.isOnGround() && !CreaturesBirdEntity.this.isInWaterOrRain() && !CreaturesBirdEntity.this.isInPowderSnow;
+            return CreaturesBirdEntity.this.timeSleep() && CreaturesBirdEntity.this.isOnGround() && !CreaturesBirdEntity.this.isInWaterOrRain() && !CreaturesBirdEntity.this.isInPowderSnow;
         }
 
         public void stop() {
@@ -318,6 +459,10 @@ abstract public class CreaturesBirdEntity extends TamableAnimal {
         }
     }
 
+    public boolean timeSleep() {
+        return this.level.isNight();
+    }
+
     public double getHatchChance() {
         return 1.0;
     }
@@ -328,9 +473,11 @@ abstract public class CreaturesBirdEntity extends TamableAnimal {
 
     public EggEntity layEgg(CreaturesBirdEntity animal) {
         EggEntity egg = new EggEntity(CreaturesEntities.EGG.get(), this.level);
-        egg.setSpecies(CreaturesEntities.getIntFromBirdEntity(animal));
+        egg.setSpecies(ModEventSubscriber.getBirdEntityMap().inverse().get(animal.getType()));
+        int[] variants = {this.getVariant(), animal.getVariant()};
+        int rand = this.random.nextInt(2);
         egg.setGender(this.random.nextInt(2));
-        egg.setVariant(this.getVariant());
+        egg.setVariant(variants[rand]);
         egg.setPos(Mth.floor(this.getX()) + 0.5, Mth.floor(this.getY()) + 0.5, Mth.floor(this.getZ()) + 0.5);
         return egg;
     }
@@ -345,6 +492,22 @@ abstract public class CreaturesBirdEntity extends TamableAnimal {
 
     public InteractionResult mobInteract(Player p_29414_, InteractionHand p_29415_) {
         ItemStack itemstack = p_29414_.getItemInHand(p_29415_);
+        if (itemstack.getItem() == Items.STICK && this.isTame() && this.getOwner() == p_29414_) {
+            if (this.isWandering() == 0) {
+                if (this.level.isClientSide) {
+                    Component i = new TranslatableComponent("message.wander");
+                    this.getOwner().sendMessage(i, Util.NIL_UUID);
+                }
+                this.setWandering(1);
+            } else {
+                if (this.level.isClientSide) {
+                    Component i = new TranslatableComponent("message.follow");
+                    this.getOwner().sendMessage(i, Util.NIL_UUID);
+                }
+                this.setWandering(0);
+            }
+            return InteractionResult.sidedSuccess(this.level.isClientSide);
+        }
         if (itemstack.getItem() == CreaturesItems.FF_GUIDE.get()) {
             Creatures.PROXY.setReferencedMob(this);
             if (this.level.isClientSide) {
@@ -354,6 +517,32 @@ abstract public class CreaturesBirdEntity extends TamableAnimal {
         } else {
             return super.mobInteract(p_29414_, p_29415_);
         }
+    }
+
+    class FollowGoal extends FollowOwnerGoal {
+        public FollowGoal() {
+            super(CreaturesBirdEntity.this,1.0D, 10.0F, 2.0F, false);
+        }
+
+        public boolean canUse() {
+            if (CreaturesBirdEntity.this.isWandering() == 1) {
+                return false;
+            } return super.canUse();
+        }
+
+        public boolean canContinueToUse() {
+            if (CreaturesBirdEntity.this.isWandering() == 1) {
+                return false;
+            } return super.canUse();
+        }
+    }
+
+    public ResourceLocation getDefaultLootTable() {
+        return CreaturesLootTables.SMALL_BIRD_GENERIC;
+    }
+
+    public int getAmbientSoundInterval() {
+        return 180;
     }
 
 

@@ -1,9 +1,12 @@
 package com.frikinzi.creatures.client.gui;
 
 import com.frikinzi.creatures.Creatures;
+import com.frikinzi.creatures.entity.base.AbstractCreaturesFish;
+import com.frikinzi.creatures.entity.base.AbstractWalkingCreature;
 import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.TameableFlyingBirdEntity;
 import com.frikinzi.creatures.entity.egg.EggEntity;
+import com.frikinzi.creatures.entity.egg.RoeEntity;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
@@ -14,6 +17,7 @@ import net.minecraft.network.chat.FormattedText;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
@@ -22,8 +26,8 @@ import org.jetbrains.annotations.NotNull;
 public class GUICreatures extends Screen {
     private final int bookImageHeight = 245;
     private final int bookImageWidth = 390;
-    protected int xSize = 176;
-    protected int ySize = 166;
+    protected int xSize;
+    protected int ySize;
     public final int xGui = 390;
     public final int yGui = 320;
     private static final ResourceLocation TEXTURE = new ResourceLocation("creatures:textures/gui/creatures/book.png");
@@ -91,6 +95,52 @@ public class GUICreatures extends Screen {
             Component h = new TranslatableComponent("gui.hatchtime");
             this.font.draw(matrices, h.getString() + " " + bird.hatchTime / 1200, offLeft, offTop + 80, 0);
 
+        } else if (entity instanceof RoeEntity) {
+            RoeEntity bird = (RoeEntity) entity;
+            matrices.pushPose();
+            this.font.draw(matrices, ChatFormatting.BOLD + bird.getDisplayName().getString(), offLeft, offTop + 60, 0);
+            matrices.popPose();
+            matrices.pushPose();
+            //matrices.scale(0.9f,0.9f, 0.9f);
+            Component h = new TranslatableComponent("gui.hatchtime");
+            this.font.draw(matrices, h.getString() + " " + bird.hatchTime / 1200, offLeft, offTop + 80, 0);
+
+        } else if (entity instanceof AbstractCreaturesFish) {
+            AbstractCreaturesFish bird = (AbstractCreaturesFish) entity;
+            matrices.pushPose();
+            this.font.draw(matrices, ChatFormatting.BOLD + bird.getDisplayName().getString(), offLeft, offTop + 60, 0);
+            matrices.popPose();
+            matrices.pushPose();
+            //matrices.scale(0.9f,0.9f, 0.9f);
+            Component h = new TranslatableComponent("gui.health",bird.getHealth(), bird.getMaxHealth());
+            this.font.draw(matrices, h, offLeft, offTop + 90, 0);
+            //Component species = new TranslatableComponent("gui.species");
+            this.font.draw(matrices, bird.getSpeciesName(), offLeft, offTop + 100, 0);
+            Component height = new TranslatableComponent("gui.height");
+            this.font.draw(matrices, ChatFormatting.BOLD + height.getString() + ChatFormatting.RESET + " " + bird.getHeightString(), offLeft, offTop + 110, 0);
+            Component food = new TranslatableComponent("gui.food").withStyle(ChatFormatting.BOLD);
+            this.font.draw(matrices, ChatFormatting.BOLD + food.getString() + " ", offLeft, offTop + 130, 0);
+            this.itemRenderer.renderGuiItem(new ItemStack(bird.getFoodItem(), 1), offLeft + 30, 120 + offTop);
+            matrices.popPose();
+        } else if (entity instanceof AbstractWalkingCreature) {
+            AbstractWalkingCreature bird = (AbstractWalkingCreature) entity;
+            matrices.pushPose();
+            this.font.draw(matrices, ChatFormatting.BOLD + bird.getDisplayName().getString(), offLeft, offTop + 60, 0);
+            matrices.popPose();
+            matrices.pushPose();
+            //matrices.scale(0.9f,0.9f, 0.9f);
+            Component h = new TranslatableComponent("gui.health",bird.getHealth(), bird.getMaxHealth());
+            this.font.draw(matrices, h, offLeft, offTop + 80, 0);
+            Component g = new TranslatableComponent("gui.sex", bird.getGenderDisplayName());
+            this.font.draw(matrices, g, offLeft, offTop + 90, 0);
+            //Component species = new TranslatableComponent("gui.species");
+            this.font.draw(matrices, bird.getSpeciesName(), offLeft, offTop + 100, 0);
+            Component height = new TranslatableComponent("gui.height");
+            this.font.draw(matrices, ChatFormatting.BOLD + height.getString() + ChatFormatting.RESET + " " + bird.getHeightString(), offLeft, offTop + 110, 0);
+            Component food = new TranslatableComponent("gui.food").withStyle(ChatFormatting.BOLD);
+            this.font.draw(matrices, ChatFormatting.BOLD + food.getString() + " ", offLeft, offTop + 130, 0);
+            this.itemRenderer.renderGuiItem(bird.getFoodItem(), offLeft + 30, 120 + offTop);
+            matrices.popPose();
         }
         else {
             CreaturesBirdEntity bird = (CreaturesBirdEntity) entity;
@@ -98,12 +148,12 @@ public class GUICreatures extends Screen {
             this.font.draw(matrices, ChatFormatting.BOLD + bird.getDisplayName().getString(), offLeft, offTop + 60, 0);
             matrices.popPose();
             matrices.pushPose();
-            Component g = new TranslatableComponent("gui.sex");
+            Component g = new TranslatableComponent("gui.sex", bird.getGenderDisplayName());
             this.font.draw(matrices, g, offLeft, offTop + 80, 0);
             matrices.popPose();
             matrices.pushPose();
             //matrices.scale(0.9f,0.9f, 0.9f);
-            Component h = new TranslatableComponent("gui.health");
+            Component h = new TranslatableComponent("gui.health",bird.getHealth(), bird.getMaxHealth());
             this.font.draw(matrices, h, offLeft, offTop + 90, 0);
             //Component species = new TranslatableComponent("gui.species");
             this.font.draw(matrices, bird.getSpeciesName(), offLeft, offTop + 100, 0);

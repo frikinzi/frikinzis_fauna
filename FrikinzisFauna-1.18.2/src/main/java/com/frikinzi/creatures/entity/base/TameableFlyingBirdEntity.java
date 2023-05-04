@@ -4,8 +4,11 @@ import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.entity.ai.MateGoal;
 import com.frikinzi.creatures.util.registry.CreaturesItems;
 import com.google.common.collect.Sets;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
@@ -44,13 +47,13 @@ public class TameableFlyingBirdEntity extends CreaturesFlyingBirdEntity {
     }
 
     protected void registerGoals() {
-        this.goalSelector.addGoal(3, new FollowParentGoal(this, 1.1D));
+        this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
         this.goalSelector.addGoal(0, new PanicGoal(this, 1.25D));
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(0, new CreaturesBirdEntity.SleepGoal());
         this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
-        this.goalSelector.addGoal(2, new FollowOwnerGoal(this, 1.0D, 5.0F, 1.0F, true));
+        this.goalSelector.addGoal(1, new SitWhenOrderedToGoal(this));
+        this.goalSelector.addGoal(2, new CreaturesBirdEntity.FollowGoal());
         this.goalSelector.addGoal(5, new CreaturesFlyingBirdEntity.BirdWanderGoal(this, 1.0D));
         this.goalSelector.addGoal(3, new MateGoal(this, 1.0D));
         this.goalSelector.addGoal(4, new TemptGoal(this, 1.1D, this.getBirdFood(), false));
@@ -68,6 +71,22 @@ public class TameableFlyingBirdEntity extends CreaturesFlyingBirdEntity {
                 Creatures.PROXY.openCreaturesGui();
             }
             return InteractionResult.SUCCESS;
+        }
+        if (itemstack.getItem() == Items.STICK && this.isTame() && this.getOwner() == p_29414_) {
+            if (this.isWandering() == 0) {
+                if (this.level.isClientSide) {
+                    Component i = new TranslatableComponent("message.wander");
+                    this.getOwner().sendMessage(i, Util.NIL_UUID);
+                }
+                this.setWandering(1);
+            } else {
+                if (this.level.isClientSide) {
+                    Component i = new TranslatableComponent("message.follow");
+                    this.getOwner().sendMessage(i, Util.NIL_UUID);
+                }
+                this.setWandering(0);
+            }
+            return InteractionResult.sidedSuccess(this.level.isClientSide);
         }
         if (!this.isTame() && getTameFood().contains(itemstack.getItem())) {
             if (!p_29414_.getAbilities().instabuild) {
@@ -88,7 +107,7 @@ public class TameableFlyingBirdEntity extends CreaturesFlyingBirdEntity {
             }
 
             return InteractionResult.sidedSuccess(this.level.isClientSide);
-        } else if (!this.isFlying() && this.isTame() && this.isOwnedBy(p_29414_) && !getTameFood().contains(itemstack.getItem())) {
+        } else if (!this.isFlying() && this.isTame() && this.isOwnedBy(p_29414_) && !getTameFood().contains(itemstack.getItem()) && itemstack.getItem() != CreaturesItems.BIRD_CARRIER.get()) {
             if (!this.level.isClientSide) {
                 this.setOrderedToSit(!this.isOrderedToSit());
             }

@@ -61,7 +61,9 @@ abstract public class CreaturesFlyingBirdEntity extends CreaturesBirdEntity{
 
         this.flapping *= 0.9F;
         Vec3 vec3 = this.getDeltaMovement();
-        if (!this.onGround && vec3.y < 0.0D) {
+        if (this.isAggressive() && !this.onGround && vec3.y < 0.0D) {
+            this.setDeltaMovement(vec3.multiply(1.1D, 1.1D, 1.1D));
+        } else if (!this.onGround && vec3.y < 0.0D) {
             this.setDeltaMovement(vec3.multiply(1.0D, 0.6D, 1.0D));
         }
 
@@ -78,7 +80,7 @@ abstract public class CreaturesFlyingBirdEntity extends CreaturesBirdEntity{
         this.nextFlap = this.flyDist + this.flapSpeed / 2.0F;
     }
 
-    static class BirdWanderGoal extends WaterAvoidingRandomFlyingGoal {
+    public static class BirdWanderGoal extends WaterAvoidingRandomFlyingGoal {
         public BirdWanderGoal(PathfinderMob p_186224_, double p_186225_) {
             super(p_186224_, p_186225_);
         }

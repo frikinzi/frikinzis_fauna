@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.client.render;
 
 import com.frikinzi.creatures.client.model.LovebirdModel;
+import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.LovebirdEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -23,7 +24,11 @@ public class LovebirdRenderer extends GeoEntityRenderer<LovebirdEntity> {
         super.renderEarly(animatable, stack, partialTick, bufferSource, buffer, packedLight, packedOverlay, red,
                 green, blue, partialTicks);
         Float multiplier;
-        multiplier = animatable.getHeightMultiplier();
+        if (CreaturesConfig.height_on.get()) {
+            multiplier = animatable.getHeightMultiplier();
+        } else {
+            multiplier = 1.0F;
+        }
 
         if (animatable.isBaby()) {
             stack.scale(0.6F, 0.6F, 0.6F);

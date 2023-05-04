@@ -4,7 +4,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeConfigSpec;
 
-@OnlyIn(Dist.CLIENT)
 public class CreaturesConfig {
 
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
@@ -396,6 +395,13 @@ public class CreaturesConfig {
     public static final ForgeConfigSpec.ConfigValue<Double> pheasant_hatch_chance;
     public static final ForgeConfigSpec.ConfigValue<Integer> pheasant_clutch_size;
 
+    public static final ForgeConfigSpec.ConfigValue<Boolean> stork_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> stork_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Integer> stork_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> stork_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> stork_hatch_chance;
+    public static final ForgeConfigSpec.ConfigValue<Integer> stork_clutch_size;
+
     public static final ForgeConfigSpec.ConfigValue<Boolean> vampirecrab_spawns;
     public static final ForgeConfigSpec.ConfigValue<Integer> vampirecrab_spawn_weight;
     public static final ForgeConfigSpec.ConfigValue<Integer> vampirecrab_min_group;
@@ -418,6 +424,18 @@ public class CreaturesConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> piranha_min_group;
     public static final ForgeConfigSpec.ConfigValue<Integer> piranha_max_group;
     public static final ForgeConfigSpec.ConfigValue<Double> piranha_hatch_chance;
+
+    public static final ForgeConfigSpec.ConfigValue<Integer> tambaqui_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> tambaqui_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> tambaqui_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> tambaqui_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> tambaqui_hatch_chance;
+
+    public static final ForgeConfigSpec.ConfigValue<Integer> elephant_nose_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> elephant_nose_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> elephant_nose_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> elephant_nose_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> elephant_nose_hatch_chance;
 
     //gameplay
     public static final ForgeConfigSpec.ConfigValue<Boolean> breed_only_variants;
@@ -1056,6 +1074,17 @@ public class CreaturesConfig {
 
         BUILDER.pop();
 
+        BUILDER.push("Stork");
+
+        stork_spawns = BUILDER.comment("Enable/disable stork spawns").define("Stork Spawns", true);
+        stork_spawn_weight = BUILDER.comment("Spawn weight for storks").define("Stork Spawn Weight", 10);
+        stork_min_group = BUILDER.comment("Min group for stork").define("Stork Min Group", 3);
+        stork_max_group = BUILDER.comment("Max group for stork").define("Stork Max Group", 6);
+        stork_hatch_chance = BUILDER.comment("Hatch chance for each stork egg").define("Stork Hatch Chance", 0.6);
+        stork_clutch_size = BUILDER.comment("Max egg clutch size for stork").define("Stork Clutch Size", 3);
+
+        BUILDER.pop();
+
         BUILDER.push("Vampire Crab");
 
         vampirecrab_spawns = BUILDER.comment("Enable/disable vampire crab spawns").define("Vampire Crab Spawns", true);
@@ -1092,6 +1121,26 @@ public class CreaturesConfig {
         piranha_min_group = BUILDER.comment("Min group for piranha").define("Piranha Min Group", 3);
         piranha_max_group = BUILDER.comment("Max group for piranha").define("Piranha Max Group", 6);
         piranha_hatch_chance = BUILDER.comment("Hatch chance for each piranha roe").define("Piranha Hatch Chance", 0.4);
+
+        BUILDER.pop();
+
+        BUILDER.push("Tambaqui");
+
+        tambaqui_spawns = BUILDER.comment("Enable/disable tambaqui spawns").define("Tambaqui Spawns", true);
+        tambaqui_spawn_weight = BUILDER.comment("Spawn weight for tambaqui").define("Tambaqui Spawn Weight", 10);
+        tambaqui_min_group = BUILDER.comment("Min group for tambaqui").define("Tambaqui Min Group", 1);
+        tambaqui_max_group = BUILDER.comment("Max group for tambaqui").define("Tambaqui Max Group", 1);
+        tambaqui_hatch_chance = BUILDER.comment("Hatch chance for each tambaqui roe").define("Tambaqui Hatch Chance", 0.3);
+
+        BUILDER.pop();
+
+        BUILDER.push("Elephant Nose");
+
+        elephant_nose_spawns = BUILDER.comment("Enable/disable elephant nose spawns fish").define("Elephant Nose Spawns", true);
+        elephant_nose_spawn_weight = BUILDER.comment("Spawn weight for elephant nose fish").define("Elephant Nose Spawn Weight", 10);
+        elephant_nose_min_group = BUILDER.comment("Min group for elephant nose fish").define("Elephant Nose Min Group", 1);
+        elephant_nose_max_group = BUILDER.comment("Max group for elephant nose fish").define("Elephant Nose Max Group", 1);
+        elephant_nose_hatch_chance = BUILDER.comment("Hatch chance for each elephant nose fish roe").define("Elephant Nose Hatch Chance", 0.3);
 
         BUILDER.pop();
 

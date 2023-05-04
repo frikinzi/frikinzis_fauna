@@ -23,7 +23,9 @@
       "trigger": "minecraft:filled_bucket",
       "conditions": {
         "item": {
-          "item": "creatures:bucket_of_blue_tang"
+          "items": [
+            "creatures:bucket_of_blue_tang"
+          ]
         }
       }
     }

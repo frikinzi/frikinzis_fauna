@@ -20,6 +20,10 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.Ghast;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -56,6 +60,23 @@ public class RavenEntity extends TameableFlyingBirdEntity implements IAnimatable
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
         this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers());
 
+    }
+
+    public boolean wantsToAttack(LivingEntity p_30389_, LivingEntity p_30390_) {
+        if (!(p_30389_ instanceof Creeper) && !(p_30389_ instanceof Ghast)) {
+            if (p_30389_ instanceof TameableFlyingBirdEntity) {
+                TameableFlyingBirdEntity bird = (TameableFlyingBirdEntity)p_30389_;
+                return !bird.isTame() || bird.getOwner() != p_30390_;
+            } else if (p_30389_ instanceof Player && p_30390_ instanceof Player && !((Player)p_30390_).canHarmPlayer((Player)p_30389_)) {
+                return false;
+            } else if (p_30389_ instanceof AbstractHorse && ((AbstractHorse)p_30389_).isTamed()) {
+                return false;
+            } else {
+                return !(p_30389_ instanceof TamableAnimal) || !((TamableAnimal)p_30389_).isTame();
+            }
+        } else {
+            return false;
+        }
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
@@ -122,14 +143,15 @@ public class RavenEntity extends TameableFlyingBirdEntity implements IAnimatable
         return ravenEntity;
     }
 
+    @Override
     public int determineVariant() {
         if (this.random.nextInt(CreaturesConfig.raven_albino_chance.get()) == 1) {
-            this.setVariant(2); }
-        else {
-            this.setVariant(1);
+            return 2;
         }
-        return this.random.nextInt(this.noVariants()) + 1;
-
+        else {
+            return 1;
+        }
+        //return this.random.nextInt(this.noVariants()) + 1;
     }
 
     public boolean canMate(Animal p_30392_) {
@@ -177,6 +199,10 @@ public class RavenEntity extends TameableFlyingBirdEntity implements IAnimatable
 
     public ItemStack getFoodItem() {
         return new ItemStack(Items.ROTTEN_FLESH, 1);
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.raven_clutch_size.get());
     }
 
 }

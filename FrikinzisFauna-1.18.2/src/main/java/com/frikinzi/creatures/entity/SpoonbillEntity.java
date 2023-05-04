@@ -9,6 +9,7 @@ import com.frikinzi.creatures.util.registry.CreaturesEntities;
 import com.frikinzi.creatures.util.registry.CreaturesItems;
 import com.frikinzi.creatures.util.registry.CreaturesLootTables;
 import com.frikinzi.creatures.util.registry.CreaturesSound;
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -38,10 +39,19 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
+import java.util.Map;
 import java.util.Random;
 
 public class SpoonbillEntity extends CreaturesBirdEntity implements IAnimatable, IAnimationTickable {
     private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    public static Map<Integer, TranslatableComponent> SPECIES_NAMES = ImmutableMap.of(
+            1, new TranslatableComponent("message.creatures.roseate"),
+            2, new TranslatableComponent("message.creatures.royal"),
+            3, new TranslatableComponent("message.creatures.african"),
+            4, new TranslatableComponent("message.creatures.eurasiansp"),
+            5, new TranslatableComponent("message.creatures.yellowbilled"),
+            6, new TranslatableComponent("message.creatures.blackfaced")
+    );
 
     public SpoonbillEntity(EntityType<? extends SpoonbillEntity> p_29362_, Level p_29363_) {
         super(p_29362_, p_29363_);
@@ -97,7 +107,7 @@ public class SpoonbillEntity extends CreaturesBirdEntity implements IAnimatable,
     }
 
     public int noVariants() {
-        return 5;
+        return 6;
     }
 
     public SpoonbillEntity getBreedOffspring(ServerLevel p_149088_, AgeableMob p_149089_) {
@@ -120,28 +130,10 @@ public class SpoonbillEntity extends CreaturesBirdEntity implements IAnimatable,
     }
 
     public String getSpeciesName() {
-        if (this.getVariant() == 1) {
-            Component s1 = new TranslatableComponent("message.creatures.roseate");
-            return s1.getString();
-        }
-        else if (this.getVariant() == 2) {
-            Component s1 = new TranslatableComponent("message.creatures.royal");
-            return s1.getString();
-        }
-        else if (this.getVariant() == 3) {
-            Component s1 = new TranslatableComponent("message.creatures.african");
-            return s1.getString();
-        }
-        else if (this.getVariant() == 4) {
-            Component s1 = new TranslatableComponent("message.creatures.eurasiansp");
-            return s1.getString();
-        }
-        else if (this.getVariant() == 5) {
-            Component s1 = new TranslatableComponent("message.creatures.yellowbilled");
-            return s1.getString();
-        } else {
-            return "Unknown";
-        }
+        TranslatableComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
     }
 
     protected float getStandingEyeHeight(Pose p_33540_, EntityDimensions p_33541_) {
@@ -166,6 +158,10 @@ public class SpoonbillEntity extends CreaturesBirdEntity implements IAnimatable,
 
     public double getHatchChance() {
         return CreaturesConfig.spoonbill_hatch_chance.get();
+    }
+
+    public int getClutchSize() {
+        return this.random.nextInt(CreaturesConfig.spoonbill_clutch_size.get());
     }
 
 }

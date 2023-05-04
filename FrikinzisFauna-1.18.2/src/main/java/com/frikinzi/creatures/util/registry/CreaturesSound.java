@@ -62,6 +62,8 @@ public class CreaturesSound {
     public static final SoundEvent PIRANHA_AMBIENT = createSoundEvent("entity.piranha.piranha_ambient");
     public static final SoundEvent EGG_HATCH = createSoundEvent("entity.egg.hatch");
     public static final SoundEvent MOURNING_DOVE = createSoundEvent("entity.dove.mourning_dove_ambient");
+    public static final SoundEvent STORK_AMBIENT = createSoundEvent("entity.stork.stork_ambient");
+    public static final SoundEvent STORK_HURT = createSoundEvent("entity.stork.stork_hurt");
 
     private static SoundEvent createSoundEvent(final String soundName) {
         final ResourceLocation soundID = new ResourceLocation(Creatures.MODID, soundName);
