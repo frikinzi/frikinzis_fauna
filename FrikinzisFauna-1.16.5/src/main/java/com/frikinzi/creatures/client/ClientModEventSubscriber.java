@@ -2,10 +2,22 @@ package com.frikinzi.creatures.client;
 
 import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.client.render.*;
+<<<<<<< Updated upstream
 import com.frikinzi.creatures.entity.TanagerEntity;
 import com.frikinzi.creatures.registry.ModEntityTypes;
 import net.minecraft.client.renderer.entity.ChickenRenderer;
 import net.minecraftforge.api.distmarker.Dist;
+=======
+import com.frikinzi.creatures.entity.GroundHornbillEntity;
+import com.frikinzi.creatures.entity.HpapilioEntity;
+import com.frikinzi.creatures.entity.TanagerEntity;
+import com.frikinzi.creatures.registry.ModEntityTypes;
+import net.minecraft.client.renderer.entity.ChickenRenderer;
+import net.minecraft.client.renderer.entity.model.PlayerModel;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RenderLivingEvent;
+>>>>>>> Stashed changes
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -13,6 +25,11 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod.EventBusSubscriber(modid = Creatures.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientModEventSubscriber {
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
     @SubscribeEvent
     public static void onClientSetup(final FMLClientSetupEvent event) {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.KOI.get(), KoiRenderer::new);
@@ -77,6 +94,19 @@ public class ClientModEventSubscriber {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.PHEASANT.get(), PheasantRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ARAPAIMA.get(), ArapaimaRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.PIRANHA.get(), PiranhaRenderer::new);
+<<<<<<< Updated upstream
+=======
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.STORK.get(), StorkRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.WHISTLINGDUCK.get(), WhistlingDuckRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.GROUND_HORNBILL.get(), GroundHornbillRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.SECRETARYBIRD.get(), SecretaryBirdRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.SHOEBILL.get(), ShoebillRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.STARLING.get(), StarlingRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TAMBAQUI.get(), TambaquiRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ELEPHANTNOSE.get(), ElephantNoseFishRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.CORMORANT.get(), CormorantRenderer::new);
+
+>>>>>>> Stashed changes
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.EGG.get(), EggRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ROE.get(), RoeRenderer::new);
     }

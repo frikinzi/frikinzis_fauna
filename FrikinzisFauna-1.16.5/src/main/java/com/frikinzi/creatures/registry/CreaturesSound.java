@@ -9,6 +9,7 @@ public class CreaturesSound {
     public static final SoundEvent LOVEBIRD_AMBIENT = createSoundEvent("entity.lovebird.ambient");
     public static final SoundEvent SPOONBILL_AMBIENT = createSoundEvent("entity.creatures_spoonbill.ambient");
     public static final SoundEvent KAKAPO_AMBIENT = createSoundEvent("entity.kakapo.ambient");
+    public static final SoundEvent KAKAPO_HURT = createSoundEvent("entity.kakapo.hurt");
     public static final SoundEvent MANDARIN_DUCK_AMBIENT = createSoundEvent("entity.mandarin_duck.ambient");
     public static final SoundEvent RAVEN_AMBIENT = createSoundEvent("entity.raven.ambient");
     public static final SoundEvent DOVE_AMBIENT = createSoundEvent("entity.dove.ambient");
@@ -23,6 +24,7 @@ public class CreaturesSound {
     public static final SoundEvent PYGMY_FALCON_AMBIENT = createSoundEvent("entity.pygmyfalcon.ambient");
     public static final SoundEvent BARN_OWL_AMBIENT = createSoundEvent("entity.barn_owl.ambient");
     public static final SoundEvent WILD_DUCK_AMBIENT = createSoundEvent("entity.wild_duck.ambient");
+    public static final SoundEvent MALLARD_AMBIENT = createSoundEvent("entity.wild_duck.mallard_ambient");
     public static final SoundEvent ROLLER_AMBIENT = createSoundEvent("entity.roller.ambient");
     public static final SoundEvent CHICKADEE_AMBIENT = createSoundEvent("entity.chickadee.ambient");
     public static final SoundEvent CHICKADEE_AMBIENT2 = createSoundEvent("entity.chickadee.ambient2");
@@ -55,6 +57,19 @@ public class CreaturesSound {
     public static final SoundEvent PIRANHA_AMBIENT = createSoundEvent("entity.piranha.piranha_ambient");
     public static final SoundEvent EGG_HATCH = createSoundEvent("entity.egg.hatch");
     public static final SoundEvent MOURNING_DOVE = createSoundEvent("entity.dove.mourning_dove_ambient");
+<<<<<<< Updated upstream
+=======
+    public static final SoundEvent STORK_AMBIENT = createSoundEvent("entity.stork.stork_ambient");
+    public static final SoundEvent STORK_HURT = createSoundEvent("entity.stork.stork_hurt");
+    public static final SoundEvent LADY_AMHERST = createSoundEvent("entity.pheasant.lady_amherst_ambient");
+    public static final SoundEvent WHISTLING_DUCK = createSoundEvent("entity.whistlingduck.whistlingduck_ambient");
+    public static final SoundEvent WHITE_FACED = createSoundEvent("entity.whistlingduck.white_faced_ambient");
+    public static final SoundEvent GROUND_HORNBILL = createSoundEvent("entity.groundhornbill.groundhornbill_ambient");
+    public static final SoundEvent SECRETARYBIRD = createSoundEvent("entity.secretarybird.secretarybird_ambient");
+    public static final SoundEvent SHOEBILL = createSoundEvent("entity.shoebill.shoebill_ambient");
+    public static final SoundEvent STARLING = createSoundEvent("entity.starling.starling_ambient");
+    public static final SoundEvent CORMORANT = createSoundEvent("entity.cormorant.cormorant_ambient");
+>>>>>>> Stashed changes
 
     private static SoundEvent createSoundEvent(final String soundName) {
         final ResourceLocation soundID = new ResourceLocation(Creatures.MODID, soundName);

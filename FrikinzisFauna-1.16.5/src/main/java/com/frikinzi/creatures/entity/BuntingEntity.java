@@ -5,6 +5,10 @@ import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
+<<<<<<< Updated upstream
+=======
+import com.google.common.collect.ImmutableMap;
+>>>>>>> Stashed changes
 import com.google.common.collect.Sets;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -31,11 +35,25 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+<<<<<<< Updated upstream
+=======
+import java.util.Map;
+>>>>>>> Stashed changes
 import java.util.Set;
 
 public class BuntingEntity extends NonTameableFlyingBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(CreaturesItems.MEALWORMS);
+<<<<<<< Updated upstream
+=======
+    public static Map<Integer, TranslationTextComponent> SPECIES_NAMES = ImmutableMap.of(
+            1, new TranslationTextComponent("message.creatures.painted"),
+            2, new TranslationTextComponent("message.creatures.indigo"),
+            3, new TranslationTextComponent("message.creatures.rosebellied"),
+            4, new TranslationTextComponent("message.creatures.orangebellied"),
+            5, new TranslationTextComponent("message.creatures.varied")
+    );
+>>>>>>> Stashed changes
 
     public BuntingEntity(EntityType<? extends BuntingEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -132,6 +150,7 @@ public class BuntingEntity extends NonTameableFlyingBirdBase implements IAnimata
     }
 
     public String getSpeciesName() {
+<<<<<<< Updated upstream
         if (this.getVariant() == 1) {
             ITextComponent s1 = new TranslationTextComponent("message.creatures.painted");
             return s1.getString();
@@ -154,6 +173,12 @@ public class BuntingEntity extends NonTameableFlyingBirdBase implements IAnimata
         } else {
             return "Unknown";
         }
+=======
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+>>>>>>> Stashed changes
     }
 
     public float getHatchChance() {

@@ -30,7 +30,11 @@ public class SkuaRenderer extends GeoEntityRenderer<SkuaEntity> {
             multiplier = 1.0F;
         }
         if (animatable.isBaby()) {
+<<<<<<< Updated upstream
             stackIn.scale(0.5F * multiplier, 0.5F * multiplier, 0.5F * multiplier);
+=======
+            stackIn.scale(0.6F * multiplier, 0.6F * multiplier, 0.6F * multiplier);
+>>>>>>> Stashed changes
         }
         stackIn.scale(1F * multiplier, 1F * multiplier, 1F * multiplier);
     }

@@ -563,6 +563,17 @@ public abstract class FishBase extends AbstractFishEntity {
 
     }
 
+<<<<<<< Updated upstream
+=======
+    public void setVariant(int i) {
+
+    }
+
+    public int determineVariant() {
+        return 1;
+    }
+
+>>>>>>> Stashed changes
 
 
     }

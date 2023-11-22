@@ -34,6 +34,12 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+<<<<<<< Updated upstream
+=======
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Collections;
+>>>>>>> Stashed changes
 import java.util.Set;
 
 public class DoveEntity extends TameableBirdBase implements IAnimatable {
@@ -45,7 +51,33 @@ public class DoveEntity extends TameableBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
     private static final Ingredient FRUIT_ITEMS = Ingredient.of(Items.CHORUS_FRUIT, Items.SWEET_BERRIES, Items.APPLE, Items.MELON_SLICE);
+<<<<<<< Updated upstream
 
+=======
+    public static Map<Integer, TranslationTextComponent> SPECIES_NAMES;
+    static {
+        Map<Integer, TranslationTextComponent> map = new HashMap<>();
+        map.put(1, new TranslationTextComponent("message.creatures.dove.jambu"));
+        map.put(2, new TranslationTextComponent("message.creatures.dove.release"));
+        map.put(3, new TranslationTextComponent("message.creatures.dove.rose"));
+        map.put(4, new TranslationTextComponent("message.creatures.dove.rock"));
+        map.put(5, new TranslationTextComponent("message.creatures.dove.flame"));
+        map.put(6, new TranslationTextComponent("message.creatures.dove.goldenheart"));
+        map.put(7, new TranslationTextComponent("message.creatures.dove.mbleeding"));
+        map.put(8, new TranslationTextComponent("message.creatures.dove.orangebellied"));
+        map.put(9, new TranslationTextComponent("message.creatures.dove.victoria"));
+        map.put(10, new TranslationTextComponent("message.creatures.dove.mourning"));
+        map.put(11, new TranslationTextComponent("message.creatures.dove.europeanturtle"));
+        map.put(12, new TranslationTextComponent("message.creatures.dove.snow"));
+        map.put(13, new TranslationTextComponent("message.creatures.dove.nicobar"));
+        map.put(14, new TranslationTextComponent("message.creatures.dove.pacificemerald"));
+        map.put(15, new TranslationTextComponent("message.creatures.dove.crested"));
+        map.put(16, new TranslationTextComponent("message.creatures.dove.spinifex"));
+        map.put(17, new TranslationTextComponent("message.creatures.dove.pink"));
+        SPECIES_NAMES = Collections.unmodifiableMap(map);
+    }
+    
+>>>>>>> Stashed changes
     public DoveEntity(EntityType<? extends DoveEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
     }
@@ -183,6 +215,7 @@ public class DoveEntity extends TameableBirdBase implements IAnimatable {
     }
 
     public String getSpeciesName() {
+<<<<<<< Updated upstream
         if (this.getVariant() == 1) {
             ITextComponent s1 = new TranslationTextComponent("message.creatures.dove.jambu");
             return s1.getString();
@@ -243,6 +276,12 @@ public class DoveEntity extends TameableBirdBase implements IAnimatable {
         else {
             return "Unknown";
         }
+=======
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+>>>>>>> Stashed changes
     }
 
     public String getFoodName() {

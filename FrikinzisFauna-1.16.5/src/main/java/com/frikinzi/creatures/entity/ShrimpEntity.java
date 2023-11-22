@@ -5,6 +5,10 @@ import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.entity.egg.CreaturesRoeEntity;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.util.CreaturesLootTables;
+<<<<<<< Updated upstream
+=======
+import com.google.common.collect.ImmutableMap;
+>>>>>>> Stashed changes
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -22,6 +26,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
+<<<<<<< Updated upstream
+=======
+import net.minecraft.util.text.TranslationTextComponent;
+>>>>>>> Stashed changes
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IServerWorld;
@@ -36,11 +44,29 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
+<<<<<<< Updated upstream
+=======
+import java.util.Map;
+>>>>>>> Stashed changes
 import java.util.Random;
 
 public class ShrimpEntity extends FishBase implements IAnimatable {
     private static final DataParameter<Integer> DATA_VARIANT_ID = EntityDataManager.defineId(ShrimpEntity.class, DataSerializers.INT);
     private AnimationFactory factory = new AnimationFactory(this);
+<<<<<<< Updated upstream
+=======
+    public static final Map<Integer, TranslationTextComponent> SPECIES_NAMES = ImmutableMap.<Integer, TranslationTextComponent>builder()
+            .put(1, new TranslationTextComponent("message.creatures.crystal_shrimp"))
+            .put(2, new TranslationTextComponent("message.creatures.red_shrimp"))
+            .put(3, new TranslationTextComponent("message.creatures.blue_shrimp"))
+            .put(4, new TranslationTextComponent("message.creatures.wild_type_shrimp"))
+            .put(5, new TranslationTextComponent("message.creatures.yellow_shrimp"))
+            .put(6, new TranslationTextComponent("message.creatures.green_shrimp"))
+            .put(7, new TranslationTextComponent("message.creatures.black_shrimp"))
+            .put(8, new TranslationTextComponent("message.creatures.white_shrimp"))
+            .build();
+
+>>>>>>> Stashed changes
     public ShrimpEntity(EntityType<? extends ShrimpEntity> p_i50246_1_, World p_i50246_2_) {
         super(p_i50246_1_, p_i50246_2_);
     }
@@ -207,8 +233,27 @@ public class ShrimpEntity extends FishBase implements IAnimatable {
         this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, PiranhaEntity.class, 8.0F, 2.2D, 2.2D));
     }
 
+<<<<<<< Updated upstream
+=======
+    public String getSpeciesName() {
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+    }
+
+>>>>>>> Stashed changes
     protected float getStandingEyeHeight(Pose p_213348_1_, EntitySize p_213348_2_) {
         return 0.1F;
     }
 
+<<<<<<< Updated upstream
+=======
+    public int determineVariant()
+    {
+        return 9;
+    }
+
+
+>>>>>>> Stashed changes
 }

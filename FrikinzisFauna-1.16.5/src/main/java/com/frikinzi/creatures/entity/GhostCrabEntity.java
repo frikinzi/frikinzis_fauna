@@ -63,7 +63,11 @@ public class GhostCrabEntity extends AbstractCrabBase implements IAnimatable {
 
     @Nullable
     public ILivingEntityData finalizeSpawn(IServerWorld p_213386_1_, DifficultyInstance p_213386_2_, SpawnReason p_213386_3_, @Nullable ILivingEntityData p_213386_4_, @Nullable CompoundNBT p_213386_5_) {
+<<<<<<< Updated upstream
         this.setVariant(this.random.nextInt(5));
+=======
+        this.setVariant(this.random.nextInt(determineVariant()));
+>>>>>>> Stashed changes
         this.setGender(this.random.nextInt(2));
         if (p_213386_4_ == null) {
             p_213386_4_ = new AgeableEntity.AgeableData(false);
@@ -198,4 +202,11 @@ public class GhostCrabEntity extends AbstractCrabBase implements IAnimatable {
         this.entityData.set(GENDER, p_191997_1_);
     }
 
+<<<<<<< Updated upstream
+=======
+    public int determineVariant() {
+        return 5;
+    }
+
+>>>>>>> Stashed changes
 }

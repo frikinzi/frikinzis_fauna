@@ -5,6 +5,10 @@ import java.util.List;
 import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
 import com.frikinzi.creatures.registry.ModEntityTypes;
+<<<<<<< Updated upstream
+=======
+import com.frikinzi.creatures.util.EntityAttributes;
+>>>>>>> Stashed changes
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.ai.goal.Goal;
 
@@ -20,7 +24,11 @@ public class StayCloseToEggGoal extends Goal {
         this.animal = p_i1626_1_;
         this.speedModifier = p_i1626_2_;
         predicate = (new EntityPredicate()).range(16.0D).allowInvulnerable().selector((p_220844_0_) -> {
+<<<<<<< Updated upstream
             return ((CreaturesEggEntity)p_220844_0_).getSpecies() == ModEntityTypes.getIntFromBirdEntity(animal);
+=======
+            return ((CreaturesEggEntity)p_220844_0_).getSpecies() == EntityAttributes.getBirdEntityMap().inverse().get(animal.getType());
+>>>>>>> Stashed changes
         });
         predicatetwo = (new EntityPredicate()).range(16.0D).allowInvulnerable().selector((p_220844_0_) -> {
             return ((CreaturesBirdEntity)p_220844_0_).getGender() != 1;

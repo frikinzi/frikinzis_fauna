@@ -30,9 +30,12 @@ public class SpoonbillRenderer extends GeoEntityRenderer<SpoonbillEntity>{
         } else {
             multiplier = 1.0F;
         }
+<<<<<<< Updated upstream
         if (animatable.isBaby()) {
             stackIn.scale(0.5F * multiplier, 0.5F * multiplier, 0.5F * multiplier);
         }
+=======
+>>>>>>> Stashed changes
         stackIn.scale(0.8F * multiplier, 0.8F * multiplier, 0.8F * multiplier);
     }
 }

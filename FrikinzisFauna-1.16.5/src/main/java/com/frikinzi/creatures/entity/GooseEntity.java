@@ -6,6 +6,10 @@ import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
+<<<<<<< Updated upstream
+=======
+import com.google.common.collect.ImmutableMap;
+>>>>>>> Stashed changes
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
@@ -31,9 +35,25 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+<<<<<<< Updated upstream
 public class GooseEntity extends NonTameableFlyingBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.GRASS, Items.SEAGRASS, Items.TALL_GRASS);
+=======
+import java.util.Map;
+
+public class GooseEntity extends NonTameableFlyingBirdBase implements IAnimatable {
+    private AnimationFactory factory = new AnimationFactory(this);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.GRASS, Items.SEAGRASS, Items.TALL_GRASS);
+    public static final Map<Integer, TranslationTextComponent> SPECIES_NAMES = ImmutableMap.<Integer, TranslationTextComponent>builder()
+            .put(1, new TranslationTextComponent("message.creatures.canada"))
+            .put(2, new TranslationTextComponent("message.creatures.barnacle"))
+            .put(3, new TranslationTextComponent("message.creatures.graylag"))
+            .put(4, new TranslationTextComponent("message.creatures.snow"))
+            .put(5, new TranslationTextComponent("message.creatures.orinoco"))
+            .put(6, new TranslationTextComponent("message.creatures.barheaded"))
+            .build();
+>>>>>>> Stashed changes
 
     public GooseEntity(EntityType<? extends GooseEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -92,7 +112,11 @@ public class GooseEntity extends NonTameableFlyingBirdBase implements IAnimatabl
     }
 
     public int determineVariant() {
+<<<<<<< Updated upstream
         return 6;
+=======
+        return 7;
+>>>>>>> Stashed changes
     }
 
     @Override
@@ -135,6 +159,7 @@ public class GooseEntity extends NonTameableFlyingBirdBase implements IAnimatabl
     }
 
     public String getSpeciesName() {
+<<<<<<< Updated upstream
         if (this.getVariant() == 1) {
             ITextComponent s1 = new TranslationTextComponent("message.creatures.canada");
             return s1.getString();
@@ -158,6 +183,12 @@ public class GooseEntity extends NonTameableFlyingBirdBase implements IAnimatabl
         else {
             return "Unknown";
         }
+=======
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+>>>>>>> Stashed changes
     }
 
     public String getFoodName() {

@@ -3,6 +3,10 @@ package com.frikinzi.creatures.entity;
 import com.frikinzi.creatures.entity.base.AbstractCrabBase;
 import com.frikinzi.creatures.entity.base.TameableBirdBase;
 import com.frikinzi.creatures.util.CreaturesLootTables;
+<<<<<<< Updated upstream
+=======
+import com.google.common.collect.ImmutableMap;
+>>>>>>> Stashed changes
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -35,12 +39,26 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
+<<<<<<< Updated upstream
+=======
+import java.util.Map;
+>>>>>>> Stashed changes
 
 public class FiddlerCrabEntity extends AbstractCrabBase implements IAnimatable {
     private static final DataParameter<Integer> DATA_VARIANT_ID = EntityDataManager.defineId(FiddlerCrabEntity.class, DataSerializers.INT);
     private static final DataParameter<Integer> GENDER = EntityDataManager.defineId(FiddlerCrabEntity.class, DataSerializers.INT);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.DEAD_BUSH, Items.DEAD_BRAIN_CORAL, Items.DEAD_BRAIN_CORAL_FAN, Items.DEAD_BUBBLE_CORAL, Items.DEAD_FIRE_CORAL);
     private AnimationFactory factory = new AnimationFactory(this);
+<<<<<<< Updated upstream
+=======
+    public static Map<Integer, TranslationTextComponent> SPECIES_NAMES = ImmutableMap.of(
+            1, new TranslationTextComponent("message.creatures.thicklegged"),
+            2, new TranslationTextComponent("message.creatures.atlanticfiddler"),
+            3, new TranslationTextComponent("message.creatures.africanfiddler"),
+            4, new TranslationTextComponent("message.creatures.demanding"),
+            5, new TranslationTextComponent("message.creatures.flamebacked")
+    );
+>>>>>>> Stashed changes
 
     public FiddlerCrabEntity(EntityType<? extends FiddlerCrabEntity> p_i48567_1_, World p_i48567_2_) {
         super(p_i48567_1_, p_i48567_2_);
@@ -168,6 +186,7 @@ public class FiddlerCrabEntity extends AbstractCrabBase implements IAnimatable {
     }
 
     public String getSpeciesName() {
+<<<<<<< Updated upstream
         if (this.getVariant() == 1) {
             ITextComponent s1 = new TranslationTextComponent("message.creatures.thicklegged");
             return s1.getString();
@@ -190,6 +209,12 @@ public class FiddlerCrabEntity extends AbstractCrabBase implements IAnimatable {
         } else {
             return "Unknown";
         }
+=======
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+>>>>>>> Stashed changes
     }
 
     public String getGenderString() {
@@ -202,4 +227,12 @@ public class FiddlerCrabEntity extends AbstractCrabBase implements IAnimatable {
         }
     }
 
+<<<<<<< Updated upstream
+=======
+    public int determineVariant()
+    {
+        return 6;
+    }
+
+>>>>>>> Stashed changes
 }

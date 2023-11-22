@@ -5,6 +5,10 @@ import com.frikinzi.creatures.entity.ai.StayCloseToEggGoal;
 import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.ModEntityTypes;
+<<<<<<< Updated upstream
+=======
+import com.frikinzi.creatures.util.EntityAttributes;
+>>>>>>> Stashed changes
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
@@ -169,9 +173,17 @@ abstract public class CreaturesBirdEntity extends TameableEntity {
 
     public CreaturesEggEntity layEgg(CreaturesBirdEntity animal) {
         CreaturesEggEntity egg = new CreaturesEggEntity(ModEntityTypes.EGG.get(), this.level);
+<<<<<<< Updated upstream
         egg.setSpecies(ModEntityTypes.getIntFromBirdEntity(animal));
         egg.setGender(this.random.nextInt(2));
         egg.setVariant(this.getVariant());
+=======
+        egg.setSpecies(EntityAttributes.getBirdEntityMap().inverse().get(animal.getType()));
+        egg.setGender(this.random.nextInt(2));
+        int[] variants = {this.getVariant(), animal.getVariant()};
+        int rand = this.random.nextInt(2);
+        egg.setVariant(variants[rand]);
+>>>>>>> Stashed changes
         egg.setPos(MathHelper.floor(this.getX()) + 0.5, MathHelper.floor(this.getY()) + 0.5, MathHelper.floor(this.getZ()) + 0.5);
         return egg;
     }
@@ -179,6 +191,11 @@ abstract public class CreaturesBirdEntity extends TameableEntity {
     public int getVariant() {
         return 0;
     }
+<<<<<<< Updated upstream
+=======
+    
+    abstract public void setVariant(int i);
+>>>>>>> Stashed changes
 
     public float getHatchChance() {
         return 1;
@@ -204,7 +221,11 @@ abstract public class CreaturesBirdEntity extends TameableEntity {
                 if (itemstack.getTag() == null) {
                     itemstack.getOrCreateTag();
                 }
+<<<<<<< Updated upstream
                 String s = String.valueOf(ModEntityTypes.getIntFromBirdEntity(this));
+=======
+                String s = String.valueOf(EntityAttributes.getBirdEntityMap().inverse().get(this.getType()));
+>>>>>>> Stashed changes
                 if (!itemstack.getTag().contains(s)) {
                     if (this.determineVariant() == 1) {
                         itemstack.getTag().putIntArray(s, new int[1]);
@@ -229,6 +250,11 @@ abstract public class CreaturesBirdEntity extends TameableEntity {
         return (float)(this.getRandom().nextGaussian() * 0.05 + this.getHeightMultiplier());
     }
 
+<<<<<<< Updated upstream
+=======
+    public abstract void setGender(int gender);
+
+>>>>>>> Stashed changes
     public class DefendBabyGoal extends NearestAttackableTargetGoal<LivingEntity> {
         public DefendBabyGoal() {
             super(CreaturesBirdEntity.this, LivingEntity.class, 5, true, true, (Predicate<LivingEntity>)LivingEntity::attackable);
@@ -247,7 +273,11 @@ abstract public class CreaturesBirdEntity extends TameableEntity {
                         }
                     }
                     for (CreaturesEggEntity eggEntity : CreaturesBirdEntity.this.level.getEntitiesOfClass(CreaturesEggEntity.class, CreaturesBirdEntity.this.getBoundingBox().inflate(3.0D, 2.0D, 3.0D))) {
+<<<<<<< Updated upstream
                         if (eggEntity.getSpecies() == ModEntityTypes.getIntFromBirdEntity(CreaturesBirdEntity.this)) {
+=======
+                        if (eggEntity.getSpecies() == EntityAttributes.getBirdEntityMap().inverse().get(CreaturesBirdEntity.this.getType())) {
+>>>>>>> Stashed changes
                             if (this.target.getClass() == CreaturesBirdEntity.this.getClass() || this.target.isBaby() || this.target.getClass() == CreaturesEggEntity.class) {
                                 return false;
                             }
@@ -266,6 +296,17 @@ abstract public class CreaturesBirdEntity extends TameableEntity {
         }
     }
 
+<<<<<<< Updated upstream
+=======
+    public String getGenderName() {
+        if (this.getGender() == 1) {
+            return "m";
+        } else {
+            return "f";
+        }
+    }
+
+>>>>>>> Stashed changes
     class HurtByTargetGoal extends net.minecraft.entity.ai.goal.HurtByTargetGoal {
         public HurtByTargetGoal() {
             super(CreaturesBirdEntity.this);
@@ -353,9 +394,25 @@ abstract public class CreaturesBirdEntity extends TameableEntity {
 
     }
 
+<<<<<<< Updated upstream
     public void addFollowers(Stream<CreaturesBirdEntity> p_212810_1_) {
         p_212810_1_.limit((long)(this.getMaxFlockSize() - this.schoolSize)).filter((p_212801_1_) -> {
             return p_212801_1_ != this;
+=======
+    public int getAmbientSoundInterval() {
+        return 160;
+    }
+
+    public String getSpeciesName() {
+        return "Unknown";
+    }
+
+    public void addFollowers(Stream<CreaturesBirdEntity> p_212810_1_) {
+        p_212810_1_.limit((long)(this.getMaxFlockSize() - this.schoolSize)).filter((p_212801_1_) -> {
+            return p_212801_1_ != this;
+        }).filter((p_212801_1_) -> {
+            return p_212801_1_.getVariant() == this.getVariant();
+>>>>>>> Stashed changes
         }).forEach((p_212804_1_) -> {
             p_212804_1_.startFollowing(this);
         });

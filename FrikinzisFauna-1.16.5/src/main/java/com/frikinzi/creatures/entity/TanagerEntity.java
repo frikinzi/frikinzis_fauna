@@ -33,11 +33,35 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+<<<<<<< Updated upstream
+=======
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Collections;
+>>>>>>> Stashed changes
 import java.util.Set;
 
 public class TanagerEntity extends NonTameableFlyingBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(CreaturesItems.MEALWORMS, Items.MELON_SLICE, Items.SWEET_BERRIES);
+<<<<<<< Updated upstream
+=======
+    public static final Map<Integer, TranslationTextComponent> SPECIES_NAMES;
+
+    static {
+        Map<Integer, TranslationTextComponent> messageMap = new HashMap<>();
+        messageMap.put(1, new TranslationTextComponent("message.creatures.paradisetanager"));
+        messageMap.put(2, new TranslationTextComponent("message.creatures.spangledberyl"));
+        messageMap.put(3, new TranslationTextComponent("message.creatures.cherrythroated"));
+        messageMap.put(4, new TranslationTextComponent("message.creatures.greenheaded"));
+        messageMap.put(5, new TranslationTextComponent("message.creatures.redheadedtanager"));
+        messageMap.put(6, new TranslationTextComponent("message.creatures.scarlettanager"));
+        messageMap.put(7, new TranslationTextComponent("message.creatures.silverbeaked"));
+        messageMap.put(8, new TranslationTextComponent("message.creatures.multicoloredtanager"));
+        messageMap.put(9, new TranslationTextComponent("message.creatures.bluegraytanager"));
+        SPECIES_NAMES = Collections.unmodifiableMap(messageMap);
+    }
+>>>>>>> Stashed changes
 
     public TanagerEntity(EntityType<? extends TanagerEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -126,6 +150,7 @@ public class TanagerEntity extends NonTameableFlyingBirdBase implements IAnimata
         return CreaturesLootTables.SMALL_BIRD_GENERIC;
     }
 
+<<<<<<< Updated upstream
     @Override
     public String getSpeciesName() {
         if (this.getVariant() == 1) {
@@ -166,6 +191,13 @@ public class TanagerEntity extends NonTameableFlyingBirdBase implements IAnimata
         } else {
             return "Unknown";
         }
+=======
+    public String getSpeciesName() {
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+>>>>>>> Stashed changes
     }
 
     public String getFoodName() {

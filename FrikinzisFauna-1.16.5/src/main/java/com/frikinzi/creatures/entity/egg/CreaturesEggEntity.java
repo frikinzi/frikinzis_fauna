@@ -2,6 +2,7 @@ package com.frikinzi.creatures.entity.egg;
 
 import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.config.CreaturesConfig;
+<<<<<<< Updated upstream
 import com.frikinzi.creatures.entity.*;
 import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.registry.CreaturesItems;
@@ -14,13 +15,27 @@ import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+=======
+import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
+import com.frikinzi.creatures.registry.CreaturesItems;
+import com.frikinzi.creatures.registry.CreaturesSound;
+import com.frikinzi.creatures.util.EntityAttributes;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+>>>>>>> Stashed changes
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ItemParticleData;
 import net.minecraft.particles.ParticleTypes;
+<<<<<<< Updated upstream
 import net.minecraft.server.management.PreYggdrasilConverter;
+=======
+>>>>>>> Stashed changes
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
@@ -44,7 +59,10 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
+<<<<<<< Updated upstream
 import java.util.Random;
+=======
+>>>>>>> Stashed changes
 import java.util.UUID;
 
 public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
@@ -217,6 +235,7 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
             egg.setHatching(false);
         }
         if (--egg.hatchTime <= 0) {
+<<<<<<< Updated upstream
             if (egg.getSpecies() == 0 & !this.level.isClientSide) {
                 LovebirdEntity lovebirdentity = new LovebirdEntity(ModEntityTypes.LOVEBIRD.get(), egg.level);
 
@@ -802,6 +821,21 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
 //               final double d5 = random.nextDouble() * egg.getBbWidth() * 2.0D - egg.getBbWidth();
 //               this.level.addParticle(ParticleTypes.HEART, egg.getX() + d3, egg.getY() + d4, egg.getZ() + d5, d0, d1, d2);
 //           }
+=======
+            if (!this.level.isClientSide) {
+                int species = egg.getSpecies();
+                EntityType<? extends CreaturesBirdEntity> type = EntityAttributes.getBirdEntityMap().get(species);
+                if (type != null) {
+                    CreaturesBirdEntity bird = createBirdEntity(type, egg);
+
+                    if (this.random.nextFloat() < bird.getHatchChance()) {
+                        this.level.addFreshEntity(bird);
+                    }
+                }
+
+                egg.remove();
+            }
+>>>>>>> Stashed changes
         }
     }
 
@@ -942,7 +976,25 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
             return new ItemStack(CreaturesItems.CAPERCAILLIE_EGG);
         }    else if (this.getSpecies() == 40) {
             return new ItemStack(CreaturesItems.PHEASANT_EGG);
+<<<<<<< Updated upstream
         } else {
+=======
+        }    else if (this.getSpecies() == 41) {
+            return new ItemStack(CreaturesItems.STORK_EGG);
+        }     else if (this.getSpecies() == 42) {
+            return new ItemStack(CreaturesItems.WHISTLINGDUCK_EGG);
+        }     else if (this.getSpecies() == 43) {
+            return new ItemStack(CreaturesItems.GROUND_HORNBILL_EGG);
+        }      else if (this.getSpecies() == 44) {
+            return new ItemStack(CreaturesItems.SECRETARYBIRD_EGG);
+        }     else if (this.getSpecies() == 45) {
+            return new ItemStack(CreaturesItems.SHOEBILL_EGG);
+        }     else if (this.getSpecies() == 46) {
+            return new ItemStack(CreaturesItems.STARLING_EGG);
+        }     else if (this.getSpecies() == 47) {
+            return new ItemStack(CreaturesItems.CORMORANT_EGG);
+        }      else {
+>>>>>>> Stashed changes
             return new ItemStack(CreaturesItems.LOVEBIRD_EGG);
         }
     }
@@ -1027,4 +1079,26 @@ public class CreaturesEggEntity extends AgeableEntity implements IAnimatable {
         }
     }
 
+<<<<<<< Updated upstream
+=======
+    private CreaturesBirdEntity createBirdEntity(EntityType<? extends CreaturesBirdEntity> entityType, CreaturesEggEntity egg) {
+        CreaturesBirdEntity bird = entityType.create(egg.level);
+        if (egg.hasCustomName()) {
+            bird.setCustomName(egg.getCustomName());
+        }
+        if (this.getVariant() == -1) {
+            bird.setVariant(bird.determineVariant());
+        } else {
+            bird.setVariant(egg.getVariant());
+        }
+        bird.setHeightMultiplier(this.getHeightMultiplier());
+        bird.setGender(egg.getGender());
+        bird.setBaby(true);
+        bird.setPos(egg.getX(), egg.getY(), egg.getZ());
+        return bird;
+    }
+
+
+
+>>>>>>> Stashed changes
 }

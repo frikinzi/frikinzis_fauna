@@ -5,6 +5,10 @@ import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
+<<<<<<< Updated upstream
+=======
+import com.google.common.collect.ImmutableMap;
+>>>>>>> Stashed changes
 import com.google.common.collect.Sets;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.resources.I18n;
@@ -39,12 +43,27 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+<<<<<<< Updated upstream
+=======
+import java.util.Map;
+>>>>>>> Stashed changes
 import java.util.Random;
 import java.util.Set;
 
 public class SparrowEntity extends NonTameableFlyingBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.BEETROOT_SEEDS, Items.PUMPKIN_SEEDS, Items.MELON_SEEDS);
+<<<<<<< Updated upstream
+=======
+    public static final Map<Integer, TranslationTextComponent> SPECIES_NAMES = ImmutableMap.<Integer, TranslationTextComponent>builder()
+            .put(1, new TranslationTextComponent("message.creatures.eurasiantree"))
+            .put(2, new TranslationTextComponent("message.creatures.sudangolden"))
+            .put(3, new TranslationTextComponent("message.creatures.desertsparrow"))
+            .put(4, new TranslationTextComponent("message.creatures.saffronbilled"))
+            .put(5, new TranslationTextComponent("message.creatures.house"))
+            .put(6, new TranslationTextComponent("message.creatures.chipping"))
+            .build();
+>>>>>>> Stashed changes
 
     public SparrowEntity(EntityType<? extends SparrowEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -178,6 +197,7 @@ public class SparrowEntity extends NonTameableFlyingBirdBase implements IAnimata
     }
 
     public String getSpeciesName() {
+<<<<<<< Updated upstream
         if (this.getVariant() == 1) {
             ITextComponent s1 = new TranslationTextComponent("message.creatures.eurasiantree");
             return s1.getString();
@@ -204,6 +224,12 @@ public class SparrowEntity extends NonTameableFlyingBirdBase implements IAnimata
         } else {
             return "Unknown";
         }
+=======
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+>>>>>>> Stashed changes
     }
 
     public float getHatchChance() {

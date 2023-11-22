@@ -6,6 +6,10 @@ import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.registry.ModEntityTypes;
 import com.frikinzi.creatures.util.CreaturesLootTables;
+<<<<<<< Updated upstream
+=======
+import com.google.common.collect.ImmutableMap;
+>>>>>>> Stashed changes
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -40,6 +44,10 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+<<<<<<< Updated upstream
+=======
+import java.util.Map;
+>>>>>>> Stashed changes
 import java.util.function.Predicate;
 
 public class KingfisherEntity extends NonTameableFlyingBirdBase implements IAnimatable {
@@ -50,6 +58,17 @@ public class KingfisherEntity extends NonTameableFlyingBirdBase implements IAnim
         EntityType<?> entitytype = p_213440_0_.getType();
         return entitytype == ModEntityTypes.GOLDFISH.get() || entitytype == EntityType.SALMON || entitytype == ModEntityTypes.GOURAMI.get() || entitytype == ModEntityTypes.GUPPY.get() || entitytype == ModEntityTypes.SHRIMP.get();
     };
+<<<<<<< Updated upstream
+=======
+    public static final Map<Integer, TranslationTextComponent> SPECIES_NAMES = ImmutableMap.<Integer, TranslationTextComponent>builder()
+            .put(1, new TranslationTextComponent("message.creatures.commonkingfisher"))
+            .put(2, new TranslationTextComponent("message.creatures.dwarforiental"))
+            .put(3, new TranslationTextComponent("message.creatures.forestkingfisher"))
+            .put(4, new TranslationTextComponent("message.creatures.beltedkingfisher"))
+            .put(5, new TranslationTextComponent("message.creatures.marquesas"))
+            .put(6, new TranslationTextComponent("message.creatures.spottedkingfisher"))
+            .build();
+>>>>>>> Stashed changes
 
     public KingfisherEntity(EntityType<? extends KingfisherEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -144,6 +163,7 @@ public class KingfisherEntity extends NonTameableFlyingBirdBase implements IAnim
     }
 
     public String getSpeciesName() {
+<<<<<<< Updated upstream
         if (this.getVariant() == 1) {
             ITextComponent s1 = new TranslationTextComponent("message.creatures.commonkingfisher");
             return s1.getString();
@@ -171,6 +191,12 @@ public class KingfisherEntity extends NonTameableFlyingBirdBase implements IAnim
         else {
             return "Unknown";
         }
+=======
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+>>>>>>> Stashed changes
     }
 
     public String getFoodName() {

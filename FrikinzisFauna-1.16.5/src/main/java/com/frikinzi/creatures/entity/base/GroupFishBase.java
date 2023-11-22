@@ -567,5 +567,16 @@ public abstract class GroupFishBase extends AbstractGroupFishEntity {
 
     }
 
+<<<<<<< Updated upstream
+=======
+    public void setVariant(int i) {
+
+    }
+
+    public int determineVariant()
+    {
+        return 1;
+    }
+>>>>>>> Stashed changes
 
 }

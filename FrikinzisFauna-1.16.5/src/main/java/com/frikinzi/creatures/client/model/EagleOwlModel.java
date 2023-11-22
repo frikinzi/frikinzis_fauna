@@ -10,6 +10,9 @@ public class EagleOwlModel extends AnimatedGeoModel<EagleOwlEntity> {
     @Override
     public ResourceLocation getModelLocation(EagleOwlEntity object)
     {
+        if (object.isBaby()) {
+            return new ResourceLocation(Creatures.MODID, "geo/entity/eagleowl/eagleowl_baby.geo.json");
+        }
         if (object.isFlying()) {
             return new ResourceLocation(Creatures.MODID, "geo/entity/eagleowl/eagleowlfly.geo.json");
         }
@@ -20,6 +23,12 @@ public class EagleOwlModel extends AnimatedGeoModel<EagleOwlEntity> {
     @Override
     public ResourceLocation getTextureLocation(EagleOwlEntity object)
     {
+        if (object.isBaby()) {
+            if (object.isSleeping()) {
+                return new ResourceLocation(Creatures.MODID, "textures/entity/eagleowl/eagleowl" + object.getVariant() + "_baby_sleep.png");
+            }
+            return new ResourceLocation(Creatures.MODID, "textures/entity/eagleowl/eagleowl" + object.getVariant() + "_baby.png");
+        }
         if (object.isFlying()) {
             return new ResourceLocation(Creatures.MODID, "textures/entity/eagleowl/eagleowl" + object.getVariant() + "fly.png");
         } if (object.isSleeping()) {
@@ -31,7 +40,7 @@ public class EagleOwlModel extends AnimatedGeoModel<EagleOwlEntity> {
     @Override
     public ResourceLocation getAnimationFileLocation(EagleOwlEntity object)
     {
-        if (object.isFlying()) {
+        if (object.isFlying() && !object.isBaby()) {
             return new ResourceLocation(Creatures.MODID, "animations/animation.eagleowl.fly.json");
         }
         return new ResourceLocation(Creatures.MODID, "animations/animation.eagleowl.json");

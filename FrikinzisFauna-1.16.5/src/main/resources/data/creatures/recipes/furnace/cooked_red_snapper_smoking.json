@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smoking",
+    "ingredient": {
+        "item": "creatures:raw_red_snapper"
+    },
+    "result": "creatures:cooked_red_snapper",
+    "experience": 0.35,
+    "cookingtime": 100
+}

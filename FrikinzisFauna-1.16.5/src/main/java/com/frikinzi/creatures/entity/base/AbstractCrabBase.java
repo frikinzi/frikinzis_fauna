@@ -28,6 +28,11 @@ import javax.annotation.Nullable;
 
 abstract public class AbstractCrabBase extends AnimalEntity {
     private static final DataParameter<Float> HEIGHT_MULTIPLIER = EntityDataManager.defineId(AbstractCrabBase.class, DataSerializers.FLOAT);
+<<<<<<< Updated upstream
+=======
+    private static final DataParameter<Integer> DATA_VARIANT_ID = EntityDataManager.defineId(AbstractCrabBase.class, DataSerializers.INT);
+
+>>>>>>> Stashed changes
 
     public AbstractCrabBase(EntityType<? extends AbstractCrabBase> p_i48567_1_, World p_i48567_2_) {
         super(p_i48567_1_, p_i48567_2_);
@@ -134,4 +139,20 @@ abstract public class AbstractCrabBase extends AnimalEntity {
             this.setHeightMultiplier(p_70037_1_.getFloat("HeightMultiplier")); }
     }
 
+<<<<<<< Updated upstream
+=======
+    public void setVariant(int p_191997_1_) {
+        this.entityData.set(DATA_VARIANT_ID, p_191997_1_);
+    }
+
+    public int determineVariant() {
+        return 1;
+    }
+
+    public int getVariant() {
+        return 1;
+    }
+
+
+>>>>>>> Stashed changes
 }

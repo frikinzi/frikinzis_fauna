@@ -198,7 +198,11 @@ public class ArapaimaEntity extends FishBase implements IAnimatable {
                 int random = this.random.nextInt(20);
                 if (random == 1) {
                     //leucistic variant chance
+<<<<<<< Updated upstream
                     egg.setVariant(this.random.nextInt(3));
+=======
+                    egg.setVariant(this.random.nextInt(4));
+>>>>>>> Stashed changes
                 }
 
                 Random rand = new Random();

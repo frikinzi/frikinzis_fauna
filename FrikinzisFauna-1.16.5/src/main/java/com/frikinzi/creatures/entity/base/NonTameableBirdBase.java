@@ -28,6 +28,10 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
+<<<<<<< Updated upstream
+=======
+import net.minecraft.world.IWorld;
+>>>>>>> Stashed changes
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
@@ -85,6 +89,12 @@ public class NonTameableBirdBase extends CreaturesBirdEntity {
     protected void checkFallDamage(double p_184231_1_, boolean p_184231_3_, BlockState p_184231_4_, BlockPos p_184231_5_) {
     }
 
+<<<<<<< Updated upstream
+=======
+    public int methodofDeterminingVariant(IWorld p_213610_1_) {
+        return this.random.nextInt(determineVariant());
+    }
+>>>>>>> Stashed changes
 
     public boolean canMate(AnimalEntity p_70878_1_) {
         return false;
@@ -172,7 +182,11 @@ public class NonTameableBirdBase extends CreaturesBirdEntity {
     }
 
 
+<<<<<<< Updated upstream
     class SleepGoal extends Goal {
+=======
+    public class SleepGoal extends Goal {
+>>>>>>> Stashed changes
         public SleepGoal() {
             this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK, Flag.JUMP));
         }

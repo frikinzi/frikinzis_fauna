@@ -10,6 +10,9 @@ public class SkuaModel extends AnimatedGeoModel<SkuaEntity> {
     @Override
     public ResourceLocation getModelLocation(SkuaEntity object)
     {
+        if (object.isBaby()) {
+            return new ResourceLocation(Creatures.MODID, "geo/entity/skua/skua_baby.geo.json");
+        }
         if (object.isFlying()) {
             return new ResourceLocation(Creatures.MODID, "geo/entity/skua/skuafly.geo.json");
         }
@@ -20,6 +23,12 @@ public class SkuaModel extends AnimatedGeoModel<SkuaEntity> {
     @Override
     public ResourceLocation getTextureLocation(SkuaEntity object)
     {
+        if (object.isBaby()) {
+            if (object.isSleeping()) {
+                return new ResourceLocation(Creatures.MODID, "textures/entity/skua/skua" + object.getVariant() + "_baby_sleep.png");
+            }
+            return new ResourceLocation(Creatures.MODID, "textures/entity/skua/skua" + object.getVariant() + "_baby.png");
+        }
         if (object.isFlying()) {
             return new ResourceLocation(Creatures.MODID, "textures/entity/skua/skua" + object.getVariant() + "fly.png");
         }
@@ -33,7 +42,7 @@ public class SkuaModel extends AnimatedGeoModel<SkuaEntity> {
     public ResourceLocation getAnimationFileLocation(SkuaEntity object)
     {
         if (object.isBaby()) {
-            return new ResourceLocation(Creatures.MODID, "animations/animation.skua.json");
+            return new ResourceLocation(Creatures.MODID, "animations/animation.skua_baby.json");
         }
         return new ResourceLocation(Creatures.MODID, "animations/animation.skua.json");
     }

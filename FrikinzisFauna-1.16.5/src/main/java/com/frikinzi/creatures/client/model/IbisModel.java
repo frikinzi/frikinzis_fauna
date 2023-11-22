@@ -10,6 +10,13 @@ public class IbisModel extends AnimatedGeoModel<IbisEntity> {
     @Override
     public ResourceLocation getModelLocation(IbisEntity object)
     {
+<<<<<<< Updated upstream
+=======
+        if (object.isBaby()) {
+            return new ResourceLocation(Creatures.MODID, "geo/entity/ibis/ibis_baby.geo.json");
+
+        }
+>>>>>>> Stashed changes
         if (object.isFlying()) {
             return new ResourceLocation(Creatures.MODID, "geo/entity/ibis/ibisfly.geo.json");
         }
@@ -19,6 +26,17 @@ public class IbisModel extends AnimatedGeoModel<IbisEntity> {
     @Override
     public ResourceLocation getTextureLocation(IbisEntity object)
     {
+<<<<<<< Updated upstream
+=======
+        if (object.isBaby()) {
+            if (object.isSleeping()) {
+                return new ResourceLocation(Creatures.MODID, "textures/entity/ibis/ibisbaby" + object.getVariant() + "sleep.png");
+
+            }
+            return new ResourceLocation(Creatures.MODID, "textures/entity/ibis/ibisbaby" + object.getVariant() + ".png");
+
+        }
+>>>>>>> Stashed changes
         if (object.isFlying()) {
                 return new ResourceLocation(Creatures.MODID, "textures/entity/ibis/ibis" + object.getVariant() + "fly.png");
         } else if (object.isSleeping()) {
@@ -32,6 +50,13 @@ public class IbisModel extends AnimatedGeoModel<IbisEntity> {
     @Override
     public ResourceLocation getAnimationFileLocation(IbisEntity object)
     {
+<<<<<<< Updated upstream
+=======
+        if (object.isBaby()) {
+            return new ResourceLocation(Creatures.MODID, "animations/animation.ibisbaby.json");
+
+        }
+>>>>>>> Stashed changes
         if (object.isFlying()) {
             return new ResourceLocation(Creatures.MODID, "animations/animation.ibis.fly.json");
         }

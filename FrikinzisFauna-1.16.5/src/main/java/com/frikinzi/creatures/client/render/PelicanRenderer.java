@@ -30,7 +30,10 @@ public class PelicanRenderer extends GeoEntityRenderer<PelicanEntity> {
             multiplier = 1.0F;
         }
         if (animatable.isBaby()) {
+<<<<<<< Updated upstream
             stackIn.scale(0.6F * multiplier, 0.6F * multiplier, 0.6F * multiplier);
+=======
+>>>>>>> Stashed changes
         }
         stackIn.scale(0.8F * multiplier, 0.8F * multiplier, 0.8F * multiplier);
     }

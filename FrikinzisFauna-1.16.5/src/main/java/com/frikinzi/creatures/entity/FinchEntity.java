@@ -8,6 +8,11 @@ import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.registry.ModEntityTypes;
 import com.frikinzi.creatures.util.CreaturesLootTables;
+<<<<<<< Updated upstream
+=======
+import com.frikinzi.creatures.util.EntityAttributes;
+import com.google.common.collect.ImmutableMap;
+>>>>>>> Stashed changes
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -32,9 +37,30 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+<<<<<<< Updated upstream
 public class FinchEntity extends TameableBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
+=======
+import java.util.Map;
+
+public class FinchEntity extends TameableBirdBase implements IAnimatable {
+    private AnimationFactory factory = new AnimationFactory(this);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
+    public static final Map<Integer, TranslationTextComponent> SPECIES_NAMES = ImmutableMap.<Integer, TranslationTextComponent>builder()
+            .put(1, new TranslationTextComponent("message.creatures.zebrafinch"))
+            .put(2, new TranslationTextComponent("message.creatures.strawberryfinch"))
+            .put(3, new TranslationTextComponent("message.creatures.zebrafinchmutation"))
+            .put(4, new TranslationTextComponent("message.creatures.owlfaced"))
+            .put(5, new TranslationTextComponent("message.creatures.gouldianfinchred"))
+            .put(6, new TranslationTextComponent("message.creatures.gouldianfinchblack"))
+            .put(7, new TranslationTextComponent("message.creatures.bullfinch"))
+            .put(8, new TranslationTextComponent("message.creatures.javafinch"))
+            .put(9, new TranslationTextComponent("message.creatures.parrotfinch"))
+            .put(10, new TranslationTextComponent("message.creatures.purplegrenadier"))
+            .put(11, new TranslationTextComponent("message.creatures.europeangoldfinch"))
+            .build();
+>>>>>>> Stashed changes
 
     public FinchEntity(EntityType<? extends FinchEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -104,7 +130,11 @@ public class FinchEntity extends TameableBirdBase implements IAnimatable {
 
     public CreaturesEggEntity layEgg(CreaturesBirdEntity animal) {
         CreaturesEggEntity egg = new CreaturesEggEntity(ModEntityTypes.EGG.get(), this.level);
+<<<<<<< Updated upstream
         egg.setSpecies(ModEntityTypes.getIntFromBirdEntity(animal));
+=======
+        egg.setSpecies(EntityAttributes.getBirdEntityMap().inverse().get(animal.getType()));
+>>>>>>> Stashed changes
         egg.setGender(this.random.nextInt(2));
         if (this.getVariant() == 1) {
             if (this.random.nextInt(CreaturesConfig.lovebird_mutation_chance.get()) == 2) {
@@ -161,6 +191,7 @@ public class FinchEntity extends TameableBirdBase implements IAnimatable {
     }
 
     public String getSpeciesName() {
+<<<<<<< Updated upstream
         if (this.getVariant() == 1) {
             ITextComponent s1 = new TranslationTextComponent("message.creatures.zebrafinch");
             return s1.getString();
@@ -203,6 +234,12 @@ public class FinchEntity extends TameableBirdBase implements IAnimatable {
         } else {
             return "Unknown";
         }
+=======
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+>>>>>>> Stashed changes
     }
 
     public String getGenderName() {

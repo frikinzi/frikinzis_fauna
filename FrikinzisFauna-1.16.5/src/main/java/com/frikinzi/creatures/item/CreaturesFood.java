@@ -26,4 +26,10 @@ public class CreaturesFood {
     public static final Food RAW_PIRANHA = (new Food.Builder()).nutrition(3).saturationMod(0.3F).build();
     public static final Food COOKED_PIRANHA = (new Food.Builder()).nutrition(8).saturationMod(0.6F).build();
     public static final Food MEALWORMS = (new Food.Builder()).nutrition(1).saturationMod(0.3F).build();
+<<<<<<< Updated upstream
+=======
+    public static final Food RAW_TAMBAQUI = (new Food.Builder()).nutrition(3).saturationMod(0.3F).build();
+    public static final Food COOKED_TAMBAQUI = (new Food.Builder()).nutrition(8).saturationMod(0.6F).build();
+
+>>>>>>> Stashed changes
 }

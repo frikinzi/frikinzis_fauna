@@ -43,9 +43,13 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
+<<<<<<< Updated upstream
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
+=======
+import java.util.*;
+>>>>>>> Stashed changes
 
 public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
     final private int[] old_worlds = new int[] {6,9,11,13};
@@ -57,6 +61,30 @@ public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
     private static final DataParameter<Boolean> THREAT = EntityDataManager.defineId(TarantulaEntity.class, DataSerializers.BOOLEAN);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(CreaturesItems.MEALWORMS);
     private AnimationFactory factory = new AnimationFactory(this);
+<<<<<<< Updated upstream
+=======
+    public static Map<Integer, TranslationTextComponent> SPECIES_NAMES;
+
+    static {
+        Map<Integer, TranslationTextComponent> map = new HashMap<>();
+        map.put(1, new TranslationTextComponent("message.creatures.celegans"));
+        map.put(2, new TranslationTextComponent("message.creatures.pumpkinpatch"));
+        map.put(3, new TranslationTextComponent("message.creatures.mexicanfireleg"));
+        map.put(4, new TranslationTextComponent("message.creatures.entrerios"));
+        map.put(5, new TranslationTextComponent("message.creatures.brazilianjewel"));
+        map.put(6, new TranslationTextComponent("message.creatures.orangebaboon"));
+        map.put(7, new TranslationTextComponent("message.creatures.chacogoldenknee"));
+        map.put(8, new TranslationTextComponent("message.creatures.lavatarantula"));
+        map.put(9, new TranslationTextComponent("message.creatures.gootysapphire"));
+        map.put(10, new TranslationTextComponent("message.creatures.arizonablonde"));
+        map.put(11, new TranslationTextComponent("message.creatures.goldenblueleg"));
+        map.put(12, new TranslationTextComponent("message.creatures.purpletree"));
+        map.put(13, new TranslationTextComponent("message.creatures.neonblueleg"));
+        map.put(14, new TranslationTextComponent("message.creatures.juruensis"));
+        SPECIES_NAMES = Collections.unmodifiableMap(map);
+    }
+
+>>>>>>> Stashed changes
 
     public TarantulaEntity(EntityType<? extends TarantulaEntity> p_i48550_1_, World p_i48550_2_) {
         super(p_i48550_1_, p_i48550_2_);
@@ -299,10 +327,21 @@ public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
                 return desert_variants[i];
             }
         }
+<<<<<<< Updated upstream
         return this.random.nextInt(15);
 
     }
 
+=======
+        return this.random.nextInt(determineVariant());
+
+    }
+
+    public int determineVariant() {
+        return 15;
+    }
+
+>>>>>>> Stashed changes
     public boolean contains(int[] s, int type) {
         for (int t : s) {
             if (t == type) {
@@ -414,6 +453,7 @@ public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
 
 
     public String getSpeciesName() {
+<<<<<<< Updated upstream
         if (this.getVariant() == 1) {
             ITextComponent s1 = new TranslationTextComponent("message.creatures.celegans");
             return s1.getString();
@@ -472,6 +512,12 @@ public class TarantulaEntity extends AbstractCrabBase implements IAnimatable {
         } else {
             return "Unknown";
         }
+=======
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+>>>>>>> Stashed changes
     }
 
     public ItemStack getFoodItem() {

@@ -5,6 +5,10 @@ import com.frikinzi.creatures.entity.base.NonTameableBirdBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
+<<<<<<< Updated upstream
+=======
+import com.google.common.collect.ImmutableMap;
+>>>>>>> Stashed changes
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -34,10 +38,33 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+<<<<<<< Updated upstream
+=======
+import java.util.Map;
+
+>>>>>>> Stashed changes
 public class WildDuckEntity extends NonTameableBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.BREAD, Items.WHEAT_SEEDS);
     public int featherTime = this.random.nextInt(6000) + 6000;
+<<<<<<< Updated upstream
+=======
+    public static final Map<Integer, TranslationTextComponent> SPECIES_NAMES = ImmutableMap.<Integer, TranslationTextComponent>builder()
+            .put(1, new TranslationTextComponent("message.creatures.torrent"))
+            .put(2, new TranslationTextComponent("message.creatures.redhead"))
+            .put(3, new TranslationTextComponent("message.creatures.greenwing"))
+            .put(4, new TranslationTextComponent("message.creatures.ruddy"))
+            .put(5, new TranslationTextComponent("message.creatures.mallard"))
+            .put(6, new TranslationTextComponent("message.creatures.ringteal"))
+            .put(7, new TranslationTextComponent("message.creatures.indianspotbill"))
+            .put(8, new TranslationTextComponent("message.creatures.whiteheadduck"))
+            .put(9, new TranslationTextComponent("message.creatures.chestnutteal"))
+            .put(10, new TranslationTextComponent("message.creatures.madagascarteal"))
+            .put(11, new TranslationTextComponent("message.creatures.bluebilledteal"))
+            .put(12, new TranslationTextComponent("message.creatures.punateal"))
+            .put(13, new TranslationTextComponent("message.creatures.maccoa"))
+            .build();
+>>>>>>> Stashed changes
 
     public WildDuckEntity(EntityType<? extends WildDuckEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -108,7 +135,11 @@ public class WildDuckEntity extends NonTameableBirdBase implements IAnimatable {
     }
 
     public int determineVariant() {
+<<<<<<< Updated upstream
         return 4;
+=======
+        return 14;
+>>>>>>> Stashed changes
     }
 
     @Override
@@ -138,7 +169,14 @@ public class WildDuckEntity extends NonTameableBirdBase implements IAnimatable {
 
     protected SoundEvent getAmbientSound() {
         if (!this.isSleeping()) {
+<<<<<<< Updated upstream
             return CreaturesSound.WILD_DUCK_AMBIENT;
+=======
+            if (this.getVariant() == 1) {
+                return CreaturesSound.WILD_DUCK_AMBIENT;
+            }
+            return CreaturesSound.MALLARD_AMBIENT;
+>>>>>>> Stashed changes
         }
         else
         {
@@ -158,6 +196,7 @@ public class WildDuckEntity extends NonTameableBirdBase implements IAnimatable {
         return CreaturesLootTables.DUCK;
     }
 
+<<<<<<< Updated upstream
     @Override
     public String getSpeciesName() {
         if (this.getVariant() == 1) {
@@ -174,6 +213,13 @@ public class WildDuckEntity extends NonTameableBirdBase implements IAnimatable {
         } else {
             return "Unknown";
         }
+=======
+    public String getSpeciesName() {
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+>>>>>>> Stashed changes
     }
 
     public float getHatchChance() {

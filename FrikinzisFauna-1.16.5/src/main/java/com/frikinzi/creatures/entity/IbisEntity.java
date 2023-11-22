@@ -31,11 +31,37 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+<<<<<<< Updated upstream
 import java.util.Set;
+=======
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Collections;
+>>>>>>> Stashed changes
 
 public class IbisEntity extends NonTameableFlyingBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(CreaturesItems.CRAB_PINCERS, CreaturesItems.GOURAMI, CreaturesItems.GOLDFISH);
+<<<<<<< Updated upstream
+=======
+    public static final Map<Integer, TranslationTextComponent> SPECIES_NAMES;
+
+    static {
+        Map<Integer, TranslationTextComponent> messageMap = new HashMap<>();
+        messageMap.put(1, new TranslationTextComponent("message.creatures.straw"));
+        messageMap.put(2, new TranslationTextComponent("message.creatures.scarlet"));
+        messageMap.put(3, new TranslationTextComponent("message.creatures.green"));
+        messageMap.put(4, new TranslationTextComponent("message.creatures.madagascan"));
+        messageMap.put(5, new TranslationTextComponent("message.creatures.crested"));
+        messageMap.put(6, new TranslationTextComponent("message.creatures.southern"));
+        messageMap.put(7, new TranslationTextComponent("message.creatures.northernibis"));
+        messageMap.put(8, new TranslationTextComponent("message.creatures.americanwhiteibis"));
+        messageMap.put(9, new TranslationTextComponent("message.creatures.glossy"));
+        messageMap.put(10, new TranslationTextComponent("message.creatures.binchicken"));
+        messageMap.put(11, new TranslationTextComponent("message.creatures.hadada"));
+        SPECIES_NAMES = Collections.unmodifiableMap(messageMap);
+    }
+>>>>>>> Stashed changes
 
     public IbisEntity(EntityType<? extends IbisEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -80,7 +106,11 @@ public class IbisEntity extends NonTameableFlyingBirdBase implements IAnimatable
     }
 
     public int determineVariant() {
+<<<<<<< Updated upstream
         return 11;
+=======
+        return 12;
+>>>>>>> Stashed changes
     }
 
     @Override
@@ -123,6 +153,7 @@ public class IbisEntity extends NonTameableFlyingBirdBase implements IAnimatable
     }
 
     public String getSpeciesName() {
+<<<<<<< Updated upstream
         if (this.getVariant() == 1) {
             ITextComponent s1 = new TranslationTextComponent("message.creatures.straw");
             return s1.getString();
@@ -162,6 +193,12 @@ public class IbisEntity extends NonTameableFlyingBirdBase implements IAnimatable
         } else {
             return "Unknown";
         }
+=======
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+>>>>>>> Stashed changes
     }
 
     public float getHatchChance() {

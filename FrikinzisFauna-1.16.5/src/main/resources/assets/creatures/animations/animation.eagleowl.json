@@ -163,6 +163,48 @@
 					}
 				}
 			}
+		},
+		"baby_fly": {
+			"loop": true,
+			"animation_length": 0.25,
+			"bones": {
+				"bone2": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -42.5, 0]
+						},
+						"0.125": {
+							"vector": [0, 0, 0]
+						},
+						"0.25": {
+							"vector": [0, -42.5, 0]
+						}
+					}
+				},
+				"bone3": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 42.5, 0]
+						},
+						"0.125": {
+							"vector": [0, 0, 0]
+						},
+						"0.25": {
+							"vector": [0, 42.5, 0]
+						}
+					}
+				},
+				"bone4": {
+					"rotation": {
+						"vector": [37.5, 0, 0]
+					}
+				},
+				"bone5": {
+					"rotation": {
+						"vector": [37.5, 0, 0]
+					}
+				}
+			}
 		}
 	}
 }

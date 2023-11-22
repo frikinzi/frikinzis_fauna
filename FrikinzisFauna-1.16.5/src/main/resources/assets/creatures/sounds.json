@@ -10,6 +10,13 @@
   "entity.kakapo.ambient": {
     "subtitle": "entity.kakapo.ambient",
     "sounds": [ "creatures:entity/kakapo/kakapo_ambient" ]
+<<<<<<< Updated upstream
+=======
+  },
+  "entity.kakapo.hurt": {
+    "subtitle": "entity.kakapo.hurt",
+    "sounds": [ "creatures:entity/kakapo/kakapo_hurt" ]
+>>>>>>> Stashed changes
   },
   "entity.mandarin_duck.ambient": {
     "subtitle": "entity.mandarin_duck.ambient",
@@ -191,6 +198,53 @@
     "subtitle": "entity.dove.mourning_dove_ambient",
     "sounds": [ "creatures:entity/dove/mourning_dove_ambient" ]
   },
+<<<<<<< Updated upstream
+=======
+  "entity.stork.stork_ambient": {
+    "subtitle": "entity.stork.stork_ambient",
+    "sounds": [ "creatures:entity/stork/stork_ambient" ]
+  },
+  "entity.stork.stork_hurt": {
+    "subtitle": "entity.stork.stork_hurt",
+    "sounds": [ "creatures:entity/stork/stork_hurt" ]
+  },
+  "entity.whistlingduck.whistlingduck_ambient": {
+    "subtitle": "entity.whistlingduck.whistlingduck_ambient",
+    "sounds": [ "creatures:entity/whistlingduck/whistlingduck_ambient" ]
+  },
+  "entity.whistlingduck.white_faced_ambient": {
+    "subtitle": "entity.whistlingduck.white_faced_ambient",
+    "sounds": [ "creatures:entity/whistlingduck/white_faced_ambient" ]
+  },
+  "entity.groundhornbill.groundhornbill_ambient": {
+    "subtitle": "entity.groundhornbill.groundhornbill_ambient",
+    "sounds": [ "creatures:entity/groundhornbill/groundhornbill_ambient" ]
+  },
+  "entity.wild_duck.mallard_ambient": {
+    "subtitle": "entity.wild_duck.mallard_ambient",
+    "sounds": [ "creatures:entity/wild_duck/mallard_ambient" ]
+  },
+  "entity.pheasant.lady_amherst_ambient": {
+    "subtitle": "entity.pheasant.lady_amherst_ambient",
+    "sounds": [ "creatures:entity/pheasant/lady_amherst_ambient" ]
+  },
+  "entity.secretarybird.secretarybird_ambient": {
+    "subtitle": "entity.secretarybird.secretarybird_ambient",
+    "sounds": [ "creatures:entity/secretarybird/secretarybird_ambient" ]
+  },
+  "entity.shoebill.shoebill_ambient": {
+    "subtitle": "entity.shoebill.shoebill_ambient",
+    "sounds": [ "creatures:entity/shoebill/shoebill_ambient" ]
+  },
+  "entity.starling.starling_ambient": {
+    "subtitle": "entity.starling.starling_ambient",
+    "sounds": [ "creatures:entity/starling/starling_ambient" ]
+  },
+  "entity.cormorant.cormorant_ambient": {
+    "subtitle": "entity.cormorant.cormorant_ambient",
+    "sounds": [ "creatures:entity/cormorant/cormorant_ambient" ]
+  },
+>>>>>>> Stashed changes
   "entity.egg.hatch": {
     "subtitle": "entity.egg.hatch",
     "sounds": [ "creatures:entity/egg/hatch" ]

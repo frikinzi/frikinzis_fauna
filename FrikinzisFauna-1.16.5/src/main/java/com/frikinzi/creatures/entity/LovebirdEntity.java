@@ -9,6 +9,10 @@ import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.registry.ModEntityTypes;
 import com.frikinzi.creatures.util.CreaturesLootTables;
+<<<<<<< Updated upstream
+=======
+import com.frikinzi.creatures.util.EntityAttributes;
+>>>>>>> Stashed changes
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -35,10 +39,35 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+<<<<<<< Updated upstream
 public class LovebirdEntity extends TameableBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
 
+=======
+import java.util.HashMap;
+import java.util.Map;
+
+public class LovebirdEntity extends TameableBirdBase implements IAnimatable {
+    private AnimationFactory factory = new AnimationFactory(this);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
+    public static Map<Integer, TranslationTextComponent> SPECIES_NAMES = new HashMap<Integer, TranslationTextComponent>() {{
+        put(1, new TranslationTextComponent("message.creatures.lovebird.fischers"));
+        put(2, new TranslationTextComponent("message.creatures.lovebird.fischersmutation"));
+        put(3, new TranslationTextComponent("message.creatures.lovebird.masked"));
+        put(4, new TranslationTextComponent("message.creatures.lovebird.maskedmutation"));
+        put(5, new TranslationTextComponent("message.creatures.lovebird.peach"));
+        put(6, new TranslationTextComponent("message.creatures.lovebird.madagascar"));
+        put(7, new TranslationTextComponent("message.creatures.lovebird.blackwingedlovebird"));
+        put(8, new TranslationTextComponent("message.creatures.lovebird.redfaced"));
+        put(9, new TranslationTextComponent("message.creatures.lovebird.swindern"));
+        put(10, new TranslationTextComponent("message.creatures.lovebird.blackcheeked"));
+        put(11, new TranslationTextComponent("message.creatures.lovebird.lilians"));
+        put(12, new TranslationTextComponent("message.creatures.lovebird.aquamarine"));
+        put(13, new TranslationTextComponent("message.creatures.lovebird.bluepeachfaced"));
+    }};
+    
+>>>>>>> Stashed changes
     public LovebirdEntity(EntityType<? extends LovebirdEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
     }
@@ -139,7 +168,11 @@ public class LovebirdEntity extends TameableBirdBase implements IAnimatable {
 
     public CreaturesEggEntity layEgg(CreaturesBirdEntity animal) {
         CreaturesEggEntity egg = new CreaturesEggEntity(ModEntityTypes.EGG.get(), this.level);
+<<<<<<< Updated upstream
         egg.setSpecies(ModEntityTypes.getIntFromBirdEntity(animal));
+=======
+        egg.setSpecies(EntityAttributes.getBirdEntityMap().inverse().get(animal.getType()));
+>>>>>>> Stashed changes
         egg.setGender(this.random.nextInt(2));
         if (this.getVariant() == 1) {
             if (this.random.nextInt(CreaturesConfig.lovebird_mutation_chance.get()) == 2) {
@@ -212,6 +245,7 @@ public class LovebirdEntity extends TameableBirdBase implements IAnimatable {
     }
 
     public String getSpeciesName() {
+<<<<<<< Updated upstream
         if (this.getVariant() == 1) {
             ITextComponent s1 = new TranslationTextComponent("message.creatures.lovebird.fischers");
             return s1.getString();
@@ -260,6 +294,12 @@ public class LovebirdEntity extends TameableBirdBase implements IAnimatable {
         } else {
             return "Unknown";
         }
+=======
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+>>>>>>> Stashed changes
     }
 
     @Override

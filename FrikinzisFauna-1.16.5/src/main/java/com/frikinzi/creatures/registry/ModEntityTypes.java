@@ -272,6 +272,45 @@ public class ModEntityTypes {
             () -> EntityType.Builder.of(PiranhaEntity::new, EntityClassification.WATER_AMBIENT).sized(0.6f, 0.6F)
                     .clientTrackingRange(9)
                     .build(new ResourceLocation(Creatures.MODID, "piranha").toString()));
+<<<<<<< Updated upstream
+=======
+    public static final RegistryObject<EntityType<StorkEntity>> STORK = ENTITY_TYPES.register("stork",
+            () -> EntityType.Builder.of(StorkEntity::new, EntityClassification.CREATURE).sized(0.6F, 1F)
+                    .clientTrackingRange(9)
+                    .build(new ResourceLocation(Creatures.MODID, "stork").toString()));
+    public static final RegistryObject<EntityType<WhistlingDuckEntity>> WHISTLINGDUCK = ENTITY_TYPES.register("whistlingduck",
+            () -> EntityType.Builder.of(WhistlingDuckEntity::new, EntityClassification.CREATURE).sized(0.6F, 0.6F)
+                    .clientTrackingRange(9)
+                    .build(new ResourceLocation(Creatures.MODID, "whistlingduck").toString()));
+    public static final RegistryObject<EntityType<GroundHornbillEntity>> GROUND_HORNBILL = ENTITY_TYPES.register("groundhornbill",
+            () -> EntityType.Builder.of(GroundHornbillEntity::new, EntityClassification.CREATURE).sized(0.8F, 0.8F)
+                    .clientTrackingRange(9)
+                    .build(new ResourceLocation(Creatures.MODID, "groundhornbill").toString()));
+    public static final RegistryObject<EntityType<SecretaryBirdEntity>> SECRETARYBIRD = ENTITY_TYPES.register("secretarybird",
+            () -> EntityType.Builder.of(SecretaryBirdEntity::new, EntityClassification.CREATURE).sized(0.8F, 1.5F)
+                    .clientTrackingRange(9)
+                    .build(new ResourceLocation(Creatures.MODID, "secretarybird").toString()));
+    public static final RegistryObject<EntityType<ShoebillEntity>> SHOEBILL = ENTITY_TYPES.register("shoebill",
+            () -> EntityType.Builder.of(ShoebillEntity::new, EntityClassification.CREATURE).sized(0.8F, 1.5F)
+                    .clientTrackingRange(9)
+                    .build(new ResourceLocation(Creatures.MODID, "shoebill").toString()));
+    public static final RegistryObject<EntityType<StarlingEntity>> STARLING = ENTITY_TYPES.register("starling",
+            () -> EntityType.Builder.of(StarlingEntity::new, EntityClassification.CREATURE).sized(0.5F, 0.5F)
+                    .clientTrackingRange(9)
+                    .build(new ResourceLocation(Creatures.MODID, "starling").toString()));
+    public static final RegistryObject<EntityType<TambaquiEntity>> TAMBAQUI = ENTITY_TYPES.register("tambaqui",
+            () -> EntityType.Builder.of(TambaquiEntity::new, EntityClassification.WATER_AMBIENT).sized(0.8f, 0.8F)
+                    .clientTrackingRange(9)
+                    .build(new ResourceLocation(Creatures.MODID, "tambaqui").toString()));
+    public static final RegistryObject<EntityType<ElephantNoseFishEntity>> ELEPHANTNOSE = ENTITY_TYPES.register("elephantnose",
+            () -> EntityType.Builder.of(ElephantNoseFishEntity::new, EntityClassification.WATER_AMBIENT).sized(0.4f, 0.4F)
+                    .clientTrackingRange(9)
+                    .build(new ResourceLocation(Creatures.MODID, "elephantnose").toString()));
+    public static final RegistryObject<EntityType<CormorantEntity>> CORMORANT = ENTITY_TYPES.register("cormorant",
+            () -> EntityType.Builder.of(CormorantEntity::new, EntityClassification.CREATURE).sized(0.5F, 0.5F)
+                    .clientTrackingRange(9)
+                    .build(new ResourceLocation(Creatures.MODID, "cormorant").toString()));
+>>>>>>> Stashed changes
 
     public static final RegistryObject<EntityType<CreaturesEggEntity>> EGG = ENTITY_TYPES.register("egg",
             () -> EntityType.Builder.of(CreaturesEggEntity::new, EntityClassification.CREATURE).sized(0.3F, 0.3F)

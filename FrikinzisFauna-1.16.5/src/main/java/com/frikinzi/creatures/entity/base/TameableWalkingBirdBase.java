@@ -160,7 +160,11 @@ public class TameableWalkingBirdBase extends CreaturesBirdEntity {
             this.heal((float) 2.0);
             return ActionResultType.SUCCESS;
         }
+<<<<<<< Updated upstream
         else if (!getTamedFood().contains(itemstack.getItem())  && itemstack.getItem() != CreaturesItems.FF_GUIDE && this.isTame() && this.isOwnedBy(p_230254_1_)) {
+=======
+        else if (!getTamedFood().contains(itemstack.getItem()) && itemstack.getItem() != CreaturesItems.BIRD_CARRIER  && itemstack.getItem() != CreaturesItems.FF_GUIDE && this.isTame() && this.isOwnedBy(p_230254_1_)) {
+>>>>>>> Stashed changes
             if (!this.level.isClientSide) {
                 this.setOrderedToSit(!this.isOrderedToSit());
             }
@@ -281,7 +285,11 @@ public class TameableWalkingBirdBase extends CreaturesBirdEntity {
     }
 
 
+<<<<<<< Updated upstream
     class SleepGoal extends Goal {
+=======
+    public class SleepGoal extends Goal {
+>>>>>>> Stashed changes
         public SleepGoal() {
             this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK, Flag.JUMP));
         }

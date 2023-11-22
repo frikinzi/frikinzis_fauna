@@ -1,6 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
+<<<<<<< Updated upstream
 		"animation.pike.idle": {
 			"loop": true,
 			"animation_length": 1,
@@ -22,11 +23,61 @@
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 22.5]
+=======
+		"swim": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"bone3": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 20, 0]
+						},
+						"0.5": {
+							"vector": [0, -12.5, 0]
+						},
+						"1.0": {
+							"vector": [0, 20, 0]
+						}
+					}
+				},
+				"bone4": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -10, 0]
+						},
+						"0.5": {
+							"vector": [0, 17.5, 0]
+						},
+						"1.0": {
+							"vector": [0, -10, 0]
+						}
+					}
+				},
+				"bone5": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -17.5]
+						},
+						"0.5": {
+							"vector": [0, 0, -5]
+						},
+						"1.0": {
+							"vector": [0, 0, -17.5]
+						}
+					}
+				},
+				"bone6": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 17.5]
+>>>>>>> Stashed changes
 						},
 						"0.5": {
 							"vector": [0, 0, 0]
 						},
 						"1.0": {
+<<<<<<< Updated upstream
 							"vector": [0, 0, 22.5]
 						}
 					}
@@ -41,11 +92,15 @@
 						},
 						"1.0": {
 							"vector": [0, 0, -22.5]
+=======
+							"vector": [0, 0, 17.5]
+>>>>>>> Stashed changes
 						}
 					}
 				}
 			}
 		},
+<<<<<<< Updated upstream
 		"animation.pike.swim": {
 			"loop": true,
 			"animation_length": 1,
@@ -117,11 +172,80 @@
 						},
 						"1.0": {
 							"vector": [0, 0, -22.5]
+=======
+		"attack": {
+			"loop": true,
+			"animation_length": 0.45833,
+			"bones": {
+				"bone3": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 20, 0]
+						},
+						"0.2083": {
+							"vector": [0, -12.5, 0]
+						},
+						"0.4167": {
+							"vector": [0, 20, 0]
+						}
+					}
+				},
+				"bone4": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -10, 0]
+						},
+						"0.2083": {
+							"vector": [0, 17.5, 0]
+						},
+						"0.4167": {
+							"vector": [0, -10, 0]
+						}
+					}
+				},
+				"bone5": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -17.5]
+						},
+						"0.2083": {
+							"vector": [0, 0, -5]
+						},
+						"0.4167": {
+							"vector": [0, 0, -17.5]
+						}
+					}
+				},
+				"bone6": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 17.5]
+						},
+						"0.2083": {
+							"vector": [0, 0, 0]
+						},
+						"0.4167": {
+							"vector": [0, 0, 17.5]
+						}
+					}
+				},
+				"bone7": {
+					"rotation": {
+						"0.0": {
+							"vector": [12.5, 0, 0]
+						},
+						"0.2083": {
+							"vector": [0, 0, 0]
+						},
+						"0.4167": {
+							"vector": [12.5, 0, 0]
+>>>>>>> Stashed changes
 						}
 					}
 				}
 			}
 		},
+<<<<<<< Updated upstream
 		"animation.pike.flop": {
 			"loop": true,
 			"animation_length": 1,
@@ -152,10 +276,21 @@
 						},
 						"0.375": {
 							"vector": [0, 12.5, 0]
+=======
+		"flop": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"bone3": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 20, 0]
+>>>>>>> Stashed changes
 						},
 						"0.5": {
 							"vector": [0, -12.5, 0]
 						},
+<<<<<<< Updated upstream
 						"0.625": {
 							"vector": [0, 0, 0]
 						},
@@ -174,11 +309,49 @@
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 22.5]
+=======
+						"1.0": {
+							"vector": [0, 20, 0]
+						}
+					}
+				},
+				"bone4": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -10, 0]
+						},
+						"0.5": {
+							"vector": [0, 17.5, 0]
+						},
+						"1.0": {
+							"vector": [0, -10, 0]
+						}
+					}
+				},
+				"bone5": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -17.5]
+						},
+						"0.5": {
+							"vector": [0, 0, -5]
+						},
+						"1.0": {
+							"vector": [0, 0, -17.5]
+						}
+					}
+				},
+				"bone6": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 17.5]
+>>>>>>> Stashed changes
 						},
 						"0.5": {
 							"vector": [0, 0, 0]
 						},
 						"1.0": {
+<<<<<<< Updated upstream
 							"vector": [0, 0, 22.5]
 						}
 					}
@@ -199,6 +372,18 @@
 				"Main": {
 					"rotation": {
 						"vector": [0, 0, 95]
+=======
+							"vector": [0, 0, 17.5]
+						}
+					}
+				},
+				"bone": {
+					"rotation": {
+						"vector": [0, 0, -90]
+					},
+					"position": {
+						"vector": [3, 4, -3]
+>>>>>>> Stashed changes
 					}
 				}
 			}

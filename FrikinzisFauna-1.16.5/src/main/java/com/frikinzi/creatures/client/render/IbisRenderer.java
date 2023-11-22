@@ -29,9 +29,12 @@ public class IbisRenderer extends GeoEntityRenderer<IbisEntity> {
         } else {
             multiplier = 1.0F;
         }
+<<<<<<< Updated upstream
         if (animatable.isBaby()) {
             stackIn.scale(0.5F, 0.5F, 0.5F);
         }
+=======
+>>>>>>> Stashed changes
         stackIn.scale(0.6F * multiplier, 0.6F * multiplier, 0.6F * multiplier);
     }
 }

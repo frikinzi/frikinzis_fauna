@@ -203,7 +203,11 @@ public class TameableBirdBase extends CreaturesBirdEntity implements IFlyingAnim
                 this.heal((float) 4.0);
                 return ActionResultType.SUCCESS;
             }
+<<<<<<< Updated upstream
         else if (!this.isFlying() && itemstack.getItem() != CreaturesItems.FF_GUIDE && !getTamedFood().contains(itemstack.getItem()) && this.isTame() && this.isOwnedBy(p_230254_1_)) {
+=======
+        else if (!this.isFlying() && itemstack.getItem() != CreaturesItems.FF_GUIDE && itemstack.getItem() != CreaturesItems.BIRD_CARRIER && !getTamedFood().contains(itemstack.getItem()) && this.isTame() && this.isOwnedBy(p_230254_1_)) {
+>>>>>>> Stashed changes
             if (!this.level.isClientSide) {
                 this.setOrderedToSit(!this.isOrderedToSit());
             }

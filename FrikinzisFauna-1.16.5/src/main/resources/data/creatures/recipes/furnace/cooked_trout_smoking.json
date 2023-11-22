@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smoking",
+    "ingredient": {
+        "item": "creatures:item_trout"
+    },
+    "result": "creatures:cooked_trout",
+    "experience": 0.35,
+    "cookingtime": 100
+}

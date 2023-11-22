@@ -3,6 +3,7 @@
 	"animations": {
 		"idle": {
 			"loop": true,
+<<<<<<< Updated upstream
 			"animation_length": 1.5,
 			"bones": {
 				"LeftWing": {
@@ -47,11 +48,45 @@
 					}
 				},
 				"Head": {
+=======
+			"animation_length": 2,
+			"bones": {
+				"bone8": {
 					"rotation": {
 						"0.0": {
 							"vector": [5, 0, 0]
 						},
+						"1.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [5, 0, 0]
+						}
+					}
+				}
+			}
+		},
+		"walk": {
+			"loop": true,
+			"animation_length": 1.5,
+			"bones": {
+				"bone8": {
+>>>>>>> Stashed changes
+					"rotation": {
+						"0.0": {
+							"vector": [5, 0, 0]
+						},
+<<<<<<< Updated upstream
 						"0.7917": {
+=======
+						"0.375": {
+							"vector": [0, 0, 0]
+						},
+						"0.75": {
+							"vector": [5, 0, 0]
+						},
+						"1.1667": {
+>>>>>>> Stashed changes
 							"vector": [0, 0, 0]
 						},
 						"1.5": {
@@ -59,6 +94,7 @@
 						}
 					}
 				},
+<<<<<<< Updated upstream
 				"tail": {
 					"rotation": {
 						"0.0": {
@@ -81,6 +117,31 @@
 						},
 						"1.4583": {
 							"vector": [20, 0, 0]
+=======
+				"bone3": {
+					"rotation": {
+						"0.0": {
+							"vector": [30, 0, 0]
+						},
+						"0.75": {
+							"vector": [-20, 0, 0]
+						},
+						"1.5": {
+							"vector": [30, 0, 0]
+						}
+					}
+				},
+				"bone4": {
+					"rotation": {
+						"0.0": {
+							"vector": [-22.5, 0, 0]
+						},
+						"0.75": {
+							"vector": [25, 0, 0]
+						},
+						"1.5": {
+							"vector": [-22.5, 0, 0]
+>>>>>>> Stashed changes
 						}
 					}
 				}
@@ -88,6 +149,7 @@
 		},
 		"sleep": {
 			"loop": true,
+<<<<<<< Updated upstream
 			"animation_length": 1.5,
 			"bones": {
 				"bone": {
@@ -132,10 +194,34 @@
 				"LeftLeg": {
 					"position": {
 						"vector": [0, 2.6, 0]
+=======
+			"animation_length": 2,
+			"bones": {
+				"bone": {
+					"position": {
+						"vector": [0, -4, 0]
+					}
+				},
+				"bone8": {
+					"rotation": {
+						"0.0": {
+							"vector": [-162.5, -10, -180]
+						},
+						"1.0": {
+							"vector": [-152.5, -10, -180]
+						},
+						"2.0": {
+							"vector": [-162.5, -10, -180]
+						}
+					},
+					"position": {
+						"vector": [0, -1, 4]
+>>>>>>> Stashed changes
 					}
 				}
 			}
 		},
+<<<<<<< Updated upstream
 		"sit": {
 			"loop": true,
 			"animation_length": 1.5,
@@ -433,6 +519,37 @@
 					"rotation": {
 						"vector": [72.5, 0, -77.5]
 					}
+=======
+		"fly": {
+			"loop": true,
+			"animation_length": 0.5,
+			"bones": {
+				"bone5": {
+					"rotation": {
+						"0.0": {
+							"vector": [25, 0, -62.5]
+						},
+						"0.25": {
+							"vector": [25, 0, 30]
+						},
+						"0.5": {
+							"vector": [25, 0, -62.5]
+						}
+					}
+				},
+				"bone11": {
+					"rotation": {
+						"0.0": {
+							"vector": [25, 0, 62.5]
+						},
+						"0.25": {
+							"vector": [25, 0, -30]
+						},
+						"0.5": {
+							"vector": [25, 0, 62.5]
+						}
+					}
+>>>>>>> Stashed changes
 				}
 			}
 		}

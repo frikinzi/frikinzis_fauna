@@ -7,6 +7,10 @@ import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
+<<<<<<< Updated upstream
+=======
+import com.google.common.collect.ImmutableMap;
+>>>>>>> Stashed changes
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -34,9 +38,25 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+<<<<<<< Updated upstream
 public class SpoonbillEntity extends NonTameableBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(CreaturesItems.CRAB_PINCERS, CreaturesItems.GOURAMI);
+=======
+import java.util.Map;
+
+public class SpoonbillEntity extends NonTameableBirdBase implements IAnimatable {
+    private AnimationFactory factory = new AnimationFactory(this);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(CreaturesItems.CRAB_PINCERS, CreaturesItems.GOURAMI);
+    public static final Map<Integer, TranslationTextComponent> SPECIES_NAMES = ImmutableMap.<Integer, TranslationTextComponent>builder()
+            .put(1, new TranslationTextComponent("message.creatures.roseate"))
+            .put(2, new TranslationTextComponent("message.creatures.royal"))
+            .put(3, new TranslationTextComponent("message.creatures.african"))
+            .put(4, new TranslationTextComponent("message.creatures.eurasiansp"))
+            .put(5, new TranslationTextComponent("message.creatures.yellowbilled"))
+            .put(6, new TranslationTextComponent("message.creatures.blackfaced"))
+            .build();
+>>>>>>> Stashed changes
 
     public SpoonbillEntity(EntityType<? extends SpoonbillEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -81,7 +101,11 @@ public class SpoonbillEntity extends NonTameableBirdBase implements IAnimatable 
     }
 
     public int determineVariant() {
+<<<<<<< Updated upstream
         return 6;
+=======
+        return 7;
+>>>>>>> Stashed changes
     }
 
     @Override
@@ -123,6 +147,7 @@ public class SpoonbillEntity extends NonTameableBirdBase implements IAnimatable 
     }
 
     public String getSpeciesName() {
+<<<<<<< Updated upstream
         if (this.getVariant() == 1) {
             ITextComponent s1 = new TranslationTextComponent("message.creatures.roseate");
             return s1.getString();
@@ -145,6 +170,12 @@ public class SpoonbillEntity extends NonTameableBirdBase implements IAnimatable 
         } else {
             return "Unknown";
         }
+=======
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+>>>>>>> Stashed changes
     }
 
     public ItemStack getFoodItem() {

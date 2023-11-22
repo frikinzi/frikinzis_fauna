@@ -94,10 +94,17 @@ public class PikeEntity extends FishBase implements IAnimatable {
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
         if (!this.isInWater()) {
+<<<<<<< Updated upstream
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.pike.flop", true));
             return PlayState.CONTINUE;
         }
         event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.pike.swim", true));
+=======
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("flop", true));
+            return PlayState.CONTINUE;
+        }
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("swim", true));
+>>>>>>> Stashed changes
         return PlayState.CONTINUE;
     }
 

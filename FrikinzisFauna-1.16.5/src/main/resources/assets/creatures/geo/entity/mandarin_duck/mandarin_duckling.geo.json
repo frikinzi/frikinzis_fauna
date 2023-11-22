@@ -13,64 +13,113 @@
 			"bones": [
 				{
 					"name": "Main",
+<<<<<<< Updated upstream
 					"pivot": [0, 0.5, 0],
 					"cubes": [
 						{"origin": [-3, 1.5, -2], "size": [3, 3, 3], "uv": [9, 3]},
 						{"origin": [-3, 1.7, -1.3], "size": [3, 3, 3], "inflate": -0.3, "pivot": [0, 0.5, 0], "rotation": [-12.5, 0, 0], "uv": [0, 6]},
 						{"origin": [-3, 1.1, -4], "size": [3, 3, 2], "inflate": -0.1, "pivot": [0, 0.5, 0], "rotation": [-10, 0, 0], "uv": [0, 12]}
+=======
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-3, 1, -2], "size": [3, 3, 3], "uv": [9, 3]},
+						{"origin": [-3, 1.2, -1.3], "size": [3, 3, 3], "inflate": -0.3, "pivot": [0, 0, 0], "rotation": [-12.5, 0, 0], "uv": [0, 6]},
+						{"origin": [-3, 0.6, -4], "size": [3, 3, 2], "inflate": -0.1, "pivot": [0, 0, 0], "rotation": [-10, 0, 0], "uv": [0, 12]}
+>>>>>>> Stashed changes
 					]
 				},
 				{
 					"name": "Tail",
 					"parent": "Main",
+<<<<<<< Updated upstream
 					"pivot": [-1.5, 3.5, 1.6],
 					"cubes": [
 						{"origin": [-3, 2.8, 0.2], "size": [3, 2, 3], "inflate": -0.5, "pivot": [0, 0.5, 0], "rotation": [-10, 0, 0], "uv": [9, 9]}
+=======
+					"pivot": [-1.5, 3, 1.6],
+					"cubes": [
+						{"origin": [-3, 2.3, 0.2], "size": [3, 2, 3], "inflate": -0.5, "pivot": [0, 0, 0], "rotation": [-10, 0, 0], "uv": [9, 9]}
+>>>>>>> Stashed changes
 					]
 				},
 				{
 					"name": "Wing",
 					"parent": "Main",
+<<<<<<< Updated upstream
 					"pivot": [0, 3.25, -2.25],
 					"cubes": [
 						{"origin": [0, 2.5, -2], "size": [1, 2, 3], "uv": [0, 17]}
+=======
+					"pivot": [0, 2.75, -2.25],
+					"cubes": [
+						{"origin": [0, 2, -2], "size": [1, 2, 3], "uv": [0, 17]}
+>>>>>>> Stashed changes
 					]
 				},
 				{
 					"name": "Wing2",
 					"parent": "Main",
+<<<<<<< Updated upstream
 					"pivot": [-3, 3.25, -2.25],
 					"cubes": [
 						{"origin": [-4, 2.5, -2], "size": [1, 2, 3], "uv": [0, 17]}
+=======
+					"pivot": [-3, 2.75, -2.25],
+					"cubes": [
+						{"origin": [-4, 2, -2], "size": [1, 2, 3], "uv": [0, 17]}
+>>>>>>> Stashed changes
 					]
 				},
 				{
 					"name": "Head",
 					"parent": "Main",
+<<<<<<< Updated upstream
 					"pivot": [-1.4, 5, -2],
 					"rotation": [10, 0, 0],
 					"cubes": [
 						{"origin": [-2.5, 4.5, -5.5], "size": [2, 1, 3], "inflate": -0.11, "uv": [14, 15]},
 						{"origin": [-3, 4.25, -4.25], "size": [3, 3, 3], "inflate": -0.11, "uv": [0, 0]},
 						{"origin": [-2.5, 5.17722, -5.21065], "size": [2, 1, 3], "inflate": -0.12, "pivot": [-1.5, 4.4, -2.2], "rotation": [10, 0, 0], "uv": [7, 14]}
+=======
+					"pivot": [-1.4, 4.5, -2],
+					"rotation": [10, 0, 0],
+					"cubes": [
+						{"origin": [-2.5, 4, -5.5], "size": [2, 1, 3], "inflate": -0.11, "uv": [14, 15]},
+						{"origin": [-3, 3.75, -4.25], "size": [3, 3, 3], "inflate": -0.11, "uv": [0, 0]},
+						{"origin": [-2.5, 4.67722, -5.21065], "size": [2, 1, 3], "inflate": -0.12, "pivot": [-1.5, 3.9, -2.2], "rotation": [10, 0, 0], "uv": [7, 14]}
+>>>>>>> Stashed changes
 					]
 				},
 				{
 					"name": "LeftLeg",
 					"parent": "Main",
+<<<<<<< Updated upstream
 					"pivot": [-0.5, 1.75, -0.25],
 					"cubes": [
 						{"origin": [-1.1, 0.5, -0.65], "size": [1, 2, 1], "uv": [18, 3]},
 						{"origin": [-1.6, 0.5, -1.65], "size": [2, 0, 2], "inflate": 0.09, "uv": [11, 0]}
+=======
+					"pivot": [-0.5, 1.25, -0.25],
+					"cubes": [
+						{"origin": [-1.1, 0, -0.65], "size": [1, 2, 1], "uv": [18, 3]},
+						{"origin": [-1.6, 0, -1.65], "size": [2, 0, 2], "uv": [11, 0]}
+>>>>>>> Stashed changes
 					]
 				},
 				{
 					"name": "LeftLeg2",
 					"parent": "Main",
+<<<<<<< Updated upstream
 					"pivot": [-2.25, 1.75, -0.25],
 					"cubes": [
 						{"origin": [-2.85, 0.5, -0.65], "size": [1, 2, 1], "uv": [17, 0]},
 						{"origin": [-3.35, 0.5, -1.65], "size": [2, 0, 2], "inflate": 0.1, "uv": [7, 0]}
+=======
+					"pivot": [-2.25, 1.25, -0.25],
+					"cubes": [
+						{"origin": [-2.85, 0, -0.65], "size": [1, 2, 1], "uv": [17, 0]},
+						{"origin": [-3.35, 0, -1.65], "size": [2, 0, 2], "uv": [7, 0]}
+>>>>>>> Stashed changes
 					]
 				}
 			]

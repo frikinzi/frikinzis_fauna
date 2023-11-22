@@ -6,6 +6,10 @@ import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.entity.base.RaptorBase;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
+<<<<<<< Updated upstream
+=======
+import com.google.common.collect.ImmutableMap;
+>>>>>>> Stashed changes
 import com.google.common.collect.Sets;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.*;
@@ -37,11 +41,23 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+<<<<<<< Updated upstream
+=======
+import java.util.Map;
+>>>>>>> Stashed changes
 import java.util.Set;
 
 public class ChickadeeEntity extends NonTameableFlyingBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.BEETROOT_SEEDS, Items.PUMPKIN_SEEDS);
+<<<<<<< Updated upstream
+=======
+    public static Map<Integer, TranslationTextComponent> SPECIES_NAMES = ImmutableMap.of(
+            1, new TranslationTextComponent("message.creatures.blackcapped"),
+            2, new TranslationTextComponent("message.creatures.chestnutbacked"),
+            3, new TranslationTextComponent("message.creatures.grayheaded")
+    );
+>>>>>>> Stashed changes
 
     public ChickadeeEntity(EntityType<? extends ChickadeeEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -127,6 +143,7 @@ public class ChickadeeEntity extends NonTameableFlyingBirdBase implements IAnima
     }
 
     public String getSpeciesName() {
+<<<<<<< Updated upstream
         if (this.getVariant() == 1) {
             ITextComponent s1 = new TranslationTextComponent("message.creatures.blackcapped");
             return s1.getString();
@@ -141,6 +158,12 @@ public class ChickadeeEntity extends NonTameableFlyingBirdBase implements IAnima
         } else {
             return "Unknown";
         }
+=======
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+>>>>>>> Stashed changes
     }
 
     public String getFoodName() {

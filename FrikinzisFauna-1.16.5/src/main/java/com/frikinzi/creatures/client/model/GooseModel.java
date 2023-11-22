@@ -21,7 +21,7 @@ public class GooseModel extends AnimatedGeoModel<GooseEntity> {
     @Override
     public ResourceLocation getTextureLocation(GooseEntity object)
     {
-        if (object.isBaby() && !object.isInWater()) {
+        if (object.isBaby()) {
             if (object.isSleeping()) {
                 return new ResourceLocation(Creatures.MODID, "textures/entity/goose/babygoose" + object.getVariant() + "sleep.png");
             }
@@ -30,7 +30,11 @@ public class GooseModel extends AnimatedGeoModel<GooseEntity> {
         if (object.isSleeping()) {
             return new ResourceLocation(Creatures.MODID, "textures/entity/goose/goose" + object.getVariant() + "sleep.png");
         }
+<<<<<<< Updated upstream
         if (!object.isBaby() && object.isFlying()) {
+=======
+        if (!object.isBaby() && object.isFlying() && !object.isInWater()) {
+>>>>>>> Stashed changes
                 return new ResourceLocation(Creatures.MODID, "textures/entity/goose/goose" + object.getVariant() + "fly.png");
             }
         return new ResourceLocation(Creatures.MODID, "textures/entity/goose/goose" + object.getVariant() + ".png");

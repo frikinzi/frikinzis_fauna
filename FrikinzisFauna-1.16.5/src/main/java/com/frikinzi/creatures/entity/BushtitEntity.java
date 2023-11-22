@@ -5,6 +5,10 @@ import com.frikinzi.creatures.entity.base.NonTameableFlyingBirdBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
+<<<<<<< Updated upstream
+=======
+import com.google.common.collect.ImmutableMap;
+>>>>>>> Stashed changes
 import com.google.common.collect.Sets;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -32,11 +36,24 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+<<<<<<< Updated upstream
+=======
+import java.util.Map;
+>>>>>>> Stashed changes
 import java.util.Set;
 
 public class BushtitEntity extends NonTameableFlyingBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(CreaturesItems.MEALWORMS);
+<<<<<<< Updated upstream
+=======
+    public static Map<Integer, TranslationTextComponent> SPECIES_NAMES = ImmutableMap.of(
+            1, new TranslationTextComponent("message.creatures.longtailedtit"),
+            2, new TranslationTextComponent("message.creatures.longtailedtite"),
+            3, new TranslationTextComponent("message.creatures.blackthroat"),
+            4, new TranslationTextComponent("message.creatures.abushtit")
+    );
+>>>>>>> Stashed changes
 
     public BushtitEntity(EntityType<? extends BushtitEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -123,6 +140,7 @@ public class BushtitEntity extends NonTameableFlyingBirdBase implements IAnimata
         return CreaturesLootTables.SMALL_BIRD_GENERIC;
     }
 
+<<<<<<< Updated upstream
     @Override
     public String getSpeciesName() {
         if (this.getVariant() == 1) {
@@ -143,6 +161,13 @@ public class BushtitEntity extends NonTameableFlyingBirdBase implements IAnimata
         } else {
             return "Unknown";
         }
+=======
+    public String getSpeciesName() {
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+>>>>>>> Stashed changes
     }
 
     public String getFoodName() {

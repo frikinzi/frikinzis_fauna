@@ -23,14 +23,23 @@ public class MagpieRenderer extends GeoEntityRenderer<MagpieEntity> {
                             float red, float green, float blue, float partialTicks) {
         super.renderEarly(animatable, stackIn, ticks, renderTypeBuffer, vertexBuilder, packedLightIn, packedOverlayIn,
                 red, green, blue, partialTicks);
+<<<<<<< Updated upstream
         Float multiplier;
         if (CreaturesConfig.height_on.get() == true) {
+=======
+        float multiplier;
+        if (CreaturesConfig.height_on.get()) {
+>>>>>>> Stashed changes
             multiplier = animatable.getHeightMultiplier();
         } else {
             multiplier = 1.0F;
         }
         if (animatable.isBaby()) {
+<<<<<<< Updated upstream
             stackIn.scale(0.5F * multiplier, 0.5F * multiplier, 0.5F * multiplier);
+=======
+            stackIn.scale(0.8F * multiplier, 0.8F * multiplier, 0.8F * multiplier);
+>>>>>>> Stashed changes
         }
         stackIn.scale(0.7F * multiplier, 0.7F * multiplier, 0.7F * multiplier);
     }

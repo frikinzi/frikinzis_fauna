@@ -30,7 +30,11 @@ public class EagleOwlRenderer extends GeoEntityRenderer<EagleOwlEntity> {
             multiplier = 1.0F;
         }
         if (animatable.isBaby()) {
+<<<<<<< Updated upstream
             stackIn.scale(0.4F, 0.4F, 0.4F);
+=======
+            stackIn.scale(0.6F, 0.6F, 0.6F);
+>>>>>>> Stashed changes
         }
         stackIn.scale(0.7F * multiplier, 0.7F * multiplier, 0.7F * multiplier);
     }

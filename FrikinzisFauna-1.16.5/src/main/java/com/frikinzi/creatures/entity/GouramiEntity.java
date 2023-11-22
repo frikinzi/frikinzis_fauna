@@ -4,6 +4,10 @@ import com.frikinzi.creatures.config.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.util.CreaturesLootTables;
+<<<<<<< Updated upstream
+=======
+import com.google.common.collect.ImmutableMap;
+>>>>>>> Stashed changes
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -35,10 +39,25 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
+<<<<<<< Updated upstream
+=======
+import java.util.Map;
+>>>>>>> Stashed changes
 
 public class GouramiEntity extends FishBase implements IAnimatable {
     private static final DataParameter<Integer> DATA_VARIANT_ID = EntityDataManager.defineId(GouramiEntity.class, DataSerializers.INT);
     private AnimationFactory factory = new AnimationFactory(this);
+<<<<<<< Updated upstream
+=======
+    public static Map<Integer, TranslationTextComponent> SPECIES_NAMES = ImmutableMap.of(
+            1, new TranslationTextComponent("message.creatures.threespot"),
+            2, new TranslationTextComponent("message.creatures.roundtailed"),
+            3, new TranslationTextComponent("message.creatures.goldgourami"),
+            4, new TranslationTextComponent("message.creatures.dwarf"),
+            5, new TranslationTextComponent("message.creatures.pearl")
+    );
+
+>>>>>>> Stashed changes
     public GouramiEntity(EntityType<? extends GouramiEntity> p_i50246_1_, World p_i50246_2_) {
         super(p_i50246_1_, p_i50246_2_);
     }
@@ -151,6 +170,7 @@ public class GouramiEntity extends FishBase implements IAnimatable {
     }
 
     public String getSpeciesName() {
+<<<<<<< Updated upstream
         if (this.getVariant() == 1) {
             ITextComponent s1 = new TranslationTextComponent("message.creatures.threespot");
             return s1.getString();
@@ -173,6 +193,12 @@ public class GouramiEntity extends FishBase implements IAnimatable {
         } else {
             return "Unknown";
         }
+=======
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+>>>>>>> Stashed changes
     }
 
     public float getHatchChance() {
@@ -193,4 +219,12 @@ public class GouramiEntity extends FishBase implements IAnimatable {
         return 0.2F;
     }
 
+<<<<<<< Updated upstream
+=======
+    public int determineVariant()
+    {
+        return 5;
+    }
+
+>>>>>>> Stashed changes
 }

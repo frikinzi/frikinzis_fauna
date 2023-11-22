@@ -93,7 +93,11 @@ public class MateGoal extends Goal {
 
     protected void layEgg(ServerWorld server) {
         int c = this.bird.getClutchSize();
+<<<<<<< Updated upstream
         for (int j = 0; j <= c; j++) {
+=======
+        for (int j = 1; j <= c; j++) {
+>>>>>>> Stashed changes
         CreaturesEggEntity egg = this.bird.layEgg(this.partner);
         if (egg != null) {
             this.bird.setAge(6000);

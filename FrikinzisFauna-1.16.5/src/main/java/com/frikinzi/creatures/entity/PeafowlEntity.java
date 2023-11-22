@@ -8,6 +8,11 @@ import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.registry.ModEntityTypes;
 import com.frikinzi.creatures.util.CreaturesLootTables;
+<<<<<<< Updated upstream
+=======
+import com.frikinzi.creatures.util.EntityAttributes;
+import com.google.common.collect.ImmutableMap;
+>>>>>>> Stashed changes
 import com.google.common.collect.Sets;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityPredicate;
@@ -40,6 +45,10 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import java.util.List;
+<<<<<<< Updated upstream
+=======
+import java.util.Map;
+>>>>>>> Stashed changes
 import java.util.Set;
 
 public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatable {
@@ -48,6 +57,14 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
     private static final DataParameter<Boolean> DISPLAYING = EntityDataManager.defineId(PeafowlEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> ON_DISPLAY = EntityDataManager.defineId(PeafowlEntity.class, DataSerializers.BOOLEAN);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.BEETROOT_SEEDS, Items.PUMPKIN_SEEDS, CreaturesItems.MEALWORMS);
+<<<<<<< Updated upstream
+=======
+    public static Map<Integer, TranslationTextComponent> SPECIES_NAMES = ImmutableMap.of(
+            1, new TranslationTextComponent("message.creatures.greenpeafowl"),
+            2, new TranslationTextComponent("message.creatures.indianpeafowl"),
+            3, new TranslationTextComponent("message.creatures.albinopeafowl")
+    );
+>>>>>>> Stashed changes
 
     public PeafowlEntity(EntityType<? extends PeafowlEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -115,11 +132,19 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
 
     @Override
     public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+<<<<<<< Updated upstream
         PeafowlEntity conureentity = (PeafowlEntity) getType().create(p_241840_1_);
         conureentity.setVariant(this.getVariant());
         conureentity.setGender(this.random.nextInt(2));
         conureentity.setHeightMultiplier(getSpawnEggOffspringHeight());
         return conureentity;
+=======
+        PeafowlEntity peafowlentity = (PeafowlEntity) getType().create(p_241840_1_);
+        peafowlentity.setVariant(this.getVariant());
+        peafowlentity.setGender(this.random.nextInt(2));
+        peafowlentity.setHeightMultiplier(getSpawnEggOffspringHeight());
+        return peafowlentity;
+>>>>>>> Stashed changes
     }
 
     @Override
@@ -173,7 +198,11 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
 
     public CreaturesEggEntity layEgg(CreaturesBirdEntity animal) {
         CreaturesEggEntity egg = new CreaturesEggEntity(ModEntityTypes.EGG.get(), this.level);
+<<<<<<< Updated upstream
         egg.setSpecies(ModEntityTypes.getIntFromBirdEntity(animal));
+=======
+        egg.setSpecies(EntityAttributes.getBirdEntityMap().inverse().get(animal.getType()));
+>>>>>>> Stashed changes
         egg.setGender(this.random.nextInt(2));
         if (this.getVariant() == 1) {
             if (this.random.nextInt(CreaturesConfig.lovebird_mutation_chance.get()) == 2) {
@@ -256,6 +285,7 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
     }
 
     public String getSpeciesName() {
+<<<<<<< Updated upstream
         if (this.getVariant() == 1) {
             ITextComponent s1 = new TranslationTextComponent("message.creatures.greenpeafowl");
             return s1.getString();
@@ -270,6 +300,12 @@ public class PeafowlEntity extends TameableWalkingBirdBase implements IAnimatabl
         } else {
             return "Unknown";
         }
+=======
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+>>>>>>> Stashed changes
     }
 
     public float getHatchChance() {

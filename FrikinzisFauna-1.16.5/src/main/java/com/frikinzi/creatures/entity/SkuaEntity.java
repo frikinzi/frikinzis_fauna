@@ -8,6 +8,10 @@ import com.frikinzi.creatures.entity.egg.CreaturesEggEntity;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
+<<<<<<< Updated upstream
+=======
+import com.google.common.collect.ImmutableMap;
+>>>>>>> Stashed changes
 import com.google.common.collect.Sets;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -41,6 +45,10 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+<<<<<<< Updated upstream
+=======
+import java.util.Map;
+>>>>>>> Stashed changes
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -48,6 +56,15 @@ public class SkuaEntity extends NonTameableFlyingBirdBase implements IAnimatable
     private AnimationFactory factory = new AnimationFactory(this);
     CreaturesEggEntity egg;
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.CHICKEN, CreaturesItems.SMALL_BIRD_MEAT, Items.EGG, Items.COD, CreaturesItems.RAW_TROUT);
+<<<<<<< Updated upstream
+=======
+    public static Map<Integer, TranslationTextComponent> SPECIES_NAMES = ImmutableMap.of(
+            1, new TranslationTextComponent("message.creatures.southpolar"),
+            2, new TranslationTextComponent("message.creatures.chilean"),
+            3, new TranslationTextComponent("message.creatures.greatskua"),
+            4, new TranslationTextComponent("message.creatures.brownskua")
+    );
+>>>>>>> Stashed changes
 
     public SkuaEntity(EntityType<? extends SkuaEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -138,6 +155,7 @@ public class SkuaEntity extends NonTameableFlyingBirdBase implements IAnimatable
         return CreaturesLootTables.LARGE_BIRD_GENERIC;
     }
 
+<<<<<<< Updated upstream
     @Override
     public String getSpeciesName() {
         if (this.getVariant() == 1) {
@@ -158,6 +176,13 @@ public class SkuaEntity extends NonTameableFlyingBirdBase implements IAnimatable
         } else {
             return "Unknown";
         }
+=======
+    public String getSpeciesName() {
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+>>>>>>> Stashed changes
     }
 
     public String getFoodName() {

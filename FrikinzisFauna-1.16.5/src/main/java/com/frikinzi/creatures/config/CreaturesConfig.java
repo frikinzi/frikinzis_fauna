@@ -417,6 +417,70 @@ public class CreaturesConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> piranha_max_group;
     public static final ForgeConfigSpec.ConfigValue<Double> piranha_hatch_chance;
 
+<<<<<<< Updated upstream
+=======
+    public static final ForgeConfigSpec.ConfigValue<Boolean> stork_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> stork_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Integer> stork_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> stork_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> stork_hatch_chance;
+    public static final ForgeConfigSpec.ConfigValue<Integer> stork_clutch_size;
+
+    public static final ForgeConfigSpec.ConfigValue<Boolean> whistlingduck_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> whistlingduck_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Integer> whistlingduck_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> whistlingduck_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> whistlingduck_hatch_chance;
+    public static final ForgeConfigSpec.ConfigValue<Integer> whistlingduck_clutch_size;
+
+    public static final ForgeConfigSpec.ConfigValue<Boolean> groundhornbill_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> groundhornbill_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Integer> groundhornbill_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> groundhornbill_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> groundhornbill_hatch_chance;
+    public static final ForgeConfigSpec.ConfigValue<Integer> groundhornbill_clutch_size;
+
+    public static final ForgeConfigSpec.ConfigValue<Boolean> secretarybird_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> secretarybird_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Integer> secretarybird_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> secretarybird_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> secretarybird_hatch_chance;
+    public static final ForgeConfigSpec.ConfigValue<Integer> secretarybird_clutch_size;
+
+    public static final ForgeConfigSpec.ConfigValue<Boolean> shoebill_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> shoebill_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Integer> shoebill_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> shoebill_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> shoebill_hatch_chance;
+    public static final ForgeConfigSpec.ConfigValue<Integer> shoebill_clutch_size;
+
+    public static final ForgeConfigSpec.ConfigValue<Boolean> starling_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> starling_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Integer> starling_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> starling_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> starling_hatch_chance;
+    public static final ForgeConfigSpec.ConfigValue<Integer> starling_clutch_size;
+
+    public static final ForgeConfigSpec.ConfigValue<Integer> tambaqui_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> tambaqui_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> tambaqui_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> tambaqui_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> tambaqui_hatch_chance;
+
+    public static final ForgeConfigSpec.ConfigValue<Integer> elephantnose_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> elephantnose_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> elephantnose_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> elephantnose_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> elephantnose_hatch_chance;
+
+    public static final ForgeConfigSpec.ConfigValue<Boolean> cormorant_spawns;
+    public static final ForgeConfigSpec.ConfigValue<Integer> cormorant_spawn_weight;
+    public static final ForgeConfigSpec.ConfigValue<Integer> cormorant_min_group;
+    public static final ForgeConfigSpec.ConfigValue<Integer> cormorant_max_group;
+    public static final ForgeConfigSpec.ConfigValue<Double> cormorant_hatch_chance;
+    public static final ForgeConfigSpec.ConfigValue<Integer> cormorant_clutch_size;
+
+>>>>>>> Stashed changes
     //gameplay
     public static final ForgeConfigSpec.ConfigValue<Boolean> breed_only_variants;
     public static final ForgeConfigSpec.ConfigValue<Boolean> biome_only_variants;
@@ -993,7 +1057,7 @@ public class CreaturesConfig {
         BUILDER.push("Monal");
 
         monal_spawns = BUILDER.comment("Enable/disable monal spawns").define("Monal Spawns", true);
-        monal_spawn_weight = BUILDER.comment("Spawn weight for monals").define("Monal Spawn Weight", 10);
+        monal_spawn_weight = BUILDER.comment("Spawn weight for monals").define("Monal Spawn Weight", 15);
         monal_min_group = BUILDER.comment("Min group for monal").define("Monal Min Group", 1);
         monal_max_group = BUILDER.comment("Max group for monal").define("Monal Max Group", 2);
         monal_hatch_chance = BUILDER.comment("Hatch chance for each monal egg").define("Monal Hatch Chance", 0.3);
@@ -1093,6 +1157,106 @@ public class CreaturesConfig {
 
         BUILDER.pop();
 
+<<<<<<< Updated upstream
+=======
+        BUILDER.push("Stork");
+
+        stork_spawns = BUILDER.comment("Enable/disable stork spawns").define("Stork Spawns", true);
+        stork_spawn_weight = BUILDER.comment("Spawn weight for stork").define("Stork Spawn Weight", 10);
+        stork_min_group = BUILDER.comment("Min group for stork").define("Stork Min Group", 3);
+        stork_max_group = BUILDER.comment("Max group for stork").define("Stork Max Group", 6);
+        stork_hatch_chance = BUILDER.comment("Hatch chance for each stork egg").define("Stork Hatch Chance", 0.5);
+        stork_clutch_size = BUILDER.comment("Max egg clutch size for stork").define("Stork Clutch Size", 3);
+
+        BUILDER.pop();
+
+        BUILDER.push("Whistling Duck");
+
+        whistlingduck_spawns = BUILDER.comment("Enable/disable whistling duck spawns").define("Whistling Duck Spawns", true);
+        whistlingduck_spawn_weight = BUILDER.comment("Spawn weight for whistling duck").define("Whistling Duck Spawn Weight", 10);
+        whistlingduck_min_group = BUILDER.comment("Min group for whistling duck").define("Whistling Duck Min Group", 3);
+        whistlingduck_max_group = BUILDER.comment("Max group for whistling duck").define("Whistling Duck Max Group", 6);
+        whistlingduck_hatch_chance = BUILDER.comment("Hatch chance for each whistling duck egg").define("Whistling Duck Hatch Chance", 0.2);
+        whistlingduck_clutch_size = BUILDER.comment("Max egg clutch size for whistling duck").define("Whistling Duck Clutch Size", 9);
+
+        BUILDER.pop();
+
+        BUILDER.push("Ground Hornbill");
+
+        groundhornbill_spawns = BUILDER.comment("Enable/disable ground hornbill spawns").define("Ground Hornbill Spawns", true);
+        groundhornbill_spawn_weight = BUILDER.comment("Spawn weight for ground hornbill").define("Ground Hornbill Spawn Weight", 8);
+        groundhornbill_min_group = BUILDER.comment("Min group for ground hornbill").define("Ground Hornbill Min Group", 2);
+        groundhornbill_max_group = BUILDER.comment("Max group for ground hornbill").define("Ground Hornbill Max Group", 6);
+        groundhornbill_hatch_chance = BUILDER.comment("Hatch chance for each ground hornbill egg").define("Ground Hornbill Hatch Chance", 0.5);
+        groundhornbill_clutch_size = BUILDER.comment("Max egg clutch size for ground hornbill").define("Ground Hornbill Clutch Size", 2);
+
+        BUILDER.pop();
+
+        BUILDER.push("Secretarybird");
+
+        secretarybird_spawns = BUILDER.comment("Enable/disable secretarybird spawns").define("Secretarybird Spawns", true);
+        secretarybird_spawn_weight = BUILDER.comment("Spawn weight for secretarybirds").define("Secretarybird Spawn Weight", 20);
+        secretarybird_min_group = BUILDER.comment("Min group for secretarybird").define("Secretarybird Min Group", 1);
+        secretarybird_max_group = BUILDER.comment("Max group for secretarybird").define("Secretarybird Max Group", 2);
+        secretarybird_hatch_chance = BUILDER.comment("Hatch chance for each secretarybird egg").define("Secretarybird Hatch Chance", 0.2);
+        secretarybird_clutch_size = BUILDER.comment("Max egg clutch size for secretarybirds").define("Secretarybird Clutch Size", 3);
+
+        BUILDER.pop();
+
+        BUILDER.push("Shoebill");
+
+        shoebill_spawns = BUILDER.comment("Enable/disable shoebill spawns").define("Shoebill Spawns", true);
+        shoebill_spawn_weight = BUILDER.comment("Spawn weight for shoebills").define("Shoebill Spawn Weight", 10);
+        shoebill_min_group = BUILDER.comment("Min group for shoebills").define("Shoebill Min Group", 1);
+        shoebill_max_group = BUILDER.comment("Max group for shoebills").define("Shoebill Max Group", 2);
+        shoebill_hatch_chance = BUILDER.comment("Hatch chance for each shoebill egg").define("Shoebill Hatch Chance", 0.3);
+        shoebill_clutch_size = BUILDER.comment("Max egg clutch size for shoebill").define("Shoebill Clutch Size", 3);
+
+        BUILDER.pop();
+
+        BUILDER.push("Starling");
+
+        starling_spawns = BUILDER.comment("Enable/disable starling spawns").define("Starling Spawns", true);
+        starling_spawn_weight = BUILDER.comment("Spawn weight for starlings").define("Starling Spawn Weight", 10);
+        starling_min_group = BUILDER.comment("Min group for starlings").define("Starling Min Group", 3);
+        starling_max_group = BUILDER.comment("Max group for starlings").define("Starling Max Group", 5);
+        starling_hatch_chance = BUILDER.comment("Hatch chance for each starling egg").define("Starling Hatch Chance", 0.7);
+        starling_clutch_size = BUILDER.comment("Max egg clutch size for starling").define("Starling Clutch Size", 6);
+
+        BUILDER.pop();
+
+        BUILDER.push("Tambaqui");
+
+        tambaqui_spawns = BUILDER.comment("Enable/disable tambaqui spawns").define("Tambaqui Spawns", true);
+        tambaqui_spawn_weight = BUILDER.comment("Spawn weight for tambaqui").define("Tambaqui Spawn Weight", 10);
+        tambaqui_min_group = BUILDER.comment("Min group for tambaqui").define("Tambaqui Min Group", 1);
+        tambaqui_max_group = BUILDER.comment("Max group for tambaqui").define("Tambaqui Max Group", 1);
+        tambaqui_hatch_chance = BUILDER.comment("Hatch chance for each tambaqui egg").define("Tambaqui Hatch Chance", 0.3);
+
+        BUILDER.pop();
+
+        BUILDER.push("Elephantnose");
+
+        elephantnose_spawns = BUILDER.comment("Enable/disable elephantnose fish spawns").define("Elephantnose Spawns", true);
+        elephantnose_spawn_weight = BUILDER.comment("Spawn weight for elephantnose fish").define("Elephantnose Spawn Weight", 10);
+        elephantnose_min_group = BUILDER.comment("Min group for elephantnose fish").define("Elephantnose Min Group", 3);
+        elephantnose_max_group = BUILDER.comment("Max group for elephantnose fish").define("Elephantnose Max Group", 5);
+        elephantnose_hatch_chance = BUILDER.comment("Hatch chance for each elephantnose fish egg").define("Elephantnose Hatch Chance", 0.3);
+
+        BUILDER.pop();
+
+        BUILDER.push("Cormorant");
+
+        cormorant_spawns = BUILDER.comment("Enable/disable cormorant spawns").define("Cormorant Spawns", true);
+        cormorant_spawn_weight = BUILDER.comment("Spawn weight for cormorants").define("Cormorant Spawn Weight", 10);
+        cormorant_min_group = BUILDER.comment("Min group for cormorant").define("Cormorant Min Group", 3);
+        cormorant_max_group = BUILDER.comment("Max group for cormorant").define("Cormorant Max Group", 5);
+        cormorant_hatch_chance = BUILDER.comment("Hatch chance for each cormorant egg").define("Cormorant Hatch Chance", 0.7);
+        cormorant_clutch_size = BUILDER.comment("Max egg clutch size for cormorant").define("Cormorant Clutch Size", 6);
+
+        BUILDER.pop();
+
+>>>>>>> Stashed changes
         BUILDER.push("Gameplay");
 
         breed_only_variants = BUILDER.comment("Gameplay: Enable/disable breed-only variants").define("Breed-Only Variants", true);

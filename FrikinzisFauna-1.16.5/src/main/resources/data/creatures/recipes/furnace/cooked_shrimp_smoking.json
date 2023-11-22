@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smoking",
+    "ingredient": {
+        "item": "creatures:raw_shrimp"
+    },
+    "result": "creatures:cooked_shrimp",
+    "experience": 0.35,
+    "cookingtime": 100
+}

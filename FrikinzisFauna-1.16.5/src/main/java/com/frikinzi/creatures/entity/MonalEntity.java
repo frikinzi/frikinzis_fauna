@@ -6,6 +6,10 @@ import com.frikinzi.creatures.entity.base.TameableWalkingBirdBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
+<<<<<<< Updated upstream
+=======
+import com.google.common.collect.ImmutableMap;
+>>>>>>> Stashed changes
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
@@ -32,9 +36,22 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+<<<<<<< Updated upstream
 public class MonalEntity extends TameableWalkingBirdBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.BEETROOT, Items.SWEET_BERRIES, CreaturesItems.MEALWORMS);
+=======
+import java.util.Map;
+
+public class MonalEntity extends TameableWalkingBirdBase implements IAnimatable {
+    private AnimationFactory factory = new AnimationFactory(this);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.BEETROOT, Items.SWEET_BERRIES, CreaturesItems.MEALWORMS);
+    public static Map<Integer, TranslationTextComponent> SPECIES_NAMES = ImmutableMap.of(
+            1, new TranslationTextComponent("message.creatures.himalayanmonal"),
+            2, new TranslationTextComponent("message.creatures.sclater"),
+            3, new TranslationTextComponent("message.creatures.chinesemonal")
+    );
+>>>>>>> Stashed changes
 
     public MonalEntity(EntityType<? extends MonalEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -127,6 +144,7 @@ public class MonalEntity extends TameableWalkingBirdBase implements IAnimatable 
         return CreaturesLootTables.LARGE_BIRD_GENERIC;
     }
 
+<<<<<<< Updated upstream
     @Override
     public String getSpeciesName() {
         if (this.getVariant() == 1) {
@@ -143,6 +161,13 @@ public class MonalEntity extends TameableWalkingBirdBase implements IAnimatable 
         } else {
             return "Unknown";
         }
+=======
+    public String getSpeciesName() {
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+>>>>>>> Stashed changes
     }
 
     public ItemStack getFoodItem() {

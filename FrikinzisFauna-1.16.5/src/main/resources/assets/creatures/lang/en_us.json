@@ -63,6 +63,19 @@
   "entity.creatures.tigerbarb": "Tiger Barb",
   "entity.creatures.arapaima": "Arapaima",
   "entity.creatures.piranha": "Piranha",
+<<<<<<< Updated upstream
+=======
+  "entity.creatures.stork": "Stork",
+  "entity.creatures.whistlingduck": "Whistling Duck",
+  "entity.creatures.groundhornbill": "Ground Hornbill",
+  "entity.creatures.secretarybird": "Secretarybird",
+  "entity.creatures.shoebill": "Shoebill Stork",
+  "entity.creatures.cormorant": "Cormorant",
+  "entity.creatures.starling": "Starling",
+  "entity.creatures.tambaqui": "Tambaqui",
+  "entity.creatures.elephantnose": "Elephant Nose Fish",
+
+>>>>>>> Stashed changes
   "entity.creatures.egg": "Egg",
   "entity.creatures.roe": "Roe",
 
@@ -111,6 +124,16 @@
   "item.creatures.tarantula_spawn_egg": "Tarantula Spawn Egg",
   "item.creatures.capercaillie_spawn_egg": "Capercaillie Spawn Egg",
   "item.creatures.pheasant_spawn_egg": "Pheasant Spawn Egg",
+<<<<<<< Updated upstream
+=======
+  "item.creatures.stork_spawn_egg": "Stork Spawn Egg",
+  "item.creatures.whistlingduck_spawn_egg": "Whistling Duck Spawn Egg",
+  "item.creatures.groundhornbill_spawn_egg": "Ground Hornbill Spawn Egg",
+  "item.creatures.secretarybird_spawn_egg": "Secretarybird Spawn Egg",
+  "item.creatures.shoebill_spawn_egg": "Shoebill Stork Spawn Egg",
+  "item.creatures.cormorant_spawn_egg": "Cormorant Spawn Egg",
+  "item.creatures.starling_spawn_egg": "Starling Spawn Egg",
+>>>>>>> Stashed changes
 
   "item.creatures.koi_spawn_egg": "Koi Spawn Egg",
   "item.creatures.dottyback_spawn_egg": "Dottyback Spawn Egg",
@@ -129,6 +152,11 @@
   "item.creatures.tigerbarb_spawn_egg": "Tiger Barb Spawn Egg",
   "item.creatures.arapaima_spawn_egg": "Arapaima Spawn Egg",
   "item.creatures.piranha_spawn_egg": "Piranha Spawn Egg",
+<<<<<<< Updated upstream
+=======
+  "item.creatures.tambaqui_spawn_egg": "Tambaqui Spawn Egg",
+  "item.creatures.elephantnose_spawn_egg": "Elephant Nose Fish Spawn Egg",
+>>>>>>> Stashed changes
 
   "item.creatures.bucket_of_koi": "Koi Bucket",
   "item.creatures.bucket_of_dottyback": "Dottyback Bucket",
@@ -147,6 +175,11 @@
   "item.creatures.bucket_of_tigerbarb": "Tiger Barb Bucket",
   "item.creatures.bucket_of_arapaima": "Arapaima Bucket",
   "item.creatures.bucket_of_piranha": "Piranha Bucket",
+<<<<<<< Updated upstream
+=======
+  "item.creatures.bucket_of_tambaqui": "Tambaqui Bucket",
+  "item.creatures.bucket_of_elephant_nose": "Elephant Nose Fish Bucket",
+>>>>>>> Stashed changes
 
   "item.creatures.lovebird_egg": "Lovebird Egg",
   "item.creatures.spoonbill_egg": "Spoonbill Egg",
@@ -189,6 +222,16 @@
   "item.creatures.finch_egg": "Finch Egg",
   "item.creatures.capercaillie_egg": "Capercaillie Egg",
   "item.creatures.pheasant_egg": "Pheasant Egg",
+<<<<<<< Updated upstream
+=======
+  "item.creatures.whistlingduck_egg": "Whistling Duck Egg",
+  "item.creatures.groundhornbill_egg": "Ground Hornbill Egg",
+  "item.creatures.secretarybird_egg": "Secretarybird Egg",
+  "item.creatures.shoebill_egg": "Shoebill Stork Egg",
+  "item.creatures.cormorant_egg": "Cormorant Egg",
+  "item.creatures.starling_egg": "Starling Egg",
+  "item.creatures.stork_egg": "Stork Egg",
+>>>>>>> Stashed changes
 
   "item.creatures.raw_koi": "Raw Koi",
   "item.creatures.roasted_koi": "Roasted Koi",
@@ -222,6 +265,29 @@
   "item.creatures.ff_guide": "Frikinzi's Guide",
   "item.creatures.peafowl_feather": "Peafowl Feather",
   "item.creatures.mealworms": "Mealworms",
+<<<<<<< Updated upstream
+=======
+  "item.creatures.raptor_horn": "Falconer's Whistle",
+  "item.creatures.raw_tambaqui": "Raw Tambaqui",
+  "item.creatures.cooked_tambaqui": "Cooked Tambaqui",
+  "item.creatures.bird_carrier": "Bird Carrier",
+  "item.creatures.critter_keeper": "Critter Keeper",
+
+  "item.creatures.spawn_egg_current": "Species: %s",
+  "item.creatures.spawn_egg_change": "Species Spawned: %s",
+
+  "creatures.message.bird_carrier.empty": "This bird carrier is empty",
+  "creatures.message.bird_carrier.full": "This bird carrier is full",
+  "creatures.message.bird_carrier.retrieve": "Successfully captured bird",
+  "creatures.message.bird_carrier.released": "Successfully released bird",
+  "creatures.message.bird_carrier.use_critter_keeper": "You might want to use a critter keeper instead",
+
+  "creatures.message.critter_keeper.empty": "This critter keeper is empty",
+  "creatures.message.critter_keeper.full": "This critter keeper is full",
+  "creatures.message.critter_keeper.retrieve": "Successfully captured critter",
+  "creatures.message.critter_keeper.released": "Successfully released critter",
+  "creatures.message.critter_keeper.use_bird_carrier": "A critter keeper is way too small for a bird",
+>>>>>>> Stashed changes
 
   "entity.lovebird.ambient": "Lovebird chirps",
   "entity.spoonbill.ambient": "Spoonbill calls",
@@ -268,9 +334,25 @@
   "entity.finch.ambient": "Finch calls",
   "entity.capercaillie.ambient": "Capercaillie calls",
   "entity.pheasant.ambient": "Pheasant calls",
-  "entity.dove.crested_pigeon_flying": "Crested Dove Takes Flight",
+  "entity.pheasant.lady_amherst_ambient": "Lady Amherst pheasant calls",
+  "entity.dove.crested_pigeon_flying": "Crested dove Takes Flight",
   "entity.piranha.piranha_ambient": "Piranha barks",
   "entity.dove.mourning_dove_ambient": "Mourning dove calls",
+<<<<<<< Updated upstream
+=======
+  "entity.dove.stork_ambient": "Stork calls",
+  "entity.dove.stork_hurt": "Stork hurts",
+  "entity.kakapo.hurt": "Kakapo hurts",
+  "entity.whistlingduck.whistlingduck_ambient": "Whistling duck sings",
+  "entity.whistlingduck.white_faced_ambient": "White-faced whistling duck sings",
+  "entity.wild_duck.mallard_ambient": "Duck quacks",
+  "entity.groundhornbill.groundhornbill_ambient": "Ground hornbill grunts",
+  "entity.secretarybird.secretarybird_ambient": "Secretarybird calls",
+  "entity.shoebill.shoebill_ambient": "Shoebill chatters",
+  "entity.stork.stork_ambient": "Stork calls",
+  "entity.cormorant.cormorant_ambient": "Cormorant calls",
+  "entity.starling.starling_ambient": "Starling calls",
+>>>>>>> Stashed changes
 
   "gui.sex": "Sex:",
   "gui.health": "Health:",
@@ -500,7 +582,71 @@
   "message.creatures.blackpiranha": "Black Piranha",
   "message.creatures.pirayapiranha": "Piraya Piranha",
   "message.creatures.rubyredpiranha": "Ruby Red Piranha",
+<<<<<<< Updated upstream
 
+=======
+  "message.creatures.barheaded": "Bar-Headed Goose",
+  "message.creatures.ruddy": "Ruddy Duck",
+  "message.creatures.mallard": "Mallard Duck",
+  "message.creatures.tigerbarb": "Tiger Barb",
+  "message.creatures.blackruby": "Black Ruby Barb",
+  "message.creatures.blueguppy": "Blue Guppy",
+  "message.creatures.cobragreen": "Cobra Green Guppy",
+  "message.creatures.cobrablue": "Cobra Blue Guppy",
+  "message.creatures.redblond": "Red Blonde Guppy",
+  "message.creatures.blackdragon": "Black Dragon Guppy",
+  "message.creatures.blackguppy": "Black Guppy",
+  "message.creatures.ringteal": "Ringed Teal",
+  "message.creatures.indianspotbill": "Indian Spot-Billed Duck",
+  "message.creatures.whiteheadduck": "White-Headed Duck",
+  "message.creatures.chestnutteal": "Chestnut Teal",
+  "message.creatures.madagascarteal": "Madagascar Teal",
+  "message.creatures.bluebilledteal": "Blue-Billed Teal",
+  "message.creatures.southernlapwing": "Southern Lapwing",
+  "message.creatures.hadada": "Hadada Ibis",
+  "message.creatures.emperorsnapper": "Emperor Snapper",
+  "message.creatures.redsnapper": "Red Snapper",
+  "message.creatures.blackfaced": "Black-Faced Spoonbill",
+  "message.creatures.punateal": "Puna Teal",
+  "message.creatures.dalmatian": "Dalmatian Pelican",
+  "message.creatures.maccoa": "Maccoa Duck",
+  "message.creatures.peruvianpelican": "Peruvian Pelican",
+  "message.creatures.spotbilledpelican": "Spot-Billed Pelican",
+  "message.creatures.yellowbilledstork": "Yellow-Billed Stork",
+  "message.creatures.paintedstork": "Painted Stork",
+  "message.creatures.milkystork": "Milky Stork",
+  "message.creatures.woodstork": "Wood Stork",
+  "message.creatures.southernhornbill": "Southern Ground Hornbill",
+  "message.creatures.abyssinian": "Abyssinian Ground Hornbill",
+  "message.creatures.fulvous": "Fulvous Whistling Duck",
+  "message.creatures.whitefacedwhistling": "White-Faced Whistling Duck",
+  "message.creatures.blackbelliedwhistling": "Black-Bellied Whistling",
+  "message.creatures.lesserwhistling": "Lesser Whistling Duck",
+  "message.creatures.commonraven": "Common Raven",
+  "message.creatures.brownheadedraven": "Brown-Headed Raven",
+  "message.creatures.whitethroatedraven": "White-Throated Raven",
+  "message.creatures.thickbilledraven": "Thick-Billed Raven",
+  "message.creatures.commonravenalbino": "Common Raven (Albino)",
+  "message.creatures.goldenbreasted": "Golden-Breasted Starling",
+  "message.creatures.violetstarling": "Violet-Backed Starling",
+  "message.creatures.superbstarling": "Superb Starling",
+  "message.creatures.europeanstarling": "European Starling",
+  "message.creatures.metallicstarling": "Metallic Starling",
+  "message.creatures.emeraldstarling": "Emerald Starling",
+  "message.creatures.piedcormorant": "Pied Cormorant",
+  "message.creatures.whitebreastedcormorant": "White-Breasted Cormorant",
+  "message.creatures.doublecrestedcormorant": "Double-Crested Cormorant",
+  "message.creatures.greatcormorant": "Great Cormorant",
+  "message.creatures.bandedlapwing": "Banded Lapwing",
+  "message.creatures.crystal_shrimp": "Crystal Shrimp",
+  "message.creatures.red_shrimp": "Red Cherry Shrimp",
+  "message.creatures.blue_shrimp": "Blue Cherry Shrimp",
+  "message.creatures.wild_type_shrimp": "Cherry Shrimp (Wild-Type)",
+  "message.creatures.yellow_shrimp": "Yellow Cherry Shrimp",
+  "message.creatures.green_shrimp": "Emerald Cherry Shrimp",
+  "message.creatures.black_shrimp": "Black Rose Cherry Shrimp",
+  "message.creatures.white_shrimp": "Snowball Cherry Shrimp",
+>>>>>>> Stashed changes
 
   "message.wander": "Set to wandering",
   "message.follow": "Set to following",

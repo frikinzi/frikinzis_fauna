@@ -5,6 +5,10 @@ import com.frikinzi.creatures.entity.base.RaptorBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.frikinzi.creatures.util.CreaturesLootTables;
+<<<<<<< Updated upstream
+=======
+import com.google.common.collect.ImmutableMap;
+>>>>>>> Stashed changes
 import com.google.common.collect.Sets;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.AgeableEntity;
@@ -31,11 +35,22 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+<<<<<<< Updated upstream
+=======
+import java.util.Map;
+>>>>>>> Stashed changes
 import java.util.Set;
 
 public class EagleOwlEntity extends RaptorBase implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.CHICKEN, Items.ROTTEN_FLESH, CreaturesItems.SMALL_BIRD_MEAT, CreaturesItems.LARGE_BIRD_MEAT, Items.PORKCHOP, Items.BEEF, Items.RABBIT);
+<<<<<<< Updated upstream
+=======
+    public static Map<Integer, TranslationTextComponent> SPECIES_NAMES = ImmutableMap.of(
+            1, new TranslationTextComponent("message.creatures.eurasianeagleowl"),
+            2, new TranslationTextComponent("message.creatures.duskyeagleowl")
+    );
+>>>>>>> Stashed changes
 
     public EagleOwlEntity(EntityType<? extends EagleOwlEntity> p_i50251_1_, World p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -43,11 +58,22 @@ public class EagleOwlEntity extends RaptorBase implements IAnimatable {
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         if (event.isMoving() && this.onGround) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
             return PlayState.CONTINUE;
         }
         if (!this.onGround || this.isFlying()) {
+<<<<<<< Updated upstream
+=======
+            if (this.isBaby()) {
+                event.getController().setAnimation(new AnimationBuilder().addAnimation("baby_fly", true));
+                return PlayState.CONTINUE;
+            }
+>>>>>>> Stashed changes
             event.getController().setAnimation(new AnimationBuilder().addAnimation("fly", true));
             return PlayState.CONTINUE;
         }
@@ -135,6 +161,7 @@ public class EagleOwlEntity extends RaptorBase implements IAnimatable {
     }
 
     public String getSpeciesName() {
+<<<<<<< Updated upstream
         if (this.getVariant() == 1) {
             ITextComponent s1 = new TranslationTextComponent("message.creatures.eurasianeagleowl");
             return s1.getString();
@@ -145,6 +172,12 @@ public class EagleOwlEntity extends RaptorBase implements IAnimatable {
         } else {
             return "Unknown";
         }
+=======
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+>>>>>>> Stashed changes
     }
 
     public ItemStack getFoodItem() {

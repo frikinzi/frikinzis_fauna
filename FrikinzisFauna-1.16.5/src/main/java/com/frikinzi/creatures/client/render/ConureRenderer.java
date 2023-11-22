@@ -30,7 +30,11 @@ public class ConureRenderer extends GeoEntityRenderer<ConureEntity> {
             multiplier = 1.0F;
         }
         if (animatable.isBaby()) {
+<<<<<<< Updated upstream
             stackIn.scale(0.5F, 0.5F, 0.5F);
+=======
+            stackIn.scale(0.6F, 0.6F, 0.6F);
+>>>>>>> Stashed changes
         }
         stackIn.scale(0.8F * multiplier, 0.8F * multiplier, 0.8F * multiplier);
     }

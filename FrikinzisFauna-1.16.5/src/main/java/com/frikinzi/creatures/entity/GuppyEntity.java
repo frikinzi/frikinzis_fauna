@@ -20,6 +20,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
+<<<<<<< Updated upstream
+=======
+import net.minecraft.util.text.TranslationTextComponent;
+>>>>>>> Stashed changes
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -32,10 +36,32 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
+<<<<<<< Updated upstream
+=======
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+>>>>>>> Stashed changes
 
 public class GuppyEntity extends GroupFishBase implements IAnimatable {
     private static final DataParameter<Integer> DATA_VARIANT_ID = EntityDataManager.defineId(GuppyEntity.class, DataSerializers.INT);
     private AnimationFactory factory = new AnimationFactory(this);
+<<<<<<< Updated upstream
+=======
+    public static Map<Integer, TranslationTextComponent> SPECIES_NAMES;
+    static {
+        Map<Integer, TranslationTextComponent> map = new HashMap<>();
+        map.put(1, new TranslationTextComponent("message.creatures.blueguppy"));
+        map.put(2, new TranslationTextComponent("message.creatures.cobragreen"));
+        map.put(3, new TranslationTextComponent("message.creatures.cobrablue"));
+        map.put(4, new TranslationTextComponent("message.creatures.redblond"));
+        map.put(5, new TranslationTextComponent("message.creatures.blackdragon"));
+        map.put(6, new TranslationTextComponent("message.creatures.blackguppy"));
+        SPECIES_NAMES = Collections.unmodifiableMap(map);
+    }
+
+
+>>>>>>> Stashed changes
     public GuppyEntity(EntityType<? extends GuppyEntity> p_i50246_1_, World p_i50246_2_) {
         super(p_i50246_1_, p_i50246_2_);
     }
@@ -172,5 +198,19 @@ public class GuppyEntity extends GroupFishBase implements IAnimatable {
         return 0.1F;
     }
 
+<<<<<<< Updated upstream
+=======
+    public String getSpeciesName() {
+        TranslationTextComponent translatable = SPECIES_NAMES.get(this.getVariant());
+        if (translatable != null) {
+            return translatable.getString();
+        } return "Unknown";
+    }
+
+    public int determineVariant()
+    {
+        return 7;
+    }
+>>>>>>> Stashed changes
 
 }
