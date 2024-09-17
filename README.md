@@ -6,7 +6,7 @@ Welcome to the official GitHub repository for Frikinzi's Fauna!
 
 Frikinzi's Fauna (for 1.12.2, 1.16.5, and 1.18.2) is the ultimate bird and fish mod that adds over 50+ realistic birds and fish to your Minecraft world. You can find many of these animals while exploring the jungles, forests, tundras, wastelands, and coasts in your Minecraft world. Discover sparrows in the trees, golden eagles ruling the mountains, colorful crabs on the beach, and a variety of fish swimming in rivers and oceans. Learn more about these animals using the in-game guide.
 
-For a full list of animals, see the [wiki]((https://github.com/frikinzi/frikinzis_fauna/wiki) on the top right tab.
+For a full list of animals, see the [wiki](https://github.com/frikinzi/frikinzis_fauna/wiki) on the top right tab.
 
 ## Bug Reports
 Please report all bugs to the [issues page](https://github.com/frikinzi/frikinzis_fauna/issues) on this GitHub repository or the issues channel in the discord server (link below).
