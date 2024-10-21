@@ -1,5 +1,9 @@
+**IMPORTANT NOTICE: STARTING FROM OCTOBER 21, 2024, THE MOD WILL ONLY BE AVAILABLE ON MODRINTH. THE CURSEFORGE PAGE (SCREENSHOT BELOW) WILL BE OFFLINE**
+
+<img src="https://i.postimg.cc/Nf2m4QFp/Screenshot-2024-10-21-at-5-56-01-PM.png">
+
 # Frikinzi's Fauna
- 
+
  <img src="https://i.ibb.co/vYMD3LZ/Screen-Shot-2021-12-16-at-4-57-45-PM.png">
 
 Welcome to the official GitHub repository for Frikinzi's Fauna! 
