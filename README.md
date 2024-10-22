@@ -32,7 +32,7 @@ Please report all bugs to the [issues page](https://github.com/frikinzi/frikinzi
 5. Enjoy!
 
 ## Links
-**Curseforge Page:** https://www.curseforge.com/minecraft/mc-mods/creatures
+**Modrinth Page:** https://modrinth.com/mod/frikinzis-fauna
 
 **Discord Server:** https://discord.gg/xArJJrAkBg
 
