@@ -26,7 +26,7 @@ Please report all bugs to the [issues page](https://github.com/frikinzi/frikinzi
 
 ## How to Install
 1. Download Minecraft and [install forge for the appropriate version](https://files.minecraftforge.net/net/minecraftforge/forge/)
-2. Download the jar file of Frikinzi's Fauna from the [curseforge page](https://www.curseforge.com/minecraft/mc-mods/creatures), selecting the appropriate Minecraft version
+2. Download the jar file of Frikinzi's Fauna from the [Modrinth page](https://modrinth.com/mod/frikinzis-fauna), selecting the appropriate Minecraft version
 3. Download Geckolib 3.0.0+ for the appropriate Minecraft forge version
 4. Drag the Frikinzi's Fauna and Geckolib jar files into the mods folder
 5. Enjoy!
