@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:dried_kelp"
+        },
+        {
+            "item": "creatures:raw_red_snapper"
+        }
+    ],
+    "result": {
+        "item": "creatures:red_snapper_sashimi"
+    }
+}

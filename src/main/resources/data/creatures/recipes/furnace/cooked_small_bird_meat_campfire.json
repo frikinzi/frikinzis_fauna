@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:campfire_cooking",
+    "ingredient": {
+        "item": "creatures:small_bird_meat"
+    },
+    "result": "creatures:cooked_small_bird_meat",
+    "experience": 0.35,
+    "cookingtime": 200
+}

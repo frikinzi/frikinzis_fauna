@@ -1,0 +1,36 @@
+{
+  "parent": "minecraft:husbandry/tactical_fishing",
+  "display": {
+    "icon": {
+      "item": "creatures:bucket_of_blue_tang"
+    },
+    "title": {
+      "translate": "advancements.creatures.catch_blue_tang.title"
+    },
+    "description": {
+      "translate": "advancements.creatures.catch_blue_tang.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 100
+  },
+  "criteria": {
+    "blue_tang_bucket": {
+      "trigger": "minecraft:filled_bucket",
+      "conditions": {
+        "item": {
+          "item": "creatures:bucket_of_blue_tang"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "blue_tang_bucket"
+    ]
+  ]
+}

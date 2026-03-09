@@ -1,0 +1,48 @@
+{
+  "parent": "creatures:birder",
+  "display": {
+    "icon": {
+      "item": "minecraft:feather"
+    },
+    "title": {
+      "translate": "advancements.creatures.discover_doves.title"
+    },
+    "description": {
+      "translate": "advancements.creatures.discover_doves.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "dove": {
+      "trigger": "minecraft:player_interacted_with_entity",
+      "conditions": {
+        "player": [
+          {
+          "condition": "minecraft:entity_properties",
+            "entity": "this"
+          }
+        ],
+        "item": {
+          "item": "creatures:ff_guide"
+        },
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "creatures:dove"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "dove"
+    ]
+  ]
+}

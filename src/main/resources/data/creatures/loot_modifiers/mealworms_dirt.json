@@ -1,0 +1,17 @@
+{
+    "conditions": [
+        {
+
+            "condition": "block_state_property",
+            "block": "minecraft:podzol"
+
+        },
+        {
+
+            "condition": "minecraft:random_chance",
+            "chance": 0.6
+
+        }
+    ],
+    "addition": "creatures:mealworms"
+}

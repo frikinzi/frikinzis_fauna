@@ -1,0 +1,72 @@
+{
+  "parent": "minecraft:husbandry/breed_an_animal",
+  "display": {
+    "icon": {
+      "item": "creatures:raw_koi"
+    },
+    "title": {
+      "translate": "advancements.creatures.feed_fish.title"
+    },
+    "description": {
+      "translate": "advancements.creatures.feed_fish.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "koi_throw": {
+      "trigger": "minecraft:thrown_item_picked_up_by_entity",
+      "conditions": {
+        "player": [
+          {
+          "condition": "minecraft:entity_properties",
+            "entity": "this"
+          }
+        ],
+        "item": {
+          "item": "creatures:raw_shrimp"
+        },
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "creatures:koi"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "koi_hand": {
+      "trigger": "minecraft:player_interacted_with_entity",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this"
+          }
+        ],
+        "item": {
+          "item": "creatures:raw_shrimp"
+        },
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "creatures:koi"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "koi_throw",
+      "koi_hand"
+    ]
+  ]
+}

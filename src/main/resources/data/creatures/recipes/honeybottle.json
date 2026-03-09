@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "creatures:creatures_nectar"
+        },
+        {
+            "item": "creatures:creatures_nectar"
+        },
+        {
+            "item": "minecraft:glass_bottle"
+        }
+    ],
+    "result": {
+        "item": "minecraft:honey_bottle"
+    }
+}

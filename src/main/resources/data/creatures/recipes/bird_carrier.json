@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "BBB",
+        "ACA",
+        "BBB"
+    ],
+    "key": {
+        "A": {
+            "item": "minecraft:blue_wool"
+        },
+        "B": {
+            "item": "minecraft:iron_block"
+        },
+        "C": {
+            "item": "minecraft:black_wool"
+        }
+    },
+    "result": {
+        "item": "creatures:bird_carrier"
+    }
+}

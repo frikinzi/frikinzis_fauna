@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "creatures:raw_tambaqui"
+    },
+    "result": "creatures:cooked_tambaqui",
+    "experience": 0.35,
+    "cookingtime": 200
+}

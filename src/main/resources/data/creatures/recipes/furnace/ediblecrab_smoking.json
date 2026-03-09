@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smoking",
+    "ingredient": {
+        "item": "creatures:ediblecrab"
+    },
+    "result": "creatures:cooked_ediblecrab",
+    "experience": 0.35,
+    "cookingtime": 100
+}

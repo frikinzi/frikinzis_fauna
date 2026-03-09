@@ -1,0 +1,41 @@
+{
+    "type": "minecraft:entity",
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "functions": [
+                        {
+                            "function": "minecraft:furnace_smelt",
+                            "conditions": [
+                                {
+                                    "condition": "minecraft:entity_properties",
+                                    "predicate": {
+                                        "flags": {
+                                            "is_on_fire": true
+                                        }
+                                    },
+                                    "entity": "this"
+                                }
+                            ]
+                        }
+                    ],
+                    "name": "creatures:raw_rockcrab"
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "functions": [
+                    ],
+                    "name": "creatures:crab_pincers"
+                }
+            ]
+        }
+    ]
+}

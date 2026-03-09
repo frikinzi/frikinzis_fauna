@@ -1,0 +1,77 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"swim": {
+			"loop": true,
+			"animation_length": 0.5,
+			"bones": {
+				"HEAD": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -7.5, 0]
+						},
+						"0.25": {
+							"vector": [0, 7.5, 0]
+						},
+						"0.5": {
+							"vector": [0, -7.5, 0]
+						}
+					}
+				},
+				"bone": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 17.5, 0]
+						},
+						"0.25": {
+							"vector": [0, -15, 0]
+						},
+						"0.5": {
+							"vector": [0, 17.5, 0]
+						}
+					}
+				}
+			}
+		},
+		"flop": {
+			"loop": true,
+			"animation_length": 0.5,
+			"bones": {
+				"HEAD": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -7.5, 0]
+						},
+						"0.25": {
+							"vector": [0, 7.5, 0]
+						},
+						"0.5": {
+							"vector": [0, -7.5, 0]
+						}
+					}
+				},
+				"bone": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 17.5, 0]
+						},
+						"0.25": {
+							"vector": [0, -15, 0]
+						},
+						"0.5": {
+							"vector": [0, 17.5, 0]
+						}
+					}
+				},
+				"MAIN": {
+					"rotation": {
+						"vector": [0, 0, -90]
+					},
+					"position": {
+						"vector": [0, -1.5, 0]
+					}
+				}
+			}
+		}
+	}
+}

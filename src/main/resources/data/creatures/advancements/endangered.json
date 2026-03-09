@@ -1,0 +1,41 @@
+{
+  "parent": "minecraft:husbandry/root",
+  "display": {
+    "icon": {
+      "item": "creatures:ff_guide"
+    },
+    "title": {
+      "translate": "advancements.husbandry.endangered.title"
+    },
+    "description": {
+      "translate": "advancements.husbandry.endangered.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "interact_with_endangered": {
+      "trigger": "creatures:interact_with_endangered",
+      "conditions": {
+        "entity": {
+          "type": "minecraft:living_entity"
+        },
+        "items": [
+          {
+            "item": "creatures:ff_guide"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 500
+  },
+  "requirements": [
+    [
+      "interact_with_endangered"
+    ]
+  ]
+}

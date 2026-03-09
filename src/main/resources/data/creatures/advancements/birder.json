@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:husbandry/root",
+  "display": {
+    "icon": {
+      "item": "creatures:ff_guide"
+    },
+    "title": {
+      "translate": "advancements.husbandry.birder.title"
+    },
+    "description": {
+      "translate": "advancements.husbandry.birder.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "ff_guide": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "creatures:ff_guide"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "ff_guide"
+    ]
+  ]
+}

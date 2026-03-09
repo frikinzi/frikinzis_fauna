@@ -1,0 +1,37 @@
+
+{
+  "multipart": [
+    {   "when": { "facing": "east" },
+      "apply": { "model": "creatures:block/toyi", "y" : -270, "uvlock": false }
+    },
+    {   "when": { "facing": "west" },
+      "apply": { "model": "creatures:block/toyi", "y" : -90, "uvlock": false }
+    },
+    {   "when": { "facing": "north" },
+      "apply": { "model": "creatures:block/toyi", "y" : 0, "uvlock": false }
+    },
+    {   "when": { "facing": "south" },
+      "apply": { "model": "creatures:block/toyi", "y" : 180, "uvlock": false }
+    }
+
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        300,
+        0
+      ],
+      "translation": [
+        0,
+        1,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    }
+  }
+}

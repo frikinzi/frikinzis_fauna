@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:book"
+        },
+        {
+            "item": "minecraft:ink_sac"
+        },
+        {
+            "item": "creatures:raven_feather"
+        }
+    ],
+    "result": {
+        "item": "minecraft:writable_book"
+    }
+}

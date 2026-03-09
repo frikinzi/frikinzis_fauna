@@ -1,0 +1,41 @@
+modLoader="javafml"
+loaderVersion="[46,)"
+
+license="All Rights Reserved"
+issueTrackerURL="https://github.com/MinecraftForge/MinecraftForge/issues"
+showAsResourcePack=false
+
+[[mods]]
+  modId="creatures"
+  version="1.7.0"
+  displayName="Frikinzi's Fauna"
+  updateJSONURL="https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json"
+  displayURL="https://minecraftforge.net"
+  logoFile="creatures-logo.png"
+  credits="Kiew is the best."
+  authors="Author"
+  description='''
+Frikinzi's Fauna adds a plethora of avian and aquatic wildlife to your Minecraft world.
+  '''
+  displayTest="MATCH_VERSION"
+
+[[dependencies.creatures]]
+  modId="forge"
+  mandatory=true
+  versionRange="[46,)"
+  ordering="NONE"
+  side="BOTH"
+
+[[dependencies.creatures]]
+  modId="minecraft"
+  mandatory=true
+  versionRange="[1.20.1,)"
+  ordering="NONE"
+  side="BOTH"
+
+ [[dependencies.creatures]]
+    modId="geckolib"
+    mandatory=true
+    versionRange="[4.7,)"
+    ordering="BEFORE"
+    side="BOTH"

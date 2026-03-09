@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "BBB",
+        "AAA",
+        "BBB"
+    ],
+    "key": {
+        "A": {
+            "item": "minecraft:glass"
+        },
+        "B": {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+    "result": {
+        "item": "creatures:critter_keeper"
+    }
+}

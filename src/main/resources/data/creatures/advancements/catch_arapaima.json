@@ -1,0 +1,51 @@
+{
+  "parent": "minecraft:husbandry/tactical_fishing",
+  "display": {
+    "icon": {
+      "item": "creatures:raw_arapaima"
+    },
+    "title": {
+      "translate": "advancements.creatures.catch_arapaima.title"
+    },
+    "description": {
+      "translate": "advancements.creatures.catch_arapaima.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 100
+  },
+  "criteria": {
+    "arapaima_bucket": {
+      "trigger": "minecraft:player_interacted_with_entity",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this"
+          }
+        ],
+        "item": {
+          "item": "creatures:fishingnet"
+        },
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "creatures:arapaima"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "arapaima_bucket"
+    ]
+  ]
+}

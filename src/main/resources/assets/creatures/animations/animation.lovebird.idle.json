@@ -1,0 +1,37 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.lovebird.idle": {
+			"loop": true,
+			"animation_length": 2,
+			"bones": {
+				"LowerBody": {
+					"rotation": {
+						"0.125": {
+							"vector": [0, 0, 5]
+						},
+						"1.0417": {
+							"vector": [0, 0, -2.5]
+						},
+						"1.9583": {
+							"vector": [0, 0, 5]
+						}
+					}
+				},
+				"Head": {
+					"rotation": {
+						"0.125": {
+							"vector": [0, 0, 7.5]
+						},
+						"1.0833": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 7.5]
+						}
+					}
+				}
+			}
+		}
+	}
+}

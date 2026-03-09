@@ -1,0 +1,9 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"parent": "creatures:block/toy",
+	"textures": {
+		"1": "creatures:block/toy8",
+		"particle": "creatures:block/toy8"
+	}
+}
