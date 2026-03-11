@@ -1,0 +1,21 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:and",
+    "values": [
+      "#minecraft:is_mountain",
+      {
+        "type": "forge:not",
+        "value": "#minecraft:is_nether"
+      }
+    ]
+  },
+  "spawners": [
+    {
+      "type": "creatures:monal",
+      "weight": 15,
+      "minCount": 1,
+      "maxCount": 2
+    }
+  ]
+}

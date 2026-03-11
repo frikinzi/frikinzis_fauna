@@ -62,7 +62,7 @@ public class CreaturesGUI extends Screen {
             Component h = Component.translatable("gui.health",bird.getHealth(), bird.getMaxHealth());
             font.drawInBatch(h.getString(), offLeft, 95 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
             font.drawInBatch(bird.getSpeciesName(), offLeft, 110 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
-            Component height = Component.translatable("gui.height");
+            Component height = Component.translatable("gui.height").withStyle(ChatFormatting.BOLD);
             String height_s = bird.getHeightString();
             font.drawInBatch(height.getString() + " " + height_s, offLeft, 125 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
             Component food = Component.translatable("gui.food").withStyle(ChatFormatting.BOLD);

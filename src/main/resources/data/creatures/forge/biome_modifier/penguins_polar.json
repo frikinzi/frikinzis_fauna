@@ -1,0 +1,36 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:and",
+    "values": [
+      "#forge:is_cold",
+      "#forge:is_snowy",
+      {
+        "type": "forge:not",
+        "value": "#minecraft:is_nether"
+      },
+      {
+        "type": "forge:not",
+        "value": "#minecraft:is_forest"
+      },
+      {
+        "type": "forge:not",
+        "value": "#minecraft:is_mountain"
+      }
+    ]
+  },
+  "spawners": [
+    {
+      "type": "creatures:large_penguin",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 5
+    },
+    {
+      "type": "creatures:brush_tailed_penguin",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 5
+    }
+  ]
+}

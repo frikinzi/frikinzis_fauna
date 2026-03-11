@@ -1,0 +1,43 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:and",
+    "values": [
+      "#minecraft:is_beach",
+      {
+        "type": "forge:not",
+        "value": "#forge:is_cold"
+      },
+      {
+        "type": "forge:not",
+        "value": "#minecraft:is_nether"
+      }
+    ]
+  },
+  "spawners": [
+    {
+      "type": "creatures:banded_penguin",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 5
+    },
+    {
+      "type": "creatures:yellow_eyed_penguin",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 5
+    },
+    {
+      "type": "creatures:crested_penguin",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 5
+    },
+    {
+      "type": "creatures:little_penguin",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 5
+    }
+  ]
+}

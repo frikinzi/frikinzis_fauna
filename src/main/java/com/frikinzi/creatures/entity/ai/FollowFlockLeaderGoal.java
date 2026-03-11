@@ -24,6 +24,9 @@ public class FollowFlockLeaderGoal extends Goal {
     }
 
     public boolean canUse() {
+        if (this.mob.isSleeping()) {
+            return false;
+        }
         if (this.mob.hasFollowers()) {
             return false;
         } else if (this.mob.isFollower()) {

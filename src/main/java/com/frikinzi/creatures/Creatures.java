@@ -1,6 +1,7 @@
 package com.frikinzi.creatures;
 
 import com.frikinzi.creatures.client.ClientProxy;
+import com.frikinzi.creatures.client.block.CreaturesBlocks;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
@@ -57,6 +58,7 @@ public class Creatures
 
         modEventBus.addListener(this::commonSetup);
         CreaturesEntities.ENTITIES.register(modEventBus);
+        CreaturesBlocks.BLOCKS.register(modEventBus);
         CreaturesItems.ITEMS.register(modEventBus);
         CreaturesItems.TABS.register(modEventBus);
         CreaturesSound.REGISTRAR.register(modEventBus);

@@ -1,0 +1,18 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:or",
+    "values": [
+      "#minecraft:is_swamp",
+      "#forge:is_plains"
+    ]
+  },
+  "spawners": [
+    {
+      "type": "creatures:lapwing",
+      "weight": 20,
+      "minCount": 3,
+      "maxCount": 6
+    }
+  ]
+}

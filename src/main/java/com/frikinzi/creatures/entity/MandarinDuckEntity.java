@@ -38,7 +38,7 @@ public class MandarinDuckEntity extends CreaturesWalkingBird implements GeoEntit
 
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(2, new FollowFlockLeaderGoal(this));
+        this.goalSelector.addGoal(5, new FollowFlockLeaderGoal(this));
     }
 
     @Override
@@ -113,7 +113,7 @@ public class MandarinDuckEntity extends CreaturesWalkingBird implements GeoEntit
     }
 
     public ResourceLocation getDefaultLootTable() {
-        return CreaturesLootTables.SMALL_BIRD_GENERIC;
+        return CreaturesLootTables.DUCK;
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -126,5 +126,9 @@ public class MandarinDuckEntity extends CreaturesWalkingBird implements GeoEntit
 
     public Component getFunFact() {
         return Component.translatable("description.creatures.mandarinduck");
+    }
+
+    public int getMaxFlockSize() {
+        return 2;
     }
 }

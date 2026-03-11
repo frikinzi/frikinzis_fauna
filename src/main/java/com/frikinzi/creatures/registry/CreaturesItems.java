@@ -1,6 +1,8 @@
 package com.frikinzi.creatures.registry;
 
 import com.frikinzi.creatures.Creatures;
+import com.frikinzi.creatures.client.block.CreaturesBlocks;
+import com.frikinzi.creatures.item.BirdCarrierItem;
 import com.frikinzi.creatures.item.EggItem;
 import com.frikinzi.creatures.item.ModSpawnEggVariants;
 import net.minecraft.core.registries.Registries;
@@ -19,6 +21,32 @@ public class CreaturesItems {
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Creatures.MODID);
 
     public static final RegistryObject<Item> FF_GUIDE = ITEMS.register("ff_guide", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> GUPPY_TAIL = ITEMS.register("guppy_tail",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> GOLDFISH = ITEMS.register("item_goldfish",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> CRAB_PINCERS = ITEMS.register("crab_pincers",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DUCK_FEATHER = ITEMS.register("duck_feather",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> BIRD_OF_PREY_FEATHER = ITEMS.register("bird_of_prey_feather",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> RAVEN_FEATHER = ITEMS.register("raven_feather",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> PARROT_FEATHER = ITEMS.register("parrot_feather",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> PEAFOWL_FEATHER = ITEMS.register("peafowl_feather",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> BIRD_CARRIER = ITEMS.register("bird_carrier",
+            () -> new BirdCarrierItem(new Item.Properties().stacksTo(1)));
+//    public static final RegistryObject<Item> CRITTER_KEEPER = ITEMS.register("critter_keeper",
+//            () -> new CritterKeeperItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> FISH_FOOD = ITEMS.register("fish_food",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ALGAE_WAFER = ITEMS.register("algae_wafer",
+            () -> new Item(new Item.Properties()));
+//    public static final RegistryObject<Item> FISHING_NET = ITEMS.register("fishing_net",
+//            () -> new FishNetItem(new Item.Properties().stacksTo(1)));
     static int i = 0;
     public static final RegistryObject<Item> LOVEBIRD_EGG = ITEMS.register("lovebird_egg", () -> new EggItem(i++, (new Item.Properties()).stacksTo(1)));
     public static final RegistryObject<Item> SPOONBILL_EGG = ITEMS.register("spoonbill_egg", () -> new EggItem(i++, (new Item.Properties()).stacksTo(1)));
@@ -106,6 +134,8 @@ public class CreaturesItems {
     public static final RegistryObject<Item> COOKED_PIRANHA = ITEMS.register("cooked_piranha",() -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).build())));
     public static final RegistryObject<Item> RAW_TAMBAQUI = ITEMS.register("raw_tambaqui",() -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).build())));
     public static final RegistryObject<Item> COOKED_TAMBAQUI = ITEMS.register("cooked_tambaqui",() -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).build())));
+
+
     public static final RegistryObject<ForgeSpawnEggItem> LOVEBIRD_SPAWN_EGG = ITEMS.register("lovebird_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.LOVEBIRD, 16749375, 16765696));
     public static final RegistryObject<ForgeSpawnEggItem> SPOONBILL_SPAWN_EGG = ITEMS.register("spoonbill_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.SPOONBILL, 16490917, 16583198));
     public static final RegistryObject<ForgeSpawnEggItem> KAKAPO_SPAWN_EGG = ITEMS.register("kakapo_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.KAKAPO,9607980, 12299667));
@@ -114,19 +144,19 @@ public class CreaturesItems {
 //    public static final RegistryObject<ForgeSpawnEggItem> GUPPY_SPAWN_EGG = ITEMS.register("guppy_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.GUPPY, 8578898, 8579010));
     public static final RegistryObject<ForgeSpawnEggItem> MANDARIN_DUCK_SPAWN_EGG = ITEMS.register("mandarin_duck_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.MANDARIN_DUCK, 11798553, 16640178));
 //    public static final RegistryObject<ForgeSpawnEggItem> AROWANA_SPAWN_EGG = ITEMS.register("arowana_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.AROWANA, 16771881, 16758578));
-//    public static final RegistryObject<ForgeSpawnEggItem> RAVEN_SPAWN_EGG = ITEMS.register("raven_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.RAVEN, 9536, 4152450));
+    public static final RegistryObject<ForgeSpawnEggItem> RAVEN_SPAWN_EGG = ITEMS.register("raven_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.RAVEN, 9536, 4152450));
 //    public static final RegistryObject<ForgeSpawnEggItem> SHRIMP_SPAWN_EGG = ITEMS.register("shrimp_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.SHRIMP, 16583198, 16490917));
-//    public static final RegistryObject<ForgeSpawnEggItem> DOVE_SPAWN_EGG = ITEMS.register("dove_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.DOVE, 14935271, 15395538));
-//    public static final RegistryObject<ForgeSpawnEggItem> RED_KITE_SPAWN_EGG = ITEMS.register("red_kite_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.RED_KITE, 13651220, 4152450));
-//    public static final RegistryObject<ForgeSpawnEggItem> GOLDEN_EAGLE_SPAWN_EGG = ITEMS.register("golden_eagle_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.GOLDEN_EAGLE, 4525319, 10125934));
-//    public static final RegistryObject<ForgeSpawnEggItem> STELLERS_SEA_EAGLE_SPAWN_EGG = ITEMS.register("stellers_sea_eagle_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.SEA_EAGLE, 5322812, 16515071));
-//    public static final RegistryObject<ForgeSpawnEggItem> GYRFALCON_SPAWN_EGG = ITEMS.register("gyrfalcon_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.GYRFALCON, 16515071, 9536));
-//    public static final RegistryObject<ForgeSpawnEggItem> LORIKEET_SPAWN_EGG = ITEMS.register("lorikeet_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.LORIKEET, 3093151, 16718368));
-//    public static final RegistryObject<ForgeSpawnEggItem> CONURE_SPAWN_EGG = ITEMS.register("conure_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.CONURE, 16170000, 2182420));
-//    public static final RegistryObject<ForgeSpawnEggItem> FAIRYWREN_SPAWN_EGG = ITEMS.register("fairywren_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.FAIRYWREN, 1650103, 41));
+    public static final RegistryObject<ForgeSpawnEggItem> DOVE_SPAWN_EGG = ITEMS.register("dove_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.DOVE, 14935271, 15395538));
+    public static final RegistryObject<ForgeSpawnEggItem> RED_KITE_SPAWN_EGG = ITEMS.register("red_kite_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.RED_KITE, 13651220, 4152450));
+    public static final RegistryObject<ForgeSpawnEggItem> GOLDEN_EAGLE_SPAWN_EGG = ITEMS.register("golden_eagle_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.GOLDEN_EAGLE, 4525319, 10125934));
+    public static final RegistryObject<ForgeSpawnEggItem> STELLERS_SEA_EAGLE_SPAWN_EGG = ITEMS.register("stellers_sea_eagle_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.SEA_EAGLE, 5322812, 16515071));
+    public static final RegistryObject<ForgeSpawnEggItem> GYRFALCON_SPAWN_EGG = ITEMS.register("gyrfalcon_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.GYRFALCON, 16515071, 9536));
+    public static final RegistryObject<ForgeSpawnEggItem> LORIKEET_SPAWN_EGG = ITEMS.register("lorikeet_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.LORIKEET, 3093151, 16718368));
+    public static final RegistryObject<ForgeSpawnEggItem> CONURE_SPAWN_EGG = ITEMS.register("conure_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.CONURE, 16170000, 2182420));
+    public static final RegistryObject<ForgeSpawnEggItem> FAIRYWREN_SPAWN_EGG = ITEMS.register("fairywren_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.FAIRYWREN, 1650103, 41));
 //    public static final RegistryObject<ForgeSpawnEggItem> GHOST_CRAB_SPAWN_EGG = ITEMS.register("ghostcrab_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.GHOST_CRAB, 13545576, 16777215));
 //    public static final RegistryObject<ForgeSpawnEggItem> GOURAMI_SPAWN_SPAWN_EGG = ITEMS.register("gourami_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.GOURAMI, 4152450, 16777215));
-//    public static final RegistryObject<ForgeSpawnEggItem> PYGMY_FALCON_SPAWN_EGG = ITEMS.register("pygmy_falcon_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.PYGMY_FALCON, 8097951, 15724012));
+    public static final RegistryObject<ForgeSpawnEggItem> PYGMY_FALCON_SPAWN_EGG = ITEMS.register("pygmy_falcon_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.PYGMY_FALCON, 8097951, 15724012));
 //    public static final RegistryObject<ForgeSpawnEggItem> BARN_OWL_SPAWN_EGG = ITEMS.register("barn_owl_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.BARN_OWL, 16777215, 11897942));
 //    public static final RegistryObject<ForgeSpawnEggItem> WILD_DUCK_SPAWN_EGG = ITEMS.register("wild_duck_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.WILD_DUCK, 15702874, 7901340));
 //    public static final RegistryObject<ForgeSpawnEggItem> ROLLER_SPAWN_EGG = ITEMS.register("roller_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.ROLLER, 1414724, 13192647));
@@ -207,6 +237,20 @@ public class CreaturesItems {
             .title(Component.translatable("itemGroup." + Creatures.MODID + ".creaturesitems"))
             .icon(() -> new ItemStack(CreaturesItems.RAW_KOI.get()))
             .displayItems((enabledFeatures, entries) -> {
+                entries.accept(CreaturesItems.GUPPY_TAIL.get());
+                entries.accept(CreaturesItems.GOLDFISH.get());
+                entries.accept(CreaturesItems.CRAB_PINCERS.get());
+                entries.accept(CreaturesItems.DUCK_FEATHER.get());
+                entries.accept(CreaturesItems.BIRD_OF_PREY_FEATHER.get());
+                entries.accept(CreaturesItems.RAVEN_FEATHER.get());
+                entries.accept(CreaturesItems.PARROT_FEATHER.get());
+                entries.accept(CreaturesItems.FF_GUIDE.get());
+                entries.accept(CreaturesItems.PEAFOWL_FEATHER.get());
+                entries.accept(CreaturesItems.BIRD_CARRIER.get());
+//                entries.accept(CreaturesItems.CRITTER_KEEPER.get());
+                entries.accept(CreaturesItems.FISH_FOOD.get());
+                entries.accept(CreaturesItems.ALGAE_WAFER.get());
+//                entries.accept(CreaturesItems.FISHING_NET.get());
                 entries.accept(CreaturesItems.FF_GUIDE.get());
                 entries.accept(CreaturesItems.MEALWORMS.get());
                 entries.accept(CreaturesItems.GOURAMI.get());
@@ -294,6 +338,19 @@ public class CreaturesItems {
                 entries.accept(CreaturesItems.FRIGATE_EGG.get());
                 entries.accept(CreaturesItems.STILT_EGG.get());
                 entries.accept(CreaturesItems.LITTLEPENGUIN_EGG.get());
+                entries.accept(Item.BY_BLOCK.get(CreaturesBlocks.TOY1.get()));
+                entries.accept(Item.BY_BLOCK.get(CreaturesBlocks.TOY2.get()));
+                entries.accept(Item.BY_BLOCK.get(CreaturesBlocks.TOY3.get()));
+                entries.accept(Item.BY_BLOCK.get(CreaturesBlocks.TOY4.get()));
+                entries.accept(Item.BY_BLOCK.get(CreaturesBlocks.TOY5.get()));
+                entries.accept(Item.BY_BLOCK.get(CreaturesBlocks.TOY6.get()));
+                entries.accept(Item.BY_BLOCK.get(CreaturesBlocks.TOY7.get()));
+                entries.accept(Item.BY_BLOCK.get(CreaturesBlocks.TOY8.get()));
+                entries.accept(Item.BY_BLOCK.get(CreaturesBlocks.TOY9.get()));
+                entries.accept(Item.BY_BLOCK.get(CreaturesBlocks.TOY10.get()));
+                entries.accept(Item.BY_BLOCK.get(CreaturesBlocks.TOY11.get()));
+                entries.accept(Item.BY_BLOCK.get(CreaturesBlocks.TOY12.get()));
+                entries.accept(Item.BY_BLOCK.get(CreaturesBlocks.TOY13.get()));
                 //SPAWN EGGS
                 entries.accept(CreaturesItems.LOVEBIRD_SPAWN_EGG.get());
                 entries.accept(CreaturesItems.SPOONBILL_SPAWN_EGG.get());
@@ -301,21 +358,21 @@ public class CreaturesItems {
 //                entries.accept(CreaturesItems.DOTTYBACK_SPAWN_EGG.get());
 //                entries.accept(CreaturesItems.PIKE_SPAWN_EGG.get());
 //                entries.accept(CreaturesItems.GUPPY_SPAWN_EGG.get());
-//                entries.accept(CreaturesItems.MANDARIN_DUCK_SPAWN_EGG.get());
+                entries.accept(CreaturesItems.MANDARIN_DUCK_SPAWN_EGG.get());
 //                entries.accept(CreaturesItems.AROWANA_SPAWN_EGG.get());
-//                entries.accept(CreaturesItems.RAVEN_SPAWN_EGG.get());
+                entries.accept(CreaturesItems.RAVEN_SPAWN_EGG.get());
 //                entries.accept(CreaturesItems.SHRIMP_SPAWN_EGG.get());
-//                entries.accept(CreaturesItems.DOVE_SPAWN_EGG.get());
-//                entries.accept(CreaturesItems.RED_KITE_SPAWN_EGG.get());
-//                entries.accept(CreaturesItems.GOLDEN_EAGLE_SPAWN_EGG.get());
-//                entries.accept(CreaturesItems.STELLERS_SEA_EAGLE_SPAWN_EGG.get());
-//                entries.accept(CreaturesItems.GYRFALCON_SPAWN_EGG.get());
-//                entries.accept(CreaturesItems.LORIKEET_SPAWN_EGG.get());
-//                entries.accept(CreaturesItems.CONURE_SPAWN_EGG.get());
-//                entries.accept(CreaturesItems.FAIRYWREN_SPAWN_EGG.get());
+                entries.accept(CreaturesItems.DOVE_SPAWN_EGG.get());
+                entries.accept(CreaturesItems.RED_KITE_SPAWN_EGG.get());
+                entries.accept(CreaturesItems.GOLDEN_EAGLE_SPAWN_EGG.get());
+                entries.accept(CreaturesItems.STELLERS_SEA_EAGLE_SPAWN_EGG.get());
+                entries.accept(CreaturesItems.GYRFALCON_SPAWN_EGG.get());
+                entries.accept(CreaturesItems.LORIKEET_SPAWN_EGG.get());
+                entries.accept(CreaturesItems.CONURE_SPAWN_EGG.get());
+                entries.accept(CreaturesItems.FAIRYWREN_SPAWN_EGG.get());
 //                entries.accept(CreaturesItems.GHOST_CRAB_SPAWN_EGG.get());
 //                entries.accept(CreaturesItems.GOURAMI_SPAWN_EGG.get());
-//                entries.accept(CreaturesItems.PYGMY_FALCON_SPAWN_EGG.get());
+                entries.accept(CreaturesItems.PYGMY_FALCON_SPAWN_EGG.get());
 //                entries.accept(CreaturesItems.BARN_OWL_SPAWN_EGG.get());
 //                entries.accept(CreaturesItems.WILD_DUCK_SPAWN_EGG.get());
 //                entries.accept(CreaturesItems.ROLLER_SPAWN_EGG.get());

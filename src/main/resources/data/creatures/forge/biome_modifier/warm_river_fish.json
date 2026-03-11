@@ -1,0 +1,33 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:and",
+    "values": [
+      "#minecraft:is_river",
+      {
+        "type": "forge:not",
+        "value": "#forge:is_cold"
+      }
+    ]
+  },
+  "spawners": [
+    {
+      "type": "creatures:piranha",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 6
+    },
+    {
+      "type": "creatures:tambaqui",
+      "weight": 10,
+      "minCount": 1,
+      "maxCount": 1
+    },
+    {
+      "type": "creatures:elephantnose",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 5
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:and",
+    "values": [
+      "#minecraft:is_ocean",
+      {
+        "type": "forge:not",
+        "value": "#minecraft:is_nether"
+      }
+    ]
+  },
+  "spawners": [
+    {
+      "type": "creatures:edible_crab",
+      "weight": 25,
+      "minCount": 3,
+      "maxCount": 5
+    }
+  ]
+}

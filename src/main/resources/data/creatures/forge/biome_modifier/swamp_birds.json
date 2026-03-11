@@ -1,0 +1,57 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:and",
+    "values": [
+      "#minecraft:is_swamp",
+      {
+        "type": "forge:not",
+        "value": "#minecraft:is_nether"
+      }
+    ]
+  },
+  "spawners": [
+    {
+      "type": "creatures:spoonbill",
+      "weight": 15,
+      "minCount": 1,
+      "maxCount": 2
+    },
+    {
+      "type": "creatures:pygmy_goose",
+      "weight": 25,
+      "minCount": 1,
+      "maxCount": 2
+    },
+    {
+      "type": "creatures:whistlingduck",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 6
+    },
+    {
+      "type": "creatures:shoebill",
+      "weight": 10,
+      "minCount": 1,
+      "maxCount": 2
+    },
+    {
+      "type": "creatures:stork",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 6
+    },
+    {
+      "type": "creatures:avocet",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 5
+    },
+    {
+      "type": "creatures:stilt",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 5
+    }
+  ]
+}

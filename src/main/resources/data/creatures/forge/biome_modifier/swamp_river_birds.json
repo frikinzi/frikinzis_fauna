@@ -1,0 +1,24 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:or",
+    "values": [
+      "#minecraft:is_swamp",
+      "#minecraft:is_river"
+    ]
+  },
+  "spawners": [
+    {
+      "type": "creatures:ibis",
+      "weight": 20,
+      "minCount": 2,
+      "maxCount": 4
+    },
+    {
+      "type": "creatures:wood_duck",
+      "weight": 20,
+      "minCount": 2,
+      "maxCount": 3
+    }
+  ]
+}

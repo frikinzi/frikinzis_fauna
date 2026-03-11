@@ -1,0 +1,22 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:and",
+    "values": [
+      "#minecraft:is_mountain",
+      "#forge:is_snowy",
+      {
+        "type": "forge:not",
+        "value": "#minecraft:is_nether"
+      }
+    ]
+  },
+  "spawners": [
+    {
+      "type": "creatures:gyrfalcon",
+      "weight": 5,
+      "minCount": 1,
+      "maxCount": 2
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:and",
+    "values": [
+      "#minecraft:is_beach",
+      {
+        "type": "forge:not",
+        "value": "#minecraft:is_nether"
+      }
+    ]
+  },
+  "spawners": [
+    {
+      "type": "creatures:pelican",
+      "weight": 20,
+      "minCount": 3,
+      "maxCount": 6
+    },
+    {
+      "type": "creatures:seagull",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 5
+    },
+    {
+      "type": "creatures:cormorant",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 5
+    }
+  ]
+}

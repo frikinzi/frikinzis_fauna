@@ -1,0 +1,43 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:and",
+    "values": [
+      "#minecraft:is_beach",
+      {
+        "type": "forge:not",
+        "value": "#forge:is_cold"
+      },
+      {
+        "type": "forge:not",
+        "value": "#minecraft:is_nether"
+      }
+    ]
+  },
+  "spawners": [
+    {
+      "type": "creatures:ghost_crab",
+      "weight": 20,
+      "minCount": 2,
+      "maxCount": 5
+    },
+    {
+      "type": "creatures:fiddler_crab",
+      "weight": 20,
+      "minCount": 2,
+      "maxCount": 4
+    },
+    {
+      "type": "creatures:booby",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 5
+    },
+    {
+      "type": "creatures:frigate",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 5
+    }
+  ]
+}

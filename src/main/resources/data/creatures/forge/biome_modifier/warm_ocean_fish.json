@@ -1,0 +1,37 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:and",
+    "values": [
+      "#minecraft:is_ocean",
+      {
+        "type": "forge:not",
+        "value": "#forge:is_cold"
+      },
+      {
+        "type": "forge:not",
+        "value": "#minecraft:is_nether"
+      }
+    ]
+  },
+  "spawners": [
+    {
+      "type": "creatures:red_snapper",
+      "weight": 10,
+      "minCount": 2,
+      "maxCount": 5
+    },
+    {
+      "type": "creatures:sawfish",
+      "weight": 5,
+      "minCount": 1,
+      "maxCount": 1
+    },
+    {
+      "type": "creatures:lookdown",
+      "weight": 10,
+      "minCount": 4,
+      "maxCount": 6
+    }
+  ]
+}

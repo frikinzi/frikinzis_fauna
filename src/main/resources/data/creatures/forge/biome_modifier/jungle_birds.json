@@ -1,0 +1,21 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:and",
+    "values": [
+      "#minecraft:is_jungle",
+      {
+        "type": "forge:not",
+        "value": "#minecraft:is_nether"
+      }
+    ]
+  },
+  "spawners": [
+    {
+      "type": "creatures:tanager",
+      "weight": 20,
+      "minCount": 3,
+      "maxCount": 5
+    }
+  ]
+}

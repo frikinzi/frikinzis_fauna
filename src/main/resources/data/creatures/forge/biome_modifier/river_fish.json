@@ -1,0 +1,36 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "#minecraft:is_river",
+  "spawners": [
+    {
+      "type": "creatures:pike",
+      "weight": 8,
+      "minCount": 1,
+      "maxCount": 1
+    },
+    {
+      "type": "creatures:guppy",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 8
+    },
+    {
+      "type": "creatures:trout",
+      "weight": 10,
+      "minCount": 1,
+      "maxCount": 1
+    },
+    {
+      "type": "creatures:arapaima",
+      "weight": 5,
+      "minCount": 1,
+      "maxCount": 1
+    },
+    {
+      "type": "creatures:tigerbarb",
+      "weight": 25,
+      "minCount": 1,
+      "maxCount": 1
+    }
+  ]
+}
