@@ -44,55 +44,55 @@ public class ModEventSubscriber {
 //        event.put(CreaturesEntities.GHOST_CRAB.get(), GhostCrabEntity.createAttributes().build());
 //        event.put(CreaturesEntities.GOURAMI.get(), GouramiEntity.createAttributes().build());
         event.put(CreaturesEntities.PYGMY_FALCON.get(), PygmyFalconEntity.createAttributes().build());
-//        event.put(CreaturesEntities.BARN_OWL.get(), BarnOwlEntity.createAttributes().build());
-//        event.put(CreaturesEntities.WILD_DUCK.get(), WildDuckEntity.createAttributes().build());
-//        event.put(CreaturesEntities.ROLLER.get(), RollerEntity.createAttributes().build());
+        event.put(CreaturesEntities.BARN_OWL.get(), BarnOwlEntity.createAttributes().build());
+        event.put(CreaturesEntities.WILD_DUCK.get(), WildDuckEntity.createAttributes().build());
+        event.put(CreaturesEntities.ROLLER.get(), RollerEntity.createAttributes().build());
 //        event.put(CreaturesEntities.GOLDFISH.get(), GoldfishEntity.createAttributes().build());
 //        event.put(CreaturesEntities.RANCHU.get(), RanchuEntity.createAttributes().build());
-//        event.put(CreaturesEntities.CHICKADEE.get(), ChickadeeEntity.createAttributes().build());
-//        event.put(CreaturesEntities.PYGMY_GOOSE.get(), PygmyGooseEntity.createAttributes().build());
+        event.put(CreaturesEntities.CHICKADEE.get(), ChickadeeEntity.createAttributes().build());
+        event.put(CreaturesEntities.PYGMY_GOOSE.get(), PygmyGooseEntity.createAttributes().build());
 //        event.put(CreaturesEntities.FIRE_GOBY.get(), FireGobyEntity.createAttributes().build());
 //        event.put(CreaturesEntities.BLUE_TANG.get(), BlueTangEntity.createAttributes().build());
 //        event.put(CreaturesEntities.TROUT.get(), TroutEntity.createAttributes().build());
-//        event.put(CreaturesEntities.SWALLOW.get(), SwallowEntity.createAttributes().build());
+        event.put(CreaturesEntities.SWALLOW.get(), SwallowEntity.createAttributes().build());
 //        event.put(CreaturesEntities.FIDDLER_CRAB.get(), FiddlerCrabEntity.createAttributes().build());
 //        event.put(CreaturesEntities.FLAME_ANGELFISH.get(), FlameAngelfishEntity.createAttributes().build());
-//        event.put(CreaturesEntities.IBIS.get(), IbisEntity.createAttributes().build());
+        event.put(CreaturesEntities.IBIS.get(), IbisEntity.createAttributes().build());
 //        event.put(CreaturesEntities.RED_SNAPPER.get(), RedSnapperEntity.createAttributes().build());
-//        event.put(CreaturesEntities.WOOD_DUCK.get(), WoodDuckEntity.createAttributes().build());
-//        event.put(CreaturesEntities.PEAFOWL.get(), PeafowlEntity.createAttributes().build());
-//        event.put(CreaturesEntities.SPARROW.get(), SparrowEntity.createAttributes().build());
-//        event.put(CreaturesEntities.BUSHTIT.get(), BushtitEntity.createAttributes().build());
-//        event.put(CreaturesEntities.EAGLEOWL.get(), EagleOwlEntity.createAttributes().build());
-//        event.put(CreaturesEntities.ROBIN.get(), RobinEntity.createAttributes().build());
-//        event.put(CreaturesEntities.MAGPIE.get(), MagpieEntity.createAttributes().build());
-//        event.put(CreaturesEntities.LAUGHINGTHRUSH.get(), LaughingthrushEntity.createAttributes().build());
-//        event.put(CreaturesEntities.GOOSE.get(), GooseEntity.createAttributes().build());
-//        event.put(CreaturesEntities.OSPREY.get(), OspreyEntity.createAttributes().build());
-//        event.put(CreaturesEntities.KINGFISHER.get(), KingfisherEntity.createAttributes().build());
-//        event.put(CreaturesEntities.PELICAN.get(), PelicanEntity.createAttributes().build());
-//        event.put(CreaturesEntities.LAPWING.get(), LapwingEntity.createAttributes().build());
-//        event.put(CreaturesEntities.SKUA.get(), SkuaEntity.createAttributes().build());
-//        event.put(CreaturesEntities.BUNTING.get(), BuntingEntity.createAttributes().build());
-//        event.put(CreaturesEntities.MONAL.get(), MonalEntity.createAttributes().build());
-//        event.put(CreaturesEntities.TANAGER.get(), TanagerEntity.createAttributes().build());
-//        event.put(CreaturesEntities.FINCH.get(), FinchEntity.createAttributes().build());
+        event.put(CreaturesEntities.WOOD_DUCK.get(), WoodDuckEntity.createAttributes().build());
+        event.put(CreaturesEntities.PEAFOWL.get(), PeafowlEntity.createAttributes().build());
+        event.put(CreaturesEntities.SPARROW.get(), SparrowEntity.createAttributes().build());
+        event.put(CreaturesEntities.BUSHTIT.get(), BushtitEntity.createAttributes().build());
+        event.put(CreaturesEntities.EAGLEOWL.get(), EagleOwlEntity.createAttributes().build());
+        event.put(CreaturesEntities.ROBIN.get(), RobinEntity.createAttributes().build());
+        event.put(CreaturesEntities.MAGPIE.get(), MagpieEntity.createAttributes().build());
+        event.put(CreaturesEntities.LAUGHINGTHRUSH.get(), LaughingthrushEntity.createAttributes().build());
+        event.put(CreaturesEntities.GOOSE.get(), GooseEntity.createAttributes().build());
+        event.put(CreaturesEntities.OSPREY.get(), OspreyEntity.createAttributes().build());
+        event.put(CreaturesEntities.KINGFISHER.get(), KingfisherEntity.createAttributes().build());
+        event.put(CreaturesEntities.PELICAN.get(), PelicanEntity.createAttributes().build());
+        event.put(CreaturesEntities.LAPWING.get(), LapwingEntity.createAttributes().build());
+        event.put(CreaturesEntities.SKUA.get(), SkuaEntity.createAttributes().build());
+        event.put(CreaturesEntities.BUNTING.get(), BuntingEntity.createAttributes().build());
+        event.put(CreaturesEntities.MONAL.get(), MonalEntity.createAttributes().build());
+        event.put(CreaturesEntities.TANAGER.get(), TanagerEntity.createAttributes().build());
+        event.put(CreaturesEntities.FINCH.get(), FinchEntity.createAttributes().build());
 //        event.put(CreaturesEntities.VAMPIRECRAB.get(), VampireCrabEntity.createAttributes().build());
 //        event.put(CreaturesEntities.TARANTULA.get(), TarantulaEntity.createAttributes().build());
-//        event.put(CreaturesEntities.CAPERCAILLIE.get(), CapercaillieEntity.createAttributes().build());
+        event.put(CreaturesEntities.CAPERCAILLIE.get(), CapercaillieEntity.createAttributes().build());
 //        event.put(CreaturesEntities.TIGERBARB.get(), TigerBarbEntity.createAttributes().build());
-//        event.put(CreaturesEntities.PHEASANT.get(), PheasantEntity.createAttributes().build());
+        event.put(CreaturesEntities.PHEASANT.get(), PheasantEntity.createAttributes().build());
 //        event.put(CreaturesEntities.ARAPAIMA.get(), ArapaimaEntity.createAttributes().build());
 //        event.put(CreaturesEntities.PIRANHA.get(), PiranhaEntity.createAttributes().build());
-//        event.put(CreaturesEntities.STORK.get(), StorkEntity.createAttributes().build());
-//        event.put(CreaturesEntities.WHISTLINGDUCK.get(), WhistlingDuckEntity.createAttributes().build());
-//        event.put(CreaturesEntities.GROUND_HORNBILL.get(), GroundHornbillEntity.createAttributes().build());
-//        event.put(CreaturesEntities.SECRETARYBIRD.get(), SecretaryBirdEntity.createAttributes().build());
-//        event.put(CreaturesEntities.SHOEBILL.get(), ShoebillEntity.createAttributes().build());
-//        event.put(CreaturesEntities.STARLING.get(), StarlingEntity.createAttributes().build());
+        event.put(CreaturesEntities.STORK.get(), StorkEntity.createAttributes().build());
+        event.put(CreaturesEntities.WHISTLING_DUCK.get(), WhistlingDuckEntity.createAttributes().build());
+        event.put(CreaturesEntities.GROUND_HORNBILL.get(), GroundHornbillEntity.createAttributes().build());
+        event.put(CreaturesEntities.SECRETARYBIRD.get(), SecretaryBirdEntity.createAttributes().build());
+        event.put(CreaturesEntities.SHOEBILL.get(), ShoebillEntity.createAttributes().build());
+        event.put(CreaturesEntities.STARLING.get(), StarlingEntity.createAttributes().build());
 //        event.put(CreaturesEntities.TAMBAQUI.get(), TambaquiEntity.createAttributes().build());
 //        event.put(CreaturesEntities.ELEPHANTNOSE.get(), ElephantNoseFishEntity.createAttributes().build());
-//        event.put(CreaturesEntities.CORMORANT.get(), CormorantEntity.createAttributes().build());
+        event.put(CreaturesEntities.CORMORANT.get(), CormorantEntity.createAttributes().build());
 //        event.put(CreaturesEntities.STINGRAY.get(), StingrayEntity.createAttributes().build());
 //        event.put(CreaturesEntities.PUFFIN.get(), PuffinEntity.createAttributes().build());
 //        event.put(CreaturesEntities.SAWFISH.get(), SawfishEntity.createAttributes().build());
@@ -243,90 +243,90 @@ public class ModEventSubscriber {
 //        SpawnPlacements.register(CreaturesEntities.FIDDLER_CRAB.get(),
 //                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 //                GhostCrabEntity::checkAnimalSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.PYGMY_FALCON.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                PygmyFalconEntity::checkFalconSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.BARN_OWL.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                CreaturesFlyingBird::checkBirdSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.WILD_DUCK.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                Animal::checkAnimalSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.ROLLER.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                CreaturesFlyingBird::checkBirdSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.CHICKADEE.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                CreaturesFlyingBird::checkBirdSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.PYGMY_GOOSE.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                Animal::checkAnimalSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.SWALLOW.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                CreaturesFlyingBird::checkBirdSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.PEAFOWL.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                CreaturesFlyingBird::checkBirdSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.SPARROW.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                SparrowEntity::checkSparrowSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.BUSHTIT.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                CreaturesFlyingBird::checkBirdSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.LAUGHINGTHRUSH.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                CreaturesFlyingBird::checkBirdSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.EAGLEOWL.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                CreaturesFlyingBird::checkBirdSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.ROBIN.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                CreaturesFlyingBird::checkBirdSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.MAGPIE.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                CreaturesFlyingBird::checkBirdSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.GOOSE.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                CreaturesFlyingBird::checkBirdSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.OSPREY.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                CreaturesFlyingBird::checkBirdSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.KINGFISHER.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                CreaturesFlyingBird::checkBirdSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.PELICAN.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                PelicanEntity::checkPelicanSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.LAPWING.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                CreaturesFlyingBird::checkBirdSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.SKUA.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                LargePenguinEntity::checkPenguinSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.BUNTING.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                CreaturesFlyingBird::checkBirdSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.MONAL.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                CreaturesFlyingBird::checkBirdSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.TANAGER.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                CreaturesFlyingBird::checkBirdSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.FINCH.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                CreaturesFlyingBird::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.PYGMY_FALCON.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                PygmyFalconEntity::checkAnimalSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.BARN_OWL.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CreaturesFlyingBird::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.WILD_DUCK.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                Animal::checkAnimalSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.ROLLER.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CreaturesFlyingBird::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.CHICKADEE.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CreaturesFlyingBird::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.PYGMY_GOOSE.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                Animal::checkAnimalSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.SWALLOW.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CreaturesFlyingBird::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.PEAFOWL.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CreaturesFlyingBird::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.SPARROW.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                SparrowEntity::checkAnimalSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.BUSHTIT.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CreaturesFlyingBird::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.LAUGHINGTHRUSH.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CreaturesFlyingBird::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.EAGLEOWL.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CreaturesFlyingBird::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.ROBIN.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CreaturesFlyingBird::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.MAGPIE.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CreaturesFlyingBird::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.GOOSE.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CreaturesFlyingBird::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.OSPREY.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CreaturesFlyingBird::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.KINGFISHER.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CreaturesFlyingBird::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.PELICAN.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                PelicanEntity::checkAnimalSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.LAPWING.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CreaturesFlyingBird::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.SKUA.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                SeaEagleEntity::checkAnimalSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.BUNTING.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CreaturesFlyingBird::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.MONAL.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CreaturesFlyingBird::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.TANAGER.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CreaturesFlyingBird::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.FINCH.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CreaturesFlyingBird::checkBirdSpawnRules);
 //        SpawnPlacements.register(CreaturesEntities.VAMPIRECRAB.get(),
 //                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 //                GhostCrabEntity::checkAnimalSpawnRules);
 //        SpawnPlacements.register(CreaturesEntities.TARANTULA.get(),
 //                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 //                TarantulaEntity::checkTarantulaSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.CAPERCAILLIE.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                CreaturesFlyingBird::checkBirdSpawnRules);
-//        SpawnPlacements.register(CreaturesEntities.PHEASANT.get(),
-//                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-//                CreaturesFlyingBird::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.CAPERCAILLIE.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CreaturesFlyingBird::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.PHEASANT.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CreaturesFlyingBird::checkBirdSpawnRules);
 //        SpawnPlacements.register(CreaturesEntities.STORK.get(),
 //                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
 //                CreaturesFlyingBird::checkBirdSpawnRules);
@@ -404,40 +404,40 @@ public class ModEventSubscriber {
         birdEntityMap.put(11, CreaturesEntities.CONURE.get());
         birdEntityMap.put(12, CreaturesEntities.FAIRYWREN.get());
         birdEntityMap.put(13, CreaturesEntities.PYGMY_FALCON.get());
-//        birdEntityMap.put(14, CreaturesEntities.BARN_OWL.get());
-//        birdEntityMap.put(15, CreaturesEntities.WILD_DUCK.get());
-//        birdEntityMap.put(16, CreaturesEntities.ROLLER.get());
-//        birdEntityMap.put(17, CreaturesEntities.CHICKADEE.get());
-//        birdEntityMap.put(18, CreaturesEntities.PYGMY_GOOSE.get());
-//        birdEntityMap.put(19, CreaturesEntities.SWALLOW.get());
-//        birdEntityMap.put(20, CreaturesEntities.IBIS.get());
-//        birdEntityMap.put(21, CreaturesEntities.WOOD_DUCK.get());
-//        birdEntityMap.put(22, CreaturesEntities.PEAFOWL.get());
-//        birdEntityMap.put(23, CreaturesEntities.SPARROW.get());
-//        birdEntityMap.put(24, CreaturesEntities.BUSHTIT.get());
-//        birdEntityMap.put(25, CreaturesEntities.EAGLEOWL.get());
-//        birdEntityMap.put(26, CreaturesEntities.ROBIN.get());
-//        birdEntityMap.put(27, CreaturesEntities.LAUGHINGTHRUSH.get());
-//        birdEntityMap.put(28, CreaturesEntities.MAGPIE.get());
-//        birdEntityMap.put(29, CreaturesEntities.GOOSE.get());
-//        birdEntityMap.put(30, CreaturesEntities.OSPREY.get());
-//        birdEntityMap.put(31, CreaturesEntities.KINGFISHER.get());
-//        birdEntityMap.put(32, CreaturesEntities.PELICAN.get());
-//        birdEntityMap.put(33, CreaturesEntities.LAPWING.get());
-//        birdEntityMap.put(34, CreaturesEntities.SKUA.get());
-//        birdEntityMap.put(35, CreaturesEntities.BUNTING.get());
-//        birdEntityMap.put(36, CreaturesEntities.MONAL.get());
-//        birdEntityMap.put(37, CreaturesEntities.TANAGER.get());
-//        birdEntityMap.put(38, CreaturesEntities.FINCH.get());
-//        birdEntityMap.put(39, CreaturesEntities.CAPERCAILLIE.get());
-//        birdEntityMap.put(40, CreaturesEntities.PHEASANT.get());
-//        birdEntityMap.put(41, CreaturesEntities.STORK.get());
-//        birdEntityMap.put(42, CreaturesEntities.WHISTLINGDUCK.get());
-//        birdEntityMap.put(43, CreaturesEntities.GROUND_HORNBILL.get());
-//        birdEntityMap.put(44, CreaturesEntities.SECRETARYBIRD.get());
-//        birdEntityMap.put(45, CreaturesEntities.SHOEBILL.get());
-//        birdEntityMap.put(46, CreaturesEntities.STARLING.get());
-//        birdEntityMap.put(47, CreaturesEntities.CORMORANT.get());
+        birdEntityMap.put(14, CreaturesEntities.BARN_OWL.get());
+        birdEntityMap.put(15, CreaturesEntities.WILD_DUCK.get());
+        birdEntityMap.put(16, CreaturesEntities.ROLLER.get());
+        birdEntityMap.put(17, CreaturesEntities.CHICKADEE.get());
+        birdEntityMap.put(18, CreaturesEntities.PYGMY_GOOSE.get());
+        birdEntityMap.put(19, CreaturesEntities.SWALLOW.get());
+        birdEntityMap.put(20, CreaturesEntities.IBIS.get());
+        birdEntityMap.put(21, CreaturesEntities.WOOD_DUCK.get());
+        birdEntityMap.put(22, CreaturesEntities.PEAFOWL.get());
+        birdEntityMap.put(23, CreaturesEntities.SPARROW.get());
+        birdEntityMap.put(24, CreaturesEntities.BUSHTIT.get());
+        birdEntityMap.put(25, CreaturesEntities.EAGLEOWL.get());
+        birdEntityMap.put(26, CreaturesEntities.ROBIN.get());
+        birdEntityMap.put(27, CreaturesEntities.LAUGHINGTHRUSH.get());
+        birdEntityMap.put(28, CreaturesEntities.MAGPIE.get());
+        birdEntityMap.put(29, CreaturesEntities.GOOSE.get());
+        birdEntityMap.put(30, CreaturesEntities.OSPREY.get());
+        birdEntityMap.put(31, CreaturesEntities.KINGFISHER.get());
+        birdEntityMap.put(32, CreaturesEntities.PELICAN.get());
+        birdEntityMap.put(33, CreaturesEntities.LAPWING.get());
+        birdEntityMap.put(34, CreaturesEntities.SKUA.get());
+        birdEntityMap.put(35, CreaturesEntities.BUNTING.get());
+        birdEntityMap.put(36, CreaturesEntities.MONAL.get());
+        birdEntityMap.put(37, CreaturesEntities.TANAGER.get());
+        birdEntityMap.put(38, CreaturesEntities.FINCH.get());
+        birdEntityMap.put(39, CreaturesEntities.CAPERCAILLIE.get());
+        birdEntityMap.put(40, CreaturesEntities.PHEASANT.get());
+        birdEntityMap.put(41, CreaturesEntities.STORK.get());
+        birdEntityMap.put(42, CreaturesEntities.WHISTLING_DUCK.get());
+        birdEntityMap.put(43, CreaturesEntities.GROUND_HORNBILL.get());
+        birdEntityMap.put(44, CreaturesEntities.SECRETARYBIRD.get());
+        birdEntityMap.put(45, CreaturesEntities.SHOEBILL.get());
+        birdEntityMap.put(46, CreaturesEntities.STARLING.get());
+        birdEntityMap.put(47, CreaturesEntities.CORMORANT.get());
 //        birdEntityMap.put(48, CreaturesEntities.PUFFIN.get());
 //        birdEntityMap.put(49, CreaturesEntities.SEAGULL.get());
 //        birdEntityMap.put(50, CreaturesEntities.BOOBY.get());

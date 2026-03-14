@@ -58,20 +58,20 @@ public class CreaturesEntities {
 //            0.3f, 0.3f, 16749375, 16765696);
     public static final RegistryObject<EntityType<PygmyFalconEntity>> PYGMY_FALCON = registerMob("pygmyfalcon", MobCategory.CREATURE,PygmyFalconEntity::new,
             0.5f, 0.5f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<BarnOwlEntity>> BARN_OWL = registerMob("barn_owl", MobCategory.CREATURE,BarnOwlEntity::new,
-//            0.6f, 0.7f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<WildDuckEntity>> WILD_DUCK = registerMob("wild_duck", MobCategory.CREATURE,WildDuckEntity::new,
-//            0.6f, 0.6f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<RollerEntity>> ROLLER = registerMob("roller", MobCategory.CREATURE,RollerEntity::new,
-//            0.6f, 0.6f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<BarnOwlEntity>> BARN_OWL = registerMob("barn_owl", MobCategory.CREATURE,BarnOwlEntity::new,
+            0.6f, 0.7f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<WildDuckEntity>> WILD_DUCK = registerMob("wild_duck", MobCategory.CREATURE,WildDuckEntity::new,
+            0.6f, 0.6f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<RollerEntity>> ROLLER = registerMob("roller", MobCategory.CREATURE,RollerEntity::new,
+            0.6f, 0.6f, 16749375, 16765696);
 //    public static final RegistryObject<EntityType<GoldfishEntity>> GOLDFISH = registerMob("goldfish", GoldfishEntity::new,
 //            0.3f, 0.3f, 16749375, 16765696);
 //    public static final RegistryObject<EntityType<RanchuEntity>> RANCHU = registerMob("ranchu", RanchuEntity::new,
 //            0.3f, 0.3f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<ChickadeeEntity>> CHICKADEE = registerMob("chickadee", MobCategory.CREATURE,ChickadeeEntity::new,
-//            0.5f, 0.5f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<PygmyGooseEntity>> PYGMY_GOOSE = registerMob("pygmy_goose", MobCategory.CREATURE,PygmyGooseEntity::new,
-//            0.6f, 0.6f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<ChickadeeEntity>> CHICKADEE = registerMob("chickadee", MobCategory.CREATURE,ChickadeeEntity::new,
+            0.5f, 0.5f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<PygmyGooseEntity>> PYGMY_GOOSE = registerMob("pygmy_goose", MobCategory.CREATURE,PygmyGooseEntity::new,
+            0.6f, 0.6f, 16749375, 16765696);
 //    public static final RegistryObject<EntityType<FireGobyEntity>> FIRE_GOBY = registerMob("fire_goby", FireGobyEntity::new,
 //            0.3f, 0.3f, 16749375, 16765696);
 //    public static final RegistryObject<EntityType<BlueTangEntity>> BLUE_TANG = registerMob("blue_tang", BlueTangEntity::new,
@@ -80,85 +80,85 @@ public class CreaturesEntities {
 //            0.3f, 0.3f, 16749375, 16765696);
 //    public static final RegistryObject<EntityType<FlameAngelfishEntity>> FLAME_ANGELFISH = registerMob("flame_angelfish", FlameAngelfishEntity::new,
 //            0.3f, 0.3f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<SwallowEntity>> SWALLOW = registerMob("swallow", MobCategory.CREATURE,SwallowEntity::new,
-//            0.6f, 0.6f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<SwallowEntity>> SWALLOW = registerMob("swallow", MobCategory.CREATURE,SwallowEntity::new,
+            0.6f, 0.6f, 16749375, 16765696);
 //    public static final RegistryObject<EntityType<FiddlerCrabEntity>> FIDDLER_CRAB = registerMob("fiddlercrab", FiddlerCrabEntity::new,
 //            0.3f, 0.3f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<IbisEntity>> IBIS = registerMob("ibis", IbisEntity::new,
-//            0.6f, 0.6f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<IbisEntity>> IBIS = registerMob("ibis", MobCategory.CREATURE,IbisEntity::new,
+            0.6f, 0.6f, 16749375, 16765696);
 //    public static final RegistryObject<EntityType<RedSnapperEntity>> RED_SNAPPER = registerMob("red_snapper", RedSnapperEntity::new,
 //            0.6f, 0.5f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<WoodDuckEntity>> WOOD_DUCK = registerMob("woodduck", WoodDuckEntity::new,
-//            0.6f, 0.6f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<PeafowlEntity>> PEAFOWL = registerMob("peafowl", PeafowlEntity::new,
-//            1.0f, 1.0f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<SparrowEntity>> SPARROW = registerMob("sparrow", SparrowEntity::new,
-//            0.5f, 0.5f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<BushtitEntity>> BUSHTIT = registerMob("bushtit", BushtitEntity::new,
-//            0.5f, 0.5f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<EagleOwlEntity>> EAGLEOWL = registerMob("eagleowl", EagleOwlEntity::new,
-//            0.6f, 0.6f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<RobinEntity>> ROBIN = registerMob("robin", RobinEntity::new,
-//            0.5f, 0.5f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<LaughingthrushEntity>> LAUGHINGTHRUSH = registerMob("laughingthrush", LaughingthrushEntity::new,
-//            0.5f, 0.5f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<MagpieEntity>> MAGPIE = registerMob("magpie", MagpieEntity::new,
-//            0.6f, 0.6f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<GooseEntity>> GOOSE = registerMob("goose", GooseEntity::new,
-//            0.8f, 0.8f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<OspreyEntity>> OSPREY = registerMob("osprey", OspreyEntity::new,
-//            1.0f, 1.0f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<KingfisherEntity>> KINGFISHER = registerMob("kingfisher", KingfisherEntity::new,
-//            0.5f, 0.5f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<PelicanEntity>> PELICAN = registerMob("pelican", PelicanEntity::new,
-//            0.8f, 0.8f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<LapwingEntity>> LAPWING = registerMob("lapwing", LapwingEntity::new,
-//            0.6f, 0.7f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<SkuaEntity>> SKUA = registerMob("skua", SkuaEntity::new,
-//            1.0f, 1.0f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<BuntingEntity>> BUNTING = registerMob("bunting", BuntingEntity::new,
-//            0.5f, 0.5f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<MonalEntity>> MONAL = registerMob("monal", MonalEntity::new,
-//            1.0f, 1.0f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<TanagerEntity>> TANAGER = registerMob("tanager", TanagerEntity::new,
-//            0.5f, 0.5f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<FinchEntity>> FINCH = registerMob("finch", FinchEntity::new,
-//            0.5f, 0.5f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<WoodDuckEntity>> WOOD_DUCK = registerMob("woodduck", MobCategory.CREATURE,WoodDuckEntity::new,
+            0.6f, 0.6f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<PeafowlEntity>> PEAFOWL = registerMob("peafowl", MobCategory.CREATURE, PeafowlEntity::new,
+            1.0f, 1.0f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<SparrowEntity>> SPARROW = registerMob("sparrow", MobCategory.CREATURE, SparrowEntity::new,
+            0.5f, 0.5f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<BushtitEntity>> BUSHTIT = registerMob("bushtit", MobCategory.CREATURE, BushtitEntity::new,
+            0.5f, 0.5f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<EagleOwlEntity>> EAGLEOWL = registerMob("eagleowl", MobCategory.CREATURE, EagleOwlEntity::new,
+            0.6f, 0.6f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<RobinEntity>> ROBIN = registerMob("robin", MobCategory.CREATURE, RobinEntity::new,
+            0.5f, 0.5f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<LaughingthrushEntity>> LAUGHINGTHRUSH = registerMob("laughingthrush", MobCategory.CREATURE, LaughingthrushEntity::new,
+            0.5f, 0.5f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<MagpieEntity>> MAGPIE = registerMob("magpie", MobCategory.CREATURE, MagpieEntity::new,
+            0.6f, 0.6f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<GooseEntity>> GOOSE = registerMob("goose", MobCategory.CREATURE, GooseEntity::new,
+            0.8f, 0.8f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<OspreyEntity>> OSPREY = registerMob("osprey", MobCategory.CREATURE, OspreyEntity::new,
+            1.0f, 1.0f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<KingfisherEntity>> KINGFISHER = registerMob("kingfisher", MobCategory.CREATURE, KingfisherEntity::new,
+            0.5f, 0.5f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<PelicanEntity>> PELICAN = registerMob("pelican", MobCategory.CREATURE, PelicanEntity::new,
+            0.8f, 0.8f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<LapwingEntity>> LAPWING = registerMob("lapwing", MobCategory.CREATURE, LapwingEntity::new,
+            0.6f, 0.7f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<SkuaEntity>> SKUA = registerMob("skua", MobCategory.CREATURE, SkuaEntity::new,
+            1.0f, 1.0f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<BuntingEntity>> BUNTING = registerMob("bunting", MobCategory.CREATURE, BuntingEntity::new,
+            0.5f, 0.5f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<MonalEntity>> MONAL = registerMob("monal", MobCategory.CREATURE, MonalEntity::new,
+            1.0f, 1.0f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<TanagerEntity>> TANAGER = registerMob("tanager", MobCategory.CREATURE, TanagerEntity::new,
+            0.5f, 0.5f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<FinchEntity>> FINCH = registerMob("finch", MobCategory.CREATURE, FinchEntity::new,
+            0.5f, 0.5f, 16749375, 16765696);
 //    public static final RegistryObject<EntityType<VampireCrabEntity>> VAMPIRECRAB = registerMob("vampirecrab", VampireCrabEntity::new,
 //            0.3f, 0.2f, 16749375, 16765696);
 //    public static final RegistryObject<EntityType<TarantulaEntity>> TARANTULA = registerMob("tarantula", TarantulaEntity::new,
 //            0.5f, 0.2f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<CapercaillieEntity>> CAPERCAILLIE = registerMob("capercaillie", CapercaillieEntity::new,
-//            1.0f, 1.0f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<PheasantEntity>> PHEASANT = registerMob("pheasant", PheasantEntity::new,
-//            1.0f, 0.8f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<CapercaillieEntity>> CAPERCAILLIE = registerMob("capercaillie", MobCategory.CREATURE, CapercaillieEntity::new,
+            1.0f, 1.0f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<PheasantEntity>> PHEASANT = registerMob("pheasant", MobCategory.CREATURE, PheasantEntity::new,
+            1.0f, 0.8f, 16749375, 16765696);
 //    public static final RegistryObject<EntityType<TigerBarbEntity>> TIGERBARB = registerMob("tigerbarb", TigerBarbEntity::new,
 //            0.3f, 0.3f, 16749375, 16765696);
 //    public static final RegistryObject<EntityType<ArapaimaEntity>> ARAPAIMA = registerMob("arapaima", ArapaimaEntity::new,
 //            1.0f, 1.0f, 16749375, 16765696);
 //    public static final RegistryObject<EntityType<PiranhaEntity>> PIRANHA = registerMob("piranha", PiranhaEntity::new,
 //            0.6f, 0.6f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<StorkEntity>> STORK = registerMob("stork", StorkEntity::new,
-//            0.6f, 1.0f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<WhistlingDuckEntity>> WHISTLINGDUCK = registerMob("whistlingduck", WhistlingDuckEntity::new,
-//            0.6f, 0.6f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<GroundHornbillEntity>> GROUND_HORNBILL = registerMob("groundhornbill", GroundHornbillEntity::new,
+    public static final RegistryObject<EntityType<StorkEntity>> STORK = registerMob("stork", MobCategory.CREATURE, StorkEntity::new,
+            0.6f, 1.0f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<WhistlingDuckEntity>> WHISTLING_DUCK = registerMob("whistlingduck", MobCategory.CREATURE, WhistlingDuckEntity::new,
+            0.6f, 0.6f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<GroundHornbillEntity>> GROUND_HORNBILL = registerMob("groundhornbill", MobCategory.CREATURE, GroundHornbillEntity::new,
+            0.8f, 0.8f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<SecretaryBirdEntity>> SECRETARYBIRD = registerMob("secretarybird", MobCategory.CREATURE, SecretaryBirdEntity::new,
+            0.8f, 1.5f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<ShoebillEntity>> SHOEBILL = registerMob("shoebill", MobCategory.CREATURE, ShoebillEntity::new,
+            0.8f, 1.5f, 16749375, 16765696);
+    public static final RegistryObject<EntityType<StarlingEntity>> STARLING = registerMob("starling",MobCategory.CREATURE,  StarlingEntity::new,
+            0.5f, 0.5f, 16749375, 16765696);
+//    public static final RegistryObject<EntityType<TambaquiEntity>> TAMBAQUI = registerMob("tambaqui", MobCategory.CREATURE, TambaquiEntity::new,
 //            0.8f, 0.8f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<SecretaryBirdEntity>> SECRETARYBIRD = registerMob("secretarybird", SecretaryBirdEntity::new,
-//            0.8f, 1.5f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<ShoebillEntity>> SHOEBILL = registerMob("shoebill", ShoebillEntity::new,
-//            0.8f, 1.5f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<StarlingEntity>> STARLING = registerMob("starling", StarlingEntity::new,
-//            0.5f, 0.5f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<TambaquiEntity>> TAMBAQUI = registerMob("tambaqui", TambaquiEntity::new,
-//            0.8f, 0.8f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<ElephantNoseFishEntity>> ELEPHANTNOSE = registerMob("elephantnose", ElephantNoseFishEntity::new,
+//    public static final RegistryObject<EntityType<ElephantNoseFishEntity>> ELEPHANTNOSE = registerMob("elephantnose", MobCategory.CREATURE, ElephantNoseFishEntity::new,
 //            0.4f, 0.4f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<CormorantEntity>> CORMORANT = registerMob("cormorant", CormorantEntity::new,
-//            0.5f, 0.5f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<StingrayEntity>> STINGRAY = registerMob("stingray", StingrayEntity::new,
+    public static final RegistryObject<EntityType<CormorantEntity>> CORMORANT = registerMob("cormorant", MobCategory.CREATURE, CormorantEntity::new,
+            0.5f, 0.5f, 16749375, 16765696);
+//    public static final RegistryObject<EntityType<StingrayEntity>> STINGRAY = registerMob("stingray", MobCategory.CREATURE, StingrayEntity::new,
 //            0.4f, 0.7f, 16749375, 16765696);
-//    public static final RegistryObject<EntityType<PuffinEntity>> PUFFIN = registerMob("puffin", PuffinEntity::new,
+//    public static final RegistryObject<EntityType<PuffinEntity>> PUFFIN = registerMob("puffin", MobCategory.CREATURE, PuffinEntity::new,
 //            0.5f, 0.5f, 16749375, 16765696);
 //    public static final RegistryObject<EntityType<SawfishEntity>> SAWFISH = registerMob("sawfish", SawfishEntity::new,
 //            1.5f, 1.0f, 16749375, 16765696);

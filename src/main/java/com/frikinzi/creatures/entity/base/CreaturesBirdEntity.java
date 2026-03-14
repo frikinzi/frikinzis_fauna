@@ -34,8 +34,8 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.LookControl;
 import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.Parrot;
 import net.minecraft.world.entity.animal.ShoulderRidingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -427,7 +427,7 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
         return this.getFlag(32);
     }
 
-    void setSleeping(boolean p_28627_) {
+    public void setSleeping(boolean p_28627_) {
         this.setFlag(32, p_28627_);
     }
 
@@ -448,7 +448,7 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
         this.setSleeping(false);
     }
 
-    void clearStates() {
+    public void clearStates() {
         this.setSleeping(false);
     }
 
@@ -506,6 +506,7 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
         public void start() {
             CreaturesBirdEntity.this.setSleeping(true);
             CreaturesBirdEntity.this.getNavigation().stop();
+            CreaturesBirdEntity.this.getBrain().eraseMemory(MemoryModuleType.WALK_TARGET);
             //CreaturesBirdEntity.this.getMoveControl().setWantedPosition(CreaturesBirdEntity.this.getX(), CreaturesBirdEntity.this.getY(), CreaturesBirdEntity.this.getZ(), 0.0D);
         }
     }
@@ -549,6 +550,9 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
                 System.out.println(this.getVariant());
                 Creatures.PROXY.openCreaturesGui();
             }
+            return InteractionResult.SUCCESS;
+        }
+        if (itemstack.getItem() == CreaturesItems.BIRD_CARRIER.get()) {
             return InteractionResult.SUCCESS;
         }
         if (!this.isTame() && this.isFood(itemstack) && this.canTame()) {
@@ -693,5 +697,13 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
 
     public String getScientificName() {
         return "";
+    }
+
+    public String getGenderName() {
+        if (this.getGender() == 1) {
+            return "m";
+        } else {
+            return "f";
+        }
     }
 }

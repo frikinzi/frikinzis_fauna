@@ -31,6 +31,8 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
+import java.util.UUID;
 
 public class EggEntity extends AgeableMob implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
@@ -38,6 +40,7 @@ public class EggEntity extends AgeableMob implements GeoEntity {
     private static final EntityDataAccessor<Integer> GENDER = SynchedEntityData.defineId(EggEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> SPECIES = SynchedEntityData.defineId(EggEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Float> HEIGHT_MULTIPLIER = SynchedEntityData.defineId(EggEntity.class, EntityDataSerializers.FLOAT);
+    protected static final EntityDataAccessor<Optional<UUID>> DATA_PARENTUUID_ID = SynchedEntityData.defineId(EggEntity.class, EntityDataSerializers.OPTIONAL_UUID);
     public int hatchTime = this.random.nextInt(CreaturesConfig.base_egg_hatch_time.get()) + CreaturesConfig.base_egg_hatch_time.get();
 
     public EggEntity(EntityType<? extends EggEntity> p_29362_, Level p_29363_) {
@@ -97,6 +100,7 @@ public class EggEntity extends AgeableMob implements GeoEntity {
         this.entityData.define(GENDER, 0);
         this.entityData.define(SPECIES, 0);
         this.entityData.define(HEIGHT_MULTIPLIER, 1.0F);
+        this.entityData.define(DATA_PARENTUUID_ID, Optional.empty());
     }
 
     public void addAdditionalSaveData(CompoundTag p_29422_) {
@@ -105,6 +109,9 @@ public class EggEntity extends AgeableMob implements GeoEntity {
         p_29422_.putFloat("HeightMultiplier", this.getVariant());
         p_29422_.putInt("Gender", this.getGender());
         p_29422_.putInt("Species", this.getSpecies());
+        if (this.getParentUUID() != null) {
+            p_29422_.putUUID("Parent", this.getParentUUID());
+        }
     }
 
     public void readAdditionalSaveData(CompoundTag p_29402_) {
@@ -117,8 +124,21 @@ public class EggEntity extends AgeableMob implements GeoEntity {
         this.setVariant(p_29402_.getInt("Variant"));
         this.setGender(p_29402_.getInt("Gender"));
         this.setSpecies(p_29402_.getInt("Species"));
+        UUID uuid;
+        if (p_29402_.hasUUID("Parent")) {
+            uuid = p_29402_.getUUID("Parent");
+            this.setParentUUID(uuid);
+        }
     }
 
+    @Nullable
+    public UUID getParentUUID() {
+        return this.entityData.get(DATA_PARENTUUID_ID).orElse((UUID)null);
+    }
+
+    public void setParentUUID(@Nullable UUID p_184754_1_) {
+        this.entityData.set(DATA_PARENTUUID_ID, Optional.ofNullable(p_184754_1_));
+    }
 
     public int getVariant() {
         return this.entityData.get(DATA_VARIANT_ID);
@@ -159,7 +179,7 @@ public class EggEntity extends AgeableMob implements GeoEntity {
                 EntityType<? extends CreaturesBirdEntity> type = ModEventSubscriber.getBirdEntityMap().get(species);
                 if (type != null) {
                     CreaturesBirdEntity bird = createBirdEntity(type, egg);
-
+                    //bird.setParentUUID(this.getParentUUID());
                     if (this.random.nextFloat() < bird.getHatchChance()) {
                         this.level().addFreshEntity(bird);
                     }

@@ -111,6 +111,10 @@ public class KakapoEntity extends CreaturesWalkingBird implements GeoEntity {
         return "Strigops habroptilus";
     }
 
+    public boolean timeSleep() {
+        return this.level().isDay();
+    }
+
     public Component getFunFact() {
         return Component.translatable("description.creatures.kakapo");
     }

@@ -2,13 +2,15 @@ package com.frikinzi.creatures;
 
 import com.frikinzi.creatures.client.ClientProxy;
 import com.frikinzi.creatures.client.block.CreaturesBlocks;
-import com.frikinzi.creatures.registry.CreaturesEntities;
-import com.frikinzi.creatures.registry.CreaturesItems;
-import com.frikinzi.creatures.registry.CreaturesSound;
-import com.frikinzi.creatures.registry.ModEventSubscriber;
+import com.frikinzi.creatures.entity.CormorantEntity;
+import com.frikinzi.creatures.entity.ai.CormorantAttackablesSensor;
+import com.frikinzi.creatures.registry.*;
+import com.google.common.collect.ImmutableList;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.entity.ai.sensing.Sensor;
+import net.minecraft.world.entity.ai.sensing.SensorType;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -49,7 +51,6 @@ public class Creatures
     public static CommonProxy PROXY = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
     // Create a Deferred Register to hold Blocks which will all be registered under the "examplemod" namespace
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
-
     public Creatures()
     {
         GeckoLib.initialize();
@@ -58,6 +59,7 @@ public class Creatures
 
         modEventBus.addListener(this::commonSetup);
         CreaturesEntities.ENTITIES.register(modEventBus);
+        CreaturesSensorTypes.SENSOR_TYPES.register(modEventBus);
         CreaturesBlocks.BLOCKS.register(modEventBus);
         CreaturesItems.ITEMS.register(modEventBus);
         CreaturesItems.TABS.register(modEventBus);

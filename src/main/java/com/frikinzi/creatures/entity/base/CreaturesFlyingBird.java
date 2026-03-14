@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity.base;
 
 import com.frikinzi.creatures.entity.ai.MateGoal;
+import com.frikinzi.creatures.entity.ai.StayCloseToEggGoal;
 import com.google.common.collect.Sets;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -49,11 +50,14 @@ public class CreaturesFlyingBird extends CreaturesBirdEntity {
     }
 
     protected void registerGoals() {
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
         this.goalSelector.addGoal(1, new MateGoal(this, 1.0D));
         this.goalSelector.addGoal(0, new PanicGoal(this, 1.25D));
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new SleepGoal());
         this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(2, new StayCloseToEggGoal(this, 1.0D));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
         this.goalSelector.addGoal(2, new FollowOwnerGoal(this, 1.0D, 5.0F, 1.0F, true));
         this.goalSelector.addGoal(2, new CreaturesFlyingBird.ParrotWanderGoal(this, 1.0D));
