@@ -101,7 +101,7 @@ public class LapwingEntity extends CreaturesFlyingBird implements GeoEntity {
     }
 
     public int numVariants() {
-        return 8;
+        return 7;
     }
 
     @Override

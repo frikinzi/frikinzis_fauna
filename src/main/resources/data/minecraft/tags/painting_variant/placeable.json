@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "creatures:fischers",
+    "creatures:mandarin_duck",
+    "creatures:peafowl",
+    "creatures:golden_eagle",
+    "creatures:arapaima",
+    "creatures:victoria_crowned",
+    "creatures:zolda",
+    "creatures:c_elegans",
+    "creatures:trout_info"
+  ]
+}

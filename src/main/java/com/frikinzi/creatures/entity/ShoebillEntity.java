@@ -80,7 +80,7 @@ public class ShoebillEntity extends CreaturesWalkingBird implements GeoEntity {
     }
 
     public int numVariants() {
-        return 4;
+        return 3;
     }
 
     @Override

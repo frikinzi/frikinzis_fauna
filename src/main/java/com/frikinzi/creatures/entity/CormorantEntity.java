@@ -2,9 +2,9 @@ package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.entity.ai.CormorantAi;
-import com.frikinzi.creatures.entity.ai.MateGoal;
 import com.frikinzi.creatures.entity.ai.StayCloseToEggGoal;
 import com.frikinzi.creatures.entity.base.CreaturesWalkingBird;
+import com.frikinzi.creatures.entity.base.WalkingSwimmingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
 import com.frikinzi.creatures.registry.CreaturesSensorTypes;
@@ -72,7 +72,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class CormorantEntity extends CreaturesWalkingBird implements GeoEntity {
+public class CormorantEntity extends WalkingSwimmingBird implements GeoEntity {
 
     private boolean searchingForLand;
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
@@ -311,37 +311,6 @@ public class CormorantEntity extends CreaturesWalkingBird implements GeoEntity {
             super.tick();
 
         }
-    }
-
-    protected Brain.Provider<CormorantEntity> brainProvider() {
-        return Brain.provider(MEMORY_TYPES, SENSOR_TYPES);
-    }
-
-    @Override
-    protected Brain<?> makeBrain(Dynamic<?> dynamic) {
-        return CormorantAi.makeBrain((Brain<CormorantEntity>) this.brainProvider().makeBrain(dynamic));
-    }
-
-    public Brain<CormorantEntity> getBrain() {
-        return (Brain<CormorantEntity>)super.getBrain();
-    }
-
-    protected void customServerAiStep() {
-
-        if (this.isSleeping()) {
-            this.getNavigation().stop();
-            this.getBrain().eraseMemory(MemoryModuleType.WALK_TARGET);
-        }
-            this.level().getProfiler().push("cormorantBrain");
-            this.getBrain().tick((ServerLevel) this.level(), this);
-            this.level().getProfiler().pop();
-            this.level().getProfiler().push("cormorantActivityUpdate");
-            CormorantAi.updateActivity(this);
-            this.level().getProfiler().pop();
-            super.customServerAiStep();
-
-
-
     }
 
     protected void sendDebugPackets() {

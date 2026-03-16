@@ -98,6 +98,8 @@
   "entity.creatures.lungfish": "Lungfish",
   "entity.creatures.littlepenguin": "Little Penguin",
   "entity.creatures.ediblecrab": "Edible Crab",
+  "entity.creatures.marabou": "Marabou Stork",
+
 
   "entity.creatures.egg": "Egg",
   "entity.creatures.roe": "Roe",
@@ -168,6 +170,7 @@
   "item.creatures.frigate_spawn_egg": "Frigate Bird Spawn Egg",
   "item.creatures.stilt_spawn_egg": "Stilt Spawn Egg",
   "item.creatures.littlepenguin_spawn_egg": "Little Penguin Spawn Egg",
+  "item.creatures.marabou_spawn_egg": "Marabou Stork Spawn Egg",
 
   "item.creatures.koi_spawn_egg": "Koi Spawn Egg",
   "item.creatures.dottyback_spawn_egg": "Dottyback Spawn Egg",
@@ -444,6 +447,7 @@
   "entity.stilt.stilt_ambient": "Stilt calls",
   "entity.stilt.stilt_hurt": "Stilt hurts",
   "entity.littlepenguin.littlepenguin": "Little penguin calls",
+  "entity.marabou.marabou_ambient": "Marabou stork calls",
   "entity.egg.hatch": "Egg hatching",
 
   "gui.sex": "Sex:",
@@ -893,6 +897,9 @@
   "message.creatures.dungenesscrab": "Dungeness Crab",
   "message.creatures.bluecrab": "Blue Crab",
   "message.creatures.emilia": "Mexican Redleg Tarantula",
+  "message.creatures.marabou": "Marabou Stork",
+  "message.creatures.greateradjuntant": "Greater Adjutant",
+  "message.creatures.lesseradjuntant": "Lesser Adjutant",
 
   "message.wander": "Set to wandering",
   "message.follow": "Set to following",
@@ -1123,5 +1130,9 @@
   "description.spoonbill.eurasian": "Eurasian spoonbills are found in parts of Europe, Asia, and Africa. They are partially migratory and breed in wetlands.",
   "description.spoonbill.african": "African spoonbills are found in sub-Saharan Africa and Madagascar. It swings its bill side the side to catch small fish and invertebrates in shallow water.",
   "description.spoonbill.blackfaced": "Black-faced spoonbills are found in parts of East Asia. They are considered vulnerable due to habitat loss and disturbance.",
-  "description.spoonbill.yellowbilled": "Yellow-billed spoonbills are native to Australia. They are most closely related to Roseate spoonbills."
+  "description.spoonbill.yellowbilled": "Yellow-billed spoonbills are native to Australia. They are most closely related to Roseate spoonbills.",
+
+  "description.creatures.marabou": "The marabou stork has the largest wingspan of any land bird. It is ill-tempered, and primarily scavenges for carrion.",
+  "description.creatures.greateradjuntant": "Greater adjutants are perceived as 'unclean' due to their scavenging habits. Unfortunately, their populations have declined throughout their range.",
+  "description.creatures.lesseradjuntant": "Unlike the greater adjutant, the lesser adjutant primarily hunts for food, feeding on fish, frogs, and various invertebrates."
 }

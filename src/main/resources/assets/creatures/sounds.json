@@ -304,6 +304,10 @@
     "subtitle": "entity.littlepenguin.littlepenguin",
     "sounds": [ "creatures:entity/littlepenguin/littlepenguin_ambient" ]
   },
+  "entity.marabou.marabou_ambient": {
+    "subtitle": "entity.marabou.marabou_ambient",
+    "sounds": [ "creatures:entity/marabou/marabou_ambient" ]
+  },
   "entity.egg.hatch": {
     "subtitle": "entity.egg.hatch",
     "sounds": [ "creatures:entity/egg/hatch" ]

@@ -29,11 +29,11 @@ public class StorkModel extends GeoModel<StorkEntity> {
             }
             return new ResourceLocation(Creatures.MODID, "textures/entity/stork/stork" + object.getModelNumberFromVariant()+ "_" + object.getVariant() + "_baby.png");
         }
-        if (object.isSleeping()) {
-            return new ResourceLocation(Creatures.MODID, "textures/entity/stork/stork" + object.getModelNumberFromVariant()+ "_" + object.getVariant() + "sleep.png");
-        }
         if (object.isFlying()) {
             return new ResourceLocation(Creatures.MODID, "textures/entity/stork/stork" + object.getModelNumberFromVariant()+ "_"  + object.getVariant() + "fly.png");
+        }
+        if (object.isSleeping()) {
+            return new ResourceLocation(Creatures.MODID, "textures/entity/stork/stork" + object.getModelNumberFromVariant()+ "_" + object.getVariant() + "sleep.png");
         }
         return new ResourceLocation(Creatures.MODID, "textures/entity/stork/stork" + object.getModelNumberFromVariant() + "_"  + object.getVariant() + ".png");
     }
@@ -43,6 +43,10 @@ public class StorkModel extends GeoModel<StorkEntity> {
     {
         if (object.isBaby()) {
             return new ResourceLocation(Creatures.MODID, "animations/animation.stork_baby.json");
+
+        }
+        if (object.isFlying()) {
+            return new ResourceLocation(Creatures.MODID, "animations/animation.stork" + object.getModelNumberFromVariant() + "fly.json");
 
         }
         return new ResourceLocation(Creatures.MODID, "animations/animation.stork" + object.getModelNumberFromVariant() + ".json");

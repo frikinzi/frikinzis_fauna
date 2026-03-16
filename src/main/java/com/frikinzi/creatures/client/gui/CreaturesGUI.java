@@ -1,7 +1,9 @@
 package com.frikinzi.creatures.client.gui;
 
 import com.frikinzi.creatures.Creatures;
+import com.frikinzi.creatures.entity.base.AbstractCrabBase;
 import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
+import com.frikinzi.creatures.entity.base.FishBase;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.Font;
@@ -13,6 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
@@ -64,7 +67,7 @@ public class CreaturesGUI extends Screen {
             font.drawInBatch(bird.getSpeciesName(), offLeft, 110 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
             Component height = Component.translatable("gui.height").withStyle(ChatFormatting.BOLD);
             String height_s = bird.getHeightString();
-            font.drawInBatch(height.getString() + " " + height_s, offLeft, 125 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            font.drawInBatch(ChatFormatting.BOLD + height.getString() + " " + height_s, offLeft, 125 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
             Component food = Component.translatable("gui.food").withStyle(ChatFormatting.BOLD);
             String s6 = ChatFormatting.BOLD + food.getString() + " ";
             font.drawInBatch(s6, offLeft, 140 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
@@ -75,6 +78,75 @@ public class CreaturesGUI extends Screen {
             font.drawInBatch(bird.getIUCNColor() + IUCN.getString(), offLeft+30, 160 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
             Component funfact = bird.getFunFact();
             drawSplitText(font, funfact, 114, matrices, offLeft + 160, 120 + offTop);
+
+        }
+        if (entity instanceof FishBase) {
+            Font font = this.getMinecraft().font;
+            FishBase fish = (FishBase) entity;
+            String s1 = ChatFormatting.BOLD + fish.getDisplayName().getString();
+            font.drawInBatch(s1, offLeft, 50 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            String scientificname = ChatFormatting.ITALIC + fish.getScientificName();
+            font.drawInBatch(ChatFormatting.ITALIC+scientificname, offLeft, 60 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+
+            Component g = Component.translatable("gui.sex", fish.getGenderString()).withStyle(ChatFormatting.BOLD);
+            Component s = fish.getGenderText();
+            font.drawInBatch(ChatFormatting.BOLD + g.getString() + ChatFormatting.RESET + " " + s.getString(), offLeft, 80 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            Component h = Component.translatable("gui.health",fish.getHealth(), fish.getMaxHealth());
+            font.drawInBatch(h.getString(), offLeft, 95 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            font.drawInBatch(fish.getSpeciesName(), offLeft, 110 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            Component height = Component.translatable("gui.height").withStyle(ChatFormatting.BOLD);
+            String height_s = fish.getHeightString();
+            font.drawInBatch(ChatFormatting.BOLD + height.getString() + " " + height_s, offLeft, 125 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            Component food = Component.translatable("gui.food").withStyle(ChatFormatting.BOLD);
+            String s6 = ChatFormatting.BOLD + food.getString() + " ";
+            font.drawInBatch(s6, offLeft, 140 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            matrices.renderItem(new ItemStack(fish.getFoodItem()), offLeft + 30, 140 + offTop);
+            Component IUCN1 = Component.translatable("gui.iucn").withStyle(ChatFormatting.BOLD);
+            font.drawInBatch(IUCN1.getString(), offLeft, 160 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            Component IUCN = fish.getIUCNText();
+            font.drawInBatch(IUCN.getString(), offLeft + 30, 160 + offTop, fish.getIUCNColor(), false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            //font.drawInBatch(fish.getIUCNColor() + IUCN.getString(), offLeft+30, 160 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            Component funfact = fish.getFunFact();
+            drawSplitText(font, funfact, 114, matrices, offLeft + 160, 120 + offTop);
+
+        }
+        if (entity instanceof AbstractCrabBase) {
+            Font font = this.getMinecraft().font;
+            AbstractCrabBase fish = (AbstractCrabBase) entity;
+            String s1 = ChatFormatting.BOLD + fish.getDisplayName().getString();
+            font.drawInBatch(s1, offLeft, 50 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            String scientificname = ChatFormatting.ITALIC + fish.getScientificName();
+            font.drawInBatch(ChatFormatting.ITALIC+scientificname, offLeft, 60 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+
+            Component g = Component.translatable("gui.sex", fish.getGenderString()).withStyle(ChatFormatting.BOLD);
+            Component s = fish.getGenderText();
+            font.drawInBatch(ChatFormatting.BOLD + g.getString() + ChatFormatting.RESET + " " + s.getString(), offLeft, 80 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            Component h = Component.translatable("gui.health",fish.getHealth(), fish.getMaxHealth());
+            font.drawInBatch(h.getString(), offLeft, 95 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            font.drawInBatch(fish.getSpeciesName(), offLeft, 110 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            Component height = Component.translatable("gui.height").withStyle(ChatFormatting.BOLD);
+            String height_s = fish.getHeightString();
+            font.drawInBatch(ChatFormatting.BOLD + height.getString() + " " + height_s, offLeft, 125 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            Component food = Component.translatable("gui.food").withStyle(ChatFormatting.BOLD);
+            String s6 = ChatFormatting.BOLD + food.getString() + " ";
+            font.drawInBatch(s6, offLeft, 140 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            matrices.renderItem(fish.getFoodItem(), offLeft + 30, 140 + offTop);
+            Component IUCN1 = Component.translatable("gui.iucn").withStyle(ChatFormatting.BOLD);
+            font.drawInBatch(IUCN1.getString(), offLeft, 160 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            Component IUCN = fish.getIUCNText();
+            font.drawInBatch(IUCN.getString(), offLeft + 30, 160 + offTop, fish.getIUCNColor(), false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            //font.drawInBatch(fish.getIUCNColor() + IUCN.getString(), offLeft+30, 160 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            Component funfact = fish.getFunFact();
+            drawSplitText(font, funfact, 114, matrices, offLeft + 160, 120 + offTop);
+
+        }
+        if (entity instanceof LivingEntity) {
+            Font font = this.getMinecraft().font;
+            LivingEntity mob = (LivingEntity) entity;
+            String s1 = ChatFormatting.BOLD + mob.getDisplayName().getString();
+            font.drawInBatch(s1, offLeft, 50 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            Component h = Component.translatable("gui.health",mob.getHealth(), mob.getMaxHealth());
+            font.drawInBatch(h.getString(), offLeft, 95 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
 
         }
         Quaternionf quaternionf = (new Quaternionf()).rotateY((float) Mth.lerp((float) mouseX / this.width, 0, Math.PI)).rotateZ((float) Mth.lerp((float) mouseY / this.width, Math.PI, Math.PI + 0.2));

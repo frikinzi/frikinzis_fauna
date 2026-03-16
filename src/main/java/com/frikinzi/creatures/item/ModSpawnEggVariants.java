@@ -75,11 +75,11 @@ public class ModSpawnEggVariants extends ForgeSpawnEggItem {
                 this.currentSpecies = stack.getTag().getCompound("EntityTag").getInt("Variant");
             }
         }
+        if (this.currentSpecies == 0) {
+            return "Random";
+        }
         EntityType<?> entitytype = this.getType(stack.getTag());
         if (entitytype == CreaturesEntities.LOVEBIRD.get()) {
-            if (this.currentSpecies == 0) {
-                return "Random";
-            }
             if (this.currentSpecies > 0) {
                 if (LovebirdEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
                     return LovebirdEntity.SPECIES_NAMES.get(this.currentSpecies).getString();

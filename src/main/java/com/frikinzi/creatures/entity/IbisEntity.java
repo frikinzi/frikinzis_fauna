@@ -112,7 +112,7 @@ public class IbisEntity extends CreaturesFlyingBird implements GeoEntity {
     }
 
     public int numVariants() {
-        return 12;
+        return 11;
     }
 
     @Override

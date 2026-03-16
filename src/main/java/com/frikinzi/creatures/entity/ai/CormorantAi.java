@@ -1,5 +1,6 @@
 package com.frikinzi.creatures.entity.ai;
 
+import com.frikinzi.creatures.entity.base.WalkingSwimmingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -30,7 +31,7 @@ public class CormorantAi {
     private static final float SPEED_MULTIPLIER_WHEN_CHASING_IN_WATER = 0.6F;
     private static final float SPEED_MULTIPLIER_WHEN_TEMPTED = 1.0F;
 
-    public static Brain<?> makeBrain(Brain<CormorantEntity> brain) {
+    public static Brain<?> makeBrain(Brain<? extends WalkingSwimmingBird> brain) {
         initCoreActivity(brain);
         initIdleActivity(brain);
         initFightActivity(brain);
@@ -42,7 +43,7 @@ public class CormorantAi {
         return brain;
     }
 
-    private static void initCoreActivity(Brain<CormorantEntity> brain) {
+    private static void initCoreActivity(Brain<? extends WalkingSwimmingBird> brain) {
         brain.addActivity(Activity.CORE, 0, ImmutableList.of(
                 new LookAtTargetSink(45, 90),
                 new MoveToTargetSink(),
@@ -51,7 +52,7 @@ public class CormorantAi {
     }
 
     // Active when NOT in water — wander on land, try to find water
-    private static void initIdleActivity(Brain<CormorantEntity> brain) {
+    private static void initIdleActivity(Brain<? extends WalkingSwimmingBird> brain) {
         brain.addActivityWithConditions(Activity.IDLE,
                 ImmutableList.of(
                         Pair.of(0, SetEntityLookTargetSometimes.create(EntityType.PLAYER, 6.0F, UniformInt.of(30, 60))),
@@ -75,7 +76,7 @@ public class CormorantAi {
         );
     }
 
-    private static void initSwimActivity(Brain<CormorantEntity> brain) {
+    private static void initSwimActivity(Brain<? extends WalkingSwimmingBird> brain) {
         brain.addActivityWithConditions(Activity.SWIM,
                 ImmutableList.of(
                         Pair.of(0, SetEntityLookTargetSometimes.create(EntityType.PLAYER, 6.0F, UniformInt.of(30, 60))),
@@ -100,7 +101,7 @@ public class CormorantAi {
         );
     }
 
-    private static void initFightActivity(Brain<CormorantEntity> brain) {
+    private static void initFightActivity(Brain<? extends WalkingSwimmingBird> brain) {
         brain.addActivityAndRemoveMemoryWhenStopped(Activity.FIGHT, 0,
                 ImmutableList.of(
                         StopAttackingIfTargetInvalid.create(),
@@ -112,8 +113,8 @@ public class CormorantAi {
         );
     }
 
-    public static void updateActivity(CormorantEntity cormorant) {
-        Brain<CormorantEntity> brain = cormorant.getBrain();
+    public static void updateActivity(WalkingSwimmingBird cormorant) {
+        Brain<? extends WalkingSwimmingBird> brain = cormorant.getBrain();
         Activity previous = brain.getActiveNonCoreActivity().orElse(null);
 
 //        if (cormorant.isSleeping()) {
@@ -158,12 +159,12 @@ public class CormorantAi {
         return entity.isInWaterOrBubble() ? SPEED_MULTIPLIER_WHEN_IDLING_IN_WATER : SPEED_MULTIPLIER_WHEN_FOLLOWING_ADULT;
     }
 
-    private static Optional<? extends LivingEntity> findNearestValidAttackTarget(CormorantEntity cormorant) {
+    private static Optional<? extends LivingEntity> findNearestValidAttackTarget(WalkingSwimmingBird cormorant) {
         return BehaviorUtils.isBreeding(cormorant) ? Optional.empty()
                 : cormorant.getBrain().getMemory(MemoryModuleType.NEAREST_ATTACKABLE);
     }
 
-    private static void initRestActivity(Brain<CormorantEntity> brain) {
+    private static void initRestActivity(Brain<? extends WalkingSwimmingBird> brain) {
         brain.addActivityWithConditions(Activity.REST,
                 ImmutableList.of(
                         Pair.of(0, new SleepBehavior())

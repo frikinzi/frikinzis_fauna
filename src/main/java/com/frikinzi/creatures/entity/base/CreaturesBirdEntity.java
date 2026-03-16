@@ -9,6 +9,7 @@ import com.frikinzi.creatures.registry.ModEventSubscriber;
 import com.google.common.collect.Sets;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -106,6 +107,16 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
     }
 
     public void aiStep() {
+        if (!this.level().isClientSide() && this.isSleeping()) {
+            if (this.tickCount % 40 == 0 && this.getHealth() < this.getMaxHealth()) {
+                this.heal(1.0F);
+                if (this.level() instanceof ServerLevel serverLevel) {
+                    serverLevel.sendParticles(ParticleTypes.HEART,
+                            this.getX(), this.getY() + this.getBbHeight(),
+                            this.getZ(), 1, 0.2, 0.1, 0.2, 0.0);
+                }
+            }
+        }
         if (!this.level().isClientSide) {
             if (!this.getNavigation().isDone() && (this.isGrooming() || this.isSleeping())) {
                 this.setGrooming(false);
@@ -300,6 +311,7 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
 
     public void tick() {
         super.tick();
+
         if (this.hasFollowers() && this.level().random.nextInt(200) == 1) {
             List<? extends CreaturesBirdEntity> list = this.level().getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D));
             if (list.size() <= 1) {
@@ -503,6 +515,28 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
             CreaturesBirdEntity.this.clearStates();
         }
 
+        public void tick() {
+            super.tick();
+//            if (!CreaturesBirdEntity.this.level().isClientSide() && CreaturesBirdEntity.this.tickCount % 40 == 0) {
+//                if (CreaturesBirdEntity.this.getHealth() < CreaturesBirdEntity.this.getMaxHealth()) {
+//                    CreaturesBirdEntity.this.heal(1.0F);
+//                    if (CreaturesBirdEntity.this.level() instanceof ServerLevel serverLevel) {
+//                        serverLevel.sendParticles(
+//                                ParticleTypes.HEART,
+//                                CreaturesBirdEntity.this.getX(),
+//                                CreaturesBirdEntity.this.getY() + CreaturesBirdEntity.this.getBbHeight(),
+//                                CreaturesBirdEntity.this.getZ(),
+//                                1,      // count
+//                                0.2,    // x spread
+//                                0.1,    // y spread
+//                                0.2,    // z spread
+//                                0.0     // speed
+//                        );
+//                    }
+//                }
+//            }
+        }
+
         public void start() {
             CreaturesBirdEntity.this.setSleeping(true);
             CreaturesBirdEntity.this.getNavigation().stop();
@@ -547,7 +581,6 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
         if (itemstack.getItem() == CreaturesItems.FF_GUIDE.get()) {
             Creatures.PROXY.setReferencedMob(this);
             if (this.level().isClientSide) {
-                System.out.println(this.getVariant());
                 Creatures.PROXY.openCreaturesGui();
             }
             return InteractionResult.SUCCESS;

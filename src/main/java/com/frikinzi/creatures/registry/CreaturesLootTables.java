@@ -25,4 +25,14 @@ public class CreaturesLootTables {
     public static final ResourceLocation PIRANHA = new ResourceLocation("creatures", "entities/piranha");
     public static final ResourceLocation TROPICAL_FISH = new ResourceLocation("creatures", "entities/tropical_fish");
     public static final ResourceLocation TARANTULA = new ResourceLocation("creatures", "entities/tarantula");
+    public static final ResourceLocation TAMBAQUI = new ResourceLocation("creatures", "entities/tambaqui");
+    public static final ResourceLocation SQUID = new ResourceLocation("creatures", "entities/squid");
+    public static final ResourceLocation SAWFISH = new ResourceLocation("creatures", "entities/sawfish");
+    public static final ResourceLocation SWORDFISH = new ResourceLocation("creatures", "entities/swordfish");
+    public static final ResourceLocation EDIBLE_CRAB = new ResourceLocation("creatures", "entities/ediblecrab");
+    public static final ResourceLocation BLUE_CRAB = new ResourceLocation("creatures", "entities/bluecrab");
+    public static final ResourceLocation DUNGENESSCRAB = new ResourceLocation("creatures", "entities/dungenesscrab");
+    public static final ResourceLocation LUNGFISH = new ResourceLocation("creatures", "entities/lungfish");
+    public static final ResourceLocation PARROTFISH = new ResourceLocation("creatures", "entities/parrotfish");
+    public static final ResourceLocation ROCKCRAB = new ResourceLocation("creatures", "entities/rockcrab");
 }

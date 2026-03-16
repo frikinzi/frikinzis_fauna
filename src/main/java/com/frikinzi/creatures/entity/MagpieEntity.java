@@ -99,7 +99,7 @@ public class MagpieEntity extends CreaturesFlyingBird implements GeoEntity {
     }
 
     public int numVariants() {
-        return 7;
+        return 6;
     }
 
     @Override

@@ -2,8 +2,10 @@ package com.frikinzi.creatures;
 
 import com.frikinzi.creatures.client.ClientProxy;
 import com.frikinzi.creatures.client.block.CreaturesBlocks;
+import com.frikinzi.creatures.client.painting.CreaturesPaintings;
 import com.frikinzi.creatures.entity.CormorantEntity;
 import com.frikinzi.creatures.entity.ai.CormorantAttackablesSensor;
+import com.frikinzi.creatures.player.NetworkHandler;
 import com.frikinzi.creatures.registry.*;
 import com.google.common.collect.ImmutableList;
 import com.mojang.logging.LogUtils;
@@ -61,6 +63,7 @@ public class Creatures
         CreaturesEntities.ENTITIES.register(modEventBus);
         CreaturesSensorTypes.SENSOR_TYPES.register(modEventBus);
         CreaturesBlocks.BLOCKS.register(modEventBus);
+        CreaturesPaintings.PAINTING_VARIANTS.register(modEventBus);
         CreaturesItems.ITEMS.register(modEventBus);
         CreaturesItems.TABS.register(modEventBus);
         CreaturesSound.REGISTRAR.register(modEventBus);
@@ -74,6 +77,7 @@ public class Creatures
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         ModEventSubscriber.init();
+        event.enqueueWork(NetworkHandler::register);
         // Some common setup code
     }
 

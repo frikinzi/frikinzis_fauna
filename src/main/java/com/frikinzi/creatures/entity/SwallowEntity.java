@@ -96,7 +96,7 @@ public class SwallowEntity extends CreaturesFlyingBird implements GeoEntity {
     }
 
     public int numVariants() {
-        return 6;
+        return 5;
     }
 
     @Override
