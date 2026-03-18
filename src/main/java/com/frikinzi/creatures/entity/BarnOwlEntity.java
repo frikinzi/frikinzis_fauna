@@ -4,6 +4,7 @@ import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.RaptorBase;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -35,12 +36,16 @@ import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.Sets;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class BarnOwlEntity extends RaptorBase implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.CHICKEN, Items.ROTTEN_FLESH, CreaturesItems.SMALL_BIRD_MEAT.get(), Items.RABBIT, CreaturesItems.LARGE_BIRD_MEAT.get(), Items.PORKCHOP, Items.BEEF);
-
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.EUROPE, Region.AFRICA, Region.ASIA, Region.NORTH_AMERICA, Region.SOUTH_AMERICA, Region.OCEANIA))
+            .build();
     public BarnOwlEntity(EntityType<? extends BarnOwlEntity> p_i50251_1_, Level p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
     }

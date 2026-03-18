@@ -1,11 +1,17 @@
 package com.frikinzi.creatures.player;
 
 import com.frikinzi.creatures.Creatures;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 
+import java.util.function.Supplier;
+
 public class NetworkHandler {
+
     private static final String PROTOCOL_VERSION = "1";
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
             new ResourceLocation(Creatures.MODID, "main"),
@@ -13,6 +19,7 @@ public class NetworkHandler {
             PROTOCOL_VERSION::equals,
             PROTOCOL_VERSION::equals
     );
+
 
     private static int id = 0;
 
@@ -26,5 +33,8 @@ public class NetworkHandler {
                 SyncAllDiscoveriesPacket::encode,
                 SyncAllDiscoveriesPacket::new,
                 SyncAllDiscoveriesPacket::handle);
+
+        CHANNEL.registerMessage(id++, AwardXPPacket.class, AwardXPPacket::encode, AwardXPPacket::decode, AwardXPPacket::handle); // ← add here
     }
+
 }

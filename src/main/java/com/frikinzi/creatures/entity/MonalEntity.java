@@ -38,6 +38,7 @@ import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 import net.minecraftforge.common.ForgeMod;
 
+import java.util.List;
 import java.util.Map;
 
 public class MonalEntity extends CreaturesWalkingBird implements GeoEntity {
@@ -52,6 +53,12 @@ public class MonalEntity extends CreaturesWalkingBird implements GeoEntity {
             .put(1, "Lophophorus impejanus")
             .put(2, "Lophophorus sclateri")
             .put(3, "Lophophorus lhuysii")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.ASIA))
+            .put(2, List.of(Region.ASIA))
+            .put(3, List.of(Region.ASIA))
             .build();
 
     public MonalEntity(EntityType<? extends MonalEntity> p_i50251_1_, Level p_i50251_2_) {

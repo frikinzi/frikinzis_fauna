@@ -3,6 +3,7 @@ package com.frikinzi.creatures.entity;
 import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
@@ -24,8 +25,18 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.List;
+import java.util.Map;
+
 public class RanchuEntity extends FishBase implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.ASIA))
+            .put(2, List.of(Region.ASIA))
+            .put(3, List.of(Region.ASIA))
+            .put(4, List.of(Region.ASIA))
+            .build();
     public RanchuEntity(EntityType<? extends RanchuEntity> p_i50246_1_, Level p_i50246_2_) {
         super(p_i50246_1_, p_i50246_2_);
     }
@@ -94,6 +105,6 @@ public class RanchuEntity extends FishBase implements GeoEntity {
     }
 
     public int numVariants() {
-        return 5;
+        return 4;
     }
 }

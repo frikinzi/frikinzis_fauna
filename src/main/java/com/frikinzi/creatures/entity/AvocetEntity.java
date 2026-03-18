@@ -35,6 +35,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AvocetEntity extends CreaturesFlyingBird implements GeoEntity {
@@ -62,6 +63,13 @@ public class AvocetEntity extends CreaturesFlyingBird implements GeoEntity {
         put(3, "Recurvirostra novaehollandiae");
         put(4, "Recurvirostra americana");
     }};
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.EUROPE, Region.AFRICA, Region.ASIA))
+            .put(2, List.of(Region.SOUTH_AMERICA))
+            .put(3, List.of(Region.OCEANIA))
+            .put(4, List.of(Region.NORTH_AMERICA))
+            .build();
 
     public AvocetEntity(EntityType<? extends AvocetEntity> p_i50251_1_, Level p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);

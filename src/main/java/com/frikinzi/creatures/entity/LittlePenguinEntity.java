@@ -37,6 +37,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LittlePenguinEntity extends WalkingSwimmingBird implements GeoEntity {
@@ -56,6 +57,11 @@ public class LittlePenguinEntity extends WalkingSwimmingBird implements GeoEntit
     public static final Map<Integer, String> SCIENTIFIC_NAMES = ImmutableMap.<Integer, String>builder()
             .put(1, "Eudyptula minor")
             .put(2, "Eudyptula novaehollandiae")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.OCEANIA))
+            .put(2, List.of(Region.OCEANIA))
             .build();
 
     public LittlePenguinEntity(EntityType<? extends LittlePenguinEntity> p_i50251_1_, Level p_i50251_2_) {

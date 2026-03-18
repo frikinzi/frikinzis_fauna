@@ -4,6 +4,7 @@ import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -32,8 +33,15 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.List;
+import java.util.Map;
+
 public class PikeEntity extends FishBase implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.EUROPE, Region.ASIA, Region.NORTH_AMERICA))
+            .build();
     public PikeEntity(EntityType<? extends PikeEntity> p_i50246_1_, Level p_i50246_2_) {
         super(p_i50246_1_, p_i50246_2_);
     }

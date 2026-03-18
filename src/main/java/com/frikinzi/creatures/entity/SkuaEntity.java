@@ -4,6 +4,8 @@ import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
+
+import java.util.List;
 import java.util.function.Predicate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -55,6 +57,12 @@ public class SkuaEntity extends CreaturesFlyingBird implements GeoEntity {
             3, Component.translatable("message.creatures.greatskua"),
             4, Component.translatable("message.creatures.brownskua")
     );
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.ANTARCTICA))
+            .put(2, List.of(Region.SOUTH_AMERICA))
+            .put(3, List.of(Region.EUROPE, Region.NORTH_AMERICA, Region.AFRICA))
+            .put(4, List.of(Region.ANTARCTICA))
+            .build();
     public static final Map<Integer, String> SCIENTIFIC_NAMES = ImmutableMap.<Integer, String>builder()
             .put(1, "Stercorarius maccormicki")
             .put(2, "Stercorarius chilensis")

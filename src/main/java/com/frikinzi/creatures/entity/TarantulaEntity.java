@@ -36,6 +36,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Quaternionf;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -77,6 +78,23 @@ public class TarantulaEntity extends AbstractCrabBase implements GeoEntity {
         map.put(15, Component.translatable("message.creatures.emilia"));
         SPECIES_NAMES = Collections.unmodifiableMap(map);
     }
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.SOUTH_AMERICA))
+            .put(2, List.of(Region.SOUTH_AMERICA))
+            .put(3, List.of(Region.NORTH_AMERICA))
+            .put(4, List.of(Region.SOUTH_AMERICA))
+            .put(5, List.of(Region.SOUTH_AMERICA))
+            .put(6, List.of(Region.AFRICA))
+            .put(7, List.of(Region.SOUTH_AMERICA))
+            .put(8, List.of(Region.NORTH_AMERICA))
+            .put(9, List.of(Region.ASIA))
+            .put(10, List.of(Region.NORTH_AMERICA))
+            .put(11, List.of(Region.AFRICA))
+            .put(12, List.of(Region.SOUTH_AMERICA))
+            .put(13, List.of(Region.ASIA))
+            .put(14, List.of(Region.SOUTH_AMERICA))
+            .put(15, List.of(Region.NORTH_AMERICA))
+            .build();
 
     public static final Map<Integer, String> SCIENTIFIC_NAMES = ImmutableMap.<Integer, String>builder()
             .put(1, "Cyriocosmus elegans").put(2, "Hapalopus formosus")
@@ -421,5 +439,17 @@ public class TarantulaEntity extends AbstractCrabBase implements GeoEntity {
                 this.animal.spawnChildFromBreeding((ServerLevel) this.level, this.partner);
             }
         }
+    }
+
+    @Override
+    public Quaternionf getRotforGUI() {
+        return new Quaternionf()
+                .rotateZ((float) Math.PI)
+                .rotateY((float) Math.toRadians(160))
+                .rotateX((float) Math.toRadians(45));
+    }
+
+    public int getScaleforGUI() {
+        return (int)(super.getScaleforGUI() *0.5f);
     }
 }

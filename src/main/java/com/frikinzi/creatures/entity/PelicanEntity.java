@@ -44,6 +44,7 @@ import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
@@ -71,6 +72,17 @@ public class PelicanEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(6, "Pelecanus crispus")
             .put(7, "Pelecanus thagus")
             .put(8, "Pelecanus philippensis")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.EUROPE, Region.AFRICA, Region.ASIA))
+            .put(2, List.of(Region.NORTH_AMERICA, Region.SOUTH_AMERICA))
+            .put(3, List.of(Region.OCEANIA))
+            .put(4, List.of(Region.AFRICA))
+            .put(5, List.of(Region.NORTH_AMERICA))
+            .put(6, List.of(Region.EUROPE, Region.ASIA))
+            .put(7, List.of(Region.SOUTH_AMERICA))
+            .put(8, List.of(Region.ASIA))
             .build();
 
     public PelicanEntity(EntityType<? extends PelicanEntity> p_i50251_1_, Level p_i50251_2_) {

@@ -37,6 +37,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DoveEntity extends CreaturesFlyingBird implements GeoEntity {
@@ -110,6 +111,26 @@ public class DoveEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(15, "Ocyphaps lophotes")
             .put(16, "Geophaps plumifera")
             .put(17, "Nesoenas mayeri")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.ASIA))
+            .put(2, List.of(Region.EUROPE, Region.ASIA, Region.AFRICA, Region.NORTH_AMERICA, Region.SOUTH_AMERICA, Region.OCEANIA))
+            .put(3, List.of(Region.ASIA, Region.OCEANIA))
+            .put(4, List.of(Region.EUROPE, Region.ASIA, Region.AFRICA, Region.NORTH_AMERICA, Region.SOUTH_AMERICA, Region.OCEANIA))
+            .put(5, List.of(Region.OCEANIA))
+            .put(6, List.of(Region.ASIA, Region.OCEANIA))
+            .put(7, List.of(Region.ASIA))
+            .put(8, List.of(Region.OCEANIA))
+            .put(9, List.of(Region.OCEANIA))
+            .put(10, List.of(Region.NORTH_AMERICA))
+            .put(11, List.of(Region.EUROPE, Region.AFRICA, Region.ASIA))
+            .put(12, List.of(Region.ASIA))
+            .put(13, List.of(Region.ASIA, Region.OCEANIA))
+            .put(14, List.of(Region.OCEANIA, Region.ASIA))
+            .put(15, List.of(Region.OCEANIA))
+            .put(16, List.of(Region.OCEANIA))
+            .put(17, List.of(Region.AFRICA))
             .build();
     
     public DoveEntity(EntityType<? extends DoveEntity> p_i50251_1_, Level p_i50251_2_) {

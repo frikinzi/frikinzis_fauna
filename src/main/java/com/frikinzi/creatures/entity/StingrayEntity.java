@@ -35,6 +35,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Quaternionf;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -417,5 +418,13 @@ public int getMaxSchoolSize() {
 
     public int numVariants() {
         return 15;
+    }
+
+    @Override
+    public Quaternionf getRotforGUI() {
+        return new Quaternionf()
+                .rotateZ((float) Math.PI)
+                .rotateY((float) Math.toRadians(160))
+                .rotateX((float) Math.toRadians(45));
     }
 }

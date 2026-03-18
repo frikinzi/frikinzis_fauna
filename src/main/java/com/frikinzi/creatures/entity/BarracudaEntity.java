@@ -41,6 +41,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -55,6 +56,12 @@ public class BarracudaEntity extends FishBase implements GeoEntity {
             .put(1, "Sphyraena barracuda")
             .put(2, "Sphyraena barracuda")
             .put(3, "Sphyraena afra")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.NORTH_AMERICA, Region.SOUTH_AMERICA, Region.EUROPE, Region.AFRICA, Region.ASIA))
+            .put(2, List.of(Region.AFRICA))
+            .put(3, List.of(Region.NORTH_AMERICA, Region.SOUTH_AMERICA, Region.EUROPE, Region.AFRICA, Region.ASIA))
             .build();
     private static final UUID SPEED_BOOST_UUID = UUID.randomUUID();
     private static final AttributeModifier SPEED_MODIFIER = new AttributeModifier(SPEED_BOOST_UUID, "Aggressive speed boost", 0.5D, AttributeModifier.Operation.ADDITION);

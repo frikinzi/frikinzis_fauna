@@ -30,6 +30,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.List;
 import java.util.Map;
 
 public class ShrimpEntity extends FishBase implements GeoEntity {
@@ -43,6 +44,17 @@ public class ShrimpEntity extends FishBase implements GeoEntity {
             .put(6, Component.translatable("message.creatures.green_shrimp"))
             .put(7, Component.translatable("message.creatures.black_shrimp"))
             .put(8, Component.translatable("message.creatures.white_shrimp"))
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.ASIA))
+            .put(2, List.of(Region.ASIA))
+            .put(3, List.of(Region.ASIA))
+            .put(4, List.of(Region.ASIA))
+            .put(5, List.of(Region.ASIA))
+            .put(6, List.of(Region.ASIA))
+            .put(7, List.of(Region.ASIA))
+            .put(8, List.of(Region.ASIA))
             .build();
 
     public ShrimpEntity(EntityType<? extends ShrimpEntity> p_i50246_1_, Level p_i50246_2_) {
@@ -134,6 +146,9 @@ public ItemStack getBucketItemStack() {
     }
 
     public String getScientificName() {
+        if (this.getVariant() == 1) {
+            return "Caridina";
+        }
         return "Neocaridina davidi";
     }
 

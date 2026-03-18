@@ -38,6 +38,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.List;
 import java.util.Map;
 
 public class SparrowEntity extends CreaturesFlyingBird implements GeoEntity {
@@ -58,6 +59,15 @@ public class SparrowEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(4, "Arremon flavirostris")
             .put(5, "Passer domesticus")
             .put(6, "Spizella passerina")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.EUROPE, Region.ASIA))
+            .put(2, List.of(Region.AFRICA))
+            .put(3, List.of(Region.AFRICA))
+            .put(4, List.of(Region.SOUTH_AMERICA))
+            .put(5, List.of(Region.EUROPE, Region.ASIA, Region.AFRICA, Region.NORTH_AMERICA, Region.OCEANIA))
+            .put(6, List.of(Region.NORTH_AMERICA))
             .build();
 
     public SparrowEntity(EntityType<? extends SparrowEntity> p_i50251_1_, Level p_i50251_2_) {

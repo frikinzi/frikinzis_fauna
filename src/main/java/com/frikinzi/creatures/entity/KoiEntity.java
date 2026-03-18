@@ -4,6 +4,7 @@ import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -29,6 +30,9 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.List;
+import java.util.Map;
+
 public class KoiEntity extends FishBase implements GeoEntity {
     private static final EntityDataAccessor<Integer> DATA_VARIANT_ID = SynchedEntityData.defineId(KoiEntity.class, EntityDataSerializers.INT);
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
@@ -36,7 +40,17 @@ public class KoiEntity extends FishBase implements GeoEntity {
         super(p_i50246_1_, p_i50246_2_);
     }
 
-
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.ASIA))
+            .put(2, List.of(Region.ASIA))
+            .put(3, List.of(Region.ASIA))
+            .put(4, List.of(Region.ASIA))
+            .put(5, List.of(Region.ASIA))
+            .put(6, List.of(Region.ASIA))
+            .put(7, List.of(Region.ASIA))
+            .put(8, List.of(Region.ASIA))
+            .put(9, List.of(Region.ASIA))
+            .build();
 
     protected <E extends KoiEntity> PlayState swimAnimController(final AnimationState<E> event)
     {

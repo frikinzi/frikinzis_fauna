@@ -4,6 +4,7 @@ import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.CreaturesWalkingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -38,10 +39,17 @@ import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import net.minecraftforge.common.ForgeMod;
 
+import java.util.List;
+import java.util.Map;
+
 public class WoodDuckEntity extends CreaturesWalkingBird implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     public int featherTime = this.random.nextInt(6000) + 6000;
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.SWEET_BERRIES);
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.NORTH_AMERICA))
+            .build();
 
     public WoodDuckEntity(EntityType<? extends WoodDuckEntity> p_i50251_1_, Level p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);

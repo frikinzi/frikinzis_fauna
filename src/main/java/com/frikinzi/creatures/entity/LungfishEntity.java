@@ -53,10 +53,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-import java.util.EnumSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public class LungfishEntity extends FishBase implements GeoEntity {
     private static final EntityDataAccessor<Integer> VARIANT_SUBID = SynchedEntityData.defineId(LungfishEntity.class, EntityDataSerializers.INT);
@@ -78,6 +75,13 @@ public class LungfishEntity extends FishBase implements GeoEntity {
             .put(2, "Neoceratodus forsteri")
             .put(3, "Protopterus annectens")
             .put(4, "Lepidosiren paradoxa")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.OCEANIA))
+            .put(2, List.of(Region.OCEANIA))
+            .put(3, List.of(Region.AFRICA))
+            .put(4, List.of(Region.SOUTH_AMERICA))
             .build();
 
     public LungfishEntity(EntityType<? extends LungfishEntity> p_i50246_1_, Level p_i50246_2_) {
@@ -517,5 +521,9 @@ public int getMaxSchoolSize() {
 
     public int numVariants() {
         return 4;
+    }
+
+    public int getScaleforGUI() {
+        return (int)(super.getScaleforGUI() *0.6f);
     }
 }

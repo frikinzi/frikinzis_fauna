@@ -45,10 +45,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 import net.minecraftforge.common.ForgeMod;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class PuffinEntity extends CreaturesFlyingBird implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
@@ -67,6 +64,13 @@ public class PuffinEntity extends CreaturesFlyingBird implements GeoEntity {
         put(4, Component.translatable("description.creatures.atlanticpuffinleucistic"));
         put(5, Component.translatable("description.creatures.atlanticpuffinpiebald"));
     }};
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.EUROPE, Region.NORTH_AMERICA))
+            .put(2, List.of(Region.NORTH_AMERICA, Region.ASIA))
+            .put(3, List.of(Region.NORTH_AMERICA, Region.ASIA))
+            .put(4, List.of(Region.EUROPE, Region.NORTH_AMERICA))
+            .put(5, List.of(Region.EUROPE, Region.NORTH_AMERICA))
+            .build();
     public static Map<Integer, String> SCIENTIFIC_NAMES = new HashMap<Integer, String>() {{
         put(1, "Fratercula arctica");
         put(2, "Fratercula corniculata");

@@ -27,10 +27,15 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MandarinDuckEntity extends CreaturesWalkingBird implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.ASIA))
+            .build();
 
     public MandarinDuckEntity(EntityType<? extends MandarinDuckEntity> p_i50251_1_, Level p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);

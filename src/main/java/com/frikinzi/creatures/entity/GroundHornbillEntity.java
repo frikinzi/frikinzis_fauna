@@ -37,6 +37,7 @@ import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 import net.minecraftforge.common.ForgeMod;
 
+import java.util.List;
 import java.util.Map;
 
 public class GroundHornbillEntity extends CreaturesWalkingBird implements GeoEntity {
@@ -50,6 +51,11 @@ public class GroundHornbillEntity extends CreaturesWalkingBird implements GeoEnt
     public static final Map<Integer, String> SCIENTIFIC_NAMES = ImmutableMap.<Integer, String>builder()
             .put(1, "Bucorvus leadbeateri")
             .put(2, "Bucorvus abyssinicus")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.AFRICA))
+            .put(2, List.of(Region.AFRICA))
             .build();
 
     public GroundHornbillEntity(EntityType<? extends GroundHornbillEntity> p_i50251_1_, Level p_i50251_2_) {

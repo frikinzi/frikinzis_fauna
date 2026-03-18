@@ -33,6 +33,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
@@ -43,6 +44,13 @@ public class SeaEagleEntity extends RaptorBase implements GeoEntity {
         EntityType<?> entitytype = p_213440_0_.getType();
         return entitytype == EntityType.RABBIT || entitytype == EntityType.SALMON || entitytype == EntityType.COD;
     };
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.ASIA))
+            .put(2, List.of(Region.NORTH_AMERICA))
+            .put(3, List.of(Region.EUROPE, Region.ASIA))
+            .put(4, List.of(Region.AFRICA))
+            .put(5, List.of(Region.ASIA, Region.OCEANIA))
+            .build();
     public static final Map<Integer, Component> SPECIES_NAMES = ImmutableMap.<Integer, Component>builder()
             .put(1, Component.translatable("message.creatures.stellersseaeagle"))
             .put(2, Component.translatable("message.creatures.baldeagle"))

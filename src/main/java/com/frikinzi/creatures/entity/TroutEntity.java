@@ -27,6 +27,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.List;
 import java.util.Map;
 
 public class TroutEntity extends FishBase implements GeoEntity {
@@ -42,6 +43,13 @@ public class TroutEntity extends FishBase implements GeoEntity {
             .put(2, "Salmo trutta")
             .put(3, "Salvelinus fontinalis")
             .put(4, "Oncorhynchus aguabonita")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.NORTH_AMERICA, Region.ASIA))
+            .put(2, List.of(Region.EUROPE, Region.ASIA, Region.AFRICA))
+            .put(3, List.of(Region.NORTH_AMERICA))
+            .put(4, List.of(Region.NORTH_AMERICA))
             .build();
 
     public TroutEntity(EntityType<? extends TroutEntity> p_i50246_1_, Level p_i50246_2_) {

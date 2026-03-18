@@ -36,6 +36,7 @@ import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 
+import java.util.List;
 import java.util.Map;
 
 public class GooseEntity extends CreaturesFlyingBird implements GeoEntity {
@@ -65,6 +66,16 @@ public class GooseEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(5, Component.translatable("description.creatures.orinoco"))
             .put(6, Component.translatable("description.creatures.barheaded"))
             .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.NORTH_AMERICA))
+            .put(2, List.of(Region.EUROPE, Region.NORTH_AMERICA))
+            .put(3, List.of(Region.EUROPE, Region.ASIA))
+            .put(4, List.of(Region.NORTH_AMERICA))
+            .put(5, List.of(Region.SOUTH_AMERICA))
+            .put(6, List.of(Region.ASIA))
+            .build();
+
 
     public GooseEntity(EntityType<? extends GooseEntity> p_i50251_1_, Level p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);

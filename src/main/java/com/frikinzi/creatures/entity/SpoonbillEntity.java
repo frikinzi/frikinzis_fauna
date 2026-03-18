@@ -30,6 +30,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SpoonbillEntity extends CreaturesWalkingBird implements GeoEntity {
@@ -42,6 +43,14 @@ public class SpoonbillEntity extends CreaturesWalkingBird implements GeoEntity {
             put(5, Component.translatable("message.creatures.yellowbilled"));
             put(6, Component.translatable("message.creatures.blackfaced"));
     }};
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.NORTH_AMERICA, Region.SOUTH_AMERICA))
+            .put(2, List.of(Region.OCEANIA))
+            .put(3, List.of(Region.AFRICA))
+            .put(4, List.of(Region.EUROPE, Region.ASIA))
+            .put(5, List.of(Region.OCEANIA))
+            .put(6, List.of(Region.ASIA))
+            .build();
     public static final Map<Integer, String> SCIENTIFIC_NAMES = ImmutableMap.<Integer, String>builder()
             .put(1, "Platalea ajaja")
             .put(2, "Platalea regia")

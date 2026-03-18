@@ -9,6 +9,7 @@ import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.entity.egg.CreaturesRoeEntity;
 import com.frikinzi.creatures.entity.egg.EggEntity;
+import com.frikinzi.creatures.player.AwardXPPacket;
 import com.frikinzi.creatures.player.FieldGuideCapability;
 import com.frikinzi.creatures.player.NetworkHandler;
 import com.frikinzi.creatures.player.SyncDiscoveryPacket;
@@ -524,7 +525,7 @@ public class ModEventSubscriber {
                     NetworkHandler.CHANNEL.send(
                             PacketDistributor.PLAYER.with(() -> (ServerPlayer) player),
                             new SyncDiscoveryPacket(key));
-                    System.out.print("Discovered " + key);
+                    //System.out.print("Discovered " + key);
                     String speciesName = "";
                     if (mob instanceof CreaturesBirdEntity bird) {
                         speciesName = bird.getSpeciesName();
@@ -533,8 +534,13 @@ public class ModEventSubscriber {
                     } else if (mob instanceof AbstractCrabBase crab) {
                         speciesName = crab.getSpeciesName();
                     }
-                    player.sendSystemMessage(Component.literal(
-                            player.getName().getString() + " discovered " + speciesName + "!"));
+                    NetworkHandler.CHANNEL.sendToServer(new AwardXPPacket(10));
+                    Minecraft mc = Minecraft.getInstance();
+                    mc.player.playSound(net.minecraft.sounds.SoundEvents.EXPERIENCE_ORB_PICKUP, 1.0F, 1.0F);
+                    player.sendSystemMessage(Component.translatable(
+                            "message.creatures.discovered",
+                            player.getName(),
+                            speciesName));
                 }
             });
             event.setCanceled(true);

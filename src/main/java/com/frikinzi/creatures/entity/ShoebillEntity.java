@@ -37,10 +37,17 @@ import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 
+import java.util.List;
 import java.util.Map;
 
 public class ShoebillEntity extends CreaturesWalkingBird implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    // ShoebillEntity
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.AFRICA))
+            .put(2, List.of(Region.AFRICA))
+            .put(3, List.of(Region.AFRICA))
+            .build();
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.COD, Items.SALMON);
 
     public ShoebillEntity(EntityType<? extends ShoebillEntity> p_i50251_1_, Level p_i50251_2_) {

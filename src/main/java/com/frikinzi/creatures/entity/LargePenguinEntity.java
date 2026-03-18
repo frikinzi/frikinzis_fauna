@@ -42,6 +42,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -60,6 +61,11 @@ public class LargePenguinEntity extends WalkingSwimmingBird implements GeoEntity
             1, Component.translatable("description.creatures.emperorpenguin"),
             2, Component.translatable("description.creatures.kingpenguin")
     );
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.ANTARCTICA))
+            .put(2, List.of(Region.ANTARCTICA))
+            .build();
 
     public static Map<Integer, Integer> BANDEDPENGUIN = ImmutableMap.<Integer, Integer>builder()
             .put(1, 1)
@@ -329,6 +335,10 @@ public class LargePenguinEntity extends WalkingSwimmingBird implements GeoEntity
 
     public String getScientificName() {
         return SCIENTIFIC_NAMES.get(this.getVariant());
+    }
+
+    public int getScaleforGUI() {
+        return (int)(super.getScaleforGUI() *1.3f);
     }
 
 }

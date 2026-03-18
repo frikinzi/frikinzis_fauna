@@ -29,6 +29,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FiddlerCrabEntity extends AbstractCrabBase implements GeoEntity {
@@ -51,6 +52,14 @@ public class FiddlerCrabEntity extends AbstractCrabBase implements GeoEntity {
         put(4, "Tubuca demani");
         put(5, "Tubuca flammula");
     }};
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.ASIA, Region.OCEANIA))
+            .put(2, List.of(Region.NORTH_AMERICA, Region.SOUTH_AMERICA))
+            .put(3, List.of(Region.AFRICA))
+            .put(4, List.of(Region.ASIA))
+            .put(5, List.of(Region.OCEANIA))
+            .build();
 
     public FiddlerCrabEntity(EntityType<? extends FiddlerCrabEntity> type, Level level) {
         super(type, level);

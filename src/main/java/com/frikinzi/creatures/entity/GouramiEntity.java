@@ -31,6 +31,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.List;
 import java.util.Map;
 
 public class GouramiEntity extends FishBase implements GeoEntity {
@@ -48,6 +49,14 @@ public class GouramiEntity extends FishBase implements GeoEntity {
             .put(3, "Trichopodus trichopterus")
             .put(4, "Trichogaster lalius")
             .put(5, "Trichopodus leerii")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.ASIA))
+            .put(2, List.of(Region.ASIA))
+            .put(3, List.of(Region.ASIA))
+            .put(4, List.of(Region.ASIA))
+            .put(5, List.of(Region.ASIA))
             .build();
     public static Map<Integer, Component> DESCRIPTIONS = ImmutableMap.of(
             1, Component.translatable("description.creatures.threespot"),

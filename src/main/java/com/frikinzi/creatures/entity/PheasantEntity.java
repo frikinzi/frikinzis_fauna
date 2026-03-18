@@ -36,6 +36,7 @@ import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 
+import java.util.List;
 import java.util.Map;
 
 public class PheasantEntity extends CreaturesWalkingBird implements GeoEntity {
@@ -57,6 +58,12 @@ public class PheasantEntity extends CreaturesWalkingBird implements GeoEntity {
             2, Component.translatable("description.creatures.ladyamherst"),
             3, Component.translatable("description.creatures.silverpheasant")
     );
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.ASIA))
+            .put(2, List.of(Region.ASIA))
+            .put(3, List.of(Region.ASIA))
+            .build();
 
     public PheasantEntity(EntityType<? extends PheasantEntity> p_i50251_1_, Level p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);

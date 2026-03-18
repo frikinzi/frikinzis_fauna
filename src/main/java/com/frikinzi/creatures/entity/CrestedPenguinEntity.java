@@ -37,6 +37,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CrestedPenguinEntity extends WalkingSwimmingBird implements GeoEntity {
@@ -82,6 +83,17 @@ public class CrestedPenguinEntity extends WalkingSwimmingBird implements GeoEnti
             .put(6, "Eudyptes moseleyi")
             .put(7, "Eudyptes chrysolophus")
             .put(8, "Eudyptes schlegeli")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.OCEANIA))
+            .put(2, List.of(Region.OCEANIA))
+            .put(3, List.of(Region.OCEANIA))
+            .put(4, List.of(Region.ANTARCTICA, Region.SOUTH_AMERICA, Region.OCEANIA))
+            .put(5, List.of(Region.OCEANIA, Region.SOUTH_AMERICA, Region.ANTARCTICA))
+            .put(6, List.of(Region.OCEANIA, Region.SOUTH_AMERICA, Region.ANTARCTICA))
+            .put(7, List.of(Region.ANTARCTICA, Region.SOUTH_AMERICA))
+            .put(8, List.of(Region.OCEANIA, Region.ANTARCTICA))
             .build();
 
     public CrestedPenguinEntity(EntityType<? extends CrestedPenguinEntity> p_i50251_1_, Level p_i50251_2_) {

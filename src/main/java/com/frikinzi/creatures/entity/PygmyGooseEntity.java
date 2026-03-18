@@ -38,6 +38,7 @@ import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 import net.minecraftforge.common.ForgeMod;
 
+import java.util.List;
 import java.util.Map;
 
 public class PygmyGooseEntity extends CreaturesWalkingBird implements GeoEntity {
@@ -53,6 +54,12 @@ public class PygmyGooseEntity extends CreaturesWalkingBird implements GeoEntity 
             .put(1, "Nettapus auritus")
             .put(2, "Nettapus coromandelianus")
             .put(3, "Nettapus pulchellus")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.AFRICA))
+            .put(2, List.of(Region.ASIA, Region.OCEANIA))
+            .put(3, List.of(Region.OCEANIA))
             .build();
 
     public PygmyGooseEntity(EntityType<? extends PygmyGooseEntity> p_i50251_1_, Level p_i50251_2_) {

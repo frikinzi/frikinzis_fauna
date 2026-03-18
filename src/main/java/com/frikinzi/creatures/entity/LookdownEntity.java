@@ -34,8 +34,8 @@ public class LookdownEntity extends FishBase implements GeoEntity {
         super(p_i50246_1_, p_i50246_2_);
     }
     public static Map<Integer, Component> SPECIES_NAMES = ImmutableMap.of(
-            1, Component.translatable("message.creatures.lookdowndark"),
-            2, Component.translatable("message.creatures.lookdownsilver")
+            1, Component.translatable("entity.creatures.lookdown"),
+            2, Component.translatable("entity.creatures.lookdown")
     );
 
     protected <E extends LookdownEntity> PlayState swimAnimController(final AnimationState<E> event)

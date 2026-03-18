@@ -40,6 +40,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Quaternionf;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -685,6 +686,20 @@ public abstract class FishBase extends AbstractSchoolingFish {
 
     public void setForcedInWater(boolean inWater) {
         this.wasTouchingWater = inWater;
+    }
+
+    public int getSubVariantBasedOnVariant(int variant) {
+        return 1;
+    }
+
+    public Quaternionf getRotforGUI() {
+        return new Quaternionf().rotateZ((float)Math.PI).rotateY((float)Math.toRadians(140));
+    }
+
+    public int getScaleforGUI() {
+        float h = this.getBbHeight();
+        int scale = (int)(20f / h);
+        return scale;
     }
 
 }

@@ -26,100 +26,111 @@ import java.util.Map;
 import java.util.Set;
 
 public class FieldGuideGUI extends Screen {
-    private static final List<SpeciesEntry> ALL_SPECIES = List.of(
-            new SpeciesEntry("avocet", 4, AvocetEntity.SPECIES_NAMES, AvocetEntity.SCIENTIFIC_NAMES, CreaturesEntities.AVOCET, CreaturesItems.AVOCET_SPAWN_EGG, Component.translatable("entity.creatures.avocet")),
-            new SpeciesEntry("bandedpenguin", 4, BandedPenguinEntity.SPECIES_NAMES, BandedPenguinEntity.SCIENTIFIC_NAMES, CreaturesEntities.BANDED_PENGUIN, CreaturesItems.BANDED_PENGUIN_SPAWN_EGG, Component.translatable("entity.creatures.bandedpenguin")),
-            new SpeciesEntry("booby", 11, BoobyEntity.SPECIES_NAMES, BoobyEntity.SCIENTIFIC_NAMES, CreaturesEntities.BOOBY, CreaturesItems.BOOBY_SPAWN_EGG, Component.translatable("entity.creatures.booby")),
-            new SpeciesEntry("brushtailedpenguin", 3, BrushTailedPenguinEntity.SPECIES_NAMES, BrushTailedPenguinEntity.SCIENTIFIC_NAMES, CreaturesEntities.BRUSH_TAILED_PENGUIN, CreaturesItems.BRUSH_TAILED_PENGUIN_SPAWN_EGG, Component.translatable("entity.creatures.brushtailedpenguin")),
-            new SpeciesEntry("bunting", 5, BuntingEntity.SPECIES_NAMES, BuntingEntity.SCIENTIFIC_NAMES, CreaturesEntities.BUNTING, CreaturesItems.BUNTING_SPAWN_EGG, Component.translatable("entity.creatures.bunting")),
-            new SpeciesEntry("bushtit", 4, BushtitEntity.SPECIES_NAMES, BushtitEntity.SCIENTIFIC_NAMES, CreaturesEntities.BUSHTIT, CreaturesItems.BUSHTIT_SPAWN_EGG, Component.translatable("entity.creatures.bushtit")),
-            new SpeciesEntry("capercaillie", 1, Map.of(), Map.of(), CreaturesEntities.CAPERCAILLIE, CreaturesItems.CAPERCAILLIE_SPAWN_EGG, Component.translatable("entity.creatures.capercaillie")),
-            new SpeciesEntry("chickadee", 3, ChickadeeEntity.SPECIES_NAMES, ChickadeeEntity.SCIENTIFIC_NAMES, CreaturesEntities.CHICKADEE, CreaturesItems.CHICKADEE_SPAWN_EGG, Component.translatable("entity.creatures.chickadee")),
-            new SpeciesEntry("conure", 3, ConureEntity.SPECIES_NAMES, ConureEntity.SCIENTIFIC_NAMES, CreaturesEntities.CONURE, CreaturesItems.CONURE_SPAWN_EGG, Component.translatable("entity.creatures.conure")),
-            new SpeciesEntry("cormorant", 4, CormorantEntity.SPECIES_NAMES, CormorantEntity.SCIENTIFIC_NAMES, CreaturesEntities.CORMORANT, CreaturesItems.CORMORANT_SPAWN_EGG, Component.translatable("entity.creatures.cormorant")),
-            new SpeciesEntry("crestedpenguin", 8, CrestedPenguinEntity.SPECIES_NAMES, CrestedPenguinEntity.SCIENTIFIC_NAMES, CreaturesEntities.CRESTED_PENGUIN, CreaturesItems.CRESTED_PENGUIN_SPAWN_EGG, Component.translatable("entity.creatures.crestedpenguin")),
-            new SpeciesEntry("dove", 17, DoveEntity.SPECIES_NAMES, DoveEntity.SCIENTIFIC_NAMES, CreaturesEntities.DOVE, CreaturesItems.DOVE_SPAWN_EGG, Component.translatable("entity.creatures.dove")),
-            new SpeciesEntry("fairywren", 6, FairywrenEntity.SPECIES_NAMES, FairywrenEntity.SCIENTIFIC_NAMES, CreaturesEntities.FAIRYWREN, CreaturesItems.FAIRYWREN_SPAWN_EGG, Component.translatable("entity.creatures.fairywren")),
-            new SpeciesEntry("finch", 11, FinchEntity.SPECIES_NAMES, FinchEntity.SCIENTIFIC_NAMES, CreaturesEntities.FINCH, CreaturesItems.FINCH_SPAWN_EGG, Component.translatable("entity.creatures.finch")),
-            new SpeciesEntry("frigate", 5, FrigateEntity.SPECIES_NAMES, FrigateEntity.SCIENTIFIC_NAMES, CreaturesEntities.FRIGATE, CreaturesItems.FRIGATE_SPAWN_EGG, Component.translatable("entity.creatures.frigate")),
-            new SpeciesEntry("goose", 6, GooseEntity.SPECIES_NAMES, GooseEntity.SCIENTIFIC_NAMES, CreaturesEntities.GOOSE, CreaturesItems.GOOSE_SPAWN_EGG, Component.translatable("entity.creatures.goose")),
-            new SpeciesEntry("groundhornbill", 2, GroundHornbillEntity.SPECIES_NAMES, GroundHornbillEntity.SCIENTIFIC_NAMES, CreaturesEntities.GROUND_HORNBILL, CreaturesItems.GROUND_HORNBILL_SPAWN_EGG, Component.translatable("entity.creatures.groundhornbill")),
-            new SpeciesEntry("ibis", 11, IbisEntity.SPECIES_NAMES, IbisEntity.SCIENTIFIC_NAMES, CreaturesEntities.IBIS, CreaturesItems.IBIS_SPAWN_EGG, Component.translatable("entity.creatures.ibis")),
+    public static final List<SpeciesEntry> ALL_SPECIES = List.of(
+            new SpeciesEntry("avocet", 4, AvocetEntity.SPECIES_NAMES, AvocetEntity.SCIENTIFIC_NAMES, CreaturesEntities.AVOCET, CreaturesItems.AVOCET_SPAWN_EGG, Component.translatable("entity.creatures.avocet"), AvocetEntity.REGIONS),
+            new SpeciesEntry("bandedpenguin", 4, BandedPenguinEntity.SPECIES_NAMES, BandedPenguinEntity.SCIENTIFIC_NAMES, CreaturesEntities.BANDED_PENGUIN, CreaturesItems.BANDED_PENGUIN_SPAWN_EGG, Component.translatable("entity.creatures.bandedpenguin"), BandedPenguinEntity.REGIONS),
+            new SpeciesEntry("barnowl", 1, Map.of(), Map.of(), CreaturesEntities.BARN_OWL, CreaturesItems.BARN_OWL_SPAWN_EGG, Component.translatable("entity.creatures.barn_owl"), BarnOwlEntity.REGIONS),
+            new SpeciesEntry("booby", 11, BoobyEntity.SPECIES_NAMES, BoobyEntity.SCIENTIFIC_NAMES, CreaturesEntities.BOOBY, CreaturesItems.BOOBY_SPAWN_EGG, Component.translatable("entity.creatures.booby"), BoobyEntity.REGIONS),
+            new SpeciesEntry("brushtailedpenguin", 3, BrushTailedPenguinEntity.SPECIES_NAMES, BrushTailedPenguinEntity.SCIENTIFIC_NAMES, CreaturesEntities.BRUSH_TAILED_PENGUIN, CreaturesItems.BRUSH_TAILED_PENGUIN_SPAWN_EGG, Component.translatable("entity.creatures.brushtailedpenguin"), BrushTailedPenguinEntity.REGIONS),
+            new SpeciesEntry("bunting", 5, BuntingEntity.SPECIES_NAMES, BuntingEntity.SCIENTIFIC_NAMES, CreaturesEntities.BUNTING, CreaturesItems.BUNTING_SPAWN_EGG, Component.translatable("entity.creatures.bunting"), BuntingEntity.REGIONS),
+            new SpeciesEntry("bushtit", 4, BushtitEntity.SPECIES_NAMES, BushtitEntity.SCIENTIFIC_NAMES, CreaturesEntities.BUSHTIT, CreaturesItems.BUSHTIT_SPAWN_EGG, Component.translatable("entity.creatures.bushtit"), BushtitEntity.REGIONS),
+            new SpeciesEntry("capercaillie", 1, Map.of(), Map.of(), CreaturesEntities.CAPERCAILLIE, CreaturesItems.CAPERCAILLIE_SPAWN_EGG, Component.translatable("entity.creatures.capercaillie"), CapercaillieEntity.REGIONS),
+            new SpeciesEntry("chickadee", 3, ChickadeeEntity.SPECIES_NAMES, ChickadeeEntity.SCIENTIFIC_NAMES, CreaturesEntities.CHICKADEE, CreaturesItems.CHICKADEE_SPAWN_EGG, Component.translatable("entity.creatures.chickadee"), ChickadeeEntity.REGIONS),
+            new SpeciesEntry("conure", 3, ConureEntity.SPECIES_NAMES, ConureEntity.SCIENTIFIC_NAMES, CreaturesEntities.CONURE, CreaturesItems.CONURE_SPAWN_EGG, Component.translatable("entity.creatures.conure"), ConureEntity.REGIONS),
+            new SpeciesEntry("cormorant", 4, CormorantEntity.SPECIES_NAMES, CormorantEntity.SCIENTIFIC_NAMES, CreaturesEntities.CORMORANT, CreaturesItems.CORMORANT_SPAWN_EGG, Component.translatable("entity.creatures.cormorant"), CormorantEntity.REGIONS),
+            new SpeciesEntry("crestedpenguin", 8, CrestedPenguinEntity.SPECIES_NAMES, CrestedPenguinEntity.SCIENTIFIC_NAMES, CreaturesEntities.CRESTED_PENGUIN, CreaturesItems.CRESTED_PENGUIN_SPAWN_EGG, Component.translatable("entity.creatures.crestedpenguin"), CrestedPenguinEntity.REGIONS),
+            new SpeciesEntry("dove", 17, DoveEntity.SPECIES_NAMES, DoveEntity.SCIENTIFIC_NAMES, CreaturesEntities.DOVE, CreaturesItems.DOVE_SPAWN_EGG, Component.translatable("entity.creatures.dove"), DoveEntity.REGIONS),
+            new SpeciesEntry("eagleowl", 2, EagleOwlEntity.SPECIES_NAMES, EagleOwlEntity.SCIENTIFIC_NAMES, CreaturesEntities.EAGLEOWL, CreaturesItems.EAGLEOWL_SPAWN_EGG, Component.translatable("entity.creatures.eagleowl"), EagleOwlEntity.REGIONS),
+            new SpeciesEntry("fairywren", 6, FairywrenEntity.SPECIES_NAMES, FairywrenEntity.SCIENTIFIC_NAMES, CreaturesEntities.FAIRYWREN, CreaturesItems.FAIRYWREN_SPAWN_EGG, Component.translatable("entity.creatures.fairywren"), FairywrenEntity.REGIONS),
+            new SpeciesEntry("finch", 11, FinchEntity.SPECIES_NAMES, FinchEntity.SCIENTIFIC_NAMES, CreaturesEntities.FINCH, CreaturesItems.FINCH_SPAWN_EGG, Component.translatable("entity.creatures.finch"), FinchEntity.REGIONS),
+            new SpeciesEntry("frigate", 5, FrigateEntity.SPECIES_NAMES, FrigateEntity.SCIENTIFIC_NAMES, CreaturesEntities.FRIGATE, CreaturesItems.FRIGATE_SPAWN_EGG, Component.translatable("entity.creatures.frigate"), FrigateEntity.REGIONS),
+            new SpeciesEntry("goose", 6, GooseEntity.SPECIES_NAMES, GooseEntity.SCIENTIFIC_NAMES, CreaturesEntities.GOOSE, CreaturesItems.GOOSE_SPAWN_EGG, Component.translatable("entity.creatures.goose"), GooseEntity.REGIONS),
+            new SpeciesEntry("goldeneagle", 1, Map.of(), Map.of(), CreaturesEntities.GOLDEN_EAGLE, CreaturesItems.GOLDEN_EAGLE_SPAWN_EGG, Component.translatable("entity.creatures.golden_eagle"), GoldenEagleEntity.REGIONS),
+            new SpeciesEntry("groundhornbill", 2, GroundHornbillEntity.SPECIES_NAMES, GroundHornbillEntity.SCIENTIFIC_NAMES, CreaturesEntities.GROUND_HORNBILL, CreaturesItems.GROUND_HORNBILL_SPAWN_EGG, Component.translatable("entity.creatures.groundhornbill"), GroundHornbillEntity.REGIONS),
+            new SpeciesEntry("gyrfalcon", 1, Map.of(), Map.of(), CreaturesEntities.GYRFALCON, CreaturesItems.GYRFALCON_SPAWN_EGG, Component.translatable("entity.creatures.gyrfalcon"), GyrfalconEntity.REGIONS),
+            new SpeciesEntry("ibis", 11, IbisEntity.SPECIES_NAMES, IbisEntity.SCIENTIFIC_NAMES, CreaturesEntities.IBIS, CreaturesItems.IBIS_SPAWN_EGG, Component.translatable("entity.creatures.ibis"), IbisEntity.REGIONS),
             new SpeciesEntry("kakapo", 1, Map.of(), Map.of(), CreaturesEntities.KAKAPO, CreaturesItems.KAKAPO_SPAWN_EGG, Component.translatable("entity.creatures.kakapo")),
-            new SpeciesEntry("kingfisher", 6, KingfisherEntity.SPECIES_NAMES, KingfisherEntity.SCIENTIFIC_NAMES, CreaturesEntities.KINGFISHER, CreaturesItems.KINGFISHER_SPAWN_EGG, Component.translatable("entity.creatures.kingfisher")),
-            new SpeciesEntry("lapwing", 7, LapwingEntity.SPECIES_NAMES, LapwingEntity.SCIENTIFIC_NAMES, CreaturesEntities.LAPWING, CreaturesItems.LAPWING_SPAWN_EGG, Component.translatable("entity.creatures.lapwing")),
-            new SpeciesEntry("largepenguin", 2, LargePenguinEntity.SPECIES_NAMES, LargePenguinEntity.SCIENTIFIC_NAMES, CreaturesEntities.LARGE_PENGUIN, CreaturesItems.LARGE_PENGUIN_SPAWN_EGG, Component.translatable("entity.creatures.largepenguin")),
-            new SpeciesEntry("laughingthrush", 8, LaughingthrushEntity.SPECIES_NAMES, LaughingthrushEntity.SCIENTIFIC_NAMES, CreaturesEntities.LAUGHINGTHRUSH, CreaturesItems.LAUGHINGTHRUSH_SPAWN_EGG, Component.translatable("entity.creatures.laughingthrush")),
-            new SpeciesEntry("littlepenguin", 2, LittlePenguinEntity.SPECIES_NAMES, LittlePenguinEntity.SCIENTIFIC_NAMES, CreaturesEntities.LITTLE_PENGUIN, CreaturesItems.LITTLE_PENGUIN_SPAWN_EGG, Component.translatable("entity.creatures.littlepenguin")),
-            new SpeciesEntry("lorikeet", 6, LorikeetEntity.SPECIES_NAMES, LorikeetEntity.SCIENTIFIC_NAMES, CreaturesEntities.LORIKEET, CreaturesItems.LORIKEET_SPAWN_EGG, Component.translatable("entity.creatures.lorikeet")),
-            new SpeciesEntry("lovebird", 13, LovebirdEntity.SPECIES_NAMES, LovebirdEntity.SCIENTIFIC_NAMES, CreaturesEntities.LOVEBIRD, CreaturesItems.LOVEBIRD_SPAWN_EGG, Component.translatable("entity.creatures.lovebird")),
-            new SpeciesEntry("magpie", 6, MagpieEntity.SPECIES_NAMES, MagpieEntity.SCIENTIFIC_NAMES, CreaturesEntities.MAGPIE, CreaturesItems.MAGPIE_SPAWN_EGG, Component.translatable("entity.creatures.magpie")),
-            new SpeciesEntry("mandarinduck", 1, Map.of(), Map.of(), CreaturesEntities.MANDARIN_DUCK, CreaturesItems.MANDARIN_DUCK_SPAWN_EGG, Component.translatable("entity.creatures.mandarin_duck")),
-            new SpeciesEntry("monal", 3, MonalEntity.SPECIES_NAMES, MonalEntity.SCIENTIFIC_NAMES, CreaturesEntities.MONAL, CreaturesItems.MONAL_SPAWN_EGG, Component.translatable("entity.creatures.monal")),
-            new SpeciesEntry("marabou", 4, MarabouEntity.SPECIES_NAMES, MarabouEntity.SCIENTIFIC_NAMES, CreaturesEntities.MARABOU, CreaturesItems.MARABOU_SPAWN_EGG, Component.translatable("entity.creatures.marabou")),
-            new SpeciesEntry("peafowl", 3, PeafowlEntity.SPECIES_NAMES, PeafowlEntity.SCIENTIFIC_NAMES, CreaturesEntities.PEAFOWL, CreaturesItems.PEAFOWL_SPAWN_EGG, Component.translatable("entity.creatures.peafowl")),
-            new SpeciesEntry("pelican", 8, PelicanEntity.SPECIES_NAMES, PelicanEntity.SCIENTIFIC_NAMES, CreaturesEntities.PELICAN, CreaturesItems.PELICAN_SPAWN_EGG, Component.translatable("entity.creatures.pelican")),
-            new SpeciesEntry("pheasant", 3, PheasantEntity.SPECIES_NAMES, PheasantEntity.SCIENTIFIC_NAMES, CreaturesEntities.PHEASANT, CreaturesItems.PHEASANT_SPAWN_EGG, Component.translatable("entity.creatures.pheasant")),
-            new SpeciesEntry("puffin", 5, PuffinEntity.SPECIES_NAMES, PuffinEntity.SCIENTIFIC_NAMES, CreaturesEntities.PUFFIN, CreaturesItems.PUFFIN_SPAWN_EGG, Component.translatable("entity.creatures.puffin")),
-            new SpeciesEntry("pygmygoose", 3, PygmyGooseEntity.SPECIES_NAMES, PygmyGooseEntity.SCIENTIFIC_NAMES, CreaturesEntities.PYGMY_GOOSE, CreaturesItems.PYGMY_GOOSE_SPAWN_EGG, Component.translatable("entity.creatures.pygmy_goose")),
-            new SpeciesEntry("rail", 5, RailEntity.SPECIES_NAMES, RailEntity.SCIENTIFIC_NAMES, CreaturesEntities.RAIL, CreaturesItems.RAIL_SPAWN_EGG, Component.translatable("entity.creatures.rail")),
-            new SpeciesEntry("raven", 5, RavenEntity.SPECIES_NAMES, RavenEntity.SCIENTIFIC_NAMES, CreaturesEntities.RAVEN, CreaturesItems.RAVEN_SPAWN_EGG, Component.translatable("entity.creatures.raven")),
-            new SpeciesEntry("robin", 5, RobinEntity.SPECIES_NAMES, RobinEntity.SCIENTIFIC_NAMES, CreaturesEntities.ROBIN, CreaturesItems.ROBIN_SPAWN_EGG, Component.translatable("entity.creatures.robin")),
-            new SpeciesEntry("roller", 5, RollerEntity.SPECIES_NAMES, RollerEntity.SCIENTIFIC_NAMES, CreaturesEntities.ROLLER, CreaturesItems.ROLLER_SPAWN_EGG, Component.translatable("entity.creatures.roller")),
-            new SpeciesEntry("seagull", 8, SeagullEntity.SPECIES_NAMES, SeagullEntity.SCIENTIFIC_NAMES, CreaturesEntities.SEAGULL, CreaturesItems.SEAGULL_SPAWN_EGG, Component.translatable("entity.creatures.seagull")),
-            new SpeciesEntry("secretarybird", 1, Map.of(), Map.of(), CreaturesEntities.SECRETARYBIRD, CreaturesItems.SECRETARYBIRD_SPAWN_EGG, Component.translatable("entity.creatures.secretarybird")),
-            new SpeciesEntry("shoebill", 3, Map.of(), Map.of(), CreaturesEntities.SHOEBILL, CreaturesItems.SHOEBILL_SPAWN_EGG, Component.translatable("entity.creatures.shoebill")),
-            new SpeciesEntry("skua", 4, SkuaEntity.SPECIES_NAMES, SkuaEntity.SCIENTIFIC_NAMES, CreaturesEntities.SKUA, CreaturesItems.SKUA_SPAWN_EGG, Component.translatable("entity.creatures.skua")),
-            new SpeciesEntry("sparrow", 6, SparrowEntity.SPECIES_NAMES, SparrowEntity.SCIENTIFIC_NAMES, CreaturesEntities.SPARROW, CreaturesItems.SPARROW_SPAWN_EGG, Component.translatable("entity.creatures.sparrow")),
-            new SpeciesEntry("spoonbill", 6, SpoonbillEntity.SPECIES_NAMES, SpoonbillEntity.SCIENTIFIC_NAMES, CreaturesEntities.SPOONBILL, CreaturesItems.SPOONBILL_SPAWN_EGG, Component.translatable("entity.creatures.creatures_spoonbill")),
-            new SpeciesEntry("starling", 6, StarlingEntity.SPECIES_NAMES, StarlingEntity.SCIENTIFIC_NAMES, CreaturesEntities.STARLING, CreaturesItems.STARLING_SPAWN_EGG, Component.translatable("entity.creatures.starling")),
-            new SpeciesEntry("stilt", 6, StiltEntity.SPECIES_NAMES, StiltEntity.SCIENTIFIC_NAMES, CreaturesEntities.STILT, CreaturesItems.STILT_SPAWN_EGG, Component.translatable("entity.creatures.stilt")),
-            new SpeciesEntry("stork", 4, StorkEntity.SPECIES_NAMES, StorkEntity.SCIENTIFIC_NAMES, CreaturesEntities.STORK, CreaturesItems.STORK_SPAWN_EGG, Component.translatable("entity.creatures.stork")),
-            new SpeciesEntry("swallow", 5, SwallowEntity.SPECIES_NAMES, SwallowEntity.SCIENTIFIC_NAMES, CreaturesEntities.SWALLOW, CreaturesItems.SWALLOW_SPAWN_EGG, Component.translatable("entity.creatures.swallow")),
-            new SpeciesEntry("tanager", 9, TanagerEntity.SPECIES_NAMES, TanagerEntity.SCIENTIFIC_NAMES, CreaturesEntities.TANAGER, CreaturesItems.TANAGER_SPAWN_EGG, Component.translatable("entity.creatures.tanager")),
-            new SpeciesEntry("whistlingduck", 4, WhistlingDuckEntity.SPECIES_NAMES, WhistlingDuckEntity.SCIENTIFIC_NAMES, CreaturesEntities.WHISTLING_DUCK, CreaturesItems.WHISTLINGDUCK_SPAWN_EGG, Component.translatable("entity.creatures.whistlingduck")),
-            new SpeciesEntry("wildduck", 13, WildDuckEntity.SPECIES_NAMES, WildDuckEntity.SCIENTIFIC_NAMES, CreaturesEntities.WILD_DUCK, CreaturesItems.WILD_DUCK_SPAWN_EGG, Component.translatable("entity.creatures.wild_duck")),
-            new SpeciesEntry("woodduck", 1, Map.of(), Map.of(), CreaturesEntities.WOOD_DUCK, CreaturesItems.WOOD_DUCK_SPAWN_EGG, Component.translatable("entity.creatures.woodduck")),
-            new SpeciesEntry("yelloweyedpenguin", 1, Map.of(), Map.of(), CreaturesEntities.YELLOW_EYED_PENGUIN, CreaturesItems.YELLOW_EYED_PENGUIN_SPAWN_EGG, Component.translatable("entity.creatures.yelloweyedpenguin")),
+            new SpeciesEntry("kingfisher", 6, KingfisherEntity.SPECIES_NAMES, KingfisherEntity.SCIENTIFIC_NAMES, CreaturesEntities.KINGFISHER, CreaturesItems.KINGFISHER_SPAWN_EGG, Component.translatable("entity.creatures.kingfisher"), KingfisherEntity.REGIONS),
+            new SpeciesEntry("lapwing", 7, LapwingEntity.SPECIES_NAMES, LapwingEntity.SCIENTIFIC_NAMES, CreaturesEntities.LAPWING, CreaturesItems.LAPWING_SPAWN_EGG, Component.translatable("entity.creatures.lapwing"), LapwingEntity.REGIONS),
+            new SpeciesEntry("largepenguin", 2, LargePenguinEntity.SPECIES_NAMES, LargePenguinEntity.SCIENTIFIC_NAMES, CreaturesEntities.LARGE_PENGUIN, CreaturesItems.LARGE_PENGUIN_SPAWN_EGG, Component.translatable("entity.creatures.largepenguin"), LargePenguinEntity.REGIONS),
+            new SpeciesEntry("laughingthrush", 8, LaughingthrushEntity.SPECIES_NAMES, LaughingthrushEntity.SCIENTIFIC_NAMES, CreaturesEntities.LAUGHINGTHRUSH, CreaturesItems.LAUGHINGTHRUSH_SPAWN_EGG, Component.translatable("entity.creatures.laughingthrush"), LaughingthrushEntity.REGIONS),
+            new SpeciesEntry("littlepenguin", 2, LittlePenguinEntity.SPECIES_NAMES, LittlePenguinEntity.SCIENTIFIC_NAMES, CreaturesEntities.LITTLE_PENGUIN, CreaturesItems.LITTLE_PENGUIN_SPAWN_EGG, Component.translatable("entity.creatures.littlepenguin"), LittlePenguinEntity.REGIONS),
+            new SpeciesEntry("lorikeet", 6, LorikeetEntity.SPECIES_NAMES, LorikeetEntity.SCIENTIFIC_NAMES, CreaturesEntities.LORIKEET, CreaturesItems.LORIKEET_SPAWN_EGG, Component.translatable("entity.creatures.lorikeet"), LorikeetEntity.REGIONS),
+            new SpeciesEntry("lovebird", 13, LovebirdEntity.SPECIES_NAMES, LovebirdEntity.SCIENTIFIC_NAMES, CreaturesEntities.LOVEBIRD, CreaturesItems.LOVEBIRD_SPAWN_EGG, Component.translatable("entity.creatures.lovebird"), LovebirdEntity.REGIONS),
+            new SpeciesEntry("magpie", 6, MagpieEntity.SPECIES_NAMES, MagpieEntity.SCIENTIFIC_NAMES, CreaturesEntities.MAGPIE, CreaturesItems.MAGPIE_SPAWN_EGG, Component.translatable("entity.creatures.magpie"), MagpieEntity.REGIONS),
+            new SpeciesEntry("mandarinduck", 1, Map.of(), Map.of(), CreaturesEntities.MANDARIN_DUCK, CreaturesItems.MANDARIN_DUCK_SPAWN_EGG, Component.translatable("entity.creatures.mandarin_duck"), MandarinDuckEntity.REGIONS),
+            new SpeciesEntry("monal", 3, MonalEntity.SPECIES_NAMES, MonalEntity.SCIENTIFIC_NAMES, CreaturesEntities.MONAL, CreaturesItems.MONAL_SPAWN_EGG, Component.translatable("entity.creatures.monal"), MonalEntity.REGIONS),
+            new SpeciesEntry("marabou", 3, MarabouEntity.SPECIES_NAMES, MarabouEntity.SCIENTIFIC_NAMES, CreaturesEntities.MARABOU, CreaturesItems.MARABOU_SPAWN_EGG, Component.translatable("entity.creatures.marabou"), MarabouEntity.REGIONS),
+            new SpeciesEntry("osprey", 1, Map.of(), Map.of(), CreaturesEntities.OSPREY, CreaturesItems.OSPREY_SPAWN_EGG, Component.translatable("entity.creatures.osprey"), OspreyEntity.REGIONS),
+            new SpeciesEntry("peafowl", 3, PeafowlEntity.SPECIES_NAMES, PeafowlEntity.SCIENTIFIC_NAMES, CreaturesEntities.PEAFOWL, CreaturesItems.PEAFOWL_SPAWN_EGG, Component.translatable("entity.creatures.peafowl"), PeafowlEntity.REGIONS),
+            new SpeciesEntry("pelican", 8, PelicanEntity.SPECIES_NAMES, PelicanEntity.SCIENTIFIC_NAMES, CreaturesEntities.PELICAN, CreaturesItems.PELICAN_SPAWN_EGG, Component.translatable("entity.creatures.pelican"), PelicanEntity.REGIONS),
+            new SpeciesEntry("pheasant", 3, PheasantEntity.SPECIES_NAMES, PheasantEntity.SCIENTIFIC_NAMES, CreaturesEntities.PHEASANT, CreaturesItems.PHEASANT_SPAWN_EGG, Component.translatable("entity.creatures.pheasant"), PheasantEntity.REGIONS),
+            new SpeciesEntry("puffin", 5, PuffinEntity.SPECIES_NAMES, PuffinEntity.SCIENTIFIC_NAMES, CreaturesEntities.PUFFIN, CreaturesItems.PUFFIN_SPAWN_EGG, Component.translatable("entity.creatures.puffin"), PuffinEntity.REGIONS),
+            new SpeciesEntry("pygmygoose", 3, PygmyGooseEntity.SPECIES_NAMES, PygmyGooseEntity.SCIENTIFIC_NAMES, CreaturesEntities.PYGMY_GOOSE, CreaturesItems.PYGMY_GOOSE_SPAWN_EGG, Component.translatable("entity.creatures.pygmy_goose"), PygmyGooseEntity.REGIONS),
+            new SpeciesEntry("rail", 5, RailEntity.SPECIES_NAMES, RailEntity.SCIENTIFIC_NAMES, CreaturesEntities.RAIL, CreaturesItems.RAIL_SPAWN_EGG, Component.translatable("entity.creatures.rail"), RailEntity.REGIONS),
+            new SpeciesEntry("raven", 5, RavenEntity.SPECIES_NAMES, RavenEntity.SCIENTIFIC_NAMES, CreaturesEntities.RAVEN, CreaturesItems.RAVEN_SPAWN_EGG, Component.translatable("entity.creatures.raven"), RavenEntity.REGIONS),
+            new SpeciesEntry("redkite", 1, Map.of(), Map.of(), CreaturesEntities.RED_KITE, CreaturesItems.RED_KITE_SPAWN_EGG, Component.translatable("entity.creatures.red_kite"), RedKiteEntity.REGIONS),
+            new SpeciesEntry("robin", 5, RobinEntity.SPECIES_NAMES, RobinEntity.SCIENTIFIC_NAMES, CreaturesEntities.ROBIN, CreaturesItems.ROBIN_SPAWN_EGG, Component.translatable("entity.creatures.robin"), RobinEntity.REGIONS),
+            new SpeciesEntry("roller", 5, RollerEntity.SPECIES_NAMES, RollerEntity.SCIENTIFIC_NAMES, CreaturesEntities.ROLLER, CreaturesItems.ROLLER_SPAWN_EGG, Component.translatable("entity.creatures.roller"), RollerEntity.REGIONS),
+            new SpeciesEntry("seaeagle", 5, SeaEagleEntity.SPECIES_NAMES, SeaEagleEntity.SCIENTIFIC_NAMES, CreaturesEntities.SEA_EAGLE, CreaturesItems.STELLERS_SEA_EAGLE_SPAWN_EGG, Component.translatable("entity.creatures.stellers_sea_eagle"), SeaEagleEntity.REGIONS),
+            new SpeciesEntry("seagull", 8, SeagullEntity.SPECIES_NAMES, SeagullEntity.SCIENTIFIC_NAMES, CreaturesEntities.SEAGULL, CreaturesItems.SEAGULL_SPAWN_EGG, Component.translatable("entity.creatures.seagull"), SeagullEntity.REGIONS),
+            new SpeciesEntry("secretarybird", 1, Map.of(), Map.of(), CreaturesEntities.SECRETARYBIRD, CreaturesItems.SECRETARYBIRD_SPAWN_EGG, Component.translatable("entity.creatures.secretarybird"), SecretaryBirdEntity.REGIONS),
+            new SpeciesEntry("shoebill", 3, Map.of(), Map.of(), CreaturesEntities.SHOEBILL, CreaturesItems.SHOEBILL_SPAWN_EGG, Component.translatable("entity.creatures.shoebill"), ShoebillEntity.REGIONS),
+            new SpeciesEntry("skua", 4, SkuaEntity.SPECIES_NAMES, SkuaEntity.SCIENTIFIC_NAMES, CreaturesEntities.SKUA, CreaturesItems.SKUA_SPAWN_EGG, Component.translatable("entity.creatures.skua"), SkuaEntity.REGIONS),
+            new SpeciesEntry("sparrow", 6, SparrowEntity.SPECIES_NAMES, SparrowEntity.SCIENTIFIC_NAMES, CreaturesEntities.SPARROW, CreaturesItems.SPARROW_SPAWN_EGG, Component.translatable("entity.creatures.sparrow"), SparrowEntity.REGIONS),
+            new SpeciesEntry("spoonbill", 6, SpoonbillEntity.SPECIES_NAMES, SpoonbillEntity.SCIENTIFIC_NAMES, CreaturesEntities.SPOONBILL, CreaturesItems.SPOONBILL_SPAWN_EGG, Component.translatable("entity.creatures.creatures_spoonbill"), SpoonbillEntity.REGIONS),
+            new SpeciesEntry("starling", 6, StarlingEntity.SPECIES_NAMES, StarlingEntity.SCIENTIFIC_NAMES, CreaturesEntities.STARLING, CreaturesItems.STARLING_SPAWN_EGG, Component.translatable("entity.creatures.starling"), StarlingEntity.REGIONS),
+            new SpeciesEntry("stilt", 6, StiltEntity.SPECIES_NAMES, StiltEntity.SCIENTIFIC_NAMES, CreaturesEntities.STILT, CreaturesItems.STILT_SPAWN_EGG, Component.translatable("entity.creatures.stilt"), StiltEntity.REGIONS),
+            new SpeciesEntry("stork", 4, StorkEntity.SPECIES_NAMES, StorkEntity.SCIENTIFIC_NAMES, CreaturesEntities.STORK, CreaturesItems.STORK_SPAWN_EGG, Component.translatable("entity.creatures.stork"), StorkEntity.REGIONS),
+            new SpeciesEntry("swallow", 5, SwallowEntity.SPECIES_NAMES, SwallowEntity.SCIENTIFIC_NAMES, CreaturesEntities.SWALLOW, CreaturesItems.SWALLOW_SPAWN_EGG, Component.translatable("entity.creatures.swallow"), SwallowEntity.REGIONS),
+            new SpeciesEntry("tanager", 9, TanagerEntity.SPECIES_NAMES, TanagerEntity.SCIENTIFIC_NAMES, CreaturesEntities.TANAGER, CreaturesItems.TANAGER_SPAWN_EGG, Component.translatable("entity.creatures.tanager"), TanagerEntity.REGIONS),
+            new SpeciesEntry("whistlingduck", 4, WhistlingDuckEntity.SPECIES_NAMES, WhistlingDuckEntity.SCIENTIFIC_NAMES, CreaturesEntities.WHISTLING_DUCK, CreaturesItems.WHISTLINGDUCK_SPAWN_EGG, Component.translatable("entity.creatures.whistlingduck"), WhistlingDuckEntity.REGIONS),
+            new SpeciesEntry("wildduck", 13, WildDuckEntity.SPECIES_NAMES, WildDuckEntity.SCIENTIFIC_NAMES, CreaturesEntities.WILD_DUCK, CreaturesItems.WILD_DUCK_SPAWN_EGG, Component.translatable("entity.creatures.wild_duck"), WildDuckEntity.REGIONS),
+            new SpeciesEntry("woodduck", 1, Map.of(), Map.of(), CreaturesEntities.WOOD_DUCK, CreaturesItems.WOOD_DUCK_SPAWN_EGG, Component.translatable("entity.creatures.woodduck"), WoodDuckEntity.REGIONS),
+            new SpeciesEntry("yelloweyedpenguin", 1, Map.of(), Map.of(), CreaturesEntities.YELLOW_EYED_PENGUIN, CreaturesItems.YELLOW_EYED_PENGUIN_SPAWN_EGG, Component.translatable("entity.creatures.yelloweyedpenguin"), YellowEyedPenguinEntity.REGIONS),
             // fish
-            new SpeciesEntry("arapaima", 4, Map.of(), Map.of(), CreaturesEntities.ARAPAIMA, CreaturesItems.ARAPAIMA_SPAWN_EGG, Component.translatable("entity.creatures.arapaima")),
-            new SpeciesEntry("arowana", 4, Map.of(), Map.of(), CreaturesEntities.AROWANA, CreaturesItems.AROWANA_SPAWN_EGG, Component.translatable("entity.creatures.arowana")),
+            new SpeciesEntry("arapaima", 3, Map.of(), Map.of(), CreaturesEntities.ARAPAIMA, CreaturesItems.ARAPAIMA_SPAWN_EGG, Component.translatable("entity.creatures.arapaima"), ArapaimaEntity.REGIONS),
+            new SpeciesEntry("arowana", 3, Map.of(), Map.of(), CreaturesEntities.AROWANA, CreaturesItems.AROWANA_SPAWN_EGG, Component.translatable("entity.creatures.arowana"), ArowanaEntity.REGIONS),
             new SpeciesEntry("barracuda", 3, BarracudaEntity.SPECIES_NAMES, BarracudaEntity.SCIENTIFIC_NAMES, CreaturesEntities.BARRACUDA, CreaturesItems.BARRACUDA_SPAWN_EGG, Component.translatable("entity.creatures.barracuda")),
             new SpeciesEntry("blue_tang", 10, BlueTangEntity.SPECIES_NAMES, BlueTangEntity.SCIENTIFIC_NAMES, CreaturesEntities.BLUE_TANG, CreaturesItems.BLUE_TANG_SPAWN_EGG, Component.translatable("entity.creatures.blue_tang")),
             new SpeciesEntry("clownfish", 8, ClownfishEntity.SPECIES_NAMES, ClownfishEntity.SCIENTIFIC_NAMES, CreaturesEntities.CLOWNFISH, CreaturesItems.CLOWNFISH_SPAWN_EGG, Component.translatable("entity.creatures.clownfish")),
             new SpeciesEntry("dottyback", 4, DottybackEntity.SPECIES_NAMES, DottybackEntity.SCIENTIFIC_NAMES, CreaturesEntities.DOTTYBACK, CreaturesItems.DOTTYBACK_SPAWN_EGG, Component.translatable("entity.creatures.dottyback")),
-            new SpeciesEntry("elephantnose", 5, Map.of(), Map.of(), CreaturesEntities.ELEPHANTNOSE, CreaturesItems.ELEPHANTNOSE_SPAWN_EGG, Component.translatable("entity.creatures.elephantnose")),
+            new SpeciesEntry("elephantnose", 5, Map.of(), Map.of(), CreaturesEntities.ELEPHANTNOSE, CreaturesItems.ELEPHANTNOSE_SPAWN_EGG, Component.translatable("entity.creatures.elephantnose"), ElephantNoseFishEntity.REGIONS),
             new SpeciesEntry("fire_goby", 1, Map.of(), Map.of(), CreaturesEntities.FIRE_GOBY, CreaturesItems.FIRE_GOBY_SPAWN_EGG, Component.translatable("entity.creatures.fire_goby")),
             new SpeciesEntry("flame_angelfish", 1, Map.of(), Map.of(), CreaturesEntities.FLAME_ANGELFISH, CreaturesItems.FLAME_ANGELFISH_SPAWN_EGG, Component.translatable("entity.creatures.flame_angelfish")),
-            new SpeciesEntry("goldfish", 9, Map.of(), Map.of(), CreaturesEntities.GOLDFISH, CreaturesItems.GOLDFISH_SPAWN_EGG, Component.translatable("entity.creatures.goldfish")),
-            new SpeciesEntry("gourami", 5, GouramiEntity.SPECIES_NAMES, GouramiEntity.SCIENTIFIC_NAMES, CreaturesEntities.GOURAMI, CreaturesItems.GOURAMI_SPAWN_EGG, Component.translatable("entity.creatures.gourami")),
-            new SpeciesEntry("guppy", 6, GuppyEntity.SPECIES_NAMES, Map.of(), CreaturesEntities.GUPPY, CreaturesItems.GUPPY_SPAWN_EGG, Component.translatable("entity.creatures.guppy")),
-            new SpeciesEntry("koi", 9, Map.of(), Map.of(), CreaturesEntities.KOI, CreaturesItems.KOI_SPAWN_EGG, Component.translatable("entity.creatures.koi")),
+            new SpeciesEntry("goldfish", 9, Map.of(), Map.of(), CreaturesEntities.GOLDFISH, CreaturesItems.GOLDFISH_SPAWN_EGG, Component.translatable("entity.creatures.goldfish"), GoldfishEntity.REGIONS),
+            new SpeciesEntry("gourami", 5, GouramiEntity.SPECIES_NAMES, GouramiEntity.SCIENTIFIC_NAMES, CreaturesEntities.GOURAMI, CreaturesItems.GOURAMI_SPAWN_EGG, Component.translatable("entity.creatures.gourami"), GouramiEntity.REGIONS),
+            new SpeciesEntry("guppy", 6, GuppyEntity.SPECIES_NAMES, Map.of(), CreaturesEntities.GUPPY, CreaturesItems.GUPPY_SPAWN_EGG, Component.translatable("entity.creatures.guppy"), GuppyEntity.REGIONS),
+            new SpeciesEntry("koi", 9, Map.of(), Map.of(), CreaturesEntities.KOI, CreaturesItems.KOI_SPAWN_EGG, Component.translatable("entity.creatures.koi"), KoiEntity.REGIONS),
             new SpeciesEntry("lookdown", 2, LookdownEntity.SPECIES_NAMES, Map.of(), CreaturesEntities.LOOKDOWN, CreaturesItems.LOOKDOWN_SPAWN_EGG, Component.translatable("entity.creatures.lookdown")),
-            new SpeciesEntry("lungfish", 4, LungfishEntity.SPECIES_NAMES, LungfishEntity.SCIENTIFIC_NAMES, CreaturesEntities.LUNGFISH, CreaturesItems.LUNGFISH_SPAWN_EGG, Component.translatable("entity.creatures.lungfish")),
+            new SpeciesEntry("lungfish", 4, LungfishEntity.SPECIES_NAMES, LungfishEntity.SCIENTIFIC_NAMES, CreaturesEntities.LUNGFISH, CreaturesItems.LUNGFISH_SPAWN_EGG, Component.translatable("entity.creatures.lungfish"), LungfishEntity.REGIONS),
             new SpeciesEntry("parrotfish", 12, ParrotfishEntity.SPECIES_NAMES, ParrotfishEntity.SCIENTIFIC_NAMES, CreaturesEntities.PARROTFISH, CreaturesItems.PARROTFISH_SPAWN_EGG, Component.translatable("entity.creatures.parrotfish")),
-            new SpeciesEntry("pike", 1, Map.of(), Map.of(), CreaturesEntities.PIKE, CreaturesItems.PIKE_SPAWN_EGG, Component.translatable("entity.creatures.pike")),
-            new SpeciesEntry("piranha", 5, PiranhaEntity.SPECIES_NAMES, PiranhaEntity.SCIENTIFIC_NAMES, CreaturesEntities.PIRANHA, CreaturesItems.PIRANHA_SPAWN_EGG, Component.translatable("entity.creatures.piranha")),
-            new SpeciesEntry("ranchu", 5, Map.of(), Map.of(), CreaturesEntities.RANCHU, CreaturesItems.RANCHU_SPAWN_EGG, Component.translatable("entity.creatures.ranchu")),
+            new SpeciesEntry("pike", 1, Map.of(), Map.of(), CreaturesEntities.PIKE, CreaturesItems.PIKE_SPAWN_EGG, Component.translatable("entity.creatures.pike"), PikeEntity.REGIONS),
+            new SpeciesEntry("piranha", 5, PiranhaEntity.SPECIES_NAMES, PiranhaEntity.SCIENTIFIC_NAMES, CreaturesEntities.PIRANHA, CreaturesItems.PIRANHA_SPAWN_EGG, Component.translatable("entity.creatures.piranha"), PiranhaEntity.REGIONS),
+            new SpeciesEntry("ranchu", 4, Map.of(), Map.of(), CreaturesEntities.RANCHU, CreaturesItems.RANCHU_SPAWN_EGG, Component.translatable("entity.creatures.ranchu"), RanchuEntity.REGIONS),
             new SpeciesEntry("red_snapper", 2, RedSnapperEntity.SPECIES_NAMES, Map.of(), CreaturesEntities.RED_SNAPPER, CreaturesItems.RED_SNAPPER_SPAWN_EGG, Component.translatable("entity.creatures.red_snapper")),
             new SpeciesEntry("sawfish", 5, SawfishEntity.SPECIES_NAMES, Map.of(), CreaturesEntities.SAWFISH, CreaturesItems.SAWFISH_SPAWN_EGG, Component.translatable("entity.creatures.sawfish")),
             new SpeciesEntry("seadragon", 3, SeaDragonEntity.SPECIES_NAMES, SeaDragonEntity.SCIENTIFIC_NAMES, CreaturesEntities.SEADRAGON, CreaturesItems.SEADRAGON_SPAWN_EGG, Component.translatable("entity.creatures.seadragon")),
-            new SpeciesEntry("shrimp", 8, ShrimpEntity.SPECIES_NAMES, Map.of(), CreaturesEntities.SHRIMP, CreaturesItems.SHRIMP_SPAWN_EGG, Component.translatable("entity.creatures.shrimp")),
+            new SpeciesEntry("shrimp", 8, ShrimpEntity.SPECIES_NAMES, Map.of(), CreaturesEntities.SHRIMP, CreaturesItems.SHRIMP_SPAWN_EGG, Component.translatable("entity.creatures.shrimp"), ShrimpEntity.REGIONS),
             new SpeciesEntry("squid", 10, SquidEntity.SPECIES_NAMES, SquidEntity.SCIENTIFIC_NAMES, CreaturesEntities.SQUID, CreaturesItems.SQUID_SPAWN_EGG, Component.translatable("entity.creatures.squid")),
             new SpeciesEntry("stingray", 15, StingrayEntity.SPECIES_NAMES, StingrayEntity.SCIENTIFIC_NAMES, CreaturesEntities.STINGRAY, CreaturesItems.STINGRAY_SPAWN_EGG, Component.translatable("entity.creatures.stingray")),
             new SpeciesEntry("swordfish", 9, SwordfishEntity.SPECIES_NAMES, SwordfishEntity.SCIENTIFIC_NAMES, CreaturesEntities.SWORDFISH, CreaturesItems.SWORDFISH_SPAWN_EGG, Component.translatable("entity.creatures.swordfish")),
-            new SpeciesEntry("tambaqui", 6, Map.of(), Map.of(), CreaturesEntities.TAMBAQUI, CreaturesItems.TAMBAQUI_SPAWN_EGG, Component.translatable("entity.creatures.tambaqui")),
-            new SpeciesEntry("tigerbarb", 2, TigerBarbEntity.SPECIES_NAMES, TigerBarbEntity.SCIENTIFIC_NAMES, CreaturesEntities.TIGERBARB, CreaturesItems.TIGERBARB_SPAWN_EGG, Component.translatable("entity.creatures.tigerbarb")),
-            new SpeciesEntry("trout", 4, TroutEntity.SPECIES_NAMES, TroutEntity.SCIENTIFIC_NAMES, CreaturesEntities.TROUT, CreaturesItems.TROUT_SPAWN_EGG, Component.translatable("entity.creatures.trout")),
+            new SpeciesEntry("tambaqui", 6, Map.of(), Map.of(), CreaturesEntities.TAMBAQUI, CreaturesItems.TAMBAQUI_SPAWN_EGG, Component.translatable("entity.creatures.tambaqui"), TambaquiEntity.REGIONS),
+            new SpeciesEntry("tigerbarb", 2, TigerBarbEntity.SPECIES_NAMES, TigerBarbEntity.SCIENTIFIC_NAMES, CreaturesEntities.TIGERBARB, CreaturesItems.TIGERBARB_SPAWN_EGG, Component.translatable("entity.creatures.tigerbarb"), TigerBarbEntity.REGIONS),
+            new SpeciesEntry("trout", 4, TroutEntity.SPECIES_NAMES, TroutEntity.SCIENTIFIC_NAMES, CreaturesEntities.TROUT, CreaturesItems.TROUT_SPAWN_EGG, Component.translatable("entity.creatures.trout"), TroutEntity.REGIONS),
             new SpeciesEntry("trumpetfish", 3, TrumpetfishEntity.SPECIES_NAMES, Map.of(), CreaturesEntities.TRUMPETFISH, CreaturesItems.TRUMPETFISH_SPAWN_EGG, Component.translatable("entity.creatures.trumpetfish")),
 
             // crabs + tarantula
             new SpeciesEntry("ghostcrab", 4, GhostCrabEntity.SPECIES_NAMES, Map.of(), CreaturesEntities.GHOST_CRAB, CreaturesItems.GHOST_CRAB_SPAWN_EGG, Component.translatable("entity.creatures.ghostcrab")),
-            new SpeciesEntry("fiddlercrab", 5, FiddlerCrabEntity.SPECIES_NAMES, FiddlerCrabEntity.SCIENTIFIC_NAMES, CreaturesEntities.FIDDLER_CRAB, CreaturesItems.FIDDLER_CRAB_SPAWN_EGG, Component.translatable("entity.creatures.fiddlercrab")),
-            new SpeciesEntry("vampirecrab", 6, Map.of(), Map.of(), CreaturesEntities.VAMPIRECRAB, CreaturesItems.VAMPIRE_CRAB_SPAWN_EGG, Component.translatable("entity.creatures.vampirecrab")),
-            new SpeciesEntry("ediblecrab", 4, EdibleCrabEntity.SPECIES_NAMES, EdibleCrabEntity.SCIENTIFIC_NAMES, CreaturesEntities.EDIBLE_CRAB, CreaturesItems.EDIBLE_CRAB_SPAWN_EGG, Component.translatable("entity.creatures.ediblecrab")),
-            new SpeciesEntry("tarantula", 15, TarantulaEntity.SPECIES_NAMES, TarantulaEntity.SCIENTIFIC_NAMES, CreaturesEntities.TARANTULA, CreaturesItems.TARANTULA_SPAWN_EGG, Component.translatable("entity.creatures.tarantula"))
+            new SpeciesEntry("fiddlercrab", 5, FiddlerCrabEntity.SPECIES_NAMES, FiddlerCrabEntity.SCIENTIFIC_NAMES, CreaturesEntities.FIDDLER_CRAB, CreaturesItems.FIDDLER_CRAB_SPAWN_EGG, Component.translatable("entity.creatures.fiddlercrab"), FiddlerCrabEntity.REGIONS),
+            new SpeciesEntry("vampirecrab", 6, Map.of(), Map.of(), CreaturesEntities.VAMPIRECRAB, CreaturesItems.VAMPIRE_CRAB_SPAWN_EGG, Component.translatable("entity.creatures.vampirecrab"), VampireCrabEntity.REGIONS),
+            new SpeciesEntry("ediblecrab", 4, EdibleCrabEntity.SPECIES_NAMES, EdibleCrabEntity.SCIENTIFIC_NAMES, CreaturesEntities.EDIBLE_CRAB, CreaturesItems.EDIBLE_CRAB_SPAWN_EGG, Component.translatable("entity.creatures.ediblecrab"), EdibleCrabEntity.REGIONS),
+            new SpeciesEntry("tarantula", 15, TarantulaEntity.SPECIES_NAMES, TarantulaEntity.SCIENTIFIC_NAMES, CreaturesEntities.TARANTULA, CreaturesItems.TARANTULA_SPAWN_EGG, Component.translatable("entity.creatures.tarantula"), TarantulaEntity.REGIONS)
     );
+    // In FieldGuideGUI
+    public static long lastQuizDay = -1;
+    public static boolean quizCompletedToday = false;
+    private Button regionButton;
 
     public FieldGuideGUI() {
         super(Component.translatable("creatures_fieldgui"));
@@ -159,6 +170,7 @@ public class FieldGuideGUI extends Screen {
         int tooltipX = 0, tooltipY = 0;
 
         if (currentPage == 0) {
+            regionButton.visible = true;
             int centerX = rightPageX + bookW / 2 - 120;
             int centerY = pageY + bookH / 2 - 30;
 
@@ -214,14 +226,44 @@ public class FieldGuideGUI extends Screen {
             int fillWidth = (int) ((float) discoveredSpecies / totalSpecies * barWidth);
             graphics.fill(barX, barY, barX + fillWidth, barY + barHeight, 0xFF5C8A3C);
 
+            // instructions
+            int introX = bookX + 15;
+            int introY = bookY + 155;
+            String[] lines = {
+                    "•Right-click with guide to register animals",
+                    "•Click on an animal to view more details",
+                    "•Take the daily quiz to earn some XP"
+            };
+            float scale = 0.7f;
+            for (String line : lines) {
+                graphics.pose().pushPose();
+                graphics.pose().translate(rightPageX, introY, 0);
+                graphics.pose().scale(scale, scale, 1f);
+                font.drawInBatch(line, 0, 0, 0x5C4033, false,
+                        graphics.pose().last().pose(), graphics.bufferSource(),
+                        net.minecraft.client.gui.Font.DisplayMode.NORMAL, 0, 15728880);
+                graphics.pose().popPose();
+                introY += (int)(10 * scale);
+            }
+
             // Bar border
             graphics.fill(barX, barY, barX + barWidth, barY + 1, 0x88000000);
             graphics.fill(barX, barY + barHeight - 1, barX + barWidth, barY + barHeight, 0x88000000);
             graphics.fill(barX, barY, barX + 1, barY + barHeight, 0x88000000);
             graphics.fill(barX + barWidth - 1, barY, barX + barWidth, barY + barHeight, 0x88000000);
 
+            ResourceLocation painting = new ResourceLocation("creatures:textures/painting/fischers.png");
+            int imgSize = 64; // display size in pixels
+            int imgX = bookX + 50; // left page area
+            int imgY = bookY + 80;
+            RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
+            graphics.blit(painting, imgX, imgY, 0, 0, imgSize, imgSize, imgSize, imgSize);
+            graphics.blit(new ResourceLocation("creatures:textures/painting/victoria_crowned.png"), imgX+70, imgY+10, 0, 0, imgSize, imgSize, imgSize, imgSize);
+
             super.render(graphics, mouseX, mouseY, partialTick);
             return;
+        } else {
+            regionButton.visible = false;
         }
 
         for (int i = 0; i < ALL_SPECIES.size(); i++) {
@@ -237,6 +279,11 @@ public class FieldGuideGUI extends Screen {
                 //LivingEntity dummy = (LivingEntity) species.entityType.get().create(Minecraft.getInstance().level);
                 LivingEntity dummy = (LivingEntity) species.entityType.get().create(Minecraft.getInstance().level);
                 if (dummy != null) {
+                    Quaternionf rotation = new Quaternionf()
+                            .rotateZ((float) Math.PI)
+                            .rotateY((float) Math.toRadians(140));
+                    float entityHeight = dummy.getBbHeight();
+                    int scale = (int) (25.0f / entityHeight);
                     if ((dummy instanceof CreaturesBirdEntity bird) && cap != null) {
 
                         // Build list of all discovered variant+gender combos
@@ -251,6 +298,8 @@ public class FieldGuideGUI extends Screen {
                             int[] entry = discovered.get(tick);
                             bird.setVariant(entry[0]);
                             bird.setGender(entry[1]);
+                            rotation = bird.getRotforGUI();
+                            scale = bird.getScaleforGUI();
                         }
                         bird.setOnGround(true);
                     }
@@ -262,6 +311,8 @@ public class FieldGuideGUI extends Screen {
                             fish.setVariant(variantList.get(tick));
                             fish.setAirSupply(300);
                             fish.setForcedInWater(true);
+                            rotation = fish.getRotforGUI();
+                            scale = fish.getScaleforGUI();
                         }
                         fish.setOnGround(true);
                     }
@@ -271,22 +322,11 @@ public class FieldGuideGUI extends Screen {
                             List<Integer> variantList = new ArrayList<>(variants);
                             int tick = (int)(System.currentTimeMillis() / 1000) % variantList.size();
                             fish.setVariant(variantList.get(tick));
-
+                            rotation = fish.getRotforGUI();
+                            scale = fish.getScaleforGUI();
                         }
                         fish.setOnGround(true);
                     }
-                    float entityHeight = dummy.getBbHeight();
-                    int scale = (int) (25.0f / entityHeight);
-                    // entity specific
-                    if (dummy instanceof CormorantEntity) {
-                        scale = (int) (18.0f / entityHeight);
-                    }
-                    if (dummy instanceof LargePenguinEntity) {
-                        scale = (int) (40.0f / entityHeight);
-                    }
-                    Quaternionf rotation = new Quaternionf()
-                            .rotateZ((float) Math.PI)
-                            .rotateY((float) Math.toRadians(140));
                     InventoryScreen.renderEntityInInventory(graphics,
                             x + cellSize / 2, y + cellSize - 5, scale, rotation, null, dummy);
                 }
@@ -432,7 +472,47 @@ public class FieldGuideGUI extends Screen {
             int visibleRows = pageH / cellSize;
             if (currentPage < getTotalPages(colsPerPage, visibleRows) - 1) currentPage++;
         }).pos(bookX + bookW - 30, bookY + bookH - 40).size(20, 20).build());
+
+        Button quizButton = Button.builder(Component.literal("Daily Quiz"), b -> {
+            FieldGuideCapability cap = Minecraft.getInstance().player
+                    .getCapability(FieldGuideCapability.CAPABILITY).orElse(null);
+            if (cap != null) {
+                DailyQuizScreen quiz = DailyQuizScreen.create(this, cap);
+                if (quiz != null) Minecraft.getInstance().setScreen(quiz);
+            }
+        }).pos(bookX + bookW / 2 - 40, bookY + bookH - 40).size(80, 20).build();
+
+        quizButton.active = FieldGuideGUI.canShowQuiz();
+        regionButton = Button.builder(Component.literal("By Continent"), b ->
+                        Minecraft.getInstance().setScreen(new RegionSelectScreen(this)))
+                .pos(bookX + 40, bookY + 40).size(80, 30).build();
+        this.addRenderableWidget(regionButton);
+
+// In render(), before super.render()
+
+
+        this.addRenderableWidget(quizButton);
     }
+
+    private long getCurrentMinecraftDay() {
+        return Minecraft.getInstance().level.getDayTime() / 24000L;
+    }
+
+    public static boolean canShowQuiz() {
+        if (!net.minecraftforge.fml.loading.FMLLoader.isProduction()) {
+            return true;
+        }
+        if (!quizCompletedToday) return true;
+        long currentDay = Minecraft.getInstance().level.getDayTime() / 24000L;
+        if (currentDay != lastQuizDay) {
+            quizCompletedToday = false;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean isPauseScreen() { return false; }
 
 
 }

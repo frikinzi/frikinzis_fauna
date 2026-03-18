@@ -36,6 +36,7 @@ import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -57,6 +58,15 @@ public class StarlingEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(4, "Sturnus vulgaris")
             .put(5, "Aplonis metallica")
             .put(6, "Lamprotornis iris")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.AFRICA))
+            .put(2, List.of(Region.AFRICA))
+            .put(3, List.of(Region.AFRICA))
+            .put(4, List.of(Region.EUROPE, Region.ASIA, Region.NORTH_AMERICA, Region.OCEANIA, Region.AFRICA))
+            .put(5, List.of(Region.OCEANIA, Region.ASIA))
+            .put(6, List.of(Region.AFRICA))
             .build();
 
     public StarlingEntity(EntityType<? extends StarlingEntity> p_i50251_1_, Level p_i50251_2_) {

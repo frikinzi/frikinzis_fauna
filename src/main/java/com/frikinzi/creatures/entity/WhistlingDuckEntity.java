@@ -38,6 +38,7 @@ import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 import net.minecraftforge.common.ForgeMod;
 
+import java.util.List;
 import java.util.Map;
 
 public class WhistlingDuckEntity extends CreaturesWalkingBird implements GeoEntity {
@@ -55,6 +56,12 @@ public class WhistlingDuckEntity extends CreaturesWalkingBird implements GeoEnti
             .put(2, "Dendrocygna viduata")
             .put(3, "Dendrocygna autumnalis")
             .put(4, "Dendrocygna javanica")
+            .build();
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.AFRICA, Region.NORTH_AMERICA, Region.SOUTH_AMERICA, Region.ASIA))
+            .put(2, List.of(Region.AFRICA, Region.SOUTH_AMERICA))
+            .put(3, List.of(Region.NORTH_AMERICA, Region.SOUTH_AMERICA))
+            .put(4, List.of(Region.ASIA))
             .build();
 
     public WhistlingDuckEntity(EntityType<? extends WhistlingDuckEntity> p_i50251_1_, Level p_i50251_2_) {

@@ -21,6 +21,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import org.joml.Quaternionf;
 
 import javax.annotation.Nullable;
 
@@ -207,6 +208,17 @@ abstract public class AbstractCrabBase extends Animal {
         } else {
             return "f";
         }
+    }
+
+    public Quaternionf getRotforGUI() {
+        Quaternionf rot = new Quaternionf().rotateZ((float)Math.PI).rotateY((float)Math.toRadians(160));
+        return rot;
+    }
+
+    public int getScaleforGUI() {
+        float h = this.getBbHeight();
+        int scale = (int)(20f / h);
+        return scale;
     }
 
 }

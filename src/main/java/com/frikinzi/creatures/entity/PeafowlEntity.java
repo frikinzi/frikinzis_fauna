@@ -41,6 +41,12 @@ import java.util.Map;
 
 public class PeafowlEntity extends CreaturesWalkingBird implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.ASIA))
+            .put(2, List.of(Region.ASIA))
+            .put(3, List.of(Region.ASIA))
+            .build();
     private PanicGoal PanicGoal;
     private static final EntityDataAccessor<Boolean> DISPLAYING = SynchedEntityData.defineId(PeafowlEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> ON_DISPLAY = SynchedEntityData.defineId(PeafowlEntity.class, EntityDataSerializers.BOOLEAN);

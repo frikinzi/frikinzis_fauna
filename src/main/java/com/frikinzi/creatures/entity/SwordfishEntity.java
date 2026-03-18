@@ -369,4 +369,11 @@ public int getMaxSchoolSize() {
     public int numVariants() {
         return 9;
     }
+
+    @Override
+    public int getSubVariantBasedOnVariant(int variant) {
+        String[] subVariants = SWORDFISH.get(variant);
+        if (subVariants == null || subVariants.length == 0) return 0;
+        return this.random.nextInt(subVariants.length);
+    }
 }

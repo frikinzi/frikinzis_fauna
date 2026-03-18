@@ -36,6 +36,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
@@ -62,6 +63,15 @@ public class KingfisherEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(4, "Megaceryle alcyon")
             .put(5, "Todiramphus godeffroyi")
             .put(6, "Actenoides lindsayi")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.EUROPE, Region.ASIA, Region.AFRICA))
+            .put(2, List.of(Region.ASIA))
+            .put(3, List.of(Region.OCEANIA, Region.ASIA))
+            .put(4, List.of(Region.NORTH_AMERICA))
+            .put(5, List.of(Region.OCEANIA))
+            .put(6, List.of(Region.ASIA))
             .build();
 
     public KingfisherEntity(EntityType<? extends KingfisherEntity> p_i50251_1_, Level p_i50251_2_) {

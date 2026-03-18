@@ -36,6 +36,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.List;
 import java.util.Map;
 
 public class BandedPenguinEntity extends WalkingSwimmingBird implements GeoEntity {
@@ -63,6 +64,13 @@ public class BandedPenguinEntity extends WalkingSwimmingBird implements GeoEntit
             .put(2, 3)
             .put(3, 2)
             .put(4, 3)
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.SOUTH_AMERICA))
+            .put(2, List.of(Region.AFRICA))
+            .put(3, List.of(Region.SOUTH_AMERICA))
+            .put(4, List.of(Region.SOUTH_AMERICA))
             .build();
 
     public BandedPenguinEntity(EntityType<? extends BandedPenguinEntity> p_i50251_1_, Level p_i50251_2_) {
@@ -260,6 +268,10 @@ public class BandedPenguinEntity extends WalkingSwimmingBird implements GeoEntit
     public void addAdditionalSaveData(CompoundTag p_213281_1_) {
         super.addAdditionalSaveData(p_213281_1_);
         p_213281_1_.putInt("Subvariant", this.getSubVariant());
+    }
+
+    public int getSubVariantBasedOnVariant(int variant) {
+        return this.random.nextInt(BANDEDPENGUIN.get(variant))+1;
     }
 
 }

@@ -39,6 +39,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 import net.minecraftforge.common.Tags;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -54,6 +55,12 @@ public class ConureEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(1, "Aratinga solstitialis")
             .put(2, "Pyrrhura molinae")
             .put(3, "Guaruba guarouba")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.SOUTH_AMERICA))
+            .put(2, List.of(Region.SOUTH_AMERICA))
+            .put(3, List.of(Region.SOUTH_AMERICA))
             .build();
 
     public ConureEntity(EntityType<? extends ConureEntity> p_i50251_1_, Level p_i50251_2_) {

@@ -4,7 +4,12 @@ import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.RaptorBase;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
+
+import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
+
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -52,6 +57,10 @@ public class PygmyFalconEntity extends RaptorBase implements GeoEntity {
         EntityType<?> entitytype = p_213440_0_.getType();
         return entitytype == EntityType.RABBIT || entitytype == EntityType.CHICKEN;
     };
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.AFRICA))
+            .build();
 
     public PygmyFalconEntity(EntityType<? extends PygmyFalconEntity> p_i50251_1_, Level p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);

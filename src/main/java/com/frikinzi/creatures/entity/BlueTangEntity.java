@@ -29,6 +29,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.List;
 import java.util.Map;
 
 public class BlueTangEntity extends FishBase implements GeoEntity {
@@ -56,6 +57,19 @@ public class BlueTangEntity extends FishBase implements GeoEntity {
             .put(8, "Zebrasoma xanthurum")
             .put(9, "Zebrasoma rostratum")
             .put(10, "Acanthurus lineatus")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.ASIA, Region.OCEANIA, Region.AFRICA))
+            .put(2, List.of(Region.OCEANIA, Region.NORTH_AMERICA, Region.ASIA))
+            .put(3, List.of(Region.ASIA, Region.AFRICA))
+            .put(4, List.of(Region.ASIA, Region.OCEANIA))
+            .put(5, List.of(Region.ASIA, Region.OCEANIA, Region.AFRICA))
+            .put(6, List.of(Region.ASIA, Region.OCEANIA, Region.AFRICA))
+            .put(7, List.of(Region.ASIA))
+            .put(8, List.of(Region.ASIA, Region.AFRICA))
+            .put(9, List.of(Region.OCEANIA))
+            .put(10, List.of(Region.ASIA, Region.OCEANIA))
             .build();
 
     public BlueTangEntity(EntityType<? extends BlueTangEntity> p_i50246_1_, Level p_i50246_2_) {

@@ -38,6 +38,7 @@ import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Map;
 
 public class SwallowEntity extends CreaturesFlyingBird implements GeoEntity {
@@ -56,6 +57,14 @@ public class SwallowEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(3, "Tachycineta thalassina")
             .put(4, "Cecropis rufula")
             .put(5, "Hirundo rustica")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.OCEANIA))
+            .put(2, List.of(Region.NORTH_AMERICA))
+            .put(3, List.of(Region.NORTH_AMERICA))
+            .put(4, List.of(Region.EUROPE, Region.AFRICA, Region.ASIA))
+            .put(5, List.of(Region.EUROPE, Region.AFRICA, Region.ASIA, Region.NORTH_AMERICA, Region.SOUTH_AMERICA, Region.OCEANIA))
             .build();
 
     public SwallowEntity(EntityType<? extends SwallowEntity> p_i50251_1_, Level p_i50251_2_) {

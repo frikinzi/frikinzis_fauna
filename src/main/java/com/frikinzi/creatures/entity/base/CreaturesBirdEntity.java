@@ -48,6 +48,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Quaternionf;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -739,4 +740,23 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
             return "f";
         }
     }
+
+    public int getSubVariantBasedOnVariant(int variant) {
+        return 1;
+    }
+
+    public void setSubVariant(int subVariant) {
+    }
+
+    public Quaternionf getRotforGUI() {
+        Quaternionf rot = new Quaternionf().rotateZ((float)Math.PI).rotateY((float)Math.toRadians(150));
+        return rot;
+    }
+
+    public int getScaleforGUI() {
+        float h = this.getBbHeight();
+        int scale = (int)(20f / h);
+        return scale;
+    }
+
 }

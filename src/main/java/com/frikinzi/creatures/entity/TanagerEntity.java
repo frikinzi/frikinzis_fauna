@@ -38,10 +38,7 @@ import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Collections;
-import java.util.Set;
+import java.util.*;
 
 public class TanagerEntity extends CreaturesFlyingBird implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
@@ -61,6 +58,17 @@ public class TanagerEntity extends CreaturesFlyingBird implements GeoEntity {
         messageMap.put(9, Component.translatable("message.creatures.bluegraytanager"));
         SPECIES_NAMES = Collections.unmodifiableMap(messageMap);
     }
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.SOUTH_AMERICA))
+            .put(2, List.of(Region.SOUTH_AMERICA))
+            .put(3, List.of(Region.SOUTH_AMERICA))
+            .put(4, List.of(Region.SOUTH_AMERICA))
+            .put(5, List.of(Region.NORTH_AMERICA))
+            .put(6, List.of(Region.NORTH_AMERICA, Region.SOUTH_AMERICA))
+            .put(7, List.of(Region.SOUTH_AMERICA))
+            .put(8, List.of(Region.SOUTH_AMERICA))
+            .put(9, List.of(Region.SOUTH_AMERICA))
+            .build();
     public static final Map<Integer, String> SCIENTIFIC_NAMES = ImmutableMap.<Integer, String>builder()
             .put(1, "Tangara chilensis")
             .put(2, "Tangara nigroviridis")

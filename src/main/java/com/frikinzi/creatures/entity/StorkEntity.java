@@ -37,6 +37,7 @@ import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -49,6 +50,12 @@ public class StorkEntity extends CreaturesFlyingBird implements GeoEntity {
             3, 1,
             4, 1
     );
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.AFRICA))
+            .put(2, List.of(Region.ASIA))
+            .put(3, List.of(Region.ASIA))
+            .put(4, List.of(Region.NORTH_AMERICA, Region.SOUTH_AMERICA))
+            .build();
     public static Map<Integer, Component> SPECIES_NAMES = ImmutableMap.of(
             1, Component.translatable("message.creatures.yellowbilledstork"),
             2, Component.translatable("message.creatures.paintedstork"),

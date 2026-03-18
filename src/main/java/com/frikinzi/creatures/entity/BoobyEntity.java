@@ -87,6 +87,20 @@ public class BoobyEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(11, "Sula brewsteri")
             .build();
 
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.EUROPE, Region.NORTH_AMERICA, Region.AFRICA))
+            .put(2, List.of(Region.OCEANIA))
+            .put(3, List.of(Region.AFRICA))
+            .put(4, List.of(Region.ASIA, Region.OCEANIA, Region.SOUTH_AMERICA))
+            .put(5, List.of(Region.SOUTH_AMERICA, Region.NORTH_AMERICA))
+            .put(6, List.of(Region.ASIA, Region.OCEANIA, Region.NORTH_AMERICA, Region.SOUTH_AMERICA, Region.AFRICA))
+            .put(7, List.of(Region.ASIA, Region.OCEANIA, Region.NORTH_AMERICA, Region.SOUTH_AMERICA, Region.AFRICA))
+            .put(8, List.of(Region.OCEANIA))
+            .put(9, List.of(Region.NORTH_AMERICA, Region.SOUTH_AMERICA))
+            .put(10, List.of(Region.SOUTH_AMERICA))
+            .put(11, List.of(Region.NORTH_AMERICA, Region.SOUTH_AMERICA))
+            .build();
+
     public BoobyEntity(EntityType<? extends BoobyEntity> p_i50251_1_, Level p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
     }

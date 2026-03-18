@@ -45,10 +45,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 import net.minecraftforge.common.ForgeMod;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class SeagullEntity extends CreaturesFlyingBird implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
@@ -62,6 +59,16 @@ public class SeagullEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(6, Component.translatable("message.creatures.ivorygull"))
             .put(7, Component.translatable("message.creatures.blackbilledgull"))
             .put(8, Component.translatable("message.creatures.andeangull"))
+            .build();
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.EUROPE, Region.NORTH_AMERICA))
+            .put(2, List.of(Region.NORTH_AMERICA, Region.EUROPE, Region.ASIA))
+            .put(3, List.of(Region.NORTH_AMERICA, Region.EUROPE, Region.ASIA))
+            .put(4, List.of(Region.NORTH_AMERICA, Region.SOUTH_AMERICA))
+            .put(5, List.of(Region.NORTH_AMERICA, Region.SOUTH_AMERICA))
+            .put(6, List.of(Region.NORTH_AMERICA, Region.EUROPE, Region.ASIA))
+            .put(7, List.of(Region.OCEANIA))
+            .put(8, List.of(Region.SOUTH_AMERICA))
             .build();
     public static Map<Integer, Component> DESCRIPTIONS = new HashMap<Integer, Component>() {{
         put(1, Component.translatable("description.creatures.herringgull"));

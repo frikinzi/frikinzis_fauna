@@ -41,6 +41,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -60,6 +61,11 @@ public class BrushTailedPenguinEntity extends WalkingSwimmingBird implements Geo
             2, Component.translatable("description.creatures.gentoo"),
             3, Component.translatable("description.creatures.adelie")
     );
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.ANTARCTICA, Region.SOUTH_AMERICA))
+            .put(2, List.of(Region.ANTARCTICA, Region.SOUTH_AMERICA))
+            .put(3, List.of(Region.ANTARCTICA))
+            .build();
 
     public static Map<Integer, Integer> BANDEDPENGUIN = ImmutableMap.<Integer, Integer>builder()
             .put(1, 4)

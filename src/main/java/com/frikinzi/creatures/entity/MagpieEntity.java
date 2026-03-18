@@ -36,6 +36,7 @@ import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -58,6 +59,15 @@ public class MagpieEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(4, "Urocissa caerulea")
             .put(5, "Cyanopica cooki")
             .put(6, "Urocissa ornata")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.EUROPE, Region.ASIA))
+            .put(2, List.of(Region.OCEANIA))
+            .put(3, List.of(Region.ASIA))
+            .put(4, List.of(Region.ASIA))
+            .put(5, List.of(Region.EUROPE))
+            .put(6, List.of(Region.ASIA))
             .build();
 
     public MagpieEntity(EntityType<? extends MagpieEntity> p_i50251_1_, Level p_i50251_2_) {

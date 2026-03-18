@@ -3,6 +3,7 @@ package com.frikinzi.creatures.entity;
 import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
@@ -30,6 +31,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class GuppyEntity extends FishBase implements GeoEntity {
@@ -45,6 +47,15 @@ public class GuppyEntity extends FishBase implements GeoEntity {
         map.put(6, Component.translatable("message.creatures.blackguppy"));
         SPECIES_NAMES = Collections.unmodifiableMap(map);
     }
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.SOUTH_AMERICA))
+            .put(2, List.of(Region.SOUTH_AMERICA))
+            .put(3, List.of(Region.SOUTH_AMERICA))
+            .put(4, List.of(Region.SOUTH_AMERICA))
+            .put(5, List.of(Region.SOUTH_AMERICA))
+            .put(6, List.of(Region.SOUTH_AMERICA))
+            .build();
 
     public GuppyEntity(EntityType<? extends GuppyEntity> p_i50246_1_, Level p_i50246_2_) {
         super(p_i50246_1_, p_i50246_2_);

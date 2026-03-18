@@ -37,6 +37,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class YellowEyedPenguinEntity extends WalkingSwimmingBird implements GeoEntity {
@@ -45,6 +46,9 @@ public class YellowEyedPenguinEntity extends WalkingSwimmingBird implements GeoE
     private static final EntityDataAccessor<BlockPos> TRAVEL_POS = SynchedEntityData.defineId(YellowEyedPenguinEntity.class, EntityDataSerializers.BLOCK_POS);
     private static final EntityDataAccessor<Boolean> TRAVELLING = SynchedEntityData.defineId(YellowEyedPenguinEntity.class, EntityDataSerializers.BOOLEAN);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.COD);
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.OCEANIA))
+            .build();
 
     static {
         Map<Integer, Component> messageMap = new HashMap<>();

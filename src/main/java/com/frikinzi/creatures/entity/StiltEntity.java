@@ -38,6 +38,7 @@ import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -59,6 +60,15 @@ public class StiltEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(4, "Himantopus mexicanus")
             .put(5, "Himantopus novaezelandiae")
             .put(6, "Cladorhynchus leucocephalus")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.EUROPE, Region.ASIA, Region.AFRICA, Region.NORTH_AMERICA, Region.SOUTH_AMERICA, Region.OCEANIA))
+            .put(2, List.of(Region.SOUTH_AMERICA))
+            .put(3, List.of(Region.ASIA, Region.OCEANIA))
+            .put(4, List.of(Region.NORTH_AMERICA, Region.SOUTH_AMERICA))
+            .put(5, List.of(Region.OCEANIA))
+            .put(6, List.of(Region.OCEANIA))
             .build();
 
     public StiltEntity(EntityType<? extends StiltEntity> p_i50251_1_, Level p_i50251_2_) {

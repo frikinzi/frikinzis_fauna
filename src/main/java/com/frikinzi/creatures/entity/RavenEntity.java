@@ -40,6 +40,7 @@ import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -54,6 +55,14 @@ public class RavenEntity extends CreaturesFlyingBird implements GeoEntity {
             4, Component.translatable("message.creatures.thickbilledraven"),
             5, Component.translatable("message.creatures.commonravenalbino")
     );
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.EUROPE, Region.ASIA, Region.NORTH_AMERICA, Region.AFRICA))
+            .put(2, List.of(Region.AFRICA, Region.ASIA))
+            .put(3, List.of(Region.AFRICA))
+            .put(4, List.of(Region.AFRICA))
+            .put(5, List.of(Region.EUROPE, Region.ASIA, Region.NORTH_AMERICA, Region.AFRICA))
+            .build();
     public static final Map<Integer, String> SCIENTIFIC_NAMES = ImmutableMap.<Integer, String>builder()
             .put(1, "Corvus corax")
             .put(2, "Corvus ruficollis")

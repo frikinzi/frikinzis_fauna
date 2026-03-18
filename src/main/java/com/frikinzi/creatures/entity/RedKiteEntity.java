@@ -5,6 +5,7 @@ import com.frikinzi.creatures.entity.base.RaptorBase;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
 import com.frikinzi.creatures.registry.CreaturesSound;
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -28,6 +29,8 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 public class RedKiteEntity extends RaptorBase implements GeoEntity {
@@ -37,6 +40,10 @@ public class RedKiteEntity extends RaptorBase implements GeoEntity {
         EntityType<?> entitytype = p_213440_0_.getType();
         return entitytype == EntityType.RABBIT || entitytype == EntityType.CHICKEN;
     };
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.EUROPE))
+            .build();
 
     public RedKiteEntity(EntityType<? extends RedKiteEntity> p_i50251_1_, Level p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);

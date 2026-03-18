@@ -5,6 +5,7 @@ import com.frikinzi.creatures.entity.base.CreaturesWalkingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
 import com.frikinzi.creatures.registry.CreaturesSound;
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.network.protocol.game.ClientboundAnimatePacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerChunkCache;
@@ -33,10 +34,16 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.List;
+import java.util.Map;
+
 public class SecretaryBirdEntity extends CreaturesWalkingBird implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.SPIDER_EYE);
     public int swingTime;
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.AFRICA))
+            .build();
 
     public SecretaryBirdEntity(EntityType<? extends SecretaryBirdEntity> p_i50251_1_, Level p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -208,6 +215,10 @@ public class SecretaryBirdEntity extends CreaturesWalkingBird implements GeoEnti
 
     public String getScientificName() {
         return "Sagittarius serpentarius";
+    }
+
+    public int getScaleforGUI() {
+        return (int)(super.getScaleforGUI() *1.5);
     }
 
 }

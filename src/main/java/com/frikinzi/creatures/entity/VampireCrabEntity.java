@@ -3,6 +3,7 @@ package com.frikinzi.creatures.entity;
 import com.frikinzi.creatures.entity.base.AbstractCrabBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -30,11 +31,21 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Map;
 
 public class VampireCrabEntity extends AbstractCrabBase implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(
             CreaturesItems.RAW_SHRIMP.get(), Items.KELP, Items.DEAD_BUSH);
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.ASIA))
+            .put(2, List.of(Region.ASIA))
+            .put(3, List.of(Region.ASIA))
+            .put(4, List.of(Region.ASIA))
+            .put(5, List.of(Region.ASIA))
+            .put(6, List.of(Region.ASIA))
+            .build();
 
     public VampireCrabEntity(EntityType<? extends VampireCrabEntity> type, Level level) {
         super(type, level);

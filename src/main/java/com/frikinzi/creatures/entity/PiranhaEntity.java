@@ -34,6 +34,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.List;
 import java.util.Map;
 
 public class PiranhaEntity extends FishBase implements GeoEntity {
@@ -45,6 +46,14 @@ public class PiranhaEntity extends FishBase implements GeoEntity {
             4, Component.translatable("message.creatures.pirayapiranha"),
             5, Component.translatable("message.creatures.rubyredpiranha")
     );
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.SOUTH_AMERICA))
+            .put(2, List.of(Region.SOUTH_AMERICA))
+            .put(3, List.of(Region.SOUTH_AMERICA))
+            .put(4, List.of(Region.SOUTH_AMERICA))
+            .put(5, List.of(Region.SOUTH_AMERICA))
+            .build();
     public static final Map<Integer, String> SCIENTIFIC_NAMES = ImmutableMap.<Integer, String>builder()
             .put(1, "Pygocentrus nattereri")
             .put(2, "Pygocentrus cariba")

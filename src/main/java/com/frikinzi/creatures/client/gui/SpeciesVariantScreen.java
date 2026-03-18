@@ -90,6 +90,14 @@ public class SpeciesVariantScreen extends Screen {
             if (discovered) {
                 LivingEntity dummy = (LivingEntity) species.entityType.get().create(Minecraft.getInstance().level);
                 if (dummy != null) {
+                    float entityHeight = dummy.getBbHeight();
+                    int scale = (int) (20.0f / entityHeight);
+                    if (dummy instanceof CormorantEntity) {
+                        scale = scale / 2;
+                    }
+                    Quaternionf rotation = new Quaternionf()
+                            .rotateZ((float) Math.PI)
+                            .rotateY((float) Math.toRadians(140));
                     if (dummy instanceof CreaturesBirdEntity bird) {
                         Set<String> genders = cap.getDiscoveredGenders(species.entityKey, variant);
                         String gender;
@@ -104,6 +112,8 @@ public class SpeciesVariantScreen extends Screen {
                         bird.setVariant(variant);
                         bird.setOnGround(true);
                         bird.setGender(gender.equals("m") ? 1 : 0);
+                        rotation = bird.getRotforGUI();
+                        scale = bird.getScaleforGUI();
                     }
                     if (dummy instanceof FishBase bird) {
                         Set<String> genders = cap.getDiscoveredGenders(species.entityKey, variant);
@@ -116,9 +126,11 @@ public class SpeciesVariantScreen extends Screen {
                             gender = cachedGenders.computeIfAbsent(variant, k ->
                                     genders.isEmpty() ? "m" : genders.iterator().next());
                         }
+                        bird.setForcedInWater(true);
                         bird.setVariant(variant);
-                        bird.setOnGround(true);
                         bird.setGender(gender.equals("m") ? 1 : 0);
+                        rotation = bird.getRotforGUI();
+                        scale = bird.getScaleforGUI();
                     }
                     if (dummy instanceof AbstractCrabBase bird) {
                         Set<String> genders = cap.getDiscoveredGenders(species.entityKey, variant);
@@ -134,15 +146,9 @@ public class SpeciesVariantScreen extends Screen {
                         bird.setVariant(variant);
                         bird.setOnGround(true);
                         bird.setGender(gender.equals("m") ? 1 : 0);
+                        rotation = bird.getRotforGUI();
+                        scale = bird.getScaleforGUI();
                     }
-                    float entityHeight = dummy.getBbHeight();
-                    int scale = (int) (20.0f / entityHeight);
-                    if (dummy instanceof CormorantEntity) {
-                        scale = scale / 2;
-                    }
-                    Quaternionf rotation = new Quaternionf()
-                            .rotateZ((float) Math.PI)
-                            .rotateY((float) Math.toRadians(140));
                     graphics.enableScissor(x, y, x + CELL_SIZE, y + CELL_SIZE);
                     InventoryScreen.renderEntityInInventory(graphics,
                             x + CELL_SIZE / 2, y + CELL_SIZE - 5, scale, rotation, null, dummy);
@@ -232,5 +238,29 @@ public class SpeciesVariantScreen extends Screen {
     @Override
     public void onClose() {
         this.minecraft.setScreen(parent);
+    }
+
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        FieldGuideCapability cap = Minecraft.getInstance().player
+                .getCapability(FieldGuideCapability.CAPABILITY).orElse(null);
+
+        for (int variant = 1; variant <= species.totalVariants; variant++) {
+            int x = getCellX(variant);
+            int y = getCellY(variant);
+
+            if (mouseX >= x && mouseX <= x + CELL_SIZE && mouseY >= y && mouseY <= y + CELL_SIZE) {
+                boolean discovered = discoveredVariants.contains(variant);
+                if (discovered && cap != null) {
+                    Set<String> genders = cap.getDiscoveredGenders(species.entityKey, variant);
+                    Minecraft.getInstance().setScreen(
+                            new VariantDetailScreen(this, species, variant, genders));
+                    return true;
+                }
+                // clicking undiscovered variant does nothing
+                return true;
+            }
+        }
+        return super.mouseClicked(mouseX, mouseY, button);
     }
 }

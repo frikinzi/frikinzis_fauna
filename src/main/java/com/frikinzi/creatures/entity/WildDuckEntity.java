@@ -39,11 +39,12 @@ import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 import net.minecraftforge.common.ForgeMod;
 
+import java.util.List;
 import java.util.Map;
 
 public class WildDuckEntity extends CreaturesWalkingBird implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.BEETROOT_SEEDS, Items.PUMPKIN_SEEDS);
     public int featherTime = this.random.nextInt(6000) + 6000;
     public static final Map<Integer, Component> SPECIES_NAMES = ImmutableMap.<Integer, Component>builder()
             .put(1, Component.translatable("message.creatures.torrent"))
@@ -74,6 +75,22 @@ public class WildDuckEntity extends CreaturesWalkingBird implements GeoEntity {
             .put(11, "Anas hottentota")
             .put(12, "Spatula puna")
             .put(13, "Oxyura maccoa")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.SOUTH_AMERICA))
+            .put(2, List.of(Region.NORTH_AMERICA))
+            .put(3, List.of(Region.NORTH_AMERICA, Region.SOUTH_AMERICA))
+            .put(4, List.of(Region.NORTH_AMERICA, Region.SOUTH_AMERICA))
+            .put(5, List.of(Region.EUROPE, Region.ASIA, Region.NORTH_AMERICA, Region.OCEANIA, Region.AFRICA, Region.SOUTH_AMERICA))
+            .put(6, List.of(Region.SOUTH_AMERICA))
+            .put(7, List.of(Region.ASIA))
+            .put(8, List.of(Region.EUROPE, Region.ASIA, Region.AFRICA))
+            .put(9, List.of(Region.OCEANIA))
+            .put(10, List.of(Region.AFRICA))
+            .put(11, List.of(Region.AFRICA))
+            .put(12, List.of(Region.SOUTH_AMERICA))
+            .put(13, List.of(Region.AFRICA))
             .build();
 
     public WildDuckEntity(EntityType<? extends WildDuckEntity> p_i50251_1_, Level p_i50251_2_) {

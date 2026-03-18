@@ -37,6 +37,7 @@ import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -52,6 +53,12 @@ public class ChickadeeEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(1, "Poecile atricapillus")
             .put(2, "Poecile rufescens")
             .put(3, "Poecile cinctus")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.NORTH_AMERICA))
+            .put(2, List.of(Region.NORTH_AMERICA))
+            .put(3, List.of(Region.NORTH_AMERICA))
             .build();
 
     public ChickadeeEntity(EntityType<? extends ChickadeeEntity> p_i50251_1_, Level p_i50251_2_) {

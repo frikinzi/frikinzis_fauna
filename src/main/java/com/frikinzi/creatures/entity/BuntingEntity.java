@@ -38,6 +38,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -65,6 +66,14 @@ public class BuntingEntity extends CreaturesFlyingBird implements GeoEntity {
         put(4, "Passerina leclancherii");
         put(5, "Passerina versicolor");
     }};
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.NORTH_AMERICA))
+            .put(2, List.of(Region.NORTH_AMERICA))
+            .put(3, List.of(Region.NORTH_AMERICA))
+            .put(4, List.of(Region.NORTH_AMERICA))
+            .put(5, List.of(Region.NORTH_AMERICA))
+            .build();
 
     public BuntingEntity(EntityType<? extends BuntingEntity> p_i50251_1_, Level p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);

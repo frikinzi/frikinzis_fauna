@@ -36,6 +36,7 @@ import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -46,6 +47,10 @@ public class EagleOwlEntity extends RaptorBase implements GeoEntity {
             1, Component.translatable("message.creatures.eurasianeagleowl"),
             2, Component.translatable("message.creatures.duskyeagleowl")
     );
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.EUROPE, Region.ASIA))
+            .put(2, List.of(Region.ASIA))
+            .build();
     public static final Map<Integer, String> SCIENTIFIC_NAMES = ImmutableMap.<Integer, String>builder()
             .put(1, "Bubo bubo")
             .put(2, "Ketupa coromanda")

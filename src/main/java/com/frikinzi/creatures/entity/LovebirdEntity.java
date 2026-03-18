@@ -7,6 +7,7 @@ import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
 import com.frikinzi.creatures.registry.CreaturesSound;
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -28,6 +29,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LovebirdEntity extends CreaturesFlyingBird implements GeoEntity {
@@ -77,6 +79,22 @@ public class LovebirdEntity extends CreaturesFlyingBird implements GeoEntity {
         put(12, "Agapornis roseicollis");
         put(13, "Agapornis roseicollis");
     }};
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.AFRICA))
+            .put(2, List.of(Region.AFRICA))
+            .put(3, List.of(Region.AFRICA))
+            .put(4, List.of(Region.AFRICA))
+            .put(5, List.of(Region.AFRICA))
+            .put(6, List.of(Region.AFRICA))
+            .put(7, List.of(Region.AFRICA))
+            .put(8, List.of(Region.AFRICA))
+            .put(9, List.of(Region.AFRICA))
+            .put(10, List.of(Region.AFRICA))
+            .put(11, List.of(Region.AFRICA))
+            .put(12, List.of(Region.AFRICA))
+            .put(13, List.of(Region.AFRICA))
+            .build();
 
     public LovebirdEntity(EntityType<? extends LovebirdEntity> p_i50251_1_, Level p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);

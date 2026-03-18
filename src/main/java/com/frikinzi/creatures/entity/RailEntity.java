@@ -39,6 +39,7 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraftforge.common.ForgeMod;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RailEntity extends CreaturesWalkingBird implements GeoEntity {
@@ -66,6 +67,14 @@ public class RailEntity extends CreaturesWalkingBird implements GeoEntity {
         put(4, "Hypotaenidia torquata");
         put(5, "Hypotaenidia owstoni");
     }};
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.ASIA))
+            .put(2, List.of(Region.SOUTH_AMERICA))
+            .put(3, List.of(Region.SOUTH_AMERICA, Region.NORTH_AMERICA))
+            .put(4, List.of(Region.ASIA, Region.OCEANIA))
+            .put(5, List.of(Region.OCEANIA))
+            .build();
 
     public RailEntity(EntityType<? extends RailEntity> p_i50251_1_, Level p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);

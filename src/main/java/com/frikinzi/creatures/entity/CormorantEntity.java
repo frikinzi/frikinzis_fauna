@@ -70,6 +70,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Map;
 
 public class CormorantEntity extends WalkingSwimmingBird implements GeoEntity {
@@ -111,6 +112,13 @@ public class CormorantEntity extends WalkingSwimmingBird implements GeoEntity {
             .put(2, "Phalacrocorax lucidus")
             .put(3, "Phalacrocorax auritus")
             .put(4, "Phalacrocorax carbo")
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.OCEANIA, Region.ASIA))
+            .put(2, List.of(Region.AFRICA))
+            .put(3, List.of(Region.NORTH_AMERICA))
+            .put(4, List.of(Region.EUROPE, Region.ASIA, Region.AFRICA, Region.NORTH_AMERICA))
             .build();
 
     public CormorantEntity(EntityType<? extends CormorantEntity> p_i50251_1_, Level p_i50251_2_) {
@@ -374,6 +382,12 @@ public class CormorantEntity extends WalkingSwimmingBird implements GeoEntity {
             this.nodeEvaluator.setCanPassDoors(true);
             return new PathFinder(this.nodeEvaluator, p_218559_);
         }
+    }
+
+    public int getScaleforGUI() {
+        float h = this.getBbHeight();
+        int scale = (int)(18f / h);
+        return scale;
     }
 
 

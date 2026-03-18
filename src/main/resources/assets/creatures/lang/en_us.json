@@ -455,6 +455,7 @@
   "gui.owner": "Owner:",
   "gui.species": "Species:",
   "gui.untamed": "Untamed",
+  "gui.region": "Region:",
   "gui.female": "Female",
   "gui.male": "Male",
   "gui.food": "Food:",
@@ -1134,5 +1135,16 @@
 
   "description.creatures.marabou": "The marabou stork has the largest wingspan of any land bird. It is ill-tempered, and primarily scavenges for carrion.",
   "description.creatures.greateradjuntant": "Greater adjutants are perceived as 'unclean' due to their scavenging habits. Unfortunately, their populations have declined throughout their range.",
-  "description.creatures.lesseradjuntant": "Unlike the greater adjutant, the lesser adjutant primarily hunts for food, feeding on fish, frogs, and various invertebrates."
+  "description.creatures.lesseradjuntant": "Unlike the greater adjutant, the lesser adjutant primarily hunts for food, feeding on fish, frogs, and various invertebrates.",
+
+  "region.creatures.africa": "Africa",
+  "region.creatures.antarctica": "Antarctica",
+  "region.creatures.asia": "Asia",
+  "region.creatures.australia": "Australia",
+  "region.creatures.europe": "Europe",
+  "region.creatures.north_america": "North America",
+  "region.creatures.south_america": "South America",
+  "region.creatures.oceania": "Oceania",
+
+  "message.creatures.discovered": "%s discovered %s!"
 }

@@ -43,6 +43,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.List;
 import java.util.Map;
 
 public class MarabouEntity extends CreaturesFlyingBird implements GeoEntity {
@@ -64,6 +65,12 @@ public class MarabouEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(1, 2)
             .put(2, 2)
             .put(3, 2)
+            .build();
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.AFRICA))
+            .put(2, List.of(Region.ASIA))
+            .put(3, List.of(Region.ASIA))
             .build();
 
     public static Map<Integer, Component> DESCRIPTIONS = ImmutableMap.of(
@@ -205,7 +212,9 @@ public class MarabouEntity extends CreaturesFlyingBird implements GeoEntity {
     }
 
     public int getSubVariant() {
-        return Mth.clamp(this.entityData.get(VARIANT_SUBID), 1, STORK.get(this.getVariant()));
+        Integer max = STORK.get(this.getVariant());
+        if (max == null) return 1;
+        return Mth.clamp(this.entityData.get(VARIANT_SUBID), 1, max);
     }
 
     public void readAdditionalSaveData(CompoundTag p_70037_1_) {

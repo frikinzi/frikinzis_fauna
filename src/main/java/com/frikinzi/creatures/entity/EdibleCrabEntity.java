@@ -25,6 +25,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import org.joml.Quaternionf;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.*;
@@ -50,6 +51,13 @@ public class EdibleCrabEntity extends AbstractCrabBase implements GeoEntity {
         map.put(4, Component.translatable("message.creatures.bluecrab"));
         SPECIES_NAMES = Collections.unmodifiableMap(map);
     }
+
+    public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
+            .put(1, List.of(Region.EUROPE))
+            .put(2, List.of(Region.NORTH_AMERICA))
+            .put(3, List.of(Region.NORTH_AMERICA))
+            .put(4, List.of(Region.NORTH_AMERICA, Region.SOUTH_AMERICA))
+            .build();
 
     public static final Map<Integer, String> SCIENTIFIC_NAMES = ImmutableMap.of(
             1, "Cancer pagurus",
@@ -292,5 +300,13 @@ public class EdibleCrabEntity extends AbstractCrabBase implements GeoEntity {
             }
             return super.canContinueToUse();
         }
+    }
+
+    @Override
+    public Quaternionf getRotforGUI() {
+        return new Quaternionf()
+                .rotateZ((float) Math.PI)
+                .rotateY((float) Math.toRadians(160))
+                .rotateX((float) Math.toRadians(45));
     }
 }

@@ -203,4 +203,8 @@ public class ClownfishEntity extends FishBase implements GeoEntity {
     public int numVariants() {
         return 8;
     }
+
+    public int getSubVariantBasedOnVariant(int variant) {
+        return this.random.nextInt(CLOWNFISH.get(this.getVariant()))+1;
+    }
 }
