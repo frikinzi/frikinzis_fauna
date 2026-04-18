@@ -1,8 +1,10 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.base.WalkingSwimmingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
+import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
@@ -15,7 +17,6 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -35,17 +36,14 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class YellowEyedPenguinEntity extends WalkingSwimmingBird implements GeoEntity {
     private static final EntityDataAccessor<Integer> VARIANT_SUBID = SynchedEntityData.defineId(YellowEyedPenguinEntity.class, EntityDataSerializers.INT);
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private static final EntityDataAccessor<BlockPos> TRAVEL_POS = SynchedEntityData.defineId(YellowEyedPenguinEntity.class, EntityDataSerializers.BLOCK_POS);
     private static final EntityDataAccessor<Boolean> TRAVELLING = SynchedEntityData.defineId(YellowEyedPenguinEntity.class, EntityDataSerializers.BOOLEAN);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.COD);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.COD, Items.SALMON, Items.TROPICAL_FISH, CreaturesItems.RAW_RED_SNAPPER.get());
     public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
             .put(1, List.of(Region.OCEANIA))
             .build();
@@ -223,4 +221,9 @@ public class YellowEyedPenguinEntity extends WalkingSwimmingBird implements GeoE
         super.addAdditionalSaveData(p_213281_1_);
     }
 
+    public List<ItemStack> getAllFoodItems() {
+        return Arrays.stream(FOOD_ITEMS.getItems())
+                .map(ItemStack::copy)
+                .collect(java.util.stream.Collectors.toList());
+    }
 }

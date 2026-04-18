@@ -65,6 +65,7 @@ public class Creatures
         CreaturesBlocks.BLOCKS.register(modEventBus);
         CreaturesPaintings.PAINTING_VARIANTS.register(modEventBus);
         CreaturesItems.ITEMS.register(modEventBus);
+        CreaturesRecipes.RECIPE_SERIALIZERS.register(modEventBus);
         CreaturesItems.TABS.register(modEventBus);
         CreaturesSound.REGISTRAR.register(modEventBus);
 
@@ -78,6 +79,7 @@ public class Creatures
     {
         ModEventSubscriber.init();
         event.enqueueWork(NetworkHandler::register);
+        CreaturesCriteriaTriggers.register();
         // Some common setup code
     }
 

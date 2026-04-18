@@ -308,8 +308,24 @@
     "subtitle": "entity.marabou.marabou_ambient",
     "sounds": [ "creatures:entity/marabou/marabou_ambient" ]
   },
+  "entity.crane.crane_ambient": {
+    "subtitle": "entity.crane.crane_ambient",
+    "sounds": [ "creatures:entity/crane/crane_ambient" ]
+  },
+  "entity.cockoftherock.cockoftherock_ambient": {
+    "subtitle": "entity.cockoftherock.cockoftherock_ambient",
+    "sounds": [ "creatures:entity/cockoftherock/cockoftherock_ambient" ]
+  },
+  "entity.jabiru.jabiru_ambient": {
+    "subtitle": "entity.jabiru.jabiru_ambient",
+    "sounds": [ "creatures:entity/stork/jabiru_ambient" ]
+  },
   "entity.egg.hatch": {
     "subtitle": "entity.egg.hatch",
     "sounds": [ "creatures:entity/egg/hatch" ]
+  },
+  "entity.mantis_shrimp.hurt_crab": {
+    "subtitle": "entity.mantis_shrimp.hurt_crab",
+    "sounds": [ "creatures:entity/mantis_shrimp/hurt_crab" ]
   }
 }

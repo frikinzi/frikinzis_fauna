@@ -33,7 +33,7 @@ public class FinchRenderer extends GeoEntityRenderer<FinchEntity> {
         if (animatable.isBaby()) {
             stack.scale(0.6F, 0.6F, 0.6F);
         }
-        stack.scale(0.7F * multiplier, 0.7F * multiplier, 0.7F * multiplier);
+        stack.scale(0.5F * multiplier, 0.5F * multiplier, 0.5F * multiplier);
         super.defaultRender(stack, animatable, bufferSource, renderType, buffer, yaw, partialTick, packedLight);
     }
 }

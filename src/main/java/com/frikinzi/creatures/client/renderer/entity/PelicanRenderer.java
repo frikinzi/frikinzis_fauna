@@ -2,6 +2,8 @@ package com.frikinzi.creatures.client.renderer.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.client.model.entity.PelicanModel;
+import com.frikinzi.creatures.client.renderer.layer.CormorantHeldItemLayer;
+import com.frikinzi.creatures.client.renderer.layer.PelicanHeldItemLayer;
 import com.frikinzi.creatures.entity.PelicanEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -16,6 +18,8 @@ public class PelicanRenderer extends GeoEntityRenderer<PelicanEntity> {
     public PelicanRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new PelicanModel());
         this.shadowRadius = 0.4F;
+        this.addRenderLayer(new PelicanHeldItemLayer(this));
+
     }
 
     @Override
@@ -29,7 +33,7 @@ public class PelicanRenderer extends GeoEntityRenderer<PelicanEntity> {
         }
         if (animatable.isBaby()) {
         }
-        stack.scale(0.8F * multiplier, 0.8F * multiplier, 0.8F * multiplier);
+        stack.scale(0.6F * multiplier, 0.6F * multiplier, 0.6F * multiplier);
         super.defaultRender(stack, animatable, bufferSource, renderType, buffer, yaw, partialTick, packedLight);
     }
 }

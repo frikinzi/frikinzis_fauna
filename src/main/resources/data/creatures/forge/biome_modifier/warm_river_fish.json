@@ -28,6 +28,24 @@
       "weight": 10,
       "minCount": 3,
       "maxCount": 5
+    },
+    {
+      "type": "creatures:guppy",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 8
+    },
+    {
+      "type": "creatures:tigerbarb",
+      "weight": 25,
+      "minCount": 1,
+      "maxCount": 1
+    },
+    {
+      "type": "creatures:tetra",
+      "weight": 25,
+      "minCount": 5,
+      "maxCount": 10
     }
   ]
 }

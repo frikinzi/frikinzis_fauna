@@ -21,13 +21,13 @@
   },
   "spawners": [
     {
-      "type": "creatures:large_penguin",
+      "type": "creatures:largepenguin",
       "weight": 10,
       "minCount": 3,
       "maxCount": 5
     },
     {
-      "type": "creatures:brush_tailed_penguin",
+      "type": "creatures:brushtailedpenguin",
       "weight": 10,
       "minCount": 3,
       "maxCount": 5

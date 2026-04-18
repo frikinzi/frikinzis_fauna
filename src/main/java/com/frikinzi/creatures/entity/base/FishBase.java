@@ -2,6 +2,8 @@ package com.frikinzi.creatures.entity.base;
 
 import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.entity.ai.FishBreedGoal;
+import com.frikinzi.creatures.entity.ai.SwimToHookGoal;
 import com.frikinzi.creatures.entity.egg.CreaturesRoeEntity;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesItems;
@@ -36,6 +38,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
@@ -56,6 +59,12 @@ public abstract class FishBase extends AbstractSchoolingFish {
     private static final EntityDataAccessor<Integer> GENDER = SynchedEntityData.defineId(FishBase.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> SUBVARIANT = SynchedEntityData.defineId(FishBase.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(FishBase.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Boolean> WANTS_TO_BREED =
+            SynchedEntityData.defineId(FishBase.class, EntityDataSerializers.BOOLEAN);
+    private boolean variantSynced = false;
+    private boolean isNaturalSpawn = false;
+    private int heartParticleTimer = 0;
+    private static final int HEART_PARTICLE_DURATION = 60;
 
     public int coolDown = 0;
 
@@ -71,7 +80,9 @@ public abstract class FishBase extends AbstractSchoolingFish {
     @Nullable
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_213386_1_, DifficultyInstance p_213386_2_, MobSpawnType p_213386_3_, @Nullable SpawnGroupData p_213386_4_, @Nullable CompoundTag p_213386_5_) {
         this.setGender(this.random.nextInt(2));
-        if (p_213386_3_ == MobSpawnType.SPAWN_EGG) { //spawn egg variants should be completely random, not based on biome or anything
+        float f = (float)(this.random.nextGaussian() * CreaturesConfig.height_standard_deviation.get() + CreaturesConfig.height_base_multiplier.get());
+        this.setHeightMultiplier(f);
+        if (p_213386_3_ == MobSpawnType.SPAWN_EGG) {
             this.setVariant(this.random.nextInt(numVariants()) + 1);
             this.setSubVariant(this.methodOfDeterminingSubVariant());
         }  else if (p_213386_3_ == MobSpawnType.BUCKET) {
@@ -80,25 +91,36 @@ public abstract class FishBase extends AbstractSchoolingFish {
                     this.setVariant(p_213386_5_.getInt("BucketVariantTag"));
                     //return p_213386_4_;
                 }
+                if (p_213386_5_.contains("BucketSubVariantTag")) {
+                    this.setSubVariant(p_213386_5_.getInt("BucketSubVariantTag"));
+                }
+                if (p_213386_5_.contains("Gender")) {
+                    this.setSubVariant(p_213386_5_.getInt("Gender"));
+                }
                 if (p_213386_5_.contains("BucketHeightMultiplier")) {
                     this.setHeightMultiplier(p_213386_5_.getFloat("BucketHeightMultiplier"));
                 } if (p_213386_5_.contains("Age")) {
                     this.setAge(p_213386_5_.getInt("Age"));
                 }
                 return p_213386_4_;
+            } else {
+                this.setVariant(this.methodOfDeterminingVariant());
+                this.setSubVariant(this.methodOfDeterminingSubVariant());
             }
+
         }
         else {
             this.setVariant(this.methodOfDeterminingVariant());
             this.setSubVariant(this.methodOfDeterminingSubVariant());
         }
-        float f = (float)(this.random.nextGaussian() * CreaturesConfig.height_standard_deviation.get() + CreaturesConfig.height_base_multiplier.get());
-        this.setHeightMultiplier(f);
-        this.setGender(this.random.nextInt(2));
+
+        //this.setGender(this.random.nextInt(2));
         return super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_, p_213386_4_, p_213386_5_);
     }
 
     protected void registerGoals() {
+        this.goalSelector.addGoal(2, new FishBreedGoal(this));
+        this.goalSelector.addGoal(0, new SwimToHookGoal(this));
         this.randomStrollGoal = new RandomStrollGoal(this, this.getMoveSpeed(), 20);
         this.goalSelector.addGoal(7, this.randomStrollGoal);
         this.randomStrollGoal.setFlags(EnumSet.of(Goal.Flag.MOVE));
@@ -145,6 +167,25 @@ public abstract class FishBase extends AbstractSchoolingFish {
         if (!this.level().isClientSide && this.coolDown > 0) {
             --this.coolDown;
         }
+        if (this.level().isClientSide()) {
+            if (this.isWantsToBreed()) {
+                if (heartParticleTimer < HEART_PARTICLE_DURATION) {
+                    heartParticleTimer++;
+                    if (heartParticleTimer % 5 == 0) { // every 5 ticks so it's not spammy
+                        double dx = this.getRandom().nextGaussian() * 0.02D;
+                        double dy = this.getRandom().nextGaussian() * 0.02D;
+                        double dz = this.getRandom().nextGaussian() * 0.02D;
+                        this.level().addParticle(ParticleTypes.HEART,
+                                this.getX() + this.getRandom().nextFloat() * this.getBbWidth() * 2 - this.getBbWidth(),
+                                this.getY() + 0.5 + this.getRandom().nextFloat() * this.getBbHeight(),
+                                this.getZ() + this.getRandom().nextFloat() * this.getBbWidth() * 2 - this.getBbWidth(),
+                                dx, dy, dz);
+                    }
+                }
+            } else {
+                heartParticleTimer = 0; // reset when wantsToBreed goes false
+            }
+        }
 
         if (this.isAlive()) {
             int i = this.getAge();
@@ -175,7 +216,7 @@ public abstract class FishBase extends AbstractSchoolingFish {
     }
 
     public int getSubVariant() {
-        return this.entityData.get(SUBVARIANT);
+        return Math.max(1,this.entityData.get(SUBVARIANT));
     }
 
     public void setSubVariant(int sub) {
@@ -192,6 +233,25 @@ public abstract class FishBase extends AbstractSchoolingFish {
 
     public int getIUCNStatus() {
         return 0;
+    }
+
+    public void tick() {
+        super.tick();
+        if (!this.level().isClientSide && !variantSynced && isNaturalSpawn && this.tickCount == 2) {
+            variantSynced = true;
+            List<? extends FishBase> nearby = this.level().getEntitiesOfClass(
+                    this.getClass(),
+                    this.getBoundingBox().inflate(8.0D),
+                    e -> e != this
+            );
+            if (!nearby.isEmpty()) {
+                int groupVariant = nearby.get(0).getVariant();
+                this.setVariant(groupVariant);
+                this.setSubVariant(this.getSubVariantBasedOnVariant(groupVariant));
+            }
+        } else if (!isNaturalSpawn) {
+            variantSynced = true;
+        }
     }
 
     public int getIUCNColor() {
@@ -272,6 +332,17 @@ public abstract class FishBase extends AbstractSchoolingFish {
                 && p_223363_1_.getBlockState(p_223363_3_.above()).is(Blocks.WATER);
     }
 
+    @Override
+    public boolean checkSpawnObstruction(LevelReader level) {
+        return level().isUnobstructed(this);
+    }
+
+
+    @Override
+    public boolean isPushedByFluid() {
+        return false;
+    }
+
     public Item getFoodItem() {
         return CreaturesItems.ALGAE_WAFER.get();
     }
@@ -282,38 +353,47 @@ public abstract class FishBase extends AbstractSchoolingFish {
     public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
         ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
         if (!this.level().isClientSide()) {
-            if (itemstack.getItem() == getFoodItem() && this.isAlive() && this.coolDown <= 0 && !this.isBaby()) {
-                TargetingConditions predicate = TargetingConditions.forNonCombat()
-                        .range(16.0D)
-                        .ignoreLineOfSight()
-                        .selector((e) -> e.getClass() == this.getClass() && !((FishBase)e).isBaby());
-                List<FishBase> list = this.level().getNearbyEntities(FishBase.class, predicate, this,
-                        this.getBoundingBox().inflate(10.0D, 10.0D, 10.0D));
-                if (!list.isEmpty()) {
-                    boolean canbreed = false;
-                    int index = 0;
-                    for (int lol = 0; lol < list.size(); lol++) {
-                        if (list.get(lol).coolDown <= 0) {
-                            canbreed = true;
-                            break;
-                        }
-                        index += 1;
-                    }
-                    if (canbreed && !FishBase.this.isBaby()) {
-                        this.layEgg((ServerLevel) this.level(), list.get(index));
-                        if (!p_230254_1_.getAbilities().instabuild) {
-                            itemstack.shrink(1);
-                        }
-                        this.heal(2.0F);
-                        this.coolDown = this.random.nextInt(6000) + 6000;
-                        if (list.get(index) != null) {
-                            list.get(index).coolDown = this.random.nextInt(6000) + 6000;
-                        }
-                        return InteractionResult.SUCCESS;
-                    }
+            if (itemstack.getItem() == getFoodItem() && this.isAlive()
+                    && this.coolDown <= 0 && !this.isBaby()) {
+                if (!p_230254_1_.getAbilities().instabuild) {
+                    itemstack.shrink(1);
                 }
+                this.heal(2.0F);
+                this.setWantsToBreed(true);
                 return InteractionResult.sidedSuccess(this.level().isClientSide());
             }
+//            if (itemstack.getItem() == getFoodItem() && this.isAlive() && this.coolDown <= 0 && !this.isBaby()) {
+//                TargetingConditions predicate = TargetingConditions.forNonCombat()
+//                        .range(16.0D)
+//                        .ignoreLineOfSight()
+//                        .selector((e) -> e.getClass() == this.getClass() && !((FishBase)e).isBaby());
+//                List<FishBase> list = this.level().getNearbyEntities(FishBase.class, predicate, this,
+//                        this.getBoundingBox().inflate(10.0D, 10.0D, 10.0D));
+//                if (!list.isEmpty()) {
+//                    boolean canbreed = false;
+//                    int index = 0;
+//                    for (int lol = 0; lol < list.size(); lol++) {
+//                        if (list.get(lol).coolDown <= 0) {
+//                            canbreed = true;
+//                            break;
+//                        }
+//                        index += 1;
+//                    }
+//                    if (canbreed && !FishBase.this.isBaby()) {
+//                        this.layEgg((ServerLevel) this.level(), list.get(index));
+//                        if (!p_230254_1_.getAbilities().instabuild) {
+//                            itemstack.shrink(1);
+//                        }
+//                        this.heal(2.0F);
+//                        this.coolDown = this.random.nextInt(6000) + 6000;
+//                        if (list.get(index) != null) {
+//                            list.get(index).coolDown = this.random.nextInt(6000) + 6000;
+//                        }
+//                        return InteractionResult.SUCCESS;
+//                    }
+//                }
+//                return InteractionResult.sidedSuccess(this.level().isClientSide());
+//            }
         }
         if (itemstack.getItem() == CreaturesItems.FF_GUIDE.get()) {
             if (this.level().isClientSide()) {
@@ -338,6 +418,7 @@ public abstract class FishBase extends AbstractSchoolingFish {
         this.entityData.define(GENDER, 0);
         this.entityData.define(BRED, false);
         this.entityData.define(SUBVARIANT, 0);
+        this.entityData.define(WANTS_TO_BREED, false);
         this.entityData.define(VARIANT, 0);
     }
 
@@ -390,14 +471,20 @@ public abstract class FishBase extends AbstractSchoolingFish {
     public void saveToBucketTag(ItemStack p_204211_1_) {
         super.saveToBucketTag(p_204211_1_);
         CompoundTag compoundnbt = p_204211_1_.getOrCreateTag();
+        compoundnbt.putInt("Gender", this.getGender());
+        compoundnbt.putInt("BucketVariantTag", this.getVariant());
+        compoundnbt.putInt("BucketSubVariantTag", this.getSubVariant());
         compoundnbt.putFloat("BucketHeightMultiplier", this.getHeightMultiplier());
+        compoundnbt.putInt("Age", this.getAge());
     }
 
     public void addAdditionalSaveData(CompoundTag p_213281_1_) {
+        p_213281_1_.putBoolean("WantsToBreed", this.isWantsToBreed());
         p_213281_1_.putFloat("HeightMultiplier", this.getHeightMultiplier());
         p_213281_1_.putBoolean("Bred", this.wasBred());
         p_213281_1_.putInt("Age", this.getAge());
         p_213281_1_.putInt("Gender", this.getGender());
+        p_213281_1_.putBoolean("WantsToBreed", this.isWantsToBreed());
         p_213281_1_.putInt("Subvariant", this.getSubVariant());
         p_213281_1_.putInt("Variant", this.getVariant());
         p_213281_1_.putInt("CoolDown", this.coolDown);
@@ -406,10 +493,12 @@ public abstract class FishBase extends AbstractSchoolingFish {
 
     public void readAdditionalSaveData(CompoundTag p_70037_1_) {
         super.readAdditionalSaveData(p_70037_1_);
+        this.setWantsToBreed(p_70037_1_.getBoolean("WantsToBreed"));
         this.setBred(p_70037_1_.getBoolean("Bred"));
         this.setAge(p_70037_1_.getInt("Age"));
         this.setGender(p_70037_1_.getInt("Gender"));
         this.setVariant(p_70037_1_.getInt("Variant"));
+        this.setWantsToBreed(p_70037_1_.getBoolean("WantsToBreed"));
         this.setSubVariant(p_70037_1_.getInt("Subvariant"));
         this.coolDown = p_70037_1_.getInt("CoolDown");
         if (!p_70037_1_.contains("HeightMultiplier")
@@ -428,7 +517,7 @@ public abstract class FishBase extends AbstractSchoolingFish {
     }
 
     public int getVariant() {
-        return this.entityData.get(VARIANT);
+        return Math.max(1, this.entityData.get(VARIANT));
     }
 
     public void setBaby(boolean p_82227_1_) {
@@ -451,7 +540,7 @@ public abstract class FishBase extends AbstractSchoolingFish {
         return 10;
     }
 
-    protected void layEgg(ServerLevel server, FishBase father) {
+    public void layEgg(ServerLevel server, FishBase father) {
         int c = this.getClutchSize();
         for (int j = 0; j <= c; j++) {
             CreaturesRoeEntity egg = this.layEgg(this);
@@ -507,28 +596,129 @@ public abstract class FishBase extends AbstractSchoolingFish {
     public ItemStack getDisplayFood() {
         return new ItemStack(getFoodItem(), 1);
     }
+//
+//    protected class EatFoodGoal extends Goal {
+//        private int cooldown;
+//        public final Predicate<ItemEntity> CAN_EAT = (p_205023_0_) ->
+//                p_205023_0_.getItem().getItem() == FishBase.this.getFoodItem()
+//                        && p_205023_0_.isAlive()
+//                        && p_205023_0_.isInWater();
+//
+//        public EatFoodGoal() {
+//        }
+//
+//        public boolean canUse() {
+//            if (this.cooldown > FishBase.this.tickCount) {
+//                return false;
+//            }
+//            List<ItemEntity> list = FishBase.this.level().getEntitiesOfClass(ItemEntity.class,
+//                    FishBase.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), CAN_EAT);
+//            return !list.isEmpty() || !FishBase.this.getItemBySlot(EquipmentSlot.MAINHAND).isEmpty();
+//        }
+//
+//        public void start() {
+//            List<ItemEntity> list = FishBase.this.level().getEntitiesOfClass(ItemEntity.class,
+//                    FishBase.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), CAN_EAT);
+//            if (!list.isEmpty()) {
+//                FishBase.this.getNavigation().moveTo(list.get(0), 1.2F);
+//            }
+//            this.cooldown = 0;
+//        }
+//
+//        public void stop() {
+//            ItemStack itemstack = FishBase.this.getItemBySlot(EquipmentSlot.MAINHAND);
+//            if (!itemstack.isEmpty()) {
+//                this.eat(itemstack);
+//                FishBase.this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+//                this.cooldown = FishBase.this.tickCount + FishBase.this.random.nextInt(100);
+//            }
+//        }
+//
+//        public void tick() {
+//            List<ItemEntity> list = FishBase.this.level().getEntitiesOfClass(ItemEntity.class,
+//                    FishBase.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), CAN_EAT);
+//            ItemStack itemstack = FishBase.this.getItemBySlot(EquipmentSlot.MAINHAND);
+//            if (!itemstack.isEmpty()) {
+//                this.eat(itemstack);
+//                FishBase.this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+//            } else if (!list.isEmpty()) {
+//                FishBase.this.getNavigation().moveTo(list.get(0), 1.2F);
+//                if (!FishBase.this.level().isClientSide() && FishBase.this.isAlive()) {
+//                    for (ItemEntity itementity : FishBase.this.level().getEntitiesOfClass(ItemEntity.class,
+//                            FishBase.this.getBoundingBox().inflate(1.0D, 0.0D, 1.0D), CAN_EAT)) {
+//                        if (itementity.isAlive() && !itementity.getItem().isEmpty()
+//                                && itementity.getItem().getItem() == FishBase.this.getFoodItem()) {
+//                            FishBase.this.pickUpItem(itementity);
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//        private void eat(ItemStack p_220810_1_) {
+//
+//            if (!p_220810_1_.isEmpty()) {
+//                FishBase.this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+//                TargetingConditions predicate = TargetingConditions.forNonCombat()
+//                        .range(16.0D)
+//                        .ignoreLineOfSight()
+//                        .selector((e) -> e.getClass() == FishBase.this.getClass() && !((FishBase)e).isBaby());
+//                List<FishBase> list = FishBase.this.level().getNearbyEntities(FishBase.class, predicate,
+//                        FishBase.this, FishBase.this.getBoundingBox().inflate(10.0D, 10.0D, 10.0D));
+//                if (!list.isEmpty()) {
+//                    boolean canbreed = false;
+//                    int index = 0;
+//                    for (int lol = 0; lol < list.size(); lol++) {
+//                        if (list.get(lol).coolDown <= 0) {
+//                            canbreed = true;
+//                            break;
+//                        }
+//                        index += 1;
+//                    }
+//                    if (!(p_220810_1_.getItem() == CreaturesItems.FISH_FOOD.get()
+//                            || p_220810_1_.getItem() == CreaturesItems.ALGAE_WAFER.get())) {
+//                        canbreed = false;
+//                    }
+//                    if (canbreed && !FishBase.this.isBaby()) {
+//                        FishBase.this.layEgg((ServerLevel) FishBase.this.level(), list.get(index));
+//                        FishBase.this.coolDown = FishBase.this.random.nextInt(6000) + 6000;
+//                        if (list.get(index) != null) {
+//                            list.get(index).coolDown = FishBase.this.random.nextInt(6000) + 6000;
+//                        }
+//                    }
+//                }
+//                FishBase.this.heal(FishBase.this.getMaxHealth());
+//                if (FishBase.this.isBaby()) {
+//                    int age = FishBase.this.getAge();
+//                    age += (int)(float)(24000 / 20.0);
+//                    FishBase.this.setAge(age);
+//                }
+//            }
+//        }
+//    }
 
     protected class EatFoodGoal extends Goal {
         private int cooldown;
-        public final Predicate<ItemEntity> CAN_EAT = (p_205023_0_) ->
-                p_205023_0_.getItem().getItem() == FishBase.this.getFoodItem()
-                        && p_205023_0_.isAlive()
-                        && p_205023_0_.isInWater();
+        public final Predicate<ItemEntity> CAN_EAT = (e) ->
+                e.getItem().getItem() == FishBase.this.getFoodItem()
+                        && e.isAlive()
+                        && e.isInWater();
 
-        public EatFoodGoal() {
-        }
+        public EatFoodGoal() {}
 
+        @Override
         public boolean canUse() {
-            if (this.cooldown > FishBase.this.tickCount) {
-                return false;
-            }
-            List<ItemEntity> list = FishBase.this.level().getEntitiesOfClass(ItemEntity.class,
+            if (this.cooldown > FishBase.this.tickCount) return false;
+            List<ItemEntity> list = FishBase.this.level().getEntitiesOfClass(
+                    ItemEntity.class,
                     FishBase.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), CAN_EAT);
             return !list.isEmpty() || !FishBase.this.getItemBySlot(EquipmentSlot.MAINHAND).isEmpty();
         }
 
+        @Override
         public void start() {
-            List<ItemEntity> list = FishBase.this.level().getEntitiesOfClass(ItemEntity.class,
+            List<ItemEntity> list = FishBase.this.level().getEntitiesOfClass(
+                    ItemEntity.class,
                     FishBase.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), CAN_EAT);
             if (!list.isEmpty()) {
                 FishBase.this.getNavigation().moveTo(list.get(0), 1.2F);
@@ -536,74 +726,49 @@ public abstract class FishBase extends AbstractSchoolingFish {
             this.cooldown = 0;
         }
 
+        @Override
         public void stop() {
             ItemStack itemstack = FishBase.this.getItemBySlot(EquipmentSlot.MAINHAND);
             if (!itemstack.isEmpty()) {
-                this.eat(itemstack);
+                eat(itemstack);
                 FishBase.this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
-                this.cooldown = FishBase.this.tickCount + FishBase.this.random.nextInt(100);
+                this.cooldown = FishBase.this.tickCount + FishBase.this.getRandom().nextInt(100);
             }
         }
 
+        @Override
         public void tick() {
-            List<ItemEntity> list = FishBase.this.level().getEntitiesOfClass(ItemEntity.class,
+            List<ItemEntity> list = FishBase.this.level().getEntitiesOfClass(
+                    ItemEntity.class,
                     FishBase.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), CAN_EAT);
-            ItemStack itemstack = FishBase.this.getItemBySlot(EquipmentSlot.MAINHAND);
-            if (!itemstack.isEmpty()) {
-                this.eat(itemstack);
+            ItemStack held = FishBase.this.getItemBySlot(EquipmentSlot.MAINHAND);
+
+            if (!held.isEmpty()) {
+                eat(held);
                 FishBase.this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
             } else if (!list.isEmpty()) {
                 FishBase.this.getNavigation().moveTo(list.get(0), 1.2F);
                 if (!FishBase.this.level().isClientSide() && FishBase.this.isAlive()) {
-                    for (ItemEntity itementity : FishBase.this.level().getEntitiesOfClass(ItemEntity.class,
+                    for (ItemEntity item : FishBase.this.level().getEntitiesOfClass(
+                            ItemEntity.class,
                             FishBase.this.getBoundingBox().inflate(1.0D, 0.0D, 1.0D), CAN_EAT)) {
-                        if (itementity.isAlive() && !itementity.getItem().isEmpty()
-                                && itementity.getItem().getItem() == FishBase.this.getFoodItem()) {
-                            FishBase.this.pickUpItem(itementity);
+                        if (item.isAlive() && !item.getItem().isEmpty()) {
+                            FishBase.this.pickUpItem(item);
                         }
                     }
                 }
             }
         }
 
-        private void eat(ItemStack p_220810_1_) {
-            if (!p_220810_1_.isEmpty()) {
-                FishBase.this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
-                TargetingConditions predicate = TargetingConditions.forNonCombat()
-                        .range(16.0D)
-                        .ignoreLineOfSight()
-                        .selector((e) -> e.getClass() == FishBase.this.getClass() && !((FishBase)e).isBaby());
-                List<FishBase> list = FishBase.this.level().getNearbyEntities(FishBase.class, predicate,
-                        FishBase.this, FishBase.this.getBoundingBox().inflate(10.0D, 10.0D, 10.0D));
-                if (!list.isEmpty()) {
-                    boolean canbreed = false;
-                    int index = 0;
-                    for (int lol = 0; lol < list.size(); lol++) {
-                        if (list.get(lol).coolDown <= 0) {
-                            canbreed = true;
-                            break;
-                        }
-                        index += 1;
-                    }
-                    if (!(p_220810_1_.getItem() == CreaturesItems.FISH_FOOD.get()
-                            || p_220810_1_.getItem() == CreaturesItems.ALGAE_WAFER.get())) {
-                        canbreed = false;
-                    }
-                    if (canbreed && !FishBase.this.isBaby()) {
-                        FishBase.this.layEgg((ServerLevel) FishBase.this.level(), list.get(index));
-                        FishBase.this.coolDown = FishBase.this.random.nextInt(6000) + 6000;
-                        if (list.get(index) != null) {
-                            list.get(index).coolDown = FishBase.this.random.nextInt(6000) + 6000;
-                        }
-                    }
-                }
-                FishBase.this.heal(FishBase.this.getMaxHealth());
-                if (FishBase.this.isBaby()) {
-                    int age = FishBase.this.getAge();
-                    age += (int)(float)(24000 / 20.0);
-                    FishBase.this.setAge(age);
-                }
+        private void eat(ItemStack stack) {
+            if (stack.isEmpty()) return;
+            FishBase.this.heal(FishBase.this.getMaxHealth());
+            if (FishBase.this.isBaby()) {
+                int age = FishBase.this.getAge();
+                age += (int)(24000 / 20.0f);
+                FishBase.this.setAge(age);
             }
+            FishBase.this.setWantsToBreed(true);
         }
     }
 
@@ -700,6 +865,18 @@ public abstract class FishBase extends AbstractSchoolingFish {
         float h = this.getBbHeight();
         int scale = (int)(20f / h);
         return scale;
+    }
+
+    public boolean isWantsToBreed() {
+        return this.entityData.get(WANTS_TO_BREED);
+    }
+
+    public void setWantsToBreed(boolean b) {
+        this.entityData.set(WANTS_TO_BREED, b);
+    }
+
+    public int getYOffsetForGUI() {
+        return 0;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.frikinzi.creatures.client.gui;
 
+import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.entity.StingrayEntity;
 import com.frikinzi.creatures.entity.TarantulaEntity;
 import com.frikinzi.creatures.entity.base.AbstractCrabBase;
@@ -26,11 +27,11 @@ public class DailyQuizScreen extends Screen {
     private final Screen parent;
     private static final ResourceLocation BOOK_TEXTURE = new ResourceLocation("creatures:textures/gui/creatures/book.png");
     private int bankQuestionStartY = 0;
-    // Quiz state
-    private final boolean showBirdPickName; // true = show bird, pick name; false = show name, pick bird
+
+    private final boolean showBirdPickName;
     private final SpeciesEntry correctSpecies;
     private final int correctVariant;
-    private final List<QuizOption> options; // 4 options total
+    private final List<QuizOption> options;
     
     private Integer selectedOption = null;
     private boolean answered = false;
@@ -93,7 +94,7 @@ public class DailyQuizScreen extends Screen {
         super(Component.literal("Daily Quiz"));
         this.parent = parent;
         this.isSoundQuestion = true;
-        this.correctSound = correctSound;  // ← change field type to SpeciesEntry
+        this.correctSound = correctSound;
         this.soundOptions = soundOptions;
         this.soundOptionCorrectIndex = soundOptionCorrectIndex;
         this.questionNumber = questionNumber;
@@ -132,7 +133,7 @@ public class DailyQuizScreen extends Screen {
     public static DailyQuizScreen create(Screen parent, FieldGuideCapability cap, int questionNumber, int correctCount) {
         if (new Random().nextFloat() < 0.3f) {
             return new DailyQuizScreen(parent, BankQuestion.getRandom(), questionNumber, correctCount);
-        }  else if (new Random().nextFloat() < 0.5f) {
+        }  else if (new Random().nextFloat() < 0.5f & CreaturesConfig.quiz_sound_q.get()) {
             return createSoundQuestion(parent, questionNumber, correctCount);
         }
         List<QuizOption> pool = new ArrayList<>();
@@ -205,7 +206,7 @@ public class DailyQuizScreen extends Screen {
         graphics.drawString(font, progress, bookX + 10, bookY + 10, 0xFFFFFF, false);
 
         // Question prompt
-        String text = showBirdPickName ? "Identify this animal:" : "Select the animal that matches this species:";
+        String text = showBirdPickName ? Component.translatable("creatures.fieldgui.identifyq").getString() : Component.translatable("creatures.fieldgui.matchq").getString();
         if (!isBankQuestion && !isSoundQuestion) {
             graphics.drawString(font, text, centerX - font.width(text) / 2, pageY, 0x3D2B1F, false);
         }
@@ -262,7 +263,7 @@ public class DailyQuizScreen extends Screen {
             boolean correct = isBankQuestion ? selectedOption == shuffledCorrectIndex
                     : isSoundQuestion ? selectedOption == soundOptionCorrectIndex
                     : selectedOption == getCorrectIndex();
-            String text3 = correct ? "Nice job!" : "Better luck next time!";
+            String text3 = correct ? Component.translatable("creatures.fieldgui.nicejob").getString() : Component.translatable("creatures.fieldgui.wronganswer").getString();
             graphics.drawString(font,
                     text3,
                     centerX - font.width(text3) / 2, bookY + bookH - 30,
@@ -502,12 +503,12 @@ public class DailyQuizScreen extends Screen {
         int bookX = (this.width - bookW) / 2;
         int bookY = (this.height - bookH) / 2;
 
-        this.addRenderableWidget(Button.builder(Component.literal("✗ Close"),
+        this.addRenderableWidget(Button.builder(Component.literal("✗ " + Component.translatable("creatures.fieldgui.close").getString()),
                         b -> Minecraft.getInstance().setScreen(parent))
                 .pos(bookX + 10, bookY + bookH - 35).size(45, 20).build());
 
         this.addRenderableWidget(Button.builder(Component.literal(
-                        questionNumber < TOTAL_QUESTIONS ? "Next ▶" : "Finish"), b -> {
+                        questionNumber < TOTAL_QUESTIONS ? Component.translatable("creatures.fieldgui.next").getString()+" ▶" : Component.translatable("creatures.fieldgui.finish").getString()), b -> {
                     if (questionNumber < TOTAL_QUESTIONS) {
                         // Build a new question, carry over score
                         FieldGuideCapability cap = Minecraft.getInstance().player
@@ -521,20 +522,20 @@ public class DailyQuizScreen extends Screen {
                         Minecraft.getInstance().setScreen(parent);
                     }
                 }).pos(bookX + bookW - 60, bookY + bookH - 35).size(55, 20)
-                .build()); // visibility handled in render
+                .build());
     }
 
     @Override
     public boolean isPauseScreen() { return false; }
 
     private String getScoreComment() {
-        if (correctCount == 5) return "5/5. Wow! You're a 'natural'!";
-        if (correctCount == 4) return "4/5. Nice!";
-        if (correctCount == 3) return "3/5. Not bad! Keep exploring the wild!";
-        if (correctCount == 2) return "You got unlucky... right?";
-        if (correctCount == 1) return "Maybe study a bit more next time?";
-        if (correctCount == 0) return "Maybe just guess next time?";
-        return "Better luck next time — get out there and find some animals!";
+        if (correctCount == 5) return Component.translatable("quiz.score.5").getString();
+        if (correctCount == 4) return Component.translatable("quiz.score.4").getString();
+        if (correctCount == 3) return Component.translatable("quiz.score.3").getString();
+        if (correctCount == 2) return Component.translatable("quiz.score.2").getString();
+        if (correctCount == 1) return Component.translatable("quiz.score.1").getString();
+        if (correctCount == 0) return Component.translatable("quiz.score.0").getString();
+        return Component.translatable("quiz.score.default").getString();
     }
 
     private void renderBankQuestion(GuiGraphics graphics, int bookX, int bookY, int bookW, int bookH,
@@ -543,7 +544,7 @@ public class DailyQuizScreen extends Screen {
 
         // Question text — word wrapped and centered
         for (net.minecraft.util.FormattedCharSequence line :
-                font.split(Component.literal(bankQuestion.questionText), bookW - 100)) {
+                font.split(Component.literal(bankQuestion.questionText.getString()), bookW - 100)) {
             graphics.drawString(font, line, centerX - font.width(line) / 2, pageY, 0x3D2B1F, false);
             pageY += 11;
         }
@@ -576,7 +577,7 @@ public class DailyQuizScreen extends Screen {
         if (answered && bankQuestion.explanation != null) {
             int explY = startY + shuffledOptions.length * (btnH + gap) + 5;
             for (net.minecraft.util.FormattedCharSequence line :
-                    font.split(Component.literal("Explanation: " + bankQuestion.explanation), bookW - 100)) {
+                    font.split(Component.literal(Component.translatable("creatures.fieldgui.explanation").getString() + " " + bankQuestion.explanation.getString()), bookW - 100)) {
                 graphics.drawString(font, line, centerX - font.width(line) / 2, explY, 0x5C4033, false);
                 explY += 10;
             }
@@ -619,7 +620,7 @@ public class DailyQuizScreen extends Screen {
                                      int centerX, int mouseX, int mouseY) {
         int pageY = bookY + 45;
 
-        String prompt = "Which bird made this call?";
+        String prompt = Component.translatable("creatures.fieldgui.soundq").getString();
         graphics.drawString(font, prompt, centerX - font.width(prompt) / 2, pageY, 0x3D2B1F, false);
 
         // Play button
@@ -632,7 +633,7 @@ public class DailyQuizScreen extends Screen {
                 hovering ? 0xCCFFD580 : 0xCCF5E6D3);
         graphics.fill(btnX, btnY, btnX + btnW, btnY + 1, 0x88000000);
         graphics.fill(btnX, btnY + btnH - 1, btnX + btnW, btnY + btnH, 0x88000000);
-        String playLabel = soundPlayed ? "▶ Play Again" : "▶ Play Sound";
+        String playLabel = soundPlayed ? "▶ " + Component.translatable("creatures.fieldgui.playagain").getString() : "▶ " + Component.translatable("creatures.fieldgui.play").getString();
         graphics.drawString(font, playLabel,
                 btnX + btnW / 2 - font.width(playLabel) / 2, btnY + 6, 0x3D2B1F, false);
 

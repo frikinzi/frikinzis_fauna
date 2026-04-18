@@ -1,11 +1,13 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -131,4 +133,9 @@ public int getMaxSchoolSize() {
     public int numVariants() {
         return 6;
     }
+
+    public Component getFunFact() {
+        return Component.translatable("description.creatures.tambaqui");
+    }
+
 }

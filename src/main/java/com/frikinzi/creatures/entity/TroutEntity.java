@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
@@ -139,5 +140,9 @@ public ItemStack getBucketItemStack() {
 
     public int numVariants() {
         return 4;
+    }
+
+    public int getScaleforGUI() {
+        return (int)(super.getScaleforGUI() *0.5f);
     }
 }

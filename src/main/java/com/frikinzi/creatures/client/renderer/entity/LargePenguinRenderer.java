@@ -1,6 +1,8 @@
 package com.frikinzi.creatures.client.renderer.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.renderer.layer.KingfisherHeldItemLayer;
+import com.frikinzi.creatures.client.renderer.layer.LargePenguinHeldItemLayer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -19,6 +21,8 @@ public class LargePenguinRenderer extends GeoEntityRenderer<LargePenguinEntity>{
     public LargePenguinRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new LargePenguinModel());
         this.shadowRadius = 0.4F;
+        this.addRenderLayer(new LargePenguinHeldItemLayer(this));
+
     }
 
     @Override

@@ -1,19 +1,34 @@
 package com.frikinzi.creatures.entity;
 
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.base.AbstractCrabBase;
+import com.frikinzi.creatures.entity.base.AbstractWaterCrabBase;
+import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
+import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
+import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -21,15 +36,15 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import org.joml.Quaternionf;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
@@ -73,6 +88,7 @@ public class EdibleCrabEntity extends AbstractCrabBase implements GeoEntity {
 
     public EdibleCrabEntity(EntityType<? extends EdibleCrabEntity> type, Level level) {
         super(type, level);
+        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
     }
 
     @Override
@@ -121,7 +137,7 @@ public class EdibleCrabEntity extends AbstractCrabBase implements GeoEntity {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 4.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.2D)
-                .add(Attributes.ATTACK_DAMAGE, 2.0D);
+                .add(Attributes.ATTACK_DAMAGE, 1.0D);
     }
 
     @Override
@@ -192,13 +208,6 @@ public class EdibleCrabEntity extends AbstractCrabBase implements GeoEntity {
             case 4 -> CreaturesLootTables.BLUE_CRAB;
             default -> CreaturesLootTables.EDIBLE_CRAB;
         };
-    }
-
-    public static boolean checkAnimalSpawnRules(EntityType<? extends Animal> type,
-            ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos,
-            net.minecraft.util.RandomSource random) {
-        return level.getBlockState(pos.below()).is(Blocks.SAND)
-                && level.getRawBrightness(pos, 0) > 8;
     }
 
     @Override
@@ -309,4 +318,41 @@ public class EdibleCrabEntity extends AbstractCrabBase implements GeoEntity {
                 .rotateY((float) Math.toRadians(160))
                 .rotateX((float) Math.toRadians(45));
     }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
+
+        return CreaturesSound.ATTACK_CRAB.get();
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+
+        return CreaturesSound.ATTACK_CRAB.get();
+    }
+
+    public List<ItemStack> getAllFoodItems() {
+        return Arrays.stream(FOOD_ITEMS.getItems())
+                .map(ItemStack::copy)
+                .collect(java.util.stream.Collectors.toList());
+    }
+
+    public int getYOffsetForGUI() {
+        return -10;
+    }
+
+    public MobType getMobType() {
+        return MobType.WATER;
+    }
+
+    public static boolean checkCrabSpawnRules(
+            EntityType<? extends EdibleCrabEntity> type,
+            ServerLevelAccessor level,
+            MobSpawnType spawnType,
+            BlockPos pos,
+            RandomSource random) {
+        return level.getFluidState(pos).is(FluidTags.WATER);    }
+
+
+
 }

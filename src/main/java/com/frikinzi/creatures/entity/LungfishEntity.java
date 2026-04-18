@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
@@ -130,7 +131,7 @@ public int getMaxSchoolSize() {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, 0.1D).add(Attributes.ATTACK_DAMAGE, 4.0).add(Attributes.ATTACK_SPEED, 2);
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, 0.1D).add(Attributes.ATTACK_DAMAGE, 2.0).add(Attributes.ATTACK_SPEED, 2);
     }
 
     public ResourceLocation getDefaultLootTable() {
@@ -150,7 +151,7 @@ public int getMaxSchoolSize() {
         this.goalSelector.addGoal(7, this.randomStrollGoal);
         this.randomStrollGoal.setFlags(EnumSet.of(Goal.Flag.MOVE));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 2.0D, true));
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+        //this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(3, new EatFoodGoal());
 
     }

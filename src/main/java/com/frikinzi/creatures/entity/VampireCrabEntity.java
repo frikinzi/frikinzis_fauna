@@ -1,5 +1,6 @@
 package com.frikinzi.creatures.entity;
 
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.base.AbstractCrabBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
@@ -31,6 +32,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +46,6 @@ public class VampireCrabEntity extends AbstractCrabBase implements GeoEntity {
             .put(3, List.of(Region.ASIA))
             .put(4, List.of(Region.ASIA))
             .put(5, List.of(Region.ASIA))
-            .put(6, List.of(Region.ASIA))
             .build();
 
     public VampireCrabEntity(EntityType<? extends VampireCrabEntity> type, Level level) {
@@ -152,11 +153,17 @@ public class VampireCrabEntity extends AbstractCrabBase implements GeoEntity {
 
     @Override
     public int determineVariant() {
-        return 6;
+        return 5;
     }
 
     @Override
     public int getIUCNStatus() {
         return -1;
+    }
+
+    public List<ItemStack> getAllFoodItems() {
+        return Arrays.stream(FOOD_ITEMS.getItems())
+                .map(ItemStack::copy)
+                .collect(java.util.stream.Collectors.toList());
     }
 }

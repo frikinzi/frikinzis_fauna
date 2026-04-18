@@ -16,13 +16,13 @@
   },
   "spawners": [
     {
-      "type": "creatures:ghost_crab",
+      "type": "creatures:ghostcrab",
       "weight": 20,
       "minCount": 2,
       "maxCount": 5
     },
     {
-      "type": "creatures:fiddler_crab",
+      "type": "creatures:fiddlercrab",
       "weight": 20,
       "minCount": 2,
       "maxCount": 4

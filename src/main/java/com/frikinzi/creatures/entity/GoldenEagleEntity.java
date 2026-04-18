@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.base.RaptorBase;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
@@ -173,5 +174,7 @@ public class GoldenEagleEntity extends RaptorBase implements GeoEntity {
     public boolean canTame() {
         return true;
     }
+
+
 
 }

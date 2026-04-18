@@ -1,18 +1,18 @@
 {
   "type": "forge:add_spawns",
-  "biomes": "#minecraft:is_river",
+  "biomes": {
+    "type": "forge:and",
+    "values": [
+      "#is_overworld",
+      "#minecraft:is_river"
+    ]
+  },
   "spawners": [
     {
       "type": "creatures:pike",
       "weight": 8,
       "minCount": 1,
       "maxCount": 1
-    },
-    {
-      "type": "creatures:guppy",
-      "weight": 10,
-      "minCount": 3,
-      "maxCount": 8
     },
     {
       "type": "creatures:trout",
@@ -27,10 +27,10 @@
       "maxCount": 1
     },
     {
-      "type": "creatures:tigerbarb",
-      "weight": 25,
+      "type": "creatures:ediblecrab",
+      "weight": 15,
       "minCount": 1,
-      "maxCount": 1
+      "maxCount": 3
     }
   ]
 }

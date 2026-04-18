@@ -24,6 +24,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -42,7 +43,6 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.Map;
 
 public class SquidEntity extends FishBase implements GeoEntity {
-    private static final EntityDataAccessor<Integer> VARIANT_SUBID = SynchedEntityData.defineId(SquidEntity.class, EntityDataSerializers.INT);
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     public float xBodyRotO  =1;
     public static final Map<Integer, Component> SPECIES_NAMES = ImmutableMap.<Integer, Component>builder()
@@ -113,6 +113,11 @@ public class SquidEntity extends FishBase implements GeoEntity {
         controllers.add(new AnimationController<>(this, "Swimming", 0, this::swimAnimController));
     }
 
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 8.0F, 2.2D, 2.2D));
+    }
+
 @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return this.cache;
@@ -126,6 +131,7 @@ public ItemStack getBucketItemStack() {
         super.saveToBucketTag(p_204211_1_);
         CompoundTag compoundnbt = p_204211_1_.getOrCreateTag();
         compoundnbt.putInt("BucketVariantTag", this.getVariant());
+        compoundnbt.putInt("BucketSubVariantTag", this.getSubVariant());
         compoundnbt.putFloat("BucketHeightMultiplier", this.getHeightMultiplier());
         compoundnbt.putInt("Age", this.getAge());
     }
@@ -169,9 +175,12 @@ public ItemStack getBucketItemStack() {
         } return "Unknown";
     }
 
-//    public int getSubVariant() {
-//        return Mth.clamp(this.entityData.get(VARIANT_SUBID), 1, SQUID.get(this.getVariant()));
-//    }
+    @Override
+    public int getSubVariant() {
+        Integer max = SQUID.get(this.getVariant());
+        if (max == null) return 1;
+        return Mth.clamp(super.getSubVariant(), 1, max);
+    }
 
 //    public void setSubVariant(int p_191997_1_) {
 //        this.entityData.set(VARIANT_SUBID, p_191997_1_);
@@ -208,7 +217,9 @@ public ItemStack getBucketItemStack() {
     }
 
     public double getSizeMultiplier() {
-        return SIZES.get(this.getVariant());
+        Double size = SIZES.get(this.getVariant());
+        if (size == null) return 0.8D;
+        return size;
     }
 
     public int getIUCNStatus() {

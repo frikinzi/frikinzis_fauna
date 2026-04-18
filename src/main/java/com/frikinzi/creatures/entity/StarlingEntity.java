@@ -1,23 +1,19 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -34,11 +30,10 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Sets;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class StarlingEntity extends CreaturesFlyingBird implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
@@ -50,6 +45,7 @@ public class StarlingEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(4, Component.translatable("message.creatures.europeanstarling"))
             .put(5, Component.translatable("message.creatures.metallicstarling"))
             .put(6, Component.translatable("message.creatures.emeraldstarling"))
+            .put(7, Component.translatable("message.creatures.balistarling"))
             .build();
     public static final Map<Integer, String> SCIENTIFIC_NAMES = ImmutableMap.<Integer, String>builder()
             .put(1, "Lamprotornis regius")
@@ -58,6 +54,7 @@ public class StarlingEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(4, "Sturnus vulgaris")
             .put(5, "Aplonis metallica")
             .put(6, "Lamprotornis iris")
+            .put(7, "Leucopsar rothschildi")
             .build();
 
     public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
@@ -67,6 +64,7 @@ public class StarlingEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(4, List.of(Region.EUROPE, Region.ASIA, Region.NORTH_AMERICA, Region.OCEANIA, Region.AFRICA))
             .put(5, List.of(Region.OCEANIA, Region.ASIA))
             .put(6, List.of(Region.AFRICA))
+            .put(7, List.of(Region.ASIA))
             .build();
 
     public StarlingEntity(EntityType<? extends StarlingEntity> p_i50251_1_, Level p_i50251_2_) {
@@ -105,7 +103,7 @@ public class StarlingEntity extends CreaturesFlyingBird implements GeoEntity {
     }
 
     public int numVariants() {
-        return 6;
+        return 7;
     }
 
     @Override
@@ -160,6 +158,30 @@ public class StarlingEntity extends CreaturesFlyingBird implements GeoEntity {
 
     public ItemStack getFoodItem() {
         return new ItemStack(CreaturesItems.MEALWORMS.get(), 1);
+    }
+
+    public Component getFunFact() {
+        return Component.translatable("description.creatures.starling");
+    }
+
+    public String getGenderTextTexture() {
+        if (this.getVariant() == 2) {
+            return this.getGenderString();
+        } else {
+            return "";
+        }
+    }
+
+    public int getIUCNStatus() {
+        if (this.getVariant() == 7) {
+            return 4;
+        } return super.getIUCNStatus();
+    }
+
+    public List<ItemStack> getAllFoodItems() {
+        return Arrays.stream(FOOD_ITEMS.getItems())
+                .map(ItemStack::copy)
+                .collect(java.util.stream.Collectors.toList());
     }
 
 }

@@ -30,7 +30,7 @@ public class CapercaillieRenderer extends GeoEntityRenderer<CapercaillieEntity>{
         } else {
             multiplier = 1.0F;
         }
-        stack.scale(0.7F * multiplier, 0.7F * multiplier, 0.7F * multiplier);
+        stack.scale(0.6F * multiplier, 0.6F * multiplier, 0.6F * multiplier);
         super.defaultRender(stack, animatable, bufferSource, renderType, buffer, yaw, partialTick, packedLight);
     }
 

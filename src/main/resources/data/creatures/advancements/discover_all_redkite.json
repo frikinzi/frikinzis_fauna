@@ -1,0 +1,34 @@
+{
+  "parent": "creatures:birder",
+  "display": {
+    "icon": {
+      "item": "creatures:red_kite_spawn_egg"
+    },
+    "title": {
+      "translate": "advancements.creatures.discover_all_red_kite.title"
+    },
+    "description": {
+      "translate": "advancements.creatures.discover_all_red_kite.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "discover_all": {
+      "trigger": "creatures:discovered_all_variants",
+      "conditions": {
+        "entity_key": "redkite"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "discover_all"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  }
+}

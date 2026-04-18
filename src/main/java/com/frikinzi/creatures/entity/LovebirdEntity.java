@@ -1,8 +1,10 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.entity.ai.SitOnShoulderGoal;
+import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
@@ -17,6 +19,9 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.LeapAtTargetGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.Level;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -102,6 +107,10 @@ public class LovebirdEntity extends CreaturesFlyingBird implements GeoEntity {
 
     protected void registerGoals() {
         super.registerGoals();
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2D, true));
+        this.goalSelector.addGoal(1, new LeapAtTargetGoal(this, 0.4F));
+        this.targetSelector.addGoal(1, new CreaturesBirdEntity.DefendBabyGoal());
+        this.targetSelector.addGoal(2, (new HurtByTargetGoal(this)));
         this.goalSelector.addGoal(3, new SitOnShoulderGoal(this));
         this.goalSelector.addGoal(5, new FollowFlockLeaderGoal(this));
     }
@@ -176,7 +185,7 @@ public int methodOfDeterminingVariant() {
             while (i == 2 || i == 4 || i == 12 || i == 13) {
                 i = this.random.nextInt(numVariants()) + 1;
             }
-            System.out.println(i);
+            //System.out.println(i);
             return i;
         }
 
@@ -247,7 +256,7 @@ public int methodOfDeterminingVariant() {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D).add(Attributes.FLYING_SPEED, (double)0.4F).add(Attributes.MOVEMENT_SPEED, (double)0.2F);
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D).add(Attributes.FLYING_SPEED, (double)0.4F).add(Attributes.MOVEMENT_SPEED, (double)0.2F).add(Attributes.ATTACK_DAMAGE, 2.0D);
     }
 
     public String getScientificName() {
@@ -264,5 +273,7 @@ public int methodOfDeterminingVariant() {
     public boolean canTame() {
         return true;
     }
+
+
 
 }

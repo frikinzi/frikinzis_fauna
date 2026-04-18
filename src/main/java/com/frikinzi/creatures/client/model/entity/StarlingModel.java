@@ -20,12 +20,12 @@ public class StarlingModel extends GeoModel<StarlingEntity> {
     public ResourceLocation getTextureResource(StarlingEntity object)
     {
         if (object.isFlying()) {
-            return new ResourceLocation(Creatures.MODID, "textures/entity/starling/starling" + object.getVariant() + "fly.png");
+            return new ResourceLocation(Creatures.MODID, "textures/entity/starling/starling" + object.getVariant()+ object.getGenderTextTexture() + "fly.png");
         }
         if (object.isSleeping()) {
-            return new ResourceLocation(Creatures.MODID, "textures/entity/starling/starling" + object.getVariant() + "sleep.png");
+            return new ResourceLocation(Creatures.MODID, "textures/entity/starling/starling" + object.getVariant()+ object.getGenderTextTexture() + "sleep.png");
         }
-        return new ResourceLocation(Creatures.MODID, "textures/entity/starling/starling" + object.getVariant() + ".png");
+        return new ResourceLocation(Creatures.MODID, "textures/entity/starling/starling" + object.getVariant()+ object.getGenderTextTexture() + ".png");
     }
 
     @Override

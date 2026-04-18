@@ -13,7 +13,7 @@
   "spawners": [
     {
       "type": "creatures:swordfish",
-      "weight": 10,
+      "weight": 5,
       "minCount": 1,
       "maxCount": 1
     },
@@ -22,6 +22,12 @@
       "weight": 15,
       "minCount": 5,
       "maxCount": 6
+    },
+    {
+      "type": "creatures:ediblecrab",
+      "weight": 15,
+      "minCount": 2,
+      "maxCount": 4
     }
   ]
 }

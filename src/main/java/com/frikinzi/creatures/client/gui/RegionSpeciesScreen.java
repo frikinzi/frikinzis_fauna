@@ -1,6 +1,5 @@
 package com.frikinzi.creatures.client.gui;
 
-import com.frikinzi.creatures.entity.Region;
 import com.frikinzi.creatures.entity.base.AbstractCrabBase;
 import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.FishBase;
@@ -34,7 +33,6 @@ public class RegionSpeciesScreen extends Screen {
         this.region = region;
         this.parent = parent;
 
-        // Build flat list of [speciesIndex, variant] for this region
         this.entries = new ArrayList<>();
         List<SpeciesEntry> allSpecies = FieldGuideGUI.ALL_SPECIES;
         for (int s = 0; s < allSpecies.size(); s++) {
@@ -111,6 +109,7 @@ public class RegionSpeciesScreen extends Screen {
                     float h = dummy.getBbHeight();
                     int scale = (int)(25f / h);
                     Quaternionf rot = new Quaternionf().rotateZ((float)Math.PI).rotateY((float)Math.toRadians(140));
+                    int offset = 0;
                     int cacheKey = idx; // stable per entry
                     if (dummy instanceof CreaturesBirdEntity bird) {
                         bird.setVariant(variant);
@@ -119,6 +118,7 @@ public class RegionSpeciesScreen extends Screen {
                         bird.setOnGround(true);
                         rot = bird.getRotforGUI();
                         scale = bird.getScaleforGUI();
+                        offset = bird.getYOffsetForGUI();
                     }
                     if (dummy instanceof FishBase fish) {
                         fish.setVariant(variant);
@@ -127,15 +127,17 @@ public class RegionSpeciesScreen extends Screen {
                         fish.setForcedInWater(true);
                         rot = fish.getRotforGUI();
                         scale = fish.getScaleforGUI();
+                        offset = fish.getYOffsetForGUI();
                     }
                     if (dummy instanceof AbstractCrabBase crab) {
                         crab.setVariant(variant);
                         crab.setGender(cachedGenders.computeIfAbsent(cacheKey, k -> new Random().nextInt(2)));
                         rot = crab.getRotforGUI();
                         scale = crab.getScaleforGUI();
+                        offset = crab.getYOffsetForGUI();
                     }
 
-                    InventoryScreen.renderEntityInInventory(graphics, x + cellSize / 2, y + cellSize - 5, scale, rot, null, dummy);
+                    InventoryScreen.renderEntityInInventory(graphics, x + cellSize / 2, y + cellSize - 5 + offset, scale, rot, null, dummy);
 
                     if (mouseX >= x && mouseX <= x + cellSize && mouseY >= y && mouseY <= y + cellSize) {
                         String name = species.getSpeciesName(variant);
@@ -197,6 +199,49 @@ public class RegionSpeciesScreen extends Screen {
         if (delta < 0 && currentPage < totalPages - 1) currentPage++;
         else if (delta > 0 && currentPage > 0) currentPage--;
         return true;
+    }
+
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        FieldGuideCapability cap = Minecraft.getInstance().player
+                .getCapability(FieldGuideCapability.CAPABILITY).orElse(null);
+
+        int bookW = 390, bookH = 245;
+        int bookX = (this.width - bookW) / 2;
+        int bookY = (this.height - bookH) / 2;
+
+        int cellSize = 40, colsPerPage = 3;
+        int leftPageX = bookX + 55, rightPageX = bookX + 200;
+        int pageY = bookY + 35;
+        int pageH = bookH - 65;
+        int visibleRows = pageH / cellSize;
+        int itemsPerPage = colsPerPage * 2 * visibleRows;
+
+        int startIdx = currentPage * itemsPerPage;
+        int endIdx = Math.min(startIdx + itemsPerPage, entries.size());
+
+        for (int idx = startIdx; idx < endIdx; idx++) {
+            int posOnPage = idx - startIdx;
+            int[] entry = entries.get(idx);
+            int speciesIdx = entry[0];
+            int variant = entry[1];
+            SpeciesEntry species = FieldGuideGUI.ALL_SPECIES.get(speciesIdx);
+
+            int x = getCellX(posOnPage, leftPageX, rightPageX, cellSize, colsPerPage);
+            int y = getCellY(posOnPage, pageY, cellSize, colsPerPage, visibleRows);
+
+            if (mouseX >= x && mouseX <= x + cellSize && mouseY >= y && mouseY <= y + cellSize) {
+                boolean discovered = cap != null && cap.getDiscoveredVariants(species.entityKey).contains(variant);
+                if (discovered && cap != null) {
+                    Set<String> genders = cap.getDiscoveredGenders(species.entityKey, variant);
+                    Minecraft.getInstance().setScreen(
+                            new VariantDetailScreen(this, species, variant, genders));
+                    return true;
+                }
+                return true;
+            }
+        }
+        return super.mouseClicked(mouseX, mouseY, button);
     }
 
     @Override

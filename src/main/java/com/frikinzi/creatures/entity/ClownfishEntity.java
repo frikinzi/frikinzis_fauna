@@ -147,7 +147,7 @@ public class ClownfishEntity extends FishBase implements GeoEntity {
     }
 
     @Override
-    protected void layEgg(ServerLevel server, FishBase father) {
+    public void layEgg(ServerLevel server, FishBase father) {
         int c = 10;
         for (int j = 0; j <= c; j++) {
             CreaturesRoeEntity egg = this.layEgg(this);
@@ -205,6 +205,15 @@ public class ClownfishEntity extends FishBase implements GeoEntity {
     }
 
     public int getSubVariantBasedOnVariant(int variant) {
-        return this.random.nextInt(CLOWNFISH.get(this.getVariant()))+1;
+        Integer max = CLOWNFISH.get(variant);
+        if (max == null) return 1;
+        return this.random.nextInt(max) + 1;
+    }
+
+    @Override
+    public int getSubVariant() {
+        Integer max = CLOWNFISH.get(this.getVariant());
+        if (max == null) return 1;
+        return Mth.clamp(super.getSubVariant(), 1, max);
     }
 }

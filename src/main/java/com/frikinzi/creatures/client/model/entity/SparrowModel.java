@@ -10,6 +10,9 @@ public class SparrowModel extends GeoModel<SparrowEntity> {
     @Override
     public ResourceLocation getModelResource(SparrowEntity object)
     {
+        if (object.isBaby()) {
+            return new ResourceLocation(Creatures.MODID, "geo/entity/sparrow/sparrowbaby.geo.json");
+        }
         if (object.isFlying()) {
             return new ResourceLocation(Creatures.MODID, "geo/entity/sparrow/sparrowfly.geo.json");
         }
@@ -19,6 +22,12 @@ public class SparrowModel extends GeoModel<SparrowEntity> {
     @Override
     public ResourceLocation getTextureResource(SparrowEntity object)
     {
+        if (object.isBaby()) {
+            if (object.isSleeping()) {
+                return new ResourceLocation(Creatures.MODID, "textures/entity/sparrow/sparrowbaby" + object.getVariant() + "sleep.png");
+            }
+            return new ResourceLocation(Creatures.MODID, "textures/entity/sparrow/sparrowbaby" + object.getVariant()+ ".png");
+        }
         if (object.isFlying()) {
             return new ResourceLocation(Creatures.MODID, "textures/entity/sparrow/sparrow" + object.getVariant() + object.getGenderName() + "fly.png");
         }
@@ -28,6 +37,9 @@ public class SparrowModel extends GeoModel<SparrowEntity> {
     @Override
     public ResourceLocation getAnimationResource(SparrowEntity object)
     {
+        if (object.isBaby()) {
+            return new ResourceLocation(Creatures.MODID, "animations/animation.sparrowbaby.json");
+        }
         if (object.isFlying()) {
             return new ResourceLocation(Creatures.MODID, "animations/animation.sparrow.fly.json");
         }

@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.registry;
 
 import com.frikinzi.creatures.Creatures;
+import com.frikinzi.creatures.client.gui.CreaturesCategories;
 import com.frikinzi.creatures.client.gui.FieldGuideGUI;
 import com.frikinzi.creatures.entity.*;
 import com.frikinzi.creatures.entity.base.AbstractCrabBase;
@@ -9,37 +10,61 @@ import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.entity.egg.CreaturesRoeEntity;
 import com.frikinzi.creatures.entity.egg.EggEntity;
-import com.frikinzi.creatures.player.AwardXPPacket;
-import com.frikinzi.creatures.player.FieldGuideCapability;
-import com.frikinzi.creatures.player.NetworkHandler;
-import com.frikinzi.creatures.player.SyncDiscoveryPacket;
+import com.frikinzi.creatures.item.FishStorageBinItem;
+import com.frikinzi.creatures.player.*;
+import net.minecraft.ChatFormatting;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
+import net.minecraftforge.event.entity.living.MobSpawnEvent;
+import net.minecraftforge.event.entity.player.ItemFishedEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.*;
+import java.util.stream.IntStream;
 
 @Mod.EventBusSubscriber(modid = Creatures.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventSubscriber {
     private static final BiMap<Integer, EntityType<? extends CreaturesBirdEntity>> birdEntityMap = HashBiMap.create();
 
+    public static String getEntityKeyStatic(Mob mob) {
+        return getEntityKey(mob);
+    }
+    private static SpeciesEntry getSpeciesEntryByKey(String key) {
+        return FieldGuideGUI.ALL_SPECIES.stream()
+                .filter(s -> s.entityKey.equals(key))
+                .findFirst().orElse(null);
+    }
+
     @SubscribeEvent
     public static void registerEntityAttributes(EntityAttributeCreationEvent event) {
+
         event.put(CreaturesEntities.LOVEBIRD.get(), LovebirdEntity.createAttributes().build());
         event.put(CreaturesEntities.SPOONBILL.get(), SpoonbillEntity.createAttributes().build());
         event.put(CreaturesEntities.KAKAPO.get(), KakapoEntity.createAttributes().build());
@@ -138,6 +163,9 @@ public class ModEventSubscriber {
         event.put(CreaturesEntities.LITTLE_PENGUIN.get(), LittlePenguinEntity.createAttributes().build());
         event.put(CreaturesEntities.EDIBLE_CRAB.get(), EdibleCrabEntity.createAttributes().build());
         event.put(CreaturesEntities.MARABOU.get(), MarabouEntity.createAttributes().build());
+        event.put(CreaturesEntities.CRANE.get(), CraneEntity.createAttributes().build());
+        event.put(CreaturesEntities.COCK_OF_THE_ROCK.get(), CockOfTheRockEntity.createAttributes().build());
+        event.put(CreaturesEntities.TETRA.get(), TetraEntity.createAttributes().build());
 
         event.put(CreaturesEntities.EGG.get(), EggEntity.createAttributes().build());
         event.put(CreaturesEntities.ROE.get(), CreaturesRoeEntity.createAttributes().build());
@@ -208,6 +236,33 @@ public class ModEventSubscriber {
                 SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 FishBase::checkFishSpawnRules);
         SpawnPlacements.register(CreaturesEntities.SWORDFISH.get(),
+                SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                FishBase::checkFishSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.TRUMPETFISH.get(),
+                SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                FishBase::checkFishSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.SQUID.get(),
+                SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                FishBase::checkFishSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.LOOKDOWN.get(),
+                SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                FishBase::checkFishSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.MANTIS_SHRIMP.get(),
+                SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                FishBase::checkFishSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.BARRACUDA.get(),
+                SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                FishBase::checkFishSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.SEADRAGON.get(),
+                SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                FishBase::checkFishSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.PARROTFISH.get(),
+                SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                FishBase::checkFishSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.CLOWNFISH.get(),
+                SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                FishBase::checkFishSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.LUNGFISH.get(),
                 SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 FishBase::checkFishSpawnRules);
 
@@ -313,7 +368,7 @@ public class ModEventSubscriber {
                 CreaturesFlyingBird::checkBirdSpawnRules);
         SpawnPlacements.register(CreaturesEntities.KINGFISHER.get(),
                 SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
-                CreaturesFlyingBird::checkBirdSpawnRules);
+                KingfisherEntity::checkBirdSpawnRules);
         SpawnPlacements.register(CreaturesEntities.PELICAN.get(),
                 SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
                 PelicanEntity::checkAnimalSpawnRules);
@@ -407,6 +462,12 @@ public class ModEventSubscriber {
         SpawnPlacements.register(CreaturesEntities.LITTLE_PENGUIN.get(),
                 SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
                 PelicanEntity::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.CRANE.get(),
+                SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING,
+                CraneEntity::checkBirdSpawnRules);
+        SpawnPlacements.register(CreaturesEntities.EDIBLE_CRAB.get(),
+                SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING,
+                EdibleCrabEntity::checkCrabSpawnRules);
     }
 
     public static void init() {
@@ -472,6 +533,8 @@ public class ModEventSubscriber {
         birdEntityMap.put(59, CreaturesEntities.STILT.get());
         birdEntityMap.put(60, CreaturesEntities.LITTLE_PENGUIN.get());
         birdEntityMap.put(61, CreaturesEntities.MARABOU.get());
+        birdEntityMap.put(62, CreaturesEntities.CRANE.get());
+        birdEntityMap.put(63, CreaturesEntities.COCK_OF_THE_ROCK.get());
         // etc...
     }
     public static BiMap<Integer, EntityType<? extends CreaturesBirdEntity>> getBirdEntityMap() {
@@ -492,18 +555,275 @@ public class ModEventSubscriber {
         return type;
     }
 
+    private static final Map<UUID, UUID> lookingAt = new HashMap<>();
+    private static final Map<UUID, Long> lookingStartTime = new HashMap<>();
+
+    private static String getSpeciesName(Mob mob) {
+        if (mob instanceof CreaturesBirdEntity bird) return bird.getSpeciesName();
+        if (mob instanceof FishBase fish) return fish.getSpeciesName();
+        if (mob instanceof AbstractCrabBase crab) return crab.getSpeciesName();
+        return mob.getDisplayName().getString();
+    }
+
     @Mod.EventBusSubscriber(modid = Creatures.MODID)
     public class FFGuideInteractEvent {
-        @SubscribeEvent
-        public static void onRightClickItem(PlayerInteractEvent.RightClickItem event) {
-            Player player = event.getEntity();
-            Minecraft mc = Minecraft.getInstance();
-            if (mc.hitResult != null && mc.hitResult.getType() == HitResult.Type.ENTITY) return;
-            if (player.getItemInHand(event.getHand()).getItem() != CreaturesItems.FF_GUIDE.get()) return;
-            if (!player.level().isClientSide()) return;
+        private static final Map<UUID, UUID> hookedFish = new HashMap<>(); // hookUUID -> fishUUID
 
-            Minecraft.getInstance().setScreen(new FieldGuideGUI());
+        public static void registerBite(net.minecraft.world.entity.projectile.FishingHook hook, FishBase fish) {
+            if (hookedFish.containsKey(hook.getUUID())) return; // already bitten
+            hookedFish.put(hook.getUUID(), fish.getUUID());
+            hook.level().playSound(null, hook.getX(), hook.getY(), hook.getZ(),
+                    net.minecraft.sounds.SoundEvents.FISHING_BOBBER_SPLASH,
+                    net.minecraft.sounds.SoundSource.NEUTRAL,
+                    1.0F, 1.0F + (hook.level().random.nextFloat() - hook.level().random.nextFloat()) * 0.4F);
+
+            hook.level().playSound(null, hook.blockPosition(),
+                    net.minecraft.sounds.SoundEvents.FISHING_BOBBER_THROW,
+                    net.minecraft.sounds.SoundSource.NEUTRAL,
+                    0.5F, 1.0F);
+            hook.setDeltaMovement(hook.getDeltaMovement().x, -0.4, hook.getDeltaMovement().z);
+
         }
+
+        public static boolean isBitten(net.minecraft.world.entity.projectile.FishingHook hook) {
+            return hookedFish.containsKey(hook.getUUID());
+        }
+
+        @SubscribeEvent
+        public static void onTooltip(net.minecraftforge.event.entity.player.ItemTooltipEvent event) {
+            ItemStack stack = event.getItemStack();
+            if (!stack.is(Items.FISHING_ROD)) return;
+            if (hasBait(stack)) {
+                String baitType = getBaitType(stack);
+                Component baitName = baitType.equals("fish_food")
+                        ? Component.translatable("item.creatures.fish_food")
+                        : Component.translatable("item.creatures.algae_wafer");
+                event.getToolTip().add(Component.translatable("message.creatures.bait_attached",
+                        baitName, getBaitCount(stack)).withStyle(ChatFormatting.GREEN));
+            } else {
+//                event.getToolTip().add(Component.translatable("message.creatures.no_bait_attached")
+//                        .withStyle(ChatFormatting.GRAY));
+            }
+        }
+        private static void checkCategoryAdvancements(FieldGuideCapability cap,
+                                                      String completedSpeciesKey, ServerPlayer serverPlayer) {
+
+            for (Map.Entry<String, List<String>> entry : CreaturesCategories.CATEGORIES.entrySet()) {
+                String categoryName = entry.getKey();
+                List<String> keys = entry.getValue();
+
+                if (!keys.contains(completedSpeciesKey)) {
+                    continue;
+                }
+
+                Advancement adv = serverPlayer.getServer().getAdvancements()
+                        .getAdvancement(new ResourceLocation("creatures",
+                                "discover_every_" + categoryName));
+
+                if (adv == null) {
+                    continue;
+                }
+
+                AdvancementProgress progress = serverPlayer.getAdvancements()
+                        .getOrStartProgress(adv);
+                if (!progress.isDone()) {
+                    progress.grantProgress(completedSpeciesKey.replace("_", ""));
+                }
+            }
+        }
+
+        public static void triggerAchievement(FieldGuideCapability cap, String key, ServerPlayer serverPlayer) {
+            SpeciesEntry species = FieldGuideGUI.ALL_SPECIES.stream()
+                    .filter(s -> key.startsWith(s.entityKey.replace("_", "")))
+                    .findFirst().orElse(null);
+
+            if (species == null) return;
+
+            Set<Integer> discovered = cap.getDiscoveredVariants(species.entityKey);
+            boolean allVariants = IntStream.rangeClosed(1, species.totalVariants)
+                    .allMatch(discovered::contains);
+
+            if (allVariants) {
+                CreaturesCriteriaTriggers.DISCOVERED_ALL_VARIANTS
+                        .trigger(serverPlayer, species.entityKey);
+                checkCategoryAdvancements(cap, species.entityKey, serverPlayer);
+            }
+
+            for (Map.Entry<String, List<String>> entry :
+                    CreaturesCategories.CATEGORIES.entrySet()) {
+                String categoryName = entry.getKey();
+                List<String> categoryKeys = entry.getValue();
+
+                boolean categoryComplete = categoryKeys.stream().allMatch(catKey -> {
+                    SpeciesEntry catSpecies = getSpeciesEntryByKey(catKey);
+                    if (catSpecies == null) return false;
+                    Set<Integer> catDiscovered = cap.getDiscoveredVariants(catKey);
+                    return IntStream.rangeClosed(1, catSpecies.totalVariants)
+                            .allMatch(catDiscovered::contains);
+                });
+
+                if (categoryComplete) {
+                    CreaturesCriteriaTriggers.DISCOVERED_CATEGORY
+                            .trigger(serverPlayer, categoryName);
+                }
+            }
+        }
+
+        private static boolean isBaitItem(ItemStack stack) {
+            return stack.is(CreaturesItems.FISH_FOOD.get())
+                    || stack.is(CreaturesItems.ALGAE_WAFER.get());
+        }
+
+        public static boolean hasBait(ItemStack rod) {
+            return getBaitCount(rod) > 0;
+        }
+
+        public static void setBait(ItemStack rod, boolean hasBait) {
+            rod.getOrCreateTag().putBoolean("CreaturesBait", hasBait);
+        }
+
+        public static String getBaitType(ItemStack rod) {
+            if (!rod.hasTag()) return "";
+            return rod.getTag().getString("CreaturesBaitType");
+        }
+
+        public static void setBaitType(ItemStack rod, String type) {
+            rod.getOrCreateTag().putString("CreaturesBaitType", type);
+        }
+
+        public static int getBaitCount(ItemStack rod) {
+            if (!rod.hasTag()) return 0;
+            return rod.getTag().getInt("CreaturesBaitCount");
+        }
+
+        public static void setBaitCount(ItemStack rod, int count) {
+            rod.getOrCreateTag().putInt("CreaturesBaitCount", count);
+            if (count <= 0) {
+                rod.getOrCreateTag().remove("CreaturesBaitType");
+                rod.getOrCreateTag().remove("CreaturesBaitCount");
+            }
+        }
+
+        @SubscribeEvent
+        public static void onReelIn(PlayerInteractEvent.RightClickItem event) {
+            Player player = event.getEntity();
+            if (player.level().isClientSide()) return;
+            if (!(player.level() instanceof ServerLevel serverLevel)) return;
+            if (!event.getItemStack().is(net.minecraft.world.item.Items.FISHING_ROD)) return;
+            ItemStack rod = player.getMainHandItem();
+
+            net.minecraft.world.entity.projectile.FishingHook hook = player.fishing;
+            if (hook == null) return;
+
+            UUID fishUUID = hookedFish.get(hook.getUUID());
+            if (fishUUID == null) return;
+
+            Entity fishEntity = serverLevel.getEntity(fishUUID);
+            if (!(fishEntity instanceof FishBase fish)) {
+                hookedFish.remove(hook.getUUID());
+                return;
+            }
+            if (rod.is(Items.FISHING_ROD) && FFGuideInteractEvent.hasBait(rod)) {
+                int remaining = FFGuideInteractEvent.getBaitCount(rod) - 1;
+                FFGuideInteractEvent.setBaitCount(rod, remaining);
+                if (remaining <= 0) {
+                    FFGuideInteractEvent.setBaitType(rod, "");
+                }
+            }
+
+            // Discover in field guide
+            if (player instanceof ServerPlayer serverPlayer) {
+                boolean hasGuide = player.getInventory().items.stream()
+                        .anyMatch(stack -> stack.is(CreaturesItems.FF_GUIDE.get()))
+                        || player.getOffhandItem().is(CreaturesItems.FF_GUIDE.get());
+                if (hasGuide) {
+                    String key = ModEventSubscriber.getEntityKeyStatic(fish);
+                    serverPlayer.getCapability(FieldGuideCapability.CAPABILITY).ifPresent(cap -> {
+                        boolean isNew = cap.discover(key);
+                        if (isNew) {
+                            NetworkHandler.CHANNEL.send(
+                                    PacketDistributor.PLAYER.with(() -> serverPlayer),
+                                    new SyncDiscoveryPacket(key));
+                            serverPlayer.giveExperiencePoints(10);
+                            serverPlayer.sendSystemMessage(Component.translatable(
+                                    "message.creatures.discovered",
+                                    serverPlayer.getName(),
+                                    fish.getSpeciesName() + " " + (fish.getGender() == 1 ? "§9♂" : "§d♀")));
+                        }
+                        triggerAchievement(cap, key, serverPlayer);
+                    });
+                }
+
+            }
+
+            // Fling fish toward player
+            double dx = player.getX() - fish.getX();
+            double dy = player.getY() - fish.getY() + 0.5D;
+            double dz = player.getZ() - fish.getZ();
+            fish.setDeltaMovement(
+                    dx * 0.12D,
+                    dy * 0.12D + Math.sqrt(Math.sqrt(dx * dx + dy * dy + dz * dz)) * 0.12D,
+                    dz * 0.12D);
+
+            //ItemStack bin = findBinInInventory(player);
+
+            hookedFish.remove(hook.getUUID());
+            ItemStack bin = findBinInInventory(player);
+            if (bin != null && !FishStorageBinItem.isFull(bin)) {
+                final UUID fishId = fish.getUUID();
+                serverLevel.getServer().tell(new net.minecraft.server.TickTask(
+                        serverLevel.getServer().getTickCount() + 100, () -> {
+                    Entity e = serverLevel.getEntity(fishId);
+                    if (!(e instanceof FishBase f)) return;
+                    boolean stored = FishStorageBinItem.addFish(bin, f);
+                    if (stored) {
+                        f.remove(Entity.RemovalReason.DISCARDED);
+                        player.displayClientMessage(Component.translatable(
+                                "creatures.message.bin.stored",
+                                f.getSpeciesName(),
+                                FishStorageBinItem.getFishCount(bin),
+                                FishStorageBinItem.MAX_CAPACITY), true);
+                    }
+                }));
+            }
+
+            player.awardStat(net.minecraft.stats.Stats.ITEM_USED.get(net.minecraft.world.item.Items.FISHING_ROD));
+        }
+
+
+        private static ItemStack findBinInInventory(Player player) {
+            for (ItemStack stack : player.getInventory().items) {
+                if (stack.getItem() instanceof FishStorageBinItem) return stack;
+            }
+            return null;
+        }
+
+        @SubscribeEvent
+        public static void onFishing(ItemFishedEvent event) {
+            Player player = event.getEntity();
+            if (player.level().isClientSide()) return;
+            if (!(player.level() instanceof ServerLevel serverLevel)) return;
+
+            net.minecraft.world.entity.projectile.FishingHook hook = event.getHookEntity();
+            if (hook == null) return;
+
+            UUID fishUUID = hookedFish.remove(hook.getUUID());
+            if (fishUUID == null) return; // no fish bit this hook, use normal loot
+
+            Entity fishEntity = serverLevel.getEntity(fishUUID);
+            if (!(fishEntity instanceof FishBase fish)) return;
+
+            double dx = player.getX() - fish.getX();
+            double dy = player.getY() - fish.getY() + 0.5D;
+            double dz = player.getZ() - fish.getZ();
+            fish.setDeltaMovement(
+                    dx * 0.1D,
+                    dy * 0.1D + Math.sqrt(Math.sqrt(dx * dx + dy * dy + dz * dz)) * 0.08D,
+                    dz * 0.1D);
+
+            event.getDrops().clear();
+        }
+
 
         @SubscribeEvent
         public static void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
@@ -525,25 +845,155 @@ public class ModEventSubscriber {
                     NetworkHandler.CHANNEL.send(
                             PacketDistributor.PLAYER.with(() -> (ServerPlayer) player),
                             new SyncDiscoveryPacket(key));
-                    //System.out.print("Discovered " + key);
+
                     String speciesName = "";
+                    int gender = 0;
                     if (mob instanceof CreaturesBirdEntity bird) {
                         speciesName = bird.getSpeciesName();
-                    } else if (mob instanceof FishBase fish) {
-                        speciesName = fish.getSpeciesName();
-                    } else if (mob instanceof AbstractCrabBase crab) {
-                        speciesName = crab.getSpeciesName();
+                        gender = bird.getGender();
                     }
-                    NetworkHandler.CHANNEL.sendToServer(new AwardXPPacket(10));
-                    Minecraft mc = Minecraft.getInstance();
-                    mc.player.playSound(net.minecraft.sounds.SoundEvents.EXPERIENCE_ORB_PICKUP, 1.0F, 1.0F);
+                    else if (mob instanceof FishBase fish) {
+                        speciesName = fish.getSpeciesName();
+                        gender = fish.getGender();
+                    }
+                    else if (mob instanceof AbstractCrabBase crab) {
+                        speciesName = crab.getSpeciesName();
+                        gender = crab.getGender();
+                    };
+
+                    ((ServerPlayer) player).giveExperiencePoints(10);
+
+//                    player.sendSystemMessage(Component.translatable(
+//                            "message.creatures.discovered",
+//                            player.getName(),
+//                            speciesName));
                     player.sendSystemMessage(Component.translatable(
                             "message.creatures.discovered",
                             player.getName(),
-                            speciesName));
+                            speciesName + " " + (gender == 1 ? "§9♂" : "§d♀")));
+
+//                    NetworkHandler.CHANNEL.send(
+//                            PacketDistributor.PLAYER.with(() -> (ServerPlayer) player),
+//                            new PlaySoundPacket(net.minecraft.sounds.SoundEvents.EXPERIENCE_ORB_PICKUP));
                 }
-            });
+                if (!player.level().isClientSide() && player instanceof ServerPlayer serverPlayer) {
+                    triggerAchievement(cap, key, serverPlayer);
+                }            });
             event.setCanceled(true);
         }
+
+        @SubscribeEvent
+        public static void onPlayerClone(PlayerEvent.Clone event) {
+            if (event.getEntity().level().isClientSide()) return;
+
+            event.getOriginal().reviveCaps();
+            event.getOriginal().getCapability(FieldGuideCapability.CAPABILITY).ifPresent(oldCap -> {
+                event.getEntity().getCapability(FieldGuideCapability.CAPABILITY).ifPresent(newCap -> {
+                    newCap.copyFrom(oldCap);
+                });
+            });
+            event.getOriginal().invalidateCaps();
+        }
+
+        @SubscribeEvent
+        public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
+            if (event.getEntity().level().isClientSide()) return;
+            if (!(event.getEntity() instanceof ServerPlayer serverPlayer)) return;
+
+            serverPlayer.getCapability(FieldGuideCapability.CAPABILITY).ifPresent(cap -> {
+                NetworkHandler.CHANNEL.send(
+                        PacketDistributor.PLAYER.with(() -> serverPlayer),
+                        new SyncAllDiscoveriesPacket(cap.getAll())
+                );
+            });
+        }
+
+        @SubscribeEvent
+        public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+            if (event.phase != TickEvent.Phase.END) return;
+            if (event.player.level().isClientSide()) return;
+
+            ServerPlayer player = (ServerPlayer) event.player;
+
+            // Check if player is using a spyglass
+            if (!player.getUseItem().is(Items.SPYGLASS)) return;
+
+            //you need a guide in your inventory
+            boolean hasGuide = player.getInventory().items.stream()
+                    .anyMatch(stack -> stack.is(CreaturesItems.FF_GUIDE.get()));
+            if (!hasGuide) return;
+
+            // Raycast in the direction the player is looking
+            double range = 64.0;
+            Vec3 eyePos = player.getEyePosition();
+            Vec3 lookVec = player.getLookAngle();
+            Vec3 endPos = eyePos.add(lookVec.scale(range));
+
+            AABB searchBox = player.getBoundingBox().expandTowards(lookVec.scale(range)).inflate(1.0);
+
+            List<LivingEntity> entities = player.level().getEntitiesOfClass(
+                    LivingEntity.class, searchBox,
+                    e -> e instanceof CreaturesBirdEntity
+                            || e instanceof FishBase
+                            || e instanceof AbstractCrabBase);
+
+            for (LivingEntity entity : entities) {
+                // Check if entity is actually in the line of sight
+                AABB entityBox = entity.getBoundingBox().inflate(0.3);
+                Optional<Vec3> hit = entityBox.clip(eyePos, endPos);
+                if (hit.isEmpty()) continue;
+
+                String key = getEntityKey((Mob) entity);
+                if (key == null) continue;
+
+                player.getCapability(FieldGuideCapability.CAPABILITY).ifPresent(cap -> {
+                    if (!cap.getAll().contains(key)) {
+                        cap.discover(key);
+                        // Notify player
+                        String speciesName = getSpeciesName((Mob) entity);
+                        int gender = 0;
+                        if (entity instanceof CreaturesBirdEntity bird) {
+                            gender = bird.getGender();
+                        }
+                        if (entity instanceof FishBase fish) {
+                            gender = fish.getGender();
+                        }
+                        if (entity instanceof AbstractCrabBase crab) {
+                            gender = crab.getGender();
+                        }
+                        player.sendSystemMessage(Component.translatable(
+                                "message.creatures.discovered",
+                                player.getName(),
+                                speciesName + " " + (gender == 1 ? "§9♂" : "§d♀")));
+                        // Sync to client
+                        NetworkHandler.CHANNEL.send(
+                                PacketDistributor.PLAYER.with(() -> player),
+                                new SyncDiscoveryPacket(key));
+
+                    }
+                    triggerAchievement(cap, key, player);
+                });
+                break;
+            }
+        }
     }
+
+    @Mod.EventBusSubscriber(modid = Creatures.MODID, value = Dist.CLIENT)
+    public class ClientEventHandler {
+        @SubscribeEvent
+        public static void onRightClickItem(PlayerInteractEvent.RightClickItem event) {
+            Player player = event.getEntity();
+            if (!player.level().isClientSide()) return;
+            Minecraft mc = Minecraft.getInstance();
+            if (mc.hitResult != null && mc.hitResult.getType() == HitResult.Type.ENTITY) return;
+            if (player.getItemInHand(event.getHand()).getItem() != CreaturesItems.FF_GUIDE.get()) return;
+            if (!player.level().isClientSide()) return;
+            if (player.level().isClientSide()) {
+                Creatures.PROXY.openFieldGuideGUI();
+                //Minecraft.getInstance().setScreen(new FieldGuideGUI());
+            }
+        }
+    }
+
+
 }

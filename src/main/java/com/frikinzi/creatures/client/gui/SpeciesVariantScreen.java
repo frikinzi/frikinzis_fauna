@@ -28,7 +28,6 @@ public class SpeciesVariantScreen extends Screen {
 
     private static final ResourceLocation BOOK_TEXTURE = new ResourceLocation("creatures:textures/gui/creatures/book.png");
     private final Map<Integer, String> cachedGenders = new HashMap<>();
-    // Layout — same style as FieldGuideGUI
     private static final int BOOK_W = 390;
     private static final int BOOK_H = 245;
     private static final int CELL_SIZE = 40;
@@ -72,8 +71,7 @@ public class SpeciesVariantScreen extends Screen {
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         graphics.blit(BOOK_TEXTURE, bookX, bookY, 0, 0, BOOK_W, BOOK_H, BOOK_W, BOOK_W);
 
-        // Draw species name at top of left page
-        graphics.drawString(font, species.displayName, getLeftPageX(), bookY + 20, 0x3D2B1F, false);
+        //graphics.drawString(font, species.displayName, getLeftPageX(), bookY + 20, 0x3D2B1F, false);
 
         FieldGuideCapability cap = Minecraft.getInstance().player
                 .getCapability(FieldGuideCapability.CAPABILITY).orElse(null);
@@ -98,6 +96,7 @@ public class SpeciesVariantScreen extends Screen {
                     Quaternionf rotation = new Quaternionf()
                             .rotateZ((float) Math.PI)
                             .rotateY((float) Math.toRadians(140));
+                    int offset = 0;
                     if (dummy instanceof CreaturesBirdEntity bird) {
                         Set<String> genders = cap.getDiscoveredGenders(species.entityKey, variant);
                         String gender;
@@ -114,8 +113,9 @@ public class SpeciesVariantScreen extends Screen {
                         bird.setGender(gender.equals("m") ? 1 : 0);
                         rotation = bird.getRotforGUI();
                         scale = bird.getScaleforGUI();
+                        offset = bird.getYOffsetForGUI();
                     }
-                    if (dummy instanceof FishBase bird) {
+                    if (dummy instanceof FishBase fish) {
                         Set<String> genders = cap.getDiscoveredGenders(species.entityKey, variant);
                         String gender;
                         if (genders.size() > 1) {
@@ -126,13 +126,14 @@ public class SpeciesVariantScreen extends Screen {
                             gender = cachedGenders.computeIfAbsent(variant, k ->
                                     genders.isEmpty() ? "m" : genders.iterator().next());
                         }
-                        bird.setForcedInWater(true);
-                        bird.setVariant(variant);
-                        bird.setGender(gender.equals("m") ? 1 : 0);
-                        rotation = bird.getRotforGUI();
-                        scale = bird.getScaleforGUI();
+                        fish.setForcedInWater(true);
+                        fish.setVariant(variant);
+                        fish.setGender(gender.equals("m") ? 1 : 0);
+                        rotation = fish.getRotforGUI();
+                        scale = fish.getScaleforGUI();
+                        offset = fish.getYOffsetForGUI();
                     }
-                    if (dummy instanceof AbstractCrabBase bird) {
+                    if (dummy instanceof AbstractCrabBase crab) {
                         Set<String> genders = cap.getDiscoveredGenders(species.entityKey, variant);
                         String gender;
                         if (genders.size() > 1) {
@@ -143,16 +144,17 @@ public class SpeciesVariantScreen extends Screen {
                             gender = cachedGenders.computeIfAbsent(variant, k ->
                                     genders.isEmpty() ? "m" : genders.iterator().next());
                         }
-                        bird.setVariant(variant);
-                        bird.setOnGround(true);
-                        bird.setGender(gender.equals("m") ? 1 : 0);
-                        rotation = bird.getRotforGUI();
-                        scale = bird.getScaleforGUI();
+                        crab.setVariant(variant);
+                        crab.setOnGround(true);
+                        crab.setGender(gender.equals("m") ? 1 : 0);
+                        rotation = crab.getRotforGUI();
+                        scale = crab.getScaleforGUI();
+                        offset = crab.getYOffsetForGUI();
                     }
-                    graphics.enableScissor(x, y, x + CELL_SIZE, y + CELL_SIZE);
+                    //graphics.enableScissor(x, y, x + CELL_SIZE, y + CELL_SIZE);
                     InventoryScreen.renderEntityInInventory(graphics,
-                            x + CELL_SIZE / 2, y + CELL_SIZE - 5, scale, rotation, null, dummy);
-                    graphics.disableScissor();
+                            x + CELL_SIZE / 2, y + CELL_SIZE - 5 + offset, scale, rotation, null, dummy);
+                    //graphics.disableScissor();
 
                     // discovered gender symbols
                     if (cap != null) {
@@ -166,7 +168,7 @@ public class SpeciesVariantScreen extends Screen {
                         String sci = species.getScientificName(variant);
                         hoveredTooltip = name.isEmpty()
                                 ? Component.literal("Variant " + variant)
-                                : Component.literal(name + (sci.isEmpty() ? "" : "\n" + sci));
+                                : Component.literal(name);
                         tooltipX = mouseX;
                         tooltipY = mouseY;
                     }
@@ -201,7 +203,7 @@ public class SpeciesVariantScreen extends Screen {
         int totalDiscovered = discoveredVariants.size();
 
 
-        graphics.drawString(font, totalDiscovered + " / " + totalPossible + " discovered",
+        graphics.drawString(font, totalDiscovered + " / " + totalPossible + " " + Component.translatable("creatures.fieldgui.discover").getString(),
                 barX, barY - 10, 0x3D2B1F, false);
 
 
@@ -225,7 +227,7 @@ public class SpeciesVariantScreen extends Screen {
         int bookX = getBookX();
         int bookY = getBookY();
 
-        this.addRenderableWidget(Button.builder(Component.literal("◀ Back"), b ->
+        this.addRenderableWidget(Button.builder(Component.literal("◀ " + Component.translatable("creatures.fieldgui.back").getString()), b ->
                         this.minecraft.setScreen(parent))
                 .pos(bookX + 10, bookY + BOOK_H - 40).size(50, 20).build());
     }

@@ -4,7 +4,7 @@
     "type": "forge:or",
     "values": [
       "#minecraft:is_river",
-      "#minecraft:is_swamp"
+      "#forge:is_swamp"
     ]
   },
   "spawners": [

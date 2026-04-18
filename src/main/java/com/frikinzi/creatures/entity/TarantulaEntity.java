@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.base.AbstractCrabBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
@@ -422,21 +423,22 @@ public class TarantulaEntity extends AbstractCrabBase implements GeoEntity {
         }
 
         public void stop() {
-            int rand = this.animal.getRandom().nextInt(100);
-            TarantulaEntity t1 = (TarantulaEntity) this.animal;
-            TarantulaEntity t2 = (TarantulaEntity) this.partner;
-            if (rand <= 50) {
-                if (t1.getGender() == 0 && t2.getGender() == 1) t1.setTarget(this.partner);
-                if (t2.getGender() == 0 && t1.getGender() == 1) t2.setTarget(this.animal);
-            }
+
             super.stop();
         }
 
         @Override
         protected void breed() {
-            int rand = this.animal.getRandom().nextInt(10) + 1;
+            int rand = this.animal.getRandom().nextInt(5) + 1;
             for (int i = 0; i < rand; i++) {
                 this.animal.spawnChildFromBreeding((ServerLevel) this.level, this.partner);
+            }
+            int rand2 = this.animal.getRandom().nextInt(100);
+            TarantulaEntity t1 = (TarantulaEntity) this.animal;
+            TarantulaEntity t2 = (TarantulaEntity) this.partner;
+            if (rand2 <= 50) {
+                if (t1.getGender() == 0 && t2.getGender() == 1) t1.setTarget(this.partner);
+                if (t2.getGender() == 0 && t1.getGender() == 1) t2.setTarget(this.animal);
             }
         }
     }
@@ -450,6 +452,24 @@ public class TarantulaEntity extends AbstractCrabBase implements GeoEntity {
     }
 
     public int getScaleforGUI() {
-        return (int)(super.getScaleforGUI() *0.5f);
+        return (int)(super.getScaleforGUI() *0.4f);
+    }
+
+    public List<ItemStack> getAllFoodItems() {
+        return Arrays.stream(FOOD_ITEMS.getItems())
+                .map(ItemStack::copy)
+                .collect(java.util.stream.Collectors.toList());
+    }
+
+    @Override
+    public boolean canAttack(LivingEntity target) {
+        if (this.getGender() == 1 && target instanceof TarantulaEntity t && t.getGender() == 0) {
+            return false;
+        }
+        return super.canAttack(target);
+    }
+
+    public int getYOffsetForGUI() {
+        return -15;
     }
 }

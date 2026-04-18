@@ -48,7 +48,6 @@ import java.util.EnumSet;
 import java.util.Map;
 
 public class TrumpetfishEntity extends FishBase implements GeoEntity {
-    private static final EntityDataAccessor<Integer> VARIANT_SUBID = SynchedEntityData.defineId(TrumpetfishEntity.class, EntityDataSerializers.INT);
     public static final Map<Integer, Component> SPECIES_NAMES = ImmutableMap.<Integer, Component>builder()
             .put(1, Component.translatable("message.creatures.chinesetrumpetfish"))
             .put(2, Component.translatable("message.creatures.atlantictrumpetfish"))
@@ -117,9 +116,12 @@ public int getMaxSchoolSize() {
 //        this.entityData.set(GENDER, p_191997_1_);
 //    }
 
-//    public int getSubVariant() {
-//        return Mth.clamp(this.entityData.get(VARIANT_SUBID), 1, 7);
-//    }
+    @Override
+    public int getSubVariant() {
+        Integer max = TRUMPETFISH.get(this.getVariant());
+        if (max == null) return 1;
+        return Mth.clamp(super.getSubVariant(), 1, max);
+    }
 
 //    public void setSubVariant(int p_191997_1_) {
 //        this.entityData.set(VARIANT_SUBID, p_191997_1_);

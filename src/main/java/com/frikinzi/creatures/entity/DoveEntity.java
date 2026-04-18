@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.entity.ai.SitOnShoulderGoal;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
@@ -26,6 +27,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.Tags;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -35,13 +37,10 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class DoveEntity extends CreaturesFlyingBird implements GeoEntity {
-    final private int[] jungle_variants = new int[] {1,3,5,7,8,13,14};
+    final private int[] jungle_variants = new int[] {1,3,5,7,8,13,14,18};
     final private int[] swamp_variant = new int[] {9};
     final private int[] mountain_variant = new int[] {12};
     final private int[] forest_variant = new int[] {2,4,6,11,10,15,17};
@@ -69,6 +68,7 @@ public class DoveEntity extends CreaturesFlyingBird implements GeoEntity {
         map.put(15, Component.translatable("message.creatures.dove.crested"));
         map.put(16, Component.translatable("message.creatures.dove.spinifex"));
         map.put(17, Component.translatable("message.creatures.dove.pink"));
+        map.put(18, Component.translatable("message.creatures.dove.superb"));
         SPECIES_NAMES = Collections.unmodifiableMap(map);
     }
     public static Map<Integer, Component> DESCRIPTIONS;
@@ -91,6 +91,7 @@ public class DoveEntity extends CreaturesFlyingBird implements GeoEntity {
         map.put(15, Component.translatable("description.creatures.dove.crested"));
         map.put(16, Component.translatable("description.creatures.dove.spinifex"));
         map.put(17, Component.translatable("description.creatures.dove.pink"));
+        map.put(18, Component.translatable("description.creatures.dove.superb"));
         DESCRIPTIONS = Collections.unmodifiableMap(map);
     }
     public static final Map<Integer, String> SCIENTIFIC_NAMES = ImmutableMap.<Integer, String>builder()
@@ -110,7 +111,7 @@ public class DoveEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(14, "Chalcophaps longirostris")
             .put(15, "Ocyphaps lophotes")
             .put(16, "Geophaps plumifera")
-            .put(17, "Nesoenas mayeri")
+            .put(17, "Nesoenas mayeri").put(18, "Ptilinopus superbus")
             .build();
 
     public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
@@ -131,6 +132,7 @@ public class DoveEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(15, List.of(Region.OCEANIA))
             .put(16, List.of(Region.OCEANIA))
             .put(17, List.of(Region.AFRICA))
+            .put(18, List.of(Region.OCEANIA))
             .build();
     
     public DoveEntity(EntityType<? extends DoveEntity> p_i50251_1_, Level p_i50251_2_) {
@@ -176,7 +178,7 @@ public class DoveEntity extends CreaturesFlyingBird implements GeoEntity {
     }
 
     public int numVariants() {
-        return 17;
+        return 18;
     }
 
     @Override
@@ -242,7 +244,7 @@ public class DoveEntity extends CreaturesFlyingBird implements GeoEntity {
             if (biome.is(BiomeTags.IS_MOUNTAIN)) {
                 return mountain_variant[this.random.nextInt(mountain_variant.length)];
             }
-            if (biome.is(BiomeTags.HAS_SWAMP_HUT)) {
+            if (biome.is(Tags.Biomes.IS_SWAMP)) {
                 return swamp_variant[this.random.nextInt(swamp_variant.length)];
             }
         }
@@ -314,6 +316,16 @@ public class DoveEntity extends CreaturesFlyingBird implements GeoEntity {
 
     public boolean canTame() {
         return true;
+    }
+
+    public List<ItemStack> getAllFoodItems() {
+        if (this.getVariant() == 2 || this.getVariant() == 4 || this.getVariant() == 6 || this.getVariant() == 7 || this.getVariant() == 10 || this.getVariant() == 11 || this.getVariant() == 15) {
+            return Arrays.stream(FOOD_ITEMS.getItems())
+                    .map(ItemStack::copy)
+                    .collect(java.util.stream.Collectors.toList());        } else {
+            return Arrays.stream(FRUIT_ITEMS.getItems())
+                    .map(ItemStack::copy)
+                    .collect(java.util.stream.Collectors.toList());        }
     }
 
 }

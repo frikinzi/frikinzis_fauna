@@ -28,6 +28,12 @@
       "weight": 10,
       "minCount": 3,
       "maxCount": 5
+    },
+    {
+      "type": "creatures:ghostcrab",
+      "weight": 15,
+      "minCount": 3,
+      "maxCount": 5
     }
   ]
 }

@@ -34,7 +34,12 @@ public class NetworkHandler {
                 SyncAllDiscoveriesPacket::new,
                 SyncAllDiscoveriesPacket::handle);
 
-        CHANNEL.registerMessage(id++, AwardXPPacket.class, AwardXPPacket::encode, AwardXPPacket::decode, AwardXPPacket::handle); // ← add here
+        CHANNEL.registerMessage(id++, ReleaseFishPacket.class,
+                ReleaseFishPacket::encode,
+                ReleaseFishPacket::new,
+                ReleaseFishPacket::handle);
+
+        CHANNEL.registerMessage(id++, AwardXPPacket.class, AwardXPPacket::encode, AwardXPPacket::decode, AwardXPPacket::handle);
     }
 
 }

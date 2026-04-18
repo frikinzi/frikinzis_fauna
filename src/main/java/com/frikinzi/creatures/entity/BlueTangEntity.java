@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
@@ -150,7 +151,7 @@ public class BlueTangEntity extends FishBase implements GeoEntity {
     }
 
     public Item getFoodItem() {
-        return CreaturesItems.FISH_FOOD.get();
+        return CreaturesItems.ALGAE_WAFER.get();
     }
 
     public String getScientificName() {
@@ -160,4 +161,9 @@ public class BlueTangEntity extends FishBase implements GeoEntity {
     public int numVariants() {
         return 10;
     }
+
+    public Component getFunFact() {
+        return Component.translatable("description.creatures.bluetang");
+    }
+
 }

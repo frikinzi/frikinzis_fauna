@@ -1,0 +1,34 @@
+{
+  "parent": "creatures:birder",
+  "display": {
+    "icon": {
+      "item": "creatures:bunting_spawn_egg"
+    },
+    "title": {
+      "translate": "advancements.creatures.discover_all_bunting.title"
+    },
+    "description": {
+      "translate": "advancements.creatures.discover_all_bunting.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "discover_all": {
+      "trigger": "creatures:discovered_all_variants",
+      "conditions": {
+        "entity_key": "bunting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "discover_all"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  }
+}

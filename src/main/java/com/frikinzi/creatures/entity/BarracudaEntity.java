@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
@@ -125,7 +126,7 @@ public class BarracudaEntity extends FishBase implements GeoEntity {
     }
 
     public ResourceLocation getDefaultLootTable() {
-        return CreaturesLootTables.SWORDFISH;
+        return CreaturesLootTables.TROPICAL_FISH;
     }
 
     public float getHatchChance() {
@@ -256,8 +257,13 @@ public class BarracudaEntity extends FishBase implements GeoEntity {
 
         public void start() {
             BarracudaEntity.this.cooldownTimer = 1000;
-            System.out.println(BarracudaEntity.this.cooldownTimer);
+            //System.out.println(BarracudaEntity.this.cooldownTimer);
             super.start();
         }
     }
+
+    public Component getFunFact() {
+        return Component.translatable("description.creatures.barracuda");
+    }
+
 }

@@ -1,11 +1,17 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
+import com.frikinzi.creatures.entity.ai.PickUpFoodGoal;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -13,7 +19,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -23,7 +28,6 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Cod;
 import net.minecraft.world.entity.animal.Salmon;
 import net.minecraft.world.entity.animal.TropicalFish;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -42,16 +46,20 @@ import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Sets;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-import java.util.Set;
 
 public class PelicanEntity extends CreaturesFlyingBird implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.COD, Items.SALMON, Items.TROPICAL_FISH, CreaturesItems.CRAB_PINCERS.get(), CreaturesItems.RAW_TROUT.get(), Items.TROPICAL_FISH);
+    private static final EntityDataAccessor<Boolean> HAS_FISH =
+            SynchedEntityData.defineId(PelicanEntity.class, EntityDataSerializers.BOOLEAN);
+
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.COD, Items.SALMON, Items.TROPICAL_FISH, CreaturesItems.CRAB_PINCERS.get(), CreaturesItems.RAW_TROUT.get(), Items.TROPICAL_FISH, CreaturesItems.RAW_RED_SNAPPER.get());
+    private static final int MAX_POUCH_SIZE = 10;
+    private final List<ItemStack> pouchItems = new ArrayList<>();
     public static final Map<Integer, Component> SPECIES_NAMES = ImmutableMap.<Integer, Component>builder()
             .put(1, Component.translatable("message.creatures.greatwhite"))
             .put(2, Component.translatable("message.creatures.brownpelican"))
@@ -91,6 +99,7 @@ public class PelicanEntity extends CreaturesFlyingBird implements GeoEntity {
 
     protected void registerGoals() {
         super.registerGoals();
+        this.goalSelector.addGoal(2, new PickUpFoodGoal(this));
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, FOOD_ITEMS, false));
         this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, true));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Cod.class, false));
@@ -101,19 +110,28 @@ public class PelicanEntity extends CreaturesFlyingBird implements GeoEntity {
 
     protected <E extends PelicanEntity> PlayState flyAnimController(final AnimationState<E> event)
     {
+        if ((!this.onGround() || this.isFlying()) && !this.isInWater()) {
+            return event.setAndContinue(RawAnimation.begin().thenLoop("fly"));
+        }
         if (event.isMoving() && this.onGround() || this.isInWater()) {
             return event.setAndContinue(RawAnimation.begin().thenLoop("walk"));
-        } if (!this.onGround() || this.isFlying()) {
-        return event.setAndContinue(RawAnimation.begin().thenLoop("fly"));
-    } if (this.isSleeping()) {
+        }  if (this.isSleeping()) {
         return event.setAndContinue(RawAnimation.begin().thenLoop("sleep"));
     }
         return event.setAndContinue(RawAnimation.begin().thenLoop("idle"));
     }
 
+    private <E extends PelicanEntity> PlayState pouchController(AnimationState<E> event) {
+        if (this.hasFishInPouch()) {
+            return event.setAndContinue(RawAnimation.begin().thenPlayAndHold("openmouth"));
+        }
+        return PlayState.STOP;
+    }
+
     @Override
     public void registerControllers(final AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "Flying", 0, this::flyAnimController));
+        controllers.add(new AnimationController<>(this, "Pouch", 0, this::pouchController));
     }
 
     @Override
@@ -205,5 +223,116 @@ public class PelicanEntity extends CreaturesFlyingBird implements GeoEntity {
     public Component getFunFact() {
         return Component.translatable("description.creatures.pelican");
     }
+
+    public List<ItemStack> getAllFoodItems() {
+        return Arrays.stream(FOOD_ITEMS.getItems())
+                .map(ItemStack::copy)
+                .collect(java.util.stream.Collectors.toList());
+    }
+
+
+    public boolean addToPouch(ItemStack item) {
+        if (pouchItems.size() >= MAX_POUCH_SIZE) return false;
+        pouchItems.add(item.copyWithCount(1));
+        this.entityData.set(HAS_FISH, true);
+        updateHeldItem();
+        return true;
+    }
+
+    public void clearPouch() {
+        pouchItems.clear();
+        this.entityData.set(HAS_FISH, false);
+        this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+    }
+
+    public boolean isPouchFull() {
+        return pouchItems.size() >= MAX_POUCH_SIZE;
+    }
+
+    public boolean hasFishInPouch() {
+        return this.entityData.get(HAS_FISH);
+    }
+
+    private void updateHeldItem() {
+        if (!pouchItems.isEmpty()) {
+            this.setItemSlot(EquipmentSlot.MAINHAND, pouchItems.get(0));
+            this.setGuaranteedDrop(EquipmentSlot.MAINHAND);
+        } else {
+            this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+        }
+        if (pouchItems.size() >= 2) {
+            this.setItemSlot(EquipmentSlot.OFFHAND, pouchItems.get(1));
+            this.setGuaranteedDrop(EquipmentSlot.OFFHAND);
+        } else {
+            this.setItemSlot(EquipmentSlot.OFFHAND, ItemStack.EMPTY);
+        }
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        net.minecraft.nbt.ListTag list = new net.minecraft.nbt.ListTag();
+        for (ItemStack stack : pouchItems) {
+            list.add(stack.save(new CompoundTag()));
+        }
+        tag.put("PouchItems", list);
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        pouchItems.clear();
+        net.minecraft.nbt.ListTag list = tag.getList("PouchItems", 10);
+        for (int i = 0; i < list.size(); i++) {
+            pouchItems.add(ItemStack.of(list.getCompound(i)));
+        }
+        updateHeldItem();
+    }
+
+    private int eatTimer = 0;
+
+    @Override
+    public void aiStep() {
+        super.aiStep();
+        if (!this.level().isClientSide() && hasFishInPouch()) {
+            eatTimer++;
+            if (eatTimer >= 400) {
+                pouchItems.remove(0);
+                if (pouchItems.isEmpty()) this.entityData.set(HAS_FISH, false);
+                this.heal(4.0F);
+                this.playSound(SoundEvents.GENERIC_EAT, 1.0F, 1.0F);
+                updateHeldItem();
+                eatTimer = 0;
+            }
+        }
+    }
+
+    public ItemStack getPouchItem(int index) {
+        if (index < pouchItems.size()) {
+            return pouchItems.get(index);
+        }
+        return null;
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(HAS_FISH, false);
+    }
+
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        boolean result = super.hurt(source, amount);
+        if (result && !this.level().isClientSide() && !this.getMainHandItem().isEmpty()) {
+            for (ItemStack stack : pouchItems) {
+                this.spawnAtLocation(stack);
+            }
+            this.clearPouch();
+            pickupCooldown = 200;
+        }
+        return result;
+    }
+
+
 
 }

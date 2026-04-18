@@ -1,0 +1,35 @@
+{
+  "parent": "creatures:birder",
+  "display": {
+    "icon": { "item": "creatures:toyl" },
+    "title": { "translate": "advancements.creatures.discover_all_raptors.title" },
+    "description": { "translate": "advancements.creatures.discover_all_raptors.description" },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": { "experience": 300 },
+  "criteria": {
+    "goldeneagle":       { "trigger": "minecraft:impossible" },
+    "stellersseaeagle":  { "trigger": "minecraft:impossible" },
+    "redkite":           { "trigger": "minecraft:impossible" },
+    "gyrfalcon":         { "trigger": "minecraft:impossible" },
+    "pygmyfalcon":       { "trigger": "minecraft:impossible" },
+    "osprey":            { "trigger": "minecraft:impossible" },
+    "eagleowl":          { "trigger": "minecraft:impossible" },
+    "barnowl":           { "trigger": "minecraft:impossible" },
+    "secretarybird":     { "trigger": "minecraft:impossible" }
+  },
+  "requirements": [
+    ["goldeneagle"],
+    ["stellersseaeagle"],
+    ["redkite"],
+    ["gyrfalcon"],
+    ["pygmyfalcon"],
+    ["osprey"],
+    ["eagleowl"],
+    ["barnowl"],
+    ["secretarybird"]
+  ]
+}

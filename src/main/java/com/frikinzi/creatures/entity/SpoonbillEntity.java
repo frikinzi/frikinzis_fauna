@@ -1,11 +1,11 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
-import com.frikinzi.creatures.entity.ai.SitOnShoulderGoal;
-import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.entity.base.CreaturesWalkingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
+import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
@@ -13,12 +13,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -29,11 +30,13 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class SpoonbillEntity extends CreaturesWalkingBird implements GeoEntity {
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(CreaturesItems.CRAB_PINCERS.get(), CreaturesItems.GOURAMI.get());
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     public static final Map<Integer, Component> SPECIES_NAMES = new HashMap<Integer, Component>() {{
             put(1, Component.translatable("message.creatures.roseate"));
@@ -161,4 +164,19 @@ public class SpoonbillEntity extends CreaturesWalkingBird implements GeoEntity {
             return translatable;
         } return Component.translatable("creatures.unknown");
     }
+
+    public boolean isFood(ItemStack p_70877_1_) {
+        return FOOD_ITEMS.test(p_70877_1_);
+    }
+
+    public ItemStack getFoodItem() {
+        return new ItemStack(CreaturesItems.CRAB_PINCERS.get(), 1);
+    }
+
+    public List<ItemStack> getAllFoodItems() {
+        return Arrays.stream(FOOD_ITEMS.getItems())
+                .map(ItemStack::copy)
+                .collect(java.util.stream.Collectors.toList());
+    }
+
 }

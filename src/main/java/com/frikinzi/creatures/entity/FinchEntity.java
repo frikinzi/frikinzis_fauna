@@ -1,24 +1,20 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -37,6 +33,7 @@ import com.frikinzi.creatures.entity.ai.SitOnShoulderGoal;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -55,6 +52,11 @@ public class FinchEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(9, Component.translatable("message.creatures.parrotfinch"))
             .put(10, Component.translatable("message.creatures.purplegrenadier"))
             .put(11, Component.translatable("message.creatures.europeangoldfinch"))
+            .put(12, Component.translatable("message.creatures.housefinch"))
+            .put(13, Component.translatable("message.creatures.starfinch"))
+            .put(14, Component.translatable("message.creatures.cordonbleu"))
+            .put(15, Component.translatable("message.creatures.diamondfinch"))
+            .put(16, Component.translatable("message.creatures.americangoldfinch"))
             .build();
     public static final Map<Integer, String> SCIENTIFIC_NAMES = ImmutableMap.<Integer, String>builder()
             .put(1, "Taeniopygia castanotis")
@@ -68,6 +70,11 @@ public class FinchEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(9, "Erythrura tricolor")
             .put(10, "Granatina ianthinogaster")
             .put(11, "Carduelis carduelis")
+            .put(12, "Haemorhous mexicanus")
+            .put(13, "Emblema ruficauda")
+            .put(14, "Uraeginthus bengalus")
+            .put(15, "Stagonopleura guttata")
+            .put(16, "Spinus tristis")
             .build();
 
     public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
@@ -82,6 +89,11 @@ public class FinchEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(9, List.of(Region.ASIA))
             .put(10, List.of(Region.AFRICA))
             .put(11, List.of(Region.EUROPE, Region.ASIA, Region.AFRICA))
+            .put(12, List.of(Region.NORTH_AMERICA))
+            .put(13, List.of(Region.OCEANIA))
+            .put(14, List.of(Region.AFRICA))
+            .put(15, List.of(Region.OCEANIA))
+            .put(16, List.of(Region.NORTH_AMERICA))
             .build();
 
     public FinchEntity(EntityType<? extends FinchEntity> p_i50251_1_, Level p_i50251_2_) {
@@ -124,7 +136,7 @@ public class FinchEntity extends CreaturesFlyingBird implements GeoEntity {
     }
 
     public int numVariants() {
-        return 11;
+        return 16;
     }
 
     @Override
@@ -217,6 +229,9 @@ public class FinchEntity extends CreaturesFlyingBird implements GeoEntity {
     }
 
     public int getIUCNStatus() {
+        if (this.getVariant() ==15) {
+            return 2;
+        }
         if (this.getVariant()== 8) {
             return 3;
         }
@@ -229,6 +244,20 @@ public class FinchEntity extends CreaturesFlyingBird implements GeoEntity {
 
     public boolean canTame() {
         return true;
+    }
+
+    public boolean isSexuallyDimorphic() {
+        if (this.getVariant() == 7 || this.getVariant() == 2 || this.getVariant() == 12 || this.getVariant() == 14 || this.getVariant() == 16) return true; else return false;
+    }
+
+    public Component getFunFact() {
+        return Component.translatable("description.creatures.finch");
+    }
+
+    public List<ItemStack> getAllFoodItems() {
+        return Arrays.stream(FOOD_ITEMS.getItems())
+                .map(ItemStack::copy)
+                .collect(java.util.stream.Collectors.toList());
     }
 
 }

@@ -49,7 +49,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class SwordfishEntity extends FishBase implements GeoEntity {
-    private static final EntityDataAccessor<Integer> VARIANT_SUBID = SynchedEntityData.defineId(SwordfishEntity.class, EntityDataSerializers.INT);
+    //private static final EntityDataAccessor<Integer> VARIANT_SUBID = SynchedEntityData.defineId(SwordfishEntity.class, EntityDataSerializers.INT);
     private static final UUID SPEED_BOOST_UUID = UUID.randomUUID();
     private int cooldownTimer = 0;
     private static final AttributeModifier SPEED_MODIFIER = new AttributeModifier(SPEED_BOOST_UUID, "Aggressive speed boost", 0.5D, AttributeModifier.Operation.ADDITION);
@@ -155,9 +155,12 @@ public int getMaxSchoolSize() {
 //        return Mth.clamp(this.entityData.get(VARIANT_SUBID), 0, SWORDFISH.get(this.getVariant()).length-1);
 //    }
 
-//    public void setSubVariant(int p_191997_1_) {
-//        this.entityData.set(VARIANT_SUBID, p_191997_1_);
-//    }
+    @Override
+    public int getSubVariant() {
+        String[] subVariants = SWORDFISH.get(this.getVariant());
+        if (subVariants == null || subVariants.length == 0) return 0;
+        return Mth.clamp(super.getSubVariant(), 0, subVariants.length - 1);
+    }
 //
 //    public void addAdditionalSaveData(CompoundTag p_213281_1_) {
 //        super.addAdditionalSaveData(p_213281_1_);
@@ -232,10 +235,13 @@ public int getMaxSchoolSize() {
     }
 
     public float getSizeMultiplier() {
-        float multiplier = 1.0f;
+        Float size = SIZES.get(this.getVariant());
+        if (size == null) size = 1.0f;
+
+        float multiplier = size;
         if (this.getGender() == 0 && (this.getVariant() == 4 || this.getVariant() == 5 || this.getVariant() == 6)) {
             multiplier = multiplier * 1.5f;
-        } multiplier = multiplier * (float) SIZES.get(this.getVariant());
+        }
         return multiplier;
     }
 
@@ -375,5 +381,17 @@ public int getMaxSchoolSize() {
         String[] subVariants = SWORDFISH.get(variant);
         if (subVariants == null || subVariants.length == 0) return 0;
         return this.random.nextInt(subVariants.length);
+    }
+
+    public int getScaleforGUI() {
+        if (this.isBaby()) {
+            return (int)(super.getScaleforGUI() *3f);
+
+        }
+        if (this.getGender() == 0) {
+            return (int)(super.getScaleforGUI() *0.6f);
+        }
+        return (int)(super.getScaleforGUI() *0.8f);
+
     }
 }

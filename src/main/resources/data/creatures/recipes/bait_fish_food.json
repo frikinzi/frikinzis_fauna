@@ -1,0 +1,11 @@
+{
+  "type": "creatures:baited_rod",
+  "ingredients": [
+    { "item": "minecraft:fishing_rod" },
+    { "item": "creatures:fish_food" }
+  ],
+  "result": {
+    "item": "minecraft:fishing_rod",
+    "count": 1
+  }
+}

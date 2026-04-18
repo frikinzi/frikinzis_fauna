@@ -33,7 +33,7 @@ public class SwallowRenderer extends GeoEntityRenderer<SwallowEntity> {
         if (animatable.isBaby()) {
             stack.scale(0.5F * multiplier, 0.5F * multiplier, 0.5F * multiplier);
         }
-        stack.scale(0.7F * multiplier, 0.7F * multiplier, 0.7F * multiplier);
+        stack.scale(0.6F * multiplier, 0.6F * multiplier, 0.6F * multiplier);
         super.defaultRender(stack, animatable, bufferSource, renderType, buffer, yaw, partialTick, packedLight);
     }
 }

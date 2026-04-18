@@ -24,6 +24,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import org.joml.Quaternionf;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 abstract public class AbstractCrabBase extends Animal {
     private static final EntityDataAccessor<Float> HEIGHT_MULTIPLIER = SynchedEntityData.defineId(AbstractCrabBase.class, EntityDataSerializers.FLOAT);
@@ -43,8 +44,8 @@ abstract public class AbstractCrabBase extends Animal {
         if (spawnData instanceof CrabData crabData) {
             this.setVariant(crabData.variant);
         } else {
-            int variant = Math.max(determineVariant(), 2);
-            this.setVariant(this.random.nextInt(variant - 1) + 1);
+            int variant = Math.max(determineVariant(), 1);
+            this.setVariant(this.random.nextInt(variant) + 1);
         }
         this.setGender(this.random.nextInt(2));
 
@@ -72,16 +73,12 @@ abstract public class AbstractCrabBase extends Animal {
         return super.mobInteract(player, hand);
     }
 
-    public String getFoodName() {
-        return "";
-    }
-
     public ItemStack getFoodItem() {
         return new ItemStack(Items.DEAD_BUSH, 1);
     }
 
     public String getGenderString() {
-        return "Null";
+        return this.getGender() == 1 ? "m" : "f";
     }
 
     @Override
@@ -219,6 +216,18 @@ abstract public class AbstractCrabBase extends Animal {
         float h = this.getBbHeight();
         int scale = (int)(20f / h);
         return scale;
+    }
+
+    public int methodOfDeterminingVariant() {
+        return this.random.nextInt(this.determineVariant()) + 1;
+    }
+
+    public List<ItemStack> getAllFoodItems() {
+        return List.of(getFoodItem());
+    }
+
+    public int getYOffsetForGUI() {
+        return 0;
     }
 
 }

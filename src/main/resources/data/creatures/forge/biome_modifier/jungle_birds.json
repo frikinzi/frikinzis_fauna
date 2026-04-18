@@ -16,6 +16,12 @@
       "weight": 20,
       "minCount": 3,
       "maxCount": 5
+    },
+    {
+      "type": "creatures:cock_of_the_rock",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 5
     }
   ]
 }

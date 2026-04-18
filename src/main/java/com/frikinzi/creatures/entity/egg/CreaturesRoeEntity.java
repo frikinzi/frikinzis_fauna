@@ -208,7 +208,6 @@ public class CreaturesRoeEntity extends WaterAnimal implements GeoEntity {
         this.entityData.set(DATA_PARENTUUID_ID, Optional.ofNullable(p_184754_1_));
     }
 
-    // Helper to spawn a fish from the egg
     private <T extends FishBase> void spawnFish(CreaturesRoeEntity egg, T fish, boolean setVariant, boolean setSubVariant) {
         if (egg.hasCustomName()) fish.setCustomName(egg.getCustomName());
         if (setVariant) fish.setVariant(egg.getVariant());
@@ -217,6 +216,7 @@ public class CreaturesRoeEntity extends WaterAnimal implements GeoEntity {
         fish.setPos(egg.getX(), egg.getY(), egg.getZ());
         fish.setBaby(true);
         fish.setBred(true);
+        fish.setPersistenceRequired(); //baby fish should never despawn
         if (this.random.nextFloat() < fish.getHatchChance()) {
             this.level().addFreshEntity(fish);
         }
@@ -235,42 +235,55 @@ public class CreaturesRoeEntity extends WaterAnimal implements GeoEntity {
             case 1 -> spawnFish(egg, new DottybackEntity(CreaturesEntities.DOTTYBACK.get(), egg.level()), true, false);
             case 2 -> spawnFish(egg, new PikeEntity(CreaturesEntities.PIKE.get(), egg.level()), false, false);
             case 3 -> spawnFish(egg, new ShrimpEntity(CreaturesEntities.SHRIMP.get(), egg.level()), true, false);
-            case 4 -> spawnFish(egg, new GuppyEntity(CreaturesEntities.GUPPY.get(), egg.level()), true, false);
-//            case 5 -> spawnFish(egg, new GouramiEntity(CreaturesEntities.GOURAMI.get(), egg.level()), true, false);
-//            case 6 -> spawnFish(egg, new ArowanaEntity(CreaturesEntities.AROWANA.get(), egg.level()), true, false);
-//            case 7 -> spawnFish(egg, new GoldfishEntity(CreaturesEntities.GOLDFISH.get(), egg.level()), true, false);
-//            case 8 -> spawnFish(egg, new RanchuEntity(CreaturesEntities.RANCHU.get(), egg.level()), true, false);
-//            case 9 -> spawnFish(egg, new FireGobyEntity(CreaturesEntities.FIRE_GOBY.get(), egg.level()), true, false);
-//            case 10 -> spawnFish(egg, new BlueTangEntity(CreaturesEntities.BLUE_TANG.get(), egg.level()), false, false);
-//            case 11 -> spawnFish(egg, new FlameAngelfishEntity(CreaturesEntities.FLAME_ANGELFISH.get(), egg.level()), false, false);
-//            case 12 -> spawnFish(egg, new TroutEntity(CreaturesEntities.TROUT.get(), egg.level()), true, false);
-//            case 13 -> spawnFish(egg, new TigerBarbEntity(CreaturesEntities.TIGERBARB.get(), egg.level()), true, false);
-//            case 14 -> spawnFish(egg, new RedSnapperEntity(CreaturesEntities.RED_SNAPPER.get(), egg.level()), true, false);
-//            case 15 -> spawnFish(egg, new ArapaimaEntity(CreaturesEntities.ARAPAIMA.get(), egg.level()), false, false);
-//            case 16 -> spawnFish(egg, new PiranhaEntity(CreaturesEntities.PIRANHA.get(), egg.level()), true, false);
-//            case 17 -> spawnFish(egg, new TambaquiEntity(CreaturesEntities.TAMBAQUI.get(), egg.level()), true, false);
-//            case 18 -> spawnFish(egg, new ElephantNoseFishEntity(CreaturesEntities.ELEPHANTNOSE.get(), egg.level()), true, false);
-//            case 19 -> { // live birth — skip hatch chance
-//                StingrayEntity fish = new StingrayEntity(CreaturesEntities.STINGRAY.get(), egg.level());
-//                if (egg.hasCustomName()) fish.setCustomName(egg.getCustomName());
-//                fish.setVariant(this.getVariant());
-//                fish.setHeightMultiplier(this.getHeightMultiplier());
-//                fish.setPos(egg.getX(), egg.getY(), egg.getZ());
-//                fish.setBaby(true);
-//                fish.setBred(true);
-//                this.level().addFreshEntity(fish);
-//                egg.discard();
-//            }
-//            case 20 -> spawnFish(egg, new SawfishEntity(CreaturesEntities.SAWFISH.get(), egg.level()), true, false);
-//            case 21 -> spawnFish(egg, new SwordfishEntity(CreaturesEntities.SWORDFISH.get(), egg.level()), true, false);
-//            case 22 -> spawnFish(egg, new SquidEntity(CreaturesEntities.SQUID.get(), egg.level()), true, false);
-//            case 23 -> spawnFish(egg, new LookdownEntity(CreaturesEntities.LOOKDOWN.get(), egg.level()), true, false);
-//            case 24 -> spawnFish(egg, new BarracudaEntity(CreaturesEntities.BARRACUDA.get(), egg.level()), true, false);
-//            case 25 -> spawnFish(egg, new SeaDragonEntity(CreaturesEntities.SEADRAGON.get(), egg.level()), true, false);
-//            case 26 -> spawnFish(egg, new TrumpetfishEntity(CreaturesEntities.TRUMPETFISH.get(), egg.level()), true, false);
-//            case 27 -> spawnFish(egg, new ParrotfishEntity(CreaturesEntities.PARROTFISH.get(), egg.level()), true, false);
-//            case 28 -> spawnFish(egg, new ClownfishEntity(CreaturesEntities.CLOWNFISH.get(), egg.level()), true, true);
-//            case 29 -> spawnFish(egg, new LungfishEntity(CreaturesEntities.LUNGFISH.get(), egg.level()), true, true);
+            case 4 -> {
+                GuppyEntity fish = new GuppyEntity(CreaturesEntities.GUPPY.get(), egg.level());
+                if (egg.hasCustomName()) fish.setCustomName(egg.getCustomName());
+                fish.setVariant(this.getVariant());
+                fish.setHeightMultiplier(this.getHeightMultiplier());
+                fish.setPos(egg.getX(), egg.getY(), egg.getZ());
+                fish.setBaby(true);
+                fish.setBred(true);
+                this.level().addFreshEntity(fish);
+                egg.discard();
+                //spawnFish(egg, new GuppyEntity(CreaturesEntities.GUPPY.get(), egg.level()), true, false);
+            }
+            case 5 -> spawnFish(egg, new GouramiEntity(CreaturesEntities.GOURAMI.get(), egg.level()), true, false);
+            case 6 -> spawnFish(egg, new ArowanaEntity(CreaturesEntities.AROWANA.get(), egg.level()), true, false);
+            case 7 -> spawnFish(egg, new GoldfishEntity(CreaturesEntities.GOLDFISH.get(), egg.level()), true, false);
+            case 8 -> spawnFish(egg, new RanchuEntity(CreaturesEntities.RANCHU.get(), egg.level()), true, false);
+            case 9 -> spawnFish(egg, new FireGobyEntity(CreaturesEntities.FIRE_GOBY.get(), egg.level()), true, false);
+            case 10 -> spawnFish(egg, new BlueTangEntity(CreaturesEntities.BLUE_TANG.get(), egg.level()), false, false);
+            case 11 -> spawnFish(egg, new FlameAngelfishEntity(CreaturesEntities.FLAME_ANGELFISH.get(), egg.level()), false, false);
+            case 12 -> spawnFish(egg, new TroutEntity(CreaturesEntities.TROUT.get(), egg.level()), true, false);
+            case 13 -> spawnFish(egg, new TigerBarbEntity(CreaturesEntities.TIGERBARB.get(), egg.level()), true, false);
+            case 14 -> spawnFish(egg, new RedSnapperEntity(CreaturesEntities.RED_SNAPPER.get(), egg.level()), true, false);
+            case 15 -> spawnFish(egg, new ArapaimaEntity(CreaturesEntities.ARAPAIMA.get(), egg.level()), false, false);
+            case 16 -> spawnFish(egg, new PiranhaEntity(CreaturesEntities.PIRANHA.get(), egg.level()), true, false);
+            case 17 -> spawnFish(egg, new TambaquiEntity(CreaturesEntities.TAMBAQUI.get(), egg.level()), true, false);
+            case 18 -> spawnFish(egg, new ElephantNoseFishEntity(CreaturesEntities.ELEPHANTNOSE.get(), egg.level()), true, false);
+            case 19 -> {
+                StingrayEntity fish = new StingrayEntity(CreaturesEntities.STINGRAY.get(), egg.level());
+                if (egg.hasCustomName()) fish.setCustomName(egg.getCustomName());
+                fish.setVariant(this.getVariant());
+                fish.setHeightMultiplier(this.getHeightMultiplier());
+                fish.setPos(egg.getX(), egg.getY(), egg.getZ());
+                fish.setBaby(true);
+                fish.setBred(true);
+                this.level().addFreshEntity(fish);
+                egg.discard();
+            }
+            case 20 -> spawnFish(egg, new SawfishEntity(CreaturesEntities.SAWFISH.get(), egg.level()), true, false);
+            case 21 -> spawnFish(egg, new SwordfishEntity(CreaturesEntities.SWORDFISH.get(), egg.level()), true, false);
+            case 22 -> spawnFish(egg, new SquidEntity(CreaturesEntities.SQUID.get(), egg.level()), true, false);
+            case 23 -> spawnFish(egg, new LookdownEntity(CreaturesEntities.LOOKDOWN.get(), egg.level()), true, false);
+            case 24 -> spawnFish(egg, new BarracudaEntity(CreaturesEntities.BARRACUDA.get(), egg.level()), true, false);
+            case 25 -> spawnFish(egg, new SeaDragonEntity(CreaturesEntities.SEADRAGON.get(), egg.level()), true, false);
+            case 26 -> spawnFish(egg, new TrumpetfishEntity(CreaturesEntities.TRUMPETFISH.get(), egg.level()), true, false);
+            case 27 -> spawnFish(egg, new ParrotfishEntity(CreaturesEntities.PARROTFISH.get(), egg.level()), true, false);
+            case 28 -> spawnFish(egg, new ClownfishEntity(CreaturesEntities.CLOWNFISH.get(), egg.level()), true, true);
+            case 29 -> spawnFish(egg, new LungfishEntity(CreaturesEntities.LUNGFISH.get(), egg.level()), true, false);
+            case 30 -> spawnFish(egg, new TetraEntity(CreaturesEntities.TETRA.get(), egg.level()), true, false);
+            default -> egg.discard();
         }
 
         this.level().broadcastEntityEvent(this, (byte) 3);
@@ -279,7 +292,7 @@ public class CreaturesRoeEntity extends WaterAnimal implements GeoEntity {
     public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
         ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
         if (itemstack.getItem() == CreaturesItems.FF_GUIDE.get()) {
-            System.out.println(this.getParentUUID());
+            //System.out.println(this.getParentUUID());
             Creatures.PROXY.setReferencedMob(this);
             if (this.level().isClientSide()) {
                 Creatures.PROXY.openCreaturesGui();
@@ -296,7 +309,7 @@ public class CreaturesRoeEntity extends WaterAnimal implements GeoEntity {
         CompoundTag compoundnbt = p_204211_1_.getOrCreateTag();
         compoundnbt.putInt("EggVariant", this.getVariant());
         compoundnbt.putFloat("EggHeightMultiplier", this.getHeightMultiplier());
-        System.out.println(compoundnbt);
+        //System.out.println(compoundnbt);
     }
 
     public boolean isPushable() {

@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
@@ -44,6 +45,8 @@ public class ShrimpEntity extends FishBase implements GeoEntity {
             .put(6, Component.translatable("message.creatures.green_shrimp"))
             .put(7, Component.translatable("message.creatures.black_shrimp"))
             .put(8, Component.translatable("message.creatures.white_shrimp"))
+            .put(9, Component.translatable("message.creatures.boa_shrimp"))
+            .put(10, Component.translatable("message.creatures.green_jade_shrimp"))
             .build();
 
     public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
@@ -55,6 +58,8 @@ public class ShrimpEntity extends FishBase implements GeoEntity {
             .put(6, List.of(Region.ASIA))
             .put(7, List.of(Region.ASIA))
             .put(8, List.of(Region.ASIA))
+            .put(9, List.of(Region.ASIA))
+            .put(10, List.of(Region.ASIA))
             .build();
 
     public ShrimpEntity(EntityType<? extends ShrimpEntity> p_i50246_1_, Level p_i50246_2_) {
@@ -146,18 +151,31 @@ public ItemStack getBucketItemStack() {
     }
 
     public String getScientificName() {
-        if (this.getVariant() == 1) {
-            return "Caridina";
+        if (this.getVariant() == 1 || this.getVariant() == 9) {
+            return "Caridina cantonensis";
         }
         return "Neocaridina davidi";
     }
 
     public int numVariants() {
-        return 8;
+        return 10;
     }
 
     public net.minecraft.world.item.Item getFoodItem() {
         return CreaturesItems.ALGAE_WAFER.get();
+    }
+
+    public int getMaxSchoolSize() {
+        return 1;
+    }
+
+
+    public int methodOfDeterminingVariant()
+    {
+        if (this.random.nextInt(100) < 90) {
+            return 4;
+        }
+        return super.methodOfDeterminingVariant();
     }
 
 }

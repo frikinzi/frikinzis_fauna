@@ -5,6 +5,9 @@ import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.ModEventSubscriber;
+import net.minecraft.core.particles.ItemParticleOption;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -181,10 +184,13 @@ public class EggEntity extends AgeableMob implements GeoEntity {
                     CreaturesBirdEntity bird = createBirdEntity(type, egg);
                     //bird.setParentUUID(this.getParentUUID());
                     if (this.random.nextFloat() < bird.getHatchChance()) {
+                        this.spawnParticles(true);
                         this.level().addFreshEntity(bird);
+                    } else {
+                    this.spawnParticles(false);
                     }
                 } else {
-                    System.out.println(egg.getSpecies());
+                    //System.out.println(egg.getSpecies());
                 }
 
                 egg.remove(RemovalReason.DISCARDED);
@@ -247,6 +253,28 @@ public class EggEntity extends AgeableMob implements GeoEntity {
             case 39 -> new ItemStack(CreaturesItems.CAPERCAILLIE_EGG.get());
             case 40 -> new ItemStack(CreaturesItems.PHEASANT_EGG.get());
             case 41 -> new ItemStack(CreaturesItems.STORK_EGG.get());
+            case 42 -> new ItemStack(CreaturesItems.WHISTLINGDUCK_EGG.get());
+            case 43 -> new ItemStack(CreaturesItems.GROUND_HORNBILL_EGG.get());
+            case 44 -> new ItemStack(CreaturesItems.SECRETARYBIRD_EGG.get());
+            case 45 -> new ItemStack(CreaturesItems.SHOEBILL_EGG.get());
+            case 46 -> new ItemStack(CreaturesItems.STARLING_EGG.get());
+            case 47 -> new ItemStack(CreaturesItems.CORMORANT_EGG.get());
+            case 48 -> new ItemStack(CreaturesItems.PUFFIN_EGG.get());
+            case 49 -> new ItemStack(CreaturesItems.SEAGULL_EGG.get());
+            case 50 -> new ItemStack(CreaturesItems.BOOBY_EGG.get());
+            case 51 -> new ItemStack(CreaturesItems.PENGUIN_EGG.get());
+            case 52 -> new ItemStack(CreaturesItems.RAIL_EGG.get());
+            case 53 -> new ItemStack(CreaturesItems.AVOCET_EGG.get());
+            case 54 -> new ItemStack(CreaturesItems.CRESTED_PENGUIN_EGG.get());
+            case 55 -> new ItemStack(CreaturesItems.YELLOWEYED_PENGUIN_EGG.get());
+            case 56 -> new ItemStack(CreaturesItems.BRUSHTAILED_PENGUIN_EGG.get());
+            case 57 -> new ItemStack(CreaturesItems.LARGE_PENGUIN_EGG.get());
+            case 58 -> new ItemStack(CreaturesItems.FRIGATE_EGG.get());
+            case 59 -> new ItemStack(CreaturesItems.STILT_EGG.get());
+            case 60 -> new ItemStack(CreaturesItems.LITTLEPENGUIN_EGG.get());
+            case 61 -> new ItemStack(CreaturesItems.MARABOU_EGG.get());
+            case 62 -> new ItemStack(CreaturesItems.CRANE_EGG.get());
+            case 63 -> new ItemStack(CreaturesItems.COCKOFTHEROCK_EGG.get());
             default -> new ItemStack(CreaturesItems.LOVEBIRD_EGG.get());
         };
     }
@@ -298,7 +326,21 @@ public class EggEntity extends AgeableMob implements GeoEntity {
         bird.setHeightMultiplier(this.getHeightMultiplier());
         bird.setGender(egg.getGender());
         bird.setBaby(true);
+        bird.setPersistenceRequired();
         bird.setPos(egg.getX(), egg.getY(), egg.getZ());
         return bird;
+    }
+
+    protected void spawnParticles(boolean success) {
+        ParticleOptions particleData = new ItemParticleOption(ParticleTypes.ITEM, this.getEggItem());
+        if (!success) {
+            particleData = ParticleTypes.SMOKE;
+        }
+        for (int i = 0; i < 7; ++i) {
+            double d0 = this.random.nextGaussian() * 0.02D;
+            double d1 = this.random.nextGaussian() * 0.02D;
+            double d2 = this.random.nextGaussian() * 0.02D;
+            ((ServerLevel) this.level()).sendParticles(particleData, this.getX(), this.getY(), this.getZ(), 0, d0, d1, d2, 0.1D);
+        }
     }
 }

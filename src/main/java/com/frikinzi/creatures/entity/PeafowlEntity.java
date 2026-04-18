@@ -1,6 +1,8 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
+import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.CreaturesWalkingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesItems;
@@ -36,6 +38,7 @@ import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -61,6 +64,12 @@ public class PeafowlEntity extends CreaturesWalkingBird implements GeoEntity {
             .put(2, "Pavo cristatus")
             .put(3, "Pavo cristatus")
             .build();
+
+    public static Map<Integer, Component> DESCRIPTIONS = new HashMap<Integer, Component>() {{
+        put(2, Component.translatable("description.creatures.peafowl"));
+        put(1, Component.translatable("description.creatures.greenpeafowl"));
+        put(3, Component.translatable("description.creatures.albinopeafowl"));
+    }};
 
     public PeafowlEntity(EntityType<? extends PeafowlEntity> p_i50251_1_, Level p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -93,6 +102,7 @@ public class PeafowlEntity extends CreaturesWalkingBird implements GeoEntity {
             this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
             this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
             this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)));
+            this.targetSelector.addGoal(2, (new CreaturesBirdEntity.DefendBabyGoal()));
             this.targetSelector.removeGoal(PanicGoal);
             this.goalSelector.addGoal(1, new PeafowlEntity.DisplayGoal());
             //this.targetSelector.addGoal(2, new CreaturesBirdEntity.DefendBabyGoal());
@@ -268,6 +278,13 @@ public class PeafowlEntity extends CreaturesWalkingBird implements GeoEntity {
 
     public boolean canTame() {
         return true;
+    }
+
+    public Component getFunFact() {
+        Component translatable = DESCRIPTIONS.get(this.getVariant());
+        if (translatable != null) {
+            return translatable;
+        } return Component.translatable("creatures.unknown");
     }
 
 }

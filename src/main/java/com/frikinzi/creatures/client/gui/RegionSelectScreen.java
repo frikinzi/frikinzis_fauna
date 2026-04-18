@@ -1,6 +1,5 @@
 package com.frikinzi.creatures.client.gui;
 
-import com.frikinzi.creatures.entity.Region;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;

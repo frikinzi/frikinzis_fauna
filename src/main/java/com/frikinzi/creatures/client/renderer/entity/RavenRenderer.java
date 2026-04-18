@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.client.renderer.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.renderer.layer.RavenHeldItemLayer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -16,6 +17,7 @@ public class RavenRenderer extends GeoEntityRenderer<RavenEntity>{
     public RavenRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new RavenModel());
         this.shadowRadius = 0.4F;
+        this.addRenderLayer(new RavenHeldItemLayer(this));
     }
 
     @Override

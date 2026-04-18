@@ -1,6 +1,8 @@
 package com.frikinzi.creatures.client.renderer.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.renderer.layer.CormorantHeldItemLayer;
+import com.frikinzi.creatures.client.renderer.layer.KingfisherHeldItemLayer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -19,6 +21,8 @@ public class CormorantRenderer extends GeoEntityRenderer<CormorantEntity> {
     public CormorantRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new CormorantModel());
         this.shadowRadius = 0.4F;
+        this.addRenderLayer(new CormorantHeldItemLayer(this));
+
     }
 
     @Override

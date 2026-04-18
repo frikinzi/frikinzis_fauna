@@ -81,6 +81,11 @@
 					]
 				},
 				{
+					"name": "RightHandItem",
+					"parent": "bone7",
+					"pivot": [0.05, 13.05, -7.77985]
+				},
+				{
 					"name": "bone5",
 					"pivot": [2, 5, 2],
 					"cubes": [

@@ -1,11 +1,13 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -55,7 +57,7 @@ public class PikeEntity extends FishBase implements GeoEntity {
         super.registerGoals();
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
-//        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, TroutEntity.class, false));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, TroutEntity.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, WildDuckEntity.class, false));
     }
 
@@ -136,4 +138,9 @@ public ItemStack getBucketItemStack() {
     public int numVariants() {
         return 1;
     }
+
+    public Component getFunFact() {
+        return Component.translatable("description.creatures.pike");
+    }
+
 }

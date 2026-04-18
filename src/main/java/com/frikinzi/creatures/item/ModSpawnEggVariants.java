@@ -2,7 +2,9 @@ package com.frikinzi.creatures.item;
 
 import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.entity.*;
+import com.frikinzi.creatures.entity.base.AbstractCrabBase;
 import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
+import com.frikinzi.creatures.entity.base.FishBase;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import net.minecraft.ChatFormatting;
@@ -15,11 +17,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -31,12 +31,15 @@ import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class ModSpawnEggVariants extends ForgeSpawnEggItem {
@@ -79,11 +82,12 @@ public class ModSpawnEggVariants extends ForgeSpawnEggItem {
             return "Random";
         }
         EntityType<?> entitytype = this.getType(stack.getTag());
+        if (this.currentSpecies > 0) {
         if (entitytype == CreaturesEntities.LOVEBIRD.get()) {
-            if (this.currentSpecies > 0) {
-                if (LovebirdEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-                    return LovebirdEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-                }if (entitytype == CreaturesEntities.SPOONBILL.get()) {
+            if (LovebirdEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                return LovebirdEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+            }
+        }if (entitytype == CreaturesEntities.SPOONBILL.get()) {
                     if (this.currentSpecies > 0) {
                         if (SpoonbillEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
                             return SpoonbillEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
@@ -258,13 +262,13 @@ public class ModSpawnEggVariants extends ForgeSpawnEggItem {
                         }
                     }
                 }
-//                if (entitytype == CreaturesEntities.GUPPY.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (GuppyEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return GuppyEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                }
+                if (entitytype == CreaturesEntities.GUPPY.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (GuppyEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return GuppyEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                }
                 if (entitytype == CreaturesEntities.SPARROW.get()) {
                     if (this.currentSpecies > 0) {
                         if (SparrowEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
@@ -284,261 +288,267 @@ public class ModSpawnEggVariants extends ForgeSpawnEggItem {
                         }
                     }
                 }
-//                 if (entitytype == CreaturesEntities.STORK.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (StorkEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return StorkEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.WHISTLINGDUCK.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (WhistlingDuckEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return WhistlingDuckEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.GROUND_HORNBILL.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (GroundHornbillEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return GroundHornbillEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.STARLING.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (StarlingEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return StarlingEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.CORMORANT.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (CormorantEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return CormorantEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                }
-//                if (entitytype == CreaturesEntities.PUFFIN.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (PuffinEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return PuffinEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                }
-//                if (entitytype == CreaturesEntities.SEAGULL.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (SeagullEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return SeagullEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                }
-//                if (entitytype == CreaturesEntities.RED_SNAPPER.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (RedSnapperEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return RedSnapperEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.FIDDLER_CRAB.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (FiddlerCrabEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return FiddlerCrabEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.TARANTULA.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (TarantulaEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return TarantulaEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.RAVEN.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (RavenEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return RavenEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.TROUT.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (TroutEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return TroutEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.GOURAMI.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (GouramiEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return GouramiEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.PIRANHA.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (PiranhaEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return PiranhaEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.SHRIMP.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (ShrimpEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return ShrimpEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.TIGERBARB.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (TigerBarbEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return TigerBarbEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.STINGRAY.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (StingrayEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return StingrayEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.SWORDFISH.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (SwordfishEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return SwordfishEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.BOOBY.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (BoobyEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return BoobyEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.SQUID.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (SquidEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return SquidEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.BANDED_PENGUIN.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (BandedPenguinEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return BandedPenguinEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.BARRACUDA.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (BarracudaEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return BarracudaEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.AVOCET.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (AvocetEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return AvocetEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.SEADRAGON.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (SeaDragonEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return SeaDragonEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.TRUMPETFISH.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (TrumpetfishEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return TrumpetfishEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.CRESTED_PENGUIN.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (CrestedPenguinEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return CrestedPenguinEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.PARROTFISH.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (ParrotfishEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return ParrotfishEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.BRUSH_TAILED_PENGUIN.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (BrushTailedPenguinEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return BrushTailedPenguinEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.LARGE_PENGUIN.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (LargePenguinEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return LargePenguinEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.FRIGATE.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (FrigateBirdEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return FrigateBirdEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.CLOWNFISH.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (ClownfishEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return ClownfishEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.STILT.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (StiltEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return StiltEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.LUNGFISH.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (LungfishEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return LungfishEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.LITTLE_PENGUIN.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (LittlePenguinEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return LittlePenguinEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.BLUE_TANG.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (BlueTangEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return BlueTangEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.SEA_EAGLE.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (SeaEagleEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return SeaEagleEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.MANTIS_SHRIMP.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        int no = 1;
-//                        if (this.currentSpecies == 6) {
-//                            no = 2;
-//                        }
-//                        if (MantisShrimpEntity.SPECIES_NAMES.get(no) != null) {
-//                            return MantisShrimpEntity.SPECIES_NAMES.get(no).getString() + " " + this.currentSpecies;
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.RAIL.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (RailEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return RailEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.SAWFISH.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (SawfishEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return SawfishEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.GHOST_CRAB.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (GhostCrabEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return GhostCrabEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                } if (entitytype == CreaturesEntities.EDIBLE_CRAB.get()) {
-//                    if (this.currentSpecies > 0) {
-//                        if (EdibleCrabEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
-//                            return EdibleCrabEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
-//                        }
-//                    }
-//                }
+                 if (entitytype == CreaturesEntities.STORK.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (StorkEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return StorkEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.WHISTLING_DUCK.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (WhistlingDuckEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return WhistlingDuckEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.GROUND_HORNBILL.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (GroundHornbillEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return GroundHornbillEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.STARLING.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (StarlingEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return StarlingEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.CORMORANT.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (CormorantEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return CormorantEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                }
+                if (entitytype == CreaturesEntities.PUFFIN.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (PuffinEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return PuffinEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                }
+                if (entitytype == CreaturesEntities.SEAGULL.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (SeagullEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return SeagullEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                }
+                if (entitytype == CreaturesEntities.RED_SNAPPER.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (RedSnapperEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return RedSnapperEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.FIDDLER_CRAB.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (FiddlerCrabEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return FiddlerCrabEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.TARANTULA.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (TarantulaEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return TarantulaEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.RAVEN.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (RavenEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return RavenEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.TROUT.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (TroutEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return TroutEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.GOURAMI.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (GouramiEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return GouramiEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.PIRANHA.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (PiranhaEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return PiranhaEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.SHRIMP.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (ShrimpEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return ShrimpEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.TIGERBARB.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (TigerBarbEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return TigerBarbEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.STINGRAY.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (StingrayEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return StingrayEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.SWORDFISH.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (SwordfishEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return SwordfishEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.BOOBY.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (BoobyEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return BoobyEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.SQUID.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (SquidEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return SquidEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.BANDED_PENGUIN.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (BandedPenguinEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return BandedPenguinEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.BARRACUDA.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (BarracudaEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return BarracudaEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.AVOCET.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (AvocetEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return AvocetEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.SEADRAGON.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (SeaDragonEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return SeaDragonEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.TRUMPETFISH.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (TrumpetfishEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return TrumpetfishEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.CRESTED_PENGUIN.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (CrestedPenguinEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return CrestedPenguinEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.PARROTFISH.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (ParrotfishEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return ParrotfishEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.BRUSH_TAILED_PENGUIN.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (BrushTailedPenguinEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return BrushTailedPenguinEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.LARGE_PENGUIN.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (LargePenguinEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return LargePenguinEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.FRIGATE.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (FrigateEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return FrigateEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.CLOWNFISH.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (ClownfishEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return ClownfishEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.STILT.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (StiltEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return StiltEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.LUNGFISH.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (LungfishEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return LungfishEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.LITTLE_PENGUIN.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (LittlePenguinEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return LittlePenguinEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.BLUE_TANG.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (BlueTangEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return BlueTangEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.SEA_EAGLE.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (SeaEagleEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return SeaEagleEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.MANTIS_SHRIMP.get()) {
+                    if (this.currentSpecies > 0) {
+                        int no = 1;
+                        if (this.currentSpecies == 6) {
+                            no = 2;
+                        }
+                        if (MantisShrimpEntity.SPECIES_NAMES.get(no) != null) {
+                            return MantisShrimpEntity.SPECIES_NAMES.get(no).getString() + " " + this.currentSpecies;
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.RAIL.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (RailEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return RailEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.SAWFISH.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (SawfishEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return SawfishEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.GHOST_CRAB.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (GhostCrabEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return GhostCrabEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.EDIBLE_CRAB.get()) {
+                    if (this.currentSpecies > 0) {
+                        if (EdibleCrabEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return EdibleCrabEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                        }
+                    }
+                } if (entitytype == CreaturesEntities.TETRA.get()) {
+                if (this.currentSpecies > 0) {
+                    if (TetraEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                        return TetraEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
+                    }
+                }
             }
+
         }
         int i = this.currentSpecies;
         return Integer.toString(i);
@@ -546,11 +556,30 @@ public class ModSpawnEggVariants extends ForgeSpawnEggItem {
     }
 
     public void increaseSpeciesCount(Level world) {
-        CreaturesBirdEntity bird = (CreaturesBirdEntity) this.entityType.get().create(world);
-        this.currentSpecies += 1;
-        if (this.currentSpecies > bird.numVariants()) {
-            this.currentSpecies = 0;
+        try {
+            CreaturesBirdEntity bird = (CreaturesBirdEntity) this.entityType.get().create(world);
+            this.currentSpecies += 1;
+            if (this.currentSpecies > bird.numVariants()) {
+                this.currentSpecies = 0;
+            }
+        } catch(ClassCastException e) {
+            try {
+                FishBase fish = (FishBase) this.entityType.get().create(world);
+                this.currentSpecies += 1;
+                if (this.currentSpecies > fish.numVariants()) {
+                    this.currentSpecies = 0;
+                }
+            } catch(ClassCastException j) {
+                AbstractCrabBase fish = (AbstractCrabBase) this.entityType.get().create(world);
+                this.currentSpecies += 1;
+                if (this.currentSpecies > fish.determineVariant()) {
+                    this.currentSpecies = 0;
+
+                }
+            }
+
         }
+
 
     }
 
@@ -582,28 +611,92 @@ public class ModSpawnEggVariants extends ForgeSpawnEggItem {
                 return InteractionResultHolder.pass(itemstack);
             } else if (worldIn.mayInteract(playerIn, blockpos) && playerIn.mayUseItemAt(blockpos, raytraceresult.getDirection(), itemstack)) {
                 EntityType<?> entitytype = this.getType(itemstack.getTag());
-                CreaturesBirdEntity bird = (CreaturesBirdEntity) entitytype.spawn((ServerLevel) worldIn, itemstack, playerIn, blockpos, MobSpawnType.SPAWN_EGG, false, false);
-                if (bird == null) {
+                Entity spawned = entitytype.spawn((ServerLevel) worldIn, itemstack, playerIn, blockpos, MobSpawnType.SPAWN_EGG, false, false);
+                if (spawned == null) {
                     return InteractionResultHolder.pass(itemstack);
-                } else {
-                    if (!playerIn.getAbilities().instabuild) {
-                        itemstack.shrink(1);
-                    }
+                }
 
+                if (!playerIn.getAbilities().instabuild) {
+                    itemstack.shrink(1);
+                }
+
+                if (spawned instanceof CreaturesBirdEntity bird) {
                     if (this.currentSpecies == 0) {
                         bird.setVariant(bird.methodOfDeterminingVariant());
-                    } else if (this.currentSpecies > 0) {
+                    } else {
                         bird.setVariant(this.currentSpecies);
                     }
-                    ((ServerLevel) worldIn).addFreshEntityWithPassengers(bird);
-                    playerIn.awardStat(Stats.ITEM_USED.get(this));
-                    worldIn.gameEvent(playerIn, GameEvent.ENTITY_PLACE, blockpos);
-                    return InteractionResultHolder.consume(itemstack);
+                } else if (spawned instanceof FishBase fish) {
+                    if (this.currentSpecies == 0) {
+                        fish.setVariant(fish.methodOfDeterminingVariant());
+                    } else {
+                        fish.setVariant(this.currentSpecies);
+                    }
+                    fish.setSubVariant(fish.methodOfDeterminingSubVariant());
+                } else if (spawned instanceof AbstractCrabBase fish) {
+                    if (this.currentSpecies == 0) {
+                        fish.setVariant(fish.methodOfDeterminingVariant());
+                    } else {
+                        fish.setVariant(this.currentSpecies);
+                    }
+                    //fish.setSubVariant(fish.methodOfDeterminingSubVariant());
                 }
+
+                ((ServerLevel) worldIn).addFreshEntityWithPassengers(spawned);
+                playerIn.awardStat(Stats.ITEM_USED.get(this));
+                worldIn.gameEvent(playerIn, GameEvent.ENTITY_PLACE, blockpos);
+                return InteractionResultHolder.consume(itemstack);
 
             }
             }  return InteractionResultHolder.fail(itemstack);
 
+    }
+
+    @Override
+    public Optional<Mob> spawnOffspringFromSpawnEgg(Player player, Mob mob,
+                                                    EntityType<? extends Mob> entityType, ServerLevel level,
+                                                    Vec3 pos, ItemStack stack) {
+
+        if (!this.spawnsEntity(stack.getTag(), entityType)) return Optional.empty();
+
+        Mob baby = null;
+
+        if (mob instanceof AgeableMob ageable) {
+            baby = ageable.getBreedOffspring(level, ageable);
+        }
+        if (baby == null) {
+            baby = entityType.create(level);
+        }
+        if (baby == null) return Optional.empty();
+
+        // Set variant from parent, not random
+        if (baby instanceof CreaturesBirdEntity babyBird && mob instanceof CreaturesBirdEntity parentBird) {
+            babyBird.setVariant(parentBird.getVariant());
+            babyBird.setGender(level.random.nextInt(2));
+        } else if (baby instanceof FishBase babyFish && mob instanceof FishBase parentFish) {
+            babyFish.setVariant(parentFish.getVariant());
+            babyFish.setSubVariant(babyFish.methodOfDeterminingSubVariant());
+            babyFish.setGender(level.random.nextInt(2));
+        } else if (baby instanceof AbstractCrabBase babyCrab && mob instanceof AbstractCrabBase parentFish) {
+            babyCrab.setVariant(parentFish.getVariant());
+            //babyFish.setSubVariant(babyFish.methodOfDeterminingSubVariant());
+            babyCrab.setGender(level.random.nextInt(2));
+        }
+
+        baby.setBaby(true);
+        if (!baby.isBaby()) return Optional.empty();
+
+        baby.moveTo(pos.x(), pos.y(), pos.z(), 0.0F, 0.0F);
+        level.addFreshEntityWithPassengers(baby);
+
+        if (stack.hasCustomHoverName()) {
+            baby.setCustomName(stack.getHoverName());
+        }
+        if (!player.getAbilities().instabuild) {
+            stack.shrink(1);
+        }
+
+        return Optional.of(baby);
     }
 
 }

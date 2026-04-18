@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
@@ -8,7 +9,6 @@ import com.frikinzi.creatures.registry.CreaturesLootTables;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -17,7 +17,6 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -26,6 +25,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -33,7 +33,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.biome.Biome;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -43,13 +42,14 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class MarabouEntity extends CreaturesFlyingBird implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private static final EntityDataAccessor<Integer> VARIANT_SUBID = SynchedEntityData.defineId(MarabouEntity.class, EntityDataSerializers.INT);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.BEETROOT_SEEDS, Items.PUMPKIN_SEEDS, Items.MELON_SEEDS);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.ROTTEN_FLESH, Items.COD);
     public static final Map<Integer, Component> SPECIES_NAMES = ImmutableMap.<Integer, Component>builder()
             .put(1, Component.translatable("message.creatures.marabou"))
             .put(2, Component.translatable("message.creatures.greateradjuntant"))
@@ -85,9 +85,16 @@ public class MarabouEntity extends CreaturesFlyingBird implements GeoEntity {
 
     protected void registerGoals() {
         super.registerGoals();
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, FOOD_ITEMS, false ));
         this.goalSelector.addGoal(5, new FollowFlockLeaderGoal(this));
         this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Player.class, 6.0F, 1.0D, 1.2D));
+    }
+
+
+    @Override
+    public boolean isFlying() {
+        return !this.onGround();
     }
 
     protected <E extends MarabouEntity> PlayState flyAnimController(final AnimationState<E> event)
@@ -158,8 +165,11 @@ public class MarabouEntity extends CreaturesFlyingBird implements GeoEntity {
 
     @Override
     public int methodOfDeterminingVariant() {
-        int var = this.random.nextInt(4)+1;
-        this.setSubVariant(this.random.nextInt(STORK.get(var))+1);
+        int var = Math.max(1,this.random.nextInt(numVariants())+1);
+        Integer max = STORK.get(var);
+        if (max != null) {
+            this.setSubVariant(this.random.nextInt(max) + 1);
+        }
         return var;
     }
 
@@ -183,11 +193,11 @@ public class MarabouEntity extends CreaturesFlyingBird implements GeoEntity {
     }
 
     public double getHatchChance() {
-        return CreaturesConfig.sparrow_hatch_chance.get();
+        return CreaturesConfig.marabou_hatch_chance.get();
     }
 
     public int getClutchSize() {
-        return this.random.nextInt(CreaturesConfig.sparrow_clutch_size.get());
+        return this.random.nextInt(CreaturesConfig.marabou_clutch_size.get());
     }
 
     public int getMaxFlockSize() {
@@ -195,7 +205,7 @@ public class MarabouEntity extends CreaturesFlyingBird implements GeoEntity {
     }
 
     protected float getStandingEyeHeight(Pose p_213348_1_, EntityDimensions p_213348_2_) {
-        return 0.3F;
+        return 0.5F;
     }
 
     public String getScientificName() {
@@ -250,6 +260,27 @@ public class MarabouEntity extends CreaturesFlyingBird implements GeoEntity {
         if (translatable != null) {
             return translatable;
         } return Component.translatable("creatures.unknown");
+    }
+
+    public int getIUCNStatus() {
+        if (this.getVariant() == 1) {
+            return super.getIUCNStatus();
+        }
+        return 1;
+    }
+
+    public int getScaleforGUI() {
+        return (int)(super.getScaleforGUI() *0.7f);
+    }
+
+    public ItemStack getFoodItem() {
+        return new ItemStack(Items.ROTTEN_FLESH, 1);
+    }
+
+    public List<ItemStack> getAllFoodItems() {
+        return Arrays.stream(FOOD_ITEMS.getItems())
+                .map(ItemStack::copy)
+                .collect(java.util.stream.Collectors.toList());
     }
 
 }

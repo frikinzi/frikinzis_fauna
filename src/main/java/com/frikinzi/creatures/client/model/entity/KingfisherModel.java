@@ -19,7 +19,7 @@ public class KingfisherModel extends GeoModel<KingfisherEntity> {
     @Override
     public ResourceLocation getTextureResource(KingfisherEntity object)
     {
-        if (object.isFlying()) {
+        if (object.isFlying() || !object.onGround()) {
             return new ResourceLocation(Creatures.MODID, "textures/entity/kingfisher/kingfisher" + object.getVariant() + "fly.png");
         } if (object.isSleeping()) {
         return new ResourceLocation(Creatures.MODID, "textures/entity/kingfisher/kingfisher" + object.getVariant() + "sleep.png");
@@ -30,7 +30,7 @@ public class KingfisherModel extends GeoModel<KingfisherEntity> {
     @Override
     public ResourceLocation getAnimationResource(KingfisherEntity object)
     {
-        if (object.isFlying()) {
+        if (object.isFlying() || !object.onGround()) {
             return new ResourceLocation(Creatures.MODID, "animations/animation.kingfisher.fly.json");
         }
         return new ResourceLocation(Creatures.MODID, "animations/animation.kingfisher.json");

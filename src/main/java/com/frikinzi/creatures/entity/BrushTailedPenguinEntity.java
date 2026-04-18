@@ -1,7 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
-import com.frikinzi.creatures.entity.base.CreaturesWalkingBird;
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.base.WalkingSwimmingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
@@ -41,6 +41,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -50,7 +51,7 @@ public class BrushTailedPenguinEntity extends WalkingSwimmingBird implements Geo
     private static final Set<Block> SLIDE = Sets.newHashSet(Blocks.ICE, Blocks.PACKED_ICE, Blocks.BLUE_ICE);
     private static final EntityDataAccessor<Integer> VARIANT_SUBID = SynchedEntityData.defineId(BrushTailedPenguinEntity.class, EntityDataSerializers.INT);
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.COD);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.COD, Items.SALMON, Items.TROPICAL_FISH);
     public static Map<Integer, Component> SPECIES_NAMES = ImmutableMap.of(
             1, Component.translatable("message.creatures.chinstrap"),
             2, Component.translatable("message.creatures.gentoo"),
@@ -304,6 +305,12 @@ public class BrushTailedPenguinEntity extends WalkingSwimmingBird implements Geo
 
     public String getScientificName() {
         return SCIENTIFIC_NAMES.get(this.getVariant());
+    }
+
+    public List<ItemStack> getAllFoodItems() {
+        return Arrays.stream(FOOD_ITEMS.getItems())
+                .map(ItemStack::copy)
+                .collect(java.util.stream.Collectors.toList());
     }
 
 }

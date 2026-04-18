@@ -46,6 +46,18 @@
       "weight": 10,
       "minCount": 3,
       "maxCount": 5
+    },
+    {
+      "type": "creatures:marabou",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 5
+    },
+    {
+      "type": "creatures:crane",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 5
     }
   ]
 }

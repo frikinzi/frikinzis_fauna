@@ -1,30 +1,42 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
+import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
-import net.minecraft.core.BlockPos;
+import com.frikinzi.creatures.registry.CreaturesSound;
+import com.google.common.collect.ImmutableMap;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.LeapAtTargetGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
-import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -34,20 +46,14 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
-import com.frikinzi.creatures.entity.ai.SitOnShoulderGoal;
-import com.frikinzi.creatures.registry.CreaturesSound;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Sets;
-
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class RavenEntity extends CreaturesFlyingBird implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private PanicGoal PanicGoal;
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.ROTTEN_FLESH, Items.EGG, Items.CHICKEN);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.ROTTEN_FLESH, Items.EGG, Items.CHICKEN, Items.WHEAT_SEEDS, Items.SWEET_BERRIES);
     public static Map<Integer, Component> SPECIES_NAMES = ImmutableMap.of(
             1, Component.translatable("message.creatures.commonraven"),
             2, Component.translatable("message.creatures.brownheadedraven"),
@@ -55,6 +61,10 @@ public class RavenEntity extends CreaturesFlyingBird implements GeoEntity {
             4, Component.translatable("message.creatures.thickbilledraven"),
             5, Component.translatable("message.creatures.commonravenalbino")
     );
+
+    private int giftCooldown = 0;
+    private static final int GIFT_COOLDOWN_MIN = 6000;
+    private static final int GIFT_COOLDOWN_MAX = 12000;
 
     public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
             .put(1, List.of(Region.EUROPE, Region.ASIA, Region.NORTH_AMERICA, Region.AFRICA))
@@ -83,8 +93,10 @@ public class RavenEntity extends CreaturesFlyingBird implements GeoEntity {
             this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
             this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
             this.targetSelector.removeGoal(PanicGoal);
+            this.targetSelector.addGoal(1, new CreaturesBirdEntity.DefendBabyGoal());
+
         }
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)));
+        this.targetSelector.addGoal(2, (new HurtByTargetGoal(this)).setAlertOthers());
 
     }
 
@@ -121,7 +133,7 @@ public class RavenEntity extends CreaturesFlyingBird implements GeoEntity {
             return 5;
         }
         else {
-            return this.random.nextInt(5);
+            return this.random.nextInt(4)+1;
         }
     }
 
@@ -144,8 +156,12 @@ public class RavenEntity extends CreaturesFlyingBird implements GeoEntity {
         return null;
     }
 
-    public Ingredient getBirdFood() {
-        return Ingredient.of(Items.ROTTEN_FLESH, Items.EGG, Items.CHICKEN);
+//    public Ingredient getBirdFood() {
+//        return Ingredient.of(Items.ROTTEN_FLESH, Items.EGG, Items.CHICKEN);
+//    }
+
+    public boolean isFood(ItemStack p_70877_1_) {
+        return FOOD_ITEMS.test(p_70877_1_);
     }
 
     public ResourceLocation getDefaultLootTable() {
@@ -208,6 +224,90 @@ public class RavenEntity extends CreaturesFlyingBird implements GeoEntity {
 
     public boolean canTame() {
         return true;
+    }
+
+    @Override
+    public void aiStep() {
+        super.aiStep();
+        if (this.level().isClientSide()) return;
+        if (!(this.level() instanceof ServerLevel serverLevel)) return;
+
+        if (!this.isTame()) return;
+        if (this.getOwner() == null) return;
+        if (this.isOrderedToSit()) return;
+        if (this.isBaby()) return;
+        if (!this.getMainHandItem().isEmpty()) return; // already holding a gift
+        if (giftCooldown > 0) { giftCooldown--; return; }
+
+        if (this.distanceTo(this.getOwner()) > 16.0) { return; }
+
+        // Roll loot table
+        LootTable table = serverLevel.getServer()
+                .getLootData().getLootTable(CreaturesLootTables.RAVEN_GIFT);
+        LootParams params = new LootParams.Builder(serverLevel)
+                .withParameter(LootContextParams.ORIGIN, this.position())
+                .withParameter(LootContextParams.THIS_ENTITY, this)
+                .create(LootContextParamSets.GIFT);
+
+        List<ItemStack> gifts = table.getRandomItems(params);
+        if (gifts.isEmpty()) { resetGiftCooldown(); return; }
+
+        ItemStack gift = gifts.get(0);
+        if (gift.isEmpty()) { resetGiftCooldown(); return; }
+
+        this.setItemSlot(EquipmentSlot.MAINHAND, gift);
+        this.setGuaranteedDrop(EquipmentSlot.MAINHAND);
+        this.playSound(CreaturesSound.RAVEN_AMBIENT.get(), 1.0F, 1.5F);
+
+//        // Notify owner
+//        if (this.getOwner() instanceof Player player) {
+//            player.sendSystemMessage(Component.translatable(
+//                    "message.creatures.raven_gift",
+//                    this.hasCustomName() ? this.getCustomName() :
+//                            Component.translatable("entity.creatures.raven")));
+//        }
+
+    }
+
+    @Override
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        if (this.isTame() && this.isOwnedBy(player) && !this.getMainHandItem().isEmpty()) {
+            ItemStack gift = this.getMainHandItem().copy();
+
+            if (!player.getInventory().add(gift)) {
+                player.drop(gift, false);
+            }
+
+            this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+            this.playSound(SoundEvents.ITEM_PICKUP, 1.0F, 1.0F);
+            resetGiftCooldown();
+            return InteractionResult.sidedSuccess(this.level().isClientSide());
+        }
+
+        return super.mobInteract(player, hand);
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.putInt("GiftCooldown", giftCooldown);
+    }
+
+    private void resetGiftCooldown() {
+        giftCooldown = GIFT_COOLDOWN_MIN +
+                this.random.nextInt(GIFT_COOLDOWN_MAX - GIFT_COOLDOWN_MIN);
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        giftCooldown = tag.getInt("GiftCooldown");
+    }
+
+    public List<ItemStack> getAllFoodItems() {
+        return Arrays.stream(FOOD_ITEMS.getItems())
+                .map(ItemStack::copy)
+                .collect(java.util.stream.Collectors.toList());
     }
 
 }

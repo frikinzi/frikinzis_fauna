@@ -37,6 +37,8 @@ import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 public class RaptorBase extends CreaturesFlyingBird {
@@ -54,7 +56,10 @@ public class RaptorBase extends CreaturesFlyingBird {
             this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
             this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
             this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
+            this.targetSelector.addGoal(0, new HurtByTargetGoal(this));
             this.targetSelector.removeGoal(PanicGoal);
+            this.targetSelector.addGoal(1, new CreaturesBirdEntity.DefendBabyGoal());
+
         }
         this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)));
         //this.targetSelector.addGoal(1, new CreaturesBirdEntity.DefendBabyGoal());
@@ -91,6 +96,12 @@ public class RaptorBase extends CreaturesFlyingBird {
 
     public Ingredient getBirdFood() {
         return Ingredient.of(Items.RABBIT, Items.CHICKEN, CreaturesItems.SMALL_BIRD_MEAT.get(), CreaturesItems.LARGE_BIRD_MEAT.get());
+    }
+
+    public List<ItemStack> getAllFoodItems() {
+        return Arrays.stream(getBirdFood().getItems())
+                .map(ItemStack::copy)
+                .collect(java.util.stream.Collectors.toList());
     }
 
 

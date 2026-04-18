@@ -1,10 +1,9 @@
 package com.frikinzi.creatures.player;
 
-import com.frikinzi.creatures.entity.Region;
+import com.frikinzi.creatures.client.gui.FieldGuideGUI;
+import com.frikinzi.creatures.client.gui.Region;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -12,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SpeciesEntry {
-    public final String entityKey;          // e.g. "lovebird"
+    public final String entityKey;
     public final int totalVariants;         // total number of variants
     public final Map<Integer, Component> speciesNames;
     public final Map<Integer, String> scientificNames;
@@ -55,10 +54,6 @@ public class SpeciesEntry {
         this.regions = regions;
     }
 
-    public ItemStack getSpawnEgg() {
-        return new ItemStack(spawnEgg.get());
-    }
-
     public String getSpeciesName(int variant) {
         Component c = speciesNames.get(variant);
         return c != null ? c.getString() : displayName.getString();
@@ -66,5 +61,11 @@ public class SpeciesEntry {
 
     public String getScientificName(int variant) {
         return scientificNames.getOrDefault(variant, "");
+    }
+
+    private static SpeciesEntry getSpeciesEntryByKey(String key) {
+        return FieldGuideGUI.ALL_SPECIES.stream()
+                .filter(s -> s.entityKey.equals(key))
+                .findFirst().orElse(null);
     }
 }

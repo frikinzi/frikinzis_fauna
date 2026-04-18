@@ -619,6 +619,9 @@
 		"display": {
 			"loop": true
 		},
+		"displayidle": {
+			"loop": true
+		},
 		"displaywalk": {
 			"loop": true
 		}

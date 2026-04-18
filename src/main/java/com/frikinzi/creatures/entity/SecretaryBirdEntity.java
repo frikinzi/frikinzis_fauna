@@ -1,11 +1,14 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
+import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.CreaturesWalkingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundAnimatePacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerChunkCache;
@@ -34,6 +37,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -50,14 +54,15 @@ public class SecretaryBirdEntity extends CreaturesWalkingBird implements GeoEnti
     }
 
     protected void registerGoals() {
+        super.registerGoals();
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.5D, true));
-        //this.targetSelector.addGoal(1, new CreaturesBirdEntity.DefendBabyGoal());
+        this.targetSelector.addGoal(1, new CreaturesBirdEntity.DefendBabyGoal());
         this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Spider.class, false));
     }
 
     protected <E extends SecretaryBirdEntity> PlayState walkAnimController(final AnimationState<E> event) {
-        if (this.swinging){
+        if (this.swinging && !this.isBaby()){
             return event.setAndContinue(RawAnimation.begin().then("attack", Animation.LoopType.PLAY_ONCE));
         }
         if (this.isAggressive()) {
@@ -219,6 +224,16 @@ public class SecretaryBirdEntity extends CreaturesWalkingBird implements GeoEnti
 
     public int getScaleforGUI() {
         return (int)(super.getScaleforGUI() *1.5);
+    }
+
+    public Component getFunFact() {
+        return Component.translatable("description.creatures.secretarybird");
+    }
+
+    public List<ItemStack> getAllFoodItems() {
+        return Arrays.stream(FOOD_ITEMS.getItems())
+                .map(ItemStack::copy)
+                .collect(java.util.stream.Collectors.toList());
     }
 
 }

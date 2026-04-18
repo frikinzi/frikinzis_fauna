@@ -11,8 +11,8 @@ import java.util.Arrays;
 public class EggModel extends GeoModel<EggEntity> {
     // which egg texture should each entity use - number of each entity defined in ModEntityTypes
     Integer[] ONE = {2,3,5,10,11,13,25,29,31,32,29,48};
-    Integer[] TWO = {16,19,12,35};
-    Integer[] THREE = {26,1,34,23,33,28,53,59,49};
+    Integer[] TWO = {16,19,12,35,63};
+    Integer[] THREE = {26,1,34,23,33,28,53,59,49,62};
     Integer[] FOUR = {9};
     Integer[] FIVE = {14,0,15,13,18,38};
     Integer[] SIX = {20,4,27,37,50};

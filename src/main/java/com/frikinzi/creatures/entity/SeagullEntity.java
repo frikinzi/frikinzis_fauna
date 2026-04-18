@@ -1,32 +1,38 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
+import com.frikinzi.creatures.entity.ai.PickUpFoodGoal;
+import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Cod;
 import net.minecraft.world.entity.animal.Salmon;
 import net.minecraft.world.entity.animal.TropicalFish;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -42,7 +48,6 @@ import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Sets;
 import net.minecraftforge.common.ForgeMod;
 
 import java.util.*;
@@ -59,6 +64,7 @@ public class SeagullEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(6, Component.translatable("message.creatures.ivorygull"))
             .put(7, Component.translatable("message.creatures.blackbilledgull"))
             .put(8, Component.translatable("message.creatures.andeangull"))
+            .put(9, Component.translatable("message.creatures.graygull"))
             .build();
     public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
             .put(1, List.of(Region.EUROPE, Region.NORTH_AMERICA))
@@ -69,6 +75,7 @@ public class SeagullEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(6, List.of(Region.NORTH_AMERICA, Region.EUROPE, Region.ASIA))
             .put(7, List.of(Region.OCEANIA))
             .put(8, List.of(Region.SOUTH_AMERICA))
+            .put(9, List.of(Region.SOUTH_AMERICA))
             .build();
     public static Map<Integer, Component> DESCRIPTIONS = new HashMap<Integer, Component>() {{
         put(1, Component.translatable("description.creatures.herringgull"));
@@ -79,6 +86,7 @@ public class SeagullEntity extends CreaturesFlyingBird implements GeoEntity {
         put(6, Component.translatable("description.creatures.ivorygull"));
         put(7, Component.translatable("description.creatures.blackbilledgull"));
         put(8, Component.translatable("description.creatures.andeangull"));
+        put(9, Component.translatable("description.creatures.graygull"));
     }};
     public static Map<Integer, String> SCIENTIFIC_NAMES = new HashMap<Integer, String>() {{
         put(1, "Larus argentatus");
@@ -89,7 +97,12 @@ public class SeagullEntity extends CreaturesFlyingBird implements GeoEntity {
         put(6, "Pagophila eburnea");
         put(7, "Chroicocephalus bulleri");
         put(8, "Chroicocephalus serranus");
+        put(9, "Leucophaeus modestus");
     }};
+
+    private int stealCooldown = 0;
+    private static final int STEAL_COOLDOWN_MIN = 1200;
+    private static final int STEAL_COOLDOWN_MAX = 3600;
 
     public SeagullEntity(EntityType<? extends SeagullEntity> p_i50251_1_, Level p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
@@ -97,7 +110,10 @@ public class SeagullEntity extends CreaturesFlyingBird implements GeoEntity {
 
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, FOOD_ITEMS, false));
+        this.goalSelector.addGoal(3, new PickUpFoodGoal(this));
+        this.goalSelector.addGoal(0, new HurtByTargetGoal(this).setAlertOthers());
+        //this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, FOOD_ITEMS, false));
+        this.targetSelector.addGoal(1, new CreaturesBirdEntity.DefendBabyGoal());
         this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, true));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Cod.class, false));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Salmon.class, false));
@@ -132,7 +148,7 @@ public class SeagullEntity extends CreaturesFlyingBird implements GeoEntity {
     }
 
     public int numVariants() {
-        return 8;
+        return 9;
     }
 
     @Override
@@ -209,6 +225,149 @@ public class SeagullEntity extends CreaturesFlyingBird implements GeoEntity {
 
     public Component getFunFact() {
         return Component.translatable("description.creatures.gull");
+    }
+
+    @Override
+    public void aiStep() {
+        super.aiStep();
+
+        if (this.level().isClientSide()) return;
+
+        if (stealCooldown > 0) {
+            stealCooldown--;
+        }
+        if (pickupCooldown > 0) {
+            pickupCooldown--;
+        }
+
+        // Eat held item after 3 seconds
+        if (!this.getMainHandItem().isEmpty()) {
+            heldFishTicks++;
+            if (heldFishTicks >= 240) {
+                this.playSound(SoundEvents.GENERIC_EAT, 1.0F, 1.2F);
+                this.heal(3.0F);
+                if (this.level() instanceof ServerLevel serverLevel) {
+                    serverLevel.sendParticles(new net.minecraft.core.particles.ItemParticleOption(
+                                    net.minecraft.core.particles.ParticleTypes.ITEM,
+                                    this.getMainHandItem()
+                            ),
+                            this.getX(), this.getY() + this.getBbHeight() * 0.8,
+                            this.getZ(), 8, 0.1, 0.1, 0.1, 0.05);
+                }
+                this.clearHeldItem();
+                heldFishTicks = 0;
+                stealCooldown = STEAL_COOLDOWN_MIN +
+                        this.random.nextInt(STEAL_COOLDOWN_MAX - STEAL_COOLDOWN_MIN);
+            }
+            return; // don't try to steal while already holding something
+        }
+
+        // Only steal if off cooldown
+        if (stealCooldown > 0) return;
+
+        if (CreaturesConfig.bird_stealing.get() && !this.isSleeping() && !this.isBaby()) {
+            List<Player> nearbyPlayers = this.level().getEntitiesOfClass(
+                    Player.class,
+                    this.getBoundingBox().inflate(5.0),
+                    p -> p.getMainHandItem().isEdible() || p.getOffhandItem().isEdible()
+            );
+
+            if (!nearbyPlayers.isEmpty()) {
+                Player victim = nearbyPlayers.get(0);
+                if (victim.isCreative()) return;
+                if (victim.isSpectator()) return;
+                if (!this.level().getGameRules().getBoolean(net.minecraft.world.level.GameRules.RULE_MOBGRIEFING)) return;
+
+                if (this.distanceTo(victim) > 3.0) {
+                    this.getNavigation().moveTo(victim, 1.4);
+                    return;
+                }
+
+
+                stealFrom(victim.getMainHandItem().isEdible()
+                        ? victim.getMainHandItem()
+                        : victim.getOffhandItem(), victim);
+                return;
+            }
+
+        }
+
+
+    }
+
+    private void stealFrom(ItemStack source, LivingEntity victim) {
+        if (source.isEmpty()) return;
+
+        ItemStack stolen = source.split(1);
+        if (stolen.isEmpty()) return;
+
+        this.setHeldItem(stolen);
+        this.setTarget(null);
+        this.getNavigation().moveTo(
+                this.getX() + (this.random.nextFloat() - 0.5) * 25,
+                this.getY() + 10,
+                this.getZ() + (this.random.nextFloat() - 0.5) * 25,
+                1.6
+        );
+
+        if (victim instanceof Player player) {
+            player.displayClientMessage(
+                    Component.translatable("message.creatures.seagull_steal"), true);
+        }
+
+        // Flock aggro — only against players
+        if (victim instanceof Player) {
+            List<SeagullEntity> flock = this.level().getEntitiesOfClass(
+                    SeagullEntity.class,
+                    this.getBoundingBox().inflate(16.0),
+                    s -> s != this && s.getMainHandItem().isEmpty() && s.stealCooldown <= 0
+            );
+            for (SeagullEntity friend : flock) {
+                friend.setTarget(victim);
+            }
+        }
+    }
+
+    private int heldFishTicks = 0;
+
+    public void setHeldItem(ItemStack stack) {
+        this.setItemSlot(EquipmentSlot.MAINHAND, stack);
+        this.setGuaranteedDrop(EquipmentSlot.MAINHAND);
+    }
+
+    public void clearHeldItem() {
+        this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.putInt("StealCooldown", stealCooldown);
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        stealCooldown = tag.getInt("StealCooldown");
+    }
+
+    public List<ItemStack> getAllFoodItems() {
+        return Arrays.stream(FOOD_ITEMS.getItems())
+                .map(ItemStack::copy)
+                .collect(java.util.stream.Collectors.toList());
+    }
+
+
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        boolean result = super.hurt(source, amount);
+        if (result && !this.level().isClientSide() && !this.getMainHandItem().isEmpty()) {
+            this.spawnAtLocation(this.getMainHandItem());
+            this.clearHeldItem();
+            heldFishTicks = 0;
+            pickupCooldown = 200;
+        }
+        return result;
     }
 
 }

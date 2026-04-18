@@ -76,6 +76,7 @@ public class FishNetItem extends Item {
             if (entity instanceof FishBase) {
                 entity.absMoveTo(blockPos.getX() + 0.5D, blockPos.getY(), blockPos.getZ() + 0.5D, context.getRotation(), 0);
                 entity.setUUID(tags.getUUID("UUID"));
+                ((FishBase) entity).setPersistenceRequired();
                 level.addFreshEntity(entity);
 
                 player.setItemInHand(context.getHand(), new ItemStack(this));

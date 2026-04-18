@@ -1,24 +1,21 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -32,14 +29,12 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Sets;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class StorkEntity extends CreaturesFlyingBird implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
@@ -48,25 +43,45 @@ public class StorkEntity extends CreaturesFlyingBird implements GeoEntity {
             1, 1,
             2, 1,
             3, 1,
-            4, 1
+            4, 1,
+            5, 2,
+            6, 2,
+            7, 2,
+            8,3,
+            9,3
     );
     public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
             .put(1, List.of(Region.AFRICA))
             .put(2, List.of(Region.ASIA))
             .put(3, List.of(Region.ASIA))
             .put(4, List.of(Region.NORTH_AMERICA, Region.SOUTH_AMERICA))
+            .put(5, List.of(Region.AFRICA))
+            .put(6, List.of(Region.ASIA))
+            .put(7, List.of(Region.OCEANIA))
+            .put(8, List.of(Region.AFRICA))
+            .put(9, List.of(Region.ASIA))
             .build();
     public static Map<Integer, Component> SPECIES_NAMES = ImmutableMap.of(
             1, Component.translatable("message.creatures.yellowbilledstork"),
             2, Component.translatable("message.creatures.paintedstork"),
             3, Component.translatable("message.creatures.milkystork"),
-            4, Component.translatable("message.creatures.woodstork")
+            4, Component.translatable("message.creatures.woodstork"),
+            5, Component.translatable("message.creatures.saddlebilledstork"),
+            6, Component.translatable("message.creatures.blackneckedstork"),
+            7, Component.translatable("message.creatures.jabirustork"),
+            8, Component.translatable("message.creatures.africanopenbill"),
+            9, Component.translatable("message.creatures.asianopenbill")
     );
     public static final Map<Integer, String> SCIENTIFIC_NAMES = ImmutableMap.<Integer, String>builder()
             .put(1, "Mycteria ibis")
             .put(2, "Mycteria leucocephala")
             .put(3, "Mycteria cinerea")
             .put(4, "Mycteria americana")
+            .put(5, "Ephippiorhynchus senegalensis")
+            .put(6, "Ephippiorhynchus asiaticus")
+            .put(7, "Jabiru mycteria")
+            .put(8, "Anastomus lamelligerus")
+            .put(9, "Anastomus oscitans")
             .build();
 
     public StorkEntity(EntityType<? extends StorkEntity> p_i50251_1_, Level p_i50251_2_) {
@@ -106,7 +121,7 @@ public class StorkEntity extends CreaturesFlyingBird implements GeoEntity {
     }
 
     public int numVariants() {
-        return 4;
+        return 9;
     }
 
     @Override
@@ -135,6 +150,9 @@ public class StorkEntity extends CreaturesFlyingBird implements GeoEntity {
 
     public SoundEvent getAmbientSound() {
         if (!this.isSleeping()) {
+            if (this.getModelNumberFromVariant() == 2) {
+                return CreaturesSound.JABIRU_AMBIENT.get();
+            }
         return CreaturesSound.STORK_AMBIENT.get(); } else {
             return null;
         }
@@ -181,13 +199,48 @@ public class StorkEntity extends CreaturesFlyingBird implements GeoEntity {
     }
 
     public int getIUCNStatus() {
+        if (this.getVariant() == 5) {
+            return 1;
+        }
         if (this.getVariant() == 3) {
             return 3;
         } return super.getIUCNStatus();
     }
 
+    public boolean isSexuallyDimorphic() {
+        if (this.getVariant() == 5 || this.getVariant() == 6 || this.getVariant() == 8 || this.getVariant() == 9) {
+            return true;
+        }
+        return false;
+    }
+
+    public String getGenderString2() {
+        if (this.isSexuallyDimorphic()) {
+            return super.getGenderString();
+        } return "";
+    }
+
     public String getScientificName() {
         return SCIENTIFIC_NAMES.get(this.getVariant());
+    }
+
+    public Component getFunFact() {
+        if (this.getVariant() == 5) {
+            return Component.translatable("description.creatures.saddlebilledstork");
+        } if (this.getVariant() == 6) {
+            return Component.translatable("description.creatures.blackneckedstork");
+        } if (this.getVariant() == 7) {
+            return Component.translatable("description.creatures.jabirustork");
+        } if (this.getVariant() == 8 || this.getVariant() == 9) {
+            return Component.translatable("description.creatures.openbillstork");
+        }
+        return Component.translatable("description.creatures.stork");
+    }
+
+    public List<ItemStack> getAllFoodItems() {
+        return Arrays.stream(FOOD_ITEMS.getItems())
+                .map(ItemStack::copy)
+                .collect(java.util.stream.Collectors.toList());
     }
 
 }

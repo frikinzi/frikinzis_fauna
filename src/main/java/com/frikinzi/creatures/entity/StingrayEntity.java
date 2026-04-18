@@ -427,4 +427,18 @@ public int getMaxSchoolSize() {
                 .rotateY((float) Math.toRadians(160))
                 .rotateX((float) Math.toRadians(45));
     }
+
+    public int getScaleforGUI() {
+        if (this.isBaby()) {
+            return (int)(super.getScaleforGUI() *4f);
+
+        }
+        return super.getScaleforGUI();
+    }
+
+
+    public int getYOffsetForGUI() {
+        return -20;
+    }
+
 }

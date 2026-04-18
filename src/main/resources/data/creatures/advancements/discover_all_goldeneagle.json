@@ -1,0 +1,34 @@
+{
+  "parent": "creatures:birder",
+  "display": {
+    "icon": {
+      "item": "creatures:golden_eagle_spawn_egg"
+    },
+    "title": {
+      "translate": "advancements.creatures.discover_all_golden_eagle.title"
+    },
+    "description": {
+      "translate": "advancements.creatures.discover_all_golden_eagle.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "discover_all": {
+      "trigger": "creatures:discovered_all_variants",
+      "conditions": {
+        "entity_key": "goldeneagle"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "discover_all"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  }
+}

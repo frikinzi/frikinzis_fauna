@@ -12,13 +12,13 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-// Stores Set<String> of discovered birds, e.g. "lovebird_3_f" (entity type + variant + gender)
+// Stores Set<String> of discovered birds, e.g. lovebird_3_f (entity type + variant + gender)
 public class FieldGuideCapability {
     public static final Capability<FieldGuideCapability> CAPABILITY = CapabilityManager.get(new CapabilityToken<>(){});
     private final Set<String> discovered = new HashSet<>();
 
     public boolean discover(String key) {
-        System.out.println(discovered);
+        //System.out.println(discovered);
         return discovered.add(key);
     }
 
@@ -50,9 +50,11 @@ public class FieldGuideCapability {
     }
 
     public Set<String> getDiscoveredGenders(String entityKey, int variant) {
+        String prefix = entityKey + "_" + variant + "_";
         return discovered.stream()
-                .filter(k -> k.startsWith(entityKey + "_" + variant + "_"))
-                .map(k -> k.split("_")[2])
+                .filter(k -> k.startsWith(prefix))
+                .map(k -> k.substring(prefix.length()))
+                .filter(g -> !g.isEmpty())
                 .collect(Collectors.toSet());
     }
 
@@ -65,8 +67,4 @@ public class FieldGuideCapability {
         this.discovered.addAll(entries);
     }
 
-    public int getFirstDiscoveredVariant(String entityKey) {
-        return getDiscoveredVariants(entityKey).stream()
-                .min(Integer::compareTo).orElse(1);
-    }
 }

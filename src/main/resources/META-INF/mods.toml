@@ -12,8 +12,8 @@ showAsResourcePack=false
   updateJSONURL="https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json"
   displayURL="https://minecraftforge.net"
   logoFile="creatures-logo.png"
-  credits="Kiew is the best."
-  authors="Author"
+  credits="Kiew is the best. See full list on wiki"
+  authors="Frikinzi (coder and artist), Kiew (artist)"
   description='''
 Frikinzi's Fauna adds a plethora of avian and aquatic wildlife to your Minecraft world.
   '''

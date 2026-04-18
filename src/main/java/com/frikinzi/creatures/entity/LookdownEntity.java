@@ -119,4 +119,9 @@ public int getMaxSchoolSize() {
     public int numVariants() {
         return 2;
     }
+
+    public Component getFunFact() {
+        return Component.translatable("description.creatures.lookdown");
+    }
+
 }

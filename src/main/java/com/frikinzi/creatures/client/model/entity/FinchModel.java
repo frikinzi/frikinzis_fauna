@@ -20,17 +20,17 @@ public class FinchModel extends GeoModel<FinchEntity> {
     public ResourceLocation getTextureResource(FinchEntity object)
     {
         if (object.isFlying() || !object.onGround()) {
-            if (object.getVariant() == 7 || object.getVariant() == 2) {
+            if (object.isSexuallyDimorphic()) {
                 return new ResourceLocation(Creatures.MODID, "textures/entity/finch/finch" + object.getVariant() + object.getGenderName() + "fly.png");
             }
             return new ResourceLocation(Creatures.MODID, "textures/entity/finch/finch" + object.getVariant() + "fly.png");
         } else if (object.isSleeping()) {
-            if (object.getVariant() == 7 || object.getVariant() == 2) {
+            if (object.isSexuallyDimorphic()) {
                 return new ResourceLocation(Creatures.MODID, "textures/entity/finch/finch" + object.getVariant() + object.getGenderName() + "sleep.png");
             }
             return new ResourceLocation(Creatures.MODID, "textures/entity/finch/finch" + object.getVariant() + "sleep.png");
         }
-        if (object.getVariant() == 7 || object.getVariant() == 2) {
+        if (object.isSexuallyDimorphic()) {
             return new ResourceLocation(Creatures.MODID, "textures/entity/finch/finch" + object.getVariant() + object.getGenderName() + ".png");
         }
         return new ResourceLocation(Creatures.MODID, "textures/entity/finch/finch" + object.getVariant() + ".png");

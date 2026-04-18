@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:dried_kelp"
+        },
+        {
+            "item": "creatures:item_trout"
+        }
+    ],
+    "result": {
+        "item": "creatures:trout_sashimi"
+    }
+}

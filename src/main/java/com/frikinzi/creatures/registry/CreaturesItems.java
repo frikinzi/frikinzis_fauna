@@ -44,10 +44,12 @@ public class CreaturesItems {
     public static final RegistryObject<Item> MANTIS_SHRIMP_BUCKET = ITEMS.register("bucket_of_mantis_shrimp", () -> new CreaturesFishBucket(() -> CreaturesEntities.MANTIS_SHRIMP.get(), () -> Fluids.WATER, new Item.Properties()));
     public static final RegistryObject<Item> TRUMPETFISH_BUCKET = ITEMS.register("bucket_of_trumpetfish", () -> new CreaturesFishBucket(() -> CreaturesEntities.TRUMPETFISH.get(), () -> Fluids.WATER, new Item.Properties()));
     public static final RegistryObject<Item> PARROTFISH_BUCKET = ITEMS.register("bucket_of_parrotfish", () -> new CreaturesFishBucket(() -> CreaturesEntities.PARROTFISH.get(), () -> Fluids.WATER, new Item.Properties()));
+    public static final RegistryObject<Item> TETRA_BUCKET = ITEMS.register("bucket_of_tetra", () -> new CreaturesFishBucket(() -> CreaturesEntities.TETRA.get(), () -> Fluids.WATER, new Item.Properties()));
 
     public static final RegistryObject<Item> FF_GUIDE = ITEMS.register("ff_guide", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> GUPPY_TAIL = ITEMS.register("guppy_tail",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> FISHING_BIN = ITEMS.register("fishing_bin", () -> new FishStorageBinItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> GOLDFISH = ITEMS.register("item_goldfish",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CRAB_PINCERS = ITEMS.register("crab_pincers",
@@ -134,6 +136,10 @@ public class CreaturesItems {
     public static final RegistryObject<Item> FRIGATE_EGG = ITEMS.register("frigate_egg", () -> new EggItem(i++, (new Item.Properties()).stacksTo(1)));
     public static final RegistryObject<Item> STILT_EGG = ITEMS.register("stilt_egg", () -> new EggItem(i++, (new Item.Properties()).stacksTo(1)));
     public static final RegistryObject<Item> LITTLEPENGUIN_EGG = ITEMS.register("littlepenguin_egg", () -> new EggItem(i++, (new Item.Properties()).stacksTo(1)));
+    public static final RegistryObject<Item> MARABOU_EGG = ITEMS.register("marabou_egg", () -> new EggItem(i++, (new Item.Properties()).stacksTo(1)));
+    public static final RegistryObject<Item> CRANE_EGG = ITEMS.register("crane_egg", () -> new EggItem(i++, (new Item.Properties()).stacksTo(1)));
+    public static final RegistryObject<Item> COCKOFTHEROCK_EGG = ITEMS.register("cockoftherock_egg", () -> new EggItem(i++, (new Item.Properties()).stacksTo(1)));
+
     public static final RegistryObject<Item> MEALWORMS = ITEMS.register("mealworms",() -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(1).saturationMod(0.3F).build())));
     public static final RegistryObject<Item> GOURAMI = ITEMS.register("raw_gourami",() -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(1).saturationMod(0.3F).build())));
     public static final RegistryObject<Item> RAW_AROWANA = ITEMS.register("raw_arowana",() -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).build())));
@@ -164,6 +170,9 @@ public class CreaturesItems {
     public static final RegistryObject<Item> RAW_SQUID = ITEMS.register("raw_squid", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationMod(0.3F).build())));
     public static final RegistryObject<Item> CALAMARI = ITEMS.register("calamari", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationMod(0.6F).build())));
     public static final RegistryObject<Item> RED_SNAPPER_SASHIMI = ITEMS.register("red_snapper_sashimi", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationMod(0.4F).build())));
+    public static final RegistryObject<Item> TROUT_SASHIMI = ITEMS.register("trout_sashimi", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationMod(0.4F).build())));
+    public static final RegistryObject<Item> SWORDFISH_SASHIMI = ITEMS.register("swordfish_sashimi", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(0.5F).build())));
+    public static final RegistryObject<Item> SQUID_SASHIMI = ITEMS.register("squid_sashimi", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationMod(0.4F).build())));
     public static final RegistryObject<Item> RAW_EDIBLECRAB = ITEMS.register("ediblecrab", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationMod(0.3F).build())));
     public static final RegistryObject<Item> COOKED_EDIBLECRAB = ITEMS.register("cooked_ediblecrab", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationMod(0.6F).build())));
     public static final RegistryObject<Item> RAW_BLUECRAB = ITEMS.register("raw_bluecrab", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationMod(0.3F).build())));
@@ -275,6 +284,9 @@ public class CreaturesItems {
     public static final RegistryObject<ForgeSpawnEggItem> LITTLE_PENGUIN_SPAWN_EGG = ITEMS.register("littlepenguin_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.LITTLE_PENGUIN, 1855087, 16382200));
     public static final RegistryObject<ForgeSpawnEggItem> EDIBLE_CRAB_SPAWN_EGG = ITEMS.register("ediblecrab_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.EDIBLE_CRAB, 5646361, 460551));
     public static final RegistryObject<ForgeSpawnEggItem> MARABOU_SPAWN_EGG = ITEMS.register("marabou_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.MARABOU, 6318976, 13866302));
+    public static final RegistryObject<ForgeSpawnEggItem> CRANE_SPAWN_EGG = ITEMS.register("crane_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.CRANE, 16053233, 12208446));
+    public static final RegistryObject<ForgeSpawnEggItem> COCK_OF_THE_ROCK_SPAWN_EGG = ITEMS.register("cockoftherock_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.COCK_OF_THE_ROCK, 16734976, 1183759));
+    public static final RegistryObject<ForgeSpawnEggItem> TETRA_SPAWN_EGG = ITEMS.register("tetra_spawn_egg", () -> new ModSpawnEggVariants(CreaturesEntities.TETRA, 12697482, 11801347));
 
     public static final RegistryObject<CreativeModeTab> FRIKINZIS_TAB = TABS.register("creaturesitems", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup." + Creatures.MODID + ".creaturesitems"))
@@ -305,6 +317,7 @@ public class CreaturesItems {
                 entries.accept(CreaturesItems.MANTIS_SHRIMP_BUCKET.get());
                 entries.accept(CreaturesItems.TRUMPETFISH_BUCKET.get());
                 entries.accept(CreaturesItems.PARROTFISH_BUCKET.get());
+                entries.accept(CreaturesItems.TETRA_BUCKET.get());
 
                 entries.accept(CreaturesItems.GUPPY_TAIL.get());
                 entries.accept(CreaturesItems.GOLDFISH.get());
@@ -314,6 +327,7 @@ public class CreaturesItems {
                 entries.accept(CreaturesItems.RAVEN_FEATHER.get());
                 entries.accept(CreaturesItems.PARROT_FEATHER.get());
                 entries.accept(CreaturesItems.FF_GUIDE.get());
+                entries.accept(CreaturesItems.FISHING_BIN.get());
                 entries.accept(CreaturesItems.PEAFOWL_FEATHER.get());
                 entries.accept(CreaturesItems.BIRD_CARRIER.get());
                 entries.accept(CreaturesItems.CRITTER_KEEPER.get());
@@ -351,6 +365,9 @@ public class CreaturesItems {
                 entries.accept(CreaturesItems.RAW_SQUID.get());
                 entries.accept(CreaturesItems.CALAMARI.get());
                 entries.accept(CreaturesItems.RED_SNAPPER_SASHIMI.get());
+                entries.accept(CreaturesItems.TROUT_SASHIMI.get());
+                entries.accept(CreaturesItems.SWORDFISH_SASHIMI.get());
+                entries.accept(CreaturesItems.SQUID_SASHIMI.get());
                 entries.accept(CreaturesItems.RAW_EDIBLECRAB.get());
                 entries.accept(CreaturesItems.COOKED_EDIBLECRAB.get());
                 entries.accept(CreaturesItems.RAW_BLUECRAB.get());
@@ -425,6 +442,10 @@ public class CreaturesItems {
                 entries.accept(CreaturesItems.FRIGATE_EGG.get());
                 entries.accept(CreaturesItems.STILT_EGG.get());
                 entries.accept(CreaturesItems.LITTLEPENGUIN_EGG.get());
+                entries.accept(CreaturesItems.MARABOU_EGG.get());
+                entries.accept(CreaturesItems.CRANE_EGG.get());
+                entries.accept(CreaturesItems.COCKOFTHEROCK_EGG.get());
+
                 entries.accept(Item.BY_BLOCK.get(CreaturesBlocks.TOY1.get()));
                 entries.accept(Item.BY_BLOCK.get(CreaturesBlocks.TOY2.get()));
                 entries.accept(Item.BY_BLOCK.get(CreaturesBlocks.TOY3.get()));
@@ -537,6 +558,9 @@ public class CreaturesItems {
                 entries.accept(CreaturesItems.LITTLE_PENGUIN_SPAWN_EGG.get());
                 entries.accept(CreaturesItems.EDIBLE_CRAB_SPAWN_EGG.get());
                 entries.accept(CreaturesItems.MARABOU_SPAWN_EGG.get());
+                entries.accept(CreaturesItems.CRANE_SPAWN_EGG.get());
+                entries.accept(CreaturesItems.COCK_OF_THE_ROCK_SPAWN_EGG.get());
+                entries.accept(CreaturesItems.TETRA_SPAWN_EGG.get());
 
             })
             .build());

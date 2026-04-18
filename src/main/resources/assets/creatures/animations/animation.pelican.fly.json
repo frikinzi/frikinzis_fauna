@@ -3,7 +3,7 @@
 	"animations": {
 		"openmouth": {
 			"loop": "hold_on_last_frame",
-			"animation_length": 0.79167,
+			"animation_length": 0.7917,
 			"bones": {
 				"bone8": {
 					"rotation": {
@@ -18,7 +18,7 @@
 				"bone10": {
 					"rotation": {
 						"0.0": {
-							"vector": [-7.5, 0, 0]
+							"vector": [-22.5, 0, 0]
 						},
 						"0.1667": {
 							"vector": [-7.5, 0, 0]
@@ -27,7 +27,7 @@
 							"vector": [-25, 0, 0]
 						},
 						"0.7917": {
-							"vector": [-25, 0, 0]
+							"vector": [-12.5, 0, 0]
 						}
 					},
 					"position": {
@@ -37,7 +37,7 @@
 				"bone9": {
 					"rotation": {
 						"0.0": {
-							"vector": [0, 0, 0]
+							"vector": [-10, 0, 0]
 						},
 						"0.1667": {
 							"vector": [0, 0, 0]
@@ -119,5 +119,6 @@
 				}
 			}
 		}
-	}
+	},
+	"geckolib_format_version": 2
 }

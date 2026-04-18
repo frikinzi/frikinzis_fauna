@@ -4,6 +4,8 @@ import com.frikinzi.creatures.Creatures;
 import com.frikinzi.creatures.entity.base.AbstractCrabBase;
 import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.FishBase;
+import com.frikinzi.creatures.entity.egg.CreaturesRoeEntity;
+import com.frikinzi.creatures.entity.egg.EggEntity;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.Font;
@@ -67,13 +69,23 @@ public class CreaturesGUI extends Screen {
             font.drawInBatch(bird.getSpeciesName(), offLeft, 110 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
             Component height = Component.translatable("gui.height").withStyle(ChatFormatting.BOLD);
             String height_s = bird.getHeightString();
-            font.drawInBatch(ChatFormatting.BOLD + height.getString() + " " + height_s, offLeft, 125 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            font.drawInBatch(ChatFormatting.BOLD + height.getString() + " " + ChatFormatting.RESET + height_s, offLeft, 125 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
             Component food = Component.translatable("gui.food").withStyle(ChatFormatting.BOLD);
             String s6 = ChatFormatting.BOLD + food.getString() + " ";
             font.drawInBatch(s6, offLeft, 140 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
-            matrices.renderItem(bird.getFoodItem(), offLeft + 30, 140 + offTop);
-            Component IUCN1 = Component.translatable("gui.iucn").withStyle(ChatFormatting.BOLD);;
-            font.drawInBatch(IUCN1.getString(), offLeft, 160 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+           //matrices.renderItem(bird.getFoodItem(), offLeft + 30, 140 + offTop);
+
+// Render all food items in a row
+            List<ItemStack> foodItems = bird.getAllFoodItems();
+            for (int i = 0; i < foodItems.size(); i++) {
+                matrices.renderItem(foodItems.get(i), offLeft + 30 + (i * 18), 140 + offTop);
+            }
+//            Component IUCN1 = Component.translatable("gui.iucn").withStyle(ChatFormatting.BOLD);;
+//            font.drawInBatch(IUCN1.getString(), offLeft, 160 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
+            font.drawInBatch(ChatFormatting.BOLD + Component.translatable("gui.iucn").getString(),
+                    offLeft, 160 + offTop, 0X000000, false,
+                    matrices.pose().last().pose(), matrices.bufferSource(),
+                    Font.DisplayMode.NORMAL, 0, 15728880);
             Component IUCN = bird.getIUCNText();
             font.drawInBatch(bird.getIUCNColor() + IUCN.getString(), offLeft+30, 160 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
             Component funfact = bird.getFunFact();
@@ -139,6 +151,22 @@ public class CreaturesGUI extends Screen {
             Component funfact = fish.getFunFact();
             drawSplitText(font, funfact, 114, matrices, offLeft + 160, 120 + offTop);
 
+        }
+        if (entity instanceof EggEntity egg) {
+            ItemStack item = egg.getEggItem();
+
+            matrices.renderItem(item, offLeft, offTop + 107);
+
+            matrices.drawString(font, item.getDisplayName(), offLeft + 20, offTop + 112, 0x3D2B1F, false);
+
+            matrices.drawString(font,
+                    Component.translatable("gui.hatchtime").getString() + " " + egg.hatchTime,
+                    offLeft, offTop + 80, 0x3D2B1F, false);
+
+        } else if (entity instanceof CreaturesRoeEntity roe) {
+            matrices.drawString(font,
+                    Component.translatable("gui.hatchtime").getString() + " " + roe.getHatchTime(),
+                    offLeft, offTop + 80, 0x3D2B1F, false);
         }
         if (entity instanceof LivingEntity) {
             Font font = this.getMinecraft().font;

@@ -16,25 +16,25 @@
   },
   "spawners": [
     {
-      "type": "creatures:banded_penguin",
+      "type": "creatures:bandedpenguin",
       "weight": 10,
       "minCount": 3,
       "maxCount": 5
     },
     {
-      "type": "creatures:yellow_eyed_penguin",
+      "type": "creatures:yelloweyedpenguin",
       "weight": 10,
       "minCount": 3,
       "maxCount": 5
     },
     {
-      "type": "creatures:crested_penguin",
+      "type": "creatures:crestedpenguin",
       "weight": 10,
       "minCount": 3,
       "maxCount": 5
     },
     {
-      "type": "creatures:little_penguin",
+      "type": "creatures:littlepenguin",
       "weight": 10,
       "minCount": 3,
       "maxCount": 5

@@ -31,6 +31,13 @@ public class StorkRenderer extends GeoEntityRenderer<StorkEntity> {
             multiplier = 1.0F;
         }
         stack.scale(0.8F * multiplier, 0.8F * multiplier, 0.8F * multiplier);
+        if (animatable.getModelNumberFromVariant() == 2) {
+            stack.scale(0.7F, 0.7F, 0.7F);
+        } else {
+            if (animatable.isBaby()) {
+                stack.scale(0.7F, 0.7F, 0.7F);
+            }
+        }
         super.defaultRender(stack, animatable, bufferSource, renderType, buffer, yaw, partialTick, packedLight);
     }
 }

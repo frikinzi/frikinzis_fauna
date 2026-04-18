@@ -1,0 +1,21 @@
+{
+  "parent": "creatures:birder",
+  "display": {
+    "icon": { "item": "creatures:toyh" },
+    "title": { "translate": "advancements.creatures.discover_all_corvids.title" },
+    "description": { "translate": "advancements.creatures.discover_all_corvids.description" },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": { "experience": 300 },
+  "criteria": {
+    "raven":       { "trigger": "minecraft:impossible" },
+    "magpie":  { "trigger": "minecraft:impossible" }
+  },
+  "requirements": [
+    ["raven"],
+    ["magpie"]
+  ]
+}

@@ -35,4 +35,6 @@ public class CreaturesLootTables {
     public static final ResourceLocation LUNGFISH = new ResourceLocation("creatures", "entities/lungfish");
     public static final ResourceLocation PARROTFISH = new ResourceLocation("creatures", "entities/parrotfish");
     public static final ResourceLocation ROCKCRAB = new ResourceLocation("creatures", "entities/rockcrab");
+    public static final ResourceLocation RAVEN_GIFT =
+            new ResourceLocation("creatures", "gameplay/raven_gift");
 }

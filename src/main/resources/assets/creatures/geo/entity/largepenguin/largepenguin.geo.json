@@ -137,6 +137,11 @@
 					]
 				},
 				{
+					"name": "RightHandItem",
+					"parent": "beak",
+					"pivot": [0, 24.48277, -7.52554]
+				},
+				{
 					"name": "emperor",
 					"parent": "HEAD",
 					"pivot": [-0.97729, 26.71305, -0.34537],

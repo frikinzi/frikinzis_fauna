@@ -27,16 +27,14 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.LookControl;
 import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.ShoulderRidingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -51,9 +49,7 @@ import net.minecraft.world.phys.Vec3;
 import org.joml.Quaternionf;
 
 import javax.annotation.Nullable;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class CreaturesBirdEntity extends ShoulderRidingEntity {
@@ -63,7 +59,6 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
     private static final EntityDataAccessor<Integer> WANDERING = SynchedEntityData.defineId(CreaturesBirdEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> GROOMING = SynchedEntityData.defineId(CreaturesBirdEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(CreaturesBirdEntity.class, EntityDataSerializers.BYTE);
-    private static final Item POISONOUS_FOOD = Items.COOKIE;
     public Set<Item> TAME_FOOD = Sets.newHashSet(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS, Items.TORCHFLOWER_SEEDS, Items.PITCHER_POD);
     public float flapSpeed;
     private float nextFlap = 1.0F;
@@ -74,6 +69,9 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
     private int schoolSize = 1;
     public int sitProgress;
     public int ticksToSit;
+    public int pickupCooldown = 0;
+    private boolean variantSynced = false;
+    private boolean isNaturalSpawn = false;
 
     public CreaturesBirdEntity(EntityType<? extends CreaturesBirdEntity> p_29362_, Level p_29363_) {
         super(p_29362_, p_29363_);
@@ -83,20 +81,28 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
 
     @Nullable
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_29389_, DifficultyInstance p_29390_, MobSpawnType p_29391_, @Nullable SpawnGroupData p_29392_, @Nullable CompoundTag p_29393_) {
-        if (p_29391_ == MobSpawnType.SPAWN_EGG) { //spawn egg variants should be completely random, not based on biome or anything
-            this.setVariant(this.random.nextInt(numVariants()) + 1);
-        } else {
-            this.setVariant(this.methodOfDeterminingVariant());
-        }
-        this.setGender(this.random.nextInt(2));
+        if (p_29392_ instanceof CreaturesBirdEntity.BirdData birdData) {
+            this.setVariant(birdData.variant);
+            this.setSubVariant(this.getSubVariantBasedOnVariant(birdData.variant));
+        } else if (p_29391_ == MobSpawnType.SPAWN_EGG) {
+            int var = this.random.nextInt(numVariants()) + 1;
+            //var = this.methodOfDeterminingVariant();
 
+            this.setVariant(var);
+            this.setSubVariant(this.getSubVariantBasedOnVariant(var));
+        } else {
+            int var = this.methodOfDeterminingVariant();
+            this.setVariant(var);
+            this.setSubVariant(this.getSubVariantBasedOnVariant(var));
+            p_29392_ = new CreaturesBirdEntity.BirdData(var);
+        }
+
+        this.setGender(this.random.nextInt(2));
         float f = (float)(this.random.nextGaussian() * CreaturesConfig.height_standard_deviation.get() + CreaturesConfig.height_base_multiplier.get());
         this.setHeightMultiplier(f);
-        if (p_29392_ == null) {
-            p_29392_ = new AgeableMob.AgeableMobGroupData(false);
-        }
 
-        return super.finalizeSpawn(p_29389_, p_29390_, p_29391_, p_29392_, p_29393_);
+        super.finalizeSpawn(p_29389_, p_29390_, p_29391_, p_29392_, p_29393_);
+        return p_29392_;
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -144,12 +150,20 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
     protected void checkFallDamage(double p_29370_, boolean p_29371_, BlockState p_29372_, BlockPos p_29373_) {
     }
 
-    public boolean canMate(Animal p_30392_) {
+    public boolean canMate(CreaturesBirdEntity p_30392_) {
+        if (this.canTame()) {
+            if (!this.isTame()) {
+                return false;
+            }
+        }
         if (p_30392_ == this) {
             return false;
         } else if (!(p_30392_.getClass() == this.getClass())) {
             return false;
         } else {
+            if (p_30392_.getGender() == this.getGender()) {
+                return false;
+            }
             return this.isInLove() && p_30392_.isInLove();
         }
     }
@@ -169,19 +183,7 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
     }
 
     public static SoundEvent getAmbient(Level p_218239_, RandomSource p_218240_) {
-        return SoundEvents.PARROT_AMBIENT;
-    }
-
-    protected SoundEvent getHurtSound(DamageSource p_29437_) {
-        return SoundEvents.PARROT_HURT;
-    }
-
-    protected SoundEvent getDeathSound() {
-        return SoundEvents.PARROT_DEATH;
-    }
-
-    protected void playStepSound(BlockPos p_29419_, BlockState p_29420_) {
-        this.playSound(SoundEvents.PARROT_STEP, 0.15F, 1.0F);
+        return null;
     }
 
     protected boolean isFlapping() {
@@ -189,7 +191,6 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
     }
 
     protected void onFlap() {
-        //this.playSound(SoundEvents.PARROT_FLY, 0.15F, 1.0F);
         this.nextFlap = this.flyDist + this.flapSpeed / 2.0F;
     }
 
@@ -266,7 +267,7 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
     }
 
     public boolean isFlying() {
-        return !this.onGround();
+        return !this.onGround() || this.isInWater();
     }
 
     public Vec3 getLeashOffset() {
@@ -278,9 +279,27 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
     }
 
     public int methodOfDeterminingVariant() {
-        return this.random.nextInt(numVariants()) + 1;
-    }
+        // Weight per IUCN status. worse status = rarer = lower spawn weight
+        // Status: 0=LC, 1=NT, 2=VU, 3=EN, 4=CR, 5=EW, 6=EX, 7=DD
+        int[] iucnWeights = { 100, 60, 30, 15, 5, 0, 0, 50 };
 
+        // Build weighted pool across all variants
+        List<Integer> pool = new ArrayList<>();
+        for (int v = 1; v <= numVariants(); v++) {
+            this.setVariant(v);
+            int status = this.getIUCNStatus();
+            int weight = (status >= 0 && status < iucnWeights.length) ? iucnWeights[status] : 50;
+            for (int w = 0; w < weight; w++) {
+                pool.add(v);
+            }
+        }
+
+        if (pool.isEmpty()) {
+            return this.random.nextInt(numVariants()) + 1;
+        }
+
+        return pool.get(this.random.nextInt(pool.size()));
+    }
     public boolean isFollower() {
         return this.leader != null && this.leader.isAlive();
     }
@@ -318,6 +337,22 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
             if (list.size() <= 1) {
                 this.schoolSize = 1;
             }
+        }
+
+        if (!this.level().isClientSide && !variantSynced && isNaturalSpawn && this.tickCount == 2) {
+            variantSynced = true;
+            List<? extends CreaturesBirdEntity> nearby = this.level().getEntitiesOfClass(
+                    this.getClass(),
+                    this.getBoundingBox().inflate(8.0D),
+                    e -> e != this
+            );
+            if (!nearby.isEmpty()) {
+                int groupVariant = nearby.get(0).getVariant();
+                this.setVariant(groupVariant);
+                this.setSubVariant(this.getSubVariantBasedOnVariant(groupVariant));
+            }
+        } else if (!isNaturalSpawn) {
+            variantSynced = true;
         }
 
     }
@@ -586,9 +621,6 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
             }
             return InteractionResult.SUCCESS;
         }
-        if (itemstack.getItem() == CreaturesItems.BIRD_CARRIER.get()) {
-            return InteractionResult.SUCCESS;
-        }
         if (!this.isTame() && this.isFood(itemstack) && this.canTame()) {
             if (!p_29414_.getAbilities().instabuild) {
                 itemstack.shrink(1);
@@ -608,23 +640,6 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
             }
 
             return InteractionResult.sidedSuccess(this.level().isClientSide);
-        } else if (itemstack.is(POISONOUS_FOOD)) {
-            if (!p_29414_.getAbilities().instabuild) {
-                itemstack.shrink(1);
-            }
-
-            this.addEffect(new MobEffectInstance(MobEffects.POISON, 900));
-            if (p_29414_.isCreative() || !this.isInvulnerable()) {
-                this.hurt(this.damageSources().playerAttack(p_29414_), Float.MAX_VALUE);
-            }
-
-            return InteractionResult.sidedSuccess(this.level().isClientSide);
-        } else if (!this.isFlying() && this.isTame() && this.isOwnedBy(p_29414_)) {
-            if (!this.level().isClientSide) {
-                this.setOrderedToSit(!this.isOrderedToSit());
-            }
-
-            return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
         else if (itemstack.getItem() == Items.STICK && this.isTame() && this.getOwner() == p_29414_) {
             if (this.isWandering() == 0) {
@@ -633,13 +648,20 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
                     this.getOwner().sendSystemMessage(i);
                 }
                 this.setWandering(1);
-            } else {
+            }
+            else {
                 if (this.level().isClientSide) {
                     Component i = Component.translatable("message.follow");
                     this.getOwner().sendSystemMessage(i);
                 }
                 this.setWandering(0);
             }
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
+        } else if (!this.isFlying() && this.isTame() && this.isOwnedBy(p_29414_) && !this.isFood(itemstack)) {
+            if (!this.level().isClientSide) {
+                this.setOrderedToSit(!this.isOrderedToSit());
+            }
+
             return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
 
@@ -757,6 +779,58 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
         float h = this.getBbHeight();
         int scale = (int)(20f / h);
         return scale;
+    }
+
+    public List<ItemStack> getAllFoodItems() {
+        return List.of(getFoodItem());
+    }
+
+    public int getYOffsetForGUI() {
+        return 0;
+    }
+
+    public class DefendBabyGoal extends NearestAttackableTargetGoal<LivingEntity> {
+        public DefendBabyGoal() {
+            super(CreaturesBirdEntity.this, LivingEntity.class, 5, true, true, LivingEntity::attackable);
+        }
+
+        @Override
+        public boolean canUse() {
+            if (!CreaturesBirdEntity.this.isBaby() && !CreaturesBirdEntity.this.isTame()) {
+                if (super.canUse()) {
+                    for (CreaturesBirdEntity birdEntity : CreaturesBirdEntity.this.level().getEntitiesOfClass(
+                            CreaturesBirdEntity.class,
+                            CreaturesBirdEntity.this.getBoundingBox().inflate(4.0D, 4.0D, 4.0D))) {
+                        if (birdEntity.isBaby() && birdEntity.getClass() == CreaturesBirdEntity.this.getClass()) {
+                            if (this.targetMob.getClass() == CreaturesBirdEntity.this.getClass()
+                                    || this.targetMob.getClass() == EggEntity.class
+                                    || this.targetMob.isBaby()) {
+                                return false;
+                            }
+                            return true;
+                        }
+                    }
+                    for (EggEntity eggEntity : CreaturesBirdEntity.this.level().getEntitiesOfClass(
+                            EggEntity.class,
+                            CreaturesBirdEntity.this.getBoundingBox().inflate(3.0D, 2.0D, 3.0D))) {
+                        if (eggEntity.getSpecies() == ModEventSubscriber.getBirdEntityMap().inverse().get(CreaturesBirdEntity.this.getType())) {
+                            if (this.targetMob.getClass() == CreaturesBirdEntity.this.getClass()
+                                    || this.targetMob.isBaby()
+                                    || this.targetMob.getClass() == EggEntity.class) {
+                                return false;
+                            }
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        @Override
+        protected double getFollowDistance() {
+            return super.getFollowDistance() * 0.1D;
+        }
     }
 
 }

@@ -2,6 +2,7 @@ package com.frikinzi.creatures.client.renderer.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.client.model.entity.SkuaModel;
+import com.frikinzi.creatures.client.renderer.layer.SkuaHeldItemLayer;
 import com.frikinzi.creatures.entity.SkuaEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -16,6 +17,7 @@ public class SkuaRenderer extends GeoEntityRenderer<SkuaEntity> {
     public SkuaRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new SkuaModel());
         this.shadowRadius = 0.4F;
+        this.addRenderLayer(new SkuaHeldItemLayer(this));
     }
 
     @Override

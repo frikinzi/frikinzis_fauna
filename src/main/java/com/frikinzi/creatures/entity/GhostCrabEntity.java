@@ -29,6 +29,8 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class GhostCrabEntity extends AbstractCrabBase implements GeoEntity {
@@ -160,4 +162,15 @@ public class GhostCrabEntity extends AbstractCrabBase implements GeoEntity {
     public int getIUCNStatus() {
         return -1;
     }
+
+    public Component getFunFact() {
+        return Component.translatable("description.creatures.ghostcrab");
+    }
+
+    public List<ItemStack> getAllFoodItems() {
+        return Arrays.stream(FOOD_ITEMS.getItems())
+                .map(ItemStack::copy)
+                .collect(java.util.stream.Collectors.toList());
+    }
+
 }

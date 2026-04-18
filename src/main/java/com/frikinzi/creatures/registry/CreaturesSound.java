@@ -93,6 +93,11 @@ public class CreaturesSound {
     public static RegistryObject<SoundEvent> STILT_HURT = registerSound("entity.stilt.stilt_hurt");
     public static RegistryObject<SoundEvent> LITTLE_PENGUIN = registerSound("entity.littlepenguin.littlepenguin_ambient");
     public static RegistryObject<SoundEvent> MARABOU = registerSound("entity.marabou.marabou_ambient");
+    public static RegistryObject<SoundEvent> CRANE = registerSound("entity.crane.crane_ambient");
+    public static RegistryObject<SoundEvent> COCKOFTHEROCK = registerSound("entity.cockoftherock.cockoftherock_ambient");
+    public static RegistryObject<SoundEvent> JABIRU_AMBIENT = registerSound("entity.jabiru.jabiru_ambient");
+    public static RegistryObject<SoundEvent> ATTACK_CRAB = registerSound("entity.mantis_shrimp.hurt_crab");
+
 
     private static RegistryObject<SoundEvent> registerSound(String name) {
         return REGISTRAR.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(Creatures.MODID, name)));

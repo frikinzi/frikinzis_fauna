@@ -31,9 +31,7 @@ public class CapabilityRegistry {
         @SubscribeEvent
         public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
             Player player = event.getEntity();
-            System.out.println("Player logged in: " + player.getName().getString() + " isClient: " + player.level().isClientSide());
             player.getCapability(FieldGuideCapability.CAPABILITY).ifPresent(cap -> {
-                System.out.println("Sending sync with: " + cap.getAll());
                 NetworkHandler.CHANNEL.send(
                         PacketDistributor.PLAYER.with(() -> (ServerPlayer) player),
                         new SyncAllDiscoveriesPacket(cap.getAll()));

@@ -19,20 +19,20 @@ public class DoveModel extends GeoModel<DoveEntity> {
     public ResourceLocation getTextureResource(DoveEntity object)
     {
         if (object.isFlying()) {
-            if (object.getVariant() == 1 || object.getVariant() == 5) {
+            if (object.getVariant() == 1 || object.getVariant() == 5 || object.getVariant() == 18) {
                 return new ResourceLocation(Creatures.MODID, "textures/entity/dove/dove" + object.getVariant() + object.getGenderName() + "fly.png");
             } else {
                 return new ResourceLocation(Creatures.MODID, "textures/entity/dove/dove" + object.getVariant() + "fly.png");
             }
         } else if (object.isSleeping()) {
-            if (object.getVariant() == 1 || object.getVariant() == 5) {
+            if (object.getVariant() == 1 || object.getVariant() == 5 || object.getVariant() == 18) {
                 return new ResourceLocation(Creatures.MODID, "textures/entity/dove/dove" + object.getVariant() + object.getGenderName() + "sleep.png");
             } else {
                 return new ResourceLocation(Creatures.MODID, "textures/entity/dove/dove" + object.getVariant() + "sleep.png");
             }
         }
         else {
-            if (object.getVariant() == 1 || object.getVariant() == 5) {
+            if (object.getVariant() == 1 || object.getVariant() == 5 || object.getVariant() == 18) {
                 return new ResourceLocation(Creatures.MODID, "textures/entity/dove/dove" + object.getVariant() + object.getGenderName() + ".png");
             } else {
                 return new ResourceLocation(Creatures.MODID, "textures/entity/dove/dove" + object.getVariant() + ".png");

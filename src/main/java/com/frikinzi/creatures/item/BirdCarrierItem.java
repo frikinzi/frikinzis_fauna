@@ -85,11 +85,24 @@ public class BirdCarrierItem extends Item {
         return InteractionResult.SUCCESS;
     }
 
+//    @Override
+//    @OnlyIn(Dist.CLIENT)
+//    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+//        if (stack.hasTag()) {
+//            tooltip.add(Component.translatable(stack.getTag().getString("Species"))
+//                    .setStyle(Style.EMPTY.withItalic(true).withColor(0xAAAAAA)));
+//        }
+//    }
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
         if (stack.hasTag()) {
-            tooltip.add(Component.translatable(stack.getTag().getString("Species"))
+            CompoundTag tag = stack.getTag();
+            String species = tag.getString("Species");
+            int gender = tag.getInt("Gender"); // 1=M, 0=F
+            String genderSymbol = gender == 1 ? " §9♂" : " §d♀";
+            tooltip.add(Component.translatable(species)
+                    .append(Component.literal(genderSymbol))
                     .setStyle(Style.EMPTY.withItalic(true).withColor(0xAAAAAA)));
         }
     }

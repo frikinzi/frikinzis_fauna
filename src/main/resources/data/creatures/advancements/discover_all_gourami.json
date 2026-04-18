@@ -1,0 +1,34 @@
+{
+  "parent": "creatures:birder",
+  "display": {
+    "icon": {
+      "item": "creatures:gourami_spawn_egg"
+    },
+    "title": {
+      "translate": "advancements.creatures.discover_all_gourami.title"
+    },
+    "description": {
+      "translate": "advancements.creatures.discover_all_gourami.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "discover_all": {
+      "trigger": "creatures:discovered_all_variants",
+      "conditions": {
+        "entity_key": "gourami"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "discover_all"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  }
+}

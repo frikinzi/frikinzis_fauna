@@ -1,10 +1,10 @@
 package com.frikinzi.creatures.entity.base;
 
 import com.frikinzi.creatures.CreaturesConfig;
-import com.frikinzi.creatures.entity.ai.CormorantAi;
+import com.frikinzi.creatures.entity.ai.WalkingSwimmingBirdAi;
 import com.frikinzi.creatures.entity.ai.MateGoal;
 import com.frikinzi.creatures.entity.ai.StayCloseToEggGoal;
-import com.frikinzi.creatures.registry.CreaturesEntities;
+import com.frikinzi.creatures.entity.egg.EggEntity;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
 import com.frikinzi.creatures.registry.CreaturesSensorTypes;
 import com.frikinzi.creatures.registry.CreaturesSound;
@@ -53,14 +53,6 @@ import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.pathfinder.Node;
 import net.minecraft.world.level.pathfinder.PathFinder;
 import net.minecraft.world.phys.Vec3;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -112,7 +104,7 @@ public class WalkingSwimmingBird extends CreaturesWalkingBird {
         //this.moveControl =  new CormorantMoveControl(this);
         this.moveControl =  new SmoothSwimmingMoveControl(this, 85, 10, 0.1F, 0.5F, false);
         this.lookControl = new CormorantLookControl(this, 20);
-        this.setMaxUpStep(1.0F);
+        this.setMaxUpStep(1.2F);
 
     }
 
@@ -274,7 +266,10 @@ public class WalkingSwimmingBird extends CreaturesWalkingBird {
 
     @Override
     protected Brain<?> makeBrain(Dynamic<?> dynamic) {
-        return CormorantAi.makeBrain((Brain<WalkingSwimmingBird>) this.brainProvider().makeBrain(dynamic));
+        return WalkingSwimmingBirdAi.makeBrain(
+                this.brainProvider().makeBrain(dynamic),
+                (EntityType<? extends Animal>) this.getType()
+        );
     }
 
     public Brain<WalkingSwimmingBird> getBrain() {
@@ -291,7 +286,7 @@ public class WalkingSwimmingBird extends CreaturesWalkingBird {
             this.getBrain().tick((ServerLevel) this.level(), this);
             this.level().getProfiler().pop();
             this.level().getProfiler().push("cormorantActivityUpdate");
-            CormorantAi.updateActivity(this);
+            WalkingSwimmingBirdAi.updateActivity(this);
             this.level().getProfiler().pop();
             super.customServerAiStep();
 
@@ -359,6 +354,24 @@ public class WalkingSwimmingBird extends CreaturesWalkingBird {
             this.nodeEvaluator = new WalkingSwimmingBird.CormorantNodeEvaluator(true);
             this.nodeEvaluator.setCanPassDoors(true);
             return new PathFinder(this.nodeEvaluator, p_218559_);
+        }
+    }
+
+    @Override
+    public void spawnChildFromBreeding(ServerLevel level, Animal partner) {
+        if (partner instanceof CreaturesBirdEntity birdPartner) {
+            EggEntity egg = this.layEgg(birdPartner);
+            if (egg != null) {
+                int c = this.getClutchSize();
+                for (int i = 0; i < c; i++) {
+                    EggEntity e = this.layEgg(birdPartner);
+                    if (e != null) level.addFreshEntityWithPassengers(e);
+                }
+            }
+            this.setAge(6000);
+            partner.setAge(6000);
+            this.resetLove();
+            partner.resetLove();
         }
     }
 

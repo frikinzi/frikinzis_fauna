@@ -31,7 +31,7 @@ public class MagpieRenderer extends GeoEntityRenderer<MagpieEntity> {
         if (animatable.isBaby()) {
             stack.scale(0.8F * multiplier, 0.8F * multiplier, 0.8F * multiplier);
         }
-        stack.scale(0.7F * multiplier, 0.7F * multiplier, 0.7F * multiplier);
+        stack.scale(0.5F * multiplier, 0.5F * multiplier, 0.5F * multiplier);
         super.defaultRender(stack, animatable, bufferSource, renderType, buffer, yaw, partialTick, packedLight);
     }
 }

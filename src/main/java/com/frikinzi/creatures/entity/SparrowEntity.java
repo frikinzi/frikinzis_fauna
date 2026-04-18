@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
@@ -29,6 +30,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraftforge.common.Tags;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -38,6 +40,7 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -150,7 +153,7 @@ public class SparrowEntity extends CreaturesFlyingBird implements GeoEntity {
         if (CreaturesConfig.biome_only_variants.get()) {
             Holder<Biome> biome = this.level().getBiome(this.blockPosition());
             int i = this.random.nextInt(100);
-            if (biome.is(BiomeTags.SPAWNS_GOLD_RABBITS)) {
+            if (biome.is(Tags.Biomes.IS_DESERT)) {
                 if (i < 50) {
                     return 2;
                 } else {
@@ -211,6 +214,16 @@ public class SparrowEntity extends CreaturesFlyingBird implements GeoEntity {
 
     public String getScientificName() {
         return SCIENTIFIC_NAMES.get(this.getVariant());
+    }
+
+    public Component getFunFact() {
+        return Component.translatable("description.creatures.sparrow");
+    }
+
+    public List<ItemStack> getAllFoodItems() {
+        return Arrays.stream(FOOD_ITEMS.getItems())
+                .map(ItemStack::copy)
+                .collect(java.util.stream.Collectors.toList());
     }
 
 }

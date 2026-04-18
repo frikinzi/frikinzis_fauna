@@ -127,6 +127,9 @@ public class ClientListener {
         event.registerEntityRenderer(CreaturesEntities.LITTLE_PENGUIN.get(), LittlePenguinRenderer::new);
         event.registerEntityRenderer(CreaturesEntities.EDIBLE_CRAB.get(), EdibleCrabRenderer::new);
         event.registerEntityRenderer(CreaturesEntities.MARABOU.get(), MarabouRenderer::new);
+        event.registerEntityRenderer(CreaturesEntities.CRANE.get(), CraneRenderer::new);
+        event.registerEntityRenderer(CreaturesEntities.COCK_OF_THE_ROCK.get(), CockOfTheRockRenderer::new);
+        event.registerEntityRenderer(CreaturesEntities.TETRA.get(), TetraRenderer::new);
 
         event.registerEntityRenderer(CreaturesEntities.ROE.get(), RoeRenderer::new);
         event.registerEntityRenderer(CreaturesEntities.EGG.get(), EggRenderer::new);

@@ -339,4 +339,10 @@ public int getMaxSchoolSize() {
     public int numVariants() {
         return 5;
     }
+
+    public Component getFunFact() {
+        return Component.translatable("description.creatures.sawfish");
+    }
+
+
 }

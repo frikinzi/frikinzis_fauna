@@ -2,6 +2,7 @@ package com.frikinzi.creatures.client.renderer.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.client.model.entity.KingfisherModel;
+import com.frikinzi.creatures.client.renderer.layer.KingfisherHeldItemLayer;
 import com.frikinzi.creatures.entity.KingfisherEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -16,6 +17,7 @@ public class KingfisherRenderer extends GeoEntityRenderer<KingfisherEntity> {
     public KingfisherRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new KingfisherModel());
         this.shadowRadius = 0.4F;
+        this.addRenderLayer(new KingfisherHeldItemLayer(this));
     }
 
     @Override

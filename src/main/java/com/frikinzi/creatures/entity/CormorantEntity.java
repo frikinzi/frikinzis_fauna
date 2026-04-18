@@ -1,17 +1,14 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
-import com.frikinzi.creatures.entity.ai.CormorantAi;
+import com.frikinzi.creatures.client.gui.Region;
+import com.frikinzi.creatures.entity.ai.MateGoal;
+import com.frikinzi.creatures.entity.ai.PickUpFoodGoal;
 import com.frikinzi.creatures.entity.ai.StayCloseToEggGoal;
-import com.frikinzi.creatures.entity.base.CreaturesWalkingBird;
 import com.frikinzi.creatures.entity.base.WalkingSwimmingBird;
-import com.frikinzi.creatures.registry.CreaturesEntities;
-import com.frikinzi.creatures.registry.CreaturesLootTables;
-import com.frikinzi.creatures.registry.CreaturesSensorTypes;
-import com.frikinzi.creatures.registry.CreaturesSound;
+import com.frikinzi.creatures.registry.*;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.mojang.serialization.Dynamic;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -22,20 +19,16 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.SmoothSwimmingLookControl;
 import net.minecraft.world.entity.ai.control.SmoothSwimmingMoveControl;
-import net.minecraft.world.entity.ai.goal.FollowParentGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation;
@@ -46,8 +39,6 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Cod;
 import net.minecraft.world.entity.animal.Salmon;
 import net.minecraft.world.entity.animal.TropicalFish;
-import net.minecraft.world.entity.animal.frog.Frog;
-import net.minecraft.world.entity.animal.frog.FrogAi;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -70,6 +61,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -78,6 +70,8 @@ public class CormorantEntity extends WalkingSwimmingBird implements GeoEntity {
     private boolean searchingForLand;
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private PanicGoal PanicGoal;
+    private int heldFishTicks = 0;
+    private static final int TICKS_TO_EAT = 200;
     protected static final ImmutableList<SensorType<? extends Sensor<? super CormorantEntity>>> SENSOR_TYPES = ImmutableList.of(SensorType.NEAREST_LIVING_ENTITIES, SensorType.HURT_BY, CreaturesSensorTypes.CORMORANT_ATTACKABLES.get(), SensorType.IS_IN_WATER);
     protected static final ImmutableList<MemoryModuleType<?>> MEMORY_TYPES = ImmutableList.of(
             MemoryModuleType.LOOK_TARGET,
@@ -99,7 +93,7 @@ public class CormorantEntity extends WalkingSwimmingBird implements GeoEntity {
             MemoryModuleType.HAS_HUNTING_COOLDOWN
     );    private static final EntityDataAccessor<BlockPos> TRAVEL_POS = SynchedEntityData.defineId(CormorantEntity.class, EntityDataSerializers.BLOCK_POS);
     private static final EntityDataAccessor<Boolean> TRAVELLING = SynchedEntityData.defineId(CormorantEntity.class, EntityDataSerializers.BOOLEAN);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.COD);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.COD, Items.SALMON, Items.TROPICAL_FISH, CreaturesItems.RAW_RED_SNAPPER.get(), CreaturesItems.RAW_KOI.get());
     public static Map<Integer, Component> SPECIES_NAMES = ImmutableMap.of(
             1, Component.translatable("message.creatures.piedcormorant"),
             2, Component.translatable("message.creatures.whitebreastedcormorant"),
@@ -160,12 +154,13 @@ public class CormorantEntity extends WalkingSwimmingBird implements GeoEntity {
     }
 
     protected void registerGoals() {
+        this.goalSelector.addGoal(3, new PickUpFoodGoal(this));
         this.goalSelector.addGoal(0, new SleepGoal());
         this.goalSelector.addGoal(1, new StayCloseToEggGoal(this, 1.0D));
 //        this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
 //        this.goalSelector.addGoal(4, new RandomStrollGoal(this, 1.0D));
 //        this.goalSelector.addGoal(3, new RandomSwimmingGoal(this, 2.0D, 40));
-//        this.goalSelector.addGoal(2, new MateGoal(this, 1.0D));
+        //this.goalSelector.addGoal(2, new MateGoal(this, 1.0D));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Cod.class, false));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Salmon.class, false));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, TropicalFish.class, false));
@@ -389,6 +384,70 @@ public class CormorantEntity extends WalkingSwimmingBird implements GeoEntity {
         int scale = (int)(18f / h);
         return scale;
     }
+
+    public Component getFunFact() {
+        return Component.translatable("description.creatures.cormorant");
+    }
+
+    public List<ItemStack> getAllFoodItems() {
+        return Arrays.stream(FOOD_ITEMS.getItems())
+                .map(ItemStack::copy)
+                .collect(java.util.stream.Collectors.toList());
+    }
+
+    public void aiStep() {
+        super.aiStep();
+        if (pickupCooldown > 0) pickupCooldown--;
+        if (!this.level().isClientSide()) {
+            if (!this.getMainHandItem().isEmpty()) {
+                heldFishTicks++;
+                if (heldFishTicks >= TICKS_TO_EAT) {
+                    this.heal(4.0F);
+
+                    heldFishTicks = 0;
+                    this.playSound(net.minecraft.sounds.SoundEvents.GENERIC_EAT,
+                            1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+                    // Spawn eating particles
+                    if (this.level() instanceof ServerLevel serverLevel) {
+                        serverLevel.sendParticles(new net.minecraft.core.particles.ItemParticleOption(
+                                        net.minecraft.core.particles.ParticleTypes.ITEM,
+                                        this.getMainHandItem()
+                                ),
+                                this.getX(), this.getY() + this.getBbHeight() * 0.8,
+                                this.getZ(), 8, 0.1, 0.1, 0.1, 0.05);
+                    }
+                    this.clearHeldItem();
+                }
+            } else {
+                heldFishTicks = 0;
+            }
+        }
+    }
+
+
+    public void setHeldItem(ItemStack stack) {
+        this.setItemSlot(EquipmentSlot.MAINHAND, stack);
+        this.setGuaranteedDrop(EquipmentSlot.MAINHAND);
+    }
+
+    public void clearHeldItem() {
+        this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+    }
+
+
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        boolean result = super.hurt(source, amount);
+        if (result && !this.level().isClientSide() && !this.getMainHandItem().isEmpty()) {
+            this.spawnAtLocation(this.getMainHandItem());
+            this.clearHeldItem();
+            heldFishTicks = 0;
+            pickupCooldown = 200;
+        }
+        return result;
+    }
+
+
 
 
 }

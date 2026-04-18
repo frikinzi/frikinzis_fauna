@@ -1,9 +1,12 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
-import com.frikinzi.creatures.entity.base.CreaturesWalkingBird;
+import com.frikinzi.creatures.client.gui.Region;
+import com.frikinzi.creatures.entity.ai.PickUpFoodGoal;
+import com.frikinzi.creatures.entity.ai.StayCloseToEggGoal;
 import com.frikinzi.creatures.entity.base.WalkingSwimmingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
+import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
@@ -18,12 +21,18 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.Cod;
+import net.minecraft.world.entity.animal.Salmon;
+import net.minecraft.world.entity.animal.TropicalFish;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -32,6 +41,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -42,6 +52,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -52,7 +63,10 @@ public class LargePenguinEntity extends WalkingSwimmingBird implements GeoEntity
     private static final Set<Block> SLIDE = Sets.newHashSet(Blocks.ICE, Blocks.PACKED_ICE, Blocks.BLUE_ICE);
     private static final EntityDataAccessor<Integer> VARIANT_SUBID = SynchedEntityData.defineId(LargePenguinEntity.class, EntityDataSerializers.INT);
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.COD);
+    private int heldFishTicks = 0;
+    private static final int TICKS_TO_EAT = 200;
+    //public int pickupCooldown = 0;
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.COD, Items.SALMON,Items.TROPICAL_FISH, CreaturesItems.RAW_RED_SNAPPER.get(), CreaturesItems.RAW_SQUID.get());
     public static Map<Integer, Component> SPECIES_NAMES = ImmutableMap.of(
             1, Component.translatable("message.creatures.emperorpenguin"),
             2, Component.translatable("message.creatures.kingpenguin")
@@ -114,6 +128,38 @@ public class LargePenguinEntity extends WalkingSwimmingBird implements GeoEntity
             }
             return event.setAndContinue(RawAnimation.begin().thenLoop("idle"));
         }
+    }
+
+    protected void registerGoals(){
+        this.goalSelector.addGoal(0, new SleepGoal());
+        this.goalSelector.addGoal(1, new PickUpFoodGoal(this));
+        this.goalSelector.addGoal(1, new StayCloseToEggGoal(this, 1.0D));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Cod.class, false));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Salmon.class, false));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, SquidEntity.class, false));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, TropicalFish.class, false));
+    }
+
+    public void setHeldItem(ItemStack stack) {
+        this.setItemSlot(EquipmentSlot.MAINHAND, stack);
+        this.setGuaranteedDrop(EquipmentSlot.MAINHAND);
+    }
+
+    public void clearHeldItem() {
+        this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+    }
+
+
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        boolean result = super.hurt(source, amount);
+        if (result && !this.level().isClientSide() && !this.getMainHandItem().isEmpty()) {
+            this.spawnAtLocation(this.getMainHandItem());
+            this.clearHeldItem();
+            heldFishTicks = 0;
+            pickupCooldown = 200;
+        }
+        return result;
     }
 
 //    protected void registerGoals() {
@@ -204,9 +250,10 @@ public class LargePenguinEntity extends WalkingSwimmingBird implements GeoEntity
     }
 
     public int getSubVariant() {
-        return Mth.clamp(this.entityData.get(VARIANT_SUBID), 1, BANDEDPENGUIN.get(this.getVariant())+1);
+        Integer max = BANDEDPENGUIN.get(this.getVariant());
+        if (max == null) return 1;
+        return Mth.clamp(this.entityData.get(VARIANT_SUBID), 1, max + 1);
     }
-
     public void readAdditionalSaveData(CompoundTag p_70037_1_) {
         super.readAdditionalSaveData(p_70037_1_);
         if (p_70037_1_.contains("Pesto", 99)) {
@@ -267,6 +314,31 @@ public class LargePenguinEntity extends WalkingSwimmingBird implements GeoEntity
         if (this.isPesto()) {
             this.setAge(-100);
         }
+        if (!this.level().isClientSide()) {
+            if (pickupCooldown > 0) pickupCooldown--;
+            if (!this.getMainHandItem().isEmpty()) {
+                heldFishTicks++;
+                if (heldFishTicks >= TICKS_TO_EAT) {
+                    this.heal(4.0F);
+
+                    heldFishTicks = 0;
+                    this.playSound(net.minecraft.sounds.SoundEvents.GENERIC_EAT,
+                            1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+                    // Spawn eating particles
+                    if (this.level() instanceof ServerLevel serverLevel) {
+                        serverLevel.sendParticles(new net.minecraft.core.particles.ItemParticleOption(
+                                        net.minecraft.core.particles.ParticleTypes.ITEM,
+                                        this.getMainHandItem()
+                                ),
+                                this.getX(), this.getY() + this.getBbHeight() * 0.8,
+                                this.getZ(), 8, 0.1, 0.1, 0.1, 0.05);
+                    }
+                    this.clearHeldItem();
+                }
+            } else {
+                heldFishTicks = 0;
+            }
+        }
         if (!this.level().isClientSide) {
             if (this.isBaby()) {
                 this.getNavigation().stop();
@@ -294,9 +366,15 @@ public class LargePenguinEntity extends WalkingSwimmingBird implements GeoEntity
     }
 
     public int methodOfDeterminingVariant() {
-        int var = this.random.nextInt(3)+1;
-        if (this.random.nextInt(CreaturesConfig.penguin_mutation_chance.get()) == 1) {
-            this.setSubVariant(this.random.nextInt(BANDEDPENGUIN.get(var))+1);
+        int var = this.random.nextInt(3) + 1;
+        int mutationChance = CreaturesConfig.penguin_mutation_chance.get();
+        if (mutationChance > 0 && this.random.nextInt(mutationChance) == 1) {
+            Integer subCount = BANDEDPENGUIN.get(var);
+            if (subCount != null && subCount > 0) {
+                this.setSubVariant(this.random.nextInt(subCount) + 1);
+            } else {
+                this.setSubVariant(1);
+            }
         } else {
             this.setSubVariant(1);
         }
@@ -313,10 +391,10 @@ public class LargePenguinEntity extends WalkingSwimmingBird implements GeoEntity
     }
 
     public int getIUCNStatus() {
-        if (this.getVariant() == 2 || this.getVariant() == 4) {
+        if (this.getVariant() == 1) {
             return 3;
-        } if (this.getVariant() == 1) {
-            return 2;
+        } if (this.getVariant() == 2) {
+            return 0;
         } return super.getIUCNStatus();
     }
 
@@ -338,7 +416,15 @@ public class LargePenguinEntity extends WalkingSwimmingBird implements GeoEntity
     }
 
     public int getScaleforGUI() {
-        return (int)(super.getScaleforGUI() *1.3f);
+        return (int)(super.getScaleforGUI() *1.5f);
     }
+
+    public List<ItemStack> getAllFoodItems() {
+        return Arrays.stream(FOOD_ITEMS.getItems())
+                .map(ItemStack::copy)
+                .collect(java.util.stream.Collectors.toList());
+    }
+
+
 
 }

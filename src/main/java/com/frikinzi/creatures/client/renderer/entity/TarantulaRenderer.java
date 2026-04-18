@@ -36,6 +36,9 @@ public class TarantulaRenderer extends GeoEntityRenderer<TarantulaEntity> {
         if (animatable.getVariant() == 1 || animatable.getVariant() == 2 || animatable.getVariant() == 5 || animatable.getVariant() == 8) {
             stack.scale(0.7F, 0.7F, 0.7F);
         }
+        if (animatable.getGender() == 0) {
+            stack.scale(1.2F, 1.2F, 1.2F);
+        }
         stack.scale(0.6F *multiplier, 0.6F *multiplier, 0.6F *multiplier);
         super.defaultRender(stack, animatable, bufferSource, renderType, buffer, yaw, partialTick, packedLight);
     }

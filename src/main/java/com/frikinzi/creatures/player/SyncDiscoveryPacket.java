@@ -1,8 +1,6 @@
 package com.frikinzi.creatures.player;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -24,14 +22,18 @@ public class SyncDiscoveryPacket {
 
     public void handle(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
-            Player player = Minecraft.getInstance().player;
-            if (player != null) {
-                player.getCapability(FieldGuideCapability.CAPABILITY).ifPresent(cap -> {
-                    cap.discover(key);
-                    System.out.println("CLIENT received discovery: " + key);
-                    System.out.println("CLIENT discovered set: " + cap.getAll());
-                });
-            }
+            net.minecraftforge.fml.DistExecutor.unsafeRunWhenOn(
+                    net.minecraftforge.api.distmarker.Dist.CLIENT,
+                    () -> () -> {
+                        net.minecraft.client.Minecraft mc = net.minecraft.client.Minecraft.getInstance();
+                        if (mc.player != null) {
+                            mc.player.getCapability(FieldGuideCapability.CAPABILITY).ifPresent(cap -> {
+                                cap.discover(key);
+                            });
+                            mc.player.playSound(
+                                    net.minecraft.sounds.SoundEvents.EXPERIENCE_ORB_PICKUP, 1.0F, 1.0F);
+                        }
+                    });
         });
         ctx.get().setPacketHandled(true);
     }

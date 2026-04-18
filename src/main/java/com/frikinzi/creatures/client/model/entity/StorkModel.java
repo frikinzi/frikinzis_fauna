@@ -30,25 +30,25 @@ public class StorkModel extends GeoModel<StorkEntity> {
             return new ResourceLocation(Creatures.MODID, "textures/entity/stork/stork" + object.getModelNumberFromVariant()+ "_" + object.getVariant() + "_baby.png");
         }
         if (object.isFlying()) {
-            return new ResourceLocation(Creatures.MODID, "textures/entity/stork/stork" + object.getModelNumberFromVariant()+ "_"  + object.getVariant() + "fly.png");
+            return new ResourceLocation(Creatures.MODID, "textures/entity/stork/stork" + object.getModelNumberFromVariant()+ "_"  + object.getVariant() + object.getGenderString2() + "fly.png");
         }
         if (object.isSleeping()) {
-            return new ResourceLocation(Creatures.MODID, "textures/entity/stork/stork" + object.getModelNumberFromVariant()+ "_" + object.getVariant() + "sleep.png");
+            return new ResourceLocation(Creatures.MODID, "textures/entity/stork/stork" + object.getModelNumberFromVariant()+ "_" + object.getVariant() + object.getGenderString2() + "sleep.png");
         }
-        return new ResourceLocation(Creatures.MODID, "textures/entity/stork/stork" + object.getModelNumberFromVariant() + "_"  + object.getVariant() + ".png");
+        return new ResourceLocation(Creatures.MODID, "textures/entity/stork/stork" + object.getModelNumberFromVariant() + "_"  + object.getVariant() + object.getGenderString2() + ".png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(StorkEntity object)
     {
         if (object.isBaby()) {
-            return new ResourceLocation(Creatures.MODID, "animations/animation.stork_baby.json");
+            return new ResourceLocation(Creatures.MODID, "animations/animation.stork" + object.getModelNumberFromVariant() + "baby.json");
 
         }
-        if (object.isFlying()) {
-            return new ResourceLocation(Creatures.MODID, "animations/animation.stork" + object.getModelNumberFromVariant() + "fly.json");
-
-        }
+//        if (object.isFlying()) {
+//            return new ResourceLocation(Creatures.MODID, "animations/animation.stork" + object.getModelNumberFromVariant() + "fly.json");
+//
+//        }
         return new ResourceLocation(Creatures.MODID, "animations/animation.stork" + object.getModelNumberFromVariant() + ".json");
 
     }

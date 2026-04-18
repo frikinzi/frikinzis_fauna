@@ -3,7 +3,7 @@
   "biomes": {
     "type": "forge:and",
     "values": [
-      "#minecraft:is_swamp",
+      "#forge:is_swamp",
       {
         "type": "forge:not",
         "value": "#minecraft:is_nether"
@@ -49,6 +49,18 @@
     },
     {
       "type": "creatures:stilt",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 5
+    },
+    {
+      "type": "creatures:crane",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 5
+    },
+    {
+      "type": "creatures:marabou",
       "weight": 10,
       "minCount": 3,
       "maxCount": 5

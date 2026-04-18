@@ -31,13 +31,16 @@ public class SyncAllDiscoveriesPacket {
 
     public void handle(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
-            Player player = Minecraft.getInstance().player;
-            if (player != null) {
-                player.getCapability(FieldGuideCapability.CAPABILITY).ifPresent(cap -> {
-                    cap.replaceAll(allDiscovered);
-                    System.out.println("CLIENT synced all: " + allDiscovered);
-                });
-            }
+            net.minecraftforge.fml.DistExecutor.unsafeRunWhenOn(
+                    net.minecraftforge.api.distmarker.Dist.CLIENT,
+                    () -> () -> {
+                        net.minecraft.client.Minecraft mc = net.minecraft.client.Minecraft.getInstance();
+                        if (mc.player != null) {
+                            mc.player.getCapability(FieldGuideCapability.CAPABILITY).ifPresent(cap -> {
+                                cap.replaceAll(allDiscovered);
+                            });
+                        }
+                    });
         });
         ctx.get().setPacketHandled(true);
     }

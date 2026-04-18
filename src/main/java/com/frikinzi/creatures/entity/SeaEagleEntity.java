@@ -1,6 +1,7 @@
 package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
+import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.base.RaptorBase;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesItems;
@@ -33,16 +34,17 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
 public class SeaEagleEntity extends RaptorBase implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(CreaturesItems.RAW_TROUT.get(), Items.SALMON, Items.PUFFERFISH, Items.TROPICAL_FISH, Items.COD, CreaturesItems.RAW_KOI.get(), CreaturesItems.RAW_ARAPAIMA.get(), CreaturesItems.RAW_RED_SNAPPER.get(), CreaturesItems.RAW_PIKE.get());
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(CreaturesItems.RAW_TROUT.get(), Items.SALMON, CreaturesItems.RAW_KOI.get(), Items.TROPICAL_FISH, Items.COD, CreaturesItems.RAW_KOI.get(), CreaturesItems.RAW_RED_SNAPPER.get(), CreaturesItems.RAW_PIKE.get(), Items.RABBIT);
     public static final Predicate<LivingEntity> PREY_SELECTOR = (p_213440_0_) -> {
         EntityType<?> entitytype = p_213440_0_.getType();
-        return entitytype == EntityType.RABBIT || entitytype == EntityType.SALMON || entitytype == EntityType.COD;
+        return entitytype == EntityType.RABBIT || entitytype == EntityType.SALMON || entitytype == EntityType.COD || entitytype == CreaturesEntities.RED_SNAPPER.get() || entitytype == CreaturesEntities.LOOKDOWN.get();
     };
     public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
             .put(1, List.of(Region.ASIA))
@@ -199,6 +201,20 @@ public class SeaEagleEntity extends RaptorBase implements GeoEntity {
     public String getScientificName() {
         return SCIENTIFIC_NAMES.get(this.getVariant());
     }
+
+    public int getScaleforGUI() {
+        if (this.isBaby()) {
+            return super.getScaleforGUI() *2;
+
+        }
+        return super.getScaleforGUI();
+    }
+    public List<ItemStack> getAllFoodItems() {
+        return Arrays.stream(FOOD_ITEMS.getItems())
+                .map(ItemStack::copy)
+                .collect(java.util.stream.Collectors.toList());
+    }
+
 
     public boolean canTame() {
         return true;

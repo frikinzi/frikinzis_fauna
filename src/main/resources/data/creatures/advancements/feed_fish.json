@@ -26,7 +26,7 @@
           }
         ],
         "item": {
-          "item": "creatures:raw_shrimp"
+          "items": ["creatures:fish_food"]
         },
         "entity": [
           {
@@ -49,7 +49,7 @@
           }
         ],
         "item": {
-          "item": "creatures:raw_shrimp"
+          "items": ["creatures:fish_food"]
         },
         "entity": [
           {

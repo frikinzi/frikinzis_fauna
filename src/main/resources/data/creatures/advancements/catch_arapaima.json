@@ -29,7 +29,7 @@
           }
         ],
         "item": {
-          "item": "creatures:fishingnet"
+          "items": ["creatures:fishingnet"]
         },
         "entity": [
           {

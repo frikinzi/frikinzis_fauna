@@ -29,7 +29,10 @@ public class MarabouRenderer extends GeoEntityRenderer<MarabouEntity> {
         } else {
             multiplier = 1.0F;
         }
-        stack.scale(0.7F * multiplier, 0.7F * multiplier, 0.7F * multiplier);
+        if (animatable.getGender() == 1) {
+            stack.scale(1.2F, 1.2f, 1.2f);
+        }
+        stack.scale(0.6F * multiplier, 0.6F * multiplier, 0.6F * multiplier);
         super.defaultRender(stack, animatable, bufferSource, renderType, buffer, yaw, partialTick, packedLight);
     }
 }

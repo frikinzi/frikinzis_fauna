@@ -28,6 +28,9 @@ public class SpoonbillRenderer extends GeoEntityRenderer<SpoonbillEntity> {
         } else {
             multiplier = 1.0F;
         }
+        if (animatable.isBaby()) {
+            multiplier *= 0.7F;
+        }
         stack.scale(0.8F * multiplier, 0.8F * multiplier, 0.8F * multiplier);
         super.defaultRender(stack, animatable, bufferSource, renderType, buffer, yaw, partialTick, packedLight);
 
