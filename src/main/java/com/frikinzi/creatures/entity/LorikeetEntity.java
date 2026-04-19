@@ -2,7 +2,9 @@ package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.client.gui.Region;
+import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
+import com.frikinzi.creatures.entity.egg.EggEntity;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -178,16 +180,27 @@ public class LorikeetEntity extends CreaturesFlyingBird implements GeoEntity {
     @Override
     public int methodOfDeterminingVariant() {
         if (CreaturesConfig.breed_only_variants.get() == true) {
-            int i = this.random.nextInt(numVariants());
+            int i = this.random.nextInt(numVariants())+1;
             while (i == 3) {
-                i = this.random.nextInt(numVariants());
+                i = this.random.nextInt(numVariants())+1;
             }
             return i; }
 
         else {
-            return this.random.nextInt(numVariants());
+            return this.random.nextInt(numVariants())+1;
         }
 
+    }
+
+
+    public EggEntity layEgg(CreaturesBirdEntity animal) {
+        EggEntity egg = super.layEgg(animal);
+        if (egg.getVariant() == 1) {
+            if (this.random.nextInt(CreaturesConfig.lorikeet_mutation_chance.get())==1) { // one in mutation_chance of getting a blue variant
+                egg.setVariant(3);
+            }
+        }
+        return egg;
     }
 
     public String getSpeciesName() {

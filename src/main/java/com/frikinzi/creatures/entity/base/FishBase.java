@@ -542,30 +542,52 @@ public abstract class FishBase extends AbstractSchoolingFish {
 
     public void layEgg(ServerLevel server, FishBase father) {
         int c = this.getClutchSize();
-        for (int j = 0; j <= c; j++) {
-            CreaturesRoeEntity egg = this.layEgg(this);
-            if (egg != null) {
-                FishBase mother = this;
-                egg.setParentUUID(mother.getUUID());
-
-                float f = (float)(this.getRandom().nextGaussian() * 0.05 + this.getHeightMultiplier());
-                egg.setHeightMultiplier(f);
-
-                int[] vars = {this.getVariant(), father.getVariant()};
-                int rnd = new Random().nextInt(vars.length);
-                egg.setVariant(vars[rnd]);
-                egg.setGender(this.random.nextInt(2));
-
-                Random rand = new Random();
-                egg.setPos(
-                        Mth.floor(mother.getX()) + 0.5 + (-1 + rand.nextFloat()),
-                        Mth.floor(mother.getY()) + 0.5,
-                        Mth.floor(mother.getZ()) + 0.5 + (-1 + rand.nextFloat()));
-                server.addFreshEntityWithPassengers(egg);
+        if (this.givesLiveBirth()) {
+            for (int j = 0; j <= c; j++) {
+                if (this.random.nextFloat() > this.getHatchChance()) continue;
+                FishBase baby = (FishBase) this.getType().create(server);
+                if (baby != null) {
+                    int[] vars = {this.getVariant(), father.getVariant()};
+                    baby.setVariant(vars[new Random().nextInt(vars.length)]);
+                    baby.setGender(this.random.nextInt(2));
+                    float f = (float)(this.getRandom().nextGaussian() * 0.05 + this.getHeightMultiplier());
+                    baby.setHeightMultiplier(f);
+                    baby.setBaby(true);
+                    baby.setBred(true);
+                    baby.setPersistenceRequired();
+                    baby.setPos(
+                            Mth.floor(this.getX()) + 0.5 + (-1 + this.random.nextFloat()),
+                            Mth.floor(this.getY()) + 0.5,
+                            Mth.floor(this.getZ()) + 0.5 + (-1 + this.random.nextFloat()));
+                    server.addFreshEntity(baby);
+                }
+                server.broadcastEntityEvent(this, (byte) 18);
             }
-            server.broadcastEntityEvent(this, (byte) 18);
-        }
+        } else {
+            for (int j = 0; j <= c; j++) {
+                CreaturesRoeEntity egg = this.layEgg(this);
+                if (egg != null) {
+                    FishBase mother = this;
+                    egg.setParentUUID(mother.getUUID());
 
+                    float f = (float)(this.getRandom().nextGaussian() * 0.05 + this.getHeightMultiplier());
+                    egg.setHeightMultiplier(f);
+
+                    int[] vars = {this.getVariant(), father.getVariant()};
+                    int rnd = new Random().nextInt(vars.length);
+                    egg.setVariant(vars[rnd]);
+                    egg.setGender(this.random.nextInt(2));
+
+                    Random rand = new Random();
+                    egg.setPos(
+                            Mth.floor(mother.getX()) + 0.5 + (-1 + rand.nextFloat()),
+                            Mth.floor(mother.getY()) + 0.5,
+                            Mth.floor(mother.getZ()) + 0.5 + (-1 + rand.nextFloat()));
+                    server.addFreshEntityWithPassengers(egg);
+                }
+                server.broadcastEntityEvent(this, (byte) 18);
+            }
+        }
         net.minecraft.util.RandomSource random = this.getRandom();
         for (int i = 0; i < 17; ++i) {
             double d0 = random.nextGaussian() * 0.02D;
@@ -877,6 +899,10 @@ public abstract class FishBase extends AbstractSchoolingFish {
 
     public int getYOffsetForGUI() {
         return 0;
+    }
+
+    public boolean givesLiveBirth() {
+        return false;
     }
 
 }

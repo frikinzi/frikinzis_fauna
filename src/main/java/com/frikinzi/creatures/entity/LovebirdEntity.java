@@ -6,6 +6,7 @@ import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.entity.ai.SitOnShoulderGoal;
 import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
+import com.frikinzi.creatures.entity.egg.EggEntity;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
 import com.frikinzi.creatures.registry.CreaturesSound;
@@ -185,7 +186,6 @@ public int methodOfDeterminingVariant() {
             while (i == 2 || i == 4 || i == 12 || i == 13) {
                 i = this.random.nextInt(numVariants()) + 1;
             }
-            //System.out.println(i);
             return i;
         }
 
@@ -272,6 +272,29 @@ public int methodOfDeterminingVariant() {
 
     public boolean canTame() {
         return true;
+    }
+
+    @Override
+    public EggEntity layEgg(CreaturesBirdEntity animal) {
+        EggEntity egg = super.layEgg(animal);
+
+        switch (this.getVariant()) {
+            case 1 -> {
+                if (this.random.nextInt(CreaturesConfig.lovebird_mutation_chance.get()) == 0)
+                    egg.setVariant(2);
+            }
+            case 3 -> {
+                if (this.random.nextInt(CreaturesConfig.lovebird_mutation_chance.get()) == 0)
+                    egg.setVariant(4);
+            }
+            case 5 -> {
+                if (this.random.nextInt(CreaturesConfig.lovebird_mutation_chance.get()) == 0) {
+                    egg.setVariant(this.random.nextBoolean() ? 13 : 12);
+                }
+            }
+        }
+
+        return egg;
     }
 
 

@@ -35,8 +35,10 @@ public class CreaturesGUI extends Screen {
 
     public CreaturesGUI() {
         super(Component.translatable("creatures_gui"));
-        xSize = 390;
-        ySize = 245;
+//        xSize = 390;
+//        ySize = 245;
+        xSize = 429;
+        ySize = 270;
     }
 
     protected void init() {
@@ -89,7 +91,7 @@ public class CreaturesGUI extends Screen {
             Component IUCN = bird.getIUCNText();
             font.drawInBatch(bird.getIUCNColor() + IUCN.getString(), offLeft+30, 160 + offTop, 0X000000, false, matrices.pose().last().pose(), matrices.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
             Component funfact = bird.getFunFact();
-            drawSplitText(font, funfact, 114, matrices, offLeft + 160, 120 + offTop);
+            drawSplitText(font, funfact, 144, matrices, offLeft + 160, 120 + offTop);
 
         }
         if (entity instanceof FishBase) {
@@ -178,7 +180,7 @@ public class CreaturesGUI extends Screen {
 
         }
         Quaternionf quaternionf = (new Quaternionf()).rotateY((float) Mth.lerp((float) mouseX / this.width, 0, Math.PI)).rotateZ((float) Mth.lerp((float) mouseY / this.width, Math.PI, Math.PI + 0.2));
-        InventoryScreen.renderEntityInInventory(matrices,offLeft + 215, 120 + offTop, 60, quaternionf, null,entity);
+        InventoryScreen.renderEntityInInventory(matrices,offLeft + 235, 120 + offTop, 60, quaternionf, null,entity);
         super.render(matrices, mouseX, mouseY, delta);
     }
 

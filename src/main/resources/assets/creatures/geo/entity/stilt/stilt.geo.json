@@ -94,7 +94,7 @@
 					]
 				},
 				{
-					"name": "bone3",
+					"name": "wingright",
 					"parent": "bone19",
 					"pivot": [2.49914, 17.8, -0.73312],
 					"rotation": [-5, 0, 0],

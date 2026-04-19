@@ -2,6 +2,7 @@ package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.client.gui.Region;
+import com.frikinzi.creatures.entity.ai.SitOnShoulderGoal;
 import com.frikinzi.creatures.entity.base.RaptorBase;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
@@ -60,6 +61,7 @@ public class PygmyFalconEntity extends RaptorBase implements GeoEntity {
 
     protected void registerGoals() {
         super.registerGoals();
+        this.goalSelector.addGoal(3, new SitOnShoulderGoal(this));
         if (!this.isBaby() && CreaturesConfig.raptor_attacks.get() == true) {
         this.targetSelector.addGoal(5, new NonTameRandomTargetGoal<>(this, Animal.class, false, PREY_SELECTOR));
         }

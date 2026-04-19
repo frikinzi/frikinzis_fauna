@@ -2,6 +2,7 @@ package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.client.gui.Region;
+import com.frikinzi.creatures.entity.ai.FleeGoal;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
@@ -68,7 +69,7 @@ public class RobinEntity extends CreaturesFlyingBird implements GeoEntity {
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, FOOD_ITEMS, false));
-        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Player.class, 8.0F, 2.2D, 2.2D));
+        this.goalSelector.addGoal(4, new FleeGoal<>(this, Player.class, 8.0F, 2.2D, 2.2D));
     }
 
     protected <E extends RobinEntity> PlayState flyAnimController(final AnimationState<E> event)

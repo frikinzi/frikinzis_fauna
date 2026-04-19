@@ -5,7 +5,7 @@
     "values": [
       "#minecraft:is_forest",
       "#minecraft:is_river",
-      "#minecraft:is_swamp"
+      "#forge:is_swamp"
     ]
   },
   "spawners": [

@@ -5,6 +5,7 @@ import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.entity.base.CreaturesWalkingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
+import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
 import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
@@ -17,6 +18,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -32,6 +34,7 @@ import java.util.Map;
 
 public class MandarinDuckEntity extends CreaturesWalkingBird implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    public int featherTime = this.random.nextInt(6000) + 6000;
 
     public static final Map<Integer, List<Region>> REGIONS = ImmutableMap.<Integer, List<Region>>builder()
             .put(1, List.of(Region.ASIA))
@@ -122,7 +125,7 @@ public class MandarinDuckEntity extends CreaturesWalkingBird implements GeoEntit
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D).add(ForgeMod.SWIM_SPEED.get(), 3.0).add(Attributes.MOVEMENT_SPEED, (double)0.2F);
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D).add(ForgeMod.SWIM_SPEED.get(), 2.0).add(Attributes.MOVEMENT_SPEED, (double)0.2F);
     }
 
     public String getScientificName() {
@@ -135,5 +138,30 @@ public class MandarinDuckEntity extends CreaturesWalkingBird implements GeoEntit
 
     public int getMaxFlockSize() {
         return 2;
+    }
+
+    public void aiStep() {
+        super.aiStep();
+        if (!this.level().isClientSide && this.isAlive() && CreaturesConfig.drop_feather.get() && !this.isBaby() && --this.featherTime <= 0) {
+            this.spawnAtLocation(CreaturesItems.DUCK_FEATHER.get());
+            this.featherTime = this.random.nextInt(6000) + 6000;
+        }
+        if (this.isInWater() && this.getDeltaMovement().y > 0.05) {
+            this.setDeltaMovement(
+                    this.getDeltaMovement().x,
+                    0.05,
+                    this.getDeltaMovement().z);
+        }
+    }
+
+    @Override
+    public void travel(Vec3 travelVector) {
+        if (this.isEffectiveAi() && this.isInWater()) {
+            this.moveRelative(0.1F, travelVector);
+            this.move(MoverType.SELF, this.getDeltaMovement());
+            this.setDeltaMovement(this.getDeltaMovement().multiply(0.9, 0.5, 0.9));
+        } else {
+            super.travel(travelVector);
+        }
     }
 }

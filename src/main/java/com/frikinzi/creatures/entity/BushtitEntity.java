@@ -77,11 +77,13 @@ public class BushtitEntity extends CreaturesFlyingBird implements GeoEntity {
 
     protected <E extends BushtitEntity> PlayState flyAnimController(final AnimationState<E> event)
     {
+     if (!this.onGround() || this.isFlying()) {
+        return event.setAndContinue(RawAnimation.begin().thenLoop("fly"));
+    }
         if (event.isMoving() && this.onGround()) {
             return event.setAndContinue(RawAnimation.begin().thenLoop("walk"));
-        } if (!this.onGround() || this.isFlying()) {
-        return event.setAndContinue(RawAnimation.begin().thenLoop("fly"));
-    } if (this.isSleeping()) {
+        }
+     if (this.isSleeping()) {
         return event.setAndContinue(RawAnimation.begin().thenLoop("sleep"));
     }
         return event.setAndContinue(RawAnimation.begin().thenLoop("idle"));

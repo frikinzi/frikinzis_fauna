@@ -68,7 +68,7 @@
 					]
 				},
 				{
-					"name": "bone8",
+					"name": "leftwing",
 					"parent": "bone",
 					"pivot": [2.50086, 12, -2.93312],
 					"cubes": [
@@ -79,7 +79,7 @@
 					]
 				},
 				{
-					"name": "bone9",
+					"name": "rightwing",
 					"parent": "bone",
 					"pivot": [-2.49914, 12, -2.93312],
 					"cubes": [

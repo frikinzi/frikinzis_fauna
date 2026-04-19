@@ -148,7 +148,7 @@ public class ClownfishEntity extends FishBase implements GeoEntity {
 
     @Override
     public void layEgg(ServerLevel server, FishBase father) {
-        int c = 10;
+        int c = this.getClutchSize();
         for (int j = 0; j <= c; j++) {
             CreaturesRoeEntity egg = this.layEgg(this);
             if (egg != null) {

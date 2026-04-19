@@ -366,7 +366,7 @@ public class LargePenguinEntity extends WalkingSwimmingBird implements GeoEntity
     }
 
     public int methodOfDeterminingVariant() {
-        int var = this.random.nextInt(3) + 1;
+        int var = this.random.nextInt(this.numVariants()) + 1;
         int mutationChance = CreaturesConfig.penguin_mutation_chance.get();
         if (mutationChance > 0 && this.random.nextInt(mutationChance) == 1) {
             Integer subCount = BANDEDPENGUIN.get(var);

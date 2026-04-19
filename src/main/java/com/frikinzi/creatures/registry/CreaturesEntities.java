@@ -210,7 +210,7 @@ public class CreaturesEntities {
             0.5f, 0.5f, 16749375, 16765696);
     public static final RegistryObject<EntityType<MarabouEntity>> MARABOU = registerMob("marabou", MobCategory.CREATURE, MarabouEntity::new,
             0.5f, 1.0f, 6318976, 16765696);
-    public static final RegistryObject<EntityType<EdibleCrabEntity>> EDIBLE_CRAB = registerMob("ediblecrab", MobCategory.WATER_AMBIENT, EdibleCrabEntity::new,
+    public static final RegistryObject<EntityType<EdibleCrabEntity>> EDIBLE_CRAB = registerMob("ediblecrab", MobCategory.WATER_CREATURE, EdibleCrabEntity::new,
             0.5f, 0.5f, 16749375, 16765696);
     public static final RegistryObject<EntityType<CraneEntity>> CRANE = registerMob("crane", MobCategory.CREATURE, CraneEntity::new,
             0.5f, 1.0f, 6318976, 16765696);

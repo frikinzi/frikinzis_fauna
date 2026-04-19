@@ -51,7 +51,6 @@ public class ArapaimaEntity extends FishBase implements GeoEntity {
             .put(1, List.of(Region.SOUTH_AMERICA))
             .put(2, List.of(Region.SOUTH_AMERICA))
             .put(3, List.of(Region.SOUTH_AMERICA))
-            .put(4, List.of(Region.SOUTH_AMERICA))
             .build();
     public ArapaimaEntity(EntityType<? extends ArapaimaEntity> p_i50246_1_, Level p_i50246_2_) {
         super(p_i50246_1_, p_i50246_2_);

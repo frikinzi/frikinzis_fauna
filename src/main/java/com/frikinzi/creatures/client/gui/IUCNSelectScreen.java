@@ -70,10 +70,10 @@ public class IUCNSelectScreen extends Screen {
         RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
         graphics.blit(BOOK_TEXTURE, bookX, bookY, 0, 0, BOOK_W, BOOK_H, BOOK_W, BOOK_W);
 
-        String title = Component.translatable("creatures.fieldgui.iucn").getString();
-        graphics.drawString(font, title,
-                bookX + BOOK_W / 2 - font.width(title) / 2,
-                bookY + 18, 0x3D2B1F, false);
+//        String title = Component.translatable("creatures.fieldgui.iucn").getString();
+//        graphics.drawString(font, title,
+//                bookX + BOOK_W / 2 - font.width(title) / 2,
+//                bookY + 18, 0x3D2B1F, false);
 
         super.render(graphics, mouseX, mouseY, partialTick);
     }

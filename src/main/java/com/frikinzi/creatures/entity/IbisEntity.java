@@ -2,6 +2,7 @@ package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.client.gui.Region;
+import com.frikinzi.creatures.entity.ai.FleeGoal;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
@@ -14,6 +15,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
@@ -89,15 +91,19 @@ public class IbisEntity extends CreaturesFlyingBird implements GeoEntity {
         super.registerGoals();
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, FOOD_ITEMS,false));
         this.goalSelector.addGoal(5, new FollowFlockLeaderGoal(this));
+        this.goalSelector.addGoal(4, new FleeGoal<>(this, Player.class, 6.0F, 1.0D, 1.5D));
+
     }
 
     protected <E extends IbisEntity> PlayState flyAnimController(final AnimationState<E> event)
     {
+ if (!this.onGround() || this.isFlying()) {
+        return event.setAndContinue(RawAnimation.begin().thenLoop("fly"));
+    }
         if (event.isMoving() && this.onGround()) {
             return event.setAndContinue(RawAnimation.begin().thenLoop("walk"));
-        } if (!this.onGround() || this.isFlying()) {
-        return event.setAndContinue(RawAnimation.begin().thenLoop("fly"));
-    } if (this.isSleeping()) {
+        }
+ if (this.isSleeping()) {
         return event.setAndContinue(RawAnimation.begin().thenLoop("sleep"));
     } else {
         return event.setAndContinue(RawAnimation.begin().thenLoop("idle")); }

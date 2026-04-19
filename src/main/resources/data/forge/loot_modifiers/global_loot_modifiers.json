@@ -3,6 +3,8 @@
 {
     "replace": false,
     "entries": [
-        "creatures:mealworms_dirt"
+        "creatures:mealworms_dirt",
+        "creatures:mealworms_farmland",
+        "creatures:mealworms_composter"
     ]
 }

@@ -33,7 +33,7 @@
 						}
 					}
 				},
-				"bone9": {
+				"leftwing": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 5]
@@ -311,7 +311,7 @@
 						"vector": [0, 16, 16]
 					}
 				},
-				"bone9": {
+				"leftwing": {
 					"rotation": {
 						"vector": [17.5, 0, 0]
 					},
@@ -551,7 +551,7 @@
 						}
 					}
 				},
-				"bone9": {
+				"leftwing": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]

@@ -2,15 +2,18 @@ package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.client.gui.Region;
+import com.frikinzi.creatures.entity.ai.FleeGoal;
+import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
-import com.frikinzi.creatures.registry.CreaturesEntities;
-import com.frikinzi.creatures.registry.CreaturesLootTables;
+import com.frikinzi.creatures.entity.egg.EggEntity;
+import com.frikinzi.creatures.registry.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -22,6 +25,7 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Cod;
 import net.minecraft.world.entity.animal.Salmon;
 import net.minecraft.world.entity.animal.TropicalFish;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -37,8 +41,6 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
-import com.frikinzi.creatures.registry.CreaturesItems;
-import com.frikinzi.creatures.registry.CreaturesSound;
 import com.google.common.collect.ImmutableMap;
 import net.minecraftforge.common.ForgeMod;
 
@@ -88,6 +90,9 @@ public class PuffinEntity extends CreaturesFlyingBird implements GeoEntity {
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Salmon.class, false));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, TropicalFish.class, false));
         this.goalSelector.addGoal(6, new FollowFlockLeaderGoal(this));
+        this.goalSelector.addGoal(4, new FleeGoal<>(this, Player.class, 6.0F, 1.0D, 1.5D));
+
+
     }
 
     protected <E extends PuffinEntity> PlayState flyAnimController(final AnimationState<E> event)
@@ -123,14 +128,14 @@ public class PuffinEntity extends CreaturesFlyingBird implements GeoEntity {
     @Override
     public int methodOfDeterminingVariant() {
         if (CreaturesConfig.breed_only_variants.get()) {
-            int i = this.random.nextInt(numVariants());
+            int i = this.random.nextInt(numVariants())+1;
             while (i == 4 || i == 5) {
-                i = this.random.nextInt(numVariants());
+                i = this.random.nextInt(numVariants())+1;
             }
             return i; }
 
         else {
-            return this.random.nextInt(numVariants());
+            return this.random.nextInt(numVariants())+1;
         }
 
     }
@@ -223,6 +228,20 @@ public class PuffinEntity extends CreaturesFlyingBird implements GeoEntity {
         return Arrays.stream(FOOD_ITEMS.getItems())
                 .map(ItemStack::copy)
                 .collect(java.util.stream.Collectors.toList());
+    }
+
+    public EggEntity layEgg(CreaturesBirdEntity animal) {
+        EggEntity egg = super.layEgg(animal);
+        if (egg.getVariant() == 1) {
+            if (this.random.nextInt(CreaturesConfig.puffin_mutation_chance.get())==1) { // one in mutation_chance of getting a piebald or leucistic
+                if (this.random.nextInt(2) == 1) {
+                    egg.setVariant(4);
+                } else {
+                    egg.setVariant(5);
+                }
+            }
+        }
+        return egg;
     }
 
 }

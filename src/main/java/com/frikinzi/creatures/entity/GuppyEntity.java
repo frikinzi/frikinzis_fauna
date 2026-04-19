@@ -162,4 +162,7 @@ public int getMaxSchoolSize() {
         return CreaturesLootTables.TROPICAL_FISH;
     }
 
+    public boolean givesLiveBirth() {
+        return true;
+    }
 }

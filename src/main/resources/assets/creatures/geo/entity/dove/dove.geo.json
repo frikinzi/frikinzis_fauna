@@ -250,7 +250,7 @@
 					]
 				},
 				{
-					"name": "bone3",
+					"name": "wing1",
 					"parent": "bone",
 					"pivot": [3.8, 11.3, -5],
 					"cubes": [
@@ -273,7 +273,7 @@
 				},
 				{
 					"name": "bone4",
-					"parent": "bone3",
+					"parent": "wing1",
 					"pivot": [0.5, 2.3, 6.8],
 					"rotation": [20, 0, 0],
 					"cubes": [
@@ -310,7 +310,7 @@
 					]
 				},
 				{
-					"name": "bone5",
+					"name": "wing2",
 					"parent": "bone",
 					"pivot": [-3.8, 11.3, -5],
 					"cubes": [
@@ -333,7 +333,7 @@
 				},
 				{
 					"name": "bone6",
-					"parent": "bone5",
+					"parent": "wing2",
 					"pivot": [-0.5, 2.3, 6.8],
 					"rotation": [20, 0, 0],
 					"cubes": [

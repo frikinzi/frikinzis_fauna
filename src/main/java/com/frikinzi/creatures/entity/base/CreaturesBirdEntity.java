@@ -86,7 +86,7 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
             this.setSubVariant(this.getSubVariantBasedOnVariant(birdData.variant));
         } else if (p_29391_ == MobSpawnType.SPAWN_EGG) {
             int var = this.random.nextInt(numVariants()) + 1;
-            //var = this.methodOfDeterminingVariant();
+            //int var = this.methodOfDeterminingVariant();
 
             this.setVariant(var);
             this.setSubVariant(this.getSubVariantBasedOnVariant(var));
@@ -229,7 +229,7 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
     }
 
     public int getVariant() {
-        return Math.max(this.entityData.get(DATA_VARIANT_ID),1);
+        return Mth.clamp(this.entityData.get(DATA_VARIANT_ID), 1, this.numVariants());
     }
 
     protected void defineSynchedData() {
@@ -339,21 +339,21 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
             }
         }
 
-        if (!this.level().isClientSide && !variantSynced && isNaturalSpawn && this.tickCount == 2) {
-            variantSynced = true;
-            List<? extends CreaturesBirdEntity> nearby = this.level().getEntitiesOfClass(
-                    this.getClass(),
-                    this.getBoundingBox().inflate(8.0D),
-                    e -> e != this
-            );
-            if (!nearby.isEmpty()) {
-                int groupVariant = nearby.get(0).getVariant();
-                this.setVariant(groupVariant);
-                this.setSubVariant(this.getSubVariantBasedOnVariant(groupVariant));
-            }
-        } else if (!isNaturalSpawn) {
-            variantSynced = true;
-        }
+//        if (!this.level().isClientSide && !variantSynced && isNaturalSpawn && this.tickCount == 2) {
+//            variantSynced = true;
+//            List<? extends CreaturesBirdEntity> nearby = this.level().getEntitiesOfClass(
+//                    this.getClass(),
+//                    this.getBoundingBox().inflate(8.0D),
+//                    e -> e != this
+//            );
+//            if (!nearby.isEmpty()) {
+//                int groupVariant = nearby.get(0).getVariant();
+//                this.setVariant(groupVariant);
+//                this.setSubVariant(this.getSubVariantBasedOnVariant(groupVariant));
+//            }
+//        } else if (!isNaturalSpawn) {
+//            variantSynced = true;
+//        }
 
     }
 
@@ -544,7 +544,13 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
         }
 
         private boolean canSleep() {
-            return CreaturesBirdEntity.this.timeSleep() && !CreaturesBirdEntity.this.isFlying() && !CreaturesBirdEntity.this.isInWaterOrRain() && !CreaturesBirdEntity.this.isInPowderSnow;
+            if (!CreaturesBirdEntity.this.getMainHandItem().isEmpty()) {
+                return false;
+            }
+            if (CreaturesBirdEntity.this.isTame()  && CreaturesBirdEntity.this.isWandering() ==0) {
+                return false;
+            }
+            return CreaturesBirdEntity.this.timeSleep() && !CreaturesBirdEntity.this.isFlying() && !CreaturesBirdEntity.this.isInWaterOrRain() && !CreaturesBirdEntity.this.isInPowderSnow && !CreaturesBirdEntity.this.isInLava();
         }
 
         public void stop() {

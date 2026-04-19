@@ -54,7 +54,7 @@
 					"pivot": [0, 10.1, -8.5]
 				},
 				{
-					"name": "bone2",
+					"name": "leftwing",
 					"parent": "bone",
 					"pivot": [1, 9, -3],
 					"cubes": [
@@ -64,7 +64,7 @@
 					]
 				},
 				{
-					"name": "bone3",
+					"name": "rightwing",
 					"parent": "bone",
 					"pivot": [-4, 9, -3],
 					"cubes": [

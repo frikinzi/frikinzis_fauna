@@ -20,6 +20,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -91,7 +92,7 @@ public class WildDuckEntity extends CreaturesWalkingBird implements GeoEntity {
 
     public WildDuckEntity(EntityType<? extends WildDuckEntity> p_i50251_1_, Level p_i50251_2_) {
         super(p_i50251_1_, p_i50251_2_);
-        this.setPathfindingMalus(BlockPathTypes.WATER, 1.0F);
+        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
     }
 
     protected void registerGoals() {
@@ -137,7 +138,7 @@ public class WildDuckEntity extends CreaturesWalkingBird implements GeoEntity {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D).add(ForgeMod.SWIM_SPEED.get(), 3.0).add(Attributes.MOVEMENT_SPEED, (double)0.2F);
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D).add(ForgeMod.SWIM_SPEED.get(), 2.0).add(Attributes.MOVEMENT_SPEED, (double)0.2F);
     }
 
     public void aiStep() {
@@ -156,6 +157,12 @@ public class WildDuckEntity extends CreaturesWalkingBird implements GeoEntity {
             if ((i == 1 || this.isInWater()) && this.isGrooming()) {
                 this.setGrooming(false);
             }
+        }
+        if (this.isInWater() && this.getDeltaMovement().y > 0.05) {
+            this.setDeltaMovement(
+                    this.getDeltaMovement().x,
+                    0.05,
+                    this.getDeltaMovement().z);
         }
     }
 
@@ -240,5 +247,16 @@ public class WildDuckEntity extends CreaturesWalkingBird implements GeoEntity {
         return Arrays.stream(FOOD_ITEMS.getItems())
                 .map(ItemStack::copy)
                 .collect(java.util.stream.Collectors.toList());
+    }
+
+    @Override
+    public void travel(Vec3 travelVector) {
+        if (this.isEffectiveAi() && this.isInWater()) {
+            this.moveRelative(0.1F, travelVector);
+            this.move(MoverType.SELF, this.getDeltaMovement());
+            this.setDeltaMovement(this.getDeltaMovement().multiply(0.9, 0.5, 0.9));
+        } else {
+            super.travel(travelVector);
+        }
     }
 }

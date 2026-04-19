@@ -165,7 +165,7 @@ public class MarabouEntity extends CreaturesFlyingBird implements GeoEntity {
 
     @Override
     public int methodOfDeterminingVariant() {
-        int var = Math.max(1,this.random.nextInt(numVariants())+1);
+        int var = this.random.nextInt(numVariants())+1;
         Integer max = STORK.get(var);
         if (max != null) {
             this.setSubVariant(this.random.nextInt(max) + 1);

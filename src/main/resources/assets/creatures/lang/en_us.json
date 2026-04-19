@@ -959,11 +959,11 @@
   "advancements.creatures.falconer.description": "Tame a bird of prey",
   "advancements.creatures.feed_fish.title": "Koi Pond",
   "advancements.creatures.feed_fish.description": "Feed a koi",
-  "advancements.husbandry.birder.title": "Frikinzi's Fauna Birder",
-  "advancements.husbandry.birder.description": "Begin your study of birds by crafting Frikinzi's Guide",
+  "advancements.husbandry.birder.title": "The Beginning of Birding",
+  "advancements.husbandry.birder.description": "Begin your birding adventure by crafting Frikinzi's Guide",
   "advancements.creatures.catch_arapaima.title": "Gentle Giant",
   "advancements.creatures.catch_arapaima.description": "Catch an arapaima",
-  "advancements.creatures.catch_blue_tang.title": "Obligatory Dory Joke",
+  "advancements.creatures.catch_blue_tang.title": "Wow it's Dory. OMG Finding Nemo hahahaha",
   "advancements.creatures.catch_blue_tang.description": "Catch a blue tang",
 
   "creatures.leastconcern": "Least Concern",
@@ -1759,7 +1759,7 @@
   "description.creatures.greenpeafowl": "Green peafowl were formerly common in Southeast Asia. Unlike the Indian Peafowl, both males and females share the same beautiful metallic green plumage.",
   "description.creatures.albinopeafowl": "These are leucistic Indian Peafowl. They are actually born yellow, and become white as they age.",
 
-  "advancements.creatures.discover_all_raptors.title": "Master Raptor Ornithologist",
+  "advancements.creatures.discover_all_raptors.title": "Raptor Expert",
   "advancements.creatures.discover_all_raptors.description": "Find and register every single bird of prey into the Field Guide",
   "advancements.creatures.discover_all_corvids.title": "Smart Birds",
   "advancements.creatures.discover_all_corvids.description": "Find and register every single corvid in the mod.",
@@ -1777,7 +1777,9 @@
   "message.creatures.bloodfintetra": "Bloodfin Tetra",
   "description.creatures.saddlebilledstork": "Saddle-billed storks are the world's tallest stork. Males have brown irises, while females have yellow irises.",
   "description.creatures.blackneckedstork": "The black-necked stork is territorial and uses its sword-like beak to hunt for prey. It mates for life.",
-  "description.creatures.jabirustork": "The jabiru stork is actually a subspecies of the black-necked stork that is found in Australia.",
-  "description.creatures.openbillstork": "The gap in the mandibles of the open billed stork is designed to extract snails from their shells. The mandibles only meet at the tip, which allows for better grip."
+  "description.creatures.jabirustork": "Jabiru storks are the tallest flying birds in the Americas. They have a unique bill that is slightly upturned at the end, which helps them catch fish and other aquatic prey.",
+  "description.creatures.openbillstork": "The gap in the mandibles of the open billed stork is designed to extract snails from their shells. The mandibles only meet at the tip, which allows for better grip.",
+  "advancements.creatures.catch_clownfish.title": "OMG NEMO!",
+  "advancements.creatures.catch_clownfish.description": "Catch a clownfish using a bucket."
 
 }

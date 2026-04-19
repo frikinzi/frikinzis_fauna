@@ -63,11 +63,11 @@ public class GyrfalconEntity extends RaptorBase implements GeoEntity {
 
     protected <E extends GyrfalconEntity> PlayState flyAnimController(final AnimationState<E> event)
     {
-        if (event.isMoving() && this.onGround()) {
-            return event.setAndContinue(RawAnimation.begin().thenLoop("walk"));
-        }
         if (!this.onGround() || this.isFlying() && !this.isBaby()) {
             return event.setAndContinue(RawAnimation.begin().thenLoop("fly"));
+        }
+        if (event.isMoving() && this.onGround()) {
+            return event.setAndContinue(RawAnimation.begin().thenLoop("walk"));
         }
         if (this.isSleeping()) {
             return event.setAndContinue(RawAnimation.begin().thenLoop("sleep"));

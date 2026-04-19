@@ -158,7 +158,7 @@
 					]
 				},
 				{
-					"name": "L_Wing",
+					"name": "L_Wing3",
 					"parent": "Body_grp",
 					"pivot": [3.59167, 22.47915, -5.43105],
 					"rotation": [-21.25, 0, 0],

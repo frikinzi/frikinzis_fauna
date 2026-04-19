@@ -16,20 +16,33 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ComposterBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.entries.EmptyLootItem;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.SetNbtFunction;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
@@ -909,6 +922,47 @@ public class ModEventSubscriber {
         }
 
         @SubscribeEvent
+        public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+            if (event.getLevel().isClientSide()) return;
+
+            Level level = event.getLevel();
+            BlockPos pos = event.getPos();
+            BlockState state = level.getBlockState(pos);
+
+
+            if (!state.is(Blocks.COMPOSTER)) return;
+            int currentLevel = state.getValue(ComposterBlock.LEVEL);
+            if (currentLevel < 8) return;
+
+            Vec3 vec3 = Vec3.atLowerCornerWithOffset(pos, 0.5, 1.01, 0.5).offsetRandom(level.random, 0.7f);
+            ItemEntity entity = new ItemEntity(level, vec3.x(), vec3.y(), vec3.z(),
+                    new ItemStack(CreaturesItems.MEALWORMS.get()));
+            entity.setDefaultPickUpDelay();
+            level.addFreshEntity(entity);
+        }
+
+        @SubscribeEvent
+        public static void onLootTableLoad(LootTableLoadEvent event) {
+            if (!event.getName().equals(
+                    new ResourceLocation("minecraft", "gameplay/sniffer_digging"))) return;
+
+            CompoundTag tag;
+            tag = new CompoundTag();
+            tag.putInt("EggVariant", 7);
+
+            LootPool pool = LootPool.lootPool()
+                    .setRolls(ConstantValue.exactly(1))
+                    .add(LootItem.lootTableItem(CreaturesItems.KINGFISHER_EGG.get())
+                            .setWeight(1)
+                            .apply(SetNbtFunction.setTag(tag))
+                    )
+                    .add(EmptyLootItem.emptyItem().setWeight(99))
+                    .build();
+
+            event.getTable().addPool(pool);
+        }
+
+        @SubscribeEvent
         public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
             if (event.phase != TickEvent.Phase.END) return;
             if (event.player.level().isClientSide()) return;
@@ -976,6 +1030,8 @@ public class ModEventSubscriber {
                 break;
             }
         }
+
+
     }
 
     @Mod.EventBusSubscriber(modid = Creatures.MODID, value = Dist.CLIENT)

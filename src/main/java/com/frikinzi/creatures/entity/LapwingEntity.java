@@ -2,6 +2,7 @@ package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.client.gui.Region;
+import com.frikinzi.creatures.entity.ai.FleeGoal;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
@@ -77,24 +78,30 @@ public class LapwingEntity extends CreaturesFlyingBird implements GeoEntity {
         super.registerGoals();
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, FOOD_ITEMS, false));
         this.goalSelector.addGoal(5, new FollowFlockLeaderGoal(this));
-        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Player.class, 8.0F, 2.2D, 2.2D));
+        this.goalSelector.addGoal(4, new FleeGoal<>(this, Player.class, 6.0F, 1.0D, 1.5D));
     }
 
-    protected <E extends LapwingEntity> PlayState flyAnimController(final AnimationState<E> event)
-    {
+    protected <E extends LapwingEntity> PlayState flyAnimController(final AnimationState<E> event) {
         if (event.isMoving() && this.onGround()) {
-            return event.setAndContinue(RawAnimation.begin().thenLoop("walk"));
-        } if (!this.onGround() || this.isFlying()) {
-        return event.setAndContinue(RawAnimation.begin().thenLoop("fly"));
-    } if (this.isSleeping()) {
-        return event.setAndContinue(RawAnimation.begin().thenLoop("sleep"));
-    }
+            if (!event.getController().isPlayingTriggeredAnimation())
+                return event.setAndContinue(RawAnimation.begin().thenLoop("walk"));
+        }
+        if (!this.onGround() || this.isFlying()) {
+            if (!event.getController().isPlayingTriggeredAnimation())
+            {
+                return event.setAndContinue(RawAnimation.begin().thenLoop("fly"));
+
+            }
+        }
+        if (this.isSleeping()) {
+            return event.setAndContinue(RawAnimation.begin().thenLoop("sleep"));
+        }
         return event.setAndContinue(RawAnimation.begin().thenLoop("idle"));
     }
 
     @Override
     public void registerControllers(final AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "Flying", 0, this::flyAnimController));
+        controllers.add(new AnimationController<>(this, "Flying", 1, this::flyAnimController));
     }
 
     @Override

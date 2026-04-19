@@ -2,6 +2,7 @@ package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.client.gui.Region;
+import com.frikinzi.creatures.entity.ai.FleeGoal;
 import com.frikinzi.creatures.entity.ai.PickUpFishGoal;
 import com.frikinzi.creatures.entity.ai.PickUpFoodGoal;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
@@ -103,6 +104,8 @@ public class KingfisherEntity extends CreaturesFlyingBird implements GeoEntity {
         this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0D, true));
         this.targetSelector.addGoal(4, new NonTameRandomTargetGoal<>(this, WaterAnimal.class, false, PREY_SELECTOR));
         this.goalSelector.addGoal(2, new PickUpFoodGoal(this));
+        this.goalSelector.addGoal(4, new FleeGoal<>(this, Player.class, 6.0F, 1.0D, 1.5D));
+
     }
 
     protected <E extends KingfisherEntity> PlayState flyAnimController(final AnimationState<E> event)
@@ -144,10 +147,10 @@ public class KingfisherEntity extends CreaturesFlyingBird implements GeoEntity {
 
     @Override
     public KingfisherEntity getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-        KingfisherEntity rollerentity = CreaturesEntities.KINGFISHER.get().create(p_241840_1_);
-        rollerentity.setVariant(this.getVariant());
-        rollerentity.setGender(this.random.nextInt(2));
-        return rollerentity;
+        KingfisherEntity kingfisher = CreaturesEntities.KINGFISHER.get().create(p_241840_1_);
+        kingfisher.setVariant(this.getVariant());
+        kingfisher.setGender(this.random.nextInt(2));
+        return kingfisher;
     }
 
     @Override
@@ -304,36 +307,36 @@ public class KingfisherEntity extends CreaturesFlyingBird implements GeoEntity {
                 .collect(java.util.stream.Collectors.toList());
     }
 
-    @Override
-    public int methodOfDeterminingVariant() {
-        int[] iucnWeights = { 100, 60, 30, 15, 5, 1, 0, 50 };
-
-        boolean isMushroomIsland = this.level().getBiome(this.blockPosition())
-                .is(Tags.Biomes.IS_MUSHROOM);
-
-        List<Integer> pool = new ArrayList<>();
-        for (int v = 1; v <= numVariants(); v++) {
-            if (v == 7) {
-                if (isMushroomIsland && this.random.nextInt(100) == 0) {
-                    pool.add(7);
-                }
-                continue;
-            }
-
-            this.setVariant(v);
-            int status = this.getIUCNStatus();
-            int weight = (status >= 0 && status < iucnWeights.length) ? iucnWeights[status] : 50;
-            for (int w = 0; w < weight; w++) {
-                pool.add(v);
-            }
-        }
-
-        if (pool.isEmpty()) {
-            return this.random.nextInt(numVariants() - 1) + 1; // fallback excluding 7
-        }
-
-        return pool.get(this.random.nextInt(pool.size()));
-    }
+//    @Override
+//    public int methodOfDeterminingVariant() {
+//        int[] iucnWeights = { 100, 60, 30, 15, 5, 1, 0, 50 };
+//
+//        boolean isMushroomIsland = this.level().getBiome(this.blockPosition())
+//                .is(Tags.Biomes.IS_MUSHROOM);
+//
+//        List<Integer> pool = new ArrayList<>();
+//        for (int v = 1; v <= numVariants(); v++) {
+//            if (v == 7) {
+//                if (isMushroomIsland && this.random.nextInt(100) == 0) {
+//                    pool.add(7);
+//                }
+//                continue;
+//            }
+//
+//            this.setVariant(v);
+//            int status = this.getIUCNStatus();
+//            int weight = (status >= 0 && status < iucnWeights.length) ? iucnWeights[status] : 50;
+//            for (int w = 0; w < weight; w++) {
+//                pool.add(v);
+//            }
+//        }
+//
+//        if (pool.isEmpty()) {
+//            return this.random.nextInt(numVariants() - 1) + 1;
+//        }
+//
+//        return pool.get(this.random.nextInt(pool.size()));
+//    }
 
     public static boolean checkAnimalSpawnRules(EntityType<? extends Animal> p_218105_, LevelAccessor p_218106_, MobSpawnType p_218107_, BlockPos p_218108_, RandomSource p_218109_) {
         return (p_218106_.getBlockState(p_218108_.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON)|| p_218106_.getBlockState(p_218108_.below()).is(BlockTags.SAND) )&& isBrightEnoughToSpawn(p_218106_, p_218108_);

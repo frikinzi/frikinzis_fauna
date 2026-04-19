@@ -265,7 +265,7 @@
 					]
 				},
 				{
-					"name": "L_wing",
+					"name": "L_wing_ground3",
 					"parent": "BODY",
 					"pivot": [3.25, 10.62418, -1.30486],
 					"rotation": [-2.5, 0, 0],
@@ -279,7 +279,7 @@
 				},
 				{
 					"name": "guianan2",
-					"parent": "L_wing",
+					"parent": "L_wing_ground3",
 					"pivot": [4.89625, 10.97716, 6.09138],
 					"cubes": [
 						{"origin": [2.11125, 10.419, 4.45107], "size": [5, 0, 4], "pivot": [4.61125, 10.519, 6.45107], "rotation": [-7.1998, -34.92628, 18.14055], "uv": [88, 30]},
@@ -288,7 +288,7 @@
 					]
 				},
 				{
-					"name": "R_wing",
+					"name": "R_wing_ground3",
 					"parent": "BODY",
 					"pivot": [-3.25, 10.62418, -1.30486],
 					"rotation": [-2.5, 0, 0],
@@ -302,7 +302,7 @@
 				},
 				{
 					"name": "guianan",
-					"parent": "R_wing",
+					"parent": "R_wing_ground3",
 					"pivot": [-4.89625, 10.97716, 6.09138],
 					"cubes": [
 						{"origin": [-7.11125, 10.419, 4.45107], "size": [5, 0, 4], "pivot": [-4.61125, 10.519, 6.45107], "rotation": [-7.1998, 34.92628, -18.14055], "uv": [88, 30], "mirror": true},

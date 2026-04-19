@@ -23,7 +23,7 @@
 					]
 				},
 				{
-					"name": "bone5",
+					"name": "wing",
 					"parent": "bone",
 					"pivot": [3, 11, -4],
 					"cubes": [

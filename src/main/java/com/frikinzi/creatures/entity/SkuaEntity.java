@@ -2,6 +2,7 @@ package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.client.gui.Region;
+import com.frikinzi.creatures.entity.ai.FleeWithFoodGoal;
 import com.frikinzi.creatures.entity.ai.PickUpFoodGoal;
 import com.frikinzi.creatures.entity.base.CreaturesBirdEntity;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
@@ -80,6 +81,7 @@ public class SkuaEntity extends CreaturesFlyingBird implements GeoEntity {
 
     protected void registerGoals() {
         super.registerGoals();
+        this.goalSelector.addGoal(1, new FleeWithFoodGoal(this));
         this.goalSelector.addGoal(3, new PickUpFoodGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)));
         this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, true));
@@ -209,7 +211,10 @@ public class SkuaEntity extends CreaturesFlyingBird implements GeoEntity {
             heldFishTicks++;
             if (heldFishTicks >= 240) {
                 this.playSound(SoundEvents.GENERIC_EAT, 1.0F, 1.2F);
-                this.heal(3.0F);
+                if (this.isFood(this.getMainHandItem()) && this.getMainHandItem().getFoodProperties(this) != null && this.getHealth() < this.getMaxHealth()) {
+                    this.heal((float)this.getMainHandItem().getFoodProperties(this).getNutrition());
+
+                }
                 if (this.level() instanceof ServerLevel serverLevel) {
                     serverLevel.sendParticles(new net.minecraft.core.particles.ItemParticleOption(
                                     net.minecraft.core.particles.ParticleTypes.ITEM,
@@ -220,8 +225,7 @@ public class SkuaEntity extends CreaturesFlyingBird implements GeoEntity {
                 }
                 this.clearHeldItem();
                 heldFishTicks = 0;
-                stealCooldown = STEAL_COOLDOWN_MIN +
-                        this.random.nextInt(STEAL_COOLDOWN_MAX - STEAL_COOLDOWN_MIN);
+
             }
             return; // don't try to steal while already holding something
         }
@@ -290,7 +294,6 @@ public class SkuaEntity extends CreaturesFlyingBird implements GeoEntity {
                     Component.translatable("message.creatures.seagull_steal"), true);
         }
 
-        // Flock aggro — only against players
         if (victim instanceof Player) {
             List<SkuaEntity> flock = this.level().getEntitiesOfClass(
                     SkuaEntity.class,
@@ -301,6 +304,8 @@ public class SkuaEntity extends CreaturesFlyingBird implements GeoEntity {
                 friend.setTarget(victim);
             }
         }
+        stealCooldown = STEAL_COOLDOWN_MIN +
+                this.random.nextInt(STEAL_COOLDOWN_MAX - STEAL_COOLDOWN_MIN);
     }
 
     private int heldFishTicks = 0;

@@ -25,6 +25,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -213,6 +214,18 @@ public class SeaEagleEntity extends RaptorBase implements GeoEntity {
         return Arrays.stream(FOOD_ITEMS.getItems())
                 .map(ItemStack::copy)
                 .collect(java.util.stream.Collectors.toList());
+    }
+
+    public void aiStep() {
+        super.aiStep();
+        Vec3 vector3d = this.getDeltaMovement();
+        if (this.isAggressive() & !this.onGround() && vector3d.y < 0.0D) {
+            if (this.getTarget() != null) {
+                if ( this.getTarget().isInWater()) {
+                    this.setDeltaMovement(vector3d.multiply(1.0D, 2.0D, 1.0D));
+                }
+            }
+        }
     }
 
 

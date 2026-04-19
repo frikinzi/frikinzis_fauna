@@ -34,6 +34,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -254,6 +255,11 @@ public class EdibleCrabEntity extends AbstractCrabBase implements GeoEntity {
         return -1;
     }
 
+    @Override
+    protected float getWaterSlowDown() {
+        return 0.98F;
+    }
+
     public class ThreatGoal extends Goal {
         private Player angertarget;
         private final TargetingConditions predicate = TargetingConditions.forNonCombat()
@@ -353,6 +359,34 @@ public class EdibleCrabEntity extends AbstractCrabBase implements GeoEntity {
             RandomSource random) {
         return level.getFluidState(pos).is(FluidTags.WATER);    }
 
+
+    public boolean checkSpawnObstruction(LevelReader p_30348_) {
+        return p_30348_.isUnobstructed(this);
+    }
+
+    protected void handleAirSupply(int p_30344_) {
+        if (this.isAlive() && !this.isInWaterOrBubble()) {
+            this.setAirSupply(p_30344_ - 1);
+            if (this.getAirSupply() == -20) {
+                this.setAirSupply(0);
+                this.hurt(this.damageSources().drown(), 2.0F);
+            }
+        } else {
+            this.setAirSupply(300);
+        }
+
+    }
+
+    public void baseTick() {
+        int i = this.getAirSupply();
+        super.baseTick();
+        this.handleAirSupply(i);
+    }
+
+
+    public boolean canBeLeashed(Player p_30346_) {
+        return false;
+    }
 
 
 }

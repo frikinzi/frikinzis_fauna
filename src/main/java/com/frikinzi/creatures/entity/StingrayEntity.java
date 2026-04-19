@@ -441,4 +441,8 @@ public int getMaxSchoolSize() {
         return -20;
     }
 
+    public boolean givesLiveBirth() {
+        return true;
+    }
+
 }

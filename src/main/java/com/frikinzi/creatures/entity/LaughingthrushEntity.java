@@ -85,11 +85,12 @@ public class LaughingthrushEntity extends CreaturesFlyingBird implements GeoEnti
 
     protected <E extends LaughingthrushEntity> PlayState flyAnimController(final AnimationState<E> event)
     {
+ if (!this.onGround() || this.isFlying()) {
+        return event.setAndContinue(RawAnimation.begin().thenLoop("fly"));
+    }
         if (event.isMoving() && this.onGround()) {
             return event.setAndContinue(RawAnimation.begin().thenLoop("walk"));
-        } if (!this.onGround() || this.isFlying()) {
-        return event.setAndContinue(RawAnimation.begin().thenLoop("fly"));
-    } if (this.isSleeping()) {
+        }if (this.isSleeping()) {
         return event.setAndContinue(RawAnimation.begin().thenLoop("sleep"));
     }
         return event.setAndContinue(RawAnimation.begin().thenLoop("idle"));

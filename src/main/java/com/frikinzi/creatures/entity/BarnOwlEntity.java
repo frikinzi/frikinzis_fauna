@@ -62,14 +62,14 @@ public class BarnOwlEntity extends RaptorBase implements GeoEntity {
 
     protected <E extends BarnOwlEntity> PlayState flyAnimController(final AnimationState<E> event)
     {
-        if (event.isMoving() && this.onGround()) {
-            return event.setAndContinue(RawAnimation.begin().thenLoop("walk"));
-        }
         if (!this.onGround() || this.isFlying()) {
             if (this.isBaby()) {
                 return event.setAndContinue(RawAnimation.begin().thenLoop("baby_fly"));
             }
             return event.setAndContinue(RawAnimation.begin().thenLoop("fly"));
+        }
+        if (event.isMoving() && this.onGround()) {
+            return event.setAndContinue(RawAnimation.begin().thenLoop("walk"));
         }
         if (this.isSleeping()) {
             return event.setAndContinue(RawAnimation.begin().thenLoop("sleep"));

@@ -41,7 +41,7 @@ public class RegionSelectScreen extends Screen {
                     .pos(x, y).size(btnW, btnH).build());
         }
 
-        this.addRenderableWidget(Button.builder(Component.literal("◀ Back"),
+        this.addRenderableWidget(Button.builder(Component.literal("◀ " + Component.translatable("creatures.fieldgui.back").getString()),
                 b -> Minecraft.getInstance().setScreen(parent))
                 .pos(bookX + 10, bookY + bookH - 35).size(50, 20).build());
     }
@@ -54,9 +54,9 @@ public class RegionSelectScreen extends Screen {
         int bookY = (this.height - bookH) / 2;
         RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
         graphics.blit(BOOK_TEXTURE, bookX, bookY, 0, 0, bookW, bookH, bookW, bookW);
-        String title = "View by Region";
-        graphics.drawString(font, title, bookX + bookW / 2 - font.width(title) / 2,
-                bookY + 20, 0x3D2B1F, false);
+//        String title = "View by Region";
+//        graphics.drawString(font, title, bookX + bookW / 2 - font.width(title) / 2,
+//                bookY + 20, 0x3D2B1F, false);
         super.render(graphics, mouseX, mouseY, partialTick);
     }
 

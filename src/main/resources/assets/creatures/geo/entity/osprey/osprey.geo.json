@@ -57,7 +57,7 @@
 					]
 				},
 				{
-					"name": "bone4",
+					"name": "leftwing",
 					"parent": "bone10",
 					"pivot": [-0.5, 4, 1],
 					"rotation": [2.5, 0, 0],

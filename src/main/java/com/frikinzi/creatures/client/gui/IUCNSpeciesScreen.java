@@ -173,7 +173,7 @@ public class IUCNSpeciesScreen extends Screen {
         }
 
         if (entries.isEmpty()) {
-            String msg = "No species found for " + IUCNSelectScreen.IUCN_NAMES[iucnStatus];
+            String msg = "Hopefully, none of the species in this mod will be listed here.";
             graphics.drawString(font, msg,
                     bookX + bookW / 2 - font.width(msg) / 2,
                     bookY + bookH / 2, 0x3D2B1F, false);

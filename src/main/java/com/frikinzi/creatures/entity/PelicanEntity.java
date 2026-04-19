@@ -107,18 +107,33 @@ public class PelicanEntity extends CreaturesFlyingBird implements GeoEntity {
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, TropicalFish.class, false));
         this.goalSelector.addGoal(6, new FollowFlockLeaderGoal(this));
     }
+    private String lastAnimation = "";
 
     protected <E extends PelicanEntity> PlayState flyAnimController(final AnimationState<E> event)
     {
+        AnimationController<?> controller = event.getController();
+        String nextAnim;
+
         if ((!this.onGround() || this.isFlying()) && !this.isInWater()) {
-            return event.setAndContinue(RawAnimation.begin().thenLoop("fly"));
+            if (!controller.isPlayingTriggeredAnimation()) {
+                nextAnim = "fly";
+            } else {
+                return PlayState.CONTINUE;
+            }
+        } else if ((event.isMoving() && this.onGround()) || this.isInWater()) {
+            nextAnim = "walk";
+        } else if (this.isSleeping()) {
+            nextAnim = "sleep";
+        } else {
+            nextAnim = "idle";
         }
-        if (event.isMoving() && this.onGround() || this.isInWater()) {
-            return event.setAndContinue(RawAnimation.begin().thenLoop("walk"));
-        }  if (this.isSleeping()) {
-        return event.setAndContinue(RawAnimation.begin().thenLoop("sleep"));
-    }
-        return event.setAndContinue(RawAnimation.begin().thenLoop("idle"));
+
+        if (!nextAnim.equals(lastAnimation)) {
+            controller.forceAnimationReset();
+            lastAnimation = nextAnim;
+        }
+
+        return event.setAndContinue(RawAnimation.begin().thenLoop(nextAnim));
     }
 
     private <E extends PelicanEntity> PlayState pouchController(AnimationState<E> event) {
@@ -287,6 +302,7 @@ public class PelicanEntity extends CreaturesFlyingBird implements GeoEntity {
             pouchItems.add(ItemStack.of(list.getCompound(i)));
         }
         updateHeldItem();
+        this.entityData.set(HAS_FISH, !pouchItems.isEmpty());
     }
 
     private int eatTimer = 0;

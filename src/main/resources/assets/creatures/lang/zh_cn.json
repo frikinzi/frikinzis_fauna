@@ -1756,6 +1756,10 @@
   "message.creatures.congotetra": "刚果扯旗鱼",
   "message.creatures.embertetra": "喷火灯",
   "message.creatures.blackneontetra": "黑灯管鱼",
-  "message.creatures.bloodfintetra": "白细脂鲤"
+  "message.creatures.bloodfintetra": "白细脂鲤",
+  "description.creatures.saddlebilledstork": "鞍嘴鹳是世界上最高的鹳。雄性虹膜为棕色，雌性虹膜为黄色。",
+  "description.creatures.blackneckedstork": "黑颈鹳具有领地意识，用其剑状喙猎捕食物。它们终身只有一个伴侣。",
+  "description.creatures.jabirustork": "裸颈鹳是美洲最高的飞行鸟类。它们的喙末端略微上翘，有助于捕食鱼类和其他水生猎物。",
+  "description.creatures.openbillstork": "钳嘴鹳的上下喙之间有一道缝隙，专门用来从螺壳中提取蜗牛。上下喙只在尖端相合，这样可以更好地夹住猎物。"
 
 }

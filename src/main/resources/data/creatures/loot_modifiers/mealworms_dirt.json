@@ -1,18 +1,19 @@
 {
-    "type": "creatures:mealworms_dirt",
+    "type": "forge:loot_additions",
     "conditions": [
         {
-
-            "condition": "block_state_property",
+            "condition": "minecraft:block_state_property",
             "block": "minecraft:podzol"
-
         },
         {
-
             "condition": "minecraft:random_chance",
             "chance": 0.6
-
         }
     ],
-    "addition": "creatures:mealworms"
+    "additions": [
+        {
+            "type": "minecraft:item",
+            "name": "creatures:mealworms"
+        }
+    ]
 }

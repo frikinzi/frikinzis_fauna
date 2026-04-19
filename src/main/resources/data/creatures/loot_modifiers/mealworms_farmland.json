@@ -1,18 +1,19 @@
 {
-    "type": "creatures:mealworms_farmland",
+    "type": "forge:loot_additions",
     "conditions": [
         {
-
-            "condition": "block_state_property",
+            "condition": "minecraft:block_state_property",
             "block": "minecraft:farmland"
-
         },
         {
-
             "condition": "minecraft:random_chance",
-            "chance": 0.2
-
+            "chance": 0.6
         }
     ],
-    "addition": "creatures:mealworms"
+    "additions": [
+        {
+            "type": "minecraft:item",
+            "name": "creatures:mealworms"
+        }
+    ]
 }

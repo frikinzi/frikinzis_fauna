@@ -176,7 +176,7 @@ public class RegionSpeciesScreen extends Screen {
         int bookX = (this.width - bookW) / 2;
         int bookY = (this.height - bookH) / 2;
 
-        this.addRenderableWidget(Button.builder(Component.literal("◀ Back"),
+        this.addRenderableWidget(Button.builder(Component.literal("◀ "+ Component.translatable("creatures.fieldgui.back").getString()),
                 b -> Minecraft.getInstance().setScreen(parent))
                 .pos(bookX + 10, bookY + bookH - 35).size(50, 20).build());
 

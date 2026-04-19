@@ -181,7 +181,7 @@
 					]
 				},
 				{
-					"name": "wing_L",
+					"name": "wing_L3",
 					"parent": "BODY",
 					"pivot": [3, 7.08399, -2.52008],
 					"rotation": [7, 0, 0],
@@ -193,7 +193,7 @@
 					]
 				},
 				{
-					"name": "wing_R",
+					"name": "wing_R3",
 					"parent": "BODY",
 					"pivot": [-3, 7.08399, -2.52008],
 					"rotation": [7, 0, 0],

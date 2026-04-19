@@ -68,7 +68,7 @@
 					]
 				},
 				{
-					"name": "bone8",
+					"name": "r_wing",
 					"parent": "bone",
 					"pivot": [-2.35, 10.2, -9],
 					"cubes": [

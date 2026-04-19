@@ -78,11 +78,12 @@ public class StiltEntity extends CreaturesFlyingBird implements GeoEntity {
 
     protected <E extends StiltEntity> PlayState flyAnimController(final AnimationState<E> event)
     {
-        if (event.isMoving() && this.onGround()) {
-            return event.setAndContinue(RawAnimation.begin().thenLoop("walk"));
-        } if (!this.onGround() || this.isFlying()) {
+    if (!this.onGround() || this.isFlying()) {
         return event.setAndContinue(RawAnimation.begin().thenLoop("fly"));
-    } if (this.isSleeping()) {
+    }         if (event.isMoving() && this.onGround()) {
+        return event.setAndContinue(RawAnimation.begin().thenLoop("walk"));
+    }
+        if (this.isSleeping()) {
         return event.setAndContinue(RawAnimation.begin().thenLoop("sleep"));
     }
         return event.setAndContinue(RawAnimation.begin().thenLoop("idle"));

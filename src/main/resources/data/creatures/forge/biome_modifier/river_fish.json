@@ -25,12 +25,6 @@
       "weight": 5,
       "minCount": 1,
       "maxCount": 1
-    },
-    {
-      "type": "creatures:ediblecrab",
-      "weight": 15,
-      "minCount": 1,
-      "maxCount": 3
     }
   ]
 }

@@ -4,6 +4,7 @@ import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.client.gui.Region;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
+import com.frikinzi.creatures.registry.CreaturesItems;
 import com.frikinzi.creatures.registry.CreaturesLootTables;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -14,6 +15,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -38,7 +40,7 @@ import java.util.Map;
 
 public class StorkEntity extends CreaturesFlyingBird implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.COD);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.COD, Items.SALMON, Items.TROPICAL_FISH, CreaturesItems.RAW_BLUECRAB.get(), CreaturesItems.CRAB_PINCERS.get(), CreaturesItems.RAW_LUNGFISH.get(), CreaturesItems.RAW_EDIBLECRAB.get());
     public static Map<Integer, Integer> STORK_MODEL = ImmutableMap.of(
             1, 1,
             2, 1,
@@ -57,7 +59,7 @@ public class StorkEntity extends CreaturesFlyingBird implements GeoEntity {
             .put(4, List.of(Region.NORTH_AMERICA, Region.SOUTH_AMERICA))
             .put(5, List.of(Region.AFRICA))
             .put(6, List.of(Region.ASIA))
-            .put(7, List.of(Region.OCEANIA))
+            .put(7, List.of(Region.NORTH_AMERICA,Region.SOUTH_AMERICA))
             .put(8, List.of(Region.AFRICA))
             .put(9, List.of(Region.ASIA))
             .build();
@@ -90,6 +92,7 @@ public class StorkEntity extends CreaturesFlyingBird implements GeoEntity {
 
     protected void registerGoals() {
         super.registerGoals();
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, LungfishEntity.class, false));
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, FOOD_ITEMS, false));
         this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Player.class, 16.0F, 1.5D, 1.2D));
     }

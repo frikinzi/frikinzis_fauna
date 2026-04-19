@@ -248,13 +248,13 @@
 					]
 				},
 				{
-					"name": "wings",
+					"name": "winggs2",
 					"parent": "body",
 					"pivot": [-2.8, 11.79081, -2.0954]
 				},
 				{
-					"name": "wingbaseright",
-					"parent": "wings",
+					"name": "winggbaseright2",
+					"parent": "winggs2",
 					"pivot": [-2.9, 11.79081, -2.0954],
 					"rotation": [-3, -3, 0],
 					"cubes": [
@@ -262,8 +262,8 @@
 					]
 				},
 				{
-					"name": "wingupperright",
-					"parent": "wingbaseright",
+					"name": "winggupperright",
+					"parent": "winggbaseright2",
 					"pivot": [-3.46669, 12.63261, 2.67148],
 					"rotation": [-10, 0, 0],
 					"cubes": [
@@ -271,8 +271,8 @@
 					]
 				},
 				{
-					"name": "winglowerright",
-					"parent": "wingbaseright",
+					"name": "wingglowerright",
+					"parent": "winggbaseright2",
 					"pivot": [-3.48897, 10.70212, 2.30717],
 					"rotation": [7, 0, 0],
 					"cubes": [
@@ -280,8 +280,8 @@
 					]
 				},
 				{
-					"name": "wingbaseleft",
-					"parent": "wings",
+					"name": "winggbaseleft",
+					"parent": "winggs2",
 					"pivot": [2.9, 11.79081, -2.0954],
 					"rotation": [-3, 3, 0],
 					"cubes": [
@@ -289,8 +289,8 @@
 					]
 				},
 				{
-					"name": "wingupperleft",
-					"parent": "wingbaseleft",
+					"name": "winggupperleft",
+					"parent": "winggbaseleft",
 					"pivot": [3.46669, 12.63261, 2.67148],
 					"rotation": [-10, 0, 0],
 					"cubes": [
@@ -298,8 +298,8 @@
 					]
 				},
 				{
-					"name": "winglowerleft",
-					"parent": "wingbaseleft",
+					"name": "wingglowerleft",
+					"parent": "winggbaseleft",
 					"pivot": [3.48897, 10.70212, 2.30717],
 					"rotation": [7, 0, 0],
 					"cubes": [
