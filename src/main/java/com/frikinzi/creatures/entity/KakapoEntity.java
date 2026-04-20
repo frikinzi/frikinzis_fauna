@@ -131,4 +131,8 @@ public class KakapoEntity extends CreaturesWalkingBird implements GeoEntity {
                 .map(ItemStack::copy)
                 .collect(java.util.stream.Collectors.toList());
     }
+
+    public int getIUCNStatus() {
+        return 4;
+    }
 }

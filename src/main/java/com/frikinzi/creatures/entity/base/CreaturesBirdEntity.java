@@ -797,40 +797,45 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
 
     public class DefendBabyGoal extends NearestAttackableTargetGoal<LivingEntity> {
         public DefendBabyGoal() {
-            super(CreaturesBirdEntity.this, LivingEntity.class, 5, true, true, LivingEntity::attackable);
+            super(CreaturesBirdEntity.this, LivingEntity.class, 5, true, true,
+                    e -> e.attackable()
+                            && e.getClass() != CreaturesBirdEntity.this.getClass()
+                            && !(e instanceof EggEntity)
+                            && !e.isBaby()
+                            && !(e instanceof CreaturesBirdEntity)
+            );
         }
+
 
         @Override
         public boolean canUse() {
-            if (!CreaturesBirdEntity.this.isBaby() && !CreaturesBirdEntity.this.isTame()) {
-                if (super.canUse()) {
-                    for (CreaturesBirdEntity birdEntity : CreaturesBirdEntity.this.level().getEntitiesOfClass(
-                            CreaturesBirdEntity.class,
-                            CreaturesBirdEntity.this.getBoundingBox().inflate(4.0D, 4.0D, 4.0D))) {
-                        if (birdEntity.isBaby() && birdEntity.getClass() == CreaturesBirdEntity.this.getClass()) {
-                            if (this.targetMob.getClass() == CreaturesBirdEntity.this.getClass()
-                                    || this.targetMob.getClass() == EggEntity.class
-                                    || this.targetMob.isBaby()) {
-                                return false;
-                            }
-                            return true;
-                        }
-                    }
-                    for (EggEntity eggEntity : CreaturesBirdEntity.this.level().getEntitiesOfClass(
-                            EggEntity.class,
-                            CreaturesBirdEntity.this.getBoundingBox().inflate(3.0D, 2.0D, 3.0D))) {
-                        if (eggEntity.getSpecies() == ModEventSubscriber.getBirdEntityMap().inverse().get(CreaturesBirdEntity.this.getType())) {
-                            if (this.targetMob.getClass() == CreaturesBirdEntity.this.getClass()
-                                    || this.targetMob.isBaby()
-                                    || this.targetMob.getClass() == EggEntity.class) {
-                                return false;
-                            }
-                            return true;
-                        }
+            if (CreaturesBirdEntity.this.isBaby()) return false;
+            if (CreaturesBirdEntity.this.isTame()) return false;
+
+            boolean hasBabyNearby = false;
+
+            for (CreaturesBirdEntity baby : CreaturesBirdEntity.this.level().getEntitiesOfClass(
+                    CreaturesBirdEntity.class,
+                    CreaturesBirdEntity.this.getBoundingBox().inflate(4.0D, 4.0D, 4.0D))) {
+                if (baby.isBaby() && baby.getClass() == CreaturesBirdEntity.this.getClass()) {
+                    hasBabyNearby = true;
+                    break;
+                }
+            }
+
+            if (!hasBabyNearby) {
+                for (EggEntity egg : CreaturesBirdEntity.this.level().getEntitiesOfClass(
+                        EggEntity.class,
+                        CreaturesBirdEntity.this.getBoundingBox().inflate(3.0D, 2.0D, 3.0D))) {
+                    if (egg.getSpecies() == ModEventSubscriber.getBirdEntityMap().inverse()
+                            .get(CreaturesBirdEntity.this.getType())) {
+                        hasBabyNearby = true;
+                        break;
                     }
                 }
             }
-            return false;
+
+            return hasBabyNearby && super.canUse();
         }
 
         @Override
