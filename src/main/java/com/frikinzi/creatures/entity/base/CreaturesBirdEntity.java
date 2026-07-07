@@ -86,7 +86,7 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
             this.setSubVariant(this.getSubVariantBasedOnVariant(birdData.variant));
         } else if (p_29391_ == MobSpawnType.SPAWN_EGG) {
             int var = this.random.nextInt(numVariants()) + 1;
-            //int var = this.methodOfDeterminingVariant();
+            var = this.methodOfDeterminingVariant();
 
             this.setVariant(var);
             this.setSubVariant(this.getSubVariantBasedOnVariant(var));
@@ -663,7 +663,8 @@ public class CreaturesBirdEntity extends ShoulderRidingEntity {
                 this.setWandering(0);
             }
             return InteractionResult.sidedSuccess(this.level().isClientSide);
-        } else if (!this.isFlying() && this.isTame() && this.isOwnedBy(p_29414_) && !this.isFood(itemstack)) {
+        }
+        else if (!this.isFlying() && this.isTame() && this.isOwnedBy(p_29414_) && !this.isFood(itemstack)) {
             if (!this.level().isClientSide) {
                 this.setOrderedToSit(!this.isOrderedToSit());
             }

@@ -99,10 +99,10 @@ public class FieldGuideGUI extends Screen {
             new SpeciesEntry("bluetang", 10, BlueTangEntity.SPECIES_NAMES, BlueTangEntity.SCIENTIFIC_NAMES, CreaturesEntities.BLUE_TANG, CreaturesItems.BLUE_TANG_SPAWN_EGG, Component.translatable("entity.creatures.blue_tang")),
             new SpeciesEntry("clownfish", 8, ClownfishEntity.SPECIES_NAMES, ClownfishEntity.SCIENTIFIC_NAMES, CreaturesEntities.CLOWNFISH, CreaturesItems.CLOWNFISH_SPAWN_EGG, Component.translatable("entity.creatures.clownfish")),
             new SpeciesEntry("dottyback", 4, DottybackEntity.SPECIES_NAMES, DottybackEntity.SCIENTIFIC_NAMES, CreaturesEntities.DOTTYBACK, CreaturesItems.DOTTYBACK_SPAWN_EGG, Component.translatable("entity.creatures.dottyback")),
-            new SpeciesEntry("elephantnose", 5, Map.of(), Map.of(), CreaturesEntities.ELEPHANTNOSE, CreaturesItems.ELEPHANTNOSE_SPAWN_EGG, Component.translatable("entity.creatures.elephantnose"), ElephantNoseFishEntity.REGIONS),
+            new SpeciesEntry("elephantnose", 4, Map.of(), Map.of(), CreaturesEntities.ELEPHANTNOSE, CreaturesItems.ELEPHANTNOSE_SPAWN_EGG, Component.translatable("entity.creatures.elephantnose"), ElephantNoseFishEntity.REGIONS),
             new SpeciesEntry("firegoby", 1, Map.of(), Map.of(), CreaturesEntities.FIRE_GOBY, CreaturesItems.FIRE_GOBY_SPAWN_EGG, Component.translatable("entity.creatures.fire_goby")),
             new SpeciesEntry("flameangelfish", 1, Map.of(), Map.of(), CreaturesEntities.FLAME_ANGELFISH, CreaturesItems.FLAME_ANGELFISH_SPAWN_EGG, Component.translatable("entity.creatures.flame_angelfish")),
-            new SpeciesEntry("goldfish", 9, Map.of(), Map.of(), CreaturesEntities.GOLDFISH, CreaturesItems.GOLDFISH_SPAWN_EGG, Component.translatable("entity.creatures.goldfish"), GoldfishEntity.REGIONS),
+            new SpeciesEntry("goldfish", 8, Map.of(), Map.of(), CreaturesEntities.GOLDFISH, CreaturesItems.GOLDFISH_SPAWN_EGG, Component.translatable("entity.creatures.goldfish"), GoldfishEntity.REGIONS),
             new SpeciesEntry("gourami", 5, GouramiEntity.SPECIES_NAMES, GouramiEntity.SCIENTIFIC_NAMES, CreaturesEntities.GOURAMI, CreaturesItems.GOURAMI_SPAWN_EGG, Component.translatable("entity.creatures.gourami"), GouramiEntity.REGIONS),
             new SpeciesEntry("guppy", 6, GuppyEntity.SPECIES_NAMES, Map.of(), CreaturesEntities.GUPPY, CreaturesItems.GUPPY_SPAWN_EGG, Component.translatable("entity.creatures.guppy"), GuppyEntity.REGIONS),
             new SpeciesEntry("koi", 9, Map.of(), Map.of(), CreaturesEntities.KOI, CreaturesItems.KOI_SPAWN_EGG, Component.translatable("entity.creatures.koi"), KoiEntity.REGIONS),
@@ -142,12 +142,34 @@ public class FieldGuideGUI extends Screen {
         super(Component.translatable("creatures_fieldgui"));
     }
 
-    private int scrollOffset = 0;
-    private static final int COLS = 4;
-    private static final int ROWS = 4;
     private static final int CELL_SIZE = 40;
     private static final ResourceLocation BOOK_TEXTURE = new ResourceLocation("creatures:textures/gui/creatures/book.png");
     private int currentPage = 0;
+    private String searchQuery = "";
+    private net.minecraft.client.gui.components.EditBox searchBox;
+
+    private List<Integer> getFilteredIndices(FieldGuideCapability cap) {
+        List<Integer> indices = new ArrayList<>();
+        for (int i = 0; i < ALL_SPECIES.size(); i++) {
+            SpeciesEntry species = ALL_SPECIES.get(i);
+            if (!searchQuery.isEmpty()) {
+                // only show discovered when searching
+                if (cap == null || !cap.hasDiscoveredAny(species.entityKey)) continue;
+                boolean matches = species.displayName.getString().toLowerCase().contains(searchQuery);
+                if (!matches) {
+                    for (int v = 1; v <= species.totalVariants; v++) {
+                        if (species.getSpeciesName(v).toLowerCase().contains(searchQuery)) {
+                            matches = true;
+                            break;
+                        }
+                    }
+                }
+                if (!matches) continue;
+            }
+            indices.add(i);
+        }
+        return indices;
+    }
 
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
@@ -162,9 +184,9 @@ public class FieldGuideGUI extends Screen {
         int leftPageX  = bookX + 55;
         int rightPageX = bookX + 200;
         int pageY      = bookY + 35;
-//        int pageY      = bookY + 25;
         int pageH      = bookH - 65;
         int visibleRows = pageH / cellSize;
+        int itemsPerPage = colsPerPage * 2 * visibleRows;
 
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         graphics.blit(BOOK_TEXTURE, bookX, bookY, 0, 0, bookW, bookH, bookW, bookW);
@@ -178,13 +200,14 @@ public class FieldGuideGUI extends Screen {
         if (currentPage == 0) {
             regionButton.visible = true;
             iucnButton.visible = true;
+            if (searchBox != null) searchBox.visible = false;
+
             int centerX = rightPageX + bookW / 2 - 120;
             int centerY = pageY + bookH / 2 - 30;
 
-            // Title
             graphics.pose().pushPose();
             graphics.pose().translate(centerX, centerY - 55, 0);
-            graphics.pose().scale(1.5f, 1.5f, 1.5f); // 2x size
+            graphics.pose().scale(1.5f, 1.5f, 1.5f);
             float x = -font.width("Frikinzi's Fauna") / 2.0f;
             font.drawInBatch("Frikinzi's Fauna", x, 0, 0x3D2B1F, false,
                     graphics.pose().last().pose(), graphics.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
@@ -198,43 +221,37 @@ public class FieldGuideGUI extends Screen {
                     graphics.pose().last().pose(), graphics.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
             graphics.pose().popPose();
 
-            // Count discovered species
             int totalSpecies = ALL_SPECIES.stream().mapToInt(s -> s.totalVariants).sum();
             int discoveredSpecies = 0;
             if (cap != null) {
                 discoveredSpecies = (int) cap.getAll().stream()
-                        .filter(key -> ALL_SPECIES.stream()
-                                .anyMatch(s -> key.startsWith(s.entityKey + "_")))
+                        .filter(key -> ALL_SPECIES.stream().anyMatch(s -> key.startsWith(s.entityKey + "_")))
                         .map(key -> {
-                            // Strip gender suffix — turn "lovebird_3_m" into "lovebird_3"
                             String[] parts = key.split("_");
                             return parts.length >= 3 ? parts[0] + "_" + parts[1] : key;
                         })
-                        .distinct()
-                        .count();
+                        .distinct().count();
             }
-            // Progress text
+
             graphics.pose().pushPose();
             graphics.pose().translate(centerX, centerY, 0);
             graphics.pose().scale(1f, 1f, 0.8f);
             x = -font.width(discoveredSpecies + " / " + totalSpecies + " " + Component.translatable("creatures.fieldgui.discover").getString()) / 2.0f;
-            font.drawInBatch(discoveredSpecies + " / " + totalSpecies + " "+ Component.translatable("creatures.fieldgui.discover").getString(), x, 0, 0x3D2B1F, false,
+            font.drawInBatch(discoveredSpecies + " / " + totalSpecies + " " + Component.translatable("creatures.fieldgui.discover").getString(), x, 0, 0x3D2B1F, false,
                     graphics.pose().last().pose(), graphics.bufferSource(), Font.DisplayMode.NORMAL, 0, 15728880);
             graphics.pose().popPose();
 
-            // Progress bar background
-            int barWidth = 120;
-            int barHeight = 8;
+            int barWidth = 120, barHeight = 8;
             int barX = centerX - barWidth / 2;
             int barY = centerY + 15;
             graphics.fill(barX, barY, barX + barWidth, barY + barHeight, 0x55000000);
-
-            // Progress bar fill
             int fillWidth = (int) ((float) discoveredSpecies / totalSpecies * barWidth);
             graphics.fill(barX, barY, barX + fillWidth, barY + barHeight, 0xFF5C8A3C);
+            graphics.fill(barX, barY, barX + barWidth, barY + 1, 0x88000000);
+            graphics.fill(barX, barY + barHeight - 1, barX + barWidth, barY + barHeight, 0x88000000);
+            graphics.fill(barX, barY, barX + 1, barY + barHeight, 0x88000000);
+            graphics.fill(barX + barWidth - 1, barY, barX + barWidth, barY + barHeight, 0x88000000);
 
-            // instructions
-            int introX = bookX + 15;
             int introY = bookY + 155;
             String[] lines = {
                     Component.translatable("creatures.fieldgui.rightclickintro").getString(),
@@ -249,54 +266,53 @@ public class FieldGuideGUI extends Screen {
                 graphics.pose().scale(scale, scale, 1f);
                 font.drawInBatch(line, 0, 0, 0x5C4033, false,
                         graphics.pose().last().pose(), graphics.bufferSource(),
-                        net.minecraft.client.gui.Font.DisplayMode.NORMAL, 0, 15728880);
+                        Font.DisplayMode.NORMAL, 0, 15728880);
                 graphics.pose().popPose();
                 introY += (int)(10 * scale);
             }
 
-            // Bar border
-            graphics.fill(barX, barY, barX + barWidth, barY + 1, 0x88000000);
-            graphics.fill(barX, barY + barHeight - 1, barX + barWidth, barY + barHeight, 0x88000000);
-            graphics.fill(barX, barY, barX + 1, barY + barHeight, 0x88000000);
-            graphics.fill(barX + barWidth - 1, barY, barX + barWidth, barY + barHeight, 0x88000000);
-
-            ResourceLocation painting = new ResourceLocation("creatures:textures/painting/fischers.png");
-            int imgSize = 64; // display size in pixels
-            int imgX = bookX + 50; // left page area
+            int imgSize = 64;
+            int imgX = bookX + 50;
             int imgY = bookY + 80;
             RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
-            graphics.blit(painting, imgX, imgY, 0, 0, imgSize, imgSize, imgSize, imgSize);
-            graphics.blit(new ResourceLocation("creatures:textures/painting/victoria_crowned.png"), imgX+70, imgY+10, 0, 0, imgSize, imgSize, imgSize, imgSize);
+            graphics.blit(new ResourceLocation("creatures:textures/painting/fischers.png"), imgX, imgY, 0, 0, imgSize, imgSize, imgSize, imgSize);
+            graphics.blit(new ResourceLocation("creatures:textures/painting/victoria_crowned.png"), imgX + 70, imgY + 10, 0, 0, imgSize, imgSize, imgSize, imgSize);
 
             super.render(graphics, mouseX, mouseY, partialTick);
             return;
         } else {
             regionButton.visible = false;
             iucnButton.visible = false;
+            if (searchBox != null) searchBox.visible = true;
         }
 
-        for (int i = 0; i < ALL_SPECIES.size(); i++) {
-            if (!isCellVisible(i, cellSize, colsPerPage, visibleRows)) continue;
+        // ✅ Filtered + paginated species loop
+        List<Integer> filtered = getFilteredIndices(cap);
+        int startIdx = (currentPage - 1) * itemsPerPage;
+        int endIdx = Math.min(startIdx + itemsPerPage, filtered.size());
 
-            int x = getCellX(i, leftPageX, rightPageX, cellSize, colsPerPage);
-            int y = getCellY(i, pageY, cellSize, colsPerPage, visibleRows);
+        for (int idx = startIdx; idx < endIdx; idx++) {
+            int posOnPage = idx - startIdx;
+            int speciesIndex = filtered.get(idx);
+            SpeciesEntry species = ALL_SPECIES.get(speciesIndex);
 
-            SpeciesEntry species = ALL_SPECIES.get(i);
+            int globalCol = posOnPage % (colsPerPage * 2);
+            boolean isRight = globalCol >= colsPerPage;
+            int col = globalCol % colsPerPage;
+            int x = (isRight ? rightPageX : leftPageX) + col * cellSize;
+            int row = posOnPage / (colsPerPage * 2);
+            int y = pageY + row * cellSize;
+
             boolean anyDiscovered = cap != null && cap.hasDiscoveredAny(species.entityKey);
 
             if (anyDiscovered) {
-                //LivingEntity dummy = (LivingEntity) species.entityType.get().create(Minecraft.getInstance().level);
                 LivingEntity dummy = (LivingEntity) species.entityType.get().create(Minecraft.getInstance().level);
                 if (dummy != null) {
-                    Quaternionf rotation = new Quaternionf()
-                            .rotateZ((float) Math.PI)
-                            .rotateY((float) Math.toRadians(140));
-                    float entityHeight = dummy.getBbHeight();
-                    int scale = (int) (25.0f / entityHeight);
+                    Quaternionf rotation = new Quaternionf().rotateZ((float) Math.PI).rotateY((float) Math.toRadians(140));
+                    int scale = (int) (25.0f / dummy.getBbHeight());
                     int offset = 0;
-                    if ((dummy instanceof CreaturesBirdEntity bird) && cap != null) {
 
-                        // Build list of all discovered variant+gender combos
+                    if ((dummy instanceof CreaturesBirdEntity bird) && cap != null) {
                         List<int[]> discovered = new ArrayList<>();
                         for (int v : cap.getDiscoveredVariants(species.entityKey)) {
                             for (String g : cap.getDiscoveredGenders(species.entityKey, v)) {
@@ -304,7 +320,7 @@ public class FieldGuideGUI extends Screen {
                             }
                         }
                         if (!discovered.isEmpty()) {
-                            int tick = (int)(System.currentTimeMillis() / 1000) % discovered.size();
+                            int tick = (int)(System.currentTimeMillis() / 5000) % discovered.size();
                             int[] entry = discovered.get(tick);
                             bird.setVariant(entry[0]);
                             bird.setGender(entry[1]);
@@ -318,7 +334,7 @@ public class FieldGuideGUI extends Screen {
                         Set<Integer> variants = cap.getDiscoveredVariants(species.entityKey);
                         if (!variants.isEmpty()) {
                             List<Integer> variantList = new ArrayList<>(variants);
-                            int tick = (int)(System.currentTimeMillis() / 1000) % variantList.size();
+                            int tick = (int)(System.currentTimeMillis() / 5000) % variantList.size();
                             fish.setVariant(variantList.get(tick));
                             fish.setAirSupply(300);
                             fish.setForcedInWater(true);
@@ -328,17 +344,17 @@ public class FieldGuideGUI extends Screen {
                         }
                         fish.setOnGround(true);
                     }
-                    if ((dummy instanceof AbstractCrabBase fish) && cap != null) {
+                    if ((dummy instanceof AbstractCrabBase crab) && cap != null) {
                         Set<Integer> variants = cap.getDiscoveredVariants(species.entityKey);
                         if (!variants.isEmpty()) {
                             List<Integer> variantList = new ArrayList<>(variants);
-                            int tick = (int)(System.currentTimeMillis() / 1000) % variantList.size();
-                            fish.setVariant(variantList.get(tick));
-                            rotation = fish.getRotforGUI();
-                            scale = fish.getScaleforGUI();
-                            offset = fish.getYOffsetForGUI();
+                            int tick = (int)(System.currentTimeMillis() / 5000) % variantList.size();
+                            crab.setVariant(variantList.get(tick));
+                            rotation = crab.getRotforGUI();
+                            scale = crab.getScaleforGUI();
+                            offset = crab.getYOffsetForGUI();
                         }
-                        fish.setOnGround(true);
+                        crab.setOnGround(true);
                     }
                     InventoryScreen.renderEntityInInventory(graphics,
                             x + cellSize / 2, y + cellSize - 5 + offset, scale, rotation, null, dummy);
@@ -350,7 +366,6 @@ public class FieldGuideGUI extends Screen {
                 graphics.fill(x, y, x + 1, y + CELL_SIZE, 0x55000000);
                 graphics.fill(x, y + CELL_SIZE - 1, x + CELL_SIZE, y + CELL_SIZE, 0x55000000);
                 graphics.fill(x + CELL_SIZE - 1, y, x + CELL_SIZE, y + CELL_SIZE, 0x55000000);
-
                 if (mouseX >= x && mouseX <= x + CELL_SIZE && mouseY >= y && mouseY <= y + CELL_SIZE) {
                     graphics.renderTooltip(font, Component.literal("???"), mouseX, mouseY);
                 }
@@ -360,8 +375,8 @@ public class FieldGuideGUI extends Screen {
                 hoveredTooltip = anyDiscovered
                         ? Component.literal(species.displayName.getString())
                         : Component.literal("???");
-                tooltipX = (int) mouseX;
-                tooltipY = (int) mouseY;
+                tooltipX = mouseX;
+                tooltipY = mouseY;
             }
         }
 
@@ -369,14 +384,16 @@ public class FieldGuideGUI extends Screen {
             graphics.renderTooltip(font, hoveredTooltip, tooltipX, tooltipY);
         }
 
-        int totalPages = getTotalPages(colsPerPage, visibleRows);
-        graphics.drawString(font, currentPage == 0 ? "1 / " + totalPages : currentPage + " / " + (totalPages - 1),
+        int totalPages = getTotalPages(colsPerPage, visibleRows, filtered.size());
+        graphics.drawString(font, currentPage + " / " + (totalPages - 1),
                 bookX + bookW / 2 - 10, bookY + bookH - 18, 0x3D2B1F, false);
+
         super.render(graphics, mouseX, mouseY, partialTick);
     }
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        if (currentPage == 0) return super.mouseClicked(mouseX, mouseY, button);
         FieldGuideCapability cap = Minecraft.getInstance().player
                 .getCapability(FieldGuideCapability.CAPABILITY).orElse(null);
         if (cap == null) return super.mouseClicked(mouseX, mouseY, button);
@@ -385,22 +402,29 @@ public class FieldGuideGUI extends Screen {
         int bookX = (this.width - bookW) / 2;
         int bookY = (this.height - bookH) / 2;
 
-        int cellSize = 40;
-        int colsPerPage = 3;
-        int leftPageX  = bookX + 55;
-        int rightPageX = bookX + 200;
-        int pageY      = bookY + 35;
-        int pageH      = bookH - 65;
+        int cellSize = 40, colsPerPage = 3;
+        int leftPageX = bookX + 55, rightPageX = bookX + 200;
+        int pageY = bookY + 35, pageH = bookH - 65;
         int visibleRows = pageH / cellSize;
+        int itemsPerPage = colsPerPage * 2 * visibleRows;
 
-        for (int i = 0; i < ALL_SPECIES.size(); i++) {
-            if (!isCellVisible(i, cellSize, colsPerPage, visibleRows)) continue;
+        List<Integer> filtered = getFilteredIndices(cap);
+        int startIdx = (currentPage - 1) * itemsPerPage;
+        int endIdx = Math.min(startIdx + itemsPerPage, filtered.size());
 
-            int x = getCellX(i, leftPageX, rightPageX, cellSize, colsPerPage);
-            int y = getCellY(i, pageY, cellSize, colsPerPage, visibleRows);
+        for (int idx = startIdx; idx < endIdx; idx++) {
+            int posOnPage = idx - startIdx;
+            int speciesIndex = filtered.get(idx);
+            SpeciesEntry species = ALL_SPECIES.get(speciesIndex);
+
+            int globalCol = posOnPage % (colsPerPage * 2);
+            boolean isRight = globalCol >= colsPerPage;
+            int col = globalCol % colsPerPage;
+            int x = (isRight ? rightPageX : leftPageX) + col * cellSize;
+            int row = posOnPage / (colsPerPage * 2);
+            int y = pageY + row * cellSize;
 
             if (mouseX >= x && mouseX <= x + cellSize && mouseY >= y && mouseY <= y + cellSize) {
-                SpeciesEntry species = ALL_SPECIES.get(i);
                 if (cap.hasDiscoveredAny(species.entityKey)) {
                     Minecraft.getInstance().setScreen(
                             new SpeciesVariantScreen(species, cap.getDiscoveredVariants(species.entityKey), this));
@@ -411,60 +435,26 @@ public class FieldGuideGUI extends Screen {
         return super.mouseClicked(mouseX, mouseY, button);
     }
 
-    private int getTotalRows() {
-        int colsPerPage = 3;
-        return (int) Math.ceil((double) ALL_SPECIES.size() / (colsPerPage * 2));
-    }
-
-//    private int getMaxScroll() {
-//        return Math.max(0, getTotalRows() - ROWS);
-//    }
-
-    private int getMaxScroll() {
-        int pageH = 245 - 65;
-        int cellSize = 40;
-        int visibleRows = pageH / cellSize;
-        return Math.max(0, getTotalRows() - visibleRows);
-    }
-
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
+        FieldGuideCapability cap = Minecraft.getInstance().player
+                .getCapability(FieldGuideCapability.CAPABILITY).orElse(null);
         int cellSize = 40, colsPerPage = 3, pageH = 245 - 65;
         int visibleRows = pageH / cellSize;
-        int totalPages = getTotalPages(colsPerPage, visibleRows);
+        List<Integer> filtered = getFilteredIndices(cap);
+        int totalPages = getTotalPages(colsPerPage, visibleRows, filtered.size());
         if (delta < 0 && currentPage < totalPages - 1) currentPage++;
         else if (delta > 0 && currentPage > 0) currentPage--;
         return true;
     }
 
-    private int getCellX(int i, int leftPageX, int rightPageX, int cellSize, int colsPerPage) {
-        int globalCol = i % (colsPerPage * 2);
-        boolean isRightPage = globalCol >= colsPerPage;
-        int colInPage = globalCol % colsPerPage;
-        int pageStartX = isRightPage ? rightPageX : leftPageX;
-        return pageStartX + colInPage * cellSize;
-    }
-
-    private int getCellY(int i, int pageY, int cellSize, int colsPerPage, int visibleRows) {
+    private int getTotalPages(int colsPerPage, int visibleRows, int filteredSize) {
         int itemsPerPage = colsPerPage * 2 * visibleRows;
-        int indexOnPage = i % itemsPerPage;
-        int row = indexOnPage / (colsPerPage * 2);
-        return pageY + row * cellSize;
-    }
-
-    private int getVisibleRows(int pageH, int cellSize) {
-        return pageH / cellSize;
+        return (int) Math.ceil((double) filteredSize / itemsPerPage) + 1;
     }
 
     private int getTotalPages(int colsPerPage, int visibleRows) {
-        int itemsPerPage = colsPerPage * 2 * visibleRows;
-        return (int) Math.ceil((double) ALL_SPECIES.size() / itemsPerPage) + 1;
-    }
-
-    private boolean isCellVisible(int i, int cellSize, int colsPerPage, int visibleRows) {
-        int itemsPerPage = colsPerPage * 2 * visibleRows;
-        int itemPage = i / itemsPerPage;
-        return itemPage == currentPage -1;
+        return getTotalPages(colsPerPage, visibleRows, ALL_SPECIES.size());
     }
 
     @Override
@@ -474,19 +464,22 @@ public class FieldGuideGUI extends Screen {
         int bookX = (this.width - bookW) / 2;
         int bookY = (this.height - bookH) / 2;
 
-// Previous page
         this.addRenderableWidget(Button.builder(Component.literal("◀"), b -> {
             if (currentPage > 0) currentPage--;
         }).pos(bookX + 10, bookY + bookH - 40).size(20, 20).build());
 
-// Next page
         this.addRenderableWidget(Button.builder(Component.literal("▶"), b -> {
+            FieldGuideCapability cap = Minecraft.getInstance().player
+                    .getCapability(FieldGuideCapability.CAPABILITY).orElse(null);
             int cellSize = 40, colsPerPage = 3, pageH = bookH - 65;
             int visibleRows = pageH / cellSize;
-            if (currentPage < getTotalPages(colsPerPage, visibleRows) - 1) currentPage++;
+            List<Integer> filtered = getFilteredIndices(cap);
+            int totalPages = getTotalPages(colsPerPage, visibleRows, filtered.size());
+            if (currentPage < totalPages - 1) currentPage++;
         }).pos(bookX + bookW - 30, bookY + bookH - 40).size(20, 20).build());
 
-        Button quizButton = Button.builder(Component.literal(Component.translatable("creatures.fieldgui.dailyquiz").getString()), b -> {
+        Button quizButton = Button.builder(Component.literal(
+                Component.translatable("creatures.fieldgui.dailyquiz").getString()), b -> {
             FieldGuideCapability cap = Minecraft.getInstance().player
                     .getCapability(FieldGuideCapability.CAPABILITY).orElse(null);
             if (cap != null) {
@@ -494,21 +487,32 @@ public class FieldGuideGUI extends Screen {
                 if (quiz != null) Minecraft.getInstance().setScreen(quiz);
             }
         }).pos(bookX + bookW / 2 - 40, bookY + bookH - 40).size(80, 20).build();
-
         quizButton.active = FieldGuideGUI.canShowQuiz();
-        regionButton = Button.builder(Component.literal(Component.translatable("creatures.fieldgui.bycontinent").getString()), b ->
-                        Minecraft.getInstance().setScreen(new RegionSelectScreen(this)))
+        this.addRenderableWidget(quizButton);
+
+        regionButton = Button.builder(Component.literal(
+                                Component.translatable("creatures.fieldgui.bycontinent").getString()),
+                        b -> Minecraft.getInstance().setScreen(new RegionSelectScreen(this)))
                 .pos(bookX + 40, bookY + 40).size(70, 30).build();
         this.addRenderableWidget(regionButton);
-
-
-        this.addRenderableWidget(quizButton);
 
         iucnButton = Button.builder(Component.translatable("creatures.fieldgui.iucn"),
                         b -> Minecraft.getInstance().setScreen(new IUCNSelectScreen(this)))
                 .pos(bookX + 120, bookY + 40).size(70, 30).build();
         this.addRenderableWidget(iucnButton);
 
+        searchBox = new net.minecraft.client.gui.components.EditBox(
+                font,
+                bookX + 55, bookY + 18, 125, 12,
+                Component.translatable("creatures.fieldgui.search"));
+        searchBox.setMaxLength(30);
+        searchBox.setHint(Component.translatable("creatures.fieldgui.search"));
+        searchBox.setResponder(query -> {
+            searchQuery = query.toLowerCase();
+            currentPage = 1;
+        });
+        searchBox.visible = false;
+        this.addRenderableWidget(searchBox);
     }
 
     private long getCurrentMinecraftDay() {
@@ -516,9 +520,7 @@ public class FieldGuideGUI extends Screen {
     }
 
     public static boolean canShowQuiz() {
-        if (!net.minecraftforge.fml.loading.FMLLoader.isProduction()) {
-            return true;
-        }
+        if (!net.minecraftforge.fml.loading.FMLLoader.isProduction()) return true;
         if (!quizCompletedToday) return true;
         long currentDay = Minecraft.getInstance().level.getDayTime() / 24000L;
         if (currentDay != lastQuizDay) {
@@ -530,6 +532,4 @@ public class FieldGuideGUI extends Screen {
 
     @Override
     public boolean isPauseScreen() { return false; }
-
-
 }

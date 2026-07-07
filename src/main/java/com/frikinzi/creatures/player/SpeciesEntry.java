@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SpeciesEntry {
+    
     public final String entityKey;
     public final int totalVariants;         // total number of variants
     public final Map<Integer, Component> speciesNames;

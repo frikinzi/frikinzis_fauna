@@ -2,6 +2,7 @@ package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.client.gui.Region;
+import com.frikinzi.creatures.entity.ai.FleeGoal;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
 import com.frikinzi.creatures.registry.CreaturesItems;
@@ -94,7 +95,7 @@ public class StorkEntity extends CreaturesFlyingBird implements GeoEntity {
         super.registerGoals();
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, LungfishEntity.class, false));
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, FOOD_ITEMS, false));
-        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Player.class, 16.0F, 1.5D, 1.2D));
+        this.goalSelector.addGoal(4, new FleeGoal<>(this, Player.class, 16.0F, 1.5D, 1.2D));
     }
 
     protected <E extends StorkEntity> PlayState flyAnimController(final AnimationState<E> event)
@@ -120,7 +121,7 @@ public class StorkEntity extends CreaturesFlyingBird implements GeoEntity {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D).add(Attributes.FLYING_SPEED, (double)0.8F).add(Attributes.MOVEMENT_SPEED, (double)0.4F);
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D).add(Attributes.FLYING_SPEED, (double)0.8F).add(Attributes.MOVEMENT_SPEED, (double)0.4F).add(Attributes.ATTACK_DAMAGE, 2F);
     }
 
     public int numVariants() {

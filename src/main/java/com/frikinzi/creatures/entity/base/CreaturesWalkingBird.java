@@ -58,7 +58,7 @@ public class CreaturesWalkingBird extends CreaturesBirdEntity {
         this.goalSelector.addGoal(1, new SleepGoal());
         this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
-        this.goalSelector.addGoal(2, new FollowOwnerGoal(this, 1.0D, 5.0F, 1.0F, true));
+        this.goalSelector.addGoal(2, new FollowGoal());
         this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 
     }

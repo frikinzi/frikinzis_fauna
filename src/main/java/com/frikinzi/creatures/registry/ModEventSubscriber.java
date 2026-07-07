@@ -70,7 +70,7 @@ public class ModEventSubscriber {
         return getEntityKey(mob);
     }
     private static SpeciesEntry getSpeciesEntryByKey(String key) {
-        return FieldGuideGUI.ALL_SPECIES.stream()
+        return SpeciesRegistry.ALL_SPECIES.stream()
                 .filter(s -> s.entityKey.equals(key))
                 .findFirst().orElse(null);
     }
@@ -646,7 +646,7 @@ public class ModEventSubscriber {
         }
 
         public static void triggerAchievement(FieldGuideCapability cap, String key, ServerPlayer serverPlayer) {
-            SpeciesEntry species = FieldGuideGUI.ALL_SPECIES.stream()
+            SpeciesEntry species = SpeciesRegistry.ALL_SPECIES.stream()
                     .filter(s -> key.startsWith(s.entityKey.replace("_", "")))
                     .findFirst().orElse(null);
 

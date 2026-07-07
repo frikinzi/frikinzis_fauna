@@ -247,7 +247,10 @@ public class BandedPenguinEntity extends WalkingSwimmingBird implements GeoEntit
     }
 
     public int getIUCNStatus() {
-        if (this.getVariant() == 2 || this.getVariant() == 4) {
+        if (this.getVariant() == 2) {
+            return 4;
+        }
+        if (this.getVariant() == 4) {
             return 3;
         } if (this.getVariant() == 1) {
             return 2;

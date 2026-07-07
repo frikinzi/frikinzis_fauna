@@ -79,7 +79,7 @@ public class CreaturesGUI extends Screen {
 
 // Render all food items in a row
             List<ItemStack> foodItems = bird.getAllFoodItems();
-            for (int i = 0; i < foodItems.size(); i++) {
+            for (int i = 0; i < Math.min(6,foodItems.size()); i++) {
                 matrices.renderItem(foodItems.get(i), offLeft + 30 + (i * 18), 140 + offTop);
             }
 //            Component IUCN1 = Component.translatable("gui.iucn").withStyle(ChatFormatting.BOLD);;

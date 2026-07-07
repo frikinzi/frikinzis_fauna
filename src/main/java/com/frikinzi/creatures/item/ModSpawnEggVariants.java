@@ -509,12 +509,8 @@ public class ModSpawnEggVariants extends ForgeSpawnEggItem {
                     }
                 } if (entitytype == CreaturesEntities.MANTIS_SHRIMP.get()) {
                     if (this.currentSpecies > 0) {
-                        int no = 1;
-                        if (this.currentSpecies == 6) {
-                            no = 2;
-                        }
-                        if (MantisShrimpEntity.SPECIES_NAMES.get(no) != null) {
-                            return MantisShrimpEntity.SPECIES_NAMES.get(no).getString() + " " + this.currentSpecies;
+                        if (MantisShrimpEntity.SPECIES_NAMES.get(this.currentSpecies) != null) {
+                            return MantisShrimpEntity.SPECIES_NAMES.get(this.currentSpecies).getString();
                         }
                     }
                 } if (entitytype == CreaturesEntities.RAIL.get()) {

@@ -131,9 +131,9 @@ public class DailyQuizScreen extends Screen {
     }
 
     public static DailyQuizScreen create(Screen parent, FieldGuideCapability cap, int questionNumber, int correctCount) {
-        if (new Random().nextFloat() < 0.3f) {
+        if (new Random().nextFloat() < 0.03f) {
             return new DailyQuizScreen(parent, BankQuestion.getRandom(), questionNumber, correctCount);
-        }  else if (new Random().nextFloat() < 0.5f & CreaturesConfig.quiz_sound_q.get()) {
+        }  else if (new Random().nextFloat() < 0.05f & CreaturesConfig.quiz_sound_q.get()) {
             return createSoundQuestion(parent, questionNumber, correctCount);
         }
         List<QuizOption> pool = new ArrayList<>();
@@ -162,10 +162,16 @@ public class DailyQuizScreen extends Screen {
         }
         for (QuizOption o : pool) {
             if (wrongs.size() >= 3) break;
-            if (o != correct && !wrongs.contains(o)
+            String correctSci = correct.species.getScientificName(correct.variant);
+            String oSci = o.species.getScientificName(o.variant);
+
+            if (o != correct
+                    && !wrongs.contains(o)
                     && !o.displayName.equals(correct.displayName)
-                    && wrongs.stream().noneMatch(w -> w.displayName.equals(o.displayName)))
+                    && wrongs.stream().noneMatch(w -> w.displayName.equals(o.displayName))
+                    && (correctSci == null || oSci == null || !oSci.equals(correctSci))) {
                 wrongs.add(o);
+            }
         }
 
         List<QuizOption> allOptions = new ArrayList<>();
@@ -219,6 +225,8 @@ public class DailyQuizScreen extends Screen {
         else if (showBirdPickName) {
             LivingEntity dummy = (LivingEntity) correctSpecies.entityType.get()
                     .create(Minecraft.getInstance().level);
+            float h = dummy.getBbHeight();
+            int scale = (int)(30f / h);
             Quaternionf rot = new Quaternionf().rotateZ((float)Math.PI).rotateY((float)Math.toRadians(160));
             Random rand = new Random();
             if (dummy instanceof CreaturesBirdEntity bird) {
@@ -226,12 +234,14 @@ public class DailyQuizScreen extends Screen {
                 bird.setGender(cachedGenders.computeIfAbsent(-1, k -> new Random().nextInt(2)));
                 bird.setSubVariant(cachedSubVariants.computeIfAbsent(-1, k -> bird.getSubVariantBasedOnVariant(correctVariant)));                bird.setOnGround(true);
                 rot = bird.getRotforGUI();
+                //scale = bird.getScaleforGUI()*2;
             }
             if (dummy instanceof AbstractCrabBase crab) {
                 crab.setVariant(correctVariant);
                 crab.setGender(cachedGenders.computeIfAbsent(-1, k -> new Random().nextInt(2)));
                 crab.setOnGround(true);
                 rot = crab.getRotforGUI();
+                scale = crab.getScaleforGUI();
             }
             if (dummy instanceof FishBase fish) {
                 fish.setVariant(correctVariant);
@@ -241,10 +251,10 @@ public class DailyQuizScreen extends Screen {
                 fish.setGender(cachedGenders.computeIfAbsent(-1, k -> new Random().nextInt(2)));
                 fish.setForcedInWater(true);
                 rot = fish.getRotforGUI();
+                scale = fish.getScaleforGUI();
             }
             if (dummy != null) {
-                float h = dummy.getBbHeight();
-                int scale = (int)(30f / h);
+
                     InventoryScreen.renderEntityInInventory(graphics, centerX, pageY + 60, scale, rot, null, dummy);
             }
 

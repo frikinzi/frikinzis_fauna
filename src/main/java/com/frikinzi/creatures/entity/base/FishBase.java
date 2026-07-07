@@ -84,6 +84,7 @@ public abstract class FishBase extends AbstractSchoolingFish {
         this.setHeightMultiplier(f);
         if (p_213386_3_ == MobSpawnType.SPAWN_EGG) {
             this.setVariant(this.random.nextInt(numVariants()) + 1);
+//            this.setVariant(this.methodOfDeterminingVariant()); //testing
             this.setSubVariant(this.methodOfDeterminingSubVariant());
         }  else if (p_213386_3_ == MobSpawnType.BUCKET) {
             if (p_213386_5_ != null) {
@@ -95,7 +96,7 @@ public abstract class FishBase extends AbstractSchoolingFish {
                     this.setSubVariant(p_213386_5_.getInt("BucketSubVariantTag"));
                 }
                 if (p_213386_5_.contains("Gender")) {
-                    this.setSubVariant(p_213386_5_.getInt("Gender"));
+                    this.setGender(p_213386_5_.getInt("Gender"));
                 }
                 if (p_213386_5_.contains("BucketHeightMultiplier")) {
                     this.setHeightMultiplier(p_213386_5_.getFloat("BucketHeightMultiplier"));
@@ -233,25 +234,6 @@ public abstract class FishBase extends AbstractSchoolingFish {
 
     public int getIUCNStatus() {
         return 0;
-    }
-
-    public void tick() {
-        super.tick();
-        if (!this.level().isClientSide && !variantSynced && isNaturalSpawn && this.tickCount == 2) {
-            variantSynced = true;
-            List<? extends FishBase> nearby = this.level().getEntitiesOfClass(
-                    this.getClass(),
-                    this.getBoundingBox().inflate(8.0D),
-                    e -> e != this
-            );
-            if (!nearby.isEmpty()) {
-                int groupVariant = nearby.get(0).getVariant();
-                this.setVariant(groupVariant);
-                this.setSubVariant(this.getSubVariantBasedOnVariant(groupVariant));
-            }
-        } else if (!isNaturalSpawn) {
-            variantSynced = true;
-        }
     }
 
     public int getIUCNColor() {

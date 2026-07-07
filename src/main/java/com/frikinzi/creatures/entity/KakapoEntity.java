@@ -135,4 +135,9 @@ public class KakapoEntity extends CreaturesWalkingBird implements GeoEntity {
     public int getIUCNStatus() {
         return 4;
     }
+
+    public int getScaleforGUI() {
+        return (int)(super.getScaleforGUI() *2f);
+    }
+
 }

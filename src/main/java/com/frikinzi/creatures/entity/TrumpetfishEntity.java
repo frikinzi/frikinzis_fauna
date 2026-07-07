@@ -91,14 +91,14 @@ public int getMaxSchoolSize() {
         return new ItemStack(CreaturesItems.TRUMPETFISH_BUCKET.get());
     }
 
-//    public void saveToBucketTag(ItemStack p_204211_1_) {
-//        super.saveToBucketTag(p_204211_1_);
-//        CompoundTag compoundnbt = p_204211_1_.getOrCreateTag();
-//        compoundnbt.putInt("BucketVariantTag", this.getVariant());
-//        compoundnbt.putInt("BucketGenderTag", this.getGender());
-//        compoundnbt.putFloat("BucketHeightMultiplier", this.getHeightMultiplier());
-//        compoundnbt.putInt("Age", this.getAge());
-//    }
+    public void saveToBucketTag(ItemStack p_204211_1_) {
+        super.saveToBucketTag(p_204211_1_);
+        CompoundTag compoundnbt = p_204211_1_.getOrCreateTag();
+        compoundnbt.putInt("BucketVariantTag", this.getVariant());
+        compoundnbt.putInt("BucketGenderTag", this.getGender());
+        compoundnbt.putFloat("BucketHeightMultiplier", this.getHeightMultiplier());
+        compoundnbt.putInt("Age", this.getAge());
+    }
 
     protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
         return SoundEvents.SALMON_HURT;
@@ -308,14 +308,14 @@ public int getMaxSchoolSize() {
         } return "Unknown";
     }
 
-    public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
-        ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
-        if (itemstack.getItem() == Items.WATER_BUCKET && this.isAlive()) {
-            return InteractionResult.PASS;
-        } else {
-            return super.mobInteract(p_230254_1_, p_230254_2_);
-        }
-    }
+//    public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
+//        ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
+//        if (itemstack.getItem() == Items.WATER_BUCKET && this.isAlive()) {
+//            return InteractionResult.PASS;
+//        } else {
+//            return super.mobInteract(p_230254_1_, p_230254_2_);
+//        }
+//    }
 
     public int methodOfDeterminingSubVariant() {
         return this.random.nextInt(TRUMPETFISH.get(this.getVariant()))+1;

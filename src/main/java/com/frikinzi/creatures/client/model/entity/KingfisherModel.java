@@ -20,11 +20,11 @@ public class KingfisherModel extends GeoModel<KingfisherEntity> {
     public ResourceLocation getTextureResource(KingfisherEntity object)
     {
         if (object.isFlying() || !object.onGround()) {
-            return new ResourceLocation(Creatures.MODID, "textures/entity/kingfisher/kingfisher" + object.getVariant() + "fly.png");
+            return new ResourceLocation(Creatures.MODID, "textures/entity/kingfisher/kingfisher" + object.getVariant() + object.getGenderIndicator() + "fly.png");
         } if (object.isSleeping()) {
-        return new ResourceLocation(Creatures.MODID, "textures/entity/kingfisher/kingfisher" + object.getVariant() + "sleep.png");
+        return new ResourceLocation(Creatures.MODID, "textures/entity/kingfisher/kingfisher" + object.getVariant() + object.getGenderIndicator() + "sleep.png");
     }
-        return new ResourceLocation(Creatures.MODID, "textures/entity/kingfisher/kingfisher" + object.getVariant() + ".png");
+        return new ResourceLocation(Creatures.MODID, "textures/entity/kingfisher/kingfisher" + object.getVariant() + object.getGenderIndicator() + ".png");
     }
 
     @Override

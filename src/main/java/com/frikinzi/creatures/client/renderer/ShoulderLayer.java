@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 
@@ -264,6 +265,8 @@ public class ShoulderLayer<T extends Player> extends RenderLayer<T, PlayerModel<
     private CreaturesBirdEntity getOrCreateBirdEntity(CompoundTag shoulderNBT) {
         EntityType<?> type = EntityType.byString(shoulderNBT.getString("id")).orElse(null);
         if (type == null) return null;
+        Entity entity = type.create(Minecraft.getInstance().level);
+            if (!(entity instanceof CreaturesBirdEntity)) return null;
         CreaturesBirdEntity bird = (CreaturesBirdEntity) type.create(Minecraft.getInstance().level);
         if (bird != null) {
             bird.readAdditionalSaveData(shoulderNBT);

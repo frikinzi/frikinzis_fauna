@@ -159,4 +159,8 @@ public class GyrfalconEntity extends RaptorBase implements GeoEntity {
                 .collect(java.util.stream.Collectors.toList());
     }
 
+    public int getScaleforGUI() {
+        return (int)(super.getScaleforGUI() *2f);
+    }
+
 }

@@ -2,6 +2,7 @@ package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.client.gui.Region;
+import com.frikinzi.creatures.entity.ai.FleeGoal;
 import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
@@ -76,7 +77,7 @@ public class CockOfTheRockEntity extends CreaturesFlyingBird implements GeoEntit
         super.registerGoals();
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, FOOD_ITEMS, false ));
         this.goalSelector.addGoal(5, new FollowFlockLeaderGoal(this));
-        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Player.class, 6.0F, 1.0D, 1.2D));
+        this.goalSelector.addGoal(4, new FleeGoal<>(this, Player.class, 6.0F, 1.0D, 1.2D));
     }
 
     protected <E extends CockOfTheRockEntity> PlayState flyAnimController(final AnimationState<E> event)
@@ -163,11 +164,11 @@ public class CockOfTheRockEntity extends CreaturesFlyingBird implements GeoEntit
     }
 
     public double getHatchChance() {
-        return CreaturesConfig.sparrow_hatch_chance.get();
+        return CreaturesConfig.cockoftherock_hatch_chance.get();
     }
 
     public int getClutchSize() {
-        return this.random.nextInt(CreaturesConfig.sparrow_clutch_size.get());
+        return this.random.nextInt(CreaturesConfig.cockoftherock_clutch_size.get());
     }
 
     public int getMaxFlockSize() {

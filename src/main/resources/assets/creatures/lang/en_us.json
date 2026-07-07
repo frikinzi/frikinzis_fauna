@@ -1780,6 +1780,7 @@
   "description.creatures.jabirustork": "Jabiru storks are the tallest flying birds in the Americas. They have a unique bill that is slightly upturned at the end, which helps them catch fish and other aquatic prey.",
   "description.creatures.openbillstork": "The gap in the mandibles of the open billed stork is designed to extract snails from their shells. The mandibles only meet at the tip, which allows for better grip.",
   "advancements.creatures.catch_clownfish.title": "OMG NEMO!",
-  "advancements.creatures.catch_clownfish.description": "Catch a clownfish using a bucket."
+  "advancements.creatures.catch_clownfish.description": "Catch a clownfish using a bucket.",
+  "creatures.fieldgui.search": "search..."
 
 }

@@ -246,6 +246,9 @@ public class CreaturesConfig {
     public static final ForgeConfigSpec.ConfigValue<Double> crane_hatch_chance;
     public static final ForgeConfigSpec.ConfigValue<Integer> crane_clutch_size;
 
+    public static final ForgeConfigSpec.ConfigValue<Double> cockoftherock_hatch_chance;
+    public static final ForgeConfigSpec.ConfigValue<Integer> cockoftherock_clutch_size;
+
     public static final ForgeConfigSpec.ConfigValue<Double> marabou_hatch_chance;
     public static final ForgeConfigSpec.ConfigValue<Integer> marabou_clutch_size;
 
@@ -883,6 +886,13 @@ public class CreaturesConfig {
 
         crane_hatch_chance = BUILDER.comment("Hatch chance for each crane egg").define("Crane Hatch Chance", 0.3);
         crane_clutch_size = BUILDER.comment("Max egg clutch size for crane").define("Crane Clutch Size", 4);
+
+        BUILDER.pop();
+
+        BUILDER.push("Cock of the Rock");
+
+        cockoftherock_hatch_chance = BUILDER.comment("Hatch chance for each cock of the rock egg").define("Crane Hatch Chance", 0.3);
+        cockoftherock_clutch_size = BUILDER.comment("Max egg clutch size for cock of the rock").define("Crane Clutch Size", 2);
 
         BUILDER.pop();
 

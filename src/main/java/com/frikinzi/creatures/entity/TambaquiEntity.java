@@ -108,11 +108,6 @@ public int getMaxSchoolSize() {
         return CreaturesItems.ALGAE_WAFER.get();
     }
 
-    protected void registerGoals() {
-        super.registerGoals();
-        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 8.0F, 2.2D, 2.2D));
-    }
-
     public int getIUCNStatus() {
         return -1;
     }
@@ -138,4 +133,17 @@ public int getMaxSchoolSize() {
         return Component.translatable("description.creatures.tambaqui");
     }
 
+    public int methodOfDeterminingVariant() {
+        int[] weights = {60, 60, 30, 20, 10, 1};
+        int total = 0;
+        for (int w : weights) total += w;
+
+        int roll = this.random.nextInt(total);
+        int cumulative = 0;
+        for (int i = 0; i < weights.length; i++) {
+            cumulative += weights[i];
+            if (roll < cumulative) return i + 1;
+        }
+        return 1;
+    }
 }

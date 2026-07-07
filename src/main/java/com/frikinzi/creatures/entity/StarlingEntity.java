@@ -38,6 +38,8 @@ import java.util.Map;
 public class StarlingEntity extends CreaturesFlyingBird implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private static final Ingredient FOOD_ITEMS = Ingredient.of(CreaturesItems.MEALWORMS.get(), Items.SWEET_BERRIES);
+    private int mimicCooldown = 0;
+    private SoundEvent mimickedSound = null;
     public static final Map<Integer, Component> SPECIES_NAMES = ImmutableMap.<Integer, Component>builder()
             .put(1, Component.translatable("message.creatures.goldenbreasted"))
             .put(2, Component.translatable("message.creatures.violetstarling"))

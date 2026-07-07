@@ -100,7 +100,7 @@ public int getMaxSchoolSize() {
     }
 
     public ResourceLocation getDefaultLootTable() {
-        return CreaturesLootTables.TROPICAL_FISH;
+        return CreaturesLootTables.SHRIMP;
     }
 
     public float getHatchChance() {
@@ -276,14 +276,14 @@ public int getMaxSchoolSize() {
         return super.doHurtTarget(target);
     }
 
-    public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
-        ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
-        if (itemstack.getItem() == Items.WATER_BUCKET && this.isAlive()) {
-            return InteractionResult.PASS;
-        } else {
-            return super.mobInteract(p_230254_1_, p_230254_2_);
-        }
-    }
+//    public InteractionResult mobInteract(Player p_230254_1_, InteractionHand p_230254_2_) {
+//        ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
+//        if (itemstack.getItem() == Items.WATER_BUCKET && this.isAlive()) {
+//            return InteractionResult.PASS;
+//        } else {
+//            return super.mobInteract(p_230254_1_, p_230254_2_);
+//        }
+//    }
 
     public Component getFunFact() {
         return Component.translatable("description.creatures.mantisshrimp");

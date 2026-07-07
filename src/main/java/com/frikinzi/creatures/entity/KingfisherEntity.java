@@ -342,4 +342,22 @@ public class KingfisherEntity extends CreaturesFlyingBird implements GeoEntity {
         return (p_218106_.getBlockState(p_218108_.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON)|| p_218106_.getBlockState(p_218108_.below()).is(BlockTags.SAND) )&& isBrightEnoughToSpawn(p_218106_, p_218108_);
     }
 
+    public boolean isSexuallyDimorphic() {
+        if (this.getVariant() == 4) {
+            return true;
+        }
+        return false;
+    }
+
+    public String getGenderIndicator() {
+        if (!this.isSexuallyDimorphic()) {
+            return "";
+        }
+        if (this.getGender() == 0) {
+            return "f";
+        } else {
+            return "m";
+        }
+    }
+
 }

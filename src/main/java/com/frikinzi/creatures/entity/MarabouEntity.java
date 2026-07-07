@@ -2,6 +2,7 @@ package com.frikinzi.creatures.entity;
 
 import com.frikinzi.creatures.CreaturesConfig;
 import com.frikinzi.creatures.client.gui.Region;
+import com.frikinzi.creatures.entity.ai.FleeGoal;
 import com.frikinzi.creatures.entity.ai.FollowFlockLeaderGoal;
 import com.frikinzi.creatures.entity.base.CreaturesFlyingBird;
 import com.frikinzi.creatures.registry.CreaturesEntities;
@@ -88,7 +89,7 @@ public class MarabouEntity extends CreaturesFlyingBird implements GeoEntity {
         this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, FOOD_ITEMS, false ));
         this.goalSelector.addGoal(5, new FollowFlockLeaderGoal(this));
-        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Player.class, 6.0F, 1.0D, 1.2D));
+        this.goalSelector.addGoal(4, new FleeGoal<>(this, Player.class, 6.0F, 1.0D, 1.2D));
     }
 
 
@@ -270,7 +271,7 @@ public class MarabouEntity extends CreaturesFlyingBird implements GeoEntity {
     }
 
     public int getScaleforGUI() {
-        return (int)(super.getScaleforGUI() *0.7f);
+        return (int)(super.getScaleforGUI() *0.8f);
     }
 
     public ItemStack getFoodItem() {

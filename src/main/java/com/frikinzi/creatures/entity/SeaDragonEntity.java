@@ -152,4 +152,11 @@ protected void registerGoals() {
     public int numVariants() {
         return 3;
     }
+
+    public int methodOfDeterminingVariant() {
+        if (this.random.nextInt(200) == 1) {
+            return 3;
+        }
+        return this.random.nextInt(2)+1;
+    }
 }
